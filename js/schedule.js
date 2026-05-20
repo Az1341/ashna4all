@@ -221,6 +221,10 @@ var GC_SCHEDULE = (function () {
   }
 
   function renderWC(container) {
+    /* Default to 11 Jun if no date set */
+    if (!_wcDate) _wcDate = '2026-06-11';
+
+    /* Build round tabs */
     var tabsHtml = '<div class="gc-round-tabs">';
     WC_ROUNDS.forEach(function(r) {
       tabsHtml += '<button class="gc-round-tab' + (r.id===_wcRound?' active':'') +
@@ -228,54 +232,151 @@ var GC_SCHEDULE = (function () {
     });
     tabsHtml += '</div>';
 
+    /* Build timezone selector */
+    var tzHtml = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">' +
+      '<button onclick="GC_SCHEDULE._setTz('UK')"  id="tz-UK"    class="gc-tz-btn' + (_tz==='UK'   ?' gc-tz-active':'') + '">🇬🇧 UK</button>' +
+      '<button onclick="GC_SCHEDULE._setTz('CA')"  id="tz-CA"    class="gc-tz-btn' + (_tz==='CA'   ?' gc-tz-active':'') + '">🇨🇦 Canada</button>' +
+      '<button onclick="GC_SCHEDULE._setTz('USA')" id="tz-USA"   class="gc-tz-btn' + (_tz==='USA'  ?' gc-tz-active':'') + '">🇺🇸 USA</button>' +
+      '<button onclick="GC_SCHEDULE._setTz('OTHER')" id="tz-OTHER" class="gc-tz-btn' + (_tz==='OTHER'?' gc-tz-active':'') + '">🌍 My Time</button>' +
+    '</div>';
+
     container.innerHTML =
       '<div style="padding-top:16px">' +
       '<div class="gc-hero-banner-wrap" style="height:160px;margin-bottom:18px">' +
         '<img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" style="width:100%;height:100%;object-fit:cover" alt="WC">' +
         '<div class="gc-hero-banner-overlay">' +
-          '<div class="gc-hero-banner-title">🏆 FIFA World Cup 2026 Schedule</div>' +
-          '<div class="gc-hero-banner-sub">USA · Canada · Mexico — 11 Jun to 26 Jul 2026</div>' +
+          '<div class="gc-hero-banner-title">🏆 Ahmad's World Cup 2026 Schedule</div>' +
+          '<div class="gc-hero-banner-sub">By Ahmad (A.Zafarani) · USA · Canada · Mexico · 48 Teams · 104 Matches</div>' +
         '</div>' +
       '</div>' +
+      tzHtml +
       '<div class="gc-section-title">📅 World Cup Schedule</div>' +
       tabsHtml +
+      '<div class="gc-datebar" id="gc-wc-datebar"></div>' +
       '<div id="gc-sch-matches"></div>' +
       '</div>';
-    loadWCRound();
+
+    buildWCDateBar();
+    loadWCDay();
   }
 
-  function loadWCRound() {
+  function buildWCDateBar() {
+    var bar = document.getElementById('gc-wc-datebar');
+    if (!bar) return;
+    var round = WC_ROUNDS.find(function(r){ return r.id === _wcRound; }) || WC_ROUNDS[0];
+    /* Get unique dates from fixtures for this round */
+    var dates = [];
+    var seen = {};
+    WC_FIXTURES.forEach(function(f) {
+      if (f.date >= round.from && f.date <= round.to && !seen[f.date]) {
+        dates.push(f.date); seen[f.date] = true;
+      }
+    });
+    dates.sort();
+    if (!dates.length) { bar.innerHTML = ''; return; }
+    /* Default to first date of round */
+    if (!_wcDate || _wcDate < round.from || _wcDate > round.to) _wcDate = dates[0];
+    var html = '';
+    dates.forEach(function(iso) {
+      var d = new Date(iso + 'T12:00:00Z');
+      var isSel = iso === _wcDate;
+      html += '<button class="gc-date-btn' + (isSel?' gc-date-selected':'') +
+        '" onclick="GC_SCHEDULE._wcDayPick('' + iso + '')">' +
+        '<span class="gc-date-wd">' + d.toLocaleDateString('en-GB',{weekday:'short'}) + '</span>' +
+        '<span class="gc-date-d">'  + d.getDate() + '</span>' +
+        '<span class="gc-date-m">'  + d.toLocaleDateString('en-GB',{month:'short'}) + '</span>' +
+        '</button>';
+    });
+    bar.innerHTML = html;
+    setTimeout(function() {
+      var sel = bar.querySelector('.gc-date-selected');
+      if (sel) sel.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+    }, 100);
+  }
+
+  function loadWCDay() {
     var el = document.getElementById('gc-sch-matches');
     if (!el) return;
-    var round = WC_ROUNDS.find(function(r){ return r.id === _wcRound; });
-    if (!round) return;
 
-    el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading ' + round.label + '...</span></div>';
+    /* Get fixtures for selected date */
+    var dayFixtures = WC_FIXTURES.filter(function(f){ return f.date === _wcDate; });
 
-    var promises = [];
-    var d = new Date(round.from);
-    var end = new Date(round.to);
-    while (d <= end) {
-      promises.push(GC_API.getByDate('WC', d.toISOString().slice(0,10)));
-      d.setDate(d.getDate()+1);
+    if (!dayFixtures.length) {
+      el.innerHTML = '<div class="gc-empty">📭 No matches on this date.</div>';
+      return;
     }
 
-    Promise.all(promises).then(function(results) {
-      var all = [].concat.apply([], results);
-      var seen = {};
-      all = all.filter(function(m) {
-        var key = (m.homeTeam||'')+'|'+(m.awayTeam||'')+'|'+(m.kickoff||'').slice(0,10);
-        if (seen[key]) return false; seen[key]=true; return true;
-      });
-      all.sort(function(a,b){ return new Date(a.kickoff)-new Date(b.kickoff); });
-      if (!all.length) {
-        el.innerHTML = '<div class="gc-empty">📭 Schedule will appear closer to the tournament.<br><small>World Cup starts 11 June 2026 🏆</small></div>';
-        return;
-      }
-      el.innerHTML = matchList(all, null);
-    }).catch(function() {
-      el.innerHTML = '<div class="gc-empty">📭 Schedule will appear closer to the tournament.<br><small>World Cup starts 11 June 2026 🏆</small></div>';
+    /* Broadcaster data per team */
+    var TV = {
+      'Mexico':{'uk':'ITV/STV','us':'Fox','ca':'CTV/TSN'},
+      'South Africa':{'uk':'ITV/STV','us':'Fox','ca':'TSN'},
+      'South Korea':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Czechia':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Canada':{'uk':'BBC','us':'Fox','ca':'CTV/TSN'},
+      'Bosnia & Herz.':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'USA':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Paraguay':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Qatar':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Switzerland':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Brazil':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Morocco':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Haiti':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Scotland':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Germany':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Curaçao':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Netherlands':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Japan':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Ivory Coast':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Ecuador':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Sweden':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Tunisia':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Spain':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Cape Verde':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Belgium':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Egypt':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Saudi Arabia':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Uruguay':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      '🇮🇷 Iran':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'New Zealand':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'France':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Senegal':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'Iraq':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Norway':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Argentina':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Algeria':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Austria':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Jordan':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Portugal':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'DR Congo':{'uk':'BBC','us':'FS1','ca':'TSN'},
+      'England':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Croatia':{'uk':'ITV','us':'Fox','ca':'TSN'},
+      'Ghana':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Panama':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Uzbekistan':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Colombia':{'uk':'BBC','us':'Fox','ca':'TSN'},
+      'Türkiye':{'uk':'ITV','us':'FS1','ca':'TSN'},
+      'Australia':{'uk':'ITV','us':'FS1','ca':'TSN'}
+    };
+
+    var matches = dayFixtures.map(function(f) {
+      /* Convert UK BST to UTC */
+      var h = parseInt(f.time.split(':')[0]);
+      var min = f.time.split(':')[1];
+      var utcH = (h - 1 + 24) % 24;
+      var tv = TV[f.home] || {uk:'BBC/ITV',us:'Fox/FS1',ca:'TSN/CTV'};
+      return {
+        homeTeam:f.home, homeLogo:f.hf,
+        awayTeam:f.away, awayLogo:f.af,
+        homeScore:null, awayScore:null,
+        kickoff:f.date+'T'+(utcH<10?'0'+utcH:utcH)+':'+min+':00Z',
+        venue:f.venue, league:f.group,
+        isLive:false, isFT:false, isPre:true,
+        statusShort:'', minute:'', scorers:[], tv:[],
+        _ukTime:f.time, _date:f.date, _tv:tv
+      };
     });
+
+    el.innerHTML = matchList(matches, _wcDate);
   }
 
   function matchList(matches, dateIso) {
@@ -411,6 +512,19 @@ var GC_SCHEDULE = (function () {
     render    : render,
     setLeague : setLeague,
     _pick     : function(iso) { _date = iso; buildDateBar(); loadPLMatches(); },
+    _setTz    : function(tz) {
+      _tz = tz;
+      ['UK','CA','USA','OTHER'].forEach(function(t) {
+        var btn = document.getElementById('tz-' + t);
+        if (btn) btn.className = 'gc-tz-btn' + (t===tz?' gc-tz-active':'');
+      });
+      loadWCDay();
+    },
+    _wcDayPick: function(iso) {
+      _wcDate = iso;
+      buildWCDateBar();
+      loadWCDay();
+    },
     _setTz    : function(tz) {
       _tz = tz;
       /* Update button styles */
