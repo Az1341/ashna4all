@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GoalCurrent — Live Football Scores</title>
+  <meta name="description" content="Live football scores, Premier League standings, World Cup 2026 schedule and results. Real-time updates on goalcurrent.live">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="GoalCurrent — Live Football Scores">
+  <meta property="og:description" content="Premier League & World Cup 2026 live scores, standings and schedule">
+  <meta property="og:url"         content="https://goalcurrent.live">
+  <meta property="og:type"        content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171"
+     crossorigin="anonymous"></script>
+
+  <!-- OneSignal Push Notifications -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "e6a77420-dc1d-4dae-895f-ee68950148f9",
+        safari_web_id: "web.onesignal.auto.goalcurrent",
+        notifyButton: { enable: true },
+        allowLocalhostAsSecureOrigin: true
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <!-- Background canvas -->
+  <canvas id="gc-canvas"></canvas>
+
+  <!-- App shell -->
+  <div id="gc-app">
+
+    <!-- Header -->
+    <header class="gc-header">
+      <div class="gc-header-inner">
+        <a class="gc-logo" href="/">Goal<span>Current</span>.live</a>
+
+        <!-- PL / World Cup toggle -->
+        <div class="gc-league-toggle">
+          <button class="gc-league-btn active" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</button>
+          <button class="gc-league-btn" data-league="WC">🏆 WC26</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main id="gc-content"></main>
+
+    <!-- AdSense -->
+    <div class="gc-adsense">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-8697460993506171"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- NordVPN bar -->
+    <div id="gc-nordvpn-bar">
+      <span>🔒 Stay private online →</span>
+      <a class="gc-nv-btn"
+         href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902"
+         target="_blank" rel="noopener">Get NordVPN</a>
+      <a class="gc-nv-btn" style="background:#0066cc;"
+         href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356"
+         target="_blank" rel="noopener">NordPass</a>
+    </div>
+
+    <!-- Bottom navigation -->
+    <nav class="gc-nav">
+      <button class="gc-nav-btn active" data-page="home">
+        <span class="gc-nav-icon">🏠</span>Home
+      </button>
+      <button class="gc-nav-btn" data-page="live">
+        <span class="gc-nav-icon">🔴</span>Live
+      </button>
+      <button class="gc-nav-btn" data-page="schedule">
+        <span class="gc-nav-icon">📅</span>Schedule
+      </button>
+      <button class="gc-nav-btn" data-page="groups">
+        <span class="gc-nav-icon">🏅</span>Standings
+      </button>
+    </nav>
+
+  </div><!-- /#gc-app -->
+
+  <!-- Privacy Policy link -->
+  <div style="display:none">
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+
+  <!-- Scripts — order matters -->
+  <script src="js/api.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/live.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/groups.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script><!-- app.js last — boots everything -->
+
+</body>
+</html>
