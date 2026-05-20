@@ -3,6 +3,7 @@ var GC_SCHEDULE = (function () {
   var _league = 'PL';
   var _date   = null;
   var _wcRound = 'group';
+  var _wcDate  = '2026-06-11';
 
   /* ALL 10 PL Final Day matches - Sunday 24 May 2026 */
   var PL_FINAL_DAY = [
@@ -248,13 +249,21 @@ var GC_SCHEDULE = (function () {
     render    : render,
     setLeague : setLeague,
     _pick     : function(iso) { _date = iso; buildDateBar(); loadPLMatches(); },
+    _wcDayPick: function(iso) {
+      _wcDate = iso;
+      buildWCDateBar();
+      loadWCDay();
+    },
     _wcRoundPick: function(id) {
       _wcRound = id;
+      /* Set default date for this round */
+      var round = WC_ROUNDS.find(function(r){ return r.id===id; });
+      if (round) _wcDate = round.from;
       document.querySelectorAll('.gc-round-tab').forEach(function(b) {
-        var round = WC_ROUNDS.find(function(r){ return r.id===id; });
-        b.classList.toggle('active', round && b.textContent.trim() === round.label);
+        b.classList.toggle('active', b.textContent.trim().indexOf(round?round.label.slice(2):'') > -1);
       });
-      loadWCRound();
+      buildWCDateBar();
+      loadWCDay();
     }
   };
 })();
