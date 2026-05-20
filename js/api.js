@@ -12,7 +12,7 @@ var GC_API = (function () {
   var IDS = {
     espn: {
       PL:  'eng.1',       // Premier League
-      WC:  'fifa.world'   // World Cup
+      WC:  'fifa.worldq' // World Cup 2026 qualifying/tournament
     },
     sportsdb: {
       PL:  '4328',        // Premier League
@@ -71,7 +71,7 @@ var GC_API = (function () {
 
     /* standings */
     standings: function (leagueId) {
-      var url = this._base + leagueId + '/standings';
+      var url = this._base + leagueId + '/standings?season=2025';
       return get(url, true).then(function (data) {
         return ESPN._parseStandings(data);
       });

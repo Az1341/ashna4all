@@ -116,5 +116,27 @@ var GC_LIVE = (function () {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  return { render: render, setLeague: setLeague };
+  // fetchOnly - updates scores without resetting page layout
+  function fetchOnly(container) {
+    GC_API.getByDate(_league, GC_API.today()).then(function(matches) {
+      if (matches && matches.length) {
+        var matchList = container.querySelector('.gc-match-list-inner');
+        if (matchList) matchList.innerHTML = buildMatchesOnly(matches);
+      }
+    }).catch(function() {});
+  }
+
+  function buildMatchesOnly(matches) {
+    if (!matches || !matches.length) return '';
+    var live     = matches.filter(function(m){ return m.isLive; });
+    var upcoming = matches.filter(function(m){ return m.isPre; });
+    var finished = matches.filter(function(m){ return m.isFT; });
+    var html = '';
+    if (live.length)     { html += '<div class="gc-group-label">🔴 In Progress</div>';  live.forEach(function(m){ html += matchCard(m); }); }
+    if (upcoming.length) { html += '<div class="gc-group-label">⏰ Upcoming</div>';      upcoming.forEach(function(m){ html += matchCard(m); }); }
+    if (finished.length) { html += '<div class="gc-group-label">✅ Full Time</div>';     finished.forEach(function(m){ html += matchCard(m); }); }
+    return html;
+  }
+
+  return { render: render, setLeague: setLeague, fetchOnly: fetchOnly };
 })();

@@ -94,7 +94,13 @@ var GC = (function () {
     getType: function() { return currentType; },
     init: function() {
       initNav(); initCanvas();
-      setInterval(function() { if(currentPage==='live') draw(); }, 60000);
+      // Auto-refresh live scores without resetting page
+      setInterval(function() {
+        if(currentPage === 'live') {
+          var el = document.getElementById('gc-content');
+          if (el && window.GC_LIVE) GC_LIVE.fetchOnly(el);
+        }
+      }, 60000);
       go('home');
     }
   };

@@ -1,18 +1,21 @@
 /* groups.js — PL standings + WC groups + knockout bracket */
 var GC_GROUPS = (function () {
   var _league = 'PL';
+  var _container = null;
   function setLeague(t) { _league = t; }
 
   function render(container) {
+    // Store container reference to prevent disappearing on re-render
+    _container = container;
     container.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading standings...</span></div>';
     GC_API.getStandings(_league).then(function(groups) {
       if (!groups || !groups.length) {
-        container.innerHTML = '<div class="gc-empty">📭 Standings not available yet.</div>';
+        container.innerHTML = '<div class="gc-empty">📭 Standings not available yet.<br><small>Data will appear when the tournament begins.</small></div>';
         return;
       }
       container.innerHTML = buildHTML(groups);
     }).catch(function() {
-      container.innerHTML = '<div class="gc-empty">⚠️ Could not load standings.</div>';
+      container.innerHTML = '<div class="gc-empty">⚠️ Could not load standings. Please try again.<br><button class="gc-btn gc-btn-primary" onclick="GC_GROUPS.render(document.getElementById('gc-content'))">🔄 Retry</button></div>';
     });
   }
 
@@ -38,7 +41,7 @@ var GC_GROUPS = (function () {
 
     html += '<div class="gc-section-title">' + (_league==='WC'?'🏆 World Cup 2026 Groups':'🏴󠁧󠁢󠁥󠁮󠁧󠁩 Premier League 2025/26') + '</div>';
 
-    groups.forEach(function(g) { html += groupTable(g); });
+    groups.forEach(function(g, i) { html += groupTable(g, i); });
 
     /* WC knockout bracket */
     if (_league === 'WC') {
@@ -50,9 +53,13 @@ var GC_GROUPS = (function () {
     return html;
   }
 
-  function groupTable(group) {
+  function groupTable(group, index) {
     var html = '<div class="gc-group-card">';
-    html += '<div class="gc-group-name">' + esc(group.name) + '</div>';
+    // For WC show Group A, B, C... for PL show Standings
+    var displayName = _league === 'WC'
+      ? '🏆 Group ' + String.fromCharCode(65 + (index || 0))
+      : esc(group.name);
+    html += '<div class="gc-group-name">' + displayName + '</div>';
     html += '<table class="gc-table"><thead><tr>' +
       '<th class="gc-th-team">Team</th>' +
       '<th title="Played">P</th><th title="Won">W</th><th title="Drawn">D</th><th title="Lost">L</th>' +
