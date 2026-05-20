@@ -7,7 +7,7 @@ var GC_SCHEDULE = (function () {
 
   /* ALL 10 PL Final Day matches - Sunday 24 May 2026 — 5:00 PM UK */
   /* Source: ESPN official fixtures */
-  var KO = '2026-05-24T16:00:00Z'; /* 5pm UK = 4pm UTC */
+  var KO = '2026-05-24T15:00:00Z'; /* 4pm UK (BST) = 3pm UTC */
   var B = 'https://resources.premierleague.com/premierleague/badges/50/';
   var PL_FINAL_DAY = [
     {homeTeam:'Brighton',         homeLogo:B+'t36.png', awayTeam:'Man United',       awayLogo:B+'t1.png',  homeScore:null,awayScore:null,kickoff:KO,venue:'Amex Stadium, Brighton',            isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
