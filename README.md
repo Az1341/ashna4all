@@ -1,1 +1,1 @@
-# ashna4all.store
+# https://goalcurrent.live/
