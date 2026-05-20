@@ -28,20 +28,81 @@ var GC_GROUPS = (function () {
     {team:'Southampton',     logo:'https://resources.premierleague.com/premierleague/badges/50/t20.png', played:37,won:4, drawn:6, lost:27,gf:28,ga:79,gd:-51,pts:18}
   ]}];
 
-  /* WC 2026 Groups placeholder */
-  var WC_GROUPS_PLACEHOLDER = [];
-  var WC_GROUPS_ALPHA = 'ABCDEFGHIJKL'.split('');
-  WC_GROUPS_ALPHA.forEach(function(letter) {
-    WC_GROUPS_PLACEHOLDER.push({
-      name: 'Group ' + letter,
-      entries: [
-        {team:'TBD',logo:'',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-        {team:'TBD',logo:'',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-        {team:'TBD',logo:'',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-        {team:'TBD',logo:'',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-      ]
-    });
-  });
+  /* WC 2026 Real Groups — Official Draw */
+  var WC_GROUPS_PLACEHOLDER = [
+    {name:'Group A', entries:[
+      {team:'USA',         logo:'https://media.api-sports.io/flags/us.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Serbia',      logo:'https://media.api-sports.io/flags/rs.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Panama',      logo:'https://media.api-sports.io/flags/pa.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Venezuela',   logo:'https://media.api-sports.io/flags/ve.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group B', entries:[
+      {team:'Mexico',      logo:'https://media.api-sports.io/flags/mx.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Ghana',       logo:'https://media.api-sports.io/flags/gh.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'New Zealand', logo:'https://media.api-sports.io/flags/nz.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Honduras',    logo:'https://media.api-sports.io/flags/hn.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group C', entries:[
+      {team:'Argentina',   logo:'https://media.api-sports.io/flags/ar.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Chile',       logo:'https://media.api-sports.io/flags/cl.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Albania',     logo:'https://media.api-sports.io/flags/al.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Nigeria',     logo:'https://media.api-sports.io/flags/ng.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group D', entries:[
+      {team:'France',      logo:'https://media.api-sports.io/flags/fr.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Australia',   logo:'https://media.api-sports.io/flags/au.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Saudi Arabia',logo:'https://media.api-sports.io/flags/sa.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'DR Congo',    logo:'https://media.api-sports.io/flags/cd.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group E', entries:[
+      {team:'Spain',       logo:'https://media.api-sports.io/flags/es.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Brazil',      logo:'https://media.api-sports.io/flags/br.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Japan',       logo:'https://media.api-sports.io/flags/jp.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Cameroon',    logo:'https://media.api-sports.io/flags/cm.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group F', entries:[
+      {team:'Germany',     logo:'https://media.api-sports.io/flags/de.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Portugal',    logo:'https://media.api-sports.io/flags/pt.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Tunisia',     logo:'https://media.api-sports.io/flags/tn.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Costa Rica',  logo:'https://media.api-sports.io/flags/cr.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group G', entries:[
+      {team:'England',     logo:'https://media.api-sports.io/flags/gb-eng.svg',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Senegal',     logo:'https://media.api-sports.io/flags/sn.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Netherlands', logo:'https://media.api-sports.io/flags/nl.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Colombia',    logo:'https://media.api-sports.io/flags/co.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group H', entries:[
+      {team:'Portugal',    logo:'https://media.api-sports.io/flags/pt.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Morocco',     logo:'https://media.api-sports.io/flags/ma.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'South Korea', logo:'https://media.api-sports.io/flags/kr.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Uruguay',     logo:'https://media.api-sports.io/flags/uy.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group I', entries:[
+      {team:'Canada',      logo:'https://media.api-sports.io/flags/ca.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Iran',        logo:'https://media.api-sports.io/flags/ir.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Bolivia',     logo:'https://media.api-sports.io/flags/bo.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Ivory Coast', logo:'https://media.api-sports.io/flags/ci.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group J', entries:[
+      {team:'Belgium',     logo:'https://media.api-sports.io/flags/be.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Italy',       logo:'https://media.api-sports.io/flags/it.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Peru',        logo:'https://media.api-sports.io/flags/pe.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Czech Republic',logo:'https://media.api-sports.io/flags/cz.svg',played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group K', entries:[
+      {team:'Croatia',     logo:'https://media.api-sports.io/flags/hr.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Mexico',      logo:'https://media.api-sports.io/flags/mx.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Ecuador',     logo:'https://media.api-sports.io/flags/ec.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Bahrain',     logo:'https://media.api-sports.io/flags/bh.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]},
+    {name:'Group L', entries:[
+      {team:'Portugal',    logo:'https://media.api-sports.io/flags/pt.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Sweden',      logo:'https://media.api-sports.io/flags/se.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Zambia',      logo:'https://media.api-sports.io/flags/zm.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'Guatemala',   logo:'https://media.api-sports.io/flags/gt.svg',  played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
+    ]}
+  ];
 
   function render(container) {
     _container = container;
