@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GoalCurrent.live — Live Football Scores</title>
+  <meta name="description" content="Live Premier League & World Cup 2026 scores, standings, schedule and results.">
+  <meta name="theme-color" content="#dbeafe">
+  <meta property="og:title" content="GoalCurrent — Live Football Scores">
+  <meta property="og:url" content="https://goalcurrent.live">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Extra style for My Teams match highlight -->
+  <style>
+    .gc-match-mine {
+      border-color: rgba(217,119,6,0.45) !important;
+      box-shadow: 0 0 0 2px rgba(217,119,6,0.12), 0 8px 32px rgba(100,160,220,0.18) !important;
+    }
+  </style>
+
+  <!-- Brevo Form Styles -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171" crossorigin="anonymous"></script>
+
+  <!-- OneSignal -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "e6a77420-dc1d-4dae-895f-ee68950148f9",
+        notifyButton: { enable: false },
+      });
+    });
+  </script>
+</head>
+<body>
+<canvas id="gc-canvas"></canvas>
+<div id="gc-app">
+
+  <!-- HEADER -->
+  <header class="gc-header">
+    <div class="gc-header-inner">
+      <a class="gc-logo" href="/">Goal<span class="gc-logo-dot">Current</span><span class="gc-logo-live">.live</span></a>
+
+      <!-- Desktop top nav (hidden on mobile) -->
+      <nav class="gc-topnav">
+        <button class="gc-topnav-btn active" data-page="home">🏠 Home</button>
+        <button class="gc-topnav-btn" data-page="live">🔴 Live</button>
+        <button class="gc-topnav-btn" data-page="schedule">📅 Schedule</button>
+        <button class="gc-topnav-btn" data-page="groups">🏅 Standings</button>
+        <button class="gc-topnav-btn" data-page="myteams">⭐ My Teams</button>
+      </nav>
+
+      <!-- League toggle -->
+      <div class="gc-league-toggle">
+        <button class="gc-league-btn active" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</button>
+        <button class="gc-league-btn" data-league="WC">🏆 WC26</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main id="gc-content"></main>
+
+  <!-- Brevo Form Styles -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+  <!-- AdSense -->
+  <div class="gc-adsense" style="max-width:820px;margin:0 auto;padding:0 16px">
+    <ins class="adsbygoogle" style="display:block"
+      data-ad-client="ca-pub-8697460993506171"
+      data-ad-slot="auto" data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- NordVPN bar -->
+  <div id="gc-nordvpn-bar">
+    <span>🔒 Stay private online →</span>
+    <a class="gc-nv-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener">Get NordVPN</a>
+    <a class="gc-nv-btn gc-nv-pass" href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener">NordPass</a>
+  </div>
+
+  <!-- Mobile bottom nav (hidden on desktop) -->
+  <nav class="gc-bottomnav">
+    <button class="gc-bottomnav-btn active" data-page="home">
+      <span class="gc-nav-icon">🏠</span>Home
+    </button>
+    <button class="gc-bottomnav-btn" data-page="live">
+      <span class="gc-nav-icon">🔴</span>Live
+    </button>
+    <button class="gc-bottomnav-btn" data-page="schedule">
+      <span class="gc-nav-icon">📅</span>Schedule
+    </button>
+    <button class="gc-bottomnav-btn" data-page="groups">
+      <span class="gc-nav-icon">🏅</span>Standings
+    </button>
+    <button class="gc-bottomnav-btn" data-page="myteams">
+      <span class="gc-nav-icon">⭐</span>My Teams
+    </button>
+  </nav>
+
+</div>
+
+<!-- Privacy Policy (hidden link for AdSense) -->
+<div style="display:none"><a href="/privacy.html">Privacy Policy</a></div>
+
+<!-- Scripts — api.js MUST be first -->
+<script src="js/api.js" type="text/javascript"></script>
+<script src="js/home.js" type="text/javascript"></script>
+<script src="js/live.js" type="text/javascript"></script>
+<script src="js/schedule.js" type="text/javascript"></script>
+<script src="js/groups.js" type="text/javascript"></script>
+<script src="js/myteams.js" type="text/javascript"></script>
+<script src="js/notifications.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+  <!-- Brevo Form Script -->
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+</body>
+</html>
