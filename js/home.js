@@ -105,18 +105,18 @@ var GC_HOME = (function () {
         '<button class="gc-ql-btn" onclick="GC.go(\'myteams\')"><span class="gc-ql-icon">⭐</span>My Teams</button>' +
       '</div>' +
 
-      /* Email signup — Brevo embed */
+      /* Email signup */
       '<div class="gc-card gc-signup-card">' +
         '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
-        '<div class="gc-signup-sub">Never miss a goal — World Cup 2026 & Premier League updates</div>' +
-        '<div id="gc-brevo-form">' +
-          '<form id="sib-form" method="POST" action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==" data-type="subscription" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">' +
-            '<input type="email" name="EMAIL" placeholder="Your email address" required ' +
-              'style="flex:1;min-width:200px;max-width:300px;padding:10px 14px;border:1px solid rgba(255,255,255,0.8);border-radius:8px;background:rgba(255,255,255,0.8);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
-            '<input type="text" name="email_address_check" value="" style="display:none">' +
-            '<input type="hidden" name="locale" value="en">' +
-            '<button type="submit" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Subscribe Free →</button>' +
-          '</form>' +
+        '<div class="gc-signup-sub">Never miss a goal — World Cup 2026 & Premier League updates. Free!</div>' +
+        '<div id="gc-brevo-form" style="margin-top:14px">' +
+          '<div id="gc-brevo-inline" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
+            '<input type="email" id="gc-email-input" placeholder="Your email address" ' +
+              'style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
+            '<button onclick="GC_HOME._subscribe()" ' +
+              'style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(22,163,74,0.3)">Subscribe Free →</button>' +
+          '</div>' +
+          '<div id="gc-brevo-msg" style="margin-top:10px;font-size:12px;color:#16a34a;display:none;font-weight:600"></div>' +
         '</div>' +
       '</div>' +
 
@@ -126,5 +126,36 @@ var GC_HOME = (function () {
     _timer = setInterval(tick, 1000);
   }
 
-  return { render: render };
+  return {
+    render: render,
+    _subscribe: function() {
+      var input = document.getElementById('gc-email-input');
+      var msg   = document.getElementById('gc-brevo-msg');
+      if (!input || !input.value || !input.value.includes('@')) {
+        if (msg) { msg.style.display='block'; msg.style.color='#dc2626'; msg.textContent='⚠️ Please enter a valid email address.'; }
+        return;
+      }
+      /* Submit to Brevo via hidden form */
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+      form.target = '_blank'; /* Open in new tab - no redirect! */
+      form.style.display = 'none';
+      var emailField = document.createElement('input');
+      emailField.name = 'EMAIL'; emailField.value = input.value;
+      var checkField = document.createElement('input');
+      checkField.name = 'email_address_check'; checkField.value = '';
+      var localeField = document.createElement('input');
+      localeField.name = 'locale'; localeField.value = 'en';
+      form.appendChild(emailField);
+      form.appendChild(checkField);
+      form.appendChild(localeField);
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+      /* Show success message */
+      if (msg) { msg.style.display='block'; msg.style.color='#16a34a'; msg.textContent='✅ Thank you! Please check your email to confirm your subscription.'; }
+      if (input) input.value = '';
+    }
+  };
 })();
