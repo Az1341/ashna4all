@@ -25,15 +25,23 @@
   <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171" crossorigin="anonymous"></script>
 
-  <!-- OneSignal -->
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <!-- OneSignal - disabled auto-refresh -->
   <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
-      await OneSignal.init({
-        appId: "e6a77420-dc1d-4dae-895f-ee68950148f9",
-        notifyButton: { enable: false },
-      });
+    // OneSignal loaded only after page is fully ready
+    window.addEventListener('load', function() {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
+      script.onload = function() {
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+          await OneSignal.init({
+            appId: "e6a77420-dc1d-4dae-895f-ee68950148f9",
+            notifyButton: { enable: false },
+            autoResubscribe: false,
+          });
+        });
+      };
+      document.head.appendChild(script);
     });
   </script>
 </head>
