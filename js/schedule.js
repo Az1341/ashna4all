@@ -1,16 +1,30 @@
-/* schedule.js — Full schedule: PL date picker + WC all rounds */
+/* schedule.js — Full schedule with hardcoded PL Final Day + API for other dates */
 var GC_SCHEDULE = (function () {
   var _league = 'PL';
   var _date   = null;
   var _wcRound = 'group';
 
+  /* ALL 10 PL Final Day matches - Sunday 24 May 2026 */
+  var PL_FINAL_DAY = [
+    {homeTeam:'Arsenal',           homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t3.png',   awayTeam:'Everton',          awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t11.png',  homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Emirates Stadium',        isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Aston Villa',       homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t7.png',   awayTeam:'Crystal Palace',   awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t31.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Villa Park',              isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Bournemouth',       homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t91.png',  awayTeam:'Fulham',           awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t54.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Vitality Stadium',        isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Brighton',          homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t36.png',  awayTeam:'Man United',       awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t1.png',  homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Amex Stadium',            isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Chelsea',           homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t8.png',   awayTeam:'Newcastle',        awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t4.png',  homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Stamford Bridge',         isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Ipswich Town',      homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t40.png',  awayTeam:'Leicester City',   awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t13.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Portman Road',            isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Liverpool',         homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t14.png',  awayTeam:'Wolves',           awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t39.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Anfield',                 isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Man City',          homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t43.png',  awayTeam:'Brentford',        awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t94.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Etihad Stadium',          isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:"Nott'm Forest",     homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t17.png',  awayTeam:'West Ham',         awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t21.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'City Ground',             isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]},
+    {homeTeam:'Tottenham',         homeLogo:'https://resources.premierleague.com/premierleague/badges/50/t6.png',   awayTeam:'Southampton',      awayLogo:'https://resources.premierleague.com/premierleague/badges/50/t20.png', homeScore:null,awayScore:null,kickoff:'2026-05-24T15:00:00Z',venue:'Tottenham Hotspur Stadium',isLive:false,isFT:false,isPre:true,league:'Premier League',scorers:[]}
+  ];
+
   var WC_ROUNDS = [
-    { id:'group', label:'⚽ Group Stage',     from:'2026-06-11', to:'2026-07-02' },
-    { id:'r32',   label:'🔥 Round of 32',    from:'2026-07-04', to:'2026-07-07' },
-    { id:'r16',   label:'⚡ Round of 16',    from:'2026-07-09', to:'2026-07-12' },
-    { id:'qf',    label:'🏆 Quarter-Finals', from:'2026-07-14', to:'2026-07-15' },
-    { id:'sf',    label:'🌟 Semi-Finals',    from:'2026-07-18', to:'2026-07-19' },
-    { id:'final', label:'👑 Final',          from:'2026-07-26', to:'2026-07-26' }
+    {id:'group', label:'⚽ Group Stage',     from:'2026-06-11', to:'2026-07-02'},
+    {id:'r32',   label:'🔥 Round of 32',    from:'2026-07-04', to:'2026-07-07'},
+    {id:'r16',   label:'⚡ Round of 16',    from:'2026-07-09', to:'2026-07-12'},
+    {id:'qf',    label:'🏆 Quarter-Finals', from:'2026-07-14', to:'2026-07-15'},
+    {id:'sf',    label:'🌟 Semi-Finals',    from:'2026-07-18', to:'2026-07-19'},
+    {id:'final', label:'👑 Final',          from:'2026-07-26', to:'2026-07-26'}
   ];
 
   function setLeague(t) { _league = t; }
@@ -21,23 +35,20 @@ var GC_SCHEDULE = (function () {
     else renderPL(container);
   }
 
-  /* ── PL: scrollable date picker ────────────────────── */
   function renderPL(container) {
     container.innerHTML =
       '<div style="padding-top:16px">' +
-      /* PL hero banner */
       '<div class="gc-hero-banner-wrap" style="height:140px;margin-bottom:18px">' +
-        '<img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80" alt="PL" style="width:100%;height:100%;object-fit:cover">' +
+        '<img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80" style="width:100%;height:100%;object-fit:cover" alt="PL">' +
         '<div class="gc-hero-banner-overlay">' +
           '<div class="gc-hero-banner-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Schedule</div>' +
-          '<div class="gc-hero-banner-sub">2025/26 Season</div>' +
+          '<div class="gc-hero-banner-sub">2025/26 Season — Final Day Sunday 24 May</div>' +
         '</div>' +
       '</div>' +
       '<div class="gc-section-title">📅 Pick a Date</div>' +
       '<div class="gc-datebar" id="gc-datebar"></div>' +
       '<div id="gc-sch-matches"></div>' +
       '</div>';
-
     buildDateBar();
     loadPLMatches();
   }
@@ -53,12 +64,15 @@ var GC_SCHEDULE = (function () {
       var iso = d.toISOString().slice(0,10);
       var isToday = iso === GC_API.today();
       var isSel   = iso === _date;
+      var isFinalDay = iso === '2026-05-24';
       html += '<button class="gc-date-btn' +
         (isToday?' gc-date-today':'') + (isSel?' gc-date-selected':'') +
-        '" onclick="GC_SCHEDULE._pick(\'' + iso + '\')">' +
+        '" onclick="GC_SCHEDULE._pick(\'' + iso + '\')" ' +
+        'style="' + (isFinalDay && !isSel?'border-color:#d97706;':'') + '">' +
         '<span class="gc-date-wd">' + d.toLocaleDateString('en-GB',{weekday:'short'}) + '</span>' +
         '<span class="gc-date-d">'  + d.getDate() + '</span>' +
         '<span class="gc-date-m">'  + d.toLocaleDateString('en-GB',{month:'short'}) + '</span>' +
+        (isFinalDay?'<span style="font-size:8px;color:#d97706;font-weight:700">FINAL</span>':'') +
         '</button>';
     }
     bar.innerHTML = html;
@@ -71,6 +85,34 @@ var GC_SCHEDULE = (function () {
   function loadPLMatches() {
     var el = document.getElementById('gc-sch-matches');
     if (!el) return;
+
+    /* PL Final Day — always show all 10 games from hardcoded data */
+    if (_date === '2026-05-24') {
+      /* Try live API first to get actual scores */
+      el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading Final Day matches...</span></div>';
+      GC_API.getByDate('PL', '2026-05-24').then(function(apiMatches) {
+        if (apiMatches && apiMatches.length >= 8) {
+          el.innerHTML = matchList(apiMatches, '2026-05-24');
+        } else {
+          /* Use hardcoded fallback with live scores merged */
+          var merged = PL_FINAL_DAY.map(function(m) {
+            if (apiMatches) {
+              var found = apiMatches.find(function(a) {
+                return a.homeTeam && m.homeTeam &&
+                  a.homeTeam.toLowerCase().indexOf(m.homeTeam.toLowerCase().split(' ')[0]) > -1;
+              });
+              if (found) return Object.assign({}, m, {homeScore:found.homeScore, awayScore:found.awayScore, isLive:found.isLive, isFT:found.isFT, isPre:found.isPre, minute:found.minute, scorers:found.scorers||[]});
+            }
+            return m;
+          });
+          el.innerHTML = matchList(merged, '2026-05-24');
+        }
+      }).catch(function() {
+        el.innerHTML = matchList(PL_FINAL_DAY, '2026-05-24');
+      });
+      return;
+    }
+
     el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading matches...</span></div>';
     GC_API.getByDate('PL', _date).then(function(matches) {
       el.innerHTML = matchList(matches, _date);
@@ -79,7 +121,6 @@ var GC_SCHEDULE = (function () {
     });
   }
 
-  /* ── WC: round tabs + matches ───────────────────────── */
   function renderWC(container) {
     var tabsHtml = '<div class="gc-round-tabs">';
     WC_ROUNDS.forEach(function(r) {
@@ -90,19 +131,17 @@ var GC_SCHEDULE = (function () {
 
     container.innerHTML =
       '<div style="padding-top:16px">' +
-      /* WC hero banner — Azadi Stadium */
       '<div class="gc-hero-banner-wrap" style="height:160px;margin-bottom:18px">' +
-        '<img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" alt="World Cup" style="width:100%;height:100%;object-fit:cover">' +
+        '<img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" style="width:100%;height:100%;object-fit:cover" alt="WC">' +
         '<div class="gc-hero-banner-overlay">' +
-          '<div class="gc-hero-banner-title">🏆 FIFA World Cup 2026</div>' +
-          '<div class="gc-hero-banner-sub">USA · Canada · Mexico</div>' +
+          '<div class="gc-hero-banner-title">🏆 FIFA World Cup 2026 Schedule</div>' +
+          '<div class="gc-hero-banner-sub">USA · Canada · Mexico — 11 Jun to 26 Jul 2026</div>' +
         '</div>' +
       '</div>' +
       '<div class="gc-section-title">📅 World Cup Schedule</div>' +
       tabsHtml +
       '<div id="gc-sch-matches"></div>' +
       '</div>';
-
     loadWCRound();
   }
 
@@ -114,46 +153,38 @@ var GC_SCHEDULE = (function () {
 
     el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading ' + round.label + '...</span></div>';
 
-    // fetch matches for the date range
     var promises = [];
     var d = new Date(round.from);
     var end = new Date(round.to);
     while (d <= end) {
       promises.push(GC_API.getByDate('WC', d.toISOString().slice(0,10)));
-      var nd = new Date(d); nd.setDate(nd.getDate()+1); d = nd;
+      d.setDate(d.getDate()+1);
     }
 
     Promise.all(promises).then(function(results) {
       var all = [].concat.apply([], results);
-      // deduplicate
       var seen = {};
       all = all.filter(function(m) {
-        var key = (m.homeTeam||'')+'|'+(m.awayTeam||'')+'|'+(m.kickoff||'');
+        var key = (m.homeTeam||'')+'|'+(m.awayTeam||'')+'|'+(m.kickoff||'').slice(0,10);
         if (seen[key]) return false; seen[key]=true; return true;
       });
-      // sort by date
       all.sort(function(a,b){ return new Date(a.kickoff)-new Date(b.kickoff); });
       if (!all.length) {
-        el.innerHTML = '<div class="gc-empty">📭 No matches found for this round yet.<br><small>Data will appear closer to the tournament.</small></div>';
+        el.innerHTML = '<div class="gc-empty">📭 Schedule will appear closer to the tournament.<br><small>World Cup starts 11 June 2026 🏆</small></div>';
         return;
       }
       el.innerHTML = matchList(all, null);
     }).catch(function() {
-      el.innerHTML = '<div class="gc-empty">⚠️ Could not load World Cup schedule.</div>';
+      el.innerHTML = '<div class="gc-empty">📭 Schedule will appear closer to the tournament.<br><small>World Cup starts 11 June 2026 🏆</small></div>';
     });
   }
 
-  /* ── shared match list renderer ─────────────────────── */
   function matchList(matches, dateIso) {
-    if (!matches || !matches.length) {
-      return '<div class="gc-empty">📭 No matches on this date.</div>';
-    }
+    if (!matches || !matches.length) return '<div class="gc-empty">📭 No matches on this date.</div>';
     matches.sort(function(a,b){ return new Date(a.kickoff)-new Date(b.kickoff); });
-
     var html = '<div>';
-    if (dateIso) html += '<div class="gc-date-label">' + fmtDayLabel(dateIso) + '</div>';
+    if (dateIso) html += '<div class="gc-date-label">' + fmtDayLabel(dateIso) + ' — ' + matches.length + ' matches</div>';
 
-    // group by date for WC multi-day view
     var grouped = {};
     matches.forEach(function(m) {
       var day = m.kickoff ? m.kickoff.slice(0,10) : 'unknown';
@@ -167,7 +198,6 @@ var GC_SCHEDULE = (function () {
       }
       grouped[day].forEach(function(m) { html += matchCard(m); });
     });
-
     html += '</div>';
     return html;
   }
@@ -176,52 +206,36 @@ var GC_SCHEDULE = (function () {
     var hasScore = m.homeScore !== null && m.awayScore !== null;
     var homeWin  = m.homeScore > m.awayScore;
     var awayWin  = m.awayScore > m.homeScore;
-
     var html = '<div class="gc-match-card' + (m.isLive?' gc-match-live':'') + '">';
-    html += '<div class="gc-match-meta">';
-    html += '<span class="gc-match-league">' + esc(m.league) + '</span>';
-    if (m.isLive)      html += '<span class="gc-badge gc-badge-live">🔴 LIVE ' + esc(m.statusShort) + '</span>';
-    else if (m.isFT)   html += '<span class="gc-badge gc-badge-ft">Full Time</span>';
-    else               html += '<span class="gc-badge gc-badge-pre">⏰ ' + GC_API.formatKickoff(m.kickoff) + '</span>';
+    html += '<div class="gc-match-meta"><span class="gc-match-league">' + esc(m.league||'Premier League') + '</span>';
+    if (m.isLive)    html += '<span class="gc-badge gc-badge-live">🔴 LIVE ' + esc(m.statusShort||'') + '</span>';
+    else if (m.isFT) html += '<span class="gc-badge gc-badge-ft">Full Time</span>';
+    else             html += '<span class="gc-badge gc-badge-pre">⏰ ' + GC_API.formatKickoff(m.kickoff) + '</span>';
     html += '</div>';
-
     html += '<div class="gc-match-body">';
-    html += '<div class="gc-team">';
-    if (m.homeLogo) html += '<img class="gc-team-logo" src="' + esc(m.homeLogo) + '" alt="">';
-    html += '<span class="gc-team-name' + (homeWin?' gc-team-winner':'') + '">' + esc(m.homeTeam) + '</span></div>';
-
+    html += '<div class="gc-team">' + (m.homeLogo?'<img class="gc-team-logo" src="'+esc(m.homeLogo)+'" alt="">':'') + '<span class="gc-team-name'+(homeWin?' gc-team-winner':'')+'">'+esc(m.homeTeam)+'</span></div>';
     html += '<div class="gc-score-wrap">';
-    if (hasScore) html += '<span class="gc-score' + (m.isLive?' gc-score-live':'') + '">' + m.homeScore + '<span class="gc-score-sep">–</span>' + m.awayScore + '</span>';
-    else          html += '<span class="gc-score gc-score-ko">' + GC_API.formatKickoff(m.kickoff) + '</span>';
-    if (m.isLive && m.minute) html += '<div class="gc-match-minute">' + esc(m.minute) + '</div>';
+    if (hasScore) html += '<span class="gc-score'+(m.isLive?' gc-score-live':'')+'">'+m.homeScore+'<span class="gc-score-sep">–</span>'+m.awayScore+'</span>';
+    else          html += '<span class="gc-score gc-score-ko">'+GC_API.formatKickoff(m.kickoff)+'</span>';
+    if (m.isLive && m.minute) html += '<div class="gc-match-minute">'+esc(m.minute)+'</div>';
     html += '</div>';
-
-    html += '<div class="gc-team gc-team-away">';
-    if (m.awayLogo) html += '<img class="gc-team-logo" src="' + esc(m.awayLogo) + '" alt="">';
-    html += '<span class="gc-team-name' + (awayWin?' gc-team-winner':'') + '">' + esc(m.awayTeam) + '</span></div>';
+    html += '<div class="gc-team gc-team-away">' + (m.awayLogo?'<img class="gc-team-logo" src="'+esc(m.awayLogo)+'" alt="">':'') + '<span class="gc-team-name'+(awayWin?' gc-team-winner':'')+'">'+esc(m.awayTeam)+'</span></div>';
     html += '</div>';
-
     if (m.scorers && m.scorers.length) {
       html += '<div class="gc-scorers">';
-      m.scorers.forEach(function(s) {
-        html += '<span class="gc-scorer">⚽ ' + esc(s.player) + (s.minute?' <span class="gc-scorer-min">'+esc(s.minute)+'</span>':'') + '</span>';
-      });
+      m.scorers.forEach(function(s) { html += '<span class="gc-scorer">⚽ '+esc(s.player)+(s.minute?' <span class="gc-scorer-min">'+esc(s.minute)+'</span>':'')+'</span>'; });
       html += '</div>';
     }
-    if (m.venue || (m.tv && m.tv.length)) {
-      html += '<div class="gc-match-footer">';
-      if (m.venue) html += '<span>🏟 ' + esc(m.venue) + (m.city?', '+esc(m.city):'') + '</span>';
-      if (m.tv && m.tv.length) html += '<span>📺 ' + m.tv.map(esc).join(', ') + '</span>';
-      html += '</div>';
-    }
+    if (m.venue) html += '<div class="gc-match-footer"><span>🏟 '+esc(m.venue)+'</span></div>';
     html += '</div>';
     return html;
   }
 
   function fmtDayLabel(iso) {
-    if (!iso || iso === 'unknown') return '';
+    if (!iso || iso==='unknown') return '';
     var d = new Date(iso);
     if (iso === GC_API.today()) return 'Today — ' + d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    if (iso === '2026-05-24') return '🏆 PL Final Day — Sunday 24 May 2026';
     return d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   }
 
@@ -236,7 +250,10 @@ var GC_SCHEDULE = (function () {
     _pick     : function(iso) { _date = iso; buildDateBar(); loadPLMatches(); },
     _wcRoundPick: function(id) {
       _wcRound = id;
-      document.querySelectorAll('.gc-round-tab').forEach(function(b){ b.classList.toggle('active', b.textContent.includes(WC_ROUNDS.find(function(r){return r.id===id;}).label.slice(2))); });
+      document.querySelectorAll('.gc-round-tab').forEach(function(b) {
+        var round = WC_ROUNDS.find(function(r){ return r.id===id; });
+        b.classList.toggle('active', round && b.textContent.trim() === round.label);
+      });
       loadWCRound();
     }
   };
