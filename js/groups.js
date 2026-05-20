@@ -118,20 +118,9 @@ var GC_GROUPS = (function () {
         }
       }).catch(function() {});
     } else {
-      // WC - try live, fall back to placeholder
-      GC_API.getStandings('WC').then(function(groups) {
-        if (groups && groups.length) {
-          // Label groups A, B, C...
-          groups.forEach(function(g, i) {
-            g.name = 'Group ' + String.fromCharCode(65 + i);
-          });
-          container.innerHTML = buildHTML(groups);
-        } else {
-          container.innerHTML = buildHTML(WC_GROUPS_PLACEHOLDER);
-        }
-      }).catch(function() {
-        container.innerHTML = buildHTML(WC_GROUPS_PLACEHOLDER);
-      });
+      // WC — always use our hardcoded real groups
+      // API data won't be available until tournament starts (11 June 2026)
+      container.innerHTML = buildHTML(WC_GROUPS_PLACEHOLDER);
     }
   }
 
