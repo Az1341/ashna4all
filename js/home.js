@@ -126,6 +126,16 @@ var GC_HOME = (function () {
         '</a>' +
       '</div>' +
 
+      /* UCL Final card */
+      '<a href="/blog-ucl-final.html" style="text-decoration:none;display:block;margin-bottom:8px">' +
+        '<div class="gc-card" style="cursor:pointer;padding:16px;background:linear-gradient(135deg,rgba(26,26,46,0.08),rgba(15,52,96,0.06));border:1px solid rgba(255,215,0,0.2)">' +
+          '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:6px">⭐ UCL FINAL · 30 MAY 2026 · 17:00 UK</div>' +
+          '<div style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px">🇫🇷 PSG vs Arsenal 🔴 — Champions League Final Preview</div>' +
+          '<div style="font-size:11px;color:#64748b">🏟 Puskás Aréna, Budapest · Arsenal bid for the Double!</div>' +
+          '<div style="margin-top:8px;font-size:12px;color:#2563eb;font-weight:600">Read preview + lineups →</div>' +
+        '</div>' +
+      '</a>' +
+
       /* Email signup */
       '<div class="gc-card gc-signup-card">' +
         '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
