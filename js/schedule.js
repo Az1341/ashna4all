@@ -167,29 +167,42 @@ var GC_SCHEDULE = (function () {
   }
 
   function tzLabel() {
-    return {UK:'BST',CA:'ET',USA:'ET',OTHER:'Local'}[_tz] || 'BST';
+    try {
+      var dt = new Date();
+      return dt.toLocaleTimeString('en-GB',{timeZoneName:'short'}).split(' ').pop() || 'Local';
+    } catch(e) { return 'Local'; }
   }
 
   function convertTime(ukTime, date) {
     try {
+      /* Convert UK BST to UTC, then display in device local time automatically */
       var h = parseInt(ukTime.split(':')[0]);
       var m = ukTime.split(':')[1];
       var utcH = (h - 1 + 24) % 24;
       var dt = new Date(date + 'T' + (utcH<10?'0'+utcH:utcH) + ':' + m + ':00Z');
-      var tzMap = {UK:'Europe/London',CA:'America/Toronto',USA:'America/New_York',OTHER:Intl.DateTimeFormat().resolvedOptions().timeZone};
-      return dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tzMap[_tz]||'Europe/London'});
+      /* Always use device timezone - no override needed */
+      var deviceTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      var timeStr = dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:deviceTz});
+      /* Show timezone abbreviation */
+      var tzAbbr = dt.toLocaleTimeString('en-GB',{timeZoneName:'short',timeZone:deviceTz}).split(' ').pop();
+      return timeStr + ' <span style="font-size:9px;color:#94a3b8">' + tzAbbr + '</span>';
     } catch(e) { return ukTime; }
   }
 
   function buildTzButtons() {
-    var cfg = [{id:'UK',label:'UK'},{id:'CA',label:'Canada'},{id:'USA',label:'USA'},{id:'OTHER',label:'My Time'}];
-    var flags = {UK:'🇬🇧',CA:'🇨🇦',USA:'🇺🇸',OTHER:'🌍'};
-    var html = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">';
+    var cfg = [
+      {id:'UK',  label:'Watch in UK',     flag:'&#127468;&#127463;'},
+      {id:'CA',  label:'Watch in Canada', flag:'&#127464;&#127462;'},
+      {id:'USA', label:'Watch in USA',    flag:'&#127482;&#127480;'}
+    ];
+    var html = '<div style="margin-bottom:16px">' +
+      '<div style="font-size:11px;color:#64748b;margin-bottom:8px;font-weight:600">📺 Select your country to see TV broadcasters:</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">';
     cfg.forEach(function(b) {
       var a = (_tz === b.id) ? ' gc-tz-active' : '';
-      html += '<button id="tz-' + b.id + '" class="gc-tz-btn' + a + '" onclick="GC_SCHEDULE._setTz(\'' + b.id + '\')">' + flags[b.id] + ' ' + b.label + '</button>';
+      html += '<button id="tz-' + b.id + '" class="gc-tz-btn' + a + '" onclick="GC_SCHEDULE._setTz(\'' + b.id + '\')">' + b.flag + ' ' + b.label + '</button>';
     });
-    return html + '</div>';
+    return html + '</div></div>';
   }
 
   function renderWC(container) {
@@ -395,7 +408,7 @@ var GC_SCHEDULE = (function () {
     _pick    : function(iso) { _date = iso; buildDateBar(); loadPLMatches(); },
     _setTz   : function(tz) {
       _tz = tz;
-      ['UK','CA','USA','OTHER'].forEach(function(t) {
+      ['UK','CA','USA'].forEach(function(t) {
         var btn = document.getElementById('tz-' + t);
         if (btn) btn.className = 'gc-tz-btn' + (t===tz?' gc-tz-active':'');
       });
