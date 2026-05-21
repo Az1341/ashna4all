@@ -154,6 +154,10 @@
   <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:12px">
     <a href="/privacy.html" style="color:#64748b;text-decoration:none">Privacy Policy</a>
     <span style="color:#cbd5e1">·</span>
+    <a href="/terms.html" style="color:#64748b;text-decoration:none">Terms &amp; Conditions</a>
+    <span style="color:#cbd5e1">·</span>
+    <a href="/cookies.html" style="color:#64748b;text-decoration:none">Cookie Policy</a>
+    <span style="color:#cbd5e1">·</span>
     <a href="https://goalcurrent.live" style="color:#2563eb;text-decoration:none;font-weight:700">goalcurrent.live</a>
     <span style="color:#cbd5e1">·</span>
     <a href="mailto:Zafarani4@hotmail.com" style="color:#64748b;text-decoration:none">Contact Us</a>
@@ -171,5 +175,202 @@
 <script src="js/app.js" type="text/javascript"></script>
   <!-- Brevo Form Script -->
   <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
+  <!-- ✅ COOKIE CONSENT BANNER -->
+  <div id="gc-cookie-banner" style="
+    display:none;
+    position:fixed;
+    bottom:80px;
+    left:12px;
+    right:12px;
+    z-index:99999;
+    background:rgba(15,23,42,0.97);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:16px;
+    padding:18px 20px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.5);
+    font-family:Verdana,Geneva,sans-serif;
+    max-width:600px;
+    margin:0 auto;
+  ">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px">
+      <span style="font-size:24px;flex-shrink:0">🍪</span>
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#f1f5f9;margin-bottom:4px">We use cookies</div>
+        <div style="font-size:12px;color:#94a3b8;line-height:1.6">
+          GoalCurrent.live uses cookies to improve your experience, show relevant ads and analyse traffic.
+          By clicking <strong style="color:#fff">"Accept All"</strong> you consent to our use of cookies.
+          You can also choose <strong style="color:#fff">"Essential Only"</strong> to allow only necessary cookies.
+          See our <a href="/privacy.html" style="color:#60a5fa;text-decoration:underline">Privacy Policy</a> for details.
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+      <button onclick="GC_COOKIES.manage()" style="background:transparent;border:1px solid rgba(96,165,250,0.4);color:#60a5fa;padding:9px 16px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;cursor:pointer">⚙️ Manage</button>
+      <button onclick="GC_COOKIES.reject()" style="background:#334155;border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Reject All ✗</button>
+      <button onclick="GC_COOKIES.accept()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.4)">Accept All ✓</button>
+    </div>
+  </div>
+
+  <!-- Cookie Manage Modal -->
+  <div id="gc-cookie-modal" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100000;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(4px);
+    align-items:center;
+    justify-content:center;
+  ">
+    <div style="
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:20px;
+      padding:24px;
+      max-width:420px;
+      width:90%;
+      font-family:Verdana,sans-serif;
+    ">
+      <div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:4px">🍪 Cookie Settings</div>
+      <div style="font-size:11px;color:#64748b;margin-bottom:18px">GoalCurrent.live · Ahmad Zafarani</div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px">
+        <!-- Essential -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Essential Cookies</div>
+            <div style="font-size:11px;color:#64748b;margin-top:2px">Required for the site to work</div>
+          </div>
+          <div style="background:#22c55e;color:#fff;font-size:10px;padding:4px 10px;border-radius:20px;font-weight:700">Always On</div>
+        </div>
+        <!-- Analytics -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Analytics Cookies</div>
+            <div style="font-size:11px;color:#64748b;margin-top:2px">Help us improve the site</div>
+          </div>
+          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+            <input type="checkbox" id="ck-analytics" checked style="opacity:0;width:0;height:0">
+            <span id="ck-analytics-track" onclick="GC_COOKIES.toggle('analytics')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
+            <span id="ck-analytics-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
+          </label>
+        </div>
+        <!-- Advertising -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Advertising Cookies</div>
+            <div style="font-size:11px;color:#64748b;margin-top:2px">Google AdSense personalised ads</div>
+          </div>
+          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+            <input type="checkbox" id="ck-ads" checked style="opacity:0;width:0;height:0">
+            <span id="ck-ads-track" onclick="GC_COOKIES.toggle('ads')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
+            <span id="ck-ads-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
+          </label>
+        </div>
+        <!-- Push Notifications -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Push Notifications</div>
+            <div style="font-size:11px;color:#64748b;margin-top:2px">Goal alerts via OneSignal</div>
+          </div>
+          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+            <input type="checkbox" id="ck-push" checked style="opacity:0;width:0;height:0">
+            <span id="ck-push-track" onclick="GC_COOKIES.toggle('push')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
+            <span id="ck-push-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button onclick="GC_COOKIES.saveManage()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:10px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  var GC_COOKIES = (function() {
+    var PREF_KEY = 'gc_cookie_prefs';
+
+    function getPrefs() {
+      try { return JSON.parse(localStorage.getItem(PREF_KEY)); } catch(e) { return null; }
+    }
+
+    function savePrefs(prefs) {
+      localStorage.setItem(PREF_KEY, JSON.stringify(prefs));
+    }
+
+    function hideBanner() {
+      var b = document.getElementById('gc-cookie-banner');
+      if (b) b.style.display = 'none';
+    }
+
+    function hideModal() {
+      var m = document.getElementById('gc-cookie-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    function init() {
+      var prefs = getPrefs();
+      if (!prefs) {
+        /* First visit — show banner after 1 second */
+        setTimeout(function() {
+          var b = document.getElementById('gc-cookie-banner');
+          if (b) b.style.display = 'block';
+        }, 1000);
+      }
+    }
+
+    function accept() {
+      savePrefs({analytics:true, ads:true, push:true, decided:true});
+      hideBanner();
+    }
+
+    function reject() {
+      savePrefs({analytics:false, ads:false, push:false, decided:true});
+      hideBanner();
+    }
+
+    function manage() {
+      var m = document.getElementById('gc-cookie-modal');
+      if (m) { m.style.display = 'flex'; }
+    }
+
+    function toggle(type) {
+      var cb = document.getElementById('ck-' + type);
+      var track = document.getElementById('ck-' + type + '-track');
+      var thumb = document.getElementById('ck-' + type + '-thumb');
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      if (cb.checked) {
+        track.style.background = '#2563eb';
+        thumb.style.left = '22px';
+      } else {
+        track.style.background = '#334155';
+        thumb.style.left = '2px';
+      }
+    }
+
+    function saveManage() {
+      var analytics = document.getElementById('ck-analytics');
+      var ads = document.getElementById('ck-ads');
+      var push = document.getElementById('ck-push');
+      savePrefs({
+        analytics: analytics ? analytics.checked : true,
+        ads: ads ? ads.checked : true,
+        push: push ? push.checked : true,
+        decided: true
+      });
+      hideModal();
+      hideBanner();
+    }
+
+    return { init:init, accept:accept, reject:reject, manage:manage, toggle:toggle, saveManage:saveManage };
+  })();
+
+  /* Show on page load */
+  window.addEventListener('DOMContentLoaded', function() { GC_COOKIES.init(); });
+  </script>
 </body>
 </html>
