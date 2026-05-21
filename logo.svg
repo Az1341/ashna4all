@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="140" viewBox="0 0 680 680">
+  <path d="M340 60 L560 150 L560 380 Q560 530 340 620 Q120 530 120 380 L120 150 Z" fill="#9B1C1C" stroke="#DB0007" stroke-width="5"/>
+  <path d="M340 100 L520 178 L520 375 Q520 498 340 576 Q160 498 160 375 L160 178 Z" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.2"/>
+  <path d="M340 60 L560 150 L520 178 L340 100 L160 178 L120 150 Z" fill="#DB0007"/>
+  <line x1="160" y1="178" x2="520" y2="178" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  <circle cx="340" cy="285" r="85" fill="#f8fafc"/>
+  <circle cx="340" cy="285" r="85" fill="none" stroke="#9B1C1C" stroke-width="3"/>
+  <polygon points="340,222 368,242 358,274 322,274 312,242" fill="#DB0007"/>
+  <polygon points="312,242 280,252 268,278 292,300 322,274" fill="#DB0007"/>
+  <polygon points="368,242 400,252 412,278 388,300 358,274" fill="#DB0007"/>
+  <polygon points="292,300 268,326 290,348 320,340 322,308" fill="#DB0007"/>
+  <polygon points="388,300 412,326 390,348 360,340 358,308" fill="#DB0007"/>
+  <circle cx="406" cy="208" r="16" fill="#1a1a1a"/>
+  <circle cx="406" cy="208" r="10" fill="#22c55e"/>
+  <circle cx="406" cy="208" r="5" fill="#f8fafc"/>
+  <text x="340" y="420" text-anchor="middle" font-family="Verdana,sans-serif" font-size="38" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Goal<tspan fill="#ffcdd2">Current</tspan></text>
+  <line x1="210" y1="438" x2="470" y2="438" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
+  <text x="340" y="468" text-anchor="middle" font-family="Verdana,sans-serif" font-size="20" font-weight="400" fill="#ffcdd2" letter-spacing="4">.live</text>
+  <circle cx="310" cy="560" r="3" fill="#ffffff" opacity="0.5"/>
+  <circle cx="340" cy="575" r="3" fill="#ffffff" opacity="0.5"/>
+  <circle cx="370" cy="560" r="3" fill="#ffffff" opacity="0.5"/>
+</svg>
