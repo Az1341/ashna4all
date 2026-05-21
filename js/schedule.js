@@ -4,7 +4,15 @@ var GC_SCHEDULE = (function () {
   var _date    = null;
   var _wcRound = 'group';
   var _wcDate  = '2026-06-11';
-  var _tz      = 'UK';
+  /* Auto-detect country from browser for broadcaster info */
+  var _tz = (function() {
+    try {
+      var lang = (navigator.language || navigator.userLanguage || 'en-GB').toLowerCase();
+      if (lang.indexOf('en-ca') > -1 || lang.indexOf('fr-ca') > -1) return 'CA';
+      if (lang.indexOf('en-us') > -1) return 'USA';
+      return 'UK';
+    } catch(e) { return 'UK'; }
+  })();
 
   var KO = '2026-05-24T15:00:00Z';
   var B  = 'https://resources.premierleague.com/premierleague/badges/50/';
@@ -189,22 +197,6 @@ var GC_SCHEDULE = (function () {
     } catch(e) { return ukTime; }
   }
 
-  function buildTzButtons() {
-    var cfg = [
-      {id:'UK',  label:'Watch in UK',     flag:'&#127468;&#127463;'},
-      {id:'CA',  label:'Watch in Canada', flag:'&#127464;&#127462;'},
-      {id:'USA', label:'Watch in USA',    flag:'&#127482;&#127480;'}
-    ];
-    var html = '<div style="margin-bottom:16px">' +
-      '<div style="font-size:11px;color:#64748b;margin-bottom:8px;font-weight:600">📺 Select your country to see TV broadcasters:</div>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap">';
-    cfg.forEach(function(b) {
-      var a = (_tz === b.id) ? ' gc-tz-active' : '';
-      html += '<button id="tz-' + b.id + '" class="gc-tz-btn' + a + '" onclick="GC_SCHEDULE._setTz(\'' + b.id + '\')">' + b.flag + ' ' + b.label + '</button>';
-    });
-    return html + '</div></div>';
-  }
-
   function renderWC(container) {
     if (!_wcDate) _wcDate = '2026-06-11';
     var tabs = '<div class="gc-round-tabs">';
@@ -222,7 +214,6 @@ var GC_SCHEDULE = (function () {
           '<div class="gc-hero-banner-sub">By Ahmad (A.Zafarani) · USA · Canada · Mexico · 48 Teams · 104 Matches</div>' +
         '</div>' +
       '</div>' +
-      buildTzButtons() +
       '<div class="gc-section-title">📅 World Cup Schedule</div>' +
       tabs +
       '<div class="gc-datebar" id="gc-wc-datebar"></div>' +
@@ -406,14 +397,7 @@ var GC_SCHEDULE = (function () {
     render   : render,
     setLeague: setLeague,
     _pick    : function(iso) { _date = iso; buildDateBar(); loadPLMatches(); },
-    _setTz   : function(tz) {
-      _tz = tz;
-      ['UK','CA','USA'].forEach(function(t) {
-        var btn = document.getElementById('tz-' + t);
-        if (btn) btn.className = 'gc-tz-btn' + (t===tz?' gc-tz-active':'');
-      });
-      loadWCDay();
-    },
+
     _wcDayPick: function(iso) { _wcDate = iso; buildWCDateBar(); loadWCDay(); },
     _wcRoundPick: function(id) {
       _wcRound = id;
