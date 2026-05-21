@@ -423,5 +423,216 @@
   /* Show on page load */
   window.addEventListener('DOMContentLoaded', function() { GC_COOKIES.init(); });
   </script>
+
+  <!-- ✅ EMAIL SUBSCRIBE POPUP -->
+  <div id="gc-email-popup" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(6px);
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+  ">
+    <div style="
+      background:linear-gradient(145deg,rgba(255,255,255,0.97),rgba(240,248,255,0.97));
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.9);
+      border-radius:24px;
+      padding:32px 28px;
+      max-width:400px;
+      width:100%;
+      box-shadow:0 24px 60px rgba(0,0,0,0.25);
+      position:relative;
+      text-align:center;
+      font-family:Verdana,Geneva,sans-serif;
+    ">
+      <!-- Close button -->
+      <button onclick="GC_POPUP.close()" style="
+        position:absolute;top:14px;right:16px;
+        background:rgba(100,116,139,0.1);
+        border:none;
+        width:30px;height:30px;
+        border-radius:50%;
+        font-size:16px;color:#64748b;
+        cursor:pointer;
+        display:flex;align-items:center;justify-content:center;
+        font-family:Verdana,sans-serif;
+      ">✕</button>
+
+      <!-- Icon -->
+      <div style="font-size:44px;margin-bottom:12px">⚽</div>
+
+      <!-- Headline -->
+      <div style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:8px;line-height:1.3">
+        Never Miss a Goal!
+      </div>
+
+      <!-- Subheadline -->
+      <div style="font-size:13px;color:#475569;margin-bottom:6px;line-height:1.6">
+        Get <strong>Premier League</strong> &amp; <strong>World Cup 2026</strong> goal alerts, fixtures and scores straight to your inbox.
+      </div>
+
+      <!-- Benefits -->
+      <div style="
+        background:rgba(37,99,235,0.06);
+        border-radius:10px;
+        padding:10px 14px;
+        margin:14px 0;
+        font-size:12px;
+        color:#1e40af;
+        text-align:left;
+        line-height:2;
+      ">
+        ✅ Live goal alerts<br>
+        ✅ Match previews &amp; results<br>
+        ✅ World Cup 2026 coverage<br>
+        ✅ 100% free — unsubscribe anytime
+      </div>
+
+      <!-- Email input -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+        <input
+          type="email"
+          id="gc-popup-email"
+          placeholder="Enter your email address"
+          style="
+            width:100%;
+            padding:12px 16px;
+            border:1.5px solid rgba(37,99,235,0.25);
+            border-radius:10px;
+            font-family:Verdana,sans-serif;
+            font-size:13px;
+            color:#0f172a;
+            background:rgba(255,255,255,0.9);
+            outline:none;
+            box-sizing:border-box;
+          "
+        >
+        <button onclick="GC_POPUP.subscribe()" style="
+          width:100%;
+          background:linear-gradient(135deg,#2563eb,#3b82f6);
+          color:#fff;
+          border:none;
+          padding:13px;
+          border-radius:10px;
+          font-family:Verdana,sans-serif;
+          font-size:14px;
+          font-weight:700;
+          cursor:pointer;
+          box-shadow:0 6px 20px rgba(37,99,235,0.4);
+          transition:all .2s;
+        ">⚽ Subscribe Free →</button>
+      </div>
+
+      <!-- Success message (hidden) -->
+      <div id="gc-popup-success" style="display:none;margin-top:14px;padding:12px;background:rgba(34,197,94,0.1);border-radius:10px;color:#15803d;font-size:13px;font-weight:600">
+        ✅ Thank you! Check your email to confirm.
+      </div>
+
+      <!-- Error message (hidden) -->
+      <div id="gc-popup-error" style="display:none;margin-top:10px;font-size:12px;color:#dc2626"></div>
+
+      <!-- No thanks -->
+      <button onclick="GC_POPUP.close()" style="
+        background:none;border:none;
+        color:#94a3b8;font-size:11px;
+        font-family:Verdana,sans-serif;
+        cursor:pointer;margin-top:12px;
+        text-decoration:underline;
+      ">No thanks, I don't want goal alerts</button>
+
+      <!-- Legal note -->
+      <div style="font-size:10px;color:#94a3b8;margin-top:8px">
+        By subscribing you agree to our <a href="/privacy.html" style="color:#64748b">Privacy Policy</a>. Powered by Brevo.
+      </div>
+    </div>
+  </div>
+
+  <script>
+  var GC_POPUP = (function() {
+    var SHOWN_KEY = 'gc_popup_shown';
+
+    function shouldShow() {
+      try {
+        return !localStorage.getItem(SHOWN_KEY);
+      } catch(e) { return false; }
+    }
+
+    function markShown() {
+      try { localStorage.setItem(SHOWN_KEY, '1'); } catch(e) {}
+    }
+
+    function show() {
+      var el = document.getElementById('gc-email-popup');
+      if (el) { el.style.display = 'flex'; }
+    }
+
+    function close() {
+      var el = document.getElementById('gc-email-popup');
+      if (el) {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.3s';
+        setTimeout(function(){ el.style.display = 'none'; }, 300);
+      }
+      markShown();
+    }
+
+    function subscribe() {
+      var input = document.getElementById('gc-popup-email');
+      var errEl = document.getElementById('gc-popup-error');
+      var sucEl = document.getElementById('gc-popup-success');
+
+      if (!input || !input.value || input.value.indexOf('@') < 0) {
+        if (errEl) { errEl.style.display = 'block'; errEl.textContent = '⚠️ Please enter a valid email address.'; }
+        return;
+      }
+      if (errEl) errEl.style.display = 'none';
+
+      /* Submit to Brevo via hidden form */
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+      form.target = '_blank';
+      form.style.display = 'none';
+      var f1 = document.createElement('input'); f1.name='EMAIL'; f1.value=input.value;
+      var f2 = document.createElement('input'); f2.name='email_address_check'; f2.value='';
+      var f3 = document.createElement('input'); f3.name='locale'; f3.value='en';
+      form.appendChild(f1); form.appendChild(f2); form.appendChild(f3);
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      /* Show success */
+      if (sucEl) sucEl.style.display = 'block';
+      if (input) input.style.display = 'none';
+      var btn = document.querySelector('#gc-email-popup button[onclick="GC_POPUP.subscribe()"]');
+      if (btn) btn.style.display = 'none';
+
+      markShown();
+      /* Auto close after 3 seconds */
+      setTimeout(function(){ close(); }, 3000);
+    }
+
+    function init() {
+      if (shouldShow()) {
+        /* Show after 5 seconds */
+        setTimeout(function(){ show(); }, 5000);
+      }
+    }
+
+    /* Close on backdrop click */
+    document.addEventListener('click', function(e) {
+      var popup = document.getElementById('gc-email-popup');
+      if (e.target === popup) close();
+    });
+
+    return { init:init, close:close, subscribe:subscribe };
+  })();
+
+  window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
+  </script>
 </body>
 </html>
