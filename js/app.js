@@ -51,6 +51,8 @@ var GC = (function () {
         document.querySelectorAll('.gc-league-btn').forEach(function(b) {
           b.classList.toggle('active', b.dataset.league === currentType);
         });
+        /* UCL goes to its own page */
+        if (currentType === 'UCL') { go('ucl'); return; }
         if (window.GC_LIVE)     GC_LIVE.setLeague(currentType);
         if (window.GC_SCHEDULE) GC_SCHEDULE.setLeague(currentType);
         if (window.GC_GROUPS)   GC_GROUPS.setLeague(currentType);
@@ -87,6 +89,51 @@ var GC = (function () {
       requestAnimationFrame(tick);
     }
     tick();
+  }
+
+
+  function renderNews(container) {
+    container.innerHTML =
+      '<div style="padding-top:16px">' +
+      '<div class="gc-hero-banner-wrap" style="height:140px;margin-bottom:18px">' +
+        '<img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=900&q=80" style="width:100%;height:100%;object-fit:cover" alt="Football News">' +
+        '<div class="gc-hero-banner-overlay">' +
+          '<div class="gc-hero-banner-title">📰 Latest Football News</div>' +
+          '<div class="gc-hero-banner-sub">GoalCurrent.live · Match previews, reports and analysis</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="gc-section-title">⭐ Champions League</div>' +
+      '<a href="/blog-ucl-final.html" style="text-decoration:none;display:block;margin-bottom:12px">' +
+        '<div class="gc-card" style="cursor:pointer;padding:18px;border:1px solid rgba(255,215,0,0.3);background:linear-gradient(135deg,rgba(26,26,46,0.06),rgba(15,52,96,0.04))">' +
+          '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:6px">⭐ UCL FINAL · 30 MAY 2026 · 17:00 UK</div>' +
+          '<div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">🇫🇷 PSG vs Arsenal 🔴 — 2026 Champions League Final Preview</div>' +
+          '<div style="font-size:12px;color:#64748b;margin-bottom:8px">🏟 Puskás Aréna, Budapest · Full preview, expected line-ups and prediction</div>' +
+          '<span style="font-size:12px;color:#2563eb;font-weight:600">Read full preview + lineups →</span>' +
+        '</div>' +
+      '</a>' +
+
+      '<div class="gc-section-title">🏴󠁧󠁢󠁥󠁮󠁧󠁩 Premier League</div>' +
+      '<a href="/blog-pl-final-day.html" style="text-decoration:none;display:block;margin-bottom:12px">' +
+        '<div class="gc-card" style="cursor:pointer;padding:18px">' +
+          '<div style="font-size:11px;font-weight:700;color:#9B1C1C;letter-spacing:1px;margin-bottom:6px">🏴󠁧󠁢󠁥󠁮󠁧󠁩 PREMIER LEAGUE · FINAL DAY · 24 MAY 2026</div>' +
+          '<div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">🏆 Arsenal Confirmed Champions! PL Final Day — Everything You Need to Know</div>' +
+          '<div style="font-size:12px;color:#64748b;margin-bottom:8px">All 10 matches at 16:00 UK · Title race · Relegation battle · Full fixtures</div>' +
+          '<span style="font-size:12px;color:#2563eb;font-weight:600">Read full article →</span>' +
+        '</div>' +
+      '</a>' +
+
+      '<div class="gc-section-title">🏆 World Cup 2026</div>' +
+      '<a href="/blog-england-croatia.html" style="text-decoration:none;display:block;margin-bottom:12px">' +
+        '<div class="gc-card" style="cursor:pointer;padding:18px">' +
+          '<div style="font-size:11px;font-weight:700;color:#1d4ed8;letter-spacing:1px;margin-bottom:6px">🏆 WORLD CUP 2026 · GROUP L · 17 JUN · 21:00 UK</div>' +
+          '<div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England vs Croatia — World Cup 2026 Group L Preview</div>' +
+          '<div style="font-size:12px;color:#64748b;margin-bottom:8px">AT&T Stadium, Dallas · ITV · Full preview and prediction</div>' +
+          '<span style="font-size:12px;color:#2563eb;font-weight:600">Read full preview →</span>' +
+        '</div>' +
+      '</a>' +
+
+      '</div>';
   }
 
   function renderUCL(container) {
