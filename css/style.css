@@ -312,6 +312,39 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 /* ══ ADSENSE ═════════════════════════════════════════════ */
 .gc-adsense{margin:12px 0;text-align:center;min-height:90px}
 
+
+/* ══ TV BROADCASTER SELECTOR ════════════════════════ */
+.gc-tz-btn {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(37,99,235,0.2);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(100,160,220,0.1);
+}
+.gc-tz-btn:hover {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(37,99,235,0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.15);
+}
+.gc-tz-active {
+  background: linear-gradient(135deg,#2563eb,#3b82f6) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.4) !important;
+  transform: translateY(-1px);
+}
+
 /* ══ RESPONSIVE ══════════════════════════════════════════ */
 @media(max-width:767px){
   .gc-topnav{display:none}
