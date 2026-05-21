@@ -105,6 +105,27 @@ var GC_HOME = (function () {
         '<button class="gc-ql-btn" onclick="GC.go(\'myteams\')"><span class="gc-ql-icon">⭐</span>My Teams</button>' +
       '</div>' +
 
+      /* Blog / News section */
+      '<div class="gc-section-title" style="margin-top:8px">📰 Latest News</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px">' +
+        '<a href="/blog-pl-final-day.html" style="text-decoration:none">' +
+          '<div class="gc-card" style="cursor:pointer;transition:transform .2s;padding:16px">' +
+            '<div style="font-size:11px;font-weight:700;color:#9B1C1C;letter-spacing:1px;margin-bottom:6px">🏴󠁧󠁢󠁥󠁮󠁧󠁩 PREMIER LEAGUE</div>' +
+            '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px;line-height:1.4">Premier League Final Day 2026 — Everything You Need to Know</div>' +
+            '<div style="font-size:11px;color:#64748b">📅 22 May 2026 · All 10 matches 16:00 UK</div>' +
+            '<div style="margin-top:8px;font-size:12px;color:#2563eb;font-weight:600">Read more →</div>' +
+          '</div>' +
+        '</a>' +
+        '<a href="/blog-england-croatia.html" style="text-decoration:none">' +
+          '<div class="gc-card" style="cursor:pointer;transition:transform .2s;padding:16px">' +
+            '<div style="font-size:11px;font-weight:700;color:#1d4ed8;letter-spacing:1px;margin-bottom:6px">🏆 WORLD CUP 2026</div>' +
+            '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px;line-height:1.4">England vs Croatia — World Cup 2026 Group L Preview</div>' +
+            '<div style="font-size:11px;color:#64748b">📅 22 May 2026 · 21:00 UK on 17 June</div>' +
+            '<div style="margin-top:8px;font-size:12px;color:#2563eb;font-weight:600">Read more →</div>' +
+          '</div>' +
+        '</a>' +
+      '</div>' +
+
       /* Email signup */
       '<div class="gc-card gc-signup-card">' +
         '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
