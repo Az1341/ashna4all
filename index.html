@@ -1,657 +1,1434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-X84HCE5KGT');
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#dbeafe">
-
-  <!-- ✅ SEO Meta Tags -->
-  <title>GoalCurrent.live — Live Football Scores | Premier League &amp; World Cup 2026</title>
-  <meta name="description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results. Free live football scores updated in real time. England, USA, Canada and global coverage.">
-  <meta name="keywords" content="live football scores, Premier League live, World Cup 2026, football schedule, live scores, PL standings, WC 2026 fixtures, football results today">
-  <meta name="author" content="Ahmad Zafarani - Ashna4All">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://goalcurrent.live/">
-
-  <!-- Open Graph / Social Media -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="GoalCurrent.live — Live Football Scores | Premier League &amp; World Cup 2026">
-  <meta property="og:description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results. Free live football scores updated in real time.">
-  <meta property="og:url" content="https://goalcurrent.live">
-  <meta property="og:image" content="https://goalcurrent.live/og-image.png">
-  <meta property="og:site_name" content="GoalCurrent.live">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GoalCurrent.live — Live Football Scores">
-  <meta name="twitter:description" content="Live Premier League &amp; World Cup 2026 scores, fixtures and standings.">
-  <meta name="twitter:image" content="https://goalcurrent.live/og-image.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>GoalCurrent.live — Live Football Scores</title>
-  <meta name="description" content="Live Premier League & World Cup 2026 scores, standings, schedule and results.">
-  <meta name="theme-color" content="#dbeafe">
-  <meta property="og:title" content="GoalCurrent — Live Football Scores">
-  <meta property="og:url" content="https://goalcurrent.live">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- Extra style for My Teams match highlight -->
-  <style>
-    .gc-match-mine {
-      border-color: rgba(217,119,6,0.45) !important;
-      box-shadow: 0 0 0 2px rgba(217,119,6,0.12), 0 8px 32px rgba(100,160,220,0.18) !important;
-    }
-  </style>
-
-  <!-- Brevo Form Styles -->
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171" crossorigin="anonymous"></script>
-
-  <!-- OneSignal - disabled auto-refresh -->
-  <script>
-    // OneSignal loaded only after page is fully ready
-    window.addEventListener('load', function() {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
-      script.onload = function() {
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
-          await OneSignal.init({
-            appId: "e6a77420-dc1d-4dae-895f-ee68950148f9",
-            notifyButton: { enable: false },
-            autoResubscribe: false,
-          });
-        });
-      };
-      document.head.appendChild(script);
-    });
-  </script>
-
-  <!-- ✅ Structured Data for Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "GoalCurrent.live",
-    "url": "https://goalcurrent.live",
-    "description": "Live Premier League scores, World Cup 2026 fixtures and standings",
-    "author": {
-      "@type": "Person",
-      "name": "Ahmad Zafarani",
-      "alternateName": "Ashna4All"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "GoalCurrent.live",
-      "url": "https://goalcurrent.live"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://goalcurrent.live/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GoalCurrent.live – Live Football Scores</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00c853;
+    --green-dark: #009624;
+    --gold: #ffd600;
+    --red: #e53935;
+    --blue: #1565c0;
+    --navy: #0a0f1e;
+    --card: #111827;
+    --card2: #1a2235;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0f4ff;
+    --muted: #8892a4;
+    --pl-purple: #3d0856;
+    --pl-pink: #ff2882;
+    --ucl-blue: #001489;
+    --ucl-gold: #ffd700;
+    --wc-red: #c00;
+    --wc-blue: #003da5;
   }
-  </script>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 70px;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP HEADER ── */
+  .top-header {
+    background: linear-gradient(135deg, #0d1321 0%, #1a2235 100%);
+    border-bottom: 2px solid var(--green);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+  .logo span { color: var(--green); }
+  .logo-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+  .live-badge {
+    background: var(--red);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.6} }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 64px;
+    background: #0d1321;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: stretch;
+    z-index: 200;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .bottom-nav::-webkit-scrollbar { display: none; }
+
+  .nav-item {
+    flex: 1;
+    min-width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color .2s;
+    padding: 6px 4px;
+    position: relative;
+  }
+  .nav-item.active { color: var(--green); }
+  .nav-item.active::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 2px;
+    background: var(--green);
+    border-radius: 0 0 3px 3px;
+  }
+  .nav-icon { font-size: 20px; line-height: 1; }
+  .nav-label { font-size: 9px; white-space: nowrap; }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 16px 16px 8px;
+  }
+
+  /* ── HERO COUNTDOWN CARD ── */
+  .hero-card {
+    margin: 12px 16px;
+    border-radius: 14px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card.ucl-hero {
+    background: linear-gradient(135deg, var(--ucl-blue) 0%, #0a2060 60%, #000 100%);
+    border: 1px solid rgba(255,215,0,0.3);
+  }
+  .hero-card.pl-hero {
+    background: linear-gradient(135deg, #1a0030 0%, #3d0856 60%, #1a0030 100%);
+    border: 1px solid rgba(255,40,130,0.3);
+  }
+  .hero-card.wc-hero {
+    background: linear-gradient(135deg, #001a4d 0%, #003da5 60%, #8b0000 100%);
+    border: 1px solid rgba(255,215,0,0.3);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .ucl-badge { background: var(--ucl-gold); color: #000; }
+  .pl-badge { background: var(--pl-pink); color: #fff; }
+  .wc-badge { background: var(--wc-red); color: #fff; }
+
+  .matchup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  .team-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+  .team-flag { font-size: 28px; line-height: 1; }
+  .team-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .vs-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .vs-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .countdown-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 12px 0 8px;
+  }
+  .cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .cd-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    background: rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 4px 10px;
+    min-width: 44px;
+    text-align: center;
+  }
+  .cd-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+
+  .venue-line {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* ── LIVE SCORE CARDS ── */
+  .score-card {
+    background: var(--card);
+    border-radius: 10px;
+    margin: 0 16px 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .score-card:active { border-color: var(--green); }
+
+  .score-time {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--green);
+    min-width: 30px;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .score-time.finished { color: var(--muted); }
+
+  .score-teams {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .score-team {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .score-team.winner { color: #fff; }
+  .score-team.loser { color: var(--muted); }
+  .score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; }
+
+  /* ── NEWS CARDS ── */
+  .news-scroll {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .news-scroll::-webkit-scrollbar { display: none; }
+
+  .news-card {
+    flex: 0 0 160px;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .news-thumb {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+  .news-body { padding: 8px 10px 10px; }
+  .news-tag {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .news-title { font-size: 11px; font-weight: 700; line-height: 1.4; color: #fff; }
+  .news-read { font-size: 10px; color: var(--green); font-weight: 600; margin-top: 6px; display: block; }
+
+  /* ── STANDINGS TABLE ── */
+  .standings-table {
+    margin: 0 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .standings-header {
+    display: grid;
+    grid-template-columns: 24px 1fr 28px 28px 28px 32px;
+    gap: 4px;
+    padding: 8px 10px;
+    background: var(--card2);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .standings-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 28px 28px 28px 32px;
+    gap: 4px;
+    padding: 9px 10px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    align-items: center;
+  }
+  .standings-row:nth-child(even) { background: var(--card2); }
+  .standings-row .pos { color: var(--muted); font-size: 11px; text-align: center; }
+  .standings-row .club { font-weight: 600; display: flex; align-items: center; gap: 5px; }
+  .club-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .standings-row .pts { font-weight: 800; color: var(--green); text-align: right; }
+  .standings-row .num { color: var(--muted); font-size: 11px; text-align: center; }
+  .cl-spot { border-left: 3px solid #1565c0; }
+  .el-spot { border-left: 3px solid #e65100; }
+  .rel-spot { border-left: 3px solid var(--red); }
+
+  /* ── EMAIL SUBSCRIBE ── */
+  .subscribe-box {
+    margin: 16px;
+    background: linear-gradient(135deg, #001a0a, #002d14);
+    border: 1px solid rgba(0,200,83,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .subscribe-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .subscribe-box p { font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+  .sub-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 8px;
+    outline: none;
+  }
+  .sub-btn {
+    width: 100%;
+    background: var(--green);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+
+  /* ── WC GROUP ── */
+  .group-card {
+    background: var(--card);
+    border-radius: 10px;
+    margin: 0 16px 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .group-header {
+    background: var(--wc-blue);
+    padding: 8px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  .group-row {
+    display: grid;
+    grid-template-columns: 20px 1fr 26px 26px 26px 30px;
+    gap: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .group-row .pos { color: var(--muted); font-size: 10px; text-align: center; }
+  .group-row .pts { font-weight: 800; color: var(--gold); text-align: right; }
+  .group-row .num { color: var(--muted); font-size: 11px; text-align: center; }
+  .qualified { background: rgba(0,200,83,0.08); }
+
+  /* ── UCL BRACKET ── */
+  .bracket-card {
+    background: var(--card);
+    border-radius: 10px;
+    margin: 0 16px 10px;
+    padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .bracket-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--ucl-gold);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .bracket-match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .bracket-team { flex: 1; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+  .bracket-team.winner { color: var(--ucl-gold); }
+  .bracket-team.right { flex-direction: row-reverse; text-align: right; }
+  .bracket-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 0 12px;
+    color: #fff;
+  }
+
+  /* ── CHIP TABS ── */
+  .chip-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .chip-tabs::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all .2s;
+  }
+  .chip.active { background: var(--green); color: #000; border-color: var(--green); }
+
+  /* ── SCHEDULE LIST ── */
+  .schedule-day {
+    padding: 6px 16px 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .schedule-match {
+    background: var(--card);
+    margin: 0 16px 6px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .sched-time { font-size: 10px; font-weight: 700; color: var(--green); min-width: 38px; }
+  .sched-teams { flex: 1; }
+  .sched-team { font-weight: 600; padding: 1px 0; }
+  .sched-comp { font-size: 9px; color: var(--muted); font-weight: 600; letter-spacing: 1px; }
+
+  /* ── HOME HERO BANNER ── */
+  .home-hero {
+    background: linear-gradient(160deg, #0a0f1e 0%, #0d2140 50%, #001a0a 100%);
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .home-hero::before {
+    content: '⚽';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.03;
+    top: -20px;
+    right: -20px;
+  }
+  .home-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .home-hero h1 span { color: var(--green); }
+  .home-hero p { font-size: 12px; color: var(--muted); }
+
+  .home-quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 12px 16px;
+  }
+  .quick-link {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .quick-link:active { border-color: var(--green); }
+  .ql-icon { font-size: 22px; margin-bottom: 4px; }
+  .ql-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  .ql-sub { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    margin: 20px 16px 8px;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  .footer-links a {
+    font-size: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .footer-copy { font-size: 9px; color: rgba(255,255,255,0.2); margin-top: 8px; }
+
+  /* ── VPN BANNER ── */
+  .vpn-banner {
+    margin: 8px 16px;
+    background: linear-gradient(135deg, #1a0040, #000d30);
+    border: 1px solid rgba(100,50,255,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .vpn-text { font-size: 11px; color: var(--muted); }
+  .vpn-text strong { color: #fff; }
+  .vpn-btn {
+    background: #4630d6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  /* ── KNOCKOUT BRACKET ── */
+  .ko-stage {
+    margin: 0 16px 10px;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .ko-stage-header {
+    background: var(--card2);
+    padding: 8px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--ucl-gold);
+    text-transform: uppercase;
+  }
+
+  /* responsive */
+  @media (max-width: 360px) {
+    .cd-num { font-size: 22px; padding: 3px 7px; min-width: 36px; }
+    .team-name { font-size: 14px; }
+  }
+</style>
 </head>
 <body>
-<canvas id="gc-canvas"></canvas>
-<div id="gc-app">
 
-  <!-- HEADER -->
-  <header class="gc-header">
-    <div class="gc-header-inner">
-      <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-        <img src="/logo.svg" alt="GoalCurrent Shield Logo"
-             style="height:64px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.25));flex-shrink:0"
-             onerror="this.style.display='none'">
-        <span class="gc-logo">Goal<span class="gc-logo-dot">Current</span><span class="gc-logo-live">.live</span></span>
-      </a>
+<!-- TOP HEADER -->
+<header class="top-header">
+  <a class="logo" href="#" onclick="showPage('home'); return false;">
+    <div class="logo-dot"></div>
+    Goal<span>Current</span>.live
+  </a>
+  <span class="live-badge">● LIVE</span>
+</header>
 
-      <!-- Desktop top nav (hidden on mobile) -->
-      <nav class="gc-topnav">
-        <button class="gc-topnav-btn active" data-page="home">🏠 Home</button>
-        <button class="gc-topnav-btn" data-page="live">🔴 Live</button>
-        <button class="gc-topnav-btn" data-page="schedule">📅 Schedule</button>
-        <button class="gc-topnav-btn" data-page="groups">🏅 Standings</button>
-        <button class="gc-topnav-btn" data-page="myteams">⭐ My Teams</button>
-        <button class="gc-topnav-btn" data-page="news">📰 Latest News</button>
-      </nav>
+<!-- ════════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════ -->
+<div id="page-home" class="page active">
 
-      <!-- League toggle -->
-      <div class="gc-league-toggle">
-        <button class="gc-league-btn active" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</button>
-        <button class="gc-league-btn" data-league="WC">🏆 WC26</button>
-        <button class="gc-league-btn ucl-btn" data-league="UCL">⭐ UCL</button>
+  <div class="home-hero">
+    <h1>Goal<span>Current</span>.live</h1>
+    <p>Premier League · UCL Final · World Cup 2026 · Real-time scores</p>
+  </div>
+
+  <!-- Quick Nav -->
+  <div class="home-quick-links">
+    <div class="quick-link" onclick="showPage('pl')">
+      <div class="ql-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <div class="ql-label">Premier<br>League</div>
+      <div class="ql-sub">Final Day</div>
+    </div>
+    <div class="quick-link" onclick="showPage('ucl')">
+      <div class="ql-icon">⭐</div>
+      <div class="ql-label">UCL<br>Final</div>
+      <div class="ql-sub">30 May</div>
+    </div>
+    <div class="quick-link" onclick="showPage('wc')">
+      <div class="ql-icon">🌍</div>
+      <div class="ql-label">World<br>Cup 26</div>
+      <div class="ql-sub">11 Jun</div>
+    </div>
+  </div>
+
+  <!-- UCL Final Hero -->
+  <div class="section-label">⭐ NEXT UP · UCL FINAL</div>
+  <div class="hero-card ucl-hero">
+    <div class="hero-badge ucl-badge">⭐ Champions League Final</div>
+    <div class="matchup">
+      <div class="team-block">
+        <div class="team-flag">🇫🇷</div>
+        <div class="team-name">PSG</div>
+      </div>
+      <div class="vs-block">
+        <div class="vs-text">VS</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);">SAT 30 MAY · 17:00 UK</div>
+      </div>
+      <div class="team-block">
+        <div class="team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="team-name">Arsenal</div>
       </div>
     </div>
-  </header>
-
-  <!-- CONTENT -->
-  <main id="gc-content"></main>
-
-  <!-- Brevo Form Styles -->
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-  <!-- AdSense -->
-  <div class="gc-adsense" style="max-width:820px;margin:0 auto;padding:0 16px">
-    <ins class="adsbygoogle" style="display:block"
-      data-ad-client="ca-pub-8697460993506171"
-      data-ad-slot="auto" data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div class="countdown-row">
+      <div class="cd-unit"><div class="cd-num" id="ucl-d">08</div><div class="cd-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-h">21</div><div class="cd-label">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-m">11</div><div class="cd-label">Min</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-s">54</div><div class="cd-label">Sec</div></div>
+    </div>
+    <div class="venue-line">📍 Puskás Aréna, Budapest · BT Sport / TNT Sports</div>
   </div>
 
-  <!-- NordVPN bar -->
-  <div id="gc-nordvpn-bar">
-    <span>🔒 Stay private online →</span>
-    <a class="gc-nv-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener">Get NordVPN</a>
-    <a class="gc-nv-btn gc-nv-pass" href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener">NordPass</a>
+  <!-- PL Final Day -->
+  <div class="section-label">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PREMIER LEAGUE · FINAL DAY</div>
+  <div class="hero-card pl-hero">
+    <div class="hero-badge pl-badge">🏆 Arsenal — PL Champions!</div>
+    <div style="text-align:center;padding:8px 0;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:1px;">Final Day · Sunday 24 May</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;">All 10 matches · 16:00 UK kick-off</div>
+    </div>
+    <div class="countdown-row">
+      <div class="cd-unit"><div class="cd-num">02</div><div class="cd-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num">20</div><div class="cd-label">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num">11</div><div class="cd-label">Min</div></div>
+      <div class="cd-unit"><div class="cd-num">54</div><div class="cd-label">Sec</div></div>
+    </div>
+    <button class="sub-btn" style="margin-top:8px;border-radius:8px;" onclick="showPage('pl')">⚽ Watch Live Scores →</button>
   </div>
 
-  <!-- Mobile bottom nav (hidden on desktop) -->
-  <nav class="gc-bottomnav">
-    <button class="gc-bottomnav-btn active" data-page="home">
-      <span class="gc-nav-icon">🏠</span>Home
-    </button>
-    <button class="gc-bottomnav-btn" data-page="live">
-      <span class="gc-nav-icon">🔴</span>Live
-    </button>
-    <button class="gc-bottomnav-btn" data-page="schedule">
-      <span class="gc-nav-icon">📅</span>Schedule
-    </button>
-    <button class="gc-bottomnav-btn" data-page="groups">
-      <span class="gc-nav-icon">🏅</span>Standings
-    </button>
-    <button class="gc-bottomnav-btn" data-page="myteams">
-      <span class="gc-nav-icon">⭐</span>My Teams
-    </button>
-  </nav>
+  <!-- World Cup -->
+  <div class="section-label">🌍 FIFA WORLD CUP 2026</div>
+  <div class="hero-card wc-hero">
+    <div class="hero-badge wc-badge">🏆 FIFA World Cup 2026</div>
+    <div style="text-align:center;padding:6px 0 4px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;">USA · Canada · Mexico</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.6);">48 Teams · 104 Matches · 11 Jun – 19 Jul</div>
+    </div>
+    <div class="countdown-row">
+      <div class="cd-unit"><div class="cd-num">21</div><div class="cd-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num">00</div><div class="cd-label">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num">11</div><div class="cd-label">Min</div></div>
+      <div class="cd-unit"><div class="cd-num">54</div><div class="cd-label">Sec</div></div>
+    </div>
+    <button class="sub-btn" style="margin-top:8px;border-radius:8px;background:var(--gold);color:#000;" onclick="showPage('wc')">🌍 View Full Schedule →</button>
+  </div>
 
+  <!-- Latest News -->
+  <div class="section-label">📰 LATEST NEWS</div>
+  <div class="news-scroll">
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,var(--ucl-blue),#0033aa);">⭐</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--ucl-gold);">UCL Final</div>
+        <div class="news-title">PSG vs Arsenal — UCL Final Preview</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,var(--pl-purple),#5c0a7a);">🏆</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--pl-pink);">PL Final Day</div>
+        <div class="news-title">Arsenal Champions! Final Day Guide</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#001a4d,#8b0000);">🌍</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--gold);">World Cup 2026</div>
+        <div class="news-title">England vs Croatia — WC2026 Preview</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscribe -->
+  <div class="subscribe-box">
+    <h3>⚽ Get Goal Alerts by Email</h3>
+    <p>Never miss a goal — PL · UCL Final · World Cup 2026. Free!</p>
+    <input class="sub-input" type="email" placeholder="Your email address">
+    <button class="sub-btn">Subscribe Free →</button>
+  </div>
+
+  <!-- VPN Banner -->
+  <div class="vpn-banner">
+    <div class="vpn-text"><strong>Stay private online</strong><br>Stream safely from anywhere</div>
+    <button class="vpn-btn">Get NordVPN</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="site-footer">
+    <div class="footer-logo">⚽ GoalCurrent.live</div>
+    <div style="font-size:10px;color:var(--muted);">Designed & Created by Ahmad Zafarani · Ashna4All</div>
+    <div class="footer-links">
+      <a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a>
+      <a href="#">Terms</a><a href="#">Cookies</a>
+    </div>
+    <div class="footer-copy">© 2026 Ashna4All (A. Zafarani) · All Rights Reserved<br>goalcurrent.live · info@goalcurrent.live</div>
+  </div>
 </div>
 
-<!-- Privacy Policy (hidden link for AdSense) -->
-<div style="display:none"><a href="/privacy.html">Privacy Policy</a></div>
+<!-- ════════════════════════════════════════
+     LIVE PAGE
+════════════════════════════════════════ -->
+<div id="page-live" class="page">
 
-<!-- ✅ FOOTER — Creator credit & copyright -->
-<footer style="
-  text-align:center;
-  padding:28px 20px 20px;
-  font-family:Verdana,Geneva,Tahoma,sans-serif;
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(16px);
-  border-top:2px solid rgba(37,99,235,0.15);
-  margin-bottom:130px;
-">
-  <div style="font-size:28px;margin-bottom:10px">⚽</div>
-  <div style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:6px;letter-spacing:-.02em">
-    GoalCurrent<span style="color:#22c55e">.live</span>
+  <div style="background:linear-gradient(135deg,#001a00,#002a0a);padding:14px 16px 10px;border-bottom:1px solid var(--border);">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;">🔴 Live Scores</div>
+    <div style="font-size:11px;color:var(--muted);">Updated in real time</div>
   </div>
-  <div style="font-size:14px;color:#334155;margin-bottom:6px">
-    Designed &amp; Created by
-    <strong style="color:#2563eb;font-size:15px"> Ahmad Zafarani</strong>
-  </div>
-  <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:14px">
-    Ashna4All &nbsp;·&nbsp; A. Zafarani
-  </div>
-  <div style="
-    font-size:12px;color:#475569;
-    padding:10px 20px;
-    background:rgba(37,99,235,0.06);
-    border:1px solid rgba(37,99,235,0.12);
-    border-radius:10px;
-    display:inline-block;
-    margin-bottom:14px;
-    line-height:1.8;
-  ">
-    © 2026 <strong>Ashna4All (A. Zafarani)</strong> · All Rights Reserved<br>
-    Unauthorised copying or reproduction of this website is strictly prohibited
-  </div>
-  <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:12px">
-    <a href="/about.html" style="color:#64748b;text-decoration:none">About Us</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/contact.html" style="color:#64748b;text-decoration:none">Contact Us</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/privacy.html" style="color:#64748b;text-decoration:none">Privacy Policy</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/terms.html" style="color:#64748b;text-decoration:none">Terms</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/cookies.html" style="color:#64748b;text-decoration:none">Cookies</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="https://goalcurrent.live" style="color:#2563eb;text-decoration:none;font-weight:700">goalcurrent.live</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="mailto:info@goalcurrent.live" style="color:#64748b;text-decoration:none">info@goalcurrent.live</a>
-  </div>
-</footer>
 
-<!-- Scripts — api.js MUST be first -->
-<script src="js/api.js" type="text/javascript"></script>
-<script src="js/home.js" type="text/javascript"></script>
-<script src="js/live.js" type="text/javascript"></script>
-<script src="js/schedule.js" type="text/javascript"></script>
-<script src="js/groups.js" type="text/javascript"></script>
-<script src="js/myteams.js" type="text/javascript"></script>
-<script src="js/notifications.js" type="text/javascript"></script>
-<script src="js/app.js" type="text/javascript"></script>
-  <!-- Brevo Form Script -->
-  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+  <div class="chip-tabs">
+    <div class="chip active">All</div>
+    <div class="chip">Premier League</div>
+    <div class="chip">UCL</div>
+    <div class="chip">World Cup</div>
+    <div class="chip">La Liga</div>
+    <div class="chip">Serie A</div>
+  </div>
 
-  <!-- ✅ COOKIE CONSENT BANNER -->
-  <div id="gc-cookie-banner" style="
-    display:none;
-    position:fixed;
-    bottom:80px;
-    left:12px;
-    right:12px;
-    z-index:99999;
-    background:rgba(15,23,42,0.97);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:16px;
-    padding:18px 20px;
-    box-shadow:0 8px 40px rgba(0,0,0,0.5);
-    font-family:Verdana,Geneva,sans-serif;
-    max-width:600px;
-    margin:0 auto;
-  ">
-    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px">
-      <span style="font-size:24px;flex-shrink:0">🍪</span>
-      <div>
-        <div style="font-size:14px;font-weight:700;color:#f1f5f9;margin-bottom:4px">We use cookies</div>
-        <div style="font-size:12px;color:#94a3b8;line-height:1.6">
-          GoalCurrent.live uses cookies to improve your experience, show relevant ads and analyse traffic.
-          By clicking <strong style="color:#fff">"Accept All"</strong> you consent to our use of cookies.
-          You can also choose <strong style="color:#fff">"Essential Only"</strong> to allow only necessary cookies.
-          See our <a href="/privacy.html" style="color:#60a5fa;text-decoration:underline">Privacy Policy</a> for details.
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-      <button onclick="GC_COOKIES.manage()" style="background:transparent;border:1px solid rgba(96,165,250,0.4);color:#60a5fa;padding:9px 16px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;cursor:pointer">⚙️ Manage</button>
-      <button onclick="GC_COOKIES.reject()" style="background:#334155;border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Reject All ✗</button>
-      <button onclick="GC_COOKIES.accept()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.4)">Accept All ✓</button>
+  <div class="section-label">🔴 LIVE NOW</div>
+
+  <div class="score-card">
+    <div class="score-time">67'</div>
+    <div class="score-teams">
+      <div class="score-team winner"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Arsenal</span><span class="score-num" style="color:var(--green);">3</span></div>
+      <div class="score-team loser"><span>🦁 Everton</span><span class="score-num">1</span></div>
     </div>
   </div>
 
-  <!-- Cookie Manage Modal -->
-  <div id="gc-cookie-modal" style="
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:100000;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(4px);
-    align-items:center;
-    justify-content:center;
-  ">
-    <div style="
-      background:#0f172a;
-      border:1px solid rgba(255,255,255,0.15);
-      border-radius:20px;
-      padding:24px;
-      max-width:420px;
-      width:90%;
-      font-family:Verdana,sans-serif;
-    ">
-      <div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:4px">🍪 Cookie Settings</div>
-      <div style="font-size:11px;color:#64748b;margin-bottom:18px">GoalCurrent.live · Ahmad Zafarani</div>
-
-      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px">
-        <!-- Essential -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Essential Cookies</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px">Required for the site to work</div>
-          </div>
-          <div style="background:#22c55e;color:#fff;font-size:10px;padding:4px 10px;border-radius:20px;font-weight:700">Always On</div>
-        </div>
-        <!-- Analytics -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Analytics Cookies</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px">Help us improve the site</div>
-          </div>
-          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
-            <input type="checkbox" id="ck-analytics" checked style="opacity:0;width:0;height:0">
-            <span id="ck-analytics-track" onclick="GC_COOKIES.toggle('analytics')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
-            <span id="ck-analytics-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
-          </label>
-        </div>
-        <!-- Advertising -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Advertising Cookies</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px">Google AdSense personalised ads</div>
-          </div>
-          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
-            <input type="checkbox" id="ck-ads" checked style="opacity:0;width:0;height:0">
-            <span id="ck-ads-track" onclick="GC_COOKIES.toggle('ads')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
-            <span id="ck-ads-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
-          </label>
-        </div>
-        <!-- Push Notifications -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#f1f5f9">Push Notifications</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px">Goal alerts via OneSignal</div>
-          </div>
-          <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
-            <input type="checkbox" id="ck-push" checked style="opacity:0;width:0;height:0">
-            <span id="ck-push-track" onclick="GC_COOKIES.toggle('push')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
-            <span id="ck-push-thumb" style="position:absolute;left:22px;top:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s"></span>
-          </label>
-        </div>
-      </div>
-
-      <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button onclick="GC_COOKIES.saveManage()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:10px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Save Preferences</button>
-      </div>
+  <div class="score-card">
+    <div class="score-time">54'</div>
+    <div class="score-teams">
+      <div class="score-team"><span>🔵 Chelsea</span><span class="score-num">1</span></div>
+      <div class="score-team"><span>🔵 Man City</span><span class="score-num">1</span></div>
     </div>
   </div>
 
-  <script>
-  var GC_COOKIES = (function() {
-    var PREF_KEY = 'gc_cookie_prefs';
+  <div class="score-card">
+    <div class="score-time">HT</div>
+    <div class="score-teams">
+      <div class="score-team winner"><span>🔴 Liverpool</span><span class="score-num" style="color:var(--green);">2</span></div>
+      <div class="score-team loser"><span>⚽ Wolves</span><span class="score-num">0</span></div>
+    </div>
+  </div>
 
-    function getPrefs() {
-      try { return JSON.parse(localStorage.getItem(PREF_KEY)); } catch(e) { return null; }
-    }
+  <div class="section-label">⏰ TODAY · UPCOMING</div>
 
-    function savePrefs(prefs) {
-      localStorage.setItem(PREF_KEY, JSON.stringify(prefs));
-    }
+  <div class="score-card">
+    <div class="score-time" style="color:var(--muted);">18:30</div>
+    <div class="score-teams">
+      <div class="score-team"><span>🔴 Man Utd</span><span class="score-num" style="color:var(--muted);">-</span></div>
+      <div class="score-team"><span>🟡 Newcastle</span><span class="score-num" style="color:var(--muted);">-</span></div>
+    </div>
+  </div>
 
-    function hideBanner() {
-      var b = document.getElementById('gc-cookie-banner');
-      if (b) b.style.display = 'none';
-    }
+  <div class="score-card">
+    <div class="score-time" style="color:var(--muted);">20:00</div>
+    <div class="score-teams">
+      <div class="score-team"><span>🔵 Spurs</span><span class="score-num" style="color:var(--muted);">-</span></div>
+      <div class="score-team"><span>🔵 Aston Villa</span><span class="score-num" style="color:var(--muted);">-</span></div>
+    </div>
+  </div>
 
-    function hideModal() {
-      var m = document.getElementById('gc-cookie-modal');
-      if (m) m.style.display = 'none';
-    }
+  <div class="section-label">✅ FINISHED</div>
 
-    function init() {
-      var prefs = getPrefs();
-      if (!prefs) {
-        /* First visit — show banner after 1 second */
-        setTimeout(function() {
-          var b = document.getElementById('gc-cookie-banner');
-          if (b) b.style.display = 'block';
-        }, 1000);
-      }
-    }
+  <div class="score-card">
+    <div class="score-time finished">FT</div>
+    <div class="score-teams">
+      <div class="score-team winner"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Brighton</span><span class="score-num" style="color:#fff;">2</span></div>
+      <div class="score-team loser"><span>🔴 Brentford</span><span class="score-num">0</span></div>
+    </div>
+  </div>
 
-    function accept() {
-      savePrefs({analytics:true, ads:true, push:true, decided:true});
-      hideBanner();
-    }
+  <div style="height:16px;"></div>
+</div>
 
-    function reject() {
-      savePrefs({analytics:false, ads:false, push:false, decided:true});
-      hideBanner();
-    }
+<!-- ════════════════════════════════════════
+     PREMIER LEAGUE PAGE
+════════════════════════════════════════ -->
+<div id="page-pl" class="page">
 
-    function manage() {
-      var m = document.getElementById('gc-cookie-modal');
-      if (m) { m.style.display = 'flex'; }
-    }
+  <div style="background:linear-gradient(135deg,var(--pl-purple),#250040);padding:16px;border-bottom:2px solid var(--pl-pink);">
+    <div class="hero-badge pl-badge" style="margin-bottom:8px;">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League 2025/26</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;">Final Day · 24 May 2026</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;">All 10 matches · 16:00 UK · Simultaneous kick-off</div>
+  </div>
 
-    function toggle(type) {
-      var cb = document.getElementById('ck-' + type);
-      var track = document.getElementById('ck-' + type + '-track');
-      var thumb = document.getElementById('ck-' + type + '-thumb');
-      if (!cb) return;
-      cb.checked = !cb.checked;
-      if (cb.checked) {
-        track.style.background = '#2563eb';
-        thumb.style.left = '22px';
-      } else {
-        track.style.background = '#334155';
-        thumb.style.left = '2px';
-      }
-    }
+  <div class="chip-tabs">
+    <div class="chip active" onclick="switchChip(this,'pl')">Standings</div>
+    <div class="chip" onclick="switchChip(this,'pl')">Final Day Fixtures</div>
+    <div class="chip" onclick="switchChip(this,'pl')">Top Scorers</div>
+    <div class="chip" onclick="switchChip(this,'pl')">News</div>
+  </div>
 
-    function saveManage() {
-      var analytics = document.getElementById('ck-analytics');
-      var ads = document.getElementById('ck-ads');
-      var push = document.getElementById('ck-push');
-      savePrefs({
-        analytics: analytics ? analytics.checked : true,
-        ads: ads ? ads.checked : true,
-        push: push ? push.checked : true,
-        decided: true
-      });
-      hideModal();
-      hideBanner();
-    }
+  <!-- Champion banner -->
+  <div style="background:linear-gradient(135deg,#1a0030,#3d0856);border:1px solid var(--pl-pink);border-radius:12px;margin:4px 16px 12px;padding:14px;text-align:center;">
+    <div style="font-size:28px;margin-bottom:4px;">🏆</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;">Arsenal — PL Champions!</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);">2025/26 Premier League Winners</div>
+  </div>
 
-    return { init:init, accept:accept, reject:reject, manage:manage, toggle:toggle, saveManage:saveManage };
-  })();
+  <div class="section-label">📊 CURRENT STANDINGS</div>
+  <div class="standings-table">
+    <div class="standings-header">
+      <span>#</span><span>Club</span><span style="text-align:center;">P</span><span style="text-align:center;">W</span><span style="text-align:center;">D</span><span style="text-align:right;">Pts</span>
+    </div>
+    <div class="standings-row cl-spot">
+      <span class="pos">1</span>
+      <span class="club"><span class="club-dot" style="background:#ff0000;"></span>Arsenal 🏆</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">28</span><span class="num" style="text-align:center;">6</span>
+      <span class="pts">90</span>
+    </div>
+    <div class="standings-row cl-spot">
+      <span class="pos">2</span>
+      <span class="club"><span class="club-dot" style="background:#6caddf;"></span>Man City</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">24</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">79</span>
+    </div>
+    <div class="standings-row cl-spot">
+      <span class="pos">3</span>
+      <span class="club"><span class="club-dot" style="background:#d00027;"></span>Liverpool</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">23</span><span class="num" style="text-align:center;">8</span>
+      <span class="pts">77</span>
+    </div>
+    <div class="standings-row cl-spot">
+      <span class="pos">4</span>
+      <span class="club"><span class="club-dot" style="background:#034694;"></span>Chelsea</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">21</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">72</span>
+    </div>
+    <div class="standings-row el-spot">
+      <span class="pos">5</span>
+      <span class="club"><span class="club-dot" style="background:#132257;"></span>Spurs</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">19</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">64</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">6</span>
+      <span class="club"><span class="club-dot" style="background:#87CEEB;"></span>Newcastle</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">18</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">63</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">7</span>
+      <span class="club"><span class="club-dot" style="background:#670e36;"></span>West Ham</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">16</span><span class="num" style="text-align:center;">8</span>
+      <span class="pts">56</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">8</span>
+      <span class="club"><span class="club-dot" style="background:#DA291C;"></span>Man Utd</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">15</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">54</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">9</span>
+      <span class="club"><span class="club-dot" style="background:#7fc5e8;"></span>Brighton</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">15</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">52</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">10</span>
+      <span class="club"><span class="club-dot" style="background:#95bfe5;"></span>Aston Villa</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">14</span><span class="num" style="text-align:center;">8</span>
+      <span class="pts">50</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">11</span>
+      <span class="club"><span class="club-dot" style="background:#EF0107;"></span>Brentford</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">13</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">48</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">12</span>
+      <span class="club"><span class="club-dot" style="background:#0057B8;"></span>Fulham</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">13</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">46</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">13</span>
+      <span class="club"><span class="club-dot" style="background:#E03A3E;"></span>Crystal Palace</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">12</span><span class="num" style="text-align:center;">8</span>
+      <span class="pts">44</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">14</span>
+      <span class="club"><span class="club-dot" style="background:#003399;"></span>Everton</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">11</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">42</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">15</span>
+      <span class="club"><span class="club-dot" style="background:#e20e0e;"></span>Nottm Forest</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">11</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">40</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">16</span>
+      <span class="club"><span class="club-dot" style="background:#241f60;"></span>Leicester</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">9</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">36</span>
+    </div>
+    <div class="standings-row">
+      <span class="pos">17</span>
+      <span class="club"><span class="club-dot" style="background:#E62333;"></span>Bournemouth</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">8</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">33</span>
+    </div>
+    <div class="standings-row rel-spot">
+      <span class="pos">18</span>
+      <span class="club"><span class="club-dot" style="background:#fbee23;"></span>Wolves</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">6</span><span class="num" style="text-align:center;">9</span>
+      <span class="pts">27</span>
+    </div>
+    <div class="standings-row rel-spot">
+      <span class="pos">19</span>
+      <span class="club"><span class="club-dot" style="background:#1B458F;"></span>Ipswich</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">5</span><span class="num" style="text-align:center;">7</span>
+      <span class="pts">22</span>
+    </div>
+    <div class="standings-row rel-spot">
+      <span class="pos">20</span>
+      <span class="club"><span class="club-dot" style="background:#ee2737;"></span>Southampton</span>
+      <span class="num" style="text-align:center;">37</span><span class="num" style="text-align:center;">4</span><span class="num" style="text-align:center;">5</span>
+      <span class="pts">17</span>
+    </div>
+  </div>
 
-  /* Show on page load */
-  window.addEventListener('DOMContentLoaded', function() { GC_COOKIES.init(); });
-  </script>
+  <div style="display:flex;gap:12px;margin:8px 16px;font-size:9px;color:var(--muted);">
+    <span><span style="color:#1565c0;">■</span> Champions League</span>
+    <span><span style="color:#e65100;">■</span> Europa League</span>
+    <span><span style="color:var(--red);">■</span> Relegated</span>
+  </div>
 
-  <!-- ✅ EMAIL SUBSCRIBE POPUP -->
-  <div id="gc-email-popup" style="
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:999999;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(6px);
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-  ">
-    <div style="
-      background:linear-gradient(145deg,rgba(255,255,255,0.97),rgba(240,248,255,0.97));
-      backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,0.9);
-      border-radius:24px;
-      padding:32px 28px;
-      max-width:400px;
-      width:100%;
-      box-shadow:0 24px 60px rgba(0,0,0,0.25);
-      position:relative;
-      text-align:center;
-      font-family:Verdana,Geneva,sans-serif;
-    ">
-      <!-- Close button -->
-      <button onclick="GC_POPUP.close()" style="
-        position:absolute;top:14px;right:16px;
-        background:rgba(100,116,139,0.1);
-        border:none;
-        width:30px;height:30px;
-        border-radius:50%;
-        font-size:16px;color:#64748b;
-        cursor:pointer;
-        display:flex;align-items:center;justify-content:center;
-        font-family:Verdana,sans-serif;
-      ">✕</button>
-
-      <!-- Icon -->
-      <div style="font-size:44px;margin-bottom:12px">⚽</div>
-
-      <!-- Headline -->
-      <div style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:8px;line-height:1.3">
-        Never Miss a Goal!
+  <div class="section-label">📰 PL NEWS</div>
+  <div class="news-scroll">
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,var(--pl-purple),#5c0a7a);">🏆</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--pl-pink);">Champions</div>
+        <div class="news-title">Arsenal lift the Premier League title</div>
+        <span class="news-read">Read →</span>
       </div>
-
-      <!-- Subheadline -->
-      <div style="font-size:13px;color:#475569;margin-bottom:6px;line-height:1.6">
-        Get <strong>Premier League</strong> &amp; <strong>World Cup 2026</strong> goal alerts, fixtures and scores straight to your inbox.
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#1a0030,#400060);">📊</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--pl-pink);">Final Day</div>
+        <div class="news-title">Final Day guide: what's still to play for</div>
+        <span class="news-read">Read →</span>
       </div>
-
-      <!-- Benefits -->
-      <div style="
-        background:rgba(37,99,235,0.06);
-        border-radius:10px;
-        padding:10px 14px;
-        margin:14px 0;
-        font-size:12px;
-        color:#1e40af;
-        text-align:left;
-        line-height:2;
-      ">
-        ✅ Live goal alerts<br>
-        ✅ Match previews &amp; results<br>
-        ✅ World Cup 2026 coverage<br>
-        ✅ 100% free — unsubscribe anytime
-      </div>
-
-      <!-- Email input -->
-      <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-        <input
-          type="email"
-          id="gc-popup-email"
-          placeholder="Enter your email address"
-          style="
-            width:100%;
-            padding:12px 16px;
-            border:1.5px solid rgba(37,99,235,0.25);
-            border-radius:10px;
-            font-family:Verdana,sans-serif;
-            font-size:13px;
-            color:#0f172a;
-            background:rgba(255,255,255,0.9);
-            outline:none;
-            box-sizing:border-box;
-          "
-        >
-        <button onclick="GC_POPUP.subscribe()" style="
-          width:100%;
-          background:linear-gradient(135deg,#2563eb,#3b82f6);
-          color:#fff;
-          border:none;
-          padding:13px;
-          border-radius:10px;
-          font-family:Verdana,sans-serif;
-          font-size:14px;
-          font-weight:700;
-          cursor:pointer;
-          box-shadow:0 6px 20px rgba(37,99,235,0.4);
-          transition:all .2s;
-        ">⚽ Subscribe Free →</button>
-      </div>
-
-      <!-- Success message (hidden) -->
-      <div id="gc-popup-success" style="display:none;margin-top:14px;padding:12px;background:rgba(34,197,94,0.1);border-radius:10px;color:#15803d;font-size:13px;font-weight:600">
-        ✅ Thank you! Check your email to confirm.
-      </div>
-
-      <!-- Error message (hidden) -->
-      <div id="gc-popup-error" style="display:none;margin-top:10px;font-size:12px;color:#dc2626"></div>
-
-      <!-- No thanks -->
-      <button onclick="GC_POPUP.close()" style="
-        background:none;border:none;
-        color:#94a3b8;font-size:11px;
-        font-family:Verdana,sans-serif;
-        cursor:pointer;margin-top:12px;
-        text-decoration:underline;
-      ">No thanks, I don't want goal alerts</button>
-
-      <!-- Legal note -->
-      <div style="font-size:10px;color:#94a3b8;margin-top:8px">
-        By subscribing you agree to our <a href="/privacy.html" style="color:#64748b">Privacy Policy</a>. Powered by Brevo.
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#2a0000,#600000);">⬇️</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--red);">Relegation</div>
+        <div class="news-title">Ipswich & Southampton relegated</div>
+        <span class="news-read">Read →</span>
       </div>
     </div>
   </div>
 
-  <script>
-  var GC_POPUP = (function() {
-    var SHOWN_KEY = 'gc_popup_shown';
+  <div style="height:16px;"></div>
+</div>
 
-    function shouldShow() {
-      try {
-        return !localStorage.getItem(SHOWN_KEY);
-      } catch(e) { return false; }
-    }
+<!-- ════════════════════════════════════════
+     WORLD CUP PAGE
+════════════════════════════════════════ -->
+<div id="page-wc" class="page">
 
-    function markShown() {
-      try { localStorage.setItem(SHOWN_KEY, '1'); } catch(e) {}
-    }
+  <div style="background:linear-gradient(135deg,#000d30,#001a60,#3a0000);padding:16px;border-bottom:2px solid var(--gold);">
+    <div class="hero-badge wc-badge" style="margin-bottom:8px;">🏆 FIFA World Cup 2026</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;">USA · Canada · Mexico</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;">48 Teams · 104 Matches · 11 Jun – 19 Jul 2026</div>
+    <div class="countdown-row" style="margin-top:12px;justify-content:flex-start;">
+      <div class="cd-unit"><div class="cd-num">21</div><div class="cd-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num">00</div><div class="cd-label">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num">11</div><div class="cd-label">Min</div></div>
+      <div class="cd-unit"><div class="cd-num">54</div><div class="cd-label">Sec</div></div>
+    </div>
+  </div>
 
-    function show() {
-      var el = document.getElementById('gc-email-popup');
-      if (el) { el.style.display = 'flex'; }
-    }
+  <div class="chip-tabs">
+    <div class="chip active" onclick="switchChip(this,'wc')">Groups</div>
+    <div class="chip" onclick="switchChip(this,'wc')">Schedule</div>
+    <div class="chip" onclick="switchChip(this,'wc')">Teams</div>
+    <div class="chip" onclick="switchChip(this,'wc')">News</div>
+  </div>
 
-    function close() {
-      var el = document.getElementById('gc-email-popup');
-      if (el) {
-        el.style.opacity = '0';
-        el.style.transition = 'opacity 0.3s';
-        setTimeout(function(){ el.style.display = 'none'; }, 300);
-      }
-      markShown();
-    }
+  <div class="section-label">🌍 GROUP STAGE</div>
 
-    function subscribe() {
-      var input = document.getElementById('gc-popup-email');
-      var errEl = document.getElementById('gc-popup-error');
-      var sucEl = document.getElementById('gc-popup-success');
+  <div class="group-card">
+    <div class="group-header">GROUP A</div>
+    <div style="display:grid;grid-template-columns:20px 1fr 26px 26px 26px 30px;gap:4px;padding:6px 12px;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:var(--card2);">
+      <span>#</span><span>Team</span><span style="text-align:center;">P</span><span style="text-align:center;">W</span><span style="text-align:center;">D</span><span style="text-align:right;">Pts</span>
+    </div>
+    <div class="group-row qualified"><span class="pos">1</span><span>🇺🇸 USA</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row qualified"><span class="pos">2</span><span>🇵🇹 Portugal</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">3</span><span>🇩🇿 Algeria</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">4</span><span>🇷🇸 Serbia</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+  </div>
 
-      if (!input || !input.value || input.value.indexOf('@') < 0) {
-        if (errEl) { errEl.style.display = 'block'; errEl.textContent = '⚠️ Please enter a valid email address.'; }
-        return;
-      }
-      if (errEl) errEl.style.display = 'none';
+  <div class="group-card">
+    <div class="group-header">GROUP B</div>
+    <div style="display:grid;grid-template-columns:20px 1fr 26px 26px 26px 30px;gap:4px;padding:6px 12px;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:var(--card2);">
+      <span>#</span><span>Team</span><span style="text-align:center;">P</span><span style="text-align:center;">W</span><span style="text-align:center;">D</span><span style="text-align:right;">Pts</span>
+    </div>
+    <div class="group-row qualified"><span class="pos">1</span><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row qualified"><span class="pos">2</span><span>🇭🇷 Croatia</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">3</span><span>🇸🇳 Senegal</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">4</span><span>🇮🇷 Iran</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+  </div>
 
-      /* Submit to Brevo via hidden form */
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-      form.target = '_blank';
-      form.style.display = 'none';
-      var f1 = document.createElement('input'); f1.name='EMAIL'; f1.value=input.value;
-      var f2 = document.createElement('input'); f2.name='email_address_check'; f2.value='';
-      var f3 = document.createElement('input'); f3.name='locale'; f3.value='en';
-      form.appendChild(f1); form.appendChild(f2); form.appendChild(f3);
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
+  <div class="group-card">
+    <div class="group-header">GROUP C</div>
+    <div style="display:grid;grid-template-columns:20px 1fr 26px 26px 26px 30px;gap:4px;padding:6px 12px;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:var(--card2);">
+      <span>#</span><span>Team</span><span style="text-align:center;">P</span><span style="text-align:center;">W</span><span style="text-align:center;">D</span><span style="text-align:right;">Pts</span>
+    </div>
+    <div class="group-row qualified"><span class="pos">1</span><span>🇦🇷 Argentina</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row qualified"><span class="pos">2</span><span>🇩🇪 Germany</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">3</span><span>🇯🇵 Japan</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+    <div class="group-row"><span class="pos">4</span><span>🇸🇦 Saudi Arabia</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="num" style="text-align:center;">0</span><span class="pts">0</span></div>
+  </div>
 
-      /* Show success */
-      if (sucEl) sucEl.style.display = 'block';
-      if (input) input.style.display = 'none';
-      var btn = document.querySelector('#gc-email-popup button[onclick="GC_POPUP.subscribe()"]');
-      if (btn) btn.style.display = 'none';
+  <div style="display:flex;gap:10px;margin:6px 16px;font-size:9px;color:var(--muted);">
+    <span><span style="color:var(--green);">■</span> Qualified for Round of 32</span>
+  </div>
 
-      markShown();
-      /* Auto close after 3 seconds */
-      setTimeout(function(){ close(); }, 3000);
-    }
+  <div class="section-label">📰 WC NEWS</div>
+  <div class="news-scroll">
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#001a4d,#8b0000);">🌍</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--gold);">Preview</div>
+        <div class="news-title">England vs Croatia — WC2026 Group Preview</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#001a4d,#003da5);">🇦🇷</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--gold);">Favourites</div>
+        <div class="news-title">Argentina & Brazil lead title predictions</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#1a0000,#500000);">🏟️</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--gold);">Venues</div>
+        <div class="news-title">16 venues across USA, Canada & Mexico</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+  </div>
 
-    function init() {
-      if (shouldShow()) {
-        /* Show after 5 seconds */
-        setTimeout(function(){ show(); }, 5000);
-      }
-    }
+  <div style="height:16px;"></div>
+</div>
 
-    /* Close on backdrop click */
-    document.addEventListener('click', function(e) {
-      var popup = document.getElementById('gc-email-popup');
-      if (e.target === popup) close();
+<!-- ════════════════════════════════════════
+     UCL PAGE
+════════════════════════════════════════ -->
+<div id="page-ucl" class="page">
+
+  <div style="background:linear-gradient(135deg,#000820,#001489,#000820);padding:16px;border-bottom:2px solid var(--ucl-gold);">
+    <div class="hero-badge ucl-badge" style="margin-bottom:8px;">⭐ UEFA Champions League Final</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;">PSG vs Arsenal</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;">Sat 30 May 2026 · 17:00 UK · Puskás Aréna, Budapest</div>
+    <div class="countdown-row" style="margin-top:12px;justify-content:flex-start;">
+      <div class="cd-unit"><div class="cd-num" id="ucl-d2">08</div><div class="cd-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-h2">21</div><div class="cd-label">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-m2">11</div><div class="cd-label">Min</div></div>
+      <div class="cd-unit"><div class="cd-num" id="ucl-s2">54</div><div class="cd-label">Sec</div></div>
+    </div>
+  </div>
+
+  <div class="chip-tabs">
+    <div class="chip active" onclick="switchChip(this,'ucl')">Final Preview</div>
+    <div class="chip" onclick="switchChip(this,'ucl')">Road to Final</div>
+    <div class="chip" onclick="switchChip(this,'ucl')">Stats</div>
+    <div class="chip" onclick="switchChip(this,'ucl')">Where to Watch</div>
+  </div>
+
+  <!-- Matchup card -->
+  <div class="hero-card ucl-hero" style="margin-top:8px;">
+    <div style="text-align:center;margin-bottom:8px;">
+      <span style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--ucl-gold);text-transform:uppercase;">2025/26 UCL Final</span>
+    </div>
+    <div class="matchup">
+      <div class="team-block">
+        <div class="team-flag" style="font-size:36px;">🇫🇷</div>
+        <div class="team-name" style="font-size:20px;">PSG</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.5);">Paris Saint-Germain</div>
+      </div>
+      <div class="vs-block">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--ucl-gold);">VS</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.4);">FINAL</div>
+      </div>
+      <div class="team-block">
+        <div class="team-flag" style="font-size:36px;">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="team-name" style="font-size:20px;">Arsenal</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.5);">Arsenal FC</div>
+      </div>
+    </div>
+    <div class="venue-line" style="margin-top:8px;">📍 Puskás Aréna, Budapest · 🎙️ BT Sport / TNT Sports</div>
+  </div>
+
+  <!-- Road to Final -->
+  <div class="section-label">🛣️ ROAD TO THE FINAL</div>
+
+  <div class="bracket-card">
+    <div class="bracket-title">⭐ UCL Knockout Results</div>
+
+    <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;">Semi-Finals</div>
+    <div class="bracket-match">
+      <div class="bracket-team winner">🏴󠁧󠁢󠁥󠁮󠁧󠁿 <span>Arsenal</span></div>
+      <div class="bracket-score">4–3</div>
+      <div class="bracket-team right">🇩🇪 <span>Bayern</span></div>
+    </div>
+    <div class="bracket-match">
+      <div class="bracket-team winner">🇫🇷 <span>PSG</span></div>
+      <div class="bracket-score">3–1</div>
+      <div class="bracket-team right">🇪🇸 <span>Real Madrid</span></div>
+    </div>
+
+    <div style="font-size:9px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin:10px 0 6px;">Quarter-Finals</div>
+    <div class="bracket-match">
+      <div class="bracket-team winner">🏴󠁧󠁢󠁥󠁮󠁧󠁿 <span>Arsenal</span></div>
+      <div class="bracket-score">5–2</div>
+      <div class="bracket-team right">🇳🇱 <span>Ajax</span></div>
+    </div>
+    <div class="bracket-match">
+      <div class="bracket-team winner">🇫🇷 <span>PSG</span></div>
+      <div class="bracket-score">2–0</div>
+      <div class="bracket-team right">🇮🇹 <span>Inter</span></div>
+    </div>
+  </div>
+
+  <!-- Where to watch -->
+  <div class="section-label">📺 WHERE TO WATCH</div>
+  <div style="background:var(--card);border-radius:10px;margin:0 16px;padding:14px;border:1px solid var(--border);">
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+        <span>🇬🇧 UK</span><span style="font-weight:700;color:var(--ucl-gold);">BT Sport / TNT Sports</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+        <span>🇺🇸 USA</span><span style="font-weight:700;color:var(--ucl-gold);">CBS Sports / Paramount+</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+        <span>🌍 Global</span><span style="font-weight:700;color:var(--ucl-gold);">UEFA.tv</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;">
+        <span>🇫🇷 France</span><span style="font-weight:700;color:var(--ucl-gold);">Canal+</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">📰 UCL NEWS</div>
+  <div class="news-scroll">
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,var(--ucl-blue),#0033aa);">⭐</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--ucl-gold);">Preview</div>
+        <div class="news-title">PSG vs Arsenal — UCL Final tactical preview</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#001489,#002a80);">🏟️</div>
+      <div class="news-body">
+        <div class="news-tag" style="color:var(--ucl-gold);">Venue</div>
+        <div class="news-title">Puskás Aréna: Budapest's cathedral of football</div>
+        <span class="news-read">Read →</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SCHEDULE PAGE
+════════════════════════════════════════ -->
+<div id="page-schedule" class="page">
+
+  <div style="background:linear-gradient(135deg,#0a0f1e,#1a2235);padding:14px 16px 10px;border-bottom:1px solid var(--border);">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;">📅 Schedule</div>
+    <div style="font-size:11px;color:var(--muted);">Upcoming fixtures across all competitions</div>
+  </div>
+
+  <div class="chip-tabs">
+    <div class="chip active">All</div>
+    <div class="chip">PL</div>
+    <div class="chip">UCL</div>
+    <div class="chip">World Cup</div>
+  </div>
+
+  <div class="schedule-day">Sunday · 24 May 2026</div>
+  <div class="schedule-match">
+    <div style="display:flex;flex-direction:column;">
+      <div class="sched-time">16:00</div>
+      <div class="sched-comp" style="font-size:8px;color:var(--pl-pink);margin-top:2px;">PL</div>
+    </div>
+    <div class="sched-teams">
+      <div class="sched-team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Arsenal vs Everton</div>
+      <div class="sched-team">+ 9 more matches</div>
+    </div>
+  </div>
+
+  <div class="schedule-day">Saturday · 30 May 2026</div>
+  <div class="schedule-match" style="border-color:rgba(255,215,0,0.3);">
+    <div style="display:flex;flex-direction:column;">
+      <div class="sched-time" style="color:var(--ucl-gold);">17:00</div>
+      <div class="sched-comp" style="font-size:8px;color:var(--ucl-gold);margin-top:2px;">UCL FINAL</div>
+    </div>
+    <div class="sched-teams">
+      <div class="sched-team" style="font-weight:700;">⭐ PSG vs Arsenal</div>
+      <div style="font-size:9px;color:var(--muted);">Puskás Aréna, Budapest</div>
+    </div>
+  </div>
+
+  <div class="schedule-day">Thursday · 11 June 2026</div>
+  <div class="schedule-match" style="border-color:rgba(255,215,0,0.2);">
+    <div style="display:flex;flex-direction:column;">
+      <div class="sched-time" style="color:var(--gold);">TBC</div>
+      <div class="sched-comp" style="font-size:8px;color:var(--gold);margin-top:2px;">WC 2026</div>
+    </div>
+    <div class="sched-teams">
+      <div class="sched-team" style="font-weight:700;">🌍 World Cup 2026 Begins</div>
+      <div style="font-size:9px;color:var(--muted);">USA · Canada · Mexico</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     BOTTOM NAVIGATION
+════════════════════════════════════════ -->
+<nav class="bottom-nav">
+  <button class="nav-item active" onclick="showPage('home')" id="nav-home">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Home</span>
+  </button>
+  <button class="nav-item" onclick="showPage('live')" id="nav-live">
+    <span class="nav-icon">🔴</span>
+    <span class="nav-label">Live</span>
+  </button>
+  <button class="nav-item" onclick="showPage('pl')" id="nav-pl">
+    <span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="nav-label">PL</span>
+  </button>
+  <button class="nav-item" onclick="showPage('wc')" id="nav-wc">
+    <span class="nav-icon">🌍</span>
+    <span class="nav-label">WC26</span>
+  </button>
+  <button class="nav-item" onclick="showPage('ucl')" id="nav-ucl">
+    <span class="nav-icon">⭐</span>
+    <span class="nav-label">UCL</span>
+  </button>
+  <button class="nav-item" onclick="showPage('schedule')" id="nav-schedule">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">Schedule</span>
+  </button>
+</nav>
+
+<script>
+  // Page navigation
+  const pages = ['home','live','pl','wc','ucl','schedule'];
+
+  function showPage(name) {
+    pages.forEach(p => {
+      document.getElementById('page-' + p).classList.remove('active');
+      const nav = document.getElementById('nav-' + p);
+      if (nav) nav.classList.remove('active');
     });
+    document.getElementById('page-' + name).classList.add('active');
+    const nav = document.getElementById('nav-' + name);
+    if (nav) nav.classList.add('active');
+    window.scrollTo(0, 0);
+  }
 
-    return { init:init, close:close, subscribe:subscribe };
-  })();
+  // Chip tabs (visual only)
+  function switchChip(el, section) {
+    const parent = el.closest('.chip-tabs');
+    parent.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
 
-  window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
-  </script>
+  // Countdown to UCL Final: 30 May 2026 17:00 UK (UTC+1)
+  function updateCountdown() {
+    const target = new Date('2026-05-30T16:00:00Z'); // 17:00 BST = 16:00 UTC
+    const now = new Date();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      ['ucl-d','ucl-h','ucl-m','ucl-s'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '00';
+      });
+      ['ucl-d2','ucl-h2','ucl-m2','ucl-s2'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '00';
+      });
+      return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hrs  = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    const fmt = n => String(n).padStart(2,'0');
+
+    ['ucl-d','ucl-d2'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = fmt(days); });
+    ['ucl-h','ucl-h2'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = fmt(hrs); });
+    ['ucl-m','ucl-m2'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = fmt(mins); });
+    ['ucl-s','ucl-s2'].forEach(id => { const e = document.getElementById(id); if(e) e.textContent = fmt(secs); });
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 </body>
 </html>
