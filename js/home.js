@@ -104,74 +104,193 @@ var GC_HOME = (function () {
     _timer = startCountdown('PL', DATES.PL);
   }
 
-  /* ══ WC ONLY PAGE ══════════════════════════════════════ */
-  function renderWC(container) {
+
+  /* ══ WC GROUPS DATA ════════════════════════════════════ */
+  var WC_GROUPS = [
+    { name:'A', teams:[
+      {flag:'🇲🇽',name:'Mexico'},   {flag:'🇿🇦',name:'South Africa'},
+      {flag:'🇰🇷',name:'South Korea'},{flag:'🇨🇿',name:'Czechia'}
+    ]},
+    { name:'B', teams:[
+      {flag:'🇨🇦',name:'Canada'},   {flag:'🇨🇭',name:'Switzerland'},
+      {flag:'🇶🇦',name:'Qatar'},    {flag:'🇧🇦',name:'Bosnia & Herz.'}
+    ]},
+    { name:'C', teams:[
+      {flag:'🇧🇷',name:'Brazil'},   {flag:'🇲🇦',name:'Morocco'},
+      {flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',name:'Scotland'},{flag:'🇭🇹',name:'Haiti'}
+    ]},
+    { name:'D', teams:[
+      {flag:'🇺🇸',name:'USA'},      {flag:'🇵🇾',name:'Paraguay'},
+      {flag:'🇦🇺',name:'Australia'},{flag:'🇹🇷',name:'Turkiye'}
+    ]},
+    { name:'E', teams:[
+      {flag:'🇩🇪',name:'Germany'},  {flag:'🇨🇼',name:'Curacao'},
+      {flag:'🇨🇮',name:"Côte d'Ivoire"},{flag:'🇪🇨',name:'Ecuador'}
+    ]},
+    { name:'F', teams:[
+      {flag:'🇳🇱',name:'Netherlands'},{flag:'🇯🇵',name:'Japan'},
+      {flag:'🇹🇳',name:'Tunisia'},  {flag:'🇸🇪',name:'Sweden'}
+    ]},
+    { name:'G', teams:[
+      {flag:'🇧🇪',name:'Belgium'},  {flag:'🇪🇬',name:'Egypt'},
+      {flag:'🇮🇷',name:'Iran'},     {flag:'🇳🇿',name:'New Zealand'}
+    ]},
+    { name:'H', teams:[
+      {flag:'🇪🇸',name:'Spain'},    {flag:'🇨🇻',name:'Cape Verde'},
+      {flag:'🇸🇦',name:'Saudi Arabia'},{flag:'🇺🇾',name:'Uruguay'}
+    ]},
+    { name:'I', teams:[
+      {flag:'🇫🇷',name:'France'},   {flag:'🇸🇳',name:'Senegal'},
+      {flag:'🇳🇴',name:'Norway'},   {flag:'🇮🇶',name:'Iraq'}
+    ]},
+    { name:'J', teams:[
+      {flag:'🇦🇷',name:'Argentina'},{flag:'🇩🇿',name:'Algeria'},
+      {flag:'🇦🇹',name:'Austria'}, {flag:'🇯🇴',name:'Jordan'}
+    ]},
+    { name:'K', teams:[
+      {flag:'🇵🇹',name:'Portugal'}, {flag:'🇨🇴',name:'Colombia'},
+      {flag:'🇺🇿',name:'Uzbekistan'},{flag:'🇨🇩',name:'DR Congo'}
+    ]},
+    { name:'L', teams:[
+      {flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'England'},  {flag:'🇭🇷',name:'Croatia'},
+      {flag:'🇬🇭',name:'Ghana'},    {flag:'🇵🇦',name:'Panama'}
+    ]}
+  ];
+
+  var _wcGroup = 0; /* current group index */
+
+  function renderWCGroup(container, idx) {
+    _wcGroup = idx;
+    var g = WC_GROUPS[idx];
+    var prev = idx > 0 ? WC_GROUPS[idx-1].name : null;
+    var next = idx < WC_GROUPS.length-1 ? WC_GROUPS[idx+1].name : null;
+
+    var teamsHtml = g.teams.map(function(t, i) {
+      return '<div style="display:grid;grid-template-columns:32px 1fr 26px 26px 26px 34px;gap:4px;padding:10px 14px;background:' + (i%2===0?'rgba(255,255,255,0.58)':'rgba(255,255,255,0.35)') + ';border-top:1px solid rgba(100,160,220,0.1);align-items:center;font-size:13px;font-weight:600">' +
+        '<span style="font-size:22px">' + t.flag + '</span>' +
+        '<span style="color:#0f172a">' + t.name + '</span>' +
+        '<span style="text-align:center;color:#94a3b8;font-size:11px">0</span>' +
+        '<span style="text-align:center;color:#94a3b8;font-size:11px">0</span>' +
+        '<span style="text-align:center;color:#94a3b8;font-size:11px">0</span>' +
+        '<span style="text-align:right;font-weight:800;color:#2563eb">0</span>' +
+      '</div>';
+    }).join('');
+
     container.innerHTML =
       '<div style="padding-top:16px">' +
-      heroBanner('WC') +
 
-      '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
-        '<div class="gc-cd-header">' +
-          '<span class="gc-cd-icon">🏆</span>' +
-          '<div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div>' +
-        '</div>' +
-        '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go(&quot;schedule&quot;)">📅 View Full Schedule →</button>' +
+      /* Header */
+      '<div style="background:linear-gradient(135deg,#002868,#bf0a30);padding:16px;border-radius:16px;margin:0 16px 14px;text-align:center">' +
+        '<div style="font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.7);margin-bottom:4px">FIFA WORLD CUP 2026</div>' +
+        '<div style="font-family:Verdana,sans-serif;font-size:28px;font-weight:900;color:#ffd700;letter-spacing:2px">GROUP ' + g.name + '</div>' +
+        '<div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px">USA · Canada · Mexico · 11 Jun – 19 Jul 2026</div>' +
       '</div>' +
 
-      '<div class="gc-section-title">🚀 Opening Match — 11 June 2026</div>' +
-      '<div class="gc-card" style="padding:18px;margin-bottom:14px;text-align:center">' +
-        '<div style="font-size:12px;font-weight:700;color:#64748b;margin-bottom:8px">GROUP A · ESTADIO AZTECA · MEXICO CITY</div>' +
-        '<div style="display:flex;align-items:center;justify-content:center;gap:20px">' +
-          '<div style="text-align:center"><div style="font-size:36px">🇲🇽</div><div style="font-size:14px;font-weight:700;color:#0f172a">Mexico</div></div>' +
-          '<div style="text-align:center"><div style="font-size:22px;font-weight:700;color:#2563eb">20:00 UK</div><div style="font-size:11px;color:#64748b">BST</div></div>' +
-          '<div style="text-align:center"><div style="font-size:36px">🇿🇦</div><div style="font-size:14px;font-weight:700;color:#0f172a">South Africa</div></div>' +
+      /* Group navigation arrows */
+      '<div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:14px">' +
+        (prev ?
+          '<button onclick="GC_HOME._wcNav(' + (idx-1) + ')" style="background:#2563eb;color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Verdana,sans-serif">← Group ' + prev + '</button>' :
+          '<div></div>'
+        ) +
+        /* Group dots navigation */
+        '<div style="display:flex;gap:5px">' +
+          WC_GROUPS.map(function(gr, i) {
+            return '<div onclick="GC_HOME._wcNav(' + i + ')" style="width:' + (i===idx?'20px':'8px') + ';height:8px;border-radius:20px;background:' + (i===idx?'#2563eb':'rgba(37,99,235,0.25)') + ';cursor:pointer;transition:all .2s"></div>';
+          }).join('') +
         '</div>' +
-        '<div style="margin-top:10px;font-size:12px;color:#64748b">📺 ITV/STV (UK) · Fox (USA) · CTV/TSN (Canada)</div>' +
+        (next ?
+          '<button onclick="GC_HOME._wcNav(' + (idx+1) + ')" style="background:#2563eb;color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:Verdana,sans-serif">Group ' + next + ' →</button>' :
+          '<div></div>'
+        ) +
       '</div>' +
 
-      '<div class="gc-section-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England — Group L</div>' +
-      '<div class="gc-card" style="padding:16px;margin-bottom:14px">' +
-        [
-          {d:'17 Jun',h:'England',hf:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',a:'Croatia',af:'🇭🇷',t:'21:00',tv:'ITV'},
-          {d:'23 Jun',h:'England',hf:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',a:'Ghana',af:'🇬🇭',t:'21:00',tv:'BBC'},
-          {d:'27 Jun',h:'Panama',hf:'🇵🇦',a:'England',af:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',t:'22:00',tv:'ITV'}
-        ].map(function(f){
-          return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(37,99,235,0.07);font-size:13px">' +
-            '<span style="color:#64748b;font-size:11px;width:44px">' + f.d + '</span>' +
-            '<span style="font-weight:600;color:#0f172a">' + f.hf + ' ' + f.h + '</span>' +
-            '<span style="color:#2563eb;font-weight:700">' + f.t + '</span>' +
-            '<span style="font-weight:600;color:#0f172a">' + f.a + ' ' + f.af + '</span>' +
-            '<span style="font-size:11px;color:#64748b;width:30px;text-align:right">' + f.tv + '</span>' +
-          '</div>';
-        }).join('') +
+      /* Group table */
+      '<div style="margin:0 16px;border-radius:14px;overflow:hidden;border:1.5px solid rgba(37,99,235,0.15);box-shadow:0 2px 8px rgba(0,122,255,0.05);margin-bottom:14px">' +
+        '<div style="display:grid;grid-template-columns:32px 1fr 26px 26px 26px 34px;gap:4px;padding:8px 14px;background:#dbeafe;font-size:9px;font-weight:700;color:#2563eb;letter-spacing:1px;text-transform:uppercase">' +
+          '<span></span><span>Team</span><span style="text-align:center">P</span><span style="text-align:center">W</span><span style="text-align:center">D</span><span style="text-align:right">Pts</span>' +
+        '</div>' +
+        teamsHtml +
       '</div>' +
 
-      '<div class="gc-section-title">📰 WC News</div>' +
-      '<a href="/blog-england-croatia.html" style="text-decoration:none;display:block;margin-bottom:14px">' +
-        '<div class="gc-card" style="padding:14px;cursor:pointer">' +
-          '<div style="font-size:11px;font-weight:700;color:#1d4ed8;margin-bottom:4px">🏆 WORLD CUP 2026 · GROUP L</div>' +
-          '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:4px">England vs Croatia — World Cup 2026 Preview</div>' +
-          '<span style="font-size:12px;color:#2563eb;font-weight:600">Read preview →</span>' +
-        '</div>' +
-      '</a>' +
+      /* Chip tabs for this group */
+      '<div style="display:flex;gap:8px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none">' +
+        '<button onclick="GC_HOME._wcTab(this,\'fixtures\',' + idx + ')" class="gc-round-tab active" style="font-family:Verdana,sans-serif">📅 Fixtures</button>' +
+        '<button onclick="GC_HOME._wcTab(this,\'news\',' + idx + ')" class="gc-round-tab" style="font-family:Verdana,sans-serif">📰 News</button>' +
+        '<button onclick="GC_HOME._wcTab(this,\'teams\',' + idx + ')" class="gc-round-tab" style="font-family:Verdana,sans-serif">👕 Teams</button>' +
+      '</div>' +
 
-      '<div class="gc-card gc-signup-card">' +
-        '<div class="gc-signup-title">📬 Get World Cup Alerts by Email</div>' +
-        '<div class="gc-signup-sub">Never miss a World Cup 2026 goal. Free!</div>' +
-        '<div id="gc-brevo-form" style="margin-top:14px">' +
-          '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
-            '<input type="email" id="gc-email-input" placeholder="Your email address" style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
-            '<button onclick="GC_HOME._subscribe()" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Subscribe Free →</button>' +
-          '</div>' +
-          '<div id="gc-brevo-msg" style="margin-top:10px;font-size:12px;color:#16a34a;display:none;font-weight:600"></div>' +
-        '</div>' +
+      /* Tab content area */
+      '<div id="wc-tab-content" style="padding:0 16px">' +
+        renderWCFixtures(g) +
+      '</div>' +
+
+      /* Countdown */
+      '<div class="gc-card" style="margin:14px 16px;text-align:center">' +
+        '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px">⏱ World Cup Begins In</div>' +
+        '<div class="gc-cd-units" id="gc-cd-WC" style="justify-content:center"></div>' +
       '</div>' +
 
       '</div>';
 
     if (_timer) clearInterval(_timer);
     _timer = startCountdown('WC', DATES.WC);
+  }
+
+  function renderWCFixtures(g) {
+    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">Group ' + g.name + ' Fixtures</div>' +
+    '<div style="background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:12px;font-size:12px;color:#64748b;text-align:center">' +
+      '📅 Group ' + g.name + ' fixtures will appear here once the tournament begins on 11 June 2026' +
+    '</div>';
+  }
+
+  function renderWCNews(g, container) {
+    container.innerHTML = '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">📰 Latest Group ' + g.name + ' News</div>' +
+      '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading news...</span></div>';
+
+    /* Fetch live news from ESPN for the teams in this group */
+    var teamNames = g.teams.map(function(t){ return t.name; }).join(' OR ');
+    var query = encodeURIComponent('World Cup 2026 Group ' + g.name);
+    var url = 'https://corsproxy.io/?' + encodeURIComponent('https://site.api.espn.com/apis/site/v2/sports/soccer/news?limit=5&query=' + query);
+
+    fetch(url)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var articles = data.articles || data.feed || [];
+        if (!articles.length) throw new Error('no articles');
+        var html = articles.slice(0,4).map(function(a){
+          return '<a href="' + (a.links && a.links.web ? a.links.web.href : '#') + '" target="_blank" rel="noopener" style="text-decoration:none;display:block;margin-bottom:8px">' +
+            '<div class="gc-card" style="padding:12px;cursor:pointer">' +
+              '<div style="font-size:10px;font-weight:700;color:#2563eb;margin-bottom:4px">🌍 WC2026 · GROUP ' + g.name + '</div>' +
+              '<div style="font-size:12px;font-weight:700;color:#0f172a;line-height:1.4;margin-bottom:4px">' + (a.headline || a.title || '') + '</div>' +
+              '<span style="font-size:11px;color:#2563eb;font-weight:600">Read →</span>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+        container.innerHTML = '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">📰 Latest Group ' + g.name + ' News</div>' + html;
+      })
+      .catch(function(){
+        container.innerHTML = '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">📰 Latest Group ' + g.name + ' News</div>' +
+          '<div style="background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:14px;font-size:12px;color:#64748b;text-align:center">' +
+            'News for Group ' + g.name + ' will appear here once the tournament begins.' +
+          '</div>';
+      });
+  }
+
+  function renderWCTeams(g) {
+    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">👕 Group ' + g.name + ' Teams</div>' +
+    g.teams.map(function(t){
+      return '<div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:12px 14px;margin-bottom:8px">' +
+        '<span style="font-size:32px">' + t.flag + '</span>' +
+        '<div><div style="font-size:14px;font-weight:700;color:#0f172a">' + t.name + '</div>' +
+        '<div style="font-size:11px;color:#64748b;margin-top:2px">FIFA World Cup 2026 · Group ' + g.name + '</div></div>' +
+      '</div>';
+    }).join('');
+  }
+
+
+  /* ══ WC ONLY PAGE ══════════════════════════════════════ */
+  function renderWC(container) {
+    renderWCGroup(container, _wcGroup);
   }
 
   /* ══ UCL HOME CARD ═════════════════════════════════════ */
@@ -301,6 +420,21 @@ var GC_HOME = (function () {
   return {
     render   : render,
     setLeague: setLeague,
+    _wcNav: function(idx) {
+      var el = document.getElementById('gc-content');
+      if (el) renderWCGroup(el, idx);
+    },
+    _wcTab: function(btn, tab, idx) {
+      /* Switch chip active state */
+      btn.closest('div').querySelectorAll('.gc-round-tab').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var content = document.getElementById('wc-tab-content');
+      if (!content) return;
+      var g = WC_GROUPS[idx];
+      if (tab === 'fixtures') content.innerHTML = renderWCFixtures(g);
+      else if (tab === 'teams')    content.innerHTML = renderWCTeams(g);
+      else if (tab === 'news')     renderWCNews(g, content);
+    },
     _subscribe: function() {
       var input = document.getElementById('gc-email-input');
       var msg   = document.getElementById('gc-brevo-msg');
