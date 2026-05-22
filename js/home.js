@@ -448,14 +448,14 @@ var GC_HOME = (function () {
   function renderWCTeams(g) {
     var gIdx = WC_GROUPS.indexOf(g);
     return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">👕 Tap a team to see their squad</div>' +
-    g.teams.map(function(t){
+    g.teams.map(function(t, tIdx){
       var info = TEAM_DATA[t.name] || {};
-      return '<div onclick="GC_HOME._viewTeam(' + JSON.stringify(t) + ',' + gIdx + ')" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.8);border:1.5px solid rgba(37,99,235,0.12);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,0.06)">' +
+      return '<div onclick="GC_HOME._viewTeam(' + gIdx + ',' + tIdx + ')" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.8);border:1.5px solid rgba(37,99,235,0.12);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;box-shadow:0 2px 8px rgba(37,99,235,0.06)">' +
         '<div style="display:flex;align-items:center;gap:12px">' +
           '<span style="font-size:36px">' + t.flag + '</span>' +
           '<div>' +
             '<div style="font-size:14px;font-weight:700;color:#0f172a">' + t.name + '</div>' +
-            '<div style="font-size:11px;color:#64748b;margin-top:2px">🧑‍💼 ' + (info.coach || 'TBC') + '</div>' +
+            '<div style="font-size:11px;color:#64748b;margin-top:2px">🧑&#x200d;💼 ' + (info.coach || 'TBC') + '</div>' +
             '<div style="font-size:10px;color:#2563eb;margin-top:2px;font-weight:600">Tap to view squad →</div>' +
           '</div>' +
         '</div>' +
@@ -601,9 +601,10 @@ var GC_HOME = (function () {
       var el = document.getElementById('gc-content');
       if (el) renderWCGroup(el, idx);
     },
-    _viewTeam: function(team, groupIdx) {
+    _viewTeam: function(groupIdx, teamIdx) {
       var el = document.getElementById('gc-content');
-      if (el) renderTeamProfile(el, team, groupIdx);
+      var team = WC_GROUPS[groupIdx].teams[teamIdx];
+      if (el && team) renderTeamProfile(el, team, groupIdx);
     },
     _wcTab: function(btn, tab, idx) {
       /* Switch chip active state */
