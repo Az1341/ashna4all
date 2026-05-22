@@ -42,15 +42,34 @@ var GC = (function () {
     window.scrollTo(0, 0);
   }
 
+  function clearLeagueBtns() {
+    document.querySelectorAll('.gc-league-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+  }
+
   function initNav() {
     document.querySelectorAll('[data-page]').forEach(function(btn) {
-      btn.addEventListener('click', function() { go(btn.dataset.page); });
+      btn.addEventListener('click', function() {
+        /* When Home tab clicked, reset to ALL and clear league buttons */
+        if (btn.dataset.page === 'home') {
+          currentType = 'ALL';
+          clearLeagueBtns();
+          if (window.GC_HOME) GC_HOME.setLeague('ALL');
+        }
+        go(btn.dataset.page);
+      });
     });
     document.querySelectorAll('.gc-league-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         currentType = btn.dataset.league;
+        /* Highlight clicked league button, deactivate others */
         document.querySelectorAll('.gc-league-btn').forEach(function(b) {
           b.classList.toggle('active', b.dataset.league === currentType);
+        });
+        /* When any league button clicked, deactivate Home nav tab */
+        document.querySelectorAll('[data-page]').forEach(function(b) {
+          b.classList.toggle('active', false);
         });
         /* UCL goes to its own dedicated page */
         if (currentType === 'UCL') { go('ucl'); return; }
