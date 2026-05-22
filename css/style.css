@@ -312,7 +312,6 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 /* ══ ADSENSE ═════════════════════════════════════════════ */
 .gc-adsense{margin:12px 0;text-align:center;min-height:90px}
 
-
 /* ══ TV BROADCASTER SELECTOR ════════════════════════ */
 .gc-tz-btn {
   background: rgba(255,255,255,0.65);
@@ -355,7 +354,79 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
   #gc-nordvpn-bar{font-size:12px;gap:8px;padding:8px 12px}
   .gc-hero-banner-wrap{height:160px}
   .gc-team-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+
+  /* ✅ MOBILE HEADER FIXES — added 22 May 2026 */
+
+  /* Make header taller on mobile to fit two rows */
+  .gc-header {
+    height: auto;
+    min-height: var(--hdr-h);
+  }
+
+  /* Stack logo and league toggle on separate rows */
+  .gc-header-inner {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Logo — slightly smaller on mobile */
+  .gc-logo {
+    font-size: 18px;
+  }
+
+  /* Logo image — smaller on mobile */
+  .gc-header-inner img {
+    height: 40px !important;
+  }
+
+  /* League toggle — always fully visible, scrollable if needed */
+  .gc-league-toggle {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+  .gc-league-toggle::-webkit-scrollbar { display: none; }
+
+  /* League buttons — slightly smaller text & padding */
+  .gc-league-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Prevent content from overflowing screen width */
+  #gc-content {
+    padding: 0 12px 130px;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Prevent any child element from breaking out */
+  #gc-content * {
+    max-width: 100%;
+  }
+
+  /* Match cards — prevent overflow */
+  .gc-match-card {
+    padding: 12px;
+  }
+
+  /* Countdown units — smaller on mobile */
+  .gc-cd-units {
+    gap: 6px;
+  }
+  .gc-cd-unit {
+    padding: 10px 4px;
+  }
 }
+
 @media(min-width:768px){
   .gc-bottomnav{display:none}
   #gc-nordvpn-bar{bottom:0}
