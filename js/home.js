@@ -4,9 +4,9 @@ var GC_HOME = (function () {
   var _league = 'PL';
 
   var DATES = {
-    PL:  new Date('2026-05-24T15:00:00Z'),  /* 16:00 UK BST */
-    WC:  new Date('2026-06-11T19:00:00Z'),  /* 20:00 UK BST */
-    UCL: new Date('2026-05-30T16:00:00Z')   /* 17:00 UK BST */
+    PL:  new Date('2026-05-24T15:00:00Z'),
+    WC:  new Date('2026-06-11T19:00:00Z'),
+    UCL: new Date('2026-05-30T16:00:00Z')
   };
 
   var HEROES = {
@@ -49,22 +49,21 @@ var GC_HOME = (function () {
 
   function setLeague(t) { _league = t; }
 
+  /* ══ PL ONLY PAGE ══════════════════════════════════════ */
   function renderPL(container) {
     container.innerHTML =
       '<div style="padding-top:16px">' +
       heroBanner('PL') +
 
-      /* Countdown */
       '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
         '<div class="gc-cd-header">' +
-          '<img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src=\'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png\'" alt="PL">' +
+          '<img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png'" alt="PL">' +
           '<div><div class="gc-cd-title">🏆 Arsenal — Premier League Champions!</div><div class="gc-cd-sub">Final Day Sunday 24 May · 16:00 UK · All 10 matches</div></div>' +
         '</div>' +
         '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<button class="gc-btn gc-btn-primary" onclick="GC.go(\'live\')">⚽ Watch Live Scores →</button>' +
+        '<button class="gc-btn gc-btn-primary" onclick="GC.go('live')">⚽ Watch Live Scores →</button>' +
       '</div>' +
 
-      /* Final day fixtures preview */
       '<div class="gc-section-title">📋 Final Day Fixtures — 16:00 UK</div>' +
       '<div class="gc-card" style="padding:14px;margin-bottom:14px">' +
         ['Brighton vs Man United','Burnley vs Wolves','Crystal Palace vs Arsenal','Fulham vs Newcastle',
@@ -78,8 +77,7 @@ var GC_HOME = (function () {
         }).join('') +
       '</div>' +
 
-      /* Blog links */
-      '<div class="gc-section-title">📰 Latest News</div>' +
+      '<div class="gc-section-title">📰 PL News</div>' +
       '<a href="/blog-pl-final-day.html" style="text-decoration:none;display:block;margin-bottom:10px">' +
         '<div class="gc-card" style="padding:14px;cursor:pointer">' +
           '<div style="font-size:11px;font-weight:700;color:#9B1C1C;margin-bottom:4px">🏴󠁧󠁢󠁥󠁮󠁧󠁩 PREMIER LEAGUE · FINAL DAY</div>' +
@@ -88,12 +86,11 @@ var GC_HOME = (function () {
         '</div>' +
       '</a>' +
 
-      /* Email signup */
       '<div class="gc-card gc-signup-card">' +
-        '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
-        '<div class="gc-signup-sub">Never miss a goal — Premier League &amp; World Cup 2026 updates. Free!</div>' +
+        '<div class="gc-signup-title">📬 Get PL Goal Alerts by Email</div>' +
+        '<div class="gc-signup-sub">Never miss a Premier League goal. Free!</div>' +
         '<div id="gc-brevo-form" style="margin-top:14px">' +
-          '<div id="gc-brevo-inline" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
+          '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
             '<input type="email" id="gc-email-input" placeholder="Your email address" style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
             '<button onclick="GC_HOME._subscribe()" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Subscribe Free →</button>' +
           '</div>' +
@@ -107,22 +104,21 @@ var GC_HOME = (function () {
     _timer = startCountdown('PL', DATES.PL);
   }
 
+  /* ══ WC ONLY PAGE ══════════════════════════════════════ */
   function renderWC(container) {
     container.innerHTML =
       '<div style="padding-top:16px">' +
       heroBanner('WC') +
 
-      /* Countdown */
       '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
         '<div class="gc-cd-header">' +
           '<span class="gc-cd-icon">🏆</span>' +
           '<div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div>' +
         '</div>' +
         '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go(\'schedule\')">📅 View Full Schedule →</button>' +
+        '<button class="gc-btn gc-btn-gold" onclick="GC.go('schedule')">📅 View Full Schedule →</button>' +
       '</div>' +
 
-      /* Opening match */
       '<div class="gc-section-title">🚀 Opening Match — 11 June 2026</div>' +
       '<div class="gc-card" style="padding:18px;margin-bottom:14px;text-align:center">' +
         '<div style="font-size:12px;font-weight:700;color:#64748b;margin-bottom:8px">GROUP A · ESTADIO AZTECA · MEXICO CITY</div>' +
@@ -134,7 +130,6 @@ var GC_HOME = (function () {
         '<div style="margin-top:10px;font-size:12px;color:#64748b">📺 ITV/STV (UK) · Fox (USA) · CTV/TSN (Canada)</div>' +
       '</div>' +
 
-      /* England fixture */
       '<div class="gc-section-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England — Group L</div>' +
       '<div class="gc-card" style="padding:16px;margin-bottom:14px">' +
         [
@@ -152,7 +147,7 @@ var GC_HOME = (function () {
         }).join('') +
       '</div>' +
 
-      /* Blog link */
+      '<div class="gc-section-title">📰 WC News</div>' +
       '<a href="/blog-england-croatia.html" style="text-decoration:none;display:block;margin-bottom:14px">' +
         '<div class="gc-card" style="padding:14px;cursor:pointer">' +
           '<div style="font-size:11px;font-weight:700;color:#1d4ed8;margin-bottom:4px">🏆 WORLD CUP 2026 · GROUP L</div>' +
@@ -161,10 +156,9 @@ var GC_HOME = (function () {
         '</div>' +
       '</a>' +
 
-      /* Email signup */
       '<div class="gc-card gc-signup-card">' +
         '<div class="gc-signup-title">📬 Get World Cup Alerts by Email</div>' +
-        '<div class="gc-signup-sub">Never miss a goal — World Cup 2026 scores delivered to your inbox. Free!</div>' +
+        '<div class="gc-signup-sub">Never miss a World Cup 2026 goal. Free!</div>' +
         '<div id="gc-brevo-form" style="margin-top:14px">' +
           '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
             '<input type="email" id="gc-email-input" placeholder="Your email address" style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
@@ -180,26 +174,23 @@ var GC_HOME = (function () {
     _timer = startCountdown('WC', DATES.WC);
   }
 
+  /* ══ UCL HOME CARD ═════════════════════════════════════ */
   function renderUCLHome(container) {
     container.innerHTML =
       '<div style="padding-top:16px">' +
       heroBanner('UCL') +
 
-      /* Countdown */
       '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.06),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.25);padding:20px;margin-bottom:14px;text-align:center">' +
         '<div style="font-size:12px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:10px">⭐ UCL FINAL COUNTDOWN</div>' +
         '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:14px">' +
           '<div style="text-align:center"><div style="font-size:38px">🇫🇷</div><div style="font-size:16px;font-weight:800;color:#0f172a">PSG</div></div>' +
-          '<div style="text-align:center">' +
-            '<div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center"></div>' +
-          '</div>' +
+          '<div style="text-align:center"><div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center"></div></div>' +
           '<div style="text-align:center"><div style="font-size:38px">🔴</div><div style="font-size:16px;font-weight:800;color:#9B1C1C">Arsenal</div></div>' +
         '</div>' +
         '<div style="font-size:12px;color:#475569">📅 Sat 30 May 2026 · 17:00 UK · Puskás Aréna, Budapest</div>' +
-        '<button class="gc-btn gc-btn-primary" style="margin-top:12px" onclick="GC.go(\'ucl\')">⭐ Full Match Preview + Lineups →</button>' +
+        '<button class="gc-btn gc-btn-primary" style="margin-top:12px" onclick="GC.go('ucl')">⭐ Full Match Preview + Lineups →</button>' +
       '</div>' +
 
-      /* Blog link */
       '<a href="/blog-ucl-final.html" style="text-decoration:none;display:block;margin-bottom:14px">' +
         '<div class="gc-card" style="padding:16px;cursor:pointer;border:1px solid rgba(255,215,0,0.2)">' +
           '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:6px">⭐ UCL FINAL · 30 MAY 2026</div>' +
@@ -215,20 +206,18 @@ var GC_HOME = (function () {
     _timer = startCountdown('UCL', DATES.UCL);
   }
 
+  /* ══ HOME PAGE — shows ALL leagues ═════════════════════ */
   function renderAll(container) {
-    /* HOME PAGE — shows ALL leagues */
     container.innerHTML =
       '<div style="padding-top:16px">' +
 
-      /* Main hero */
       '<div class="gc-hero">' +
         '<div class="gc-hero-eyebrow"><span class="gc-hero-dot-red"></span>LIVE SCORES</div>' +
         '<h1 class="gc-hero-title">Goal<span>Current</span>.live</h1>' +
         '<p class="gc-hero-sub">Premier League · UCL Final · World Cup 2026 · Real-time scores</p>' +
       '</div>' +
 
-      /* UCL Final card - most urgent */
-      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.07),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.3);padding:18px;margin-bottom:14px;cursor:pointer" onclick="GC.go(\'ucl\')">' +
+      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.07),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.3);padding:18px;margin-bottom:14px;cursor:pointer" onclick="GC.go('ucl')">' +
         '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:8px">⭐ NEXT UP · UCL FINAL · SAT 30 MAY · 17:00 UK</div>' +
         '<div style="display:flex;align-items:center;justify-content:space-between">' +
           '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🇫🇷</span><span style="font-size:15px;font-weight:700;color:#0f172a">PSG</span></div>' +
@@ -238,23 +227,20 @@ var GC_HOME = (function () {
         '<div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">Puskas Arena, Budapest · BT Sport / TNT Sports</div>' +
       '</div>' +
 
-      /* PL card */
       '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
         heroBanner('PL') +
-        '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src=\'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png\'" alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions! Final Day</div><div class="gc-cd-sub">Sunday 24 May · 16:00 UK · All 10 matches</div></div></div>' +
+        '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png'" alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions! Final Day</div><div class="gc-cd-sub">Sunday 24 May · 16:00 UK · All 10 matches</div></div></div>' +
         '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<button class="gc-btn gc-btn-primary" onclick="GC.go(\'live\')">⚽ Watch Live Scores →</button>' +
+        '<button class="gc-btn gc-btn-primary" onclick="GC.go('live')">⚽ Watch Live Scores →</button>' +
       '</div>' +
 
-      /* WC card */
       '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
         heroBanner('WC') +
         '<div class="gc-cd-header"><span class="gc-cd-icon">🏆</span><div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div></div>' +
         '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go(\'schedule\')">📅 View Full Schedule →</button>' +
+        '<button class="gc-btn gc-btn-gold" onclick="GC.go('schedule')">📅 View Full Schedule →</button>' +
       '</div>' +
 
-      /* News section */
       '<div class="gc-section-title">📰 Latest News</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">' +
         '<a href="/blog-ucl-final.html" style="text-decoration:none">' +
@@ -280,7 +266,6 @@ var GC_HOME = (function () {
         '</a>' +
       '</div>' +
 
-      /* Email signup */
       '<div class="gc-card gc-signup-card">' +
         '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
         '<div class="gc-signup-sub">Never miss a goal — PL · UCL Final · World Cup 2026. Free!</div>' +
@@ -301,10 +286,12 @@ var GC_HOME = (function () {
     startCountdown('UCL', DATES.UCL);
   }
 
+  /* ══ MAIN RENDER — decides which page to show ══════════ */
   function render(container) {
     if      (_league === 'WC')  renderWC(container);
     else if (_league === 'UCL') renderUCLHome(container);
-    else                         renderAll(container); /* PL or default = show all */
+    else if (_league === 'PL')  renderPL(container);
+    else                         renderAll(container);
   }
 
   return {

@@ -8,7 +8,6 @@ var GC = (function () {
     if (!el) return;
     el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading...</span></div>';
 
-    // Safety timeout — if still loading after 8s show error
     var safetyTimer = setTimeout(function() {
       if (el.querySelector('.gc-spinner')) {
         el.innerHTML = '<div class="gc-empty">⚠️ Taking too long to load.<br><button class="gc-btn gc-btn-primary" onclick="GC.draw()">🔄 Retry</button></div>';
@@ -55,13 +54,13 @@ var GC = (function () {
         });
         /* UCL goes to its own dedicated page */
         if (currentType === 'UCL') { go('ucl'); return; }
-        /* PL/WC - update all pages to show relevant content */
+        /* Update all pages to show relevant content */
         if (window.GC_LIVE)     GC_LIVE.setLeague(currentType);
         if (window.GC_SCHEDULE) GC_SCHEDULE.setLeague(currentType);
         if (window.GC_GROUPS)   GC_GROUPS.setLeague(currentType);
-        /* Stay on current page but redraw with new league filter */
-        if (currentPage === 'ucl' || currentPage === 'news') { go('home'); return; }
-        draw();
+        if (window.GC_HOME)     GC_HOME.setLeague(currentType);
+        /* Always go to home when switching league */
+        go('home');
       });
     });
   }
@@ -95,7 +94,6 @@ var GC = (function () {
     }
     tick();
   }
-
 
   function renderNews(container) {
     container.innerHTML =
@@ -150,21 +148,19 @@ var GC = (function () {
     var days  = Math.floor(diff / 86400000);
     var hours = Math.floor((diff % 86400000) / 3600000);
     var mins  = Math.floor((diff % 3600000) / 60000);
-    var countdownStr = days + 'd ' + hours + 'h ' + mins + 'm';
 
     var psgPlayers = ['GK:Donnarumma','RB:Hakimi','CB:Marquinhos','CB:Pacho','LB:Mendes','CM:Vitinha','CM:Fabian Ruiz','CM:Zaire-Emery','RW:Dembele','ST:Mayulu','LW:Barcola'];
     var arsPlayers = ['GK:Raya','RB:Ben White','CB:Saliba','CB:Gabriel','LB:Calafiori','CM:Odegaard','CM:Rice','CM:Merino','RW:Saka','ST:Havertz','LW:Martinelli'];
 
     var scoreBox = isFuture
-      ? '<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px">KICK OFF</div><div style="font-size:28px;font-weight:800;color:#ffd700">17:00 UK</div><div style="margin-top:10px;background:rgba(255,215,0,0.15);padding:8px 14px;border-radius:10px;font-size:14px;color:#ffd700;font-weight:700">' + countdownStr + '</div>'
+      ? '<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px">KICK OFF</div><div style="font-size:28px;font-weight:800;color:#ffd700">17:00 UK</div><div style="margin-top:10px;background:rgba(255,215,0,0.15);padding:8px 14px;border-radius:10px;font-size:14px;color:#ffd700;font-weight:700">' + days + 'd ' + hours + 'h ' + mins + 'm</div>'
       : isLive
-      ? '<div style="background:#dc2626;color:#fff;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:8px">LIVE</div><div style="font-size:40px;font-weight:800;color:#ffd700">0 \u2013 0</div>'
+      ? '<div style="background:#dc2626;color:#fff;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:8px">LIVE</div><div style="font-size:40px;font-weight:800;color:#ffd700">0 – 0</div>'
       : '<div style="font-size:28px;font-weight:800;color:#ffd700">FT</div>';
 
     var html =
       '<div style="padding-top:16px">' +
 
-      /* HERO */
       '<div style="background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:20px;padding:24px 16px;margin-bottom:16px;text-align:center;border:2px solid rgba(255,215,0,0.35);box-shadow:0 8px 32px rgba(0,0,0,0.25)">' +
         '<div style="font-size:11px;font-weight:700;color:#ffd700;letter-spacing:2px;margin-bottom:8px">UEFA CHAMPIONS LEAGUE FINAL 2026</div>' +
         '<div style="font-size:11px;color:rgba(255,255,255,0.55);margin-bottom:16px">Sat 30 May 2026 &middot; Puskas Arena, Budapest</div>' +
@@ -176,14 +172,12 @@ var GC = (function () {
         '<div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:14px">TV: BT Sport / TNT Sports (UK) &middot; The Killers Kick Off Show</div>' +
       '</div>' +
 
-      /* INFO GRID */
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">' +
         '<div class="gc-card" style="text-align:center;padding:14px"><div style="font-size:20px">&#127967;</div><div style="font-size:11px;font-weight:700;color:#0f172a;margin-top:4px">Venue</div><div style="font-size:10px;color:#64748b;margin-top:2px">Puskas Arena<br>Budapest</div></div>' +
         '<div class="gc-card" style="text-align:center;padding:14px"><div style="font-size:20px">&#9200;</div><div style="font-size:11px;font-weight:700;color:#0f172a;margin-top:4px">Kick Off</div><div style="font-size:10px;color:#64748b;margin-top:2px">17:00 UK BST<br>18:00 CET</div></div>' +
         '<div class="gc-card" style="text-align:center;padding:14px"><div style="font-size:20px">&#128250;</div><div style="font-size:11px;font-weight:700;color:#0f172a;margin-top:4px">TV UK</div><div style="font-size:10px;color:#64748b;margin-top:2px">BT Sport<br>TNT Sports</div></div>' +
       '</div>' +
 
-      /* PREDICTION */
       '<div class="gc-section-title">&#128302; Our Prediction</div>' +
       '<div class="gc-card" style="background:linear-gradient(135deg,rgba(34,197,94,0.07),rgba(37,99,235,0.04));border:1px solid rgba(37,99,235,0.15);padding:20px;margin-bottom:16px;text-align:center">' +
         '<div style="font-size:11px;font-weight:700;color:#15803d;letter-spacing:1px;margin-bottom:8px">&#9917; GOALCURRENT PREDICTION</div>' +
@@ -191,18 +185,16 @@ var GC = (function () {
         '<div style="font-size:12px;color:#64748b">Arsenal to complete an incredible domestic and European double! &#128308;&#127942;</div>' +
       '</div>' +
 
-      /* PREVIEW */
       '<div class="gc-section-title">&#128221; Match Preview</div>' +
       '<div class="gc-card" style="padding:20px;margin-bottom:12px">' +
         '<p style="font-size:13px;color:#334155;line-height:1.8;margin-bottom:10px">The biggest night in European club football arrives on <strong>Saturday 30 May 2026</strong>. <strong>Paris Saint-Germain</strong> face <strong>Arsenal</strong> in the UEFA Champions League Final at the spectacular Puskas Arena in Budapest, Hungary.</p>' +
-        '<p style="font-size:13px;color:#334155;line-height:1.8;margin-bottom:10px">PSG arrive as defending champions, bidding to become only the second club to retain the trophy in the Champions League era after Real Madrid. The French giants have been devastating this season.</p>' +
-        '<p style="font-size:13px;color:#334155;line-height:1.8">Arsenal arrive as <strong>Premier League 2025/26 Champions</strong>. This is their first UCL Final since 2006 — 20 years of waiting. A win would complete one of the greatest ever seasons in Arsenal history.</p>' +
+        '<p style="font-size:13px;color:#334155;line-height:1.8;margin-bottom:10px">PSG arrive as defending champions, bidding to become only the second club to retain the trophy in the Champions League era after Real Madrid.</p>' +
+        '<p style="font-size:13px;color:#334155;line-height:1.8">Arsenal arrive as <strong>Premier League 2025/26 Champions</strong>. This is their first UCL Final since 2006 — 20 years of waiting.</p>' +
       '</div>' +
       '<div class="gc-card" style="border-left:4px solid #2563eb;border-radius:0 12px 12px 0;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#1e40af;font-style:italic;background:rgba(37,99,235,0.04)">' +
-        '"Premier League champions AND European champions in the same season would be one of the greatest achievements in Arsenal\'s history."' +
+        '"Premier League champions AND European champions in the same season would be one of the greatest achievements in Arsenal's history."' +
       '</div>' +
 
-      /* KEY PLAYERS */
       '<div class="gc-section-title">&#11088; Key Players</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">' +
         '<div class="gc-card" style="padding:14px">' +
@@ -223,7 +215,6 @@ var GC = (function () {
         '</div>' +
       '</div>' +
 
-      /* LINEUPS */
       '<div class="gc-section-title">&#128089; Expected Line-ups</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">' +
         '<div class="gc-card" style="padding:14px">' +
@@ -238,7 +229,6 @@ var GC = (function () {
         '</div>' +
       '</div>' +
 
-      /* BLOG LINK */
       '<a href="/blog-ucl-final.html" style="text-decoration:none;display:block">' +
         '<div class="gc-card" style="text-align:center;padding:16px;border:1px solid rgba(37,99,235,0.2);background:rgba(37,99,235,0.04)">' +
           '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:4px">&#128214; Read Full UCL Final Preview</div>' +
@@ -256,7 +246,6 @@ var GC = (function () {
     }
   }
 
-
   function buildLineup(players) {
     var html = '<div style="display:flex;flex-direction:column;gap:4px">';
     players.forEach(function(p) {
@@ -271,13 +260,11 @@ var GC = (function () {
     return html + '</div>';
   }
 
-
   return {
     go: go, draw: draw,
     getType: function() { return currentType; },
     init: function() {
       initNav(); initCanvas();
-      // Auto-refresh live scores without resetting page
       setInterval(function() {
         if(currentPage === 'live') {
           var el = document.getElementById('gc-content');
