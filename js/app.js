@@ -290,6 +290,8 @@ var GC = (function () {
           if (el && window.GC_LIVE) GC_LIVE.fetchOnly(el);
         }
       }, 60000);
+      /* On startup: clear league buttons, highlight Home tab */
+      clearLeagueBtns();
       go('home');
     }
   };
