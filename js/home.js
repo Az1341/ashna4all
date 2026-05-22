@@ -207,42 +207,49 @@ var GC_HOME = (function () {
     fetchSquad(info.espnId, team.name);
   }
 
-  /* ══ HARDCODED SQUADS — for teams confirmed before ESPN updates ══ */
+  /* ══ HARDCODED SQUADS — updated 22 May 2026 ══ */
   var HARDCODED_SQUADS = {
     'England': {
-      GK: [
-        {name:'Jordan Pickford',    pos:'GK', club:'Everton'},
-        {name:'Dean Henderson',     pos:'GK', club:'Crystal Palace'},
-        {name:'James Trafford',     pos:'GK', club:'Burnley'}
-      ],
-      DF: [
-        {name:'Reece James',        pos:'RB', club:'Chelsea'},
-        {name:'Tino Livramento',    pos:'RB', club:'Newcastle Utd'},
-        {name:'John Stones',        pos:'CB', club:'Man City'},
-        {name:'Marc Guéhi',         pos:'CB', club:'Crystal Palace'},
-        {name:'Ezri Konsa',         pos:'CB', club:'Aston Villa'},
-        {name:'Dan Burn',           pos:'CB', club:'Newcastle Utd'},
-        {name:'Jarell Quansah',     pos:'CB', club:'Liverpool'},
-        {name:'Djed Spence',        pos:'RB', club:'Genoa'},
-        {name:"Nico O’Reilly", pos:"LB", club:"Man City"}
-      ],
-      MF: [
-        {name:'Declan Rice',        pos:'CM', club:'Arsenal'},
-        {name:'Jude Bellingham',    pos:'CM', club:'Real Madrid'},
-        {name:'Jordan Henderson',   pos:'CM', club:'Ajax'},
-        {name:'Kobbie Mainoo',      pos:'CM', club:'Man Utd'},
-        {name:'Elliot Anderson',    pos:'CM', club:'Nottm Forest'}
-      ],
-      FW: [
-        {name:'Bukayo Saka',        pos:'RW', club:'Arsenal'},
-        {name:'Noni Madueke',       pos:'RW', club:'Chelsea'},
-        {name:'Eberechi Eze',       pos:'AM', club:'Arsenal'},
-        {name:'Morgan Rogers',      pos:'LW', club:'Aston Villa'},
-        {name:'Anthony Gordon',     pos:'LW', club:'Newcastle Utd'},
-        {name:'Harry Kane',         pos:'ST', club:'Bayern Munich'},
-        {name:'Ollie Watkins',      pos:'ST', club:'Aston Villa'},
-        {name:'Ivan Toney',         pos:'ST', club:'Al-Ahli'}
-      ]
+      GK:[{name:'Jordan Pickford',pos:'GK',club:'Everton'},{name:'Dean Henderson',pos:'GK',club:'Crystal Palace'},{name:'James Trafford',pos:'GK',club:'Burnley'}],
+      DF:[{name:'Reece James',pos:'RB',club:'Chelsea'},{name:'Tino Livramento',pos:'RB',club:'Newcastle'},{name:'John Stones',pos:'CB',club:'Man City'},{name:'Marc Guehi',pos:'CB',club:'Crystal Palace'},{name:'Ezri Konsa',pos:'CB',club:'Aston Villa'},{name:'Dan Burn',pos:'CB',club:'Newcastle'},{name:'Jarell Quansah',pos:'CB',club:'Liverpool'},{name:'Djed Spence',pos:'RB',club:'Genoa'},{name:'Nico OReilly',pos:'LB',club:'Man City'}],
+      MF:[{name:'Declan Rice',pos:'CM',club:'Arsenal'},{name:'Jude Bellingham',pos:'CM',club:'Real Madrid'},{name:'Jordan Henderson',pos:'CM',club:'Ajax'},{name:'Kobbie Mainoo',pos:'CM',club:'Man Utd'},{name:'Elliot Anderson',pos:'CM',club:'Nottm Forest'}],
+      FW:[{name:'Bukayo Saka',pos:'RW',club:'Arsenal'},{name:'Noni Madueke',pos:'RW',club:'Chelsea'},{name:'Eberechi Eze',pos:'AM',club:'Arsenal'},{name:'Morgan Rogers',pos:'LW',club:'Aston Villa'},{name:'Anthony Gordon',pos:'LW',club:'Newcastle'},{name:'Harry Kane (C)',pos:'ST',club:'Bayern Munich'},{name:'Ollie Watkins',pos:'ST',club:'Aston Villa'},{name:'Ivan Toney',pos:'ST',club:'Al-Ahli'}]
+    },
+    'South Korea': {
+      GK:[{name:'Kim Seung-gyu',pos:'GK',club:'FC Tokyo'},{name:'Jo Hyeon-woo',pos:'GK',club:'Ulsan HD'},{name:'Song Bum-keun',pos:'GK',club:'Jeonbuk'}],
+      DF:[{name:'Kim Min-jae',pos:'CB',club:'Bayern Munich'},{name:'Kim Moon-hwan',pos:'RB',club:'Daejeon'},{name:'Sel Young-woo',pos:'CB',club:'Red Star Belgrade'},{name:'Cho Yu-min',pos:'LB',club:'Sharjah'},{name:'Lee Tae-seok',pos:'CB',club:'Austria Vienna'},{name:'Park Jin-seob',pos:'CB',club:'Zhejiang FC'},{name:'Kim Tae-hyeon',pos:'CB',club:'Kashima'},{name:'Lee Han-beom',pos:'DF',club:'Midtjylland'},{name:'Jens Castrop',pos:'DF',club:'Monchengladbach'},{name:'Lee Ki-hyuk',pos:'DF',club:'Gangwon FC'}],
+      MF:[{name:'Lee Jae-sung',pos:'CM',club:'Mainz'},{name:'Hwang Hee-chan',pos:'MF',club:'Wolves'},{name:'Hwang In-beom',pos:'CM',club:'Feyenoord'},{name:'Lee Kang-in',pos:'AM',club:'PSG'},{name:'Paik Seung-ho',pos:'CM',club:'Birmingham'},{name:'Kim Jun-gyu',pos:'CM',club:'Jeonbuk'},{name:'Lee Dong-gyeong',pos:'CM',club:'Ulsan HD'},{name:'Bae Jun-ho',pos:'CM',club:'Stoke City'},{name:'Eom Ji-sung',pos:'CM',club:'Swansea'},{name:'Yang Hyun-jun',pos:'MF',club:'Celtic'}],
+      FW:[{name:'Son Heung-min (C)',pos:'FW',club:'Los Angeles FC'},{name:'Cho Gue-sung',pos:'ST',club:'Midtjylland'},{name:'Oh Hyeon-gyu',pos:'ST',club:'Besiktas'}]
+    },
+    'Bosnia & Herz.': {
+      GK:[{name:'Nikola Vasilj',pos:'GK',club:'St Pauli'},{name:'Martin Zlomislic',pos:'GK',club:'Rijeka'},{name:'Osman Hadzikic',pos:'GK',club:'Slaven Belupo'}],
+      DF:[{name:'Sead Kolasinac',pos:'LB',club:'Atalanta'},{name:'Amar Dedic',pos:'RB',club:'Benfica'},{name:'Nihad Mujakic',pos:'DF',club:'Gaziantep'},{name:'Nikola Katic',pos:'CB',club:'Schalke 04'},{name:'Tarik Muharemovic',pos:'CB',club:'Sassuolo'},{name:'Stjepan Radeljic',pos:'CB',club:'Rijeka'},{name:'Dennis Hadzikadunic',pos:'CB',club:'Sampdoria'},{name:'Nidal Celik',pos:'DF',club:'Lens'}],
+      MF:[{name:'Amir Hadziahmetovic',pos:'CM',club:'Hull City'},{name:'Ivan Sunjic',pos:'CM',club:'Pafos'},{name:'Ivan Basic',pos:'CM',club:'Astana'},{name:'Dzenis Burnic',pos:'CM',club:'Karlsruher'},{name:'Ermin Mahmic',pos:'CM',club:'Slovan Liberec'},{name:'Benjamin Tahirovic',pos:'CM',club:'Brondby'},{name:'Amar Memic',pos:'CM',club:'Viktoria Plzen'},{name:'Armin Gigovic',pos:'CM',club:'Young Boys'},{name:'Kerim Alajbegovic',pos:'CM',club:'RB Salzburg'},{name:'Esmir Bajraktarevic',pos:'AM',club:'PSV'}],
+      FW:[{name:'Ermedin Demirovic',pos:'FW',club:'Stuttgart'},{name:'Jovo Lukic',pos:'FW',club:'Univ. Cluj'},{name:'Samed Bazdar',pos:'FW',club:'Jagiellonia'},{name:'Haris Tabakovic',pos:'ST',club:'Monchengladbach'},{name:'Edin Dzeko',pos:'ST',club:'Schalke 04'}]
+    },
+    'Switzerland': {
+      GK:[{name:'Gregor Kobel',pos:'GK',club:'Dortmund'},{name:'Yvon Mvogo',pos:'GK',club:'Lorient'},{name:'Marvin Keller',pos:'GK',club:'Young Boys'}],
+      DF:[{name:'Ricardo Rodriguez',pos:'LB',club:'Real Betis'},{name:'Manuel Akanji',pos:'CB',club:'Inter Milan'},{name:'Nico Elvedi',pos:'CB',club:'Monchengladbach'},{name:'Silvan Widmer',pos:'RB',club:'Mainz'},{name:'Eray Comert',pos:'CB',club:'Valencia'},{name:'Miro Muheim',pos:'LB',club:'Hamburg'},{name:'Aurele Amenda',pos:'CB',club:'Eintracht Frankfurt'},{name:'Luca Jaquez',pos:'CB',club:'Stuttgart'}],
+      MF:[{name:'Granit Xhaka',pos:'CM',club:'Sunderland'},{name:'Remo Freuler',pos:'CM',club:'Bologna'},{name:'Denis Zakaria',pos:'CM',club:'Monaco'},{name:'Djibril Sow',pos:'CM',club:'Sevilla'},{name:'Michel Aebischer',pos:'CM',club:'Pisa'},{name:'Fabian Rieder',pos:'CM',club:'Augsburg'},{name:'Christian Fassnacht',pos:'MF',club:'Young Boys'},{name:'Johan Manzambi',pos:'MF',club:'Freiburg'},{name:'Ardon Jashari',pos:'CM',club:'Milan'}],
+      FW:[{name:'Breel Embolo',pos:'FW',club:'Rennes'},{name:'Ruben Vargas',pos:'LW',club:'Sevilla'},{name:'Dan Ndoye',pos:'RW',club:'Nottm Forest'},{name:'Zeki Amdouni',pos:'FW',club:'Burnley'},{name:'Noah Okafor',pos:'FW',club:'Leeds Utd'},{name:'Cedric Itten',pos:'ST',club:'Fortuna Dusseldorf'}]
+    },
+    'Brazil': {
+      GK:[{name:'Alisson',pos:'GK',club:'Liverpool'},{name:'Ederson',pos:'GK',club:'Fenerbahce'},{name:'Weverton',pos:'GK',club:'Gremio'}],
+      DF:[{name:'Marquinhos (C)',pos:'CB',club:'PSG'},{name:'Danilo Luiz',pos:'RB',club:'Flamengo'},{name:'Alex Sandro',pos:'LB',club:'Flamengo'},{name:'Gabriel Magalhaes',pos:'CB',club:'Arsenal'},{name:'Bremer',pos:'CB',club:'Juventus'},{name:'Wesley',pos:'RB',club:'Roma'},{name:'Roger Ibanez',pos:'CB',club:'Al-Ahli'},{name:'Douglas Santos',pos:'LB',club:'Zenit'},{name:'Leo Pereira',pos:'CB',club:'Flamengo'}],
+      MF:[{name:'Casemiro',pos:'CM',club:'Man Utd'},{name:'Lucas Paqueta',pos:'AM',club:'Flamengo'},{name:'Bruno Guimaraes',pos:'CM',club:'Newcastle'},{name:'Fabinho',pos:'DM',club:'Al-Ittihad'},{name:'Danilo',pos:'CM',club:'Botafogo'}],
+      FW:[{name:'Neymar',pos:'LW',club:'Santos'},{name:'Vinicius Jr',pos:'LW',club:'Real Madrid'},{name:'Raphinha',pos:'RW',club:'Barcelona'},{name:'Gabriel Martinelli',pos:'LW',club:'Arsenal'},{name:'Matheus Cunha',pos:'FW',club:'Man Utd'},{name:'Endrick',pos:'ST',club:'Lyon'},{name:'Luiz Henrique',pos:'FW',club:'Zenit'},{name:'Igor Thiago',pos:'ST',club:'Brentford'},{name:'Rayan',pos:'FW',club:'Bournemouth'}]
+    },
+    'Scotland': {
+      GK:[{name:'Angus Gunn',pos:'GK',club:'Norwich'},{name:'Liam Kelly',pos:'GK',club:'Marseille'},{name:'Craig Gordon',pos:'GK',club:'Hearts'}],
+      DF:[{name:'Andy Robertson (C)',pos:'LB',club:'Liverpool'},{name:'Aaron Hickey',pos:'RB',club:'Brentford'},{name:'Grant Hanley',pos:'CB',club:'Norwich'},{name:'Kieran Tierney',pos:'LB',club:'Real Sociedad'},{name:'Liam Cooper',pos:'CB',club:'Leeds'},{name:'Jack Hendry',pos:'CB',club:'Al-Ettifaq'},{name:'Anthony Ralston',pos:'RB',club:'Celtic'}],
+      MF:[{name:'Callum McGregor',pos:'CM',club:'Celtic'},{name:'John McGinn',pos:'CM',club:'Aston Villa'},{name:'Ryan Christie',pos:'AM',club:'Bournemouth'},{name:'Billy Gilmour',pos:'CM',club:'Brighton'},{name:'Stuart Armstrong',pos:'CM',club:'Southampton'},{name:'Kenny McLean',pos:'CM',club:'Norwich'}],
+      FW:[{name:'Che Adams',pos:'ST',club:'Torino'},{name:'Lyndon Dykes',pos:'ST',club:'QPR'},{name:'Ryan Gauld',pos:'AM',club:'Vancouver'},{name:'Scott McTominay',pos:'FW',club:'Napoli'},{name:'James Forrest',pos:'RW',club:'Celtic'},{name:'Liel Abada',pos:'RW',club:'Celtic'}]
+    },
+    'DR Congo': {
+      GK:[{name:'Timothy Fayulu',pos:'GK',club:'FC Noah'},{name:'Lionel Mpasi',pos:'GK',club:'Le Havre'},{name:'Mike Epolo',pos:'GK',club:'Standard Liege'}],
+      DF:[{name:'Aaron Wan-Bissaka',pos:'RB',club:'West Ham'},{name:'Gedeon Kalulu',pos:'CB',club:'AEL Limassol'},{name:'Joris Kayembe',pos:'LB',club:'Genk'},{name:'Arthur Masuaku',pos:'LB',club:'Lens'},{name:'Steve Kapuadi',pos:'CB',club:'Widzew'},{name:'Rocky Bushiri',pos:'CB',club:'Hibernian'},{name:'Axel Tuanzebe',pos:'CB',club:'Burnley'},{name:'Chancel Mbemba',pos:'CB',club:'Lille'},{name:'Dylan Batubinsika',pos:'CB',club:'Larissa'}],
+      MF:[{name:'Noah Sadiki',pos:'CM',club:'Sunderland'},{name:'Samuel Moutoussamy',pos:'CM',club:'Atromitos'},{name:'Edo Kayembe',pos:'CM',club:'Watford'},{name:'Nathan Mukau',pos:'CM',club:'Lille'},{name:'Charles Pickel',pos:'CM',club:'Espanyol'},{name:'Gaël Kakuta',pos:'AM',club:'Larissa'},{name:'Theo Bongonda',pos:'MF',club:'Spartak Moscow'}],
+      FW:[{name:'Meschack Elia',pos:'FW',club:'Alanyaspor'},{name:'Fiston Mayele',pos:'ST',club:'Pyramids'},{name:'Cedric Bakambu',pos:'ST',club:'Real Betis'},{name:'Simon Banza',pos:'ST',club:'Al Jazira'},{name:'Yoane Wissa',pos:'FW',club:'Newcastle'}]
     }
   };
 
