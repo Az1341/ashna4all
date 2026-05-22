@@ -192,7 +192,7 @@ var GC = (function () {
         '<p style="font-size:13px;color:#334155;line-height:1.8">Arsenal arrive as <strong>Premier League 2025/26 Champions</strong>. This is their first UCL Final since 2006 — 20 years of waiting.</p>' +
       '</div>' +
       '<div class="gc-card" style="border-left:4px solid #2563eb;border-radius:0 12px 12px 0;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#1e40af;font-style:italic;background:rgba(37,99,235,0.04)">' +
-        '"Premier League champions AND European champions in the same season would be one of the greatest achievements in Arsenal's history."' +
+        '"Premier League champions AND European champions in the same season - one of the greatest achievements in Arsenal history."' +
       '</div>' +
 
       '<div class="gc-section-title">&#11088; Key Players</div>' +
