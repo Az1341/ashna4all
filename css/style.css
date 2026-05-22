@@ -33,7 +33,6 @@ body {
   font-size: 14px;
 }
 
-/* animated orbs */
 body::before,body::after{
   content:''; position:fixed; border-radius:50%;
   filter:blur(80px); opacity:.35; pointer-events:none; z-index:0;
@@ -44,7 +43,6 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 @keyframes orb-float{from{transform:translate(0,0)scale(1)}to{transform:translate(40px,30px)scale(1.08)}}
 
 #gc-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-
 #gc-app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
 
 /* ══ HEADER ══════════════════════════════════════════════ */
@@ -69,39 +67,22 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-topnav-btn.active{background:rgba(255,255,255,0.92);color:var(--blue);box-shadow:0 2px 10px rgba(37,99,235,0.18)}
 
 .gc-league-toggle{display:flex;gap:4px;background:rgba(255,255,255,0.45);border:1px solid var(--glass-border);padding:3px;border-radius:999px;flex-shrink:0}
-.gc-league-btn{border:none;background:transparent;color:var(--t4);font-family:Verdana,sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;transition:all .2s}
+.gc-league-btn{border:1px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.45);color:var(--t2);font-family:Verdana,sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .gc-league-btn.active{background:var(--blue);color:#fff;box-shadow:0 2px 10px rgba(37,99,235,0.32)}
 
 /* ══ CONTENT ═════════════════════════════════════════════ */
 #gc-content{max-width:100%;margin:0 auto;width:100%;padding:0 16px 130px;flex:1}
 
 /* ══ HERO BANNER ═════════════════════════════════════════ */
-.gc-hero-banner{
-  width:100%;height:200px;border-radius:var(--r-lg);
-  object-fit:cover;display:block;margin-bottom:20px;
-  box-shadow:0 8px 32px rgba(0,0,0,0.18);
-}
-.gc-hero-banner-wrap{
-  position:relative;width:100%;height:200px;
-  border-radius:var(--r-lg);overflow:hidden;
-  margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,0.18);
-}
+.gc-hero-banner{width:100%;height:200px;border-radius:var(--r-lg);object-fit:cover;display:block;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
+.gc-hero-banner-wrap{position:relative;width:100%;height:200px;border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
 .gc-hero-banner-wrap img{width:100%;height:100%;object-fit:cover}
-.gc-hero-banner-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.1) 60%,transparent 100%);
-  display:flex;flex-direction:column;justify-content:flex-end;padding:18px 20px;
-}
+.gc-hero-banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.1) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 20px}
 .gc-hero-banner-title{font-size:22px;font-weight:700;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.4)}
 .gc-hero-banner-sub{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px}
 
 /* ══ GLASS CARD ══════════════════════════════════════════ */
-.gc-card{
-  background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  border:1px solid var(--glass-border);border-radius:var(--r-lg);
-  padding:20px;margin-bottom:14px;box-shadow:var(--glass-shadow);
-  transition:box-shadow .2s,transform .2s;
-}
+.gc-card{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:20px;margin-bottom:14px;box-shadow:var(--glass-shadow);transition:box-shadow .2s,transform .2s}
 .gc-card:hover{box-shadow:0 12px 40px rgba(100,160,220,0.28);transform:translateY(-1px)}
 
 /* ══ BUTTONS ═════════════════════════════════════════════ */
@@ -125,7 +106,6 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-section-count{font-size:11px;color:var(--t4);background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);padding:3px 10px;border-radius:999px}
 .gc-group-label{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin:18px 0 8px}
 
-/* live dot + pulse */
 .gc-live-dot{display:inline-block;width:9px;height:9px;background:var(--red);border-radius:50%;margin-right:7px;animation:pulse 1.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
 
@@ -137,7 +117,6 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-hero-title span{color:var(--blue)}
 .gc-hero-sub{font-size:13px;color:var(--t2);line-height:1.7}
 
-/* countdown */
 .gc-cd-card{overflow:hidden}
 .gc-cd-pl-card{border-top:4px solid #37003c}
 .gc-cd-wc-card{border-top:4px solid var(--gold)}
@@ -165,34 +144,28 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-match-card{background:var(--glass-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 16px;margin-bottom:10px;box-shadow:var(--glass-shadow);transition:all .2s}
 .gc-match-card:hover{box-shadow:0 10px 32px rgba(100,160,220,0.28);transform:translateY(-1px)}
 .gc-match-live{border-color:rgba(220,38,38,0.4);box-shadow:0 0 0 2px rgba(220,38,38,0.1),var(--glass-shadow)}
-
 .gc-match-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .gc-match-league{font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.06em}
-
 .gc-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px}
 .gc-badge-live{background:rgba(220,38,38,0.12);color:var(--red);border:1px solid rgba(220,38,38,0.22);animation:badge-pulse 2s ease-in-out infinite}
 @keyframes badge-pulse{0%,100%{opacity:1}50%{opacity:.65}}
 .gc-badge-ft {background:rgba(22,163,74,0.1);color:var(--green);border:1px solid rgba(22,163,74,0.2)}
 .gc-badge-pre{background:rgba(100,116,139,0.08);color:var(--t2);border:1px solid rgba(100,116,139,0.15)}
-
 .gc-match-body{display:flex;align-items:center;gap:10px}
 .gc-team{flex:1;display:flex;align-items:center;gap:8px;min-width:0}
 .gc-team-away{flex-direction:row-reverse;text-align:right}
 .gc-team-logo{width:28px;height:28px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.12))}
 .gc-team-name{font-size:14px;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gc-team-winner{color:var(--t1);font-weight:700}
-
 .gc-score-wrap{text-align:center;flex-shrink:0;min-width:80px}
 .gc-score{font-size:24px;font-weight:700;color:var(--t1);letter-spacing:.02em}
 .gc-score-live{color:var(--red)}
 .gc-score-ko{font-size:14px;font-weight:600;color:var(--t2)}
 .gc-score-sep{color:var(--t4);font-weight:400;margin:0 4px}
 .gc-match-minute{font-size:11px;color:var(--red);font-weight:700;margin-top:3px;animation:pulse 1.2s ease-in-out infinite}
-
 .gc-scorers{margin-top:10px;padding-top:10px;border-top:1px solid rgba(100,160,220,0.15);display:flex;flex-wrap:wrap;gap:5px}
 .gc-scorer{font-size:11px;color:var(--t2);background:rgba(255,255,255,0.65);border:1px solid var(--glass-border);padding:3px 10px;border-radius:999px}
 .gc-scorer-min{color:var(--t4);margin-left:3px}
-
 .gc-match-footer{margin-top:8px;padding-top:8px;border-top:1px solid rgba(100,160,220,0.1);display:flex;justify-content:space-between;font-size:11px;color:var(--t4);flex-wrap:wrap;gap:4px}
 .gc-refresh-note{text-align:center;font-size:11px;color:var(--t4);margin-top:20px}
 
@@ -208,7 +181,6 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-date-m{font-size:9px}
 .gc-date-label{font-size:13px;font-weight:700;color:var(--t2);margin-bottom:12px;padding:0 2px}
 
-/* WC round tabs */
 .gc-round-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .gc-round-tab{background:rgba(255,255,255,0.58);border:1px solid var(--glass-border);border-radius:999px;padding:7px 16px;font-family:Verdana,sans-serif;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;transition:all .2s;white-space:nowrap}
 .gc-round-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(37,99,235,0.32)}
@@ -236,7 +208,7 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-leg{display:flex;align-items:center;gap:6px;color:var(--t2)}
 .gc-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 
-/* WC Knockout bracket */
+/* ══ WC BRACKET ══════════════════════════════════════════ */
 .gc-bracket{overflow-x:auto;padding:8px 0 16px}
 .gc-bracket-inner{display:flex;gap:16px;min-width:max-content;align-items:flex-start}
 .gc-bracket-col{display:flex;flex-direction:column;gap:14px;min-width:170px}
@@ -249,26 +221,22 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 .gc-bracket-winner .gc-bracket-name{color:var(--blue)}
 .gc-bracket-tbd .gc-bracket-name{color:var(--t4);font-style:italic}
 
-/* ══ MY TEAMS PAGE ═══════════════════════════════════════ */
+/* ══ MY TEAMS ════════════════════════════════════════════ */
 .gc-myteams-intro{font-size:13px;color:var(--t2);margin-bottom:16px;line-height:1.7}
 .gc-myteams-section-title{font-size:13px;font-weight:700;color:var(--t1);margin:20px 0 10px;text-transform:uppercase;letter-spacing:.05em}
-
 .gc-team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
-.gc-team-tile{background:var(--glass);backdrop-filter:var(--blur);border:2px solid var(--glass-border);border-radius:var(--r-md);padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(100,160,220,0.08)}
+.gc-team-tile{background:var(--glass);backdrop-filter:var(--blur);border:2px solid var(--glass-border);border-radius:var(--r-md);padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(100,160,220,0.08);position:relative}
 .gc-team-tile:hover{border-color:rgba(37,99,235,0.4);background:rgba(255,255,255,0.85);transform:translateY(-2px)}
 .gc-team-tile.selected{border-color:var(--blue);background:rgba(37,99,235,0.08);box-shadow:0 4px 16px rgba(37,99,235,0.22)}
 .gc-team-tile.selected::after{content:'✓';position:absolute;top:6px;right:8px;font-size:12px;color:var(--blue);font-weight:700}
-.gc-team-tile{position:relative}
 .gc-tile-logo{width:40px;height:40px;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1))}
 .gc-tile-name{font-size:11px;font-weight:600;color:var(--t1);line-height:1.3}
-
 .gc-myteams-selected{margin-bottom:20px}
 .gc-selected-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .gc-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);border-radius:999px;padding:5px 12px;font-size:12px;color:var(--blue);font-weight:600}
 .gc-chip img{width:18px;height:18px;object-fit:contain}
 .gc-chip-remove{cursor:pointer;color:var(--t4);font-size:14px;font-weight:700;margin-left:2px;transition:color .2s}
 .gc-chip-remove:hover{color:var(--red)}
-
 .gc-notif-prefs{margin-top:16px}
 .gc-notif-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:10px}
 .gc-notif-options{display:flex;flex-direction:column;gap:8px}
@@ -312,37 +280,10 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
 /* ══ ADSENSE ═════════════════════════════════════════════ */
 .gc-adsense{margin:12px 0;text-align:center;min-height:90px}
 
-/* ══ TV BROADCASTER SELECTOR ════════════════════════ */
-.gc-tz-btn {
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(37,99,235,0.2);
-  border-radius: 10px;
-  padding: 8px 16px;
-  font-family: Verdana, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #334155;
-  cursor: pointer;
-  transition: all .2s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 2px 8px rgba(100,160,220,0.1);
-}
-.gc-tz-btn:hover {
-  background: rgba(255,255,255,0.95);
-  border-color: rgba(37,99,235,0.5);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37,99,235,0.15);
-}
-.gc-tz-active {
-  background: linear-gradient(135deg,#2563eb,#3b82f6) !important;
-  border-color: transparent !important;
-  color: #fff !important;
-  box-shadow: 0 4px 14px rgba(37,99,235,0.4) !important;
-  transform: translateY(-1px);
-}
+/* ══ TV BROADCASTER SELECTOR ════════════════════════════ */
+.gc-tz-btn{background:rgba(255,255,255,0.65);backdrop-filter:blur(12px);border:1.5px solid rgba(37,99,235,0.2);border-radius:10px;padding:8px 16px;font-family:Verdana,sans-serif;font-size:12px;font-weight:600;color:#334155;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(100,160,220,0.1)}
+.gc-tz-btn:hover{background:rgba(255,255,255,0.95);border-color:rgba(37,99,235,0.5);transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,0.15)}
+.gc-tz-active{background:linear-gradient(135deg,#2563eb,#3b82f6)!important;border-color:transparent!important;color:#fff!important;box-shadow:0 4px 14px rgba(37,99,235,0.4)!important;transform:translateY(-1px)}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════ */
 @media(max-width:767px){
@@ -355,76 +296,18 @@ body::after {width:600px;height:600px;background:radial-gradient(#a5f3fc,#e0f2fe
   .gc-hero-banner-wrap{height:160px}
   .gc-team-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
 
-  /* ✅ MOBILE HEADER FIXES — added 22 May 2026 */
-
-  /* Make header taller on mobile to fit two rows */
-  .gc-header {
-    height: auto;
-    min-height: var(--hdr-h);
-  }
-
-  /* Stack logo and league toggle on separate rows */
-  .gc-header-inner {
-    flex-wrap: wrap;
-    padding: 8px 12px;
-    gap: 8px;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* Logo — slightly smaller on mobile */
-  .gc-logo {
-    font-size: 18px;
-  }
-
-  /* Logo image — smaller on mobile */
-  .gc-header-inner img {
-    height: 40px !important;
-  }
-
-  /* League toggle — always fully visible, scrollable if needed */
-  .gc-league-toggle {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    flex-shrink: 0;
-    max-width: 100%;
-  }
-  .gc-league-toggle::-webkit-scrollbar { display: none; }
-
-  /* League buttons — slightly smaller text & padding */
-  .gc-league-btn {
-    font-size: 10px;
-    padding: 5px 10px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  /* Prevent content from overflowing screen width */
-  #gc-content {
-    padding: 0 12px 130px;
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
-  /* Prevent any child element from breaking out */
-  #gc-content * {
-    max-width: 100%;
-  }
-
-  /* Match cards — prevent overflow */
-  .gc-match-card {
-    padding: 12px;
-  }
-
-  /* Countdown units — smaller on mobile */
-  .gc-cd-units {
-    gap: 6px;
-  }
-  .gc-cd-unit {
-    padding: 10px 4px;
-  }
+  .gc-header{height:auto;min-height:var(--hdr-h)}
+  .gc-header-inner{flex-wrap:wrap;padding:8px 12px;gap:8px;justify-content:space-between;align-items:center}
+  .gc-logo{font-size:18px}
+  .gc-header-inner img{height:40px!important}
+  .gc-league-toggle{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex-shrink:0;max-width:100%}
+  .gc-league-toggle::-webkit-scrollbar{display:none}
+  .gc-league-btn{font-size:10px;padding:5px 10px;white-space:nowrap;flex-shrink:0}
+  #gc-content{padding:0 12px 130px;width:100%;max-width:100vw;overflow-x:hidden}
+  #gc-content *{max-width:100%}
+  .gc-match-card{padding:12px}
+  .gc-cd-units{gap:6px}
+  .gc-cd-unit{padding:10px 4px}
 }
 
 @media(min-width:768px){
