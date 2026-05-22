@@ -217,21 +217,25 @@ var GC_HOME = (function () {
         '<p class="gc-hero-sub">Premier League · UCL Final · World Cup 2026 · Real-time scores</p>' +
       '</div>' +
 
-      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.07),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.3);padding:18px;margin-bottom:14px;cursor:pointer" onclick="GC.go(&quot;ucl&quot;)">' +
-        '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:8px">⭐ NEXT UP · UCL FINAL · SAT 30 MAY · 17:00 UK</div>' +
-        '<div style="display:flex;align-items:center;justify-content:space-between">' +
-          '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🇫🇷</span><span style="font-size:15px;font-weight:700;color:#0f172a">PSG</span></div>' +
-          '<div style="text-align:center"><div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center;gap:6px"></div></div>' +
-          '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:15px;font-weight:700;color:#9B1C1C">Arsenal</span><span style="font-size:28px">🔴</span></div>' +
-        '</div>' +
-        '<div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">Puskas Arena, Budapest · BT Sport / TNT Sports</div>' +
-      '</div>' +
+
 
       '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
         heroBanner('PL') +
         '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png"  alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions! Final Day</div><div class="gc-cd-sub">Sunday 24 May · 16:00 UK · All 10 matches</div></div></div>' +
         '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
         '<button class="gc-btn gc-btn-primary" onclick="GC.go(&quot;live&quot;)">⚽ Watch Live Scores →</button>' +
+      '</div>' +
+
+      /* UCL FINAL CARD — between PL and WC */
+      '<div class="gc-card" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);border:1px solid rgba(255,215,0,0.4);padding:18px;margin-bottom:14px;cursor:pointer;text-align:center" onclick="GC.go(&quot;ucl&quot;)">' +
+        '<div style="font-size:11px;font-weight:700;color:#ffd700;letter-spacing:2px;margin-bottom:10px">⭐ UEFA CHAMPIONS LEAGUE FINAL 2026</div>' +
+        '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:12px">' +
+          '<div style="text-align:center"><div style="font-size:32px">🇫🇷</div><div style="font-size:15px;font-weight:800;color:#fff;margin-top:4px">PSG</div></div>' +
+          '<div style="text-align:center"><div style="font-family:Verdana,sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:4px">SAT 30 MAY</div><div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center;gap:4px"></div></div>' +
+          '<div style="text-align:center"><div style="font-size:32px">🔴</div><div style="font-size:15px;font-weight:800;color:#fff;margin-top:4px">Arsenal</div></div>' +
+        '</div>' +
+        '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px">📍 Puskás Aréna, Budapest · 17:00 UK · BT Sport / TNT Sports</div>' +
+        '<span style="display:inline-block;background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700">⭐ Full Preview + Lineups →</span>' +
       '</div>' +
 
       '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
