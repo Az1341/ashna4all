@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -12,47 +11,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#dbeafe">
-
-  <!-- SEO Meta Tags -->
   <title>GoalCurrent.live — Live Football Scores | Premier League &amp; World Cup 2026</title>
-  <meta name="description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results. Free live football scores updated in real time. England, USA, Canada and global coverage.">
+  <meta name="description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results. Free live football scores updated in real time.">
   <meta name="keywords" content="live football scores, Premier League live, World Cup 2026, football schedule, live scores, PL standings, WC 2026 fixtures, football results today">
   <meta name="author" content="Ahmad Zafarani - Ashna4All">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://goalcurrent.live/">
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="GoalCurrent.live — Live Football Scores | Premier League &amp; World Cup 2026">
-  <meta property="og:description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results. Free live football scores updated in real time.">
+  <meta property="og:description" content="Live Premier League scores, World Cup 2026 fixtures, standings and results.">
   <meta property="og:url" content="https://goalcurrent.live">
   <meta property="og:image" content="https://goalcurrent.live/og-image.png">
   <meta property="og:site_name" content="GoalCurrent.live">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="GoalCurrent.live — Live Football Scores">
   <meta name="twitter:description" content="Live Premier League &amp; World Cup 2026 scores, fixtures and standings.">
   <meta name="twitter:image" content="https://goalcurrent.live/og-image.png">
-
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Extra style -->
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
   <style>
     .gc-match-mine {
       border-color: rgba(217,119,6,0.45) !important;
       box-shadow: 0 0 0 2px rgba(217,119,6,0.12), 0 8px 32px rgba(100,160,220,0.18) !important;
     }
   </style>
-
-  <!-- Brevo -->
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171" crossorigin="anonymous"></script>
-
-  <!-- OneSignal -->
   <script>
     window.addEventListener('load', function() {
       var script = document.createElement('script');
@@ -70,8 +54,6 @@
       document.head.appendChild(script);
     });
   </script>
-
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,21 +61,9 @@
     "name": "GoalCurrent.live",
     "url": "https://goalcurrent.live",
     "description": "Live Premier League scores, World Cup 2026 fixtures and standings",
-    "author": {
-      "@type": "Person",
-      "name": "Ahmad Zafarani",
-      "alternateName": "Ashna4All"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "GoalCurrent.live",
-      "url": "https://goalcurrent.live"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://goalcurrent.live/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "author": { "@type": "Person", "name": "Ahmad Zafarani", "alternateName": "Ashna4All" },
+    "publisher": { "@type": "Organization", "name": "GoalCurrent.live", "url": "https://goalcurrent.live" },
+    "potentialAction": { "@type": "SearchAction", "target": "https://goalcurrent.live/?q={search_term_string}", "query-input": "required name=search_term_string" }
   }
   </script>
 </head>
@@ -101,17 +71,12 @@
 <canvas id="gc-canvas"></canvas>
 <div id="gc-app">
 
-  <!-- HEADER -->
   <header class="gc-header">
     <div class="gc-header-inner">
       <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-        <img src="/logo.svg" alt="GoalCurrent Shield Logo"
-             style="height:64px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.25));flex-shrink:0"
-             onerror="this.style.display='none'">
+        <img src="/logo.svg" alt="GoalCurrent Shield Logo" style="height:64px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.25));flex-shrink:0" onerror="this.style.display='none'">
         <span class="gc-logo">Goal<span class="gc-logo-dot">Current</span><span class="gc-logo-live">.live</span></span>
       </a>
-
-      <!-- Desktop nav -->
       <nav class="gc-topnav">
         <button class="gc-topnav-btn active" data-page="home">🏠 Home</button>
         <button class="gc-topnav-btn" data-page="live">🔴 Live</button>
@@ -120,90 +85,43 @@
         <button class="gc-topnav-btn" data-page="myteams">⭐ My Teams</button>
         <button class="gc-topnav-btn" data-page="news">📰 Latest News</button>
       </nav>
-
-      <!-- League toggle -->
       <div class="gc-league-toggle">
-        <button class="gc-league-btn" data-league="PL">🏴 PL</button>
+        <button class="gc-league-btn" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</button>
         <button class="gc-league-btn" data-league="WC">🏆 WC26</button>
         <button class="gc-league-btn" data-league="UCL">⭐ UCL</button>
       </div>
     </div>
   </header>
 
-  <!-- CONTENT -->
   <main id="gc-content"></main>
 
-  <!-- AdSense -->
   <div class="gc-adsense" style="max-width:820px;margin:0 auto;padding:0 16px">
-    <ins class="adsbygoogle" style="display:block"
-      data-ad-client="ca-pub-8697460993506171"
-      data-ad-slot="auto" data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8697460993506171" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- NordVPN bar -->
+  <!-- NordVPN Campaign Banner -->
   <div id="gc-nordvpn-bar">
-    <span>🔒 Stay private online →</span>
-    <a class="gc-nv-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener">Get NordVPN</a>
-    <a class="gc-nv-btn gc-nv-pass" href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener">NordPass</a>
   </div>
 
-  <!-- Mobile bottom nav -->
   <nav class="gc-bottomnav">
-    <button class="gc-bottomnav-btn active" data-page="home">
-      <span class="gc-nav-icon">🏠</span>Home
-    </button>
-    <button class="gc-bottomnav-btn" data-page="live">
-      <span class="gc-nav-icon">🔴</span>Live
-    </button>
-    <button class="gc-bottomnav-btn" data-page="schedule">
-      <span class="gc-nav-icon">📅</span>Schedule
-    </button>
-    <button class="gc-bottomnav-btn" data-page="groups">
-      <span class="gc-nav-icon">🏅</span>Standings
-    </button>
-    <button class="gc-bottomnav-btn" data-page="myteams">
-      <span class="gc-nav-icon">⭐</span>My Teams
-    </button>
+    <button class="gc-bottomnav-btn active" data-page="home"><span class="gc-nav-icon">🏠</span>Home</button>
+    <button class="gc-bottomnav-btn" data-page="live"><span class="gc-nav-icon">🔴</span>Live</button>
+    <button class="gc-bottomnav-btn" data-page="schedule"><span class="gc-nav-icon">📅</span>Schedule</button>
+    <button class="gc-bottomnav-btn" data-page="groups"><span class="gc-nav-icon">🏅</span>Standings</button>
+    <button class="gc-bottomnav-btn" data-page="myteams"><span class="gc-nav-icon">⭐</span>My Teams</button>
   </nav>
 
 </div>
 
-<!-- Privacy Policy hidden link for AdSense -->
 <div style="display:none"><a href="/privacy.html">Privacy Policy</a></div>
 
-<!-- FOOTER -->
-<footer style="
-  text-align:center;
-  padding:28px 20px 20px;
-  font-family:Verdana,Geneva,Tahoma,sans-serif;
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(16px);
-  border-top:2px solid rgba(37,99,235,0.15);
-  margin-bottom:130px;
-">
+<footer style="text-align:center;padding:28px 20px 20px;font-family:Verdana,Geneva,Tahoma,sans-serif;background:rgba(255,255,255,0.6);backdrop-filter:blur(16px);border-top:2px solid rgba(37,99,235,0.15);margin-bottom:130px;">
   <div style="font-size:28px;margin-bottom:10px">⚽</div>
-  <div style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:6px;letter-spacing:-.02em">
-    GoalCurrent<span style="color:#22c55e">.live</span>
-  </div>
-  <div style="font-size:14px;color:#334155;margin-bottom:6px">
-    Designed &amp; Created by
-    <strong style="color:#2563eb;font-size:15px"> Ahmad Zafarani</strong>
-  </div>
-  <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:14px">
-    Ashna4All &nbsp;·&nbsp; A. Zafarani
-  </div>
-  <div style="
-    font-size:12px;color:#475569;
-    padding:10px 20px;
-    background:rgba(37,99,235,0.06);
-    border:1px solid rgba(37,99,235,0.12);
-    border-radius:10px;
-    display:inline-block;
-    margin-bottom:14px;
-    line-height:1.8;
-  ">
+  <div style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:6px">GoalCurrent<span style="color:#22c55e">.live</span></div>
+  <div style="font-size:14px;color:#334155;margin-bottom:6px">Designed &amp; Created by <strong style="color:#2563eb;font-size:15px"> Ahmad Zafarani</strong></div>
+  <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:14px">Ashna4All &nbsp;·&nbsp; A. Zafarani</div>
+  <div style="font-size:12px;color:#475569;padding:10px 20px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.12);border-radius:10px;display:inline-block;margin-bottom:14px;line-height:1.8;">
     © 2026 <strong>Ashna4All (A. Zafarani)</strong> · All Rights Reserved<br>
     Unauthorised copying or reproduction of this website is strictly prohibited
   </div>
@@ -222,27 +140,11 @@
     <span style="color:#cbd5e1">·</span>
     <a href="mailto:info@goalcurrent.live" style="color:#64748b;text-decoration:none">info@goalcurrent.live</a>
   </div>
-
-  <!-- Legal Disclaimer -->
-  <div style="
-    margin-top:16px;
-    padding:12px 20px;
-    background:rgba(100,116,139,0.06);
-    border:1px solid rgba(100,116,139,0.12);
-    border-radius:10px;
-    font-size:10px;
-    color:#94a3b8;
-    line-height:1.8;
-    max-width:600px;
-    margin-left:auto;
-    margin-right:auto;
-  ">
-    ⚖️ <strong>Disclaimer:</strong> GoalCurrent.live is an independent fan website and is not affiliated with, endorsed by or connected to FIFA, UEFA, the Premier League, or any football club or organisation. All news summaries are for informational purposes only. Original articles belong to their respective publishers — always click <em>Read</em> to view the full story on the original source. Match data is provided by third-party APIs. All trademarks and logos belong to their respective owners. Images used are licensed via Unsplash (free licence). For copyright concerns please contact <a href="mailto:info@goalcurrent.live" style="color:#64748b">info@goalcurrent.live</a>.
+  <div style="margin-top:16px;padding:12px 20px;background:rgba(100,116,139,0.06);border:1px solid rgba(100,116,139,0.12);border-radius:10px;font-size:10px;color:#94a3b8;line-height:1.8;max-width:600px;margin-left:auto;margin-right:auto;">
+    ⚖️ <strong>Disclaimer:</strong> GoalCurrent.live is an independent fan website and is not affiliated with, endorsed by or connected to FIFA, UEFA, the Premier League, or any football club or organisation. All news summaries are for informational purposes only. Original articles belong to their respective publishers. Match data is provided by third-party APIs. All trademarks and logos belong to their respective owners. Images used are licensed via Unsplash (free licence). For copyright concerns please contact <a href="mailto:info@goalcurrent.live" style="color:#64748b">info@goalcurrent.live</a>.
   </div>
-
 </footer>
 
-<!-- Scripts — api.js MUST be first -->
 <script src="js/api.js" type="text/javascript"></script>
 <script src="js/home.js" type="text/javascript"></script>
 <script src="js/live.js" type="text/javascript"></script>
@@ -252,82 +154,37 @@
 <script src="js/notifications.js" type="text/javascript"></script>
 <script src="js/app.js" type="text/javascript"></script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-
-<!-- News Manager -->
 <script src="js/news.js"></script>
+<script src="nord-banner.js"></script>
 
 <!-- COOKIE CONSENT BANNER -->
-<div id="gc-cookie-banner" style="
-  display:none;
-  position:fixed;
-  bottom:80px;
-  left:12px;
-  right:12px;
-  z-index:99999;
-  background:rgba(15,23,42,0.97);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:16px;
-  padding:18px 20px;
-  box-shadow:0 8px 40px rgba(0,0,0,0.5);
-  font-family:Verdana,Geneva,sans-serif;
-  max-width:600px;
-  margin:0 auto;
-">
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:80px;left:12px;right:12px;z-index:99999;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:18px 20px;box-shadow:0 8px 40px rgba(0,0,0,0.5);font-family:Verdana,Geneva,sans-serif;max-width:600px;margin:0 auto;">
   <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px">
     <span style="font-size:24px;flex-shrink:0">🍪</span>
     <div>
       <div style="font-size:14px;font-weight:700;color:#f1f5f9;margin-bottom:4px">We use cookies</div>
-      <div style="font-size:12px;color:#94a3b8;line-height:1.6">
-        GoalCurrent.live uses cookies to improve your experience, show relevant ads and analyse traffic.
-        By clicking <strong style="color:#fff">"Accept All"</strong> you consent to our use of cookies.
-        You can also choose <strong style="color:#fff">"Essential Only"</strong> to allow only necessary cookies.
-        See our <a href="/privacy.html" style="color:#60a5fa;text-decoration:underline">Privacy Policy</a> for details.
-      </div>
+      <div style="font-size:12px;color:#94a3b8;line-height:1.6">GoalCurrent.live uses cookies to improve your experience, show relevant ads and analyse traffic. By clicking <strong style="color:#fff">"Accept All"</strong> you consent to our use of cookies. See our <a href="/privacy.html" style="color:#60a5fa;text-decoration:underline">Privacy Policy</a> for details.</div>
     </div>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
     <button onclick="GC_COOKIES.manage()" style="background:transparent;border:1px solid rgba(96,165,250,0.4);color:#60a5fa;padding:9px 16px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;cursor:pointer">⚙️ Manage</button>
     <button onclick="GC_COOKIES.reject()" style="background:#334155;border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Reject All ✗</button>
-    <button onclick="GC_COOKIES.accept()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,0.4)">Accept All ✓</button>
+    <button onclick="GC_COOKIES.accept()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:9px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Accept All ✓</button>
   </div>
 </div>
 
-<!-- Cookie Manage Modal -->
-<div id="gc-cookie-modal" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100000;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(4px);
-  align-items:center;
-  justify-content:center;
-">
-  <div style="
-    background:#0f172a;
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:20px;
-    padding:24px;
-    max-width:420px;
-    width:90%;
-    font-family:Verdana,sans-serif;
-  ">
+<!-- Cookie Modal -->
+<div id="gc-cookie-modal" style="display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:24px;max-width:420px;width:90%;font-family:Verdana,sans-serif;">
     <div style="font-size:16px;font-weight:700;color:#f1f5f9;margin-bottom:4px">🍪 Cookie Settings</div>
     <div style="font-size:11px;color:#64748b;margin-bottom:18px">GoalCurrent.live · Ahmad Zafarani</div>
     <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px">
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#f1f5f9">Essential Cookies</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">Required for the site to work</div>
-        </div>
+        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9">Essential Cookies</div><div style="font-size:11px;color:#64748b;margin-top:2px">Required for the site to work</div></div>
         <div style="background:#22c55e;color:#fff;font-size:10px;padding:4px 10px;border-radius:20px;font-weight:700">Always On</div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#f1f5f9">Analytics Cookies</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">Help us improve the site</div>
-        </div>
+        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9">Analytics Cookies</div><div style="font-size:11px;color:#64748b;margin-top:2px">Help us improve the site</div></div>
         <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
           <input type="checkbox" id="ck-analytics" checked style="opacity:0;width:0;height:0">
           <span id="ck-analytics-track" onclick="GC_COOKIES.toggle('analytics')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
@@ -335,10 +192,7 @@
         </label>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#f1f5f9">Advertising Cookies</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">Google AdSense personalised ads</div>
-        </div>
+        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9">Advertising Cookies</div><div style="font-size:11px;color:#64748b;margin-top:2px">Google AdSense personalised ads</div></div>
         <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
           <input type="checkbox" id="ck-ads" checked style="opacity:0;width:0;height:0">
           <span id="ck-ads-track" onclick="GC_COOKIES.toggle('ads')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
@@ -346,10 +200,7 @@
         </label>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#f1f5f9">Push Notifications</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px">Goal alerts via OneSignal</div>
-        </div>
+        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9">Push Notifications</div><div style="font-size:11px;color:#64748b;margin-top:2px">Goal alerts via OneSignal</div></div>
         <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
           <input type="checkbox" id="ck-push" checked style="opacity:0;width:0;height:0">
           <span id="ck-push-track" onclick="GC_COOKIES.toggle('push')" style="position:absolute;inset:0;background:#2563eb;border-radius:24px;transition:.3s;cursor:pointer"></span>
@@ -370,10 +221,7 @@ var GC_COOKIES = (function() {
   function savePrefs(prefs) { localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); }
   function hideBanner() { var b = document.getElementById('gc-cookie-banner'); if (b) b.style.display = 'none'; }
   function hideModal() { var m = document.getElementById('gc-cookie-modal'); if (m) m.style.display = 'none'; }
-  function init() {
-    var prefs = getPrefs();
-    if (!prefs) { setTimeout(function() { var b = document.getElementById('gc-cookie-banner'); if (b) b.style.display = 'block'; }, 1000); }
-  }
+  function init() { var prefs = getPrefs(); if (!prefs) { setTimeout(function() { var b = document.getElementById('gc-cookie-banner'); if (b) b.style.display = 'block'; }, 1000); } }
   function accept() { savePrefs({analytics:true,ads:true,push:true,decided:true}); hideBanner(); }
   function reject() { savePrefs({analytics:false,ads:false,push:false,decided:true}); hideBanner(); }
   function manage() { var m = document.getElementById('gc-cookie-modal'); if (m) m.style.display = 'flex'; }
@@ -399,55 +247,23 @@ window.addEventListener('DOMContentLoaded', function() { GC_COOKIES.init(); });
 </script>
 
 <!-- EMAIL SUBSCRIBE POPUP -->
-<div id="gc-email-popup" style="
-  display:none;position:fixed;inset:0;z-index:999999;
-  background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;padding:16px;
-">
-  <div style="
-    background:linear-gradient(145deg,rgba(255,255,255,0.97),rgba(240,248,255,0.97));
-    backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.9);
-    border-radius:24px;padding:32px 28px;max-width:400px;width:100%;
-    box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;
-    text-align:center;font-family:Verdana,Geneva,sans-serif;
-  ">
-    <button onclick="GC_POPUP.close()" style="
-      position:absolute;top:14px;right:16px;background:rgba(100,116,139,0.1);
-      border:none;width:30px;height:30px;border-radius:50%;font-size:16px;
-      color:#64748b;cursor:pointer;display:flex;align-items:center;justify-content:center;
-      font-family:Verdana,sans-serif;">✕</button>
+<div id="gc-email-popup" style="display:none;position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(145deg,rgba(255,255,255,0.97),rgba(240,248,255,0.97));backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.9);border-radius:24px;padding:32px 28px;max-width:400px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;text-align:center;font-family:Verdana,Geneva,sans-serif;">
+    <button onclick="GC_POPUP.close()" style="position:absolute;top:14px;right:16px;background:rgba(100,116,139,0.1);border:none;width:30px;height:30px;border-radius:50%;font-size:16px;color:#64748b;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:Verdana,sans-serif;">✕</button>
     <div style="font-size:44px;margin-bottom:12px">⚽</div>
     <div style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:8px;line-height:1.3">Never Miss a Goal!</div>
-    <div style="font-size:13px;color:#475569;margin-bottom:6px;line-height:1.6">
-      Get <strong>Premier League</strong> &amp; <strong>World Cup 2026</strong> goal alerts, fixtures and scores straight to your inbox.
-    </div>
+    <div style="font-size:13px;color:#475569;margin-bottom:6px;line-height:1.6">Get <strong>Premier League</strong> &amp; <strong>World Cup 2026</strong> goal alerts, fixtures and scores straight to your inbox.</div>
     <div style="background:rgba(37,99,235,0.06);border-radius:10px;padding:10px 14px;margin:14px 0;font-size:12px;color:#1e40af;text-align:left;line-height:2;">
-      ✅ Live goal alerts<br>
-      ✅ Match previews &amp; results<br>
-      ✅ World Cup 2026 coverage<br>
-      ✅ 100% free — unsubscribe anytime
+      ✅ Live goal alerts<br>✅ Match previews &amp; results<br>✅ World Cup 2026 coverage<br>✅ 100% free — unsubscribe anytime
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-      <input type="email" id="gc-popup-email" placeholder="Enter your email address" style="
-        width:100%;padding:12px 16px;border:1.5px solid rgba(37,99,235,0.25);
-        border-radius:10px;font-family:Verdana,sans-serif;font-size:13px;
-        color:#0f172a;background:rgba(255,255,255,0.9);outline:none;box-sizing:border-box;">
-      <button onclick="GC_POPUP.subscribe()" style="
-        width:100%;background:linear-gradient(135deg,#2563eb,#3b82f6);
-        color:#fff;border:none;padding:13px;border-radius:10px;
-        font-family:Verdana,sans-serif;font-size:14px;font-weight:700;
-        cursor:pointer;box-shadow:0 6px 20px rgba(37,99,235,0.4);">⚽ Subscribe Free →</button>
+      <input type="email" id="gc-popup-email" placeholder="Enter your email address" style="width:100%;padding:12px 16px;border:1.5px solid rgba(37,99,235,0.25);border-radius:10px;font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;background:rgba(255,255,255,0.9);outline:none;box-sizing:border-box;">
+      <button onclick="GC_POPUP.subscribe()" style="width:100%;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;padding:13px;border-radius:10px;font-family:Verdana,sans-serif;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(37,99,235,0.4);">⚽ Subscribe Free →</button>
     </div>
-    <div id="gc-popup-success" style="display:none;margin-top:14px;padding:12px;background:rgba(34,197,94,0.1);border-radius:10px;color:#15803d;font-size:13px;font-weight:600">
-      ✅ Thank you! Check your email to confirm.
-    </div>
+    <div id="gc-popup-success" style="display:none;margin-top:14px;padding:12px;background:rgba(34,197,94,0.1);border-radius:10px;color:#15803d;font-size:13px;font-weight:600">✅ Thank you! Check your email to confirm.</div>
     <div id="gc-popup-error" style="display:none;margin-top:10px;font-size:12px;color:#dc2626"></div>
-    <button onclick="GC_POPUP.close()" style="background:none;border:none;color:#94a3b8;font-size:11px;font-family:Verdana,sans-serif;cursor:pointer;margin-top:12px;text-decoration:underline;">
-      No thanks, I don't want goal alerts
-    </button>
-    <div style="font-size:10px;color:#94a3b8;margin-top:8px">
-      By subscribing you agree to our <a href="/privacy.html" style="color:#64748b">Privacy Policy</a>. Powered by Brevo.
-    </div>
+    <button onclick="GC_POPUP.close()" style="background:none;border:none;color:#94a3b8;font-size:11px;font-family:Verdana,sans-serif;cursor:pointer;margin-top:12px;text-decoration:underline;">No thanks, I don't want goal alerts</button>
+    <div style="font-size:10px;color:#94a3b8;margin-top:8px">By subscribing you agree to our <a href="/privacy.html" style="color:#64748b">Privacy Policy</a>. Powered by Brevo.</div>
   </div>
 </div>
 
