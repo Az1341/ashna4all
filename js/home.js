@@ -207,9 +207,58 @@ var GC_HOME = (function () {
     fetchSquad(info.espnId, team.name);
   }
 
+  /* ══ HARDCODED SQUADS — for teams confirmed before ESPN updates ══ */
+  var HARDCODED_SQUADS = {
+    'England': {
+      GK: [
+        {name:'Jordan Pickford',    pos:'GK', club:'Everton'},
+        {name:'Dean Henderson',     pos:'GK', club:'Crystal Palace'},
+        {name:'James Trafford',     pos:'GK', club:'Burnley'}
+      ],
+      DF: [
+        {name:'Reece James',        pos:'RB', club:'Chelsea'},
+        {name:'Tino Livramento',    pos:'RB', club:'Newcastle Utd'},
+        {name:'John Stones',        pos:'CB', club:'Man City'},
+        {name:'Marc Guéhi',         pos:'CB', club:'Crystal Palace'},
+        {name:'Ezri Konsa',         pos:'CB', club:'Aston Villa'},
+        {name:'Dan Burn',           pos:'CB', club:'Newcastle Utd'},
+        {name:'Jarell Quansah',     pos:'CB', club:'Liverpool'},
+        {name:'Djed Spence',        pos:'RB', club:'Genoa'},
+        {name:"Nico O’Reilly", pos:"LB", club:"Man City"}
+      ],
+      MF: [
+        {name:'Declan Rice',        pos:'CM', club:'Arsenal'},
+        {name:'Jude Bellingham',    pos:'CM', club:'Real Madrid'},
+        {name:'Jordan Henderson',   pos:'CM', club:'Ajax'},
+        {name:'Kobbie Mainoo',      pos:'CM', club:'Man Utd'},
+        {name:'Elliot Anderson',    pos:'CM', club:'Nottm Forest'}
+      ],
+      FW: [
+        {name:'Bukayo Saka',        pos:'RW', club:'Arsenal'},
+        {name:'Noni Madueke',       pos:'RW', club:'Chelsea'},
+        {name:'Eberechi Eze',       pos:'AM', club:'Arsenal'},
+        {name:'Morgan Rogers',      pos:'LW', club:'Aston Villa'},
+        {name:'Anthony Gordon',     pos:'LW', club:'Newcastle Utd'},
+        {name:'Harry Kane',         pos:'ST', club:'Bayern Munich'},
+        {name:'Ollie Watkins',      pos:'ST', club:'Aston Villa'},
+        {name:'Ivan Toney',         pos:'ST', club:'Al-Ahli'}
+      ]
+    }
+  };
+
   function fetchSquad(espnId, teamName) {
     var el = document.getElementById('wc-squad-content');
     if (!el) return;
+
+    /* Check hardcoded squads first */
+    if (HARDCODED_SQUADS[teamName]) {
+      var sq = HARDCODED_SQUADS[teamName];
+      el.innerHTML = buildPositionGroup('🥅 Goalkeepers', sq.GK, '#f59e0b') +
+                     buildPositionGroup('🛡️ Defenders',   sq.DF, '#3b82f6') +
+                     buildPositionGroup('⚙️ Midfielders', sq.MF, '#22c55e') +
+                     buildPositionGroup('⚡ Forwards',    sq.FW, '#ef4444');
+      return;
+    }
 
     var url = 'https://corsproxy.io/?' + encodeURIComponent(
       'https://site.api.espn.com/apis/site/v2/sports/soccer/mens.national/teams/' + espnId + '/roster'
