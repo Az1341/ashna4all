@@ -1,7 +1,7 @@
 /* home.js — Home page, league-aware */
 var GC_HOME = (function () {
   var _timer  = null;
-  var _league = 'PL';
+  var _league = 'ALL';
 
   var DATES = {
     PL:  new Date('2026-05-24T15:00:00Z'),

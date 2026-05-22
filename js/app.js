@@ -1,7 +1,7 @@
 /* app.js — Navigation: Home/Live/Schedule/Groups/MyTeams */
 var GC = (function () {
   var currentPage = 'home';
-  var currentType = 'PL';
+  var currentType = 'ALL';
 
   function draw() {
     var el = document.getElementById('gc-content');
