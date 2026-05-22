@@ -95,8 +95,8 @@ var GC_NEWS = [
       '#gc-breaking-ticker .gc-tlbl{background:#fff;color:#cc0000;font-size:9px;font-weight:900;letter-spacing:1.5px;padding:0 10px;height:100%;display:flex;align-items:center;flex-shrink:0;white-space:nowrap;font-family:Verdana,sans-serif}',
       '#gc-breaking-ticker .gc-twrap{overflow:hidden;flex:1}',
       '#gc-breaking-ticker .gc-tinner{display:inline-flex;white-space:nowrap;animation:gc-ticker-scroll 28s linear infinite;font-size:11px;font-weight:700;color:#fff;padding-left:20px;font-family:Verdana,sans-serif}',
-      /* breaking card */
-      '#gc-breaking-card{margin:12px 16px;background:rgba(255,255,255,0.82);border:1.5px solid rgba(37,99,235,0.2);border-radius:16px;padding:14px;box-shadow:0 2px 12px rgba(37,99,235,0.08);font-family:Verdana,Geneva,sans-serif}',
+      /* breaking card — pure white, blue border, matches site glass style */
+      '#gc-breaking-card{margin:12px 16px;background:#ffffff;border:1.5px solid #d1d9f0;border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(100,160,220,0.12);font-family:Verdana,Geneva,sans-serif}',
       '#gc-breaking-card .gc-bc-top{display:flex;align-items:center;gap:6px;margin-bottom:8px}',
       '#gc-breaking-card .gc-bc-dot{width:8px;height:8px;background:#cc0000;border-radius:50%;animation:gc-brk-blink 1s infinite;flex-shrink:0}',
       '#gc-breaking-card .gc-bc-lbl{font-size:9px;font-weight:900;letter-spacing:2px;color:#cc0000;text-transform:uppercase}',
