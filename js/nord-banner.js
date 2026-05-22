@@ -7,9 +7,9 @@
   var AFFILIATE_URL = 'https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902';
 
   var BANNERS = {
-    mobile:  '/ads/affiliate-global-next-generation-antivirus-campaign-en-uk-320x50.png',
-    tablet:  '/ads/affiliate-global-next-generation-antivirus-campaign-en-uk-320x100.png',
-    desktop: '/ads/affiliate-global-next-generation-antivirus-campaign-en-uk-728x90-1.png'
+    mobile:  '/affiliate-global-next-generation-antivirus-campaign-en-uk-320x50.png',
+    tablet:  '/affiliate-global-next-generation-antivirus-campaign-en-uk-320x100.png',
+    desktop: '/affiliate-global-next-generation-antivirus-campaign-en-uk-728x90-1.png'
   };
 
   function getBanner() {
