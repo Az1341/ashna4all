@@ -57,11 +57,11 @@ var GC_HOME = (function () {
 
       '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
         '<div class="gc-cd-header">' +
-          '<img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png'" alt="PL">' +
+          "<img class=\"gc-cd-logo\" src=\"https://resources.premierleague.com/premierleague/badges/pl_3lions.png\" alt=\"PL\">" +
           '<div><div class="gc-cd-title">🏆 Arsenal — Premier League Champions!</div><div class="gc-cd-sub">Final Day Sunday 24 May · 16:00 UK · All 10 matches</div></div>' +
         '</div>' +
         '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<button class="gc-btn gc-btn-primary" onclick="GC.go('live')">⚽ Watch Live Scores →</button>' +
+        '<button class="gc-btn gc-btn-primary" onclick="GC.go(&quot;live&quot;)">⚽ Watch Live Scores →</button>' +
       '</div>' +
 
       '<div class="gc-section-title">📋 Final Day Fixtures — 16:00 UK</div>' +
@@ -116,7 +116,7 @@ var GC_HOME = (function () {
           '<div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div>' +
         '</div>' +
         '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go('schedule')">📅 View Full Schedule →</button>' +
+        '<button class="gc-btn gc-btn-gold" onclick="GC.go(&quot;schedule&quot;)">📅 View Full Schedule →</button>' +
       '</div>' +
 
       '<div class="gc-section-title">🚀 Opening Match — 11 June 2026</div>' +
@@ -188,7 +188,7 @@ var GC_HOME = (function () {
           '<div style="text-align:center"><div style="font-size:38px">🔴</div><div style="font-size:16px;font-weight:800;color:#9B1C1C">Arsenal</div></div>' +
         '</div>' +
         '<div style="font-size:12px;color:#475569">📅 Sat 30 May 2026 · 17:00 UK · Puskás Aréna, Budapest</div>' +
-        '<button class="gc-btn gc-btn-primary" style="margin-top:12px" onclick="GC.go('ucl')">⭐ Full Match Preview + Lineups →</button>' +
+        '<button class="gc-btn gc-btn-primary" style="margin-top:12px" onclick="GC.go(&quot;ucl&quot;)">⭐ Full Match Preview + Lineups →</button>' +
       '</div>' +
 
       '<a href="/blog-ucl-final.html" style="text-decoration:none;display:block;margin-bottom:14px">' +
@@ -217,7 +217,7 @@ var GC_HOME = (function () {
         '<p class="gc-hero-sub">Premier League · UCL Final · World Cup 2026 · Real-time scores</p>' +
       '</div>' +
 
-      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.07),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.3);padding:18px;margin-bottom:14px;cursor:pointer" onclick="GC.go('ucl')">' +
+      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.07),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.3);padding:18px;margin-bottom:14px;cursor:pointer" onclick="GC.go(&quot;ucl&quot;)">' +
         '<div style="font-size:11px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:8px">⭐ NEXT UP · UCL FINAL · SAT 30 MAY · 17:00 UK</div>' +
         '<div style="display:flex;align-items:center;justify-content:space-between">' +
           '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🇫🇷</span><span style="font-size:15px;font-weight:700;color:#0f172a">PSG</span></div>' +
@@ -229,16 +229,16 @@ var GC_HOME = (function () {
 
       '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
         heroBanner('PL') +
-        '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/120px-Premier_League_Logo.svg.png'" alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions! Final Day</div><div class="gc-cd-sub">Sunday 24 May · 16:00 UK · All 10 matches</div></div></div>' +
+        '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png"  alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions! Final Day</div><div class="gc-cd-sub">Sunday 24 May · 16:00 UK · All 10 matches</div></div></div>' +
         '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<button class="gc-btn gc-btn-primary" onclick="GC.go('live')">⚽ Watch Live Scores →</button>' +
+        '<button class="gc-btn gc-btn-primary" onclick="GC.go(&quot;live&quot;)">⚽ Watch Live Scores →</button>' +
       '</div>' +
 
       '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
         heroBanner('WC') +
         '<div class="gc-cd-header"><span class="gc-cd-icon">🏆</span><div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div></div>' +
         '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go('schedule')">📅 View Full Schedule →</button>' +
+        '<button class="gc-btn gc-btn-gold" onclick="GC.go(&quot;schedule&quot;)">📅 View Full Schedule →</button>' +
       '</div>' +
 
       '<div class="gc-section-title">📰 Latest News</div>' +
