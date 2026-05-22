@@ -105,6 +105,175 @@ var GC_HOME = (function () {
   }
 
 
+
+  /* ══ TEAM DATA — ESPN IDs + coaches ═══════════════════ */
+  var TEAM_DATA = {
+    'Mexico':       { espnId:'MEX', coach:'Javier Aguirre',    confederation:'CONCACAF' },
+    'South Africa': { espnId:'RSA', coach:'Hugo Broos',         confederation:'CAF' },
+    'South Korea':  { espnId:'KOR', coach:'Hong Myung-bo',      confederation:'AFC' },
+    'Czechia':      { espnId:'CZE', coach:'Ivan Hasek',         confederation:'UEFA' },
+    'Canada':       { espnId:'CAN', coach:'Jesse Marsch',       confederation:'CONCACAF' },
+    'Switzerland':  { espnId:'SUI', coach:'Murat Yakin',        confederation:'UEFA' },
+    'Qatar':        { espnId:'QAT', coach:'Marquez Lopez',      confederation:'AFC' },
+    'Bosnia & Herz.':{ espnId:'BIH', coach:'Sergej Barbarez',  confederation:'UEFA' },
+    'Brazil':       { espnId:'BRA', coach:'Carlo Ancelotti',    confederation:'CONMEBOL' },
+    'Morocco':      { espnId:'MAR', coach:'Walid Regragui',     confederation:'CAF' },
+    'Scotland':     { espnId:'SCO', coach:'Steve Clarke',       confederation:'UEFA' },
+    'Haiti':        { espnId:'HAI', coach:'Marc Collat',        confederation:'CONCACAF' },
+    'USA':          { espnId:'USA', coach:'Mauricio Pochettino', confederation:'CONCACAF' },
+    'Paraguay':     { espnId:'PAR', coach:'Gustavo Alfaro',     confederation:'CONMEBOL' },
+    'Australia':    { espnId:'AUS', coach:'Tony Popovic',       confederation:'AFC' },
+    'Turkiye':      { espnId:'TUR', coach:'Vincenzo Montella',  confederation:'UEFA' },
+    'Germany':      { espnId:'GER', coach:'Julian Nagelsmann',  confederation:'UEFA' },
+    'Curacao':      { espnId:'CUW', coach:'Erwin Sluiter',      confederation:'CONCACAF' },
+    "Côte d'Ivoire":{ espnId:'CIV', coach:'Emerse Fae',        confederation:'CAF' },
+    'Ecuador':      { espnId:'ECU', coach:'Sebastian Beccacece',confederation:'CONMEBOL' },
+    'Netherlands':  { espnId:'NED', coach:'Ronald Koeman',      confederation:'UEFA' },
+    'Japan':        { espnId:'JPN', coach:'Hajime Moriyasu',    confederation:'AFC' },
+    'Tunisia':      { espnId:'TUN', coach:'Faouzi Benzarti',    confederation:'CAF' },
+    'Sweden':       { espnId:'SWE', coach:'Jon Dahl Tomasson',  confederation:'UEFA' },
+    'Belgium':      { espnId:'BEL', coach:'Rudi Garcia',        confederation:'UEFA' },
+    'Egypt':        { espnId:'EGY', coach:'Hossam Hassan',      confederation:'CAF' },
+    'Iran':         { espnId:'IRN', coach:'Jalal Talebi',       confederation:'AFC' },
+    'New Zealand':  { espnId:'NZL', coach:'Darren Bazeley',     confederation:'OFC' },
+    'Spain':        { espnId:'ESP', coach:'Luis de la Fuente',  confederation:'UEFA' },
+    'Cape Verde':   { espnId:'CPV', coach:'Pedro Brito',        confederation:'CAF' },
+    'Saudi Arabia': { espnId:'KSA', coach:'Herve Renard',       confederation:'AFC' },
+    'Uruguay':      { espnId:'URU', coach:'Marcelo Bielsa',     confederation:'CONMEBOL' },
+    'France':       { espnId:'FRA', coach:'Didier Deschamps',   confederation:'UEFA' },
+    'Senegal':      { espnId:'SEN', coach:'Aliou Cisse',        confederation:'CAF' },
+    'Norway':       { espnId:'NOR', coach:'Stale Solbakken',    confederation:'UEFA' },
+    'Iraq':         { espnId:'IRQ', coach:'Graham Arnold',      confederation:'AFC' },
+    'Argentina':    { espnId:'ARG', coach:'Lionel Scaloni',     confederation:'CONMEBOL' },
+    'Algeria':      { espnId:'ALG', coach:'Vladimir Petkovic',  confederation:'CAF' },
+    'Austria':      { espnId:'AUT', coach:'Ralf Rangnick',      confederation:'UEFA' },
+    'Jordan':       { espnId:'JOR', coach:'Hussain Ammouta',    confederation:'AFC' },
+    'Portugal':     { espnId:'POR', coach:'Roberto Martinez',   confederation:'UEFA' },
+    'Colombia':     { espnId:'COL', coach:'Nestor Lorenzo',     confederation:'CONMEBOL' },
+    'Uzbekistan':   { espnId:'UZB', coach:'Srecko Katanec',     confederation:'AFC' },
+    'DR Congo':     { espnId:'COD', coach:'Sébastien Desabre',  confederation:'CAF' },
+    'England':      { espnId:'ENG', coach:'Thomas Tuchel',      confederation:'UEFA' },
+    'Croatia':      { espnId:'CRO', coach:'Zlatko Dalic',       confederation:'UEFA' },
+    'Ghana':        { espnId:'GHA', coach:'Otto Addo',          confederation:'CAF' },
+    'Panama':       { espnId:'PAN', coach:'Thomas Christiansen',confederation:'CONCACAF' }
+  };
+
+  /* ══ RENDER TEAM PROFILE ═══════════════════════════════ */
+  function renderTeamProfile(container, team, groupIdx) {
+    var info = TEAM_DATA[team.name] || { espnId:'', coach:'TBC', confederation:'' };
+
+    container.innerHTML =
+      '<div style="padding-top:16px">' +
+
+      /* Back button */
+      '<div style="padding:0 16px;margin-bottom:12px">' +
+        '<button onclick="GC_HOME._wcNav(' + groupIdx + ')" style="background:rgba(37,99,235,0.1);border:1.5px solid rgba(37,99,235,0.2);color:#2563eb;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Verdana,sans-serif;display:flex;align-items:center;gap:6px">← Back to Group ' + WC_GROUPS[groupIdx].name + '</button>' +
+      '</div>' +
+
+      /* Team header */
+      '<div style="background:linear-gradient(135deg,#002868,#bf0a30);border-radius:16px;margin:0 16px 14px;padding:20px;text-align:center">' +
+        '<div style="font-size:56px;margin-bottom:8px">' + team.flag + '</div>' +
+        '<div style="font-family:Verdana,sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:4px">' + team.name + '</div>' +
+        '<div style="font-size:11px;color:rgba(255,255,255,0.65)">FIFA World Cup 2026 · Group ' + WC_GROUPS[groupIdx].name + ' · ' + info.confederation + '</div>' +
+      '</div>' +
+
+      /* Coach + info card */
+      '<div class="gc-card" style="margin:0 16px 14px;padding:14px">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(37,99,235,0.08)">' +
+          '<span style="font-size:12px;color:#64748b;font-weight:600">🧑‍💼 Head Coach</span>' +
+          '<span style="font-size:13px;font-weight:700;color:#0f172a">' + info.coach + '</span>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(37,99,235,0.08)">' +
+          '<span style="font-size:12px;color:#64748b;font-weight:600">🌍 Confederation</span>' +
+          '<span style="font-size:13px;font-weight:700;color:#0f172a">' + info.confederation + '</span>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0">' +
+          '<span style="font-size:12px;color:#64748b;font-weight:600">🏆 Tournament</span>' +
+          '<span style="font-size:13px;font-weight:700;color:#0f172a">FIFA World Cup 2026</span>' +
+        '</div>' +
+      '</div>' +
+
+      /* Squad section */
+      '<div style="padding:0 16px;margin-bottom:8px">' +
+        '<div style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">👕 Official Squad</div>' +
+        '<div id="wc-squad-content">' +
+          '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading squad...</span></div>' +
+        '</div>' +
+      '</div>' +
+
+      '</div>';
+
+    /* Fetch squad from ESPN */
+    fetchSquad(info.espnId, team.name);
+  }
+
+  function fetchSquad(espnId, teamName) {
+    var el = document.getElementById('wc-squad-content');
+    if (!el) return;
+
+    var url = 'https://corsproxy.io/?' + encodeURIComponent(
+      'https://site.api.espn.com/apis/site/v2/sports/soccer/mens.national/teams/' + espnId + '/roster'
+    );
+
+    fetch(url)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var athletes = data.athletes || [];
+        if (!athletes.length) throw new Error('no squad');
+
+        /* Group by position */
+        var gk = [], df = [], mf = [], fw = [];
+        athletes.forEach(function(a){
+          var pos = a.position && a.position.abbreviation || '';
+          var player = {
+            name: a.displayName || a.fullName || '',
+            pos: pos,
+            club: a.team ? a.team.displayName : (a.college ? a.college.name : ''),
+            number: a.jersey || ''
+          };
+          if (pos === 'GK') gk.push(player);
+          else if (pos === 'CB' || pos === 'LB' || pos === 'RB' || pos === 'DF' || pos === 'SW') df.push(player);
+          else if (pos === 'MF' || pos === 'CM' || pos === 'DM' || pos === 'AM' || pos === 'LM' || pos === 'RM') mf.push(player);
+          else fw.push(player);
+        });
+
+        el.innerHTML = buildPositionGroup('🥅 Goalkeepers', gk, '#f59e0b') +
+                       buildPositionGroup('🛡️ Defenders', df, '#3b82f6') +
+                       buildPositionGroup('⚙️ Midfielders', mf, '#22c55e') +
+                       buildPositionGroup('⚡ Forwards', fw, '#ef4444');
+      })
+      .catch(function(){
+        /* Fallback — show message with link to source */
+        el.innerHTML =
+          '<div style="background:rgba(255,255,255,0.7);border:1.5px solid rgba(37,99,235,0.15);border-radius:12px;padding:16px;text-align:center">' +
+            '<div style="font-size:24px;margin-bottom:8px">📋</div>' +
+            '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">' + teamName + ' Squad</div>' +
+            '<div style="font-size:11px;color:#64748b;line-height:1.6;margin-bottom:12px">Squad data will appear here once officially confirmed by FIFA on 2 June 2026.</div>' +
+            '<a href="https://www.espn.com/soccer/national-team/_/country/' + teamName.toLowerCase().replace(/ /g,'-') + '" target="_blank" rel="noopener" style="display:inline-block;background:#2563eb;color:#fff;padding:8px 16px;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">View on ESPN →</a>' +
+          '</div>';
+      });
+  }
+
+  function buildPositionGroup(title, players, color) {
+    if (!players.length) return '';
+    return '<div style="margin-bottom:12px">' +
+      '<div style="font-size:10px;font-weight:800;color:' + color + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;padding:4px 0;border-bottom:2px solid ' + color + '20">' + title + ' (' + players.length + ')</div>' +
+      players.map(function(p){
+        return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.08);border-radius:8px;margin-bottom:4px">' +
+          '<div style="display:flex;align-items:center;gap:10px">' +
+            '<span style="width:24px;height:24px;background:' + color + '20;color:' + color + ';border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">' + (p.number || p.pos) + '</span>' +
+            '<div>' +
+              '<div style="font-size:13px;font-weight:700;color:#0f172a">' + p.name + '</div>' +
+              (p.club ? '<div style="font-size:10px;color:#64748b;margin-top:1px">' + p.club + '</div>' : '') +
+            '</div>' +
+          '</div>' +
+          '<span style="font-size:10px;font-weight:700;color:' + color + ';background:' + color + '15;padding:3px 8px;border-radius:20px">' + p.pos + '</span>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+
   /* ══ WC GROUPS DATA ════════════════════════════════════ */
   var WC_GROUPS = [
     { name:'A', teams:[
@@ -277,12 +446,20 @@ var GC_HOME = (function () {
   }
 
   function renderWCTeams(g) {
-    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">👕 Group ' + g.name + ' Teams</div>' +
+    var gIdx = WC_GROUPS.indexOf(g);
+    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">👕 Tap a team to see their squad</div>' +
     g.teams.map(function(t){
-      return '<div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:12px 14px;margin-bottom:8px">' +
-        '<span style="font-size:32px">' + t.flag + '</span>' +
-        '<div><div style="font-size:14px;font-weight:700;color:#0f172a">' + t.name + '</div>' +
-        '<div style="font-size:11px;color:#64748b;margin-top:2px">FIFA World Cup 2026 · Group ' + g.name + '</div></div>' +
+      var info = TEAM_DATA[t.name] || {};
+      return '<div onclick="GC_HOME._viewTeam(' + JSON.stringify(t) + ',' + gIdx + ')" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.8);border:1.5px solid rgba(37,99,235,0.12);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,0.06)">' +
+        '<div style="display:flex;align-items:center;gap:12px">' +
+          '<span style="font-size:36px">' + t.flag + '</span>' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:#0f172a">' + t.name + '</div>' +
+            '<div style="font-size:11px;color:#64748b;margin-top:2px">🧑‍💼 ' + (info.coach || 'TBC') + '</div>' +
+            '<div style="font-size:10px;color:#2563eb;margin-top:2px;font-weight:600">Tap to view squad →</div>' +
+          '</div>' +
+        '</div>' +
+        '<span style="font-size:18px;color:#94a3b8">›</span>' +
       '</div>';
     }).join('');
   }
@@ -423,6 +600,10 @@ var GC_HOME = (function () {
     _wcNav: function(idx) {
       var el = document.getElementById('gc-content');
       if (el) renderWCGroup(el, idx);
+    },
+    _viewTeam: function(team, groupIdx) {
+      var el = document.getElementById('gc-content');
+      if (el) renderTeamProfile(el, team, groupIdx);
     },
     _wcTab: function(btn, tab, idx) {
       /* Switch chip active state */
