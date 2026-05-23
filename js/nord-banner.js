@@ -31,7 +31,7 @@
   }
 
   function buildBanner(bar) {
-    bar.style.cssText = 'position:fixed;bottom:var(--nav-h,64px);left:0;width:100%;z-index:150;display:block;padding:0;background:transparent;border:none;box-shadow:none;gap:0';
+    bar.style.cssText = 'position:fixed;bottom:var(--nav-h,64px);left:var(--sb-w,240px);right:0;width:auto;z-index:150;display:block;padding:0;background:transparent;border:none;box-shadow:none;gap:0';
     var img = new Image();
     img.onload = function() {
       /* Image loaded successfully — show banner image */
@@ -56,7 +56,7 @@
 
   /* Fix bottom position on desktop */
   var style = document.createElement('style');
-  style.textContent = '@media(min-width:768px){#gc-nordvpn-bar{bottom:0!important}}';
+  style.textContent = '@media(min-width:769px){#gc-nordvpn-bar{bottom:0!important;left:var(--sb-w,240px)!important;right:0!important;width:auto!important}}@media(max-width:768px){#gc-nordvpn-bar{left:0!important;width:100%!important}}';
   document.head.appendChild(style);
 
   function init() {
