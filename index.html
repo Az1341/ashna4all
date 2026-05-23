@@ -107,6 +107,13 @@
     /* Hide old header */
     .gc-header { display: none !important; }
 
+    /* Fix breaking news ticker — must be right of sidebar */
+    #gc-breaking-bar, .gc-breaking-bar, [class*="breaking-bar"] {
+      left: var(--sb-w) !important;
+      z-index: 350 !important;
+    }
+    .gc-header { display: none !important; }
+
     /* ── SIDEBAR ── */
     .gc-sidebar {
       width: var(--sb-w);
@@ -114,7 +121,7 @@
       background: var(--sb-bg);
       position: fixed;
       top: 0; left: 0; bottom: 0;
-      z-index: 300;
+      z-index: 400;
       overflow-y: auto;
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -241,6 +248,7 @@
 
     /* Content */
     #gc-content {
+      padding-top: 52px !important; /* space for breaking ticker */
       max-width: 100% !important;
       padding: 16px 24px 130px !important;
       flex: 1;
@@ -279,7 +287,8 @@
         box-shadow: 4px 0 24px rgba(0,0,0,0.5);
       }
       .gc-main-wrap { margin-left: 0; }
-      #gc-content { padding: 12px 12px 130px !important; }
+      #gc-content {
+      padding-top: 52px !important; /* space for breaking ticker */ padding: 12px 12px 130px !important; }
       .gc-bottomnav { display: flex; left: 0; }
 
       /* Hamburger */
@@ -674,3 +683,107 @@ window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
 
 </body>
 </html>
+<style>
+/* ── BREAKING NEWS TICKER FIX ── */
+/* Push ticker to start after sidebar on desktop */
+@media(min-width: 769px) {
+  /* Target all common ticker patterns from app.js/home.js */
+  .gc-breaking,
+  #gc-breaking,
+  [class^="gc-break"],
+  [id^="gc-break"],
+  div[style*="position:fixed"][style*="top:0"],
+  div[style*="position: fixed"][style*="top: 0"] {
+    left: var(--sb-w) !important;
+    z-index: 350 !important;
+  }
+
+  /* Sidebar always on top of everything */
+  #gc-sidebar {
+    z-index: 500 !important;
+  }
+
+  /* Content padding so ticker doesn't cover it */
+  #gc-content {
+    padding-top: 50px !important;
+  }
+}
+
+/* ── NAV LINKS ALWAYS VISIBLE ── */
+/* Ensure sidebar nav buttons never disappear */
+#gc-sidebar .sb-nav-link,
+#gc-sidebar .sb-section,
+#gc-sidebar .sb-section-label {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#gc-sidebar .sb-section {
+  display: block !important;
+}
+#gc-sidebar .sb-section-label {
+  display: block !important;
+}
+</style>
+<style>
+/* ══ FINAL TICKER + SIDEBAR FIX ══
+   Ticker id = gc-breaking-ticker (confirmed from news.js)
+   It inserts before #gc-canvas at top of body
+   On desktop: push it right of sidebar
+   Sidebar must always be on top
+   ══════════════════════════════════ */
+
+/* Sidebar always highest z-index */
+#gc-sidebar {
+  z-index: 500 !important;
+}
+
+/* Breaking ticker — desktop: start after sidebar */
+@media(min-width: 769px) {
+  #gc-breaking-ticker {
+    position: fixed !important;
+    top: 0 !important;
+    left: var(--sb-w) !important;
+    right: 0 !important;
+    z-index: 450 !important;
+    height: 34px !important;
+  }
+
+  /* Push page content down so ticker doesn't cover it */
+  #gc-content {
+    margin-top: 34px !important;
+  }
+
+  /* Sidebar logo area sits behind ticker — add padding at top */
+  .sb-logo {
+    padding-top: 52px !important;
+  }
+}
+
+/* Mobile: ticker full width, sidebar slides over it */
+@media(max-width: 768px) {
+  #gc-breaking-ticker {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 350 !important;
+  }
+
+  #gc-content {
+    margin-top: 34px !important;
+  }
+}
+
+/* Sidebar nav always visible — never hidden */
+#gc-sidebar .sb-section,
+#gc-sidebar .sb-nav-link,
+#gc-sidebar .sb-section-label,
+#gc-sidebar .sb-divider {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#gc-sidebar .sb-section { display: block !important; }
+#gc-sidebar .sb-section-label { display: block !important; }
+#gc-sidebar .sb-nav-link { display: flex !important; }
+</style>
