@@ -680,8 +680,6 @@ var GC_POPUP = (function() {
 })();
 window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
 </script>
-
-
 <style>
 #gc-nord-fixed {
   position: fixed;
