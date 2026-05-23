@@ -31,7 +31,7 @@
   }
 
   function buildBanner(bar) {
-    bar.style.cssText = 'position:fixed;bottom:var(--nav-h,64px);left:var(--sb-w,240px);right:0;width:auto;z-index:150;display:block;padding:0;background:transparent;border:none;box-shadow:none;gap:0';
+    bar.style.cssText = 'position:fixed;bottom:0;left:var(--sb-w,240px);right:0;width:auto;z-index:250;display:block;padding:0;background:transparent;border:none;box-shadow:none;gap:0';
     var img = new Image();
     img.onload = function() {
       /* Image loaded successfully — show banner image */
