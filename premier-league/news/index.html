@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Premier League News 2025/26 | GoalCurrent.live</title>
-  <meta name="description" content="Latest Premier League news 2025/26. Arsenal champions, relegation battle, top scorers and Final Day preview.">
+  <meta name="description" content="Latest Premier League news 2025/26. Arsenal champions, top scorers, relegation battle and Final Day.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://goalcurrent.live/premier-league/news/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Verdana,sans-serif;background:#f8fafc;color:#0f172a}
+    body{font-family:Verdana,sans-serif;background:#f0f2f5;color:#0f172a}
     .gc-topbar{background:#37003c;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
     .gc-topbar-logo{font-size:14px;font-weight:700;color:#fff;text-decoration:none}
     .gc-topbar-logo span{color:#00ff87}
@@ -19,30 +19,41 @@
     .gc-subnav::-webkit-scrollbar{display:none}
     .gc-subnav a{font-size:12px;font-weight:700;color:#64748b;text-decoration:none;padding:12px 14px;white-space:nowrap;border-bottom:3px solid transparent}
     .gc-subnav a.active,.gc-subnav a:hover{color:#37003c;border-bottom-color:#37003c}
-    .gc-hero{background:linear-gradient(135deg,#37003c,#6b0e7c);padding:20px 16px;text-align:center}
-    .gc-hero h1{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}
+    .gc-hero{background:linear-gradient(135deg,#37003c,#6b0e7c);padding:16px;text-align:center}
+    .gc-hero h1{font-size:20px;font-weight:900;color:#fff;margin-bottom:2px}
     .gc-hero h1 span{color:#00ff87}
-    .gc-hero p{font-size:12px;color:rgba(255,255,255,0.75)}
-    .gc-news{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:600px){.gc-news{grid-template-columns:1fr}}
-    .gc-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1.5px solid #e2e8f0}
-    .gc-card-img{width:100%;height:140px;object-fit:cover;display:block}
-    .gc-card-body{padding:14px}
-    .gc-card-tag{display:inline-block;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:10px;margin-bottom:8px;color:#fff}
-    .gc-card-title{font-size:14px;font-weight:800;color:#0f172a;line-height:1.4;margin-bottom:6px}
-    .gc-card-body-text{font-size:12px;color:#475569;line-height:1.7;margin-bottom:8px}
-    .gc-card-meta{font-size:10px;color:#94a3b8;display:flex;justify-content:space-between}
-    .gc-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;grid-column:1/-1}
-    .gc-stat{background:#fff;border-radius:12px;padding:14px;text-align:center;border:1.5px solid #e2e8f0;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
-    .gc-stat-num{font-size:22px;font-weight:900;color:#37003c}
-    .gc-stat-label{font-size:9px;color:#64748b;margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-    .gc-section-title{font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 10px}
-    .gc-scorer-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f1f5f9}
-    .gc-scorer-row:last-child{border-bottom:none}
-    .gc-scorer-pos{font-size:13px;font-weight:900;color:#94a3b8;width:20px;text-align:center;flex-shrink:0}
-    .gc-scorer-name{font-size:13px;font-weight:700;color:#0f172a;flex:1}
-    .gc-scorer-club{font-size:11px;color:#64748b}
-    .gc-scorer-goals{font-size:16px;font-weight:900;color:#37003c}
-    .gc-btn{display:block;text-align:center;margin:0 0 20px;padding:12px;background:#37003c;color:#fff;font-size:13px;font-weight:700;border-radius:12px;text-decoration:none;grid-column:1/-1}
+    .gc-hero p{font-size:11px;color:rgba(255,255,255,0.75)}
+
+    /* Stats row */
+    .gc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px;max-width:800px;margin:0 auto}
+    .gc-stat{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.05)}
+    .gc-stat-num{font-size:20px;font-weight:900;color:#37003c}
+    .gc-stat-label{font-size:9px;color:#64748b;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+    /* News grid */
+    .gc-wrap{padding:0 12px 12px;max-width:800px;margin:0 auto}
+    .gc-section-title{font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin:14px 0 8px}
+    .gc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:600px){.gc-grid{grid-template-columns:1fr}}
+    .gc-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);display:flex;flex-direction:column}
+    .gc-card img{width:100%;height:140px;object-fit:cover;display:block;flex-shrink:0}
+    .gc-card-body{padding:12px;flex:1;display:flex;flex-direction:column}
+    .gc-tag{display:inline-block;font-size:8px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:8px;margin-bottom:6px;color:#fff}
+    .gc-title{font-size:13px;font-weight:800;color:#0f172a;line-height:1.4;margin-bottom:5px}
+    .gc-body{font-size:11px;color:#475569;line-height:1.6;flex:1}
+    .gc-meta{font-size:9px;color:#94a3b8;margin-top:8px}
+
+    /* Top scorers */
+    .gc-scorers{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:12px}
+    .gc-scorers-head{background:#37003c;color:#fff;padding:10px 14px;font-size:11px;font-weight:700}
+    .gc-scorer{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #f1f5f9}
+    .gc-scorer:last-child{border-bottom:none}
+    .gc-scorer-pos{font-size:11px;font-weight:900;color:#94a3b8;width:18px;text-align:center}
+    .gc-scorer-name{font-size:12px;font-weight:700;color:#0f172a;flex:1}
+    .gc-scorer-club{font-size:10px;color:#64748b}
+    .gc-scorer-goals{font-size:15px;font-weight:900;color:#37003c}
+
+    .gc-btn{display:block;text-align:center;margin:12px 0;padding:11px;background:#37003c;color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none}
     .gc-footer{text-align:center;padding:16px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0}
     .gc-footer a{color:#2563eb;text-decoration:none}
   </style>
@@ -60,114 +71,99 @@
     <a href="/premier-league/news/" class="active">📰 News</a>
     <a href="/premier-league/teams/">👥 Teams</a>
   </nav>
-
   <div class="gc-hero">
     <h1>PL <span>News</span></h1>
-    <p>Latest Premier League news · 2025/26 Season</p>
+    <p>Latest Premier League news · 2025/26</p>
   </div>
 
-  <div class="gc-news">
+  <!-- Season stats -->
+  <div class="gc-stats">
+    <div class="gc-stat"><div class="gc-stat-num">931</div><div class="gc-stat-label">Total Goals</div></div>
+    <div class="gc-stat"><div class="gc-stat-num">2.74</div><div class="gc-stat-label">Per Game</div></div>
+    <div class="gc-stat"><div class="gc-stat-num">38</div><div class="gc-stat-label">Gameweeks</div></div>
+  </div>
 
-    <!-- Season Stats -->
-    <div class="gc-section-title">📊 Season at a Glance</div>
-    <div class="gc-stat-row">
-      <div class="gc-stat">
-        <div class="gc-stat-num">931</div>
-        <div class="gc-stat-label">Goals</div>
-      </div>
-      <div class="gc-stat">
-        <div class="gc-stat-num">2.74</div>
-        <div class="gc-stat-label">Per Game</div>
-      </div>
-      <div class="gc-stat">
-        <div class="gc-stat-num">340</div>
-        <div class="gc-stat-label">Matches</div>
-      </div>
-    </div>
+  <div class="gc-wrap">
 
     <!-- Top Scorers -->
-    <div class="gc-card" style="grid-column:1/-1">
-      <div class="gc-card-body">
-        <div class="gc-card-tag" style="background:#37003c">⚽ Top Scorers 2025/26</div>
-        <div class="gc-scorer-row">
-          <div class="gc-scorer-pos">1</div>
-          <div style="flex:1"><div class="gc-scorer-name">Erling Haaland</div><div class="gc-scorer-club">Man City</div></div>
-          <div class="gc-scorer-goals">24 ⚽</div>
-        </div>
-        <div class="gc-scorer-row">
-          <div class="gc-scorer-pos">2</div>
-          <div style="flex:1"><div class="gc-scorer-name">Bukayo Saka</div><div class="gc-scorer-club">Arsenal</div></div>
-          <div class="gc-scorer-goals">19 ⚽</div>
-        </div>
-        <div class="gc-scorer-row">
-          <div class="gc-scorer-pos">3</div>
-          <div style="flex:1"><div class="gc-scorer-name">Cole Palmer</div><div class="gc-scorer-club">Chelsea</div></div>
-          <div class="gc-scorer-goals">17 ⚽</div>
-        </div>
-        <div class="gc-scorer-row">
-          <div class="gc-scorer-pos">4</div>
-          <div style="flex:1"><div class="gc-scorer-name">Mohamed Salah</div><div class="gc-scorer-club">Liverpool</div></div>
-          <div class="gc-scorer-goals">16 ⚽</div>
-        </div>
-        <div class="gc-scorer-row">
-          <div class="gc-scorer-pos">5</div>
-          <div style="flex:1"><div class="gc-scorer-name">Chris Wood</div><div class="gc-scorer-club">Nottm Forest</div></div>
-          <div class="gc-scorer-goals">15 ⚽</div>
-        </div>
+    <div class="gc-section-title">⚽ Top Scorers 2025/26</div>
+    <div class="gc-scorers">
+      <div class="gc-scorers-head">🥇 Golden Boot Race</div>
+      <div class="gc-scorer">
+        <div class="gc-scorer-pos">1</div>
+        <div style="flex:1"><div class="gc-scorer-name">Erling Haaland</div><div class="gc-scorer-club">Man City</div></div>
+        <div class="gc-scorer-goals">24 ⚽</div>
+      </div>
+      <div class="gc-scorer">
+        <div class="gc-scorer-pos">2</div>
+        <div style="flex:1"><div class="gc-scorer-name">Bukayo Saka</div><div class="gc-scorer-club">Arsenal</div></div>
+        <div class="gc-scorer-goals">19 ⚽</div>
+      </div>
+      <div class="gc-scorer">
+        <div class="gc-scorer-pos">3</div>
+        <div style="flex:1"><div class="gc-scorer-name">Cole Palmer</div><div class="gc-scorer-club">Chelsea</div></div>
+        <div class="gc-scorer-goals">17 ⚽</div>
+      </div>
+      <div class="gc-scorer">
+        <div class="gc-scorer-pos">4</div>
+        <div style="flex:1"><div class="gc-scorer-name">Mohamed Salah</div><div class="gc-scorer-club">Liverpool</div></div>
+        <div class="gc-scorer-goals">16 ⚽</div>
+      </div>
+      <div class="gc-scorer">
+        <div class="gc-scorer-pos">5</div>
+        <div style="flex:1"><div class="gc-scorer-name">Chris Wood</div><div class="gc-scorer-club">Nottm Forest</div></div>
+        <div class="gc-scorer-goals">15 ⚽</div>
       </div>
     </div>
 
     <!-- News Cards -->
     <div class="gc-section-title">📰 Latest News</div>
+    <div class="gc-grid">
 
-    <div class="gc-card">
-      <img class="gc-card-img" src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" alt="Arsenal Champions" loading="lazy">
-      <div class="gc-card-body">
-        <div class="gc-card-tag" style="background:#EF0107">🏆 Champions</div>
-        <div class="gc-card-title">Arsenal Crowned PL Champions — First Title in 22 Years!</div>
-        <div class="gc-card-body-text">Arsenal have won the Premier League 2025/26 title with 82 points — their first league championship since 2003/04. Mikel Arteta's side dominated all season, with Bukayo Saka named Player of the Season.</div>
-        <div class="gc-card-meta"><span>📅 24 May 2026</span><span>GoalCurrent.live</span></div>
-      </div>
-    </div>
-
-    <div class="gc-card">
-      <img class="gc-card-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="Relegation Battle" loading="lazy">
-      <div class="gc-card-body">
-        <div class="gc-card-tag" style="background:#dc2626">🔴 Relegation</div>
-        <div class="gc-card-title">Tottenham vs West Ham — Who Goes Down on Final Day?</div>
-        <div class="gc-card-body-text">Tottenham (17th, 31pts) host already-relegated Ipswich while West Ham (18th, 29pts) travel to Man City. Spurs need just a point to survive. Burnley and Wolves are already relegated.</div>
-        <div class="gc-card-meta"><span>📅 24 May 2026</span><span>GoalCurrent.live</span></div>
-      </div>
-    </div>
-
-    <div class="gc-card">
-      <img class="gc-card-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80" alt="Haaland Top Scorer" loading="lazy">
-      <div class="gc-card-body">
-        <div class="gc-card-tag" style="background:#1d4ed8">⚽ Top Scorer</div>
-        <div class="gc-card-title">Haaland Wins Golden Boot with 24 Goals</div>
-        <div class="gc-card-body-text">Erling Haaland finishes as the Premier League top scorer for the third consecutive season with 24 goals, despite Man City's disappointing campaign finishing 3rd.</div>
-        <div class="gc-card-meta"><span>📅 23 May 2026</span><span>GoalCurrent.live</span></div>
-      </div>
-    </div>
-
-    <div class="gc-card">
-      <div class="gc-card-body">
-        <div class="gc-card-tag" style="background:#d97706">📈 Season Records</div>
-        <div class="gc-card-title">Season Records 2025/26</div>
-        <div class="gc-card-body-text">
-          🏆 Biggest home win: Arsenal 5-0 Leeds United<br>
-          ⚡ Biggest away win: Sunderland 0-5 Nottm Forest<br>
-          🎯 Highest scoring: Fulham 4-5 Man City<br>
-          🔥 Longest winning run: Aston Villa (8 matches)<br>
-          📉 Longest losing run: Wolves (11 matches)
+      <div class="gc-card">
+        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80" alt="Arsenal Champions" loading="lazy">
+        <div class="gc-card-body">
+          <div class="gc-tag" style="background:#EF0107">🏆 Champions</div>
+          <div class="gc-title">Arsenal Crowned PL Champions — First Title in 22 Years!</div>
+          <div class="gc-body">Arsenal win the 2025/26 title with 82 points. First championship since 2003/04 under Mikel Arteta.</div>
+          <div class="gc-meta">📅 24 May 2026 · GoalCurrent.live</div>
         </div>
-        <div class="gc-card-meta"><span>📅 2025/26 Season</span><span>GoalCurrent.live</span></div>
       </div>
+
+      <div class="gc-card">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80" alt="Relegation" loading="lazy">
+        <div class="gc-card-body">
+          <div class="gc-tag" style="background:#dc2626">🔴 Relegation</div>
+          <div class="gc-title">Tottenham vs West Ham — Final Day Decider</div>
+          <div class="gc-body">Spurs (17th, 38pts) vs West Ham (18th, 36pts). Burnley and Wolves already relegated.</div>
+          <div class="gc-meta">📅 24 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="gc-card">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80" alt="Haaland" loading="lazy">
+        <div class="gc-card-body">
+          <div class="gc-tag" style="background:#1d4ed8">⚽ Golden Boot</div>
+          <div class="gc-title">Haaland Wins Golden Boot with 24 Goals</div>
+          <div class="gc-body">Erling Haaland finishes as top scorer for the third consecutive season despite Man City finishing 2nd.</div>
+          <div class="gc-meta">📅 23 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="gc-card">
+        <img src="https://images.unsplash.com/photo-1551958219-acbc630e2914?w=600&q=80" alt="Season Records" loading="lazy">
+        <div class="gc-card-body">
+          <div class="gc-tag" style="background:#d97706">📈 Records</div>
+          <div class="gc-title">Season Records 2025/26</div>
+          <div class="gc-body">Biggest win: Arsenal 5-0 Leeds. Top scorer: Haaland 24 goals. Most assists: Bruno Fernandes 20.</div>
+          <div class="gc-meta">📅 2025/26 Season · GoalCurrent.live</div>
+        </div>
+      </div>
+
     </div>
 
+    <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
   </div>
-
-  <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
 
   <div class="gc-footer">
     <a href="/">GoalCurrent.live</a> · Independent fan site · Not affiliated with the Premier League<br>
