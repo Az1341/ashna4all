@@ -787,3 +787,71 @@ window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
 #gc-sidebar .sb-section-label { display: block !important; }
 #gc-sidebar .sb-nav-link { display: flex !important; }
 </style>
+<style>
+/* ── NORDVPN BAR — push right of sidebar on desktop ── */
+@media(min-width: 769px) {
+  #gc-nordvpn-bar {
+    left: var(--sb-w) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 200 !important;
+  }
+}
+@media(max-width: 768px) {
+  #gc-nordvpn-bar {
+    left: 0 !important;
+    bottom: var(--nav-h) !important;
+  }
+}
+
+/* ── LEGAL FOOTER LINKS — always visible at bottom of sidebar ── */
+.sb-footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.sb-footer a {
+  color: rgba(255,255,255,0.45) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+}
+.sb-footer a:hover {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* Also add visible footer bar at bottom of main content */
+.gc-page-footer {
+  margin-left: var(--sb-w);
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,0.8);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: Verdana, sans-serif;
+  font-size: 11px;
+  color: #64748b;
+}
+.gc-page-footer a {
+  color: #64748b;
+  text-decoration: none;
+}
+.gc-page-footer a:hover { color: #2563eb; }
+@media(max-width: 768px) {
+  .gc-page-footer { margin-left: 0; padding-bottom: 80px; }
+}
+</style>
+
+<!-- Visible footer with legal links -->
+<div class="gc-page-footer">
+  <span>© 2026 Ashna4All (A. Zafarani)</span>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/disclaimer.html">Disclaimer</a>
+  <a href="mailto:info@goalcurrent.live">Contact</a>
+  <span>⚽ Independent fan site · Not affiliated with FIFA, UEFA or Premier League</span>
+</div>
