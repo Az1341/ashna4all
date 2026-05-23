@@ -93,6 +93,19 @@
   </script>
 
   <style>
+    /* League button dropdown arrow */
+    .gc-league-arrow {
+      font-size: 10px;
+      opacity: 0.6;
+      margin-left: 2px;
+      vertical-align: middle;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+    .gc-league-btn.active .gc-league-arrow {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
     /* Critical inline styles */
     .gc-match-mine {
       border-color: rgba(217,119,6,0.45) !important;
@@ -144,9 +157,9 @@
 
       <!-- League toggle -->
       <div class="gc-league-toggle">
-        <button class="gc-league-btn" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</button>
-        <button class="gc-league-btn" data-league="WC">🏆 WC26</button>
-        <button class="gc-league-btn" data-league="UCL">⭐ UCL</button>
+        <button class="gc-league-btn" data-league="PL">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL <span class="gc-league-arrow">▾</span></button>
+        <button class="gc-league-btn" data-league="WC">🏆 WC26 <span class="gc-league-arrow">▾</span></button>
+        <button class="gc-league-btn" data-league="UCL">⭐ UCL <span class="gc-league-arrow">▾</span></button>
       </div>
     </div>
   </header>
