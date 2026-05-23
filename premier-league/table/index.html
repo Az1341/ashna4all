@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premier League Table 2025/26 — Live Standings | GoalCurrent.live</title>
-  <meta name="description" content="Live Premier League table 2025/26. Official standings updated in real time via ESPN.">
+  <title>Premier League Table 2025/26 — Final Standings | GoalCurrent.live</title>
+  <meta name="description" content="Premier League table 2025/26. Arsenal champions. Final standings after GW37. Relegation battle on Final Day 24 May 2026.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://goalcurrent.live/premier-league/table/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
@@ -24,32 +24,42 @@
     .gc-hero h1 span{color:#00ff87}
     .gc-hero p{font-size:11px;color:rgba(255,255,255,0.75)}
     .gc-wrap{padding:12px;max-width:800px;margin:0 auto}
-    .gc-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-    .gc-card-head{background:#37003c;color:#fff;padding:10px 14px;font-size:11px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-    .gc-card-head span{color:#00ff87;font-size:10px}
-    .gc-loading{text-align:center;padding:40px;color:#64748b;font-size:13px}
-    .gc-spinner{width:30px;height:30px;border:3px solid #e2e8f0;border-top-color:#37003c;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .gc-error{text-align:center;padding:30px;color:#dc2626;font-size:13px}
+
+    /* Champions banner */
+    .gc-champ-banner{background:linear-gradient(135deg,#EF0107,#9B1C1C);border-radius:12px;padding:14px;text-align:center;margin-bottom:12px;color:#fff}
+    .gc-champ-banner h2{font-size:16px;font-weight:900;margin-bottom:2px}
+    .gc-champ-banner p{font-size:11px;opacity:.85}
+    .gc-champ-pts{display:inline-block;background:rgba(255,255,255,0.2);padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px}
+
+    /* Table */
+    .gc-table-wrap{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
+    .gc-table-head{background:#37003c;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+    .gc-table-head span{font-size:11px;font-weight:700;color:#fff}
+    .gc-table-head small{font-size:10px;color:#00ff87}
     table{width:100%;border-collapse:collapse}
-    thead{background:#37003c}
-    thead th{padding:8px 6px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);text-align:center;text-transform:uppercase}
-    thead th:nth-child(2){text-align:left}
-    tbody tr{border-bottom:1px solid #f1f5f9;transition:background .15s}
-    tbody tr:hover{background:#f8fafc}
+    thead tr{background:#37003c}
+    thead th{padding:7px 5px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.65);text-align:center;text-transform:uppercase}
+    thead th:nth-child(2){text-align:left;padding-left:8px}
+    tbody tr{border-bottom:1px solid #f1f5f9}
     tbody tr:last-child{border-bottom:none}
-    tbody td{padding:7px 6px;font-size:11px;text-align:center;color:#475569}
-    tbody td:nth-child(2){text-align:left;font-weight:700;color:#0f172a}
+    tbody tr:hover{background:#f8fafc}
+    tbody td{padding:6px 5px;font-size:11px;text-align:center;color:#475569}
+    tbody td:nth-child(2){text-align:left;font-weight:700;color:#0f172a;font-size:11px;padding-left:8px}
     tbody td:last-child{font-weight:900;color:#0f172a;font-size:12px}
-    .pos{font-size:10px;font-weight:700;color:#94a3b8}
-    .bar{display:inline-block;width:3px;height:16px;border-radius:2px;vertical-align:middle;margin-right:4px}
     .champ{background:rgba(55,0,60,0.05)}
     .ucl{background:rgba(37,99,235,0.03)}
     .rel{background:rgba(220,38,38,0.04)}
+    .bar{display:inline-block;width:3px;height:14px;border-radius:2px;vertical-align:middle;margin-right:3px}
+
+    /* Legend */
     .gc-legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 14px;font-size:10px;color:#64748b;border-top:1px solid #f1f5f9}
     .gc-legend span{display:flex;align-items:center;gap:4px}
-    .gc-updated{text-align:center;font-size:10px;color:#94a3b8;padding:8px}
-    .gc-btn{display:block;text-align:center;margin:12px;padding:11px;background:#37003c;color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none}
+
+    /* Source note */
+    .gc-source{text-align:center;font-size:10px;color:#94a3b8;padding:8px;margin-top:4px}
+    .gc-source a{color:#2563eb;text-decoration:none;font-weight:700}
+
+    .gc-btn{display:block;text-align:center;margin:12px 0;padding:11px;background:#37003c;color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none}
     .gc-footer{text-align:center;padding:16px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0}
     .gc-footer a{color:#2563eb;text-decoration:none}
   </style>
@@ -69,136 +79,83 @@
   </nav>
   <div class="gc-hero">
     <h1>PL <span>Table</span></h1>
-    <p>Live standings · 2025/26 Season · Via ESPN</p>
+    <p>2025/26 Season · After Gameweek 37</p>
   </div>
 
   <div class="gc-wrap">
-    <div class="gc-card">
-      <div class="gc-card-head">
-        📊 Premier League Standings
-        <span id="gc-updated">Loading...</span>
+
+    <!-- Champions banner -->
+    <div class="gc-champ-banner">
+      <div style="font-size:28px">🏆</div>
+      <h2>Arsenal — Premier League Champions!</h2>
+      <p>First title in 22 years · 2025/26 Season</p>
+      <div class="gc-champ-pts">82 Points · Confirmed Champions</div>
+    </div>
+
+    <!-- Table -->
+    <div class="gc-table-wrap">
+      <div class="gc-table-head">
+        <span>📊 Premier League Standings</span>
+        <small>After GW37 · 19 May 2026</small>
       </div>
-      <div id="gc-table-body">
-        <div class="gc-loading">
-          <div class="gc-spinner"></div>
-          Fetching live table from ESPN...
-        </div>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Club</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="champ"><td><div class="bar" style="background:#37003c"></div>🏆</td><td>Arsenal</td><td>37</td><td>25</td><td>7</td><td>5</td><td>69</td><td>26</td><td>+43</td><td>82</td></tr>
+          <tr class="ucl"><td><div class="bar" style="background:#2563eb"></div>2</td><td>Man City</td><td>37</td><td>23</td><td>9</td><td>5</td><td>75</td><td>32</td><td>+43</td><td>78</td></tr>
+          <tr class="ucl"><td><div class="bar" style="background:#2563eb"></div>3</td><td>Man Utd</td><td>37</td><td>20</td><td>8</td><td>9</td><td>68</td><td>52</td><td>+16</td><td>68</td></tr>
+          <tr class="ucl"><td><div class="bar" style="background:#2563eb"></div>4</td><td>Aston Villa</td><td>37</td><td>18</td><td>8</td><td>11</td><td>55</td><td>49</td><td>+6</td><td>62</td></tr>
+          <tr><td>5</td><td>Liverpool</td><td>37</td><td>17</td><td>8</td><td>12</td><td>58</td><td>48</td><td>+10</td><td>59</td></tr>
+          <tr><td>6</td><td>Bournemouth</td><td>37</td><td>16</td><td>8</td><td>13</td><td>58</td><td>54</td><td>+4</td><td>56</td></tr>
+          <tr><td>7</td><td>Brighton</td><td>37</td><td>15</td><td>8</td><td>14</td><td>52</td><td>43</td><td>+9</td><td>53</td></tr>
+          <tr><td>8</td><td>Chelsea</td><td>37</td><td>15</td><td>7</td><td>15</td><td>62</td><td>55</td><td>+7</td><td>52</td></tr>
+          <tr><td>9</td><td>Brentford</td><td>37</td><td>15</td><td>7</td><td>15</td><td>55</td><td>52</td><td>+3</td><td>52</td></tr>
+          <tr><td>10</td><td>Sunderland</td><td>37</td><td>14</td><td>9</td><td>14</td><td>44</td><td>51</td><td>-7</td><td>51</td></tr>
+          <tr><td>11</td><td>Newcastle</td><td>37</td><td>13</td><td>10</td><td>14</td><td>54</td><td>54</td><td>0</td><td>49</td></tr>
+          <tr><td>12</td><td>Everton</td><td>37</td><td>13</td><td>10</td><td>14</td><td>48</td><td>50</td><td>-2</td><td>49</td></tr>
+          <tr><td>13</td><td>Fulham</td><td>37</td><td>13</td><td>10</td><td>14</td><td>50</td><td>56</td><td>-6</td><td>49</td></tr>
+          <tr><td>14</td><td>Leeds Utd</td><td>37</td><td>13</td><td>8</td><td>16</td><td>52</td><td>56</td><td>-4</td><td>47</td></tr>
+          <tr><td>15</td><td>Crystal Palace</td><td>37</td><td>12</td><td>9</td><td>16</td><td>44</td><td>53</td><td>-9</td><td>45</td></tr>
+          <tr><td>16</td><td>Nottm Forest</td><td>37</td><td>12</td><td>7</td><td>18</td><td>42</td><td>45</td><td>-3</td><td>43</td></tr>
+          <tr class="rel"><td><div class="bar" style="background:#f59e0b"></div>17</td><td>Tottenham ⚠️</td><td>37</td><td>10</td><td>8</td><td>19</td><td>48</td><td>58</td><td>-10</td><td>38</td></tr>
+          <tr class="rel"><td><div class="bar" style="background:#dc2626"></div>18</td><td>West Ham 🔴</td><td>37</td><td>9</td><td>9</td><td>19</td><td>41</td><td>63</td><td>-22</td><td>36</td></tr>
+          <tr class="rel"><td><div class="bar" style="background:#dc2626"></div>19</td><td>Burnley 🔴</td><td>37</td><td>6</td><td>7</td><td>24</td><td>36</td><td>73</td><td>-37</td><td>25</td></tr>
+          <tr class="rel"><td><div class="bar" style="background:#dc2626"></div>20</td><td>Wolves 🔴</td><td>37</td><td>5</td><td>6</td><td>26</td><td>28</td><td>58</td><td>-30</td><td>21</td></tr>
+        </tbody>
+      </table>
       <div class="gc-legend">
         <span><div class="bar" style="background:#37003c"></div>Champions</span>
         <span><div class="bar" style="background:#2563eb"></div>UCL</span>
-        <span><div class="bar" style="background:#f59e0b"></div>Danger</span>
+        <span><div class="bar" style="background:#f59e0b"></div>Danger zone</span>
         <span><div class="bar" style="background:#dc2626"></div>Relegated</span>
       </div>
     </div>
-    <div class="gc-updated" id="gc-fetch-time"></div>
+
+    <div class="gc-source">
+      Data source: <a href="https://www.sofascore.com/football/tournament/england/premier-league/17" target="_blank">Sofascore</a> ·
+      <a href="https://www.bbc.co.uk/sport/football/premier-league/table" target="_blank">BBC Sport</a> ·
+      <a href="https://www.premierleague.com/tables" target="_blank">Premier League Official</a>
+    </div>
+
     <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
   </div>
 
   <div class="gc-footer">
-    <a href="/">GoalCurrent.live</a> · Data via ESPN API · Independent fan site<br>
+    <a href="/">GoalCurrent.live</a> · Independent fan site · Not affiliated with the Premier League<br>
     © 2026 Ashna4All (A. Zafarani) · <a href="/privacy.html">Privacy</a>
   </div>
-
-  <script>
-  (function() {
-    var CORS = 'https://corsproxy.io/?';
-    var ESPN_URL = 'https://site.api.espn.com/apis/v2/sports/soccer/eng.1/standings';
-
-    function getRowClass(pos) {
-      if (pos === 1) return 'champ';
-      if (pos <= 4) return 'ucl';
-      if (pos >= 18) return 'rel';
-      if (pos === 17) return 'rel';
-      return '';
-    }
-
-    function getBar(pos) {
-      if (pos === 1) return '<div class="bar" style="background:#37003c"></div>';
-      if (pos <= 4) return '<div class="bar" style="background:#2563eb"></div>';
-      if (pos === 17) return '<div class="bar" style="background:#f59e0b"></div>';
-      if (pos >= 18) return '<div class="bar" style="background:#dc2626"></div>';
-      return '';
-    }
-
-    function getPosDisplay(pos) {
-      if (pos === 1) return '🏆';
-      return pos;
-    }
-
-    function buildTable(entries) {
-      var html = '<table><thead><tr>' +
-        '<th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th>' +
-        '</tr></thead><tbody>';
-
-      entries.forEach(function(entry, i) {
-        var pos = i + 1;
-        var team = entry.team.displayName;
-        var stats = {};
-        entry.stats.forEach(function(s) { stats[s.name] = s.value; });
-
-        var p   = stats.gamesPlayed || 0;
-        var w   = stats.wins || 0;
-        var d   = stats.ties || 0;
-        var l   = stats.losses || 0;
-        var gf  = stats.pointsFor || 0;
-        var ga  = stats.pointsAgainst || 0;
-        var gd  = stats.pointDifferential || (gf - ga);
-        var pts = stats.points || 0;
-
-        var gdStr = gd > 0 ? '+' + gd : gd;
-        var rowClass = getRowClass(pos);
-
-        html += '<tr class="' + rowClass + '">' +
-          '<td class="pos">' + getBar(pos) + getPosDisplay(pos) + '</td>' +
-          '<td>' + team + '</td>' +
-          '<td>' + p + '</td>' +
-          '<td>' + w + '</td>' +
-          '<td>' + d + '</td>' +
-          '<td>' + l + '</td>' +
-          '<td>' + gf + '</td>' +
-          '<td>' + ga + '</td>' +
-          '<td>' + gdStr + '</td>' +
-          '<td>' + pts + '</td>' +
-        '</tr>';
-      });
-
-      html += '</tbody></table>';
-      return html;
-    }
-
-    function fetchTable() {
-      fetch(CORS + encodeURIComponent(ESPN_URL))
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          var entries = data.standings[0].entries;
-          document.getElementById('gc-table-body').innerHTML = buildTable(entries);
-          document.getElementById('gc-updated').textContent = 'Live via ESPN';
-          document.getElementById('gc-fetch-time').textContent =
-            '🕐 Last updated: ' + new Date().toLocaleTimeString('en-GB');
-        })
-        .catch(function() {
-          /* Fallback to direct ESPN if proxy fails */
-          fetch(ESPN_URL)
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              var entries = data.standings[0].entries;
-              document.getElementById('gc-table-body').innerHTML = buildTable(entries);
-              document.getElementById('gc-updated').textContent = 'Live via ESPN';
-            })
-            .catch(function() {
-              document.getElementById('gc-table-body').innerHTML =
-                '<div class="gc-error">⚠️ Could not load table.<br>' +
-                '<a href="https://www.bbc.co.uk/sport/football/premier-league/table" target="_blank" style="color:#2563eb">View on BBC Sport →</a></div>';
-              document.getElementById('gc-updated').textContent = 'Error';
-            });
-        });
-    }
-
-    fetchTable();
-    /* Refresh every 60 seconds */
-    setInterval(fetchTable, 60000);
-  })();
-  </script>
 </body>
 </html>
