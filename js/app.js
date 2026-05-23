@@ -71,15 +71,10 @@ var GC = (function () {
         document.querySelectorAll('[data-page]').forEach(function(b) {
           b.classList.toggle('active', false);
         });
-        /* UCL goes to its own dedicated page */
-        if (currentType === 'UCL') { go('ucl'); return; }
-        /* Update all pages to show relevant content */
-        if (window.GC_LIVE)     GC_LIVE.setLeague(currentType);
-        if (window.GC_SCHEDULE) GC_SCHEDULE.setLeague(currentType);
-        if (window.GC_GROUPS)   GC_GROUPS.setLeague(currentType);
-        if (window.GC_HOME)     GC_HOME.setLeague(currentType);
-        /* Always go to home when switching league */
-        go('home');
+        /* Navigate to dedicated pages */
+        if (currentType === 'PL')  { window.location.href = '/premier-league/'; return; }
+        if (currentType === 'WC')  { window.location.href = '/worldcup2026/'; return; }
+        if (currentType === 'UCL') { window.location.href = '/ucl/'; return; }
       });
     });
   }
