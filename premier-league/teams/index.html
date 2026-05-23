@@ -1,397 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premier League Teams 2025/26 — All 20 Clubs | GoalCurrent.live</title>
-  <meta name="description" content="All 20 Premier League clubs 2025/26. Arsenal champions, relegation battle, squad info and fixtures for every PL team.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://goalcurrent.live/premier-league/teams/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Verdana,sans-serif;background:#f0f2f5;color:#0f172a}
-    .gc-topbar{background:#37003c;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
-    .gc-topbar-logo{font-size:14px;font-weight:700;color:#fff;text-decoration:none}
-    .gc-topbar-logo span{color:#00ff87}
-    .gc-topbar-back{font-size:11px;color:rgba(255,255,255,0.7);text-decoration:none}
-    .gc-subnav{background:#fff;border-bottom:2px solid #37003c;padding:0 16px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
-    .gc-subnav::-webkit-scrollbar{display:none}
-    .gc-subnav a{font-size:12px;font-weight:700;color:#64748b;text-decoration:none;padding:12px 14px;white-space:nowrap;border-bottom:3px solid transparent}
-    .gc-subnav a.active,.gc-subnav a:hover{color:#37003c;border-bottom-color:#37003c}
-    .gc-hero{background:linear-gradient(135deg,#37003c,#6b0e7c);padding:16px;text-align:center}
-    .gc-hero h1{font-size:20px;font-weight:900;color:#fff;margin-bottom:2px}
-    .gc-hero h1 span{color:#00ff87}
-    .gc-hero p{font-size:11px;color:rgba(255,255,255,0.75)}
-
-    /* Filter tabs */
-    .gc-filters{display:flex;gap:8px;padding:12px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e2e8f0}
-    .gc-filters::-webkit-scrollbar{display:none}
-    .gc-filter{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:none;white-space:nowrap;transition:all .2s}
-    .gc-filter.active{background:#37003c;color:#fff}
-    .gc-filter:not(.active){background:#f1f5f9;color:#64748b}
-
-    /* Section title */
-    .gc-section{padding:12px 12px 4px;font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-    .gc-section::after{content:'';flex:1;height:1px;background:#e2e8f0}
-
-    /* Teams grid */
-    .gc-wrap{padding:0 12px 16px;max-width:900px;margin:0 auto}
-    .gc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
-    @media(max-width:500px){.gc-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:700px){.gc-grid{grid-template-columns:repeat(4,1fr)}}
-
-    /* Team card */
-    .gc-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.07);border:2px solid transparent;transition:all .2s;cursor:pointer;text-decoration:none;display:block}
-    .gc-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
-    .gc-card.champ{border-color:rgba(239,1,7,0.3)}
-    .gc-card.danger{border-color:rgba(245,158,11,0.3)}
-    .gc-card.relegated{border-color:rgba(220,38,38,0.2);opacity:0.85}
-    .gc-card-top{height:6px}
-    .gc-card-body{padding:12px 10px;text-align:center}
-    .gc-badge-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:20px}
-    .gc-club-name{font-size:12px;font-weight:800;color:#0f172a;margin-bottom:3px;line-height:1.2}
-    .gc-club-pos{font-size:10px;color:#64748b;margin-bottom:6px}
-    .gc-club-pts{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
-    .gc-club-badge{display:inline-block;font-size:8px;font-weight:900;padding:2px 7px;border-radius:8px;margin-top:4px;color:#fff;letter-spacing:.5px}
-
-    /* Stats bar */
-    .gc-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-    .gc-stat{background:#fff;border-radius:10px;padding:10px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
-    .gc-stat-num{font-size:18px;font-weight:900;color:#37003c}
-    .gc-stat-label{font-size:9px;color:#64748b;margin-top:1px;text-transform:uppercase}
-
-    .gc-btn{display:block;text-align:center;margin:12px 0 0;padding:11px;background:#37003c;color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none}
-    .gc-footer{text-align:center;padding:16px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;margin-top:12px}
-    .gc-footer a{color:#2563eb;text-decoration:none}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier League Teams 2025/26 | GoalCurrent.live</title>
+<link rel="canonical" href="https://goalcurrent.live/premier-league/teams/">
+<link rel="icon" href="/favicon.ico">
+<style>
+:root {
+  --sb-w: 240px;
+  --sb-bg: #1a1f2e;
+  --sb-border: rgba(255,255,255,0.08);
+  --sb-hover: rgba(255,255,255,0.07);
+  --sb-active: rgba(37,99,235,0.22);
+  --sb-text: rgba(255,255,255,0.78);
+  --sb-text-dim: rgba(255,255,255,0.38);
+  --sb-accent: #3b82f6;
+  /* Page vars */
+  --font: Verdana, Geneva, Tahoma, sans-serif;
+  --blue: #2563eb; --red: #dc2626; --green: #16a34a;
+  --gold: #d97706; --t1: #0f172a; --t2: #334155;
+  --t3: #64748b; --t4: #94a3b8;
+  --bg1: #dbeafe; --bg2: #eff6ff; --bg3: #e0f2fe;
+  --r-sm: 10px; --r-md: 16px; --r-lg: 22px;
+  --glass: rgba(255,255,255,0.62);
+  --glass-border: rgba(255,255,255,0.82);
+  --glass-shadow: 0 4px 20px rgba(100,160,220,0.14);
+  --blur: blur(22px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body {
+  font-family: var(--font);
+  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
+  background-attachment: fixed;
+  color: var(--t1); min-height: 100vh;
+  display: flex; overflow-x: hidden;
+}
+/* Sidebar */
+.gc-sidebar {
+  width: var(--sb-w); flex-shrink: 0;
+  background: var(--sb-bg);
+  position: fixed; top: 0; left: 0; bottom: 0;
+  z-index: 300; overflow-y: auto;
+  -ms-overflow-style: none; scrollbar-width: none;
+  border-right: 1px solid var(--sb-border);
+  display: flex; flex-direction: column;
+}
+.gc-sidebar::-webkit-scrollbar{display:none}
+.sb-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 18px 16px 16px;
+  border-bottom: 1px solid var(--sb-border);
+  text-decoration: none; flex-shrink: 0;
+}
+.sb-logo img { height: 40px; width: auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); flex-shrink: 0; }
+.sb-logo-text { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -0.3px; line-height: 1.1; }
+.sb-logo-text em { color: #60a5fa; font-style: normal; }
+.sb-logo-text span { color: #34d399; font-weight: 400; }
+.sb-section { padding: 10px 0 4px; }
+.sb-section-label { font-size: 9.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--sb-text-dim); padding: 6px 16px; display: block; }
+.sb-nav-link { display: flex; align-items: center; gap: 10px; padding: 9px 16px; color: var(--sb-text); text-decoration: none; font-size: 12.5px; font-weight: 600; transition: all 0.18s; border-left: 3px solid transparent; }
+.sb-nav-link:hover { background: var(--sb-hover); color: #fff; }
+.sb-nav-link.active { background: var(--sb-active); color: #fff; border-left-color: var(--sb-accent); }
+.sb-nav-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+.sb-divider { height: 1px; background: var(--sb-border); margin: 6px 16px; }
+.sb-comp-btn { width: 100%; display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: none; border: none; cursor: pointer; font-family: var(--font); font-size: 12.5px; font-weight: 700; color: var(--sb-text); text-align: left; transition: background 0.18s; border-left: 3px solid transparent; }
+.sb-comp-btn:hover { background: var(--sb-hover); color: #fff; }
+.sb-comp-icon { font-size: 14px; flex-shrink: 0; }
+.sb-comp-name { flex: 1; }
+.sb-comp-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 8px; flex-shrink: 0; }
+.sb-comp-badge.pl  { background: rgba(56,0,60,0.8);  color: #e9b4ff; }
+.sb-comp-badge.wc  { background: rgba(200,0,30,0.6); color: #ffa5b4; }
+.sb-comp-badge.ucl { background: rgba(0,30,98,0.8);  color: #93c5fd; }
+.sb-chevron { font-size: 9px; color: var(--sb-text-dim); transition: transform 0.2s; flex-shrink: 0; }
+.sb-comp-btn.open .sb-chevron { transform: rotate(180deg); }
+.sb-links { display: none; padding: 2px 0 4px; }
+.sb-links.open { display: block; }
+.sb-links a { display: flex; align-items: center; gap: 8px; padding: 7px 16px 7px 42px; font-size: 12px; font-weight: 500; color: var(--sb-text-dim); text-decoration: none; transition: all 0.16s; border-left: 3px solid transparent; }
+.sb-links a:hover { color: #fff; background: var(--sb-hover); }
+.sb-links a.active { color: var(--sb-accent); background: var(--sb-active); border-left-color: var(--sb-accent); font-weight: 700; }
+.sb-link-icon { font-size: 12px; width: 16px; text-align: center; flex-shrink: 0; }
+.sb-footer { margin-top: auto; padding: 14px 16px; border-top: 1px solid var(--sb-border); font-size: 10px; color: var(--sb-text-dim); line-height: 1.7; }
+/* Page wrap */
+.gc-page-wrap { margin-left: var(--sb-w); flex: 1; min-width: 0; display: flex; flex-direction: column; }
+/* Top bar */
+.gc-topbar { background: rgba(255,255,255,0.72); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.8); padding: 10px 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: sticky; top: 0; z-index: 200; box-shadow: 0 1px 16px rgba(100,160,220,0.1); }
+.gc-breadcrumb { font-size: 12px; color: var(--t3); }
+.gc-breadcrumb a { color: var(--blue); text-decoration: none; }
+.gc-topbar-badge { background: #38003c; color: #fff; font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 999px; white-space: nowrap; }
+/* Content */
+.gc-content { padding: 24px 28px 100px; flex: 1; }
+/* Page title */
+.pg-title { font-size: 20px; font-weight: 700; color: var(--t1); margin-bottom: 4px; letter-spacing: -0.3px; }
+.pg-title em { color: #38003c; font-style: normal; }
+.pg-sub { font-size: 11px; color: var(--t3); margin-bottom: 20px; }
+/* Section head */
+.sec-head { display: flex; align-items: center; gap: 10px; margin: 20px 0 14px; }
+.sec-title { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--t4); white-space: nowrap; }
+.sec-line { flex: 1; height: 1px; background: rgba(100,160,220,0.2); }
+/* Glass card */
+.g-card { background: var(--glass); backdrop-filter: var(--blur); border: 1px solid var(--glass-border); border-radius: var(--r-md); padding: 18px; box-shadow: var(--glass-shadow); margin-bottom: 14px; }
+/* Cookie */
+#gc-cookie { position: fixed; bottom: 20px; left: calc(var(--sb-w) + 12px); right: 12px; z-index: 9999; max-width: 520px; background: rgba(15,23,42,0.97); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 14px 18px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); font-size: 11px; color: #94a3b8; line-height: 1.6; }
+#gc-cookie a { color: #60a5fa; }
+.ck-btn { background: #2563eb; border: none; color: #fff; padding: 7px 18px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+/* Sidebar JS */
+@media(max-width:768px){
+  .gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}
+  .gc-sidebar.open{transform:translateX(0)}
+  .gc-page-wrap{margin-left:0}
+  .gc-content{padding:16px 14px 100px}
+  #gc-cookie{left:12px;bottom:16px}
+}
+</style>
+<style>
+.teams-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:1100px){.teams-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.teams-grid{grid-template-columns:repeat(2,1fr)}}
+.team-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px 14px;box-shadow:var(--glass-shadow);text-align:center;transition:all 0.2s;text-decoration:none;color:var(--t1);display:block}
+.team-card:hover{box-shadow:0 8px 28px rgba(100,160,220,0.22);transform:translateY(-2px)}
+.team-card.champ{border-top:3px solid var(--gold);background:rgba(245,166,35,0.04)}
+.team-card.rel{border-top:3px solid var(--red);background:rgba(220,38,38,0.03);opacity:0.8}
+.team-emoji{font-size:36px;margin-bottom:8px}
+.team-name-txt{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.team-pos{font-size:11px;color:var(--t3)}
+.team-pts{font-size:12px;font-weight:700;color:var(--blue);margin-top:4px}
+.filter-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.filter-tab{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:999px;padding:6px 16px;font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;transition:all 0.18s}
+.filter-tab:hover{border-color:rgba(37,99,235,0.3);color:var(--blue)}
+.filter-tab.active{background:var(--blue);border-color:var(--blue);color:#fff}
+</style>
 </head>
 <body>
-  <div class="gc-topbar">
-    <a href="/" class="gc-topbar-logo">Goal<span>Current</span>.live</a>
-    <a href="/premier-league/" class="gc-topbar-back">← PL Overview</a>
-  </div>
-  <nav class="gc-subnav">
-    <a href="/premier-league/">🏠 Overview</a>
-    <a href="/premier-league/table/">📊 Table</a>
-    <a href="/premier-league/fixtures/">📅 Fixtures</a>
-    <a href="/premier-league/results/">✅ Results</a>
-    <a href="/premier-league/news/">📰 News</a>
-    <a href="/premier-league/teams/" class="active">👥 Teams</a>
-  </nav>
-  <div class="gc-hero">
-    <h1>PL <span>Teams</span></h1>
-    <p>All 20 Premier League clubs · 2025/26</p>
-  </div>
-
-  <!-- Filter tabs -->
-  <div class="gc-filters">
-    <button class="gc-filter active" onclick="filterTeams('all')">All 20</button>
-    <button class="gc-filter" onclick="filterTeams('top4')">🏆 Top 4</button>
-    <button class="gc-filter" onclick="filterTeams('mid')">Mid Table</button>
-    <button class="gc-filter" onclick="filterTeams('rel')">⚠️ Relegation</button>
-  </div>
-
-  <div class="gc-wrap">
-
-    <!-- Season stats -->
-    <div style="padding:12px 0 4px">
-      <div class="gc-stats-row">
-        <div class="gc-stat"><div class="gc-stat-num">20</div><div class="gc-stat-label">Clubs</div></div>
-        <div class="gc-stat"><div class="gc-stat-num">380</div><div class="gc-stat-label">MTCHES</div></div>
-        <div class="gc-stat"><div class="gc-stat-num">931</div><div class="gc-stat-label">Goals</div></div>
+  <!-- ══ SIDEBAR — COPY THIS INTO EVERY PAGE ══ -->
+  <aside class="gc-sidebar" id="gc-sidebar">
+    <a href="/" class="sb-logo">
+      <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
+      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+    </a>
+    <div class="sb-section">
+      <span class="sb-section-label">Main Menu</span>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <span class="sb-section-label">Competitions</span>
+      <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
+        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <span class="sb-comp-name">Premier League</span>
+        <span class="sb-comp-badge pl">PL</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links open" id="sb-pl">
+        <a href="/premier-league/" ><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/premier-league/table/" ><span class="sb-link-icon">📊</span> Table</a>
+        <a href="/premier-league/fixtures/" ><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/premier-league/results/" ><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/premier-league/news/" ><span class="sb-link-icon">📰</span> News</a>
+        <a href="/premier-league/teams/" class="active"><span class="sb-link-icon">👕</span> Teams</a>
+      </div>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
+        <span class="sb-comp-icon">🏆</span>
+        <span class="sb-comp-name">World Cup 2026</span>
+        <span class="sb-comp-badge wc">WC26</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-wc">
+        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
+        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
+      </div>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+        <span class="sb-comp-icon">⭐</span>
+        <span class="sb-comp-name">Champions League</span>
+        <span class="sb-comp-badge ucl">UCL</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-ucl">
+        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
       </div>
     </div>
-
-    <!-- Champions -->
-    <div class="gc-section" id="sec-top4">🏆 Champions &amp; UCL</div>
-    <div class="gc-grid" id="grid-top4">
-      <a href="/premier-league/teams/arsenal/" class="gc-card champ" data-group="top4">
-        <div class="gc-card-top" style="background:#EF0107"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Arsenal</div>
-          <div class="gc-club-pos">1st · 82 pts</div>
-          <span class="gc-club-badge" style="background:#EF0107">🏆 Champions</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/man-city/" class="gc-card" data-group="top4">
-        <div class="gc-card-top" style="background:#6CABDD"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f0f8ff">🔵</div>
-          <div class="gc-club-name">Man City</div>
-          <div class="gc-club-pos">2nd · 78 pts</div>
-          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/man-utd/" class="gc-card" data-group="top4">
-        <div class="gc-card-top" style="background:#DA291C"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Man Utd</div>
-          <div class="gc-club-pos">3rd · 68 pts</div>
-          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/aston-villa/" class="gc-card" data-group="top4">
-        <div class="gc-card-top" style="background:#95BFE5"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f5f0ff">🟣</div>
-          <div class="gc-club-name">Aston Villa</div>
-          <div class="gc-club-pos">4th · 62 pts</div>
-          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
-        </div>
-      </a>
+    <div class="sb-footer">
+      © 2026 Ashna4All (A. Zafarani)<br>
+      Independent fan site<br>
+      <a href="/privacy.html" style="color:rgba(255,255,255,0.35);text-decoration:none">Privacy</a> ·
+      <a href="/terms.html" style="color:rgba(255,255,255,0.35);text-decoration:none">Terms</a> ·
+      <a href="/disclaimer.html" style="color:rgba(255,255,255,0.35);text-decoration:none">Disclaimer</a>
     </div>
-
-    <!-- Mid table -->
-    <div class="gc-section" id="sec-mid">⚽ Mid Table</div>
-    <div class="gc-grid" id="grid-mid">
-      <a href="/premier-league/teams/liverpool/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#C8102E"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Liverpool</div>
-          <div class="gc-club-pos">5th · 59 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/bournemouth/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#DA291C"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff5f0">🍒</div>
-          <div class="gc-club-name">Bournemouth</div>
-          <div class="gc-club-pos">6th · 56 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/brighton/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#0057B8"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
-          <div class="gc-club-name">Brighton</div>
-          <div class="gc-club-pos">7th · 53 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/chelsea/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#034694"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
-          <div class="gc-club-name">Chelsea</div>
-          <div class="gc-club-pos">8th · 52 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/brentford/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#e30613"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Brentford</div>
-          <div class="gc-club-pos">9th · 52 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/sunderland/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#EB172B"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Sunderland</div>
-          <div class="gc-club-pos">10th · 51 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/newcastle/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#241F20"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f5f5f5">⚫</div>
-          <div class="gc-club-name">Newcastle</div>
-          <div class="gc-club-pos">11th · 49 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/everton/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#003399"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
-          <div class="gc-club-name">Everton</div>
-          <div class="gc-club-pos">12th · 49 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/fulham/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#000000"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f5f5f5">⚫</div>
-          <div class="gc-club-name">Fulham</div>
-          <div class="gc-club-pos">13th · 49 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/leeds/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#FFCD00"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fffbf0">🟡</div>
-          <div class="gc-club-name">Leeds Utd</div>
-          <div class="gc-club-pos">14th · 47 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/crystal-palace/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#1B458F"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
-          <div class="gc-club-name">Crystal Palace</div>
-          <div class="gc-club-pos">15th · 45 pts</div>
-        </div>
-      </a>
-      <a href="/premier-league/teams/nottm-forest/" class="gc-card" data-group="mid">
-        <div class="gc-card-top" style="background:#DD0000"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
-          <div class="gc-club-name">Nottm Forest</div>
-          <div class="gc-club-pos">16th · 43 pts</div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Relegation -->
-    <div class="gc-section" id="sec-rel">⚠️ Relegation Battle</div>
-    <div class="gc-grid" id="grid-rel">
-      <a href="/premier-league/teams/tottenham/" class="gc-card danger" data-group="rel">
-        <div class="gc-card-top" style="background:#132257"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#f5f5ff">⚪</div>
-          <div class="gc-club-name">Tottenham</div>
-          <div class="gc-club-pos">17th · 38 pts</div>
-          <span class="gc-club-badge" style="background:#f59e0b">⚠️ Danger</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/west-ham/" class="gc-card danger" data-group="rel">
-        <div class="gc-card-top" style="background:#7A263A"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f5">🟣</div>
-          <div class="gc-club-name">West Ham</div>
-          <div class="gc-club-pos">18th · 36 pts</div>
-          <span class="gc-club-badge" style="background:#dc2626">🔴 Zone</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/burnley/" class="gc-card relegated" data-group="rel">
-        <div class="gc-card-top" style="background:#6C1D45"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fff0f5">🟤</div>
-          <div class="gc-club-name">Burnley</div>
-          <div class="gc-club-pos">19th · 25 pts</div>
-          <span class="gc-club-badge" style="background:#dc2626">🔴 Relegated</span>
-        </div>
-      </a>
-      <a href="/premier-league/teams/wolves/" class="gc-card relegated" data-group="rel">
-        <div class="gc-card-top" style="background:#FDB913"></div>
-        <div class="gc-card-body">
-          <div class="gc-badge-icon" style="background:#fffbf0">🟡</div>
-          <div class="gc-club-name">Wolves</div>
-          <div class="gc-club-pos">20th · 21 pts</div>
-          <span class="gc-club-badge" style="background:#dc2626">🔴 Relegated</span>
-        </div>
-      </a>
-    </div>
-
-    <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
+  </aside>
+<div class="gc-page-wrap">
+  <div class="gc-topbar">
+    <div class="gc-breadcrumb"><a href="/">GoalCurrent.live</a> › <a href="/premier-league/">Premier League</a> › Teams</div>
+    <div class="gc-topbar-badge">All 20 Clubs · 2025/26</div>
   </div>
-
-  <div class="gc-footer">
-    <a href="/">GoalCurrent.live</a> · Independent fan site · Not affiliated with the Premier League<br>
-    © 2026 Ashna4All (A. Zafarani) · <a href="/privacy.html">Privacy</a>
-  </div>
-
-  <script>
-  function filterTeams(group) {
-    /* Update filter buttons */
-    document.querySelectorAll('.gc-filter').forEach(function(b) { b.classList.remove('active'); });
-    event.target.classList.add('active');
-
-    var sections = ['top4','mid','rel'];
-    sections.forEach(function(s) {
-      var grid = document.getElementById('grid-' + s);
-      var sec  = document.getElementById('sec-' + s);
-      if (group === 'all' || group === s) {
-        grid.style.display = 'grid';
-        sec.style.display  = 'flex';
-      } else {
-        grid.style.display = 'none';
-        sec.style.display  = 'none';
-      }
-    });
-  }
-  </script>
-
-<!-- COOKIE CONSENT BANNER -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:16px;left:12px;right:12px;z-index:99999;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:16px 18px;box-shadow:0 8px 40px rgba(0,0,0,0.5);font-family:Verdana,Geneva,sans-serif;max-width:500px;margin:0 auto;">
-  <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px">
-    <span style="font-size:20px;flex-shrink:0">🍪</span>
-    <div>
-      <div style="font-size:13px;font-weight:700;color:#f1f5f9;margin-bottom:3px">We use cookies</div>
-      <div style="font-size:11px;color:#94a3b8;line-height:1.6">GoalCurrent.live uses cookies to improve your experience and show relevant ads. See our <a href="/privacy.html" style="color:#60a5fa">Privacy Policy</a>.</div>
+  <div class="gc-content">
+    <div class="pg-title">Premier League <em>Teams</em></div>
+    <div class="pg-sub">All 20 Premier League clubs 2025/26 · 38 Matches · 931 Goals</div>
+    <div class="filter-tabs">
+      <div class="filter-tab active">All 20</div>
+      <div class="filter-tab">🏆 Top 4</div>
+      <div class="filter-tab">Mid Table</div>
+      <div class="filter-tab">⚠️ Relegation</div>
     </div>
-  </div>
-  <div style="display:flex;gap:8px;justify-content:flex-end">
-    <button onclick="GC_CK.reject()" style="background:#334155;border:none;color:#fff;padding:8px 16px;border-radius:8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;cursor:pointer">Reject</button>
-    <button onclick="GC_CK.accept()" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:8px 16px;border-radius:8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;cursor:pointer">Accept All ✓</button>
+    <div class="sec-head"><div class="sec-title">🏆 Champions &amp; UCL</div><div class="sec-line"></div></div>
+    <div class="teams-grid">
+      <a href="/premier-league/teams/arsenal/" class="team-card champ"><div class="team-emoji">🔴</div><div class="team-name-txt">Arsenal</div><div class="team-pos">1st · Champions 🏆</div><div class="team-pts">82 pts</div></a>
+      <a href="/premier-league/teams/man-city/" class="team-card"><div class="team-emoji">🔵</div><div class="team-name-txt">Man City</div><div class="team-pos">2nd · UCL ✅</div><div class="team-pts">78 pts</div></a>
+      <a href="/premier-league/teams/man-utd/" class="team-card"><div class="team-emoji">🔴</div><div class="team-name-txt">Man United</div><div class="team-pos">3rd · UCL ✅</div><div class="team-pts">68 pts</div></a>
+      <a href="/premier-league/teams/aston-villa/" class="team-card"><div class="team-emoji">🟣</div><div class="team-name-txt">Aston Villa</div><div class="team-pos">4th · UCL ✅</div><div class="team-pts">62 pts</div></a>
+    </div>
+    <div class="sec-head" style="margin-top:20px"><div class="sec-title">⚽ Mid Table</div><div class="sec-line"></div></div>
+    <div class="teams-grid">
+      <a href="/premier-league/teams/liverpool/" class="team-card"><div class="team-emoji">🔴</div><div class="team-name-txt">Liverpool</div><div class="team-pos">5th</div><div class="team-pts">59 pts</div></a>
+      <a href="/premier-league/teams/bournemouth/" class="team-card"><div class="team-emoji">🍒</div><div class="team-name-txt">Bournemouth</div><div class="team-pos">6th</div><div class="team-pts">56 pts</div></a>
+      <a href="/premier-league/teams/brighton/" class="team-card"><div class="team-emoji">🔵</div><div class="team-name-txt">Brighton</div><div class="team-pos">7th</div><div class="team-pts">53 pts</div></a>
+      <a href="/premier-league/teams/chelsea/" class="team-card"><div class="team-emoji">🔵</div><div class="team-name-txt">Chelsea</div><div class="team-pos">8th</div><div class="team-pts">52 pts</div></a>
+      <a href="/premier-league/teams/brentford/" class="team-card"><div class="team-emoji">🔴</div><div class="team-name-txt">Brentford</div><div class="team-pos">9th</div><div class="team-pts">52 pts</div></a>
+      <a href="/premier-league/teams/sunderland/" class="team-card"><div class="team-emoji">🔴</div><div class="team-name-txt">Sunderland</div><div class="team-pos">10th</div><div class="team-pts">51 pts</div></a>
+      <a href="/premier-league/teams/newcastle/" class="team-card"><div class="team-emoji">⚫</div><div class="team-name-txt">Newcastle</div><div class="team-pos">11th</div><div class="team-pts">49 pts</div></a>
+      <a href="/premier-league/teams/everton/" class="team-card"><div class="team-emoji">🔵</div><div class="team-name-txt">Everton</div><div class="team-pos">12th</div><div class="team-pts">49 pts</div></a>
+      <a href="/premier-league/teams/fulham/" class="team-card"><div class="team-emoji">⚫</div><div class="team-name-txt">Fulham</div><div class="team-pos">13th</div><div class="team-pts">49 pts</div></a>
+      <a href="/premier-league/teams/leeds/" class="team-card"><div class="team-emoji">🟡</div><div class="team-name-txt">Leeds United</div><div class="team-pos">14th</div><div class="team-pts">47 pts</div></a>
+      <a href="/premier-league/teams/crystal-palace/" class="team-card"><div class="team-emoji">🔵</div><div class="team-name-txt">Crystal Palace</div><div class="team-pos">15th</div><div class="team-pts">45 pts</div></a>
+      <a href="/premier-league/teams/nottm-forest/" class="team-card"><div class="team-emoji">🔴</div><div class="team-name-txt">Nott'm Forest</div><div class="team-pos">16th</div><div class="team-pts">43 pts</div></a>
+    </div>
+    <div class="sec-head" style="margin-top:20px"><div class="sec-title">⚠️ Relegation Battle</div><div class="sec-line"></div></div>
+    <div class="teams-grid">
+      <a href="/premier-league/teams/tottenham/" class="team-card"><div class="team-emoji">⚪</div><div class="team-name-txt">Tottenham</div><div class="team-pos">17th ⚠️ Danger</div><div class="team-pts">38 pts</div></a>
+      <a href="/premier-league/teams/west-ham/" class="team-card rel"><div class="team-emoji">🟣</div><div class="team-name-txt">West Ham</div><div class="team-pos">18th 🔴 Zone</div><div class="team-pts">36 pts</div></a>
+      <a href="/premier-league/teams/burnley/" class="team-card rel"><div class="team-emoji">🟤</div><div class="team-name-txt">Burnley</div><div class="team-pos">19th 🔴 Relegated</div><div class="team-pts">25 pts</div></a>
+      <a href="/premier-league/teams/wolves/" class="team-card rel"><div class="team-emoji">🟡</div><div class="team-name-txt">Wolves</div><div class="team-pos">20th 🔴 Relegated</div><div class="team-pts">21 pts</div></a>
+    </div>
   </div>
 </div>
-
-<!-- EMAIL SUBSCRIBE POPUP -->
-<div id="gc-email-popup" style="display:none;position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
-  <div style="background:linear-gradient(145deg,rgba(255,255,255,0.97),rgba(240,248,255,0.97));border-radius:20px;padding:28px 24px;max-width:360px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;text-align:center;font-family:Verdana,Geneva,sans-serif;">
-    <button onclick="GC_PP.close()" style="position:absolute;top:12px;right:14px;background:rgba(100,116,139,0.1);border:none;width:28px;height:28px;border-radius:50%;font-size:14px;color:#64748b;cursor:pointer;">✕</button>
-    <div style="font-size:36px;margin-bottom:10px">⚽</div>
-    <div style="font-size:16px;font-weight:800;color:#0f172a;margin-bottom:6px">Never Miss a Goal!</div>
-    <div style="font-size:12px;color:#475569;margin-bottom:14px;line-height:1.6">Get <strong>Premier League</strong> &amp; <strong>World Cup 2026</strong> alerts straight to your inbox. Free!</div>
-    <input type="email" id="gc-pp-email" placeholder="Enter your email address" style="width:100%;padding:10px 14px;border:1.5px solid rgba(37,99,235,0.25);border-radius:10px;font-family:Verdana,sans-serif;font-size:12px;color:#0f172a;outline:none;box-sizing:border-box;margin-bottom:10px">
-    <button onclick="GC_PP.subscribe()" style="width:100%;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;padding:11px;border-radius:10px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px">⚽ Subscribe Free →</button>
-    <div id="gc-pp-success" style="display:none;padding:10px;background:rgba(34,197,94,0.1);border-radius:8px;color:#15803d;font-size:12px;font-weight:600;margin-bottom:8px">✅ Thank you! Check your email.</div>
-    <button onclick="GC_PP.close()" style="background:none;border:none;color:#94a3b8;font-size:11px;font-family:Verdana,sans-serif;cursor:pointer;text-decoration:underline;">No thanks</button>
-  </div>
-</div>
-
+<div id="gc-cookie" style="display:none">🍪 We use cookies. <a href="/privacy.html">Privacy Policy</a><br><button class="ck-btn" onclick="this.closest('#gc-cookie').style.display='none';localStorage.setItem('gc_ck','1')">Accept ✓</button></div>
 <script>
-var GC_CK = (function() {
-  var K = 'gc_cookie_prefs';
-  function get() { try { return JSON.parse(localStorage.getItem(K)); } catch(e) { return null; } }
-  function hide() { var b = document.getElementById('gc-cookie-banner'); if(b) b.style.display='none'; }
-  function init() { if(!get()) { setTimeout(function(){ var b=document.getElementById('gc-cookie-banner'); if(b) b.style.display='block'; }, 1500); } }
-  function accept() { try{localStorage.setItem(K,JSON.stringify({decided:true,ads:true}));}catch(e){} hide(); }
-  function reject() { try{localStorage.setItem(K,JSON.stringify({decided:true,ads:false}));}catch(e){} hide(); }
-  return { init:init, accept:accept, reject:reject };
-})();
-
-var GC_PP = (function() {
-  var K = 'gc_popup_shown';
-  function shown() { try { return !!localStorage.getItem(K); } catch(e) { return true; } }
-  function mark() { try { localStorage.setItem(K,'1'); } catch(e) {} }
-  function show() { var el=document.getElementById('gc-email-popup'); if(el) el.style.display='flex'; }
-  function close() {
-    var el=document.getElementById('gc-email-popup');
-    if(el){el.style.opacity='0';el.style.transition='opacity .3s';setTimeout(function(){el.style.display='none';},300);}
-    mark();
-  }
-  function subscribe() {
-    var input=document.getElementById('gc-pp-email');
-    var suc=document.getElementById('gc-pp-success');
-    if(!input||!input.value||input.value.indexOf('@')<0) { alert('Please enter a valid email!'); return; }
-    var form=document.createElement('form');
-    form.method='POST';
-    form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-    form.target='_blank';form.style.display='none';
-    var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
-    var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
-    var f3=document.createElement('input');f3.name='locale';f3.value='en';
-    form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-    document.body.appendChild(form);form.submit();document.body.removeChild(form);
-    if(suc) suc.style.display='block';
-    if(input) input.style.display='none';
-    mark();
-    setTimeout(function(){ close(); }, 3000);
-  }
-  function init() { if(!shown()) { setTimeout(function(){ show(); }, 8000); } }
-  document.addEventListener('click', function(e){ var p=document.getElementById('gc-email-popup'); if(e.target===p) close(); });
-  return { init:init, close:close, subscribe:subscribe };
-})();
-
-window.addEventListener('DOMContentLoaded', function() {
-  GC_CK.init();
-  GC_PP.init();
-});
+if(!localStorage.getItem('gc_ck')) setTimeout(function(){document.getElementById('gc-cookie').style.display='block';},2000);
+function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
 </script>
 </body>
 </html>
