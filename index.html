@@ -201,33 +201,55 @@
 <div style="display:none"><a href="/privacy.html">Privacy Policy</a></div>
 
 <!-- FOOTER -->
-<footer style="text-align:center;padding:28px 20px 20px;font-family:Verdana,Geneva,Tahoma,sans-serif;background:rgba(255,255,255,0.6);backdrop-filter:blur(16px);border-top:2px solid rgba(37,99,235,0.15);margin-bottom:130px;">
-  <div style="font-size:28px;margin-bottom:10px">⚽</div>
-  <div style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:6px">GoalCurrent<span style="color:#22c55e">.live</span></div>
-  <div style="font-size:14px;color:#334155;margin-bottom:6px">Designed &amp; Created by <strong style="color:#2563eb;font-size:15px"> Ahmad Zafarani</strong></div>
-  <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:14px">Ashna4All &nbsp;·&nbsp; A. Zafarani</div>
-  <div style="font-size:12px;color:#475569;padding:10px 20px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.12);border-radius:10px;display:inline-block;margin-bottom:14px;line-height:1.8;">
-    © 2026 <strong>Ashna4All (A. Zafarani)</strong> · All Rights Reserved<br>
-    Unauthorised copying or reproduction of this website is strictly prohibited
+<footer style="text-align:center;padding:24px 20px 16px;font-family:Verdana,Geneva,Tahoma,sans-serif;background:rgba(255,255,255,0.6);backdrop-filter:blur(16px);border-top:2px solid rgba(37,99,235,0.15);margin-bottom:130px;">
+
+  <!-- Logo + Name — one clean line -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px">
+    <span style="font-size:22px">⚽</span>
+    <span style="font-size:16px;font-weight:700;color:#0f172a">GoalCurrent<span style="color:#22c55e">.live</span></span>
   </div>
-  <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:12px;margin-bottom:10px">
-    <a href="/about.html" style="color:#64748b;text-decoration:none">About Us</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/contact.html" style="color:#64748b;text-decoration:none">Contact Us</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/privacy.html" style="color:#64748b;text-decoration:none">Privacy Policy</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/terms.html" style="color:#64748b;text-decoration:none">Terms</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="/cookies.html" style="color:#64748b;text-decoration:none">Cookies</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="https://goalcurrent.live" style="color:#2563eb;text-decoration:none;font-weight:700">goalcurrent.live</a>
-    <span style="color:#cbd5e1">·</span>
-    <a href="mailto:info@goalcurrent.live" style="color:#64748b;text-decoration:none">info@goalcurrent.live</a>
+
+  <!-- Creator — one line -->
+  <div style="font-size:12px;color:#334155;margin-bottom:4px">
+    Designed &amp; Created by <strong style="color:#2563eb">Ahmad Zafarani</strong>
+    <span style="color:#cbd5e1"> · </span>
+    <span style="color:#2563eb;font-weight:700">Ashna4All</span>
   </div>
-  <div style="margin-top:12px;padding:12px 20px;background:rgba(100,116,139,0.06);border:1px solid rgba(100,116,139,0.12);border-radius:10px;font-size:10px;color:#94a3b8;line-height:1.8;max-width:600px;margin-left:auto;margin-right:auto;">
-    ⚖️ <strong>Disclaimer:</strong> GoalCurrent.live is an independent fan website and is not affiliated with, endorsed by or connected to FIFA, UEFA, the Premier League, or any football club or organisation. All news summaries are for informational purposes only. Original articles belong to their respective publishers. Match data is provided by third-party APIs. All trademarks and logos belong to their respective owners. Images used are licensed via Unsplash (free licence). For copyright concerns please contact <a href="mailto:info@goalcurrent.live" style="color:#64748b">info@goalcurrent.live</a>.
+
+  <!-- Copyright — one line -->
+  <div style="font-size:11px;color:#64748b;margin-bottom:12px">
+    © 2026 Ashna4All (A. Zafarani) · All Rights Reserved
   </div>
+
+  <!-- Legal dropdown -->
+  <div style="margin-bottom:10px">
+    <button onclick="var m=document.getElementById('gc-footer-menu');var a=document.getElementById('gc-footer-arrow');if(m.style.display==='none'){m.style.display='flex';a.style.transform='rotate(180deg)'}else{m.style.display='none';a.style.transform='rotate(0deg)'}"
+      style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.15);color:#2563eb;padding:7px 18px;border-radius:20px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">
+      Legal &amp; Info <span id="gc-footer-arrow" style="display:inline-block;transition:transform 0.2s;font-size:10px">▾</span>
+    </button>
+
+    <!-- Hidden sub-menu -->
+    <div id="gc-footer-menu" style="display:none;justify-content:center;gap:12px;flex-wrap:wrap;font-size:11px;margin-top:10px;padding:12px;background:rgba(37,99,235,0.04);border-radius:12px;max-width:500px;margin-left:auto;margin-right:auto;">
+      <a href="/about.html" style="color:#64748b;text-decoration:none">About Us</a>
+      <span style="color:#e2e8f0">·</span>
+      <a href="/contact.html" style="color:#64748b;text-decoration:none">Contact Us</a>
+      <span style="color:#e2e8f0">·</span>
+      <a href="/privacy.html" style="color:#64748b;text-decoration:none">Privacy Policy</a>
+      <span style="color:#e2e8f0">·</span>
+      <a href="/terms.html" style="color:#64748b;text-decoration:none">Terms</a>
+      <span style="color:#e2e8f0">·</span>
+      <a href="/cookies.html" style="color:#64748b;text-decoration:none">Cookies</a>
+      <span style="color:#e2e8f0">·</span>
+      <a href="mailto:info@goalcurrent.live" style="color:#64748b;text-decoration:none">info@goalcurrent.live</a>
+    </div>
+  </div>
+
+  <!-- Compact disclaimer — one line tap to expand -->
+  <div style="font-size:10px;color:#94a3b8;max-width:500px;margin:0 auto;line-height:1.6">
+    ⚖️ Independent fan site · Not affiliated with FIFA, UEFA or Premier League ·
+    <a href="/privacy.html" style="color:#94a3b8;text-decoration:underline">Privacy</a>
+  </div>
+
 </footer>
 
 <!-- ALL JS deferred — load after HTML is parsed -->
