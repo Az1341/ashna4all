@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premier League Teams 2025/26 | GoalCurrent.live</title>
-  <meta name="description" content="All 20 Premier League teams 2025/26. Squads, fixtures, results and news for every PL club.">
+  <title>Premier League Teams 2025/26 — All 20 Clubs | GoalCurrent.live</title>
+  <meta name="description" content="All 20 Premier League clubs 2025/26. Arsenal champions, relegation battle, squad info and fixtures for every PL team.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://goalcurrent.live/premier-league/teams/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Verdana,sans-serif;background:#f8fafc}
+    body{font-family:Verdana,sans-serif;background:#f0f2f5;color:#0f172a}
     .gc-topbar{background:#37003c;padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
     .gc-topbar-logo{font-size:14px;font-weight:700;color:#fff;text-decoration:none}
     .gc-topbar-logo span{color:#00ff87}
@@ -19,22 +19,50 @@
     .gc-subnav::-webkit-scrollbar{display:none}
     .gc-subnav a{font-size:12px;font-weight:700;color:#64748b;text-decoration:none;padding:12px 14px;white-space:nowrap;border-bottom:3px solid transparent}
     .gc-subnav a.active,.gc-subnav a:hover{color:#37003c;border-bottom-color:#37003c}
-    .gc-hero{background:linear-gradient(135deg,#37003c,#6b0e7c);padding:20px 16px;text-align:center}
-    .gc-hero h1{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px}
+    .gc-hero{background:linear-gradient(135deg,#37003c,#6b0e7c);padding:16px;text-align:center}
+    .gc-hero h1{font-size:20px;font-weight:900;color:#fff;margin-bottom:2px}
     .gc-hero h1 span{color:#00ff87}
-    .gc-hero p{font-size:12px;color:rgba(255,255,255,0.75)}
-    .gc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px}
-    .gc-team-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1.5px solid #e2e8f0;text-align:center;text-decoration:none;display:block}
-    .gc-team-card.champ{border-color:rgba(55,0,60,0.4);background:linear-gradient(135deg,#fff,#fdf4ff)}
-    .gc-team-card.rel{border-color:rgba(220,38,38,0.3);background:linear-gradient(135deg,#fff,#fff5f5)}
-    .gc-team-emoji{font-size:28px;margin-bottom:6px}
-    .gc-team-name{font-size:12px;font-weight:700;color:#0f172a;line-height:1.3}
-    .gc-team-pos{font-size:10px;color:#94a3b8;margin-top:3px}
-    .gc-team-badge{display:inline-block;font-size:8px;font-weight:900;padding:2px 6px;border-radius:8px;margin-top:4px}
-    .gc-badge-champ{background:#37003c;color:#fff}
-    .gc-badge-rel{background:#fee2e2;color:#dc2626}
-    .gc-btn{display:block;text-align:center;margin:0 16px 20px;padding:12px;background:#37003c;color:#fff;font-size:13px;font-weight:700;border-radius:12px;text-decoration:none}
-    .gc-footer{text-align:center;padding:16px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0}
+    .gc-hero p{font-size:11px;color:rgba(255,255,255,0.75)}
+
+    /* Filter tabs */
+    .gc-filters{display:flex;gap:8px;padding:12px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e2e8f0}
+    .gc-filters::-webkit-scrollbar{display:none}
+    .gc-filter{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:none;white-space:nowrap;transition:all .2s}
+    .gc-filter.active{background:#37003c;color:#fff}
+    .gc-filter:not(.active){background:#f1f5f9;color:#64748b}
+
+    /* Section title */
+    .gc-section{padding:12px 12px 4px;font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+    .gc-section::after{content:'';flex:1;height:1px;background:#e2e8f0}
+
+    /* Teams grid */
+    .gc-wrap{padding:0 12px 16px;max-width:900px;margin:0 auto}
+    .gc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
+    @media(max-width:500px){.gc-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:700px){.gc-grid{grid-template-columns:repeat(4,1fr)}}
+
+    /* Team card */
+    .gc-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.07);border:2px solid transparent;transition:all .2s;cursor:pointer;text-decoration:none;display:block}
+    .gc-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+    .gc-card.champ{border-color:rgba(239,1,7,0.3)}
+    .gc-card.danger{border-color:rgba(245,158,11,0.3)}
+    .gc-card.relegated{border-color:rgba(220,38,38,0.2);opacity:0.85}
+    .gc-card-top{height:6px}
+    .gc-card-body{padding:12px 10px;text-align:center}
+    .gc-badge-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:20px}
+    .gc-club-name{font-size:12px;font-weight:800;color:#0f172a;margin-bottom:3px;line-height:1.2}
+    .gc-club-pos{font-size:10px;color:#64748b;margin-bottom:6px}
+    .gc-club-pts{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+    .gc-club-badge{display:inline-block;font-size:8px;font-weight:900;padding:2px 7px;border-radius:8px;margin-top:4px;color:#fff;letter-spacing:.5px}
+
+    /* Stats bar */
+    .gc-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+    .gc-stat{background:#fff;border-radius:10px;padding:10px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+    .gc-stat-num{font-size:18px;font-weight:900;color:#37003c}
+    .gc-stat-label{font-size:9px;color:#64748b;margin-top:1px;text-transform:uppercase}
+
+    .gc-btn{display:block;text-align:center;margin:12px 0 0;padding:11px;background:#37003c;color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none}
+    .gc-footer{text-align:center;padding:16px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;margin-top:12px}
     .gc-footer a{color:#2563eb;text-decoration:none}
   </style>
 </head>
@@ -55,117 +83,236 @@
     <h1>PL <span>Teams</span></h1>
     <p>All 20 Premier League clubs · 2025/26</p>
   </div>
-  <div class="gc-grid">
-    <a href="/premier-league/teams/arsenal/" class="gc-team-card champ">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Arsenal</div>
-      <div class="gc-team-pos">1st · 82pts</div>
-      <span class="gc-team-badge gc-badge-champ">🏆 Champions</span>
-    </a>
-    <a href="/premier-league/teams/liverpool/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Liverpool</div>
-      <div class="gc-team-pos">2nd · 76pts</div>
-    </a>
-    <a href="/premier-league/teams/man-city/" class="gc-team-card">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Man City</div>
-      <div class="gc-team-pos">3rd · 71pts</div>
-    </a>
-    <a href="/premier-league/teams/chelsea/" class="gc-team-card">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Chelsea</div>
-      <div class="gc-team-pos">4th · 69pts</div>
-    </a>
-    <a href="/premier-league/teams/aston-villa/" class="gc-team-card">
-      <div class="gc-team-emoji">🟣</div>
-      <div class="gc-team-name">Aston Villa</div>
-      <div class="gc-team-pos">5th · 62pts</div>
-    </a>
-    <a href="/premier-league/teams/newcastle/" class="gc-team-card">
-      <div class="gc-team-emoji">⚫</div>
-      <div class="gc-team-name">Newcastle</div>
-      <div class="gc-team-pos">6th · 60pts</div>
-    </a>
-    <a href="/premier-league/teams/nottm-forest/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Nottm Forest</div>
-      <div class="gc-team-pos">7th · 56pts</div>
-    </a>
-    <a href="/premier-league/teams/brighton/" class="gc-team-card">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Brighton</div>
-      <div class="gc-team-pos">8th · 54pts</div>
-    </a>
-    <a href="/premier-league/teams/fulham/" class="gc-team-card">
-      <div class="gc-team-emoji">⚫</div>
-      <div class="gc-team-name">Fulham</div>
-      <div class="gc-team-pos">9th · 52pts</div>
-    </a>
-    <a href="/premier-league/teams/brentford/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Brentford</div>
-      <div class="gc-team-pos">10th · 50pts</div>
-    </a>
-    <a href="/premier-league/teams/crystal-palace/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Crystal Palace</div>
-      <div class="gc-team-pos">11th · 48pts</div>
-    </a>
-    <a href="/premier-league/teams/everton/" class="gc-team-card">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Everton</div>
-      <div class="gc-team-pos">12th · 46pts</div>
-    </a>
-    <a href="/premier-league/teams/man-utd/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Man Utd</div>
-      <div class="gc-team-pos">13th · 44pts</div>
-    </a>
-    <a href="/premier-league/teams/wolves/" class="gc-team-card">
-      <div class="gc-team-emoji">🟡</div>
-      <div class="gc-team-name">Wolves</div>
-      <div class="gc-team-pos">14th · 42pts</div>
-    </a>
-    <a href="/premier-league/teams/leeds/" class="gc-team-card">
-      <div class="gc-team-emoji">⚪</div>
-      <div class="gc-team-name">Leeds Utd</div>
-      <div class="gc-team-pos">15th · 40pts</div>
-    </a>
-    <a href="/premier-league/teams/southampton/" class="gc-team-card">
-      <div class="gc-team-emoji">🔴</div>
-      <div class="gc-team-name">Southampton</div>
-      <div class="gc-team-pos">16th · 36pts</div>
-    </a>
-    <a href="/premier-league/teams/tottenham/" class="gc-team-card rel">
-      <div class="gc-team-emoji">⚪</div>
-      <div class="gc-team-name">Tottenham</div>
-      <div class="gc-team-pos">17th · 31pts</div>
-      <span class="gc-team-badge gc-badge-rel">⚠️ Danger Zone</span>
-    </a>
-    <a href="/premier-league/teams/west-ham/" class="gc-team-card rel">
-      <div class="gc-team-emoji">🟣</div>
-      <div class="gc-team-name">West Ham</div>
-      <div class="gc-team-pos">18th · 29pts</div>
-      <span class="gc-team-badge gc-badge-rel">🔴 Relegation</span>
-    </a>
-    <a href="/premier-league/teams/leicester/" class="gc-team-card rel">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Leicester</div>
-      <div class="gc-team-pos">19th · 21pts</div>
-      <span class="gc-team-badge gc-badge-rel">🔴 Relegated</span>
-    </a>
-    <a href="/premier-league/teams/ipswich/" class="gc-team-card rel">
-      <div class="gc-team-emoji">🔵</div>
-      <div class="gc-team-name">Ipswich</div>
-      <div class="gc-team-pos">20th · 17pts</div>
-      <span class="gc-team-badge gc-badge-rel">🔴 Relegated</span>
-    </a>
+
+  <!-- Filter tabs -->
+  <div class="gc-filters">
+    <button class="gc-filter active" onclick="filterTeams('all')">All 20</button>
+    <button class="gc-filter" onclick="filterTeams('top4')">🏆 Top 4</button>
+    <button class="gc-filter" onclick="filterTeams('mid')">Mid Table</button>
+    <button class="gc-filter" onclick="filterTeams('rel')">⚠️ Relegation</button>
   </div>
-  <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
+
+  <div class="gc-wrap">
+
+    <!-- Season stats -->
+    <div style="padding:12px 0 4px">
+      <div class="gc-stats-row">
+        <div class="gc-stat"><div class="gc-stat-num">20</div><div class="gc-stat-label">Clubs</div></div>
+        <div class="gc-stat"><div class="gc-stat-num">38</div><div class="gc-stat-label">Matches</div></div>
+        <div class="gc-stat"><div class="gc-stat-num">931</div><div class="gc-stat-label">Goals</div></div>
+      </div>
+    </div>
+
+    <!-- Champions -->
+    <div class="gc-section" id="sec-top4">🏆 Champions &amp; UCL</div>
+    <div class="gc-grid" id="grid-top4">
+      <a href="/premier-league/teams/arsenal/" class="gc-card champ" data-group="top4">
+        <div class="gc-card-top" style="background:#EF0107"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Arsenal</div>
+          <div class="gc-club-pos">1st · 82 pts</div>
+          <span class="gc-club-badge" style="background:#EF0107">🏆 Champions</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/man-city/" class="gc-card" data-group="top4">
+        <div class="gc-card-top" style="background:#6CABDD"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f0f8ff">🔵</div>
+          <div class="gc-club-name">Man City</div>
+          <div class="gc-club-pos">2nd · 78 pts</div>
+          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/man-utd/" class="gc-card" data-group="top4">
+        <div class="gc-card-top" style="background:#DA291C"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Man Utd</div>
+          <div class="gc-club-pos">3rd · 68 pts</div>
+          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/aston-villa/" class="gc-card" data-group="top4">
+        <div class="gc-card-top" style="background:#95BFE5"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f5f0ff">🟣</div>
+          <div class="gc-club-name">Aston Villa</div>
+          <div class="gc-club-pos">4th · 62 pts</div>
+          <span class="gc-club-pts" style="background:#e0f0ff;color:#1d4ed8">UCL ✅</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Mid table -->
+    <div class="gc-section" id="sec-mid">⚽ Mid Table</div>
+    <div class="gc-grid" id="grid-mid">
+      <a href="/premier-league/teams/liverpool/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#C8102E"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Liverpool</div>
+          <div class="gc-club-pos">5th · 59 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/bournemouth/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#DA291C"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff5f0">🍒</div>
+          <div class="gc-club-name">Bournemouth</div>
+          <div class="gc-club-pos">6th · 56 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/brighton/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#0057B8"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
+          <div class="gc-club-name">Brighton</div>
+          <div class="gc-club-pos">7th · 53 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/chelsea/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#034694"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
+          <div class="gc-club-name">Chelsea</div>
+          <div class="gc-club-pos">8th · 52 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/brentford/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#e30613"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Brentford</div>
+          <div class="gc-club-pos">9th · 52 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/sunderland/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#EB172B"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Sunderland</div>
+          <div class="gc-club-pos">10th · 51 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/newcastle/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#241F20"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f5f5f5">⚫</div>
+          <div class="gc-club-name">Newcastle</div>
+          <div class="gc-club-pos">11th · 49 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/everton/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#003399"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
+          <div class="gc-club-name">Everton</div>
+          <div class="gc-club-pos">12th · 49 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/fulham/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#000000"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f5f5f5">⚫</div>
+          <div class="gc-club-name">Fulham</div>
+          <div class="gc-club-pos">13th · 49 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/leeds/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#FFCD00"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fffbf0">🟡</div>
+          <div class="gc-club-name">Leeds Utd</div>
+          <div class="gc-club-pos">14th · 47 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/crystal-palace/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#1B458F"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f0f5ff">🔵</div>
+          <div class="gc-club-name">Crystal Palace</div>
+          <div class="gc-club-pos">15th · 45 pts</div>
+        </div>
+      </a>
+      <a href="/premier-league/teams/nottm-forest/" class="gc-card" data-group="mid">
+        <div class="gc-card-top" style="background:#DD0000"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f0">🔴</div>
+          <div class="gc-club-name">Nottm Forest</div>
+          <div class="gc-club-pos">16th · 43 pts</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Relegation -->
+    <div class="gc-section" id="sec-rel">⚠️ Relegation Battle</div>
+    <div class="gc-grid" id="grid-rel">
+      <a href="/premier-league/teams/tottenham/" class="gc-card danger" data-group="rel">
+        <div class="gc-card-top" style="background:#132257"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#f5f5ff">⚪</div>
+          <div class="gc-club-name">Tottenham</div>
+          <div class="gc-club-pos">17th · 38 pts</div>
+          <span class="gc-club-badge" style="background:#f59e0b">⚠️ Danger</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/west-ham/" class="gc-card danger" data-group="rel">
+        <div class="gc-card-top" style="background:#7A263A"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f5">🟣</div>
+          <div class="gc-club-name">West Ham</div>
+          <div class="gc-club-pos">18th · 36 pts</div>
+          <span class="gc-club-badge" style="background:#dc2626">🔴 Zone</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/burnley/" class="gc-card relegated" data-group="rel">
+        <div class="gc-card-top" style="background:#6C1D45"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fff0f5">🟤</div>
+          <div class="gc-club-name">Burnley</div>
+          <div class="gc-club-pos">19th · 25 pts</div>
+          <span class="gc-club-badge" style="background:#dc2626">🔴 Relegated</span>
+        </div>
+      </a>
+      <a href="/premier-league/teams/wolves/" class="gc-card relegated" data-group="rel">
+        <div class="gc-card-top" style="background:#FDB913"></div>
+        <div class="gc-card-body">
+          <div class="gc-badge-icon" style="background:#fffbf0">🟡</div>
+          <div class="gc-club-name">Wolves</div>
+          <div class="gc-club-pos">20th · 21 pts</div>
+          <span class="gc-club-badge" style="background:#dc2626">🔴 Relegated</span>
+        </div>
+      </a>
+    </div>
+
+    <a href="/premier-league/" class="gc-btn">← Back to PL Overview</a>
+  </div>
+
   <div class="gc-footer">
     <a href="/">GoalCurrent.live</a> · Independent fan site · Not affiliated with the Premier League<br>
     © 2026 Ashna4All (A. Zafarani) · <a href="/privacy.html">Privacy</a>
   </div>
+
+  <script>
+  function filterTeams(group) {
+    /* Update filter buttons */
+    document.querySelectorAll('.gc-filter').forEach(function(b) { b.classList.remove('active'); });
+    event.target.classList.add('active');
+
+    var sections = ['top4','mid','rel'];
+    sections.forEach(function(s) {
+      var grid = document.getElementById('grid-' + s);
+      var sec  = document.getElementById('sec-' + s);
+      if (group === 'all' || group === s) {
+        grid.style.display = 'grid';
+        sec.style.display  = 'flex';
+      } else {
+        grid.style.display = 'none';
+        sec.style.display  = 'none';
+      }
+    });
+  }
+  </script>
 </body>
 </html>
