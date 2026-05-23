@@ -1,32 +1,101 @@
 /* ============================================================
    GoalCurrent.live — News Manager v3 (Magazine Carousel Style)
-   ============================================================
-   HOW TO USE:
-   - Add news at TOP of GC_NEWS array
-   - type: "breaking" = red ticker + breaking card
-   - type: "normal"   = swipeable magazine card in carousel
-   - image_url: background photo for the card
-   - video_id: YouTube embed (shows in breaking card only)
-   - source_url + source_label: Read button link
+   Updated: 23 May 2026
+   - England squad moved from breaking → normal news card
+   - PL Final Day news added with photos
+   - Breaking ticker now shows PL Final Day only
    ============================================================ */
 
 var GC_NEWS = [
 
-  /* ── BREAKING ── */
+  /* ── BREAKING — PL Final Day only ── */
   {
     type:         "breaking",
-    emoji:        "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    title:        "England WC2026 Squad Announced!",
-    body:         "Thomas Tuchel names 26-man squad. Kane captains. Cole Palmer and Phil Foden LEFT OUT. Nine first-time tournament players included.",
-    meta1:        "📅 22 May 2026",
-    meta2:        "📍 Wembley Stadium",
-    ticker:       "🏴󠁧󠁢󠁥󠁮󠁧󠁿 ENGLAND WC2026 SQUAD — Kane leads · Cole Palmer & Phil Foden LEFT OUT · Saka, Bellingham, Rice in · First match vs Croatia 17 Jun, Dallas",
-    source_url:   "https://www.englandfootball.com/articles/2026/May/22/england-mens-world-cup-2026-squad-named-by-thomas-tuchel-20262205",
-    source_label: "England FA",
-    video_id:     "2umUvkWzzxw"
+    emoji:        "⚽",
+    title:        "Premier League Final Day — All 10 Matches Today 16:00 BST!",
+    body:         "The Premier League season ends today. Arsenal are champions. Tottenham and West Ham fight to stay up. All 10 matches kick off simultaneously at 16:00 BST.",
+    meta1:        "📅 Sunday 24 May 2026",
+    meta2:        "📺 Sky Sports Premier League",
+    ticker:       "⚽ PL FINAL DAY — All 10 matches 16:00 BST · Arsenal Champions 🏆 · Tottenham vs Everton · West Ham vs Leeds — Relegation deciders · Burnley & Wolves already down 🔴",
+    source_url:   "https://www.premierleague.com/fixtures",
+    source_label: "Premier League"
   },
 
-  /* ── NORMAL — swipe carousel ── */
+  /* ── NORMAL — PL Final Day News ── */
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#37003c",
+    emoji:     "🏆",
+    title:     "Arsenal Champions! The Story of a Historic Title",
+    body:      "Arsenal end 22-year wait. Arteta's side finish with 82 points — their best ever Premier League tally.",
+    meta:      "Sky Sports · Today",
+    image_url: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
+    source_url:"https://www.skysports.com/football/arsenal/results",
+    source_label:"Sky Sports"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#dc2626",
+    emoji:     "⚠️",
+    title:     "Tottenham vs Everton — Can Spurs Survive?",
+    body:      "Tottenham sit 17th on 38 points. A loss today could send them down for the first time since 1978. Everton have nothing to play for.",
+    meta:      "BBC Sport · Today",
+    image_url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    source_url:"https://www.bbc.co.uk/sport/football/premier-league",
+    source_label:"BBC Sport"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#dc2626",
+    emoji:     "🔴",
+    title:     "West Ham Must Win — Leeds United Stand in the Way",
+    body:      "West Ham are 18th on 36 points. They must beat Leeds United today and hope Tottenham slip up to stay in the Premier League.",
+    meta:      "Sky Sports · Today",
+    image_url: "https://images.unsplash.com/photo-1551958219-acbc630e2914?w=800&q=80",
+    source_url:"https://www.skysports.com/football/west-ham/results",
+    source_label:"Sky Sports"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#37003c",
+    emoji:     "📺",
+    title:     "Where to Watch — All 10 Games Live on Sky Sports",
+    body:      "Sky Sports Premier League and Sky Sports Main Event show all 10 Final Day matches simultaneously. Stream via Sky Go or NOW TV.",
+    meta:      "Sky Sports · Today",
+    image_url: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+    source_url:"https://www.skysports.com/football/premier-league",
+    source_label:"Sky Sports"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#37003c",
+    emoji:     "⚽",
+    title:     "Crystal Palace vs Arsenal — Champions' Guard of Honour",
+    body:      "Arsenal travel to Selhurst Park as confirmed champions. Crystal Palace will form a guard of honour before the match. 16:00 BST.",
+    meta:      "Premier League · Today",
+    image_url: "https://images.unsplash.com/photo-1487466365202-1afdb86c764e?w=800&q=80",
+    source_url:"https://www.premierleague.com/fixtures",
+    source_label:"Premier League"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#1d4ed8",
+    emoji:     "📊",
+    title:     "Final Day Permutations — Who Goes Down?",
+    body:      "Burnley and Wolves are already relegated. The final spot: Tottenham (38pts) vs West Ham (36pts). Results elsewhere could still matter.",
+    meta:      "BBC Sport · Today",
+    image_url: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
+    source_url:"https://www.bbc.co.uk/sport/football/premier-league/table",
+    source_label:"BBC Sport"
+  },
+
+  /* ── UCL FINAL NEWS ── */
   {
     type:      "normal",
     tag:       "UCL FINAL",
@@ -34,7 +103,7 @@ var GC_NEWS = [
     emoji:     "⭐",
     title:     "Dembele Fit for UCL Final vs Arsenal",
     body:      "PSG star confirms he will play despite calf scare. 'I have no doubt about it.'",
-    meta:      "beIN Sports · 1h ago",
+    meta:      "beIN Sports · 2 days ago",
     image_url: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
     source_url:"https://psgtalk.com/2026/05/psg-good-news-ucl-final-arsenal/",
     source_label:"PSG Talk"
@@ -46,7 +115,7 @@ var GC_NEWS = [
     emoji:     "⭐",
     title:     "Luis Enrique: Everyone is Ready for Budapest",
     body:      "PSG boss previews UCL Final vs Arsenal. 'Working while having fun — that is the most important part.'",
-    meta:      "Tribuna · 2h ago",
+    meta:      "Tribuna · 3 days ago",
     image_url: "https://images.unsplash.com/photo-1487466365202-1afdb86c764e?w=800&q=80",
     source_url:"https://tribuna.com/en/news/2026-05-20-everyone-is-ready-psg-manager-luis-enrique-previews-ucl-final-against-arsenal/",
     source_label:"Tribuna"
@@ -63,29 +132,19 @@ var GC_NEWS = [
     source_url:"https://www.uefa.com/uefachampionsleague/match/2047742--paris-vs-arsenal/final/",
     source_label:"UEFA"
   },
-  {
-    type:      "normal",
-    tag:       "PL FINAL DAY",
-    tagColor:  "#37003c",
-    emoji:     "🏆",
-    title:     "Arsenal Champions! Relegation Goes to Final Day",
-    body:      "Arsenal crowned PL champions for first time in 22 years. Tottenham vs West Ham — one goes down on Sunday.",
-    meta:      "Sky Sports · Today",
-    image_url: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
-    source_url:"https://www.skysports.com/football/news/11095/13546159/premier-league-26-27-season-start-date-fixture-release-final-day-live-sky-sports-games-and-match-schedule",
-    source_label:"Sky Sports"
-  },
+
+  /* ── WORLD CUP 2026 NEWS ── */
   {
     type:      "normal",
     tag:       "WORLD CUP 2026",
     tagColor:  "#d97706",
     emoji:     "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    title:     "England's Big Omissions — Who Missed Out?",
-    body:      "Cole Palmer, Phil Foden, Trent Alexander-Arnold and Harry Maguire all LEFT OUT of Tuchel's 26-man squad.",
-    meta:      "beIN Sports · 1h ago",
+    title:     "England WC2026 Squad — Kane Leads, Foden & Palmer OUT",
+    body:      "Thomas Tuchel names 26-man squad. Kane captains. Cole Palmer and Phil Foden left out. Saka, Bellingham and Rice all included. First match vs Croatia 17 June, Dallas.",
+    meta:      "England FA · 22 May 2026",
     image_url: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
-    source_url:"https://www.espn.com/soccer/story/_/id/48841808/england-2026-world-cup-squad-foden-palmer-toney-magure-madueke-watkins-kane-stones-alexander-arnold",
-    source_label:"ESPN"
+    source_url:"https://www.englandfootball.com/articles/2026/May/22/england-mens-world-cup-2026-squad-named-by-thomas-tuchel-20262205",
+    source_label:"England FA"
   },
   {
     type:      "normal",
@@ -106,7 +165,7 @@ var GC_NEWS = [
     emoji:     "🇭🇷",
     title:     "Modric, 40, Named in Croatia WC2026 Squad",
     body:      "Luka Modric, at 40 years old, has been included in Croatia's World Cup squad. Bosnia's Edin Dzeko, also 40, makes the cut too.",
-    meta:      "Yahoo Sports · Today",
+    meta:      "Yahoo Sports · Yesterday",
     image_url: "https://images.unsplash.com/photo-1551958219-acbc630e2914?w=800&q=80",
     source_url:"https://sports.yahoo.com/articles/world-cup-2026-every-nation39s-squad-as-they-are-announced-182620826.html",
     source_label:"Yahoo Sports"
@@ -118,7 +177,7 @@ var GC_NEWS = [
     emoji:     "🇿🇦",
     title:     "South Africa Name WC Preliminary Squad",
     body:      "Bafana Bafana reveal their squad ahead of June 11 opener vs Mexico at Estadio Azteca — a replay of the 2010 World Cup opener.",
-    meta:      "Yahoo Sports · Today",
+    meta:      "Yahoo Sports · Yesterday",
     image_url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
     source_url:"https://sports.yahoo.com/soccer/live/2026-world-cup-news-live-tracker-squad-announcements-injuries-key-storylines-and-latest-updates-200000056.html",
     source_label:"Yahoo Sports"
@@ -126,7 +185,7 @@ var GC_NEWS = [
 ];
 
 /* ============================================================
-   RENDERER
+   RENDERER — unchanged from v3
    ============================================================ */
 (function () {
 
@@ -139,14 +198,12 @@ var GC_NEWS = [
     var s = document.createElement('style');
     s.id = 'gc-news-style';
     s.textContent = [
-      /* ticker */
       '@keyframes gc-ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}',
       '@keyframes gc-brk-blink{0%,100%{opacity:1}50%{opacity:.3}}',
       '#gc-breaking-ticker{background:#cc0000;height:34px;display:flex;align-items:center;overflow:hidden;position:relative;z-index:9998;border-bottom:1px solid rgba(255,255,255,.15)}',
       '#gc-breaking-ticker .gc-tlbl{background:#fff;color:#cc0000;font-size:9px;font-weight:900;letter-spacing:1.5px;padding:0 10px;height:100%;display:flex;align-items:center;flex-shrink:0;white-space:nowrap;font-family:Verdana,sans-serif}',
       '#gc-breaking-ticker .gc-twrap{overflow:hidden;flex:1}',
       '#gc-breaking-ticker .gc-tinner{display:inline-flex;white-space:nowrap;animation:gc-ticker-scroll 28s linear infinite;font-size:11px;font-weight:700;color:#fff;padding-left:20px;font-family:Verdana,sans-serif}',
-      /* breaking card */
       '#gc-breaking-card{margin:12px 16px;background:#ffffff;border:1.5px solid #d1d9f0;border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(100,160,220,0.12);font-family:Verdana,Geneva,sans-serif}',
       '#gc-breaking-card .gc-bc-top{display:flex;align-items:center;gap:6px;margin-bottom:8px}',
       '#gc-breaking-card .gc-bc-dot{width:8px;height:8px;background:#cc0000;border-radius:50%;animation:gc-brk-blink 1s infinite;flex-shrink:0}',
@@ -158,7 +215,6 @@ var GC_NEWS = [
       '.gc-news-source-btn:hover{opacity:.85}',
       '.gc-news-video{margin-top:14px;width:100%;max-width:420px;height:236px;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12)}',
       '.gc-news-video iframe{width:100%;height:100%;border:none;border-radius:12px;display:block}',
-      /* magazine carousel */
       '#gc-news-carousel-wrap{padding:0 16px;margin-bottom:16px}',
       '#gc-news-carousel-wrap .gc-news-carousel-title{font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}',
       '#gc-news-carousel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}',
@@ -179,7 +235,6 @@ var GC_NEWS = [
     document.head.appendChild(s);
   }
 
-  /* ── TICKER ── */
   function buildTicker(items) {
     if (document.getElementById('gc-breaking-ticker')) return;
     var text = items.map(function(n){ return n.ticker || (n.emoji + ' ' + n.title); }).join('   \u2022   ');
@@ -192,7 +247,6 @@ var GC_NEWS = [
     else document.body.insertBefore(ticker, document.body.firstChild);
   }
 
-  /* ── BREAKING CARD ── */
   function buildBreakingCard(n) {
     var card = document.createElement('div');
     card.id = 'gc-breaking-card';
@@ -218,34 +272,25 @@ var GC_NEWS = [
     return false;
   }
 
-  /* ── MAGAZINE CAROUSEL ── */
   function buildCarousel(items) {
     function tryInsert() {
       var content = document.getElementById('gc-content');
       if (!content || document.getElementById('gc-news-carousel-wrap')) return false;
-
       var wrap = document.createElement('div');
       wrap.id = 'gc-news-carousel-wrap';
-
       var titleEl = document.createElement('div');
       titleEl.className = 'gc-news-carousel-title';
       titleEl.textContent = '📰 Latest News — Swipe →';
       wrap.appendChild(titleEl);
-
       var carousel = document.createElement('div');
       carousel.id = 'gc-news-carousel';
-
       items.forEach(function(n) {
         var card = document.createElement('div');
         card.className = 'gc-news-card';
-
         var bgImg = n.image_url || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80';
-
         var readBtn = n.source_url ?
           '<a class="gc-news-card-btn read" href="' + esc(n.source_url) + '" target="_blank" rel="noopener">&#128279; Read</a>' : '';
-
-        var shareBtn = '<a class="gc-news-card-btn" onclick="if(navigator.share)navigator.share({title:\'' + esc(n.title).replace(/'/g,'') + '\',url:\'' + esc(n.source_url||'https://goalcurrent.live') + '\'});return false;" href="#">&#128257; Share</a>';
-
+        var shareBtn = '<a class="gc-news-card-btn" onclick="if(navigator.share)navigator.share({title:\'' + esc(n.title).replace(/\'/g,'') + '\',url:\'' + esc(n.source_url||'https://goalcurrent.live') + '\'});return false;" href="#">&#128257; Share</a>';
         card.innerHTML =
           '<div class="gc-news-card-bg" style="background-image:url(' + esc(bgImg) + ')"></div>' +
           '<div class="gc-news-card-overlay"></div>' +
@@ -255,19 +300,14 @@ var GC_NEWS = [
             (n.meta ? '<div class="gc-news-card-meta">' + esc(n.meta) + '</div>' : '') +
             '<div class="gc-news-card-btns">' + readBtn + shareBtn + '</div>' +
           '</div>';
-
         carousel.appendChild(card);
       });
-
       wrap.appendChild(carousel);
-
-      /* Insert before email signup card */
       var signup = content.querySelector('.gc-signup-card');
       if (signup && signup.parentNode) signup.parentNode.insertBefore(wrap, signup);
       else content.appendChild(wrap);
       return true;
     }
-
     if (!tryInsert()) {
       var ob = new MutationObserver(function() { if (tryInsert()) ob.disconnect(); });
       ob.observe(document.body, { childList: true, subtree: true });
@@ -275,12 +315,10 @@ var GC_NEWS = [
     }
   }
 
-  /* ── MAIN ── */
   function init() {
     injectStyles();
     var breaking = GC_NEWS.filter(function(n){ return n.type === 'breaking'; });
     var normal   = GC_NEWS.filter(function(n){ return n.type === 'normal'; });
-
     if (breaking.length) {
       buildTicker(breaking);
       var card = buildBreakingCard(breaking[0]);
@@ -290,7 +328,6 @@ var GC_NEWS = [
         setTimeout(function(){ ob.disconnect(); }, 30000);
       }
     }
-
     if (normal.length) {
       setTimeout(function(){ buildCarousel(normal); }, 2000);
     }
