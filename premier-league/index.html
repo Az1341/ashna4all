@@ -9,228 +9,329 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-/* ── SIDEBAR LAYOUT — added on top of existing style.css ── */
+/* ══════════════════════════════════════════════════════════
+   SIDEBAR LAYOUT — works on ALL pages
+   ══════════════════════════════════════════════════════════ */
 :root {
-  --sb-w: 220px;
+  --sb-w: 240px;
+  --sb-bg: #1a1f2e;
+  --sb-border: rgba(255,255,255,0.08);
+  --sb-hover: rgba(255,255,255,0.07);
+  --sb-active: rgba(37,99,235,0.25);
+  --sb-text: rgba(255,255,255,0.75);
+  --sb-text-dim: rgba(255,255,255,0.4);
+  --sb-accent: #3b82f6;
 }
 
-/* Shift body layout for sidebar */
-.gc-with-sidebar {
+/* Reset body for sidebar layout */
+body {
   display: flex;
-  min-height: calc(100vh - var(--hdr-h));
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%) !important;
+  background-attachment: fixed !important;
 }
 
-/* ── LEFT SIDEBAR ── */
+#gc-app {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* ── LEFT SIDEBAR ─────────────────────────────────────────── */
 .gc-sidebar {
   width: var(--sb-w);
   flex-shrink: 0;
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  border-right: 1px solid rgba(255,255,255,0.82);
-  box-shadow: 2px 0 16px rgba(100,160,220,0.1);
-  padding: 16px 0 100px;
-  position: sticky;
-  top: var(--hdr-h);
-  height: calc(100vh - var(--hdr-h));
+  background: var(--sb-bg);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 300;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  z-index: 100;
+  border-right: 1px solid var(--sb-border);
 }
 .gc-sidebar::-webkit-scrollbar { display: none; }
 
-.sb-label {
+/* Logo area */
+.sb-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 18px 16px 16px;
+  border-bottom: 1px solid var(--sb-border);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.sb-logo img {
+  height: 40px; width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  flex-shrink: 0;
+}
+.sb-logo-text {
+  font-family: Verdana, sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: #fff; letter-spacing: -0.3px; line-height: 1.1;
+}
+.sb-logo-text em { color: #60a5fa; font-style: normal; }
+.sb-logo-text span { color: #34d399; font-weight: 400; }
+
+/* Main nav section */
+.sb-section { padding: 12px 0 4px; }
+.sb-section-label {
   font-size: 9.5px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--t4); padding: 14px 16px 6px;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--sb-text-dim);
+  padding: 6px 16px 6px;
   display: block;
 }
 
-/* Competition accordion */
-.sb-comp { border-bottom: 1px solid rgba(100,160,220,0.1); }
+/* Main nav links */
+.sb-nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px;
+  color: var(--sb-text);
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px; font-weight: 600;
+  transition: all 0.18s;
+  border-left: 3px solid transparent;
+}
+.sb-nav-link:hover {
+  background: var(--sb-hover);
+  color: #fff;
+}
+.sb-nav-link.active {
+  background: var(--sb-active);
+  color: #fff;
+  border-left-color: var(--sb-accent);
+}
+.sb-nav-icon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
 
+/* Divider */
+.sb-divider {
+  height: 1px;
+  background: var(--sb-border);
+  margin: 8px 16px;
+}
+
+/* Competition accordion */
 .sb-comp-btn {
-  width: 100%; display: flex; align-items: center;
-  gap: 8px; padding: 11px 16px;
+  width: 100%; display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
   background: none; border: none; cursor: pointer;
   font-family: Verdana, sans-serif;
   font-size: 12.5px; font-weight: 700;
-  color: var(--t2); text-align: left;
+  color: var(--sb-text); text-align: left;
   transition: background 0.18s;
+  border-left: 3px solid transparent;
 }
-.sb-comp-btn:hover { background: rgba(255,255,255,0.6); }
-.sb-comp-icon { font-size: 15px; flex-shrink: 0; }
+.sb-comp-btn:hover { background: var(--sb-hover); color: #fff; }
+.sb-comp-btn.open { color: #fff; }
+.sb-comp-icon { font-size: 14px; flex-shrink: 0; }
 .sb-comp-name { flex: 1; }
 .sb-comp-badge {
   font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
-  padding: 2px 7px; border-radius: 10px; flex-shrink: 0;
+  padding: 2px 7px; border-radius: 8px; flex-shrink: 0;
 }
-.sb-comp-badge.pl  { background: rgba(56,0,60,0.1); color: #38003c; }
-.sb-comp-badge.wc  { background: rgba(200,0,30,0.1); color: #c8001e; }
-.sb-comp-badge.ucl { background: rgba(0,30,98,0.1);  color: #001e62; }
+.sb-comp-badge.pl  { background: rgba(56,0,60,0.8); color: #e9b4ff; border: 1px solid rgba(233,180,255,0.2); }
+.sb-comp-badge.wc  { background: rgba(200,0,30,0.6); color: #ffa5b4; border: 1px solid rgba(255,165,180,0.2); }
+.sb-comp-badge.ucl { background: rgba(0,30,98,0.8);  color: #93c5fd; border: 1px solid rgba(147,197,253,0.2); }
 .sb-chevron {
-  font-size: 9px; color: var(--t4);
+  font-size: 9px; color: var(--sb-text-dim);
   transition: transform 0.2s; flex-shrink: 0;
 }
 .sb-comp-btn.open .sb-chevron { transform: rotate(180deg); }
 
 /* Sub-links */
-.sb-links { display: none; padding: 2px 0 6px; background: rgba(255,255,255,0.3); }
+.sb-links { display: none; padding: 2px 0 4px; }
 .sb-links.open { display: block; }
 .sb-links a {
   display: flex; align-items: center; gap: 8px;
-  padding: 8px 16px 8px 40px;
+  padding: 7px 16px 7px 42px;
   font-family: Verdana, sans-serif;
   font-size: 12px; font-weight: 500;
-  color: var(--t3); text-decoration: none;
+  color: var(--sb-text-dim); text-decoration: none;
   transition: all 0.16s;
+  border-left: 3px solid transparent;
 }
-.sb-links a:hover { color: var(--blue); background: rgba(37,99,235,0.05); }
+.sb-links a:hover { color: #fff; background: var(--sb-hover); }
 .sb-links a.active {
-  color: var(--blue); font-weight: 700;
-  background: rgba(37,99,235,0.08);
-  border-right: 3px solid var(--blue);
+  color: var(--sb-accent);
+  background: var(--sb-active);
+  border-left-color: var(--sb-accent);
+  font-weight: 700;
 }
-.sb-link-icon { font-size: 12px; width: 16px; text-align: center; }
+.sb-link-icon { font-size: 12px; width: 16px; text-align: center; flex-shrink: 0; }
 
-/* ── PAGE CONTENT WRAPPER ── */
-.gc-pl-content {
+/* Sidebar footer */
+.sb-footer {
+  margin-top: auto;
+  padding: 14px 16px;
+  border-top: 1px solid var(--sb-border);
+  font-family: Verdana, sans-serif;
+  font-size: 10px; color: var(--sb-text-dim);
+  line-height: 1.6;
+}
+
+/* ── MAIN CONTENT AREA ────────────────────────────────────── */
+.gc-page-wrap {
+  margin-left: var(--sb-w);
   flex: 1;
   min-width: 0;
-  padding: 24px 28px 120px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ── PAGE TITLE ROW ── */
-.pl-title-row {
+/* Thin top bar — just breadcrumb + page title */
+.gc-topbar {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+  padding: 10px 28px;
   display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+  flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 1px 16px rgba(100,160,220,0.1);
+}
+.gc-breadcrumb {
+  font-family: Verdana, sans-serif;
+  font-size: 12px; color: var(--t3);
+}
+.gc-breadcrumb a { color: var(--blue); text-decoration: none; }
+.gc-breadcrumb a:hover { text-decoration: underline; }
+.gc-topbar-pill {
+  background: #38003c; color: #fff;
+  font-family: Verdana, sans-serif;
+  font-size: 12px; font-weight: 700;
+  padding: 6px 16px; border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(56,0,60,0.35);
+}
+
+/* ── PAGE CONTENT ─────────────────────────────────────────── */
+.gc-content {
+  padding: 24px 28px 100px;
+  flex: 1;
+}
+
+/* Title row */
+.pl-title-row {
+  display: flex; align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap; gap: 12px;
   margin-bottom: 20px;
 }
 .pl-title {
-  font-size: 22px; font-weight: 700;
-  color: var(--t1); letter-spacing: -0.4px;
+  font-family: Verdana, sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--t1); letter-spacing: -0.3px;
 }
 .pl-title em { color: #38003c; font-style: normal; }
-.pl-subtitle { font-size: 12px; color: var(--t3); margin-top: 4px; }
-.pl-kickoff-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: #38003c; color: #fff;
-  font-size: 12.5px; font-weight: 700;
-  padding: 8px 18px; border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(56,0,60,0.3);
-}
+.pl-subtitle { font-size: 11px; color: var(--t3); margin-top: 4px; font-family: Verdana, sans-serif; }
 
-/* ── STATS ROW ── */
+/* Stats grid */
 .pl-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px; margin-bottom: 20px;
 }
 .pl-stat {
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.82);
   border-radius: var(--r-md);
   padding: 14px 16px;
   display: flex; align-items: center; gap: 12px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 4px 16px rgba(100,160,220,0.12);
 }
 .pl-stat-icon {
-  font-size: 26px; width: 44px; height: 44px;
-  background: rgba(255,255,255,0.7);
+  font-size: 24px; width: 42px; height: 42px;
+  background: rgba(255,255,255,0.8);
   border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.pl-stat-val {
-  font-size: 20px; font-weight: 700;
-  color: var(--t1); line-height: 1;
-}
-.pl-stat-lbl {
-  font-size: 10px; color: var(--t4);
-  text-transform: uppercase; letter-spacing: 0.7px;
-  font-weight: 700; margin-top: 3px;
-}
+.pl-stat-val { font-size: 18px; font-weight: 700; color: var(--t1); line-height: 1; font-family: Verdana, sans-serif; }
+.pl-stat-lbl { font-size: 9.5px; color: var(--t4); text-transform: uppercase; letter-spacing: 0.7px; font-weight: 700; margin-top: 3px; font-family: Verdana, sans-serif; }
 
-/* ── CHAMPIONS BANNER ── */
+/* Champions banner */
 .pl-champs {
   background: linear-gradient(135deg, #fff8e7, #fff3cd);
   border: 1.5px solid #f5c842;
   border-radius: var(--r-md);
-  padding: 18px 22px;
-  margin-bottom: 18px;
-  display: flex; align-items: center; gap: 18px;
+  padding: 16px 20px; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 16px;
   box-shadow: 0 4px 20px rgba(245,166,35,0.15);
+  flex-wrap: wrap;
 }
-.pl-champs-trophy { font-size: 42px; animation: float 3s ease-in-out infinite; flex-shrink: 0; }
+.pl-champs-trophy { font-size: 38px; animation: float 3s ease-in-out infinite; flex-shrink: 0; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-.pl-champs-lbl { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #a0720a; margin-bottom: 3px; }
-.pl-champs-name { font-size: 26px; font-weight: 700; color: #1c1c1e; letter-spacing: -0.5px; line-height: 1; }
-.pl-champs-sub { font-size: 12px; color: #8a6400; margin-top: 3px; }
+.pl-champs-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #a0720a; margin-bottom: 2px; font-family: Verdana, sans-serif; }
+.pl-champs-name { font-size: 22px; font-weight: 700; color: #1c1c1e; letter-spacing: -0.3px; font-family: Verdana, sans-serif; }
+.pl-champs-sub { font-size: 11px; color: #8a6400; margin-top: 2px; font-family: Verdana, sans-serif; }
 .pl-champs-pts {
   margin-left: auto; flex-shrink: 0;
-  background: rgba(245,166,35,0.18);
-  border: 1px solid rgba(245,166,35,0.4);
-  color: #7a5200; font-size: 12px; font-weight: 700;
-  padding: 6px 16px; border-radius: 999px;
-  white-space: nowrap;
+  background: rgba(245,166,35,0.18); border: 1px solid rgba(245,166,35,0.4);
+  color: #7a5200; font-size: 11px; font-weight: 700;
+  padding: 5px 14px; border-radius: 999px;
+  font-family: Verdana, sans-serif;
 }
 
-/* ── ALERT ── */
+/* Alert */
 .pl-alert {
   background: rgba(220,38,38,0.06);
   border: 1px solid rgba(220,38,38,0.2);
   border-left: 4px solid var(--red);
   border-radius: var(--r-md);
   padding: 12px 16px; margin-bottom: 20px;
-  font-size: 13px; color: var(--t2); line-height: 1.55;
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px; color: var(--t2); line-height: 1.6;
 }
-.pl-alert-label {
-  font-size: 9.5px; font-weight: 700;
+.pl-alert-lbl {
+  font-size: 9px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--red); margin-bottom: 5px;
+  color: var(--red); margin-bottom: 5px; display: block;
 }
 
-/* ── SECTION HEAD ── */
+/* Section head */
 .pl-sec-head {
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 14px; margin-top: 22px;
+  margin-bottom: 14px; margin-top: 20px;
 }
 .pl-sec-title {
-  font-size: 10.5px; font-weight: 700;
+  font-family: Verdana, sans-serif;
+  font-size: 10px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--t4); white-space: nowrap;
 }
 .pl-sec-line { flex: 1; height: 1px; background: rgba(100,160,220,0.2); }
 
-/* ── MATCHES GRID — 2 columns, 3 on wide screens ── */
+/* ── MATCHES — 2 columns proper grid ─────────────────────── */
 .pl-matches {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-@media(min-width: 1300px) {
+@media(min-width: 1400px) {
   .pl-matches { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ── MATCH CARD ── */
 .pl-match {
-  background: var(--glass-strong);
-  backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.82);
   border-radius: var(--r-md);
-  padding: 14px 15px;
-  box-shadow: var(--glass-shadow);
+  padding: 13px 15px;
+  box-shadow: 0 4px 16px rgba(100,160,220,0.1);
   transition: all 0.2s;
   position: relative;
 }
 .pl-match:hover {
-  box-shadow: 0 10px 30px rgba(100,160,220,0.28);
+  box-shadow: 0 8px 28px rgba(100,160,220,0.22);
   transform: translateY(-2px);
 }
 .pl-match.rel {
@@ -242,187 +343,184 @@
   background: rgba(217,119,6,0.04);
 }
 
-.pl-match-badge {
+.pl-badge {
   display: inline-flex; align-items: center; gap: 4px;
+  font-family: Verdana, sans-serif;
   font-size: 9px; font-weight: 700; letter-spacing: 1px;
   text-transform: uppercase; padding: 2px 8px;
   border-radius: 999px; margin-bottom: 10px;
 }
-.pl-match-badge.rel  { background: rgba(220,38,38,0.1); color: var(--red); }
-.pl-match-badge.gold { background: rgba(217,119,6,0.1); color: var(--gold); }
-.pl-match-badge.blue { background: rgba(37,99,235,0.1); color: var(--blue); }
-.pl-match-badge.gray { background: rgba(100,116,139,0.1); color: var(--t3); }
+.pl-badge.rel  { background: rgba(220,38,38,0.1); color: var(--red); }
+.pl-badge.gold { background: rgba(217,119,6,0.1); color: var(--gold); }
+.pl-badge.blue { background: rgba(37,99,235,0.1); color: var(--blue); }
+.pl-badge.gray { background: rgba(100,116,139,0.1); color: var(--t3); }
 
 .pl-match-row {
   display: grid;
-  grid-template-columns: 1fr 62px 1fr;
-  align-items: center; gap: 8px;
-  margin-bottom: 10px;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center; gap: 8px; margin-bottom: 10px;
 }
 .pl-home { text-align: right; }
 .pl-away { text-align: left; }
-.pl-team { font-size: 13.5px; font-weight: 700; color: var(--t1); line-height: 1.2; }
-.pl-note { font-size: 10px; color: var(--t4); margin-top: 2px; }
+.pl-team { font-family: Verdana, sans-serif; font-size: 13px; font-weight: 700; color: var(--t1); line-height: 1.2; }
+.pl-note { font-family: Verdana, sans-serif; font-size: 10px; color: var(--t4); margin-top: 2px; }
 .pl-vs { text-align: center; }
-.pl-vs-txt { font-size: 9px; font-weight: 700; color: var(--t4); letter-spacing: 1px; }
-.pl-ko { font-size: 17px; font-weight: 700; color: var(--blue); line-height: 1.1; }
-
+.pl-vs-txt { font-family: Verdana, sans-serif; font-size: 9px; font-weight: 700; color: var(--t4); letter-spacing: 1px; }
+.pl-ko { font-family: Verdana, sans-serif; font-size: 16px; font-weight: 700; color: var(--blue); line-height: 1.1; }
 .pl-match-foot {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding-top: 9px;
-  border-top: 1px solid rgba(100,160,220,0.12);
-  font-size: 10.5px; color: var(--t4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 8px; border-top: 1px solid rgba(100,160,220,0.12);
+  font-family: Verdana, sans-serif; font-size: 10px; color: var(--t4);
 }
-.pl-preview {
-  color: var(--blue); text-decoration: none;
-  font-weight: 600; font-size: 10.5px;
-  transition: opacity 0.18s;
-}
+.pl-preview { color: var(--blue); text-decoration: none; font-weight: 700; font-size: 10px; }
 .pl-preview:hover { opacity: 0.7; }
 
-/* ── QUICK LINKS ── */
+/* Quick links */
 .pl-ql-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px; margin-top: 22px;
+  gap: 12px; margin-top: 20px;
 }
 .pl-ql {
   display: flex; align-items: center; gap: 10px;
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 14px; text-decoration: none;
-  color: var(--t1); box-shadow: var(--glass-shadow);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: var(--r-md); padding: 13px 14px;
+  text-decoration: none; color: var(--t1);
+  box-shadow: 0 4px 14px rgba(100,160,220,0.1);
   transition: all 0.2s;
 }
-.pl-ql:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(100,160,220,0.22);
-  border-color: rgba(37,99,235,0.3);
-}
-.pl-ql-icon {
-  font-size: 20px; width: 40px; height: 40px;
-  background: rgba(255,255,255,0.7);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.pl-ql-lbl { font-size: 13px; font-weight: 700; color: var(--t1); }
-.pl-ql-sub { font-size: 10.5px; color: var(--t4); margin-top: 2px; }
+.pl-ql:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(100,160,220,0.2); border-color: rgba(37,99,235,0.3); }
+.pl-ql-icon { font-size: 20px; width: 38px; height: 38px; background: rgba(255,255,255,0.8); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pl-ql-lbl { font-family: Verdana, sans-serif; font-size: 12.5px; font-weight: 700; color: var(--t1); }
+.pl-ql-sub { font-family: Verdana, sans-serif; font-size: 10px; color: var(--t4); margin-top: 2px; }
 
-/* ── MOBILE ── */
+/* Cookie */
+#gc-cookie-banner { position: fixed; bottom: 20px; left: calc(var(--sb-w) + 12px); right: 12px; z-index: 99999; background: rgba(15,23,42,0.97); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 14px 18px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); font-family: Verdana, sans-serif; max-width: 560px; }
+
+/* ── MOBILE ───────────────────────────────────────────────── */
 @media(max-width: 768px) {
-  .gc-sidebar { display: none; }
-  .gc-with-sidebar { display: block; }
-  .gc-pl-content { padding: 16px 14px 120px; }
+  .gc-sidebar { transform: translateX(-100%); transition: transform 0.28s ease; }
+  .gc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.4); }
+  .gc-page-wrap { margin-left: 0; }
+  .gc-topbar { padding: 10px 16px; }
+  .gc-content { padding: 16px 14px 100px; }
   .pl-stats { grid-template-columns: repeat(2, 1fr); }
   .pl-matches { grid-template-columns: 1fr; }
   .pl-ql-grid { grid-template-columns: repeat(2, 1fr); }
-  .pl-champs { flex-wrap: wrap; }
-  .pl-champs-pts { margin-left: 0; }
-  .pl-title-row { flex-direction: column; align-items: flex-start; }
+  #gc-cookie-banner { left: 12px; bottom: 80px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ YOUR EXISTING APP SHELL — header loads from app.js ══ -->
-<canvas id="gc-canvas"></canvas>
 <div id="gc-app">
 
-  <!-- HEADER — exactly as your existing site -->
-  <header class="gc-header">
-    <div class="gc-header-inner">
-      <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-        <img src="/logo.svg" alt="GoalCurrent Shield Logo"
-             width="64" height="64"
-             style="height:64px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.25));flex-shrink:0"
-             loading="eager" onerror="this.style.display='none'">
-        <span class="gc-logo">Goal<span class="gc-logo-dot">Current</span><span class="gc-logo-live">.live</span></span>
-      </a>
-      <nav class="gc-topnav">
-        <button class="gc-topnav-btn" onclick="location.href='/'">🏠 Home</button>
-        <button class="gc-topnav-btn" onclick="location.href='/'">🔴 Live</button>
-        <button class="gc-topnav-btn" onclick="location.href='/'">📅 Schedule</button>
-        <button class="gc-topnav-btn" onclick="location.href='/'">🏅 Standings</button>
-        <button class="gc-topnav-btn" onclick="location.href='/'">⭐ My Teams</button>
-        <button class="gc-topnav-btn" onclick="location.href='/'">📰 Latest News</button>
-      </nav>
+  <!-- ══ LEFT SIDEBAR — on EVERY page ══ -->
+  <aside class="gc-sidebar" id="gc-sidebar">
+
+    <!-- Logo -->
+    <a href="/" class="sb-logo">
+      <img src="/logo.svg" alt="GoalCurrent logo"
+           onerror="this.style.display='none'">
+      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+    </a>
+
+    <!-- Main nav -->
+    <div class="sb-section">
+      <span class="sb-section-label">Main Menu</span>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
     </div>
-  </header>
 
-  <!-- ══ SIDEBAR + CONTENT WRAPPER ══ -->
-  <div class="gc-with-sidebar">
+    <div class="sb-divider"></div>
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="gc-sidebar">
-      <span class="sb-label">Competitions</span>
+    <!-- Competitions -->
+    <div class="sb-section">
+      <span class="sb-section-label">Competitions</span>
 
       <!-- PL -->
-      <div class="sb-comp">
-        <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-          <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-          <span class="sb-comp-name">Premier League</span>
-          <span class="sb-comp-badge pl">PL</span>
-          <span class="sb-chevron">▼</span>
-        </button>
-        <div class="sb-links open" id="sb-pl">
-          <a href="/premier-league/" class="active"><span class="sb-link-icon">🏠</span> Overview</a>
-          <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-          <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-          <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-          <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-          <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        </div>
+      <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
+        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <span class="sb-comp-name">Premier League</span>
+        <span class="sb-comp-badge pl">PL</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links open" id="sb-pl">
+        <a href="/premier-league/" class="active"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
+        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
+        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
       </div>
 
       <!-- WC26 -->
-      <div class="sb-comp">
-        <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-          <span class="sb-comp-icon">🏆</span>
-          <span class="sb-comp-name">World Cup 2026</span>
-          <span class="sb-comp-badge wc">WC26</span>
-          <span class="sb-chevron">▼</span>
-        </button>
-        <div class="sb-links" id="sb-wc">
-          <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-          <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-          <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-          <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-          <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-        </div>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
+        <span class="sb-comp-icon">🏆</span>
+        <span class="sb-comp-name">World Cup 2026</span>
+        <span class="sb-comp-badge wc">WC26</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-wc">
+        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
+        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
       </div>
 
       <!-- UCL -->
-      <div class="sb-comp">
-        <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-          <span class="sb-comp-icon">⭐</span>
-          <span class="sb-comp-name">Champions League</span>
-          <span class="sb-comp-badge ucl">UCL</span>
-          <span class="sb-chevron">▼</span>
-        </button>
-        <div class="sb-links" id="sb-ucl">
-          <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-          <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-          <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-          <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-          <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-        </div>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+        <span class="sb-comp-icon">⭐</span>
+        <span class="sb-comp-name">Champions League</span>
+        <span class="sb-comp-badge ucl">UCL</span>
+        <span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-ucl">
+        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
       </div>
-    </aside>
+    </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="gc-pl-content">
+    <!-- Footer -->
+    <div class="sb-footer">
+      © 2026 Ashna4All (A. Zafarani)<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
+      <a href="/privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none">Privacy</a> ·
+      <a href="/terms.html" style="color:rgba(255,255,255,0.4);text-decoration:none">Terms</a> ·
+      <a href="/disclaimer.html" style="color:rgba(255,255,255,0.4);text-decoration:none">Disclaimer</a>
+    </div>
+  </aside>
 
-      <!-- Title row -->
+  <!-- ══ PAGE CONTENT ══ -->
+  <div class="gc-page-wrap">
+
+    <!-- Slim top bar -->
+    <div class="gc-topbar">
+      <div class="gc-breadcrumb">
+        <a href="/">GoalCurrent.live</a> › <a href="/premier-league/">Premier League</a> › Overview
+      </div>
+      <div class="gc-topbar-pill">🕓 Sun 24 May · 16:00 BST</div>
+    </div>
+
+    <!-- Main content -->
+    <div class="gc-content">
+
+      <!-- Title -->
       <div class="pl-title-row">
         <div>
           <div class="pl-title">Premier League <em>Final Day</em></div>
-          <div class="pl-subtitle">2025/26 Season · Matchweek 38 · All 10 matches</div>
+          <div class="pl-subtitle">2025/26 Season · Matchweek 38 · All 10 matches kick off simultaneously</div>
         </div>
-        <div class="pl-kickoff-pill">🕓 Sun 24 May · 16:00 BST</div>
       </div>
 
       <!-- Stats -->
@@ -433,11 +531,11 @@
         </div>
         <div class="pl-stat">
           <div class="pl-stat-icon">🏆</div>
-          <div><div class="pl-stat-val">82pts</div><div class="pl-stat-lbl">Arsenal — Champions</div></div>
+          <div><div class="pl-stat-val">82 pts</div><div class="pl-stat-lbl">Arsenal — Champions</div></div>
         </div>
         <div class="pl-stat">
           <div class="pl-stat-icon">⚠️</div>
-          <div><div class="pl-stat-val">2</div><div class="pl-stat-lbl">Clubs Battling Relegation</div></div>
+          <div><div class="pl-stat-val">2</div><div class="pl-stat-lbl">Relegation Spots Open</div></div>
         </div>
         <div class="pl-stat">
           <div class="pl-stat-icon">📅</div>
@@ -458,13 +556,13 @@
 
       <!-- Alert -->
       <div class="pl-alert">
-        <div class="pl-alert-label">⚡ Relegation Battle — Final Day Decider</div>
+        <span class="pl-alert-lbl">⚡ Relegation Battle — Final Day Decider</span>
         <strong>Burnley</strong> and <strong>Wolves</strong> are already relegated.
         <strong>Tottenham</strong> (17th, 38pts) and <strong>West Ham</strong> (18th, 36pts)
-        are fighting to stay up today. Every result at 16:00 BST matters.
+        are fighting to stay up today at 16:00 BST.
       </div>
 
-      <!-- Fixtures -->
+      <!-- Fixtures section -->
       <div class="pl-sec-head">
         <div class="pl-sec-title">⚽ Final Day Fixtures — Sunday 24 May · 16:00 BST</div>
         <div class="pl-sec-line"></div>
@@ -473,7 +571,7 @@
       <div class="pl-matches">
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Brighton</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -483,7 +581,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge gray">Mid-Table</div>
+          <div class="pl-badge gray">Mid-Table</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Burnley</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -493,7 +591,7 @@
         </div>
 
         <div class="pl-match gold">
-          <div class="pl-match-badge gold">🏆 Champions Away</div>
+          <div class="pl-badge gold">🏆 Champions Away</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Crystal Palace</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -503,7 +601,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Fulham</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -513,7 +611,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Liverpool</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -523,7 +621,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Man City</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -533,7 +631,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Nott'm Forest</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -543,7 +641,7 @@
         </div>
 
         <div class="pl-match">
-          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-badge blue">🔵 Top Half</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Sunderland</div><div class="pl-note">10th · Safe</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -553,7 +651,7 @@
         </div>
 
         <div class="pl-match rel">
-          <div class="pl-match-badge rel">🔴 Relegation Decider</div>
+          <div class="pl-badge rel">🔴 Relegation Decider</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">Tottenham</div><div class="pl-note">17th · Must not lose</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -563,7 +661,7 @@
         </div>
 
         <div class="pl-match rel">
-          <div class="pl-match-badge rel">🔴 Relegation Decider</div>
+          <div class="pl-badge rel">🔴 Relegation Decider</div>
           <div class="pl-match-row">
             <div class="pl-home"><div class="pl-team">West Ham</div><div class="pl-note">18th · Must win</div></div>
             <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
@@ -574,7 +672,7 @@
 
       </div>
 
-      <!-- Quick Links -->
+      <!-- Quick links -->
       <div class="pl-sec-head">
         <div class="pl-sec-title">🔗 Explore More</div>
         <div class="pl-sec-line"></div>
@@ -598,39 +696,31 @@
         </a>
       </div>
 
-    </div><!-- /gc-pl-content -->
-  </div><!-- /gc-with-sidebar -->
-
-  <!-- Bottom nav — mobile only (from existing site) -->
-  <nav class="gc-bottomnav">
-    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">🏠</span>Home</button>
-    <button class="gc-bottomnav-btn active"><span class="gc-nav-icon">🔴</span>Live</button>
-    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">📅</span>Schedule</button>
-    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">🏅</span>Standings</button>
-    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">⭐</span>My Teams</button>
-  </nav>
+    </div><!-- /gc-content -->
+  </div><!-- /gc-page-wrap -->
 
 </div><!-- /gc-app -->
 
-<!-- Cookie banner -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:80px;left:12px;right:12px;z-index:99999;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:16px 20px;box-shadow:0 8px 40px rgba(0,0,0,0.5);font-family:Verdana,Geneva,sans-serif;max-width:600px;margin:0 auto;">
-  <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px">
-    <span style="font-size:20px;flex-shrink:0">🍪</span>
-    <div style="font-size:12px;color:#94a3b8;line-height:1.6">We use cookies for analytics and ads. See our <a href="/privacy.html" style="color:#60a5fa">Privacy Policy</a>.</div>
+<!-- Cookie -->
+<div id="gc-cookie-banner" style="display:none;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <span style="font-size:18px">🍪</span>
+    <span style="font-size:11px;color:#94a3b8;line-height:1.6">We use cookies for analytics and ads. See our <a href="/privacy.html" style="color:#60a5fa">Privacy Policy</a>.</span>
   </div>
-  <div style="display:flex;gap:8px;justify-content:flex-end">
-    <button onclick="document.getElementById('gc-cookie-banner').style.display='none';localStorage.setItem('gc_ck','1')" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:8px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Accept ✓</button>
+  <div style="text-align:right">
+    <button onclick="document.getElementById('gc-cookie-banner').style.display='none';localStorage.setItem('gc_ck','1')"
+      style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:7px 18px;border-radius:8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;cursor:pointer">
+      Accept ✓
+    </button>
   </div>
 </div>
 
 <script>
-// Cookie
-if(!localStorage.getItem('gc_ck')) setTimeout(function(){ document.getElementById('gc-cookie-banner').style.display='block'; }, 2000);
-
-// Sidebar accordion
+if(!localStorage.getItem('gc_ck')) {
+  setTimeout(function(){ document.getElementById('gc-cookie-banner').style.display='block'; }, 2000);
+}
 function sbToggle(id, btn) {
-  var links = document.getElementById(id);
-  links.classList.toggle('open');
+  document.getElementById(id).classList.toggle('open');
   btn.classList.toggle('open');
 }
 </script>
