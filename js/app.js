@@ -3,7 +3,7 @@ var GC = (function () {
   var currentPage = 'home';
   var currentType = 'ALL';
 
-  function draw() {
+  function draw()
     var el = document.getElementById('gc-content');
     if (!el) return;
     el.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading...</span></div>';
