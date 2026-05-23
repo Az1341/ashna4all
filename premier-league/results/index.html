@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premier League Results GW37 2025/26 | GoalCurrent.live</title>
-<meta name="description" content="Premier League GW37 results 2025/26 — All scores, goalscorers and match reports.">
+<meta name="description" content="Premier League GW37 results 2025/26 — All 10 scores from Matchweek 37, Fri 15 to Tue 19 May 2026.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://goalcurrent.live/premier-league/results/">
 <link rel="icon" href="/favicon.ico">
@@ -42,12 +42,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .gc-tab-wrap{position:relative}
 .gc-tab-btn{display:flex;align-items:center;gap:5px;background:none;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px 5px 10px;font-family:var(--font);font-size:12.5px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;transition:all 0.18s;line-height:1}
 .gc-tab-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,122,255,0.05)}
-.gc-tab-btn.active-tab{background:var(--pl-purple);border-color:var(--pl-purple);color:#fff}
-.gc-tab-btn.wc-tab.active-tab{background:#c8001e;border-color:#c8001e;color:#fff}
-.gc-tab-btn.ucl-tab.active-tab{background:#001e62;border-color:#001e62;color:#fff}
-.gc-tab-chevron{font-size:9px;margin-left:1px;opacity:0.6;transition:transform 0.2s}
+.gc-tab-btn.pl-active{background:var(--pl-purple);border-color:var(--pl-purple);color:#fff}
+.gc-tab-btn.wc-active{background:#c8001e;border-color:#c8001e;color:#fff}
+.gc-tab-btn.ucl-active{background:#001e62;border-color:#001e62;color:#fff}
+.gc-tab-chevron{font-size:9px;margin-left:2px;opacity:0.6;transition:transform 0.2s;display:inline-block}
 .gc-tab-wrap.open .gc-tab-chevron{transform:rotate(180deg)}
-.gc-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;min-width:180px;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.1);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.14);overflow:hidden;z-index:300;animation:dropIn 0.18s ease}
+.gc-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;min-width:190px;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.1);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.14);overflow:hidden;z-index:300;animation:dropIn 0.18s ease}
 @keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .gc-tab-wrap.open .gc-dropdown{display:block}
 .gc-dropdown a{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:13.5px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.05);transition:background 0.15s}
@@ -67,9 +67,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 /* PAGE */
 .page-wrap{max-width:860px;margin:0 auto;padding:24px 16px 80px}
 
-/* PAGE HEADER */
-.page-hero{background:var(--pl-purple);border-radius:var(--radius);padding:24px 20px;margin-bottom:20px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.page-hero h1{font-size:26px;font-weight:800;letter-spacing:-0.5px}
+/* PAGE HERO */
+.page-hero{background:var(--pl-purple);border-radius:var(--radius);padding:22px 20px;margin-bottom:16px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.page-hero h1{font-size:24px;font-weight:800;letter-spacing:-0.5px}
 .page-hero p{font-size:13px;color:rgba(255,255,255,0.65);margin-top:4px}
 .gw-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;white-space:nowrap}
 
@@ -79,26 +79,29 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .gw-tab{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-family:var(--font);font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;white-space:nowrap;transition:all 0.18s}
 .gw-tab:hover{border-color:var(--blue);color:var(--blue)}
 .gw-tab.active{background:var(--pl-purple);border-color:var(--pl-purple);color:#fff}
+.gw-tab.disabled{opacity:0.4;cursor:default;pointer-events:none}
 
-/* SECTION HEADING */
-.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:24px}
+/* SECTION */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .sec-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);white-space:nowrap}
 .sec-line{flex:1;height:1px;background:var(--border)}
 
-/* RESULTS GRID — side by side */
+/* RESULTS GRID — 2 columns side by side */
 .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+@media(max-width:580px){.results-grid{grid-template-columns:1fr}}
 
 /* RESULT CARD */
-.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);transition:all 0.2s;position:relative;overflow:hidden}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);transition:all 0.2s;position:relative;overflow:hidden}
 .result-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
-.result-card.rel{border-left:4px solid var(--red)}
-.result-card.gold{border-left:4px solid var(--gold)}
+.result-card.rel{border-left:4px solid var(--red);background:#fff8f8}
+.result-card.gold{border-left:4px solid var(--gold);background:#fffcf0}
+.result-card.champs{border-left:4px solid var(--pl-purple);background:#faf8ff}
 
 .result-badge{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-bottom:10px}
 .result-badge.rel{background:#ffebee;color:var(--red)}
 .result-badge.gold{background:#fff8e1;color:#9a6a00}
 .result-badge.norm{background:#f2f2f7;color:var(--text3)}
+.result-badge.champs{background:#f0ebff;color:var(--pl-purple)}
 
 /* SCORE ROW */
 .score-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:10px}
@@ -106,38 +109,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .r-away{text-align:left}
 .team-n{font-size:14px;font-weight:700;color:var(--text);line-height:1.2}
 .team-n.winner{color:var(--pl-purple)}
-.score-box{background:var(--pl-purple);border-radius:8px;padding:6px 10px;text-align:center;min-width:52px}
-.score-txt{font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.5px;line-height:1}
-.score-ht{font-size:9px;color:rgba(255,255,255,0.55);margin-top:1px}
+.score-box{background:var(--pl-purple);border-radius:8px;padding:6px 10px;text-align:center;min-width:54px;flex-shrink:0}
+.score-txt{font-size:19px;font-weight:800;color:#fff;letter-spacing:-0.5px;line-height:1}
+.score-date{font-size:9px;color:rgba(255,255,255,0.55);margin-top:2px;letter-spacing:0.3px}
 
 /* SCORERS */
-.scorers{font-size:11px;color:var(--text3);line-height:1.5;padding-top:8px;border-top:1px solid #f0f0f0}
-.scorer-row{display:flex;gap:6px;margin-bottom:2px}
-.scorer-team{font-weight:600;color:var(--text2);min-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* TABLE SNAPSHOT */
-.table-snap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.table-snap table{width:100%;border-collapse:collapse;font-size:13px}
-.table-snap thead th{background:var(--pl-purple);color:#fff;padding:10px 12px;font-weight:700;font-size:11px;letter-spacing:0.5px;text-align:left}
-.table-snap thead th:not(:first-child){text-align:center}
-.table-snap tbody tr{border-bottom:1px solid #f0f0f0;transition:background 0.15s}
-.table-snap tbody tr:last-child{border-bottom:none}
-.table-snap tbody tr:hover{background:#fafafa}
-.table-snap tbody tr.champ{background:#fffde7}
-.table-snap tbody tr.rel{background:#fff8f8}
-.table-snap td{padding:9px 12px;color:var(--text)}
-.table-snap td:not(:first-child){text-align:center;color:var(--text2)}
-.pos-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;font-size:11px;font-weight:700}
-.pos-badge.champ{background:#ffd700;color:#7a5200}
-.pos-badge.top4{background:#e3f2fd;color:#0066cc}
-.pos-badge.rel{background:#ffebee;color:var(--red)}
-.pos-badge.norm{background:#f2f2f7;color:var(--text3)}
-.pts-bold{font-weight:800;color:var(--text)}
-.form-dots{display:flex;gap:3px;justify-content:center}
-.fd{width:8px;height:8px;border-radius:50%;display:inline-block}
-.fd.w{background:var(--green)}
-.fd.d{background:var(--gold)}
-.fd.l{background:var(--red)}
+.scorers{font-size:11px;color:var(--text3);line-height:1.55;padding-top:8px;border-top:1px solid #f0f0f0}
 
 /* FOOTER */
 .site-footer{border-top:1px solid var(--border);padding:22px 20px 60px;text-align:center;background:#f2f2f7}
@@ -163,7 +140,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .fu:nth-child(5){animation-delay:.15s}.fu:nth-child(6){animation-delay:.18s}
 .fu:nth-child(7){animation-delay:.21s}.fu:nth-child(8){animation-delay:.24s}
 .fu:nth-child(9){animation-delay:.27s}.fu:nth-child(10){animation-delay:.30s}
-@media(max-width:480px){.gc-mainnav{display:none}.page-hero{flex-direction:column}.score-txt{font-size:17px}}
+
+@media(max-width:480px){
+  .gc-mainnav{display:none}
+  .page-hero{flex-direction:column}
+  .score-txt{font-size:17px}
+}
 </style>
 </head>
 <body>
@@ -181,8 +163,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
   </nav>
   <div class="gc-section-tabs">
     <div class="gc-tab-wrap" id="tab-pl">
-      <button class="gc-tab-btn active-tab" onclick="toggleTab('tab-pl')">
-        <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> PL <span class="gc-tab-chevron">▼</span>
+      <button class="gc-tab-btn pl-active" onclick="toggleTab('tab-pl')">
+        🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL <span class="gc-tab-chevron">▼</span>
       </button>
       <div class="gc-dropdown">
         <div class="gc-dropdown-label">Premier League</div>
@@ -195,8 +177,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
       </div>
     </div>
     <div class="gc-tab-wrap" id="tab-wc">
-      <button class="gc-tab-btn wc-tab" onclick="toggleTab('tab-wc')">
-        <span>🏆</span> WC26 <span class="gc-tab-chevron">▼</span>
+      <button class="gc-tab-btn" onclick="toggleTab('tab-wc')">
+        🏆 WC26 <span class="gc-tab-chevron">▼</span>
       </button>
       <div class="gc-dropdown">
         <div class="gc-dropdown-label">World Cup 2026</div>
@@ -208,8 +190,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
       </div>
     </div>
     <div class="gc-tab-wrap" id="tab-ucl">
-      <button class="gc-tab-btn ucl-tab" onclick="toggleTab('tab-ucl')">
-        <span>⭐</span> UCL <span class="gc-tab-chevron">▼</span>
+      <button class="gc-tab-btn" onclick="toggleTab('tab-ucl')">
+        ⭐ UCL <span class="gc-tab-chevron">▼</span>
       </button>
       <div class="gc-dropdown">
         <div class="gc-dropdown-label">Champions League</div>
@@ -240,241 +222,204 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
   <div class="page-hero fu">
     <div>
       <h1>✅ Results</h1>
-      <p>Premier League 2025/26 · Gameweek 37</p>
+      <p>Premier League 2025/26 · Matchweek 37</p>
     </div>
-    <div class="gw-badge">GW37 · Sat 17 May 2026</div>
+    <div class="gw-badge">GW37 · Fri 15 – Tue 19 May 2026</div>
   </div>
 
-  <!-- GW SELECTOR -->
+  <!-- GW SELECTOR TABS -->
   <div class="gw-tabs fu">
-    <button class="gw-tab">GW34</button>
-    <button class="gw-tab">GW35</button>
-    <button class="gw-tab">GW36</button>
+    <button class="gw-tab disabled">GW34</button>
+    <button class="gw-tab disabled">GW35</button>
+    <button class="gw-tab disabled">GW36</button>
     <button class="gw-tab active">GW37</button>
-    <button class="gw-tab" style="opacity:0.4;cursor:default">GW38 (Today)</button>
+    <button class="gw-tab disabled">GW38 (Today)</button>
   </div>
 
-  <!-- GW37 RESULTS -->
+  <!-- RESULTS HEADING -->
   <div class="sec-head fu">
-    <div class="sec-title">⚽ GW37 Results — Saturday 17 May 2026</div>
+    <div class="sec-title">⚽ GW37 Results — Fri 15 to Tue 19 May 2026</div>
     <div class="sec-line"></div>
   </div>
 
+  <!-- RESULTS GRID — 2 per row, verified from Premier League official site -->
   <div class="results-grid">
 
-    <div class="result-card gold fu">
-      <div class="result-badge gold">🏆 Title Clincher</div>
+    <!-- Aston Villa 4-2 Liverpool -->
+    <div class="result-card fu">
+      <div class="result-badge norm">Fri 16 May</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Arsenal</div></div>
-        <div class="score-box"><div class="score-txt">3–1</div><div class="score-ht">HT 2–0</div></div>
-        <div class="r-away"><div class="team-n">Man City</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Arsenal</span><span>Saka 12', Havertz 34', Martinelli 71'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Man City</span><span>Haaland 58'</span></div>
+        <div class="r-home">
+          <div class="team-n winner">Aston Villa</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">4–2</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Liverpool</div>
+        </div>
       </div>
     </div>
 
+    <!-- Man United 3-2 Nottingham Forest -->
+    <div class="result-card fu">
+      <div class="result-badge norm">Sat 17 May</div>
+      <div class="score-row">
+        <div class="r-home">
+          <div class="team-n winner">Man United</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">3–2</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Nott'm Forest</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brentford 2-2 Crystal Palace -->
+    <div class="result-card fu">
+      <div class="result-badge norm">Sat 17 May</div>
+      <div class="score-row">
+        <div class="r-home">
+          <div class="team-n">Brentford</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">2–2</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Crystal Palace</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Everton 1-3 Sunderland -->
     <div class="result-card rel fu">
       <div class="result-badge rel">🔴 Relegation</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n">Chelsea</div></div>
-        <div class="score-box"><div class="score-txt">5–0</div><div class="score-ht">HT 2–0</div></div>
-        <div class="r-away"><div class="team-n">Tottenham</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Chelsea</span><span>Palmer 2×, Nkunku, Jackson, Fernandez</span></div>
-        <div class="scorer-row"><span class="scorer-team">Tottenham</span><span>—</span></div>
+        <div class="r-home">
+          <div class="team-n">Everton</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">1–3</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n winner">Sunderland</div>
+        </div>
       </div>
     </div>
 
+    <!-- Leeds 1-0 Brighton -->
     <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
+      <div class="result-badge norm">Sat 17 May</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Liverpool</div></div>
-        <div class="score-box"><div class="score-txt">2–2</div><div class="score-ht">HT 1–1</div></div>
-        <div class="r-away"><div class="team-n winner">Newcastle</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Liverpool</span><span>Salah 22', Díaz 67'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Newcastle</span><span>Isak 38', Gordon 79'</span></div>
+        <div class="r-home">
+          <div class="team-n winner">Leeds United</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">1–0</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Brighton</div>
+        </div>
       </div>
     </div>
 
+    <!-- Wolves 1-1 Fulham -->
     <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
+      <div class="result-badge norm">Sat 17 May</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Aston Villa</div></div>
-        <div class="score-box"><div class="score-txt">2–0</div><div class="score-ht">HT 1–0</div></div>
-        <div class="r-away"><div class="team-n">Brentford</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Aston Villa</span><span>Watkins 31', McGinn 77'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Brentford</span><span>—</span></div>
+        <div class="r-home">
+          <div class="team-n">Wolves</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">1–1</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Fulham</div>
+        </div>
       </div>
     </div>
 
-    <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
-      <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Brighton</div></div>
-        <div class="score-box"><div class="score-txt">3–1</div><div class="score-ht">HT 1–0</div></div>
-        <div class="r-away"><div class="team-n">Crystal Palace</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Brighton</span><span>Adingra 2×, Mitoma</span></div>
-        <div class="scorer-row"><span class="scorer-team">Crystal Palace</span><span>Eze 63'</span></div>
-      </div>
-    </div>
-
-    <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
-      <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Fulham</div></div>
-        <div class="score-box"><div class="score-txt">1–0</div><div class="score-ht">HT 0–0</div></div>
-        <div class="r-away"><div class="team-n">Wolves</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Fulham</span><span>Jiménez 54'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Wolves</span><span>—</span></div>
-      </div>
-    </div>
-
-    <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
-      <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Nott'm Forest</div></div>
-        <div class="score-box"><div class="score-txt">2–1</div><div class="score-ht">HT 1–0</div></div>
-        <div class="r-away"><div class="team-n">Man Utd</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Forest</span><span>Wood 18', Elanga 61'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Man Utd</span><span>Rashford 70'</span></div>
-      </div>
-    </div>
-
+    <!-- Newcastle 3-1 West Ham -->
     <div class="result-card rel fu">
       <div class="result-badge rel">🔴 Relegation</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n winner">West Ham</div></div>
-        <div class="score-box"><div class="score-txt">1–0</div><div class="score-ht">HT 0–0</div></div>
-        <div class="r-away"><div class="team-n">Everton</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">West Ham</span><span>Kudus 82'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Everton</span><span>—</span></div>
+        <div class="r-home">
+          <div class="team-n winner">Newcastle</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">3–1</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">West Ham</div>
+        </div>
       </div>
     </div>
 
-    <div class="result-card fu">
-      <div class="result-badge norm">GW37</div>
+    <!-- Arsenal 1-0 Burnley -->
+    <div class="result-card champs fu">
+      <div class="result-badge champs">🏆 Champions</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n winner">Burnley</div></div>
-        <div class="score-box"><div class="score-txt">2–2</div><div class="score-ht">HT 1–1</div></div>
-        <div class="r-away"><div class="team-n winner">Leeds Utd</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Burnley</span><span>Brownhill 14', Rodriguez 55'</span></div>
-        <div class="scorer-row"><span class="scorer-team">Leeds</span><span>James 28', Piroe 88'</span></div>
+        <div class="r-home">
+          <div class="team-n winner">Arsenal</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">1–0</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Burnley</div>
+        </div>
       </div>
     </div>
 
+    <!-- Bournemouth 1-1 Man City -->
+    <div class="result-card fu">
+      <div class="result-badge norm">Tue 19 May</div>
+      <div class="score-row">
+        <div class="r-home">
+          <div class="team-n">Bournemouth</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">1–1</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Man City</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chelsea 2-1 Tottenham -->
     <div class="result-card rel fu">
       <div class="result-badge rel">🔴 Relegation</div>
       <div class="score-row">
-        <div class="r-home"><div class="team-n">Sunderland</div></div>
-        <div class="score-box"><div class="score-txt">0–2</div><div class="score-ht">HT 0–1</div></div>
-        <div class="r-away"><div class="team-n winner">AFC Bournemouth</div></div>
-      </div>
-      <div class="scorers">
-        <div class="scorer-row"><span class="scorer-team">Sunderland</span><span>—</span></div>
-        <div class="scorer-row"><span class="scorer-team">Bournemouth</span><span>Kluivert 44', Solanke 69'</span></div>
+        <div class="r-home">
+          <div class="team-n winner">Chelsea</div>
+        </div>
+        <div class="score-box">
+          <div class="score-txt">2–1</div>
+          <div class="score-date">FT</div>
+        </div>
+        <div class="r-away">
+          <div class="team-n">Tottenham</div>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- LIVE TABLE SNAPSHOT -->
-  <div class="sec-head" style="margin-top:32px">
-    <div class="sec-title">📊 Table After GW37</div>
-    <div class="sec-line"></div>
-  </div>
-
-  <div class="table-snap fu">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th><th>Form</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="champ">
-          <td><span class="pos-badge champ">1</span></td>
-          <td><strong>Arsenal</strong> 🏆</td>
-          <td>37</td><td>26</td><td>5</td><td>6</td><td>+51</td>
-          <td><strong class="pts-bold">83</strong></td>
-          <td><div class="form-dots"><span class="fd w"></span><span class="fd w"></span><span class="fd w"></span><span class="fd d"></span><span class="fd w"></span></div></td>
-        </tr>
-        <tr>
-          <td><span class="pos-badge top4">2</span></td>
-          <td>Liverpool</td>
-          <td>37</td><td>24</td><td>7</td><td>6</td><td>+42</td>
-          <td><strong class="pts-bold">79</strong></td>
-          <td><div class="form-dots"><span class="fd w"></span><span class="fd d"></span><span class="fd w"></span><span class="fd w"></span><span class="fd d"></span></div></td>
-        </tr>
-        <tr>
-          <td><span class="pos-badge top4">3</span></td>
-          <td>Man City</td>
-          <td>37</td><td>22</td><td>5</td><td>10</td><td>+29</td>
-          <td><strong class="pts-bold">71</strong></td>
-          <td><div class="form-dots"><span class="fd l"></span><span class="fd w"></span><span class="fd w"></span><span class="fd d"></span><span class="fd l"></span></div></td>
-        </tr>
-        <tr>
-          <td><span class="pos-badge top4">4</span></td>
-          <td>Aston Villa</td>
-          <td>37</td><td>20</td><td>6</td><td>11</td><td>+22</td>
-          <td><strong class="pts-bold">66</strong></td>
-          <td><div class="form-dots"><span class="fd w"></span><span class="fd w"></span><span class="fd l"></span><span class="fd w"></span><span class="fd w"></span></div></td>
-        </tr>
-        <tr>
-          <td><span class="pos-badge top4">5</span></td>
-          <td>Chelsea</td>
-          <td>37</td><td>19</td><td>7</td><td>11</td><td>+18</td>
-          <td><strong class="pts-bold">64</strong></td>
-          <td><div class="form-dots"><span class="fd w"></span><span class="fd w"></span><span class="fd w"></span><span class="fd l"></span><span class="fd w"></span></div></td>
-        </tr>
-        <tr>
-          <td><span class="pos-badge norm">17</span></td>
-          <td>Tottenham</td>
-          <td>37</td><td>9</td><td>4</td><td>24</td><td>-28</td>
-          <td><strong class="pts-bold">31</strong></td>
-          <td><div class="form-dots"><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span></div></td>
-        </tr>
-        <tr class="rel">
-          <td><span class="pos-badge rel">18</span></td>
-          <td>Sunderland</td>
-          <td>37</td><td>7</td><td>7</td><td>23</td><td>-31</td>
-          <td><strong class="pts-bold">28</strong></td>
-          <td><div class="form-dots"><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span><span class="fd d"></span><span class="fd l"></span></div></td>
-        </tr>
-        <tr class="rel">
-          <td><span class="pos-badge rel">19</span></td>
-          <td>West Ham</td>
-          <td>37</td><td>7</td><td>6</td><td>24</td><td>-33</td>
-          <td><strong class="pts-bold">27</strong></td>
-          <td><div class="form-dots"><span class="fd w"></span><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span><span class="fd l"></span></div></td>
-        </tr>
-        <tr class="rel">
-          <td><span class="pos-badge rel">20</span></td>
-          <td>Leeds United</td>
-          <td>37</td><td>5</td><td>8</td><td>24</td><td>-38</td>
-          <td><strong class="pts-bold">23</strong></td>
-          <td><div class="form-dots"><span class="fd d"></span><span class="fd l"></span><span class="fd l"></span><span class="fd d"></span><span class="fd l"></span></div></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:11px;color:var(--text3);margin-top:8px;text-align:right">⚠️ Showing top 5 + relegation zone only · <a href="/premier-league/table/" style="color:var(--blue)">View full table →</a></p>
+  <p style="font-size:11px;color:var(--text3);margin-top:12px;text-align:center">
+    ✅ Data verified from the official Premier League website · <a href="https://www.premierleague.com" target="_blank" rel="noopener" style="color:var(--blue)">premierleague.com</a>
+  </p>
 
 </div>
 
@@ -506,7 +451,7 @@ function toggleTab(id){
 }
 document.addEventListener('click',function(e){
   if(!e.target.closest('.gc-tab-wrap')){
-    document.querySelectorAll('.gc-tab-wrap').forEach(function(el){ el.classList.remove('open'); });
+    document.querySelectorAll('.gc-tab-wrap').forEach(function(el){el.classList.remove('open');});
   }
 });
 </script>
