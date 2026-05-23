@@ -5,672 +5,634 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premier League 2025/26 — Final Day | GoalCurrent.live</title>
 <meta name="description" content="Premier League 2025/26 Final Day — All 10 matches, live table, results and news. Arsenal confirmed champions.">
+<link rel="canonical" href="https://goalcurrent.live/premier-league/">
 <link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
 <style>
-/* ── APPLE SYSTEM FONT STACK ── */
+/* ── SIDEBAR LAYOUT — added on top of existing style.css ── */
 :root {
-  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
-  --pl-purple: #38003c;
-  --pl-pink:   #e90052;
-  --pl-green:  #00b341;
-  --gold:      #f5a623;
-  --blue:      #007aff;
-  --red:       #ff3b30;
-  --green:     #34c759;
-  --bg:        #f2f2f7;
-  --card:      #ffffff;
-  --text:      #1c1c1e;
-  --text2:     #3a3a3c;
-  --text3:     #6e6e73;
-  --border:    #d1d1d6;
-  --radius:    14px;
-  --shadow:    0 2px 12px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --sb-w: 220px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+
+/* Shift body layout for sidebar */
+.gc-with-sidebar {
+  display: flex;
+  min-height: calc(100vh - var(--hdr-h));
 }
-.gc-topbar {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  height: 56px;
-  display: flex; align-items: center;
-  padding: 0 20px; gap: 0;
+
+/* ── LEFT SIDEBAR ── */
+.gc-sidebar {
+  width: var(--sb-w);
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-right: 1px solid rgba(255,255,255,0.82);
+  box-shadow: 2px 0 16px rgba(100,160,220,0.1);
+  padding: 16px 0 100px;
+  position: sticky;
+  top: var(--hdr-h);
+  height: calc(100vh - var(--hdr-h));
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  z-index: 100;
 }
-.gc-topbar-logo {
-  font-size: 19px; font-weight: 700;
-  color: var(--text); text-decoration: none; flex-shrink: 0;
-  letter-spacing: -0.4px; margin-right: 8px;
-}
-.gc-topbar-logo em { color: var(--blue); font-style: normal; }
-.gc-topbar-logo span { color: var(--pl-green); }
-.gc-mainnav {
-  display: flex; align-items: center; gap: 2px;
-  flex: 1; justify-content: center;
-}
-.gc-mainnav a {
-  display: flex; align-items: center; gap: 5px;
-  color: var(--text2); text-decoration: none;
-  font-size: 13.5px; font-weight: 500;
-  padding: 6px 12px; border-radius: 8px;
-  white-space: nowrap; transition: background 0.18s, color 0.18s;
-}
-.gc-mainnav a:hover { background: rgba(0,0,0,0.05); color: var(--text); }
-.gc-mainnav a.active { background: rgba(0,122,255,0.1); color: var(--blue); font-weight: 600; }
-.gc-section-tabs { display: flex; align-items: center; gap: 6px; margin-left: 12px; }
-.gc-tab-wrap { position: relative; }
-.gc-tab-btn {
-  display: flex; align-items: center; gap: 5px;
-  background: none; border: 1.5px solid var(--border);
-  border-radius: 20px; padding: 5px 12px 5px 10px;
-  font-family: var(--font); font-size: 12.5px; font-weight: 600;
-  color: var(--text2); cursor: pointer; white-space: nowrap;
-  transition: all 0.18s; line-height: 1;
-}
-.gc-tab-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,122,255,0.05); }
-.gc-tab-btn.active-tab { background: var(--pl-purple); border-color: var(--pl-purple); color: #fff; }
-.gc-tab-btn.wc-tab.active-tab { background: #c8001e; border-color: #c8001e; color: #fff; }
-.gc-tab-btn.ucl-tab.active-tab { background: #001e62; border-color: #001e62; color: #fff; }
-.gc-tab-icon { font-size: 14px; }
-.gc-tab-chevron { font-size: 9px; margin-left: 1px; opacity: 0.6; transition: transform 0.2s; }
-.gc-tab-wrap.open .gc-tab-chevron { transform: rotate(180deg); }
-.gc-dropdown {
-  display: none;
-  position: absolute; top: calc(100% + 8px); right: 0;
-  min-width: 180px;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-  overflow: hidden; z-index: 300;
-  animation: dropIn 0.18s ease;
-}
-@keyframes dropIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
-.gc-tab-wrap.open .gc-dropdown { display: block; }
-.gc-dropdown a {
-  display: flex; align-items: center; gap: 10px;
-  padding: 11px 16px; font-size: 13.5px; font-weight: 500;
-  color: var(--text); text-decoration: none;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  transition: background 0.15s;
-}
-.gc-dropdown a:last-child { border-bottom: none; }
-.gc-dropdown a:hover { background: rgba(0,122,255,0.07); color: var(--blue); }
-.gc-dropdown a .dd-icon { font-size: 15px; width: 22px; text-align: center; }
-.gc-dropdown-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--text3);
-  padding: 10px 16px 4px;
-}
-.pl-subheader {
-  position: sticky; top: 56px; z-index: 150;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-  display: flex; align-items: center;
-  padding: 0 16px; height: 44px; gap: 2px; overflow-x: auto;
-  -ms-overflow-style: none; scrollbar-width: none;
-}
-.pl-subheader::-webkit-scrollbar { display: none; }
-.pl-subheader a {
-  color: var(--text3); text-decoration: none;
-  font-size: 13px; font-weight: 500;
-  padding: 5px 12px; border-radius: 8px;
-  white-space: nowrap; transition: all 0.18s; flex-shrink: 0;
-}
-.pl-subheader a:hover { color: var(--text); background: rgba(0,0,0,0.05); }
-.pl-subheader a.active { color: var(--pl-purple); font-weight: 700; background: rgba(56,0,60,0.07); }
-.pl-subheader-right { margin-left: auto; color: var(--text3); font-size: 12px; white-space: nowrap; flex-shrink: 0; padding-left: 12px; }
-.page-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 80px; }
-.hero {
-  text-align: center; padding: 32px 20px 28px;
-  background: linear-gradient(160deg, var(--pl-purple) 0%, #5c0070 100%);
-  border-radius: var(--radius); margin-bottom: 16px;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.season-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85); font-size: 11px; font-weight: 600;
+.gc-sidebar::-webkit-scrollbar { display: none; }
+
+.sb-label {
+  font-size: 9.5px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 20px; margin-bottom: 14px;
+  color: var(--t4); padding: 14px 16px 6px;
+  display: block;
 }
-.season-pill::before { content: '●'; color: #00ff85; font-size: 7px; }
-.hero h1 {
-  font-size: clamp(38px, 9vw, 72px); font-weight: 800;
-  color: #fff; letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px;
+
+/* Competition accordion */
+.sb-comp { border-bottom: 1px solid rgba(100,160,220,0.1); }
+
+.sb-comp-btn {
+  width: 100%; display: flex; align-items: center;
+  gap: 8px; padding: 11px 16px;
+  background: none; border: none; cursor: pointer;
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--t2); text-align: left;
+  transition: background 0.18s;
 }
-.hero h1 em {
-  display: block; font-style: normal;
-  background: linear-gradient(90deg, #00ff85, #04f5ff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+.sb-comp-btn:hover { background: rgba(255,255,255,0.6); }
+.sb-comp-icon { font-size: 15px; flex-shrink: 0; }
+.sb-comp-name { flex: 1; }
+.sb-comp-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+  padding: 2px 7px; border-radius: 10px; flex-shrink: 0;
 }
-.hero-sub { color: rgba(255,255,255,0.65); font-size: 14px; margin-top: 12px; }
-.kickoff-pill {
+.sb-comp-badge.pl  { background: rgba(56,0,60,0.1); color: #38003c; }
+.sb-comp-badge.wc  { background: rgba(200,0,30,0.1); color: #c8001e; }
+.sb-comp-badge.ucl { background: rgba(0,30,98,0.1);  color: #001e62; }
+.sb-chevron {
+  font-size: 9px; color: var(--t4);
+  transition: transform 0.2s; flex-shrink: 0;
+}
+.sb-comp-btn.open .sb-chevron { transform: rotate(180deg); }
+
+/* Sub-links */
+.sb-links { display: none; padding: 2px 0 6px; background: rgba(255,255,255,0.3); }
+.sb-links.open { display: block; }
+.sb-links a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px 8px 40px;
+  font-family: Verdana, sans-serif;
+  font-size: 12px; font-weight: 500;
+  color: var(--t3); text-decoration: none;
+  transition: all 0.16s;
+}
+.sb-links a:hover { color: var(--blue); background: rgba(37,99,235,0.05); }
+.sb-links a.active {
+  color: var(--blue); font-weight: 700;
+  background: rgba(37,99,235,0.08);
+  border-right: 3px solid var(--blue);
+}
+.sb-link-icon { font-size: 12px; width: 16px; text-align: center; }
+
+/* ── PAGE CONTENT WRAPPER ── */
+.gc-pl-content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 28px 120px;
+}
+
+/* ── PAGE TITLE ROW ── */
+.pl-title-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  margin-bottom: 20px;
+}
+.pl-title {
+  font-size: 22px; font-weight: 700;
+  color: var(--t1); letter-spacing: -0.4px;
+}
+.pl-title em { color: #38003c; font-style: normal; }
+.pl-subtitle { font-size: 12px; color: var(--t3); margin-top: 4px; }
+.pl-kickoff-pill {
   display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 14px; background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff; font-size: 13px; font-weight: 600;
-  padding: 7px 18px; border-radius: 24px;
+  background: #38003c; color: #fff;
+  font-size: 12.5px; font-weight: 700;
+  padding: 8px 18px; border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(56,0,60,0.3);
 }
-.champs-card {
+
+/* ── STATS ROW ── */
+.pl-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 20px;
+}
+.pl-stat {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: var(--glass-shadow);
+}
+.pl-stat-icon {
+  font-size: 26px; width: 44px; height: 44px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.pl-stat-val {
+  font-size: 20px; font-weight: 700;
+  color: var(--t1); line-height: 1;
+}
+.pl-stat-lbl {
+  font-size: 10px; color: var(--t4);
+  text-transform: uppercase; letter-spacing: 0.7px;
+  font-weight: 700; margin-top: 3px;
+}
+
+/* ── CHAMPIONS BANNER ── */
+.pl-champs {
   background: linear-gradient(135deg, #fff8e7, #fff3cd);
   border: 1.5px solid #f5c842;
-  border-radius: var(--radius); padding: 24px 20px;
-  text-align: center; margin-bottom: 16px;
-  box-shadow: 0 4px 24px rgba(245,166,35,0.15);
-  position: relative; overflow: hidden;
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.15);
 }
-.champs-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,215,0,0.2) 0%, transparent 70%);
-}
-.trophy { font-size: 40px; display: block; margin-bottom: 6px; animation: float 3s ease-in-out infinite; }
+.pl-champs-trophy { font-size: 42px; animation: float 3s ease-in-out infinite; flex-shrink: 0; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-.champs-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #a0720a; margin-bottom: 5px; }
-.champs-name { font-size: clamp(30px,7vw,52px); font-weight: 800; color: #1c1c1e; letter-spacing: -1px; line-height: 1.05; margin-bottom: 6px; }
-.champs-sub { font-size: 13px; color: #8a6400; }
-.champs-pts {
-  display: inline-block; margin-top: 10px;
-  background: rgba(245,166,35,0.18); border: 1px solid rgba(245,166,35,0.4);
-  color: #7a5200; font-size: 12px; font-weight: 600;
-  padding: 4px 14px; border-radius: 20px;
+.pl-champs-lbl { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #a0720a; margin-bottom: 3px; }
+.pl-champs-name { font-size: 26px; font-weight: 700; color: #1c1c1e; letter-spacing: -0.5px; line-height: 1; }
+.pl-champs-sub { font-size: 12px; color: #8a6400; margin-top: 3px; }
+.pl-champs-pts {
+  margin-left: auto; flex-shrink: 0;
+  background: rgba(245,166,35,0.18);
+  border: 1px solid rgba(245,166,35,0.4);
+  color: #7a5200; font-size: 12px; font-weight: 700;
+  padding: 6px 16px; border-radius: 999px;
+  white-space: nowrap;
 }
-.alert-card {
-  background: #fff5f5; border: 1.5px solid #ffcdd2;
+
+/* ── ALERT ── */
+.pl-alert {
+  background: rgba(220,38,38,0.06);
+  border: 1px solid rgba(220,38,38,0.2);
   border-left: 4px solid var(--red);
-  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
+  border-radius: var(--r-md);
+  padding: 12px 16px; margin-bottom: 20px;
+  font-size: 13px; color: var(--t2); line-height: 1.55;
 }
-.alert-label { font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
-.alert-card p { font-size: 13.5px; color: #3a3a3c; line-height: 1.55; }
-.alert-card strong { color: #1c1c1e; }
-.sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.sec-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
-.sec-line { flex: 1; height: 1px; background: var(--border); }
-.section { margin-bottom: 28px; }
+.pl-alert-label {
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--red); margin-bottom: 5px;
+}
 
-/* ── FIX 1: 2-COLUMN GRID instead of stacked list ── */
-.matches-list {
+/* ── SECTION HEAD ── */
+.pl-sec-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px; margin-top: 22px;
+}
+.pl-sec-title {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--t4); white-space: nowrap;
+}
+.pl-sec-line { flex: 1; height: 1px; background: rgba(100,160,220,0.2); }
+
+/* ── MATCHES GRID — 2 columns, 3 on wide screens ── */
+.pl-matches {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
-@media(max-width: 600px) {
-  .matches-list { grid-template-columns: 1fr; }
+@media(min-width: 1300px) {
+  .pl-matches { grid-template-columns: repeat(3, 1fr); }
 }
 
-.match-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 16px;
-  box-shadow: var(--shadow); transition: all 0.2s;
-  position: relative; overflow: hidden;
+/* ── MATCH CARD ── */
+.pl-match {
+  background: var(--glass-strong);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 14px 15px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.2s;
+  position: relative;
 }
-.match-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
-.match-card.rel { border-left: 4px solid var(--red); background: #fff8f8; }
-.match-card.gold { border-left: 4px solid var(--gold); background: #fffcf0; }
-.match-badge {
+.pl-match:hover {
+  box-shadow: 0 10px 30px rgba(100,160,220,0.28);
+  transform: translateY(-2px);
+}
+.pl-match.rel {
+  border-left: 4px solid var(--red);
+  background: rgba(220,38,38,0.04);
+}
+.pl-match.gold {
+  border-left: 4px solid var(--gold);
+  background: rgba(217,119,6,0.04);
+}
+
+.pl-match-badge {
   display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; padding: 3px 8px; border-radius: 5px; margin-bottom: 10px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 999px; margin-bottom: 10px;
 }
-.match-badge.rel { background: #ffebee; color: var(--red); }
-.match-badge.gold { background: #fff8e1; color: #9a6a00; }
-.match-badge.blue { background: #e3f2fd; color: #0066cc; }
-.match-badge.gray { background: #f5f5f5; color: #6e6e73; }
-.match-row {
-  display: grid; grid-template-columns: 1fr 72px 1fr;
+.pl-match-badge.rel  { background: rgba(220,38,38,0.1); color: var(--red); }
+.pl-match-badge.gold { background: rgba(217,119,6,0.1); color: var(--gold); }
+.pl-match-badge.blue { background: rgba(37,99,235,0.1); color: var(--blue); }
+.pl-match-badge.gray { background: rgba(100,116,139,0.1); color: var(--t3); }
+
+.pl-match-row {
+  display: grid;
+  grid-template-columns: 1fr 62px 1fr;
   align-items: center; gap: 8px;
+  margin-bottom: 10px;
 }
-.team-home { text-align: right; }
-.team-away { text-align: left; }
-.team-name { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; line-height: 1.15; }
-.team-note { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.match-mid { text-align: center; }
-.match-vs { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1px; }
-.match-time { font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
-.match-foot {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-top: 10px; padding-top: 9px; border-top: 1px solid #f0f0f0;
+.pl-home { text-align: right; }
+.pl-away { text-align: left; }
+.pl-team { font-size: 13.5px; font-weight: 700; color: var(--t1); line-height: 1.2; }
+.pl-note { font-size: 10px; color: var(--t4); margin-top: 2px; }
+.pl-vs { text-align: center; }
+.pl-vs-txt { font-size: 9px; font-weight: 700; color: var(--t4); letter-spacing: 1px; }
+.pl-ko { font-size: 17px; font-weight: 700; color: var(--blue); line-height: 1.1; }
+
+.pl-match-foot {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 9px;
+  border-top: 1px solid rgba(100,160,220,0.12);
+  font-size: 10.5px; color: var(--t4);
 }
-.match-venue { font-size: 11px; color: var(--text3); }
-.match-link {
-  font-size: 11.5px; font-weight: 600; color: var(--blue);
-  text-decoration: none; transition: opacity 0.18s;
+.pl-preview {
+  color: var(--blue); text-decoration: none;
+  font-weight: 600; font-size: 10.5px;
+  transition: opacity 0.18s;
 }
-.match-link:hover { opacity: 0.7; }
-.info-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+.pl-preview:hover { opacity: 0.7; }
+
+/* ── QUICK LINKS ── */
+.pl-ql-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-top: 22px;
 }
-.info-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+.pl-ql {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 14px; text-decoration: none;
+  color: var(--t1); box-shadow: var(--glass-shadow);
+  transition: all 0.2s;
 }
-.info-row:last-child { border-bottom: none; }
-.info-icon {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: #f2f2f7; display: flex; align-items: center;
-  justify-content: center; font-size: 16px; flex-shrink: 0;
+.pl-ql:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(100,160,220,0.22);
+  border-color: rgba(37,99,235,0.3);
 }
-.info-text { flex: 1; }
-.info-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.info-sub { font-size: 11.5px; color: var(--text3); margin-top: 2px; }
-.info-pill {
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
-  padding: 3px 9px; border-radius: 10px; white-space: nowrap;
+.pl-ql-icon {
+  font-size: 20px; width: 40px; height: 40px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.info-pill.live { background: #ffebee; color: var(--red); }
-.info-pill.stream { background: #e8f5e9; color: #1b7e2e; }
-.ql-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.ql-item {
-  display: flex; align-items: center; gap: 11px;
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px; text-decoration: none;
-  color: var(--text); box-shadow: var(--shadow); transition: all 0.2s;
-}
-.ql-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--blue); }
-.ql-icon {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: #f2f2f7; display: flex; align-items: center;
-  justify-content: center; font-size: 18px; flex-shrink: 0;
-}
-.ql-label { font-size: 14px; font-weight: 700; color: var(--text); }
-.ql-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
-#cookie-banner {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
-  padding: 12px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.07);
-}
-#cookie-banner p { flex: 1; font-size: 12.5px; color: var(--text2); min-width: 200px; }
-#cookie-banner a { color: var(--blue); }
-.cookie-btn {
-  background: var(--blue); color: #fff; border: none;
-  padding: 8px 20px; border-radius: 20px;
-  font-family: var(--font); font-weight: 600; font-size: 13px; cursor: pointer;
-}
-.site-footer {
-  border-top: 1px solid var(--border); padding: 24px 20px 60px; text-align: center;
-  background: #f2f2f7;
-}
-.footer-logo { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-.footer-logo em { color: var(--blue); font-style: normal; }
-.footer-logo span { color: var(--pl-green); }
-.footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
-.footer-links a { font-size: 12px; color: var(--text3); text-decoration: none; }
-.footer-links a:hover { color: var(--blue); }
-.footer-copy { font-size: 11px; color: #aeaeb2; }
-.footer-fan { font-size: 11px; color: #c7c7cc; margin-top: 4px; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-.fu { animation: fadeUp 0.4s ease both; }
-.fu:nth-child(1){animation-delay:.04s}.fu:nth-child(2){animation-delay:.08s}
-.fu:nth-child(3){animation-delay:.12s}.fu:nth-child(4){animation-delay:.16s}
-.fu:nth-child(5){animation-delay:.20s}.fu:nth-child(6){animation-delay:.24s}
-.fu:nth-child(7){animation-delay:.28s}.fu:nth-child(8){animation-delay:.32s}
-.fu:nth-child(9){animation-delay:.36s}.fu:nth-child(10){animation-delay:.40s}
-@media(max-width:480px){
-  .gc-mainnav { display: none; }
-  .team-name { font-size: 13px; }
-  .match-time { font-size: 16px; }
-  .ql-grid { grid-template-columns: 1fr; }
-  .match-row { grid-template-columns: 1fr 56px 1fr; }
+.pl-ql-lbl { font-size: 13px; font-weight: 700; color: var(--t1); }
+.pl-ql-sub { font-size: 10.5px; color: var(--t4); margin-top: 2px; }
+
+/* ── MOBILE ── */
+@media(max-width: 768px) {
+  .gc-sidebar { display: none; }
+  .gc-with-sidebar { display: block; }
+  .gc-pl-content { padding: 16px 14px 120px; }
+  .pl-stats { grid-template-columns: repeat(2, 1fr); }
+  .pl-matches { grid-template-columns: 1fr; }
+  .pl-ql-grid { grid-template-columns: repeat(2, 1fr); }
+  .pl-champs { flex-wrap: wrap; }
+  .pl-champs-pts { margin-left: 0; }
+  .pl-title-row { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
 
-<header class="gc-topbar">
-  <a href="/" class="gc-topbar-logo">Goal<em>Current</em><span>.live</span></a>
-  <nav class="gc-mainnav">
-    <a href="/">🏠 Home</a>
-    <a href="#">🔴 Live</a>
-    <a href="#">📅 Schedule</a>
-    <a href="#">🏆 Standings</a>
-    <a href="#">⭐ My Teams</a>
-    <a href="#">📰 Latest News</a>
+<!-- ══ YOUR EXISTING APP SHELL — header loads from app.js ══ -->
+<canvas id="gc-canvas"></canvas>
+<div id="gc-app">
+
+  <!-- HEADER — exactly as your existing site -->
+  <header class="gc-header">
+    <div class="gc-header-inner">
+      <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+        <img src="/logo.svg" alt="GoalCurrent Shield Logo"
+             width="64" height="64"
+             style="height:64px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.25));flex-shrink:0"
+             loading="eager" onerror="this.style.display='none'">
+        <span class="gc-logo">Goal<span class="gc-logo-dot">Current</span><span class="gc-logo-live">.live</span></span>
+      </a>
+      <nav class="gc-topnav">
+        <button class="gc-topnav-btn" onclick="location.href='/'">🏠 Home</button>
+        <button class="gc-topnav-btn" onclick="location.href='/'">🔴 Live</button>
+        <button class="gc-topnav-btn" onclick="location.href='/'">📅 Schedule</button>
+        <button class="gc-topnav-btn" onclick="location.href='/'">🏅 Standings</button>
+        <button class="gc-topnav-btn" onclick="location.href='/'">⭐ My Teams</button>
+        <button class="gc-topnav-btn" onclick="location.href='/'">📰 Latest News</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ SIDEBAR + CONTENT WRAPPER ══ -->
+  <div class="gc-with-sidebar">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="gc-sidebar">
+      <span class="sb-label">Competitions</span>
+
+      <!-- PL -->
+      <div class="sb-comp">
+        <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
+          <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+          <span class="sb-comp-name">Premier League</span>
+          <span class="sb-comp-badge pl">PL</span>
+          <span class="sb-chevron">▼</span>
+        </button>
+        <div class="sb-links open" id="sb-pl">
+          <a href="/premier-league/" class="active"><span class="sb-link-icon">🏠</span> Overview</a>
+          <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
+          <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+          <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
+          <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
+          <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        </div>
+      </div>
+
+      <!-- WC26 -->
+      <div class="sb-comp">
+        <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
+          <span class="sb-comp-icon">🏆</span>
+          <span class="sb-comp-name">World Cup 2026</span>
+          <span class="sb-comp-badge wc">WC26</span>
+          <span class="sb-chevron">▼</span>
+        </button>
+        <div class="sb-links" id="sb-wc">
+          <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
+          <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
+          <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+          <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+          <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
+        </div>
+      </div>
+
+      <!-- UCL -->
+      <div class="sb-comp">
+        <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+          <span class="sb-comp-icon">⭐</span>
+          <span class="sb-comp-name">Champions League</span>
+          <span class="sb-comp-badge ucl">UCL</span>
+          <span class="sb-chevron">▼</span>
+        </button>
+        <div class="sb-links" id="sb-ucl">
+          <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
+          <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+          <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
+          <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+          <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="gc-pl-content">
+
+      <!-- Title row -->
+      <div class="pl-title-row">
+        <div>
+          <div class="pl-title">Premier League <em>Final Day</em></div>
+          <div class="pl-subtitle">2025/26 Season · Matchweek 38 · All 10 matches</div>
+        </div>
+        <div class="pl-kickoff-pill">🕓 Sun 24 May · 16:00 BST</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="pl-stats">
+        <div class="pl-stat">
+          <div class="pl-stat-icon">⚽</div>
+          <div><div class="pl-stat-val">10</div><div class="pl-stat-lbl">Matches Today</div></div>
+        </div>
+        <div class="pl-stat">
+          <div class="pl-stat-icon">🏆</div>
+          <div><div class="pl-stat-val">82pts</div><div class="pl-stat-lbl">Arsenal — Champions</div></div>
+        </div>
+        <div class="pl-stat">
+          <div class="pl-stat-icon">⚠️</div>
+          <div><div class="pl-stat-val">2</div><div class="pl-stat-lbl">Clubs Battling Relegation</div></div>
+        </div>
+        <div class="pl-stat">
+          <div class="pl-stat-icon">📅</div>
+          <div><div class="pl-stat-val">GW38</div><div class="pl-stat-lbl">Final Matchweek</div></div>
+        </div>
+      </div>
+
+      <!-- Champions -->
+      <div class="pl-champs">
+        <div class="pl-champs-trophy">🏆</div>
+        <div>
+          <div class="pl-champs-lbl">Premier League Champions 2025/26</div>
+          <div class="pl-champs-name">Arsenal</div>
+          <div class="pl-champs-sub">First Premier League title in 22 years</div>
+        </div>
+        <div class="pl-champs-pts">82 Points · Confirmed Champions</div>
+      </div>
+
+      <!-- Alert -->
+      <div class="pl-alert">
+        <div class="pl-alert-label">⚡ Relegation Battle — Final Day Decider</div>
+        <strong>Burnley</strong> and <strong>Wolves</strong> are already relegated.
+        <strong>Tottenham</strong> (17th, 38pts) and <strong>West Ham</strong> (18th, 36pts)
+        are fighting to stay up today. Every result at 16:00 BST matters.
+      </div>
+
+      <!-- Fixtures -->
+      <div class="pl-sec-head">
+        <div class="pl-sec-title">⚽ Final Day Fixtures — Sunday 24 May · 16:00 BST</div>
+        <div class="pl-sec-line"></div>
+      </div>
+
+      <div class="pl-matches">
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Brighton</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Man United</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Amex Stadium</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge gray">Mid-Table</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Burnley</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Wolves</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Turf Moor</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match gold">
+          <div class="pl-match-badge gold">🏆 Champions Away</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Crystal Palace</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Arsenal</div><div class="pl-note">🏆 PL Champions</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Selhurst Park</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Fulham</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Newcastle Utd</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Craven Cottage</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Liverpool</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Brentford</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Anfield</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Man City</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Aston Villa</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Etihad Stadium</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Nott'm Forest</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">AFC Bournemouth</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 City Ground</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match">
+          <div class="pl-match-badge blue">🔵 Top Half</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Sunderland</div><div class="pl-note">10th · Safe</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Chelsea</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Stadium of Light</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match rel">
+          <div class="pl-match-badge rel">🔴 Relegation Decider</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">Tottenham</div><div class="pl-note">17th · Must not lose</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Everton</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 Spurs Stadium</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+        <div class="pl-match rel">
+          <div class="pl-match-badge rel">🔴 Relegation Decider</div>
+          <div class="pl-match-row">
+            <div class="pl-home"><div class="pl-team">West Ham</div><div class="pl-note">18th · Must win</div></div>
+            <div class="pl-vs"><div class="pl-vs-txt">VS</div><div class="pl-ko">16:00</div></div>
+            <div class="pl-away"><div class="pl-team">Leeds United</div></div>
+          </div>
+          <div class="pl-match-foot"><span>📍 London Stadium</span><a href="/premier-league/fixtures/" class="pl-preview">Preview →</a></div>
+        </div>
+
+      </div>
+
+      <!-- Quick Links -->
+      <div class="pl-sec-head">
+        <div class="pl-sec-title">🔗 Explore More</div>
+        <div class="pl-sec-line"></div>
+      </div>
+      <div class="pl-ql-grid">
+        <a href="/premier-league/table/" class="pl-ql">
+          <div class="pl-ql-icon">📊</div>
+          <div><div class="pl-ql-lbl">Final Table</div><div class="pl-ql-sub">Full standings</div></div>
+        </a>
+        <a href="/premier-league/results/" class="pl-ql">
+          <div class="pl-ql-icon">✅</div>
+          <div><div class="pl-ql-lbl">GW37 Results</div><div class="pl-ql-sub">Last week</div></div>
+        </a>
+        <a href="/premier-league/news/" class="pl-ql">
+          <div class="pl-ql-icon">📰</div>
+          <div><div class="pl-ql-lbl">PL News</div><div class="pl-ql-sub">Latest stories</div></div>
+        </a>
+        <a href="/premier-league/teams/" class="pl-ql">
+          <div class="pl-ql-icon">👕</div>
+          <div><div class="pl-ql-lbl">All Teams</div><div class="pl-ql-sub">20 clubs</div></div>
+        </a>
+      </div>
+
+    </div><!-- /gc-pl-content -->
+  </div><!-- /gc-with-sidebar -->
+
+  <!-- Bottom nav — mobile only (from existing site) -->
+  <nav class="gc-bottomnav">
+    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">🏠</span>Home</button>
+    <button class="gc-bottomnav-btn active"><span class="gc-nav-icon">🔴</span>Live</button>
+    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">📅</span>Schedule</button>
+    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">🏅</span>Standings</button>
+    <button class="gc-bottomnav-btn" onclick="location.href='/'"><span class="gc-nav-icon">⭐</span>My Teams</button>
   </nav>
-  <div class="gc-section-tabs">
-    <div class="gc-tab-wrap" id="tab-pl">
-      <button class="gc-tab-btn active-tab" onclick="toggleTab('tab-pl')">
-        <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> PL
-        <span class="gc-tab-chevron">▼</span>
-      </button>
-      <div class="gc-dropdown">
-        <div class="gc-dropdown-label">Premier League</div>
-        <a href="/premier-league/"><span class="dd-icon">🏠</span> Overview</a>
-        <a href="/premier-league/table/"><span class="dd-icon">📊</span> Table</a>
-        <a href="/premier-league/fixtures/"><span class="dd-icon">📅</span> Fixtures</a>
-        <a href="/premier-league/results/"><span class="dd-icon">✅</span> Results</a>
-        <a href="/premier-league/news/"><span class="dd-icon">📰</span> News</a>
-        <a href="/premier-league/teams/"><span class="dd-icon">👕</span> Teams</a>
-      </div>
-    </div>
-    <div class="gc-tab-wrap" id="tab-wc">
-      <button class="gc-tab-btn wc-tab" onclick="toggleTab('tab-wc')">
-        <span class="gc-tab-icon">🏆</span> WC26
-        <span class="gc-tab-chevron">▼</span>
-      </button>
-      <div class="gc-dropdown">
-        <div class="gc-dropdown-label">World Cup 2026</div>
-        <a href="/worldcup2026/"><span class="dd-icon">🏠</span> Overview</a>
-        <a href="/worldcup2026/groups/"><span class="dd-icon">🔢</span> Groups</a>
-        <a href="/worldcup2026/fixtures/"><span class="dd-icon">📅</span> Fixtures</a>
-        <a href="/worldcup2026/teams/"><span class="dd-icon">👕</span> Teams</a>
-        <a href="/worldcup2026/news/"><span class="dd-icon">📰</span> News</a>
-      </div>
-    </div>
-    <div class="gc-tab-wrap" id="tab-ucl">
-      <button class="gc-tab-btn ucl-tab" onclick="toggleTab('tab-ucl')">
-        <span class="gc-tab-icon">⭐</span> UCL
-        <span class="gc-tab-chevron">▼</span>
-      </button>
-      <div class="gc-dropdown">
-        <div class="gc-dropdown-label">Champions League</div>
-        <a href="/ucl/"><span class="dd-icon">🏠</span> Overview</a>
-        <a href="/ucl/fixtures/"><span class="dd-icon">📅</span> Fixtures</a>
-        <a href="/ucl/results/"><span class="dd-icon">✅</span> Results</a>
-        <a href="/ucl/teams/"><span class="dd-icon">👕</span> Teams</a>
-        <a href="/ucl/news/"><span class="dd-icon">📰</span> News</a>
-      </div>
-    </div>
+
+</div><!-- /gc-app -->
+
+<!-- Cookie banner -->
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:80px;left:12px;right:12px;z-index:99999;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:16px 20px;box-shadow:0 8px 40px rgba(0,0,0,0.5);font-family:Verdana,Geneva,sans-serif;max-width:600px;margin:0 auto;">
+  <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px">
+    <span style="font-size:20px;flex-shrink:0">🍪</span>
+    <div style="font-size:12px;color:#94a3b8;line-height:1.6">We use cookies for analytics and ads. See our <a href="/privacy.html" style="color:#60a5fa">Privacy Policy</a>.</div>
   </div>
-</header>
-
-<nav class="pl-subheader">
-  <a href="/premier-league/" class="active">Overview</a>
-  <a href="/premier-league/table/">Table</a>
-  <a href="/premier-league/fixtures/">Fixtures</a>
-  <a href="/premier-league/results/">Results</a>
-  <a href="/premier-league/news/">News</a>
-  <a href="/premier-league/teams/">Teams</a>
-  <span class="pl-subheader-right">← <a href="/" style="color:inherit;text-decoration:none">Back to Home</a></span>
-</nav>
-
-<div class="page-wrap">
-
-  <div class="hero fu">
-    <div class="season-pill">Premier League 2025/26</div>
-    <h1>Final Day <em>2026</em></h1>
-    <p class="hero-sub">All 10 matches kick off simultaneously</p>
-    <div class="kickoff-pill">🕓 Sunday 24 May · 16:00 BST</div>
+  <div style="display:flex;gap:8px;justify-content:flex-end">
+    <button onclick="document.getElementById('gc-cookie-banner').style.display='none';localStorage.setItem('gc_ck','1')" style="background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;color:#fff;padding:8px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Accept ✓</button>
   </div>
-
-  <div class="champs-card fu">
-    <span class="trophy">🏆</span>
-    <div class="champs-label">Premier League Champions 2025/26</div>
-    <div class="champs-name">Arsenal</div>
-    <div class="champs-sub">First Premier League title in 22 years</div>
-    <div class="champs-pts">82 Points · Confirmed Champions</div>
-  </div>
-
-  <!-- FIX 2: Correct relegation text — Sunderland is SAFE (10th, 51pts) -->
-  <div class="alert-card fu">
-    <div class="alert-label">⚡ Relegation Battle — Final Day Decider</div>
-    <p><strong>Burnley</strong> and <strong>Wolves</strong> are already relegated. <strong>Tottenham</strong> (17th, 38pts) and <strong>West Ham</strong> (18th, 36pts) are fighting to survive today. Every result at 16:00 BST matters.</p>
-  </div>
-
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">⚽ Final Day Fixtures — Sunday 24 May · 16:00 BST</div>
-      <div class="sec-line"></div>
-    </div>
-
-    <div class="matches-list">
-
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Brighton</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Man United</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Amex Stadium</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card fu">
-        <div class="match-badge gray">Mid-Table</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Burnley</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Wolves</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Turf Moor</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card gold fu">
-        <div class="match-badge gold">🏆 Champions Away</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Crystal Palace</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away">
-            <div class="team-name">Arsenal</div>
-            <div class="team-note">PL Champions 2025/26</div>
-          </div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Selhurst Park</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Fulham</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Newcastle Utd</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Craven Cottage</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Liverpool</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Brentford</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Anfield</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Man City</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Aston Villa</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Etihad Stadium</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Nott'm Forest</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">AFC Bournemouth</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 City Ground</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <!-- FIX 3: Sunderland is SAFE — no relegation badge -->
-      <div class="match-card fu">
-        <div class="match-badge blue">🔵 Top Half</div>
-        <div class="match-row">
-          <div class="team-home"><div class="team-name">Sunderland</div></div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Chelsea</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Stadium of Light</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card rel fu">
-        <div class="match-badge rel">🔴 Relegation Decider</div>
-        <div class="match-row">
-          <div class="team-home">
-            <div class="team-name">Tottenham</div>
-            <div class="team-note">17th · 38pts · Must not lose</div>
-          </div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Everton</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 Tottenham Hotspur Stadium</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-      <div class="match-card rel fu">
-        <div class="match-badge rel">🔴 Relegation Decider</div>
-        <div class="match-row">
-          <div class="team-home">
-            <div class="team-name">West Ham</div>
-            <div class="team-note">18th · 36pts · Must win</div>
-          </div>
-          <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
-          <div class="team-away"><div class="team-name">Leeds United</div></div>
-        </div>
-        <div class="match-foot">
-          <span class="match-venue">📍 London Stadium</span>
-          <a href="/premier-league/fixtures/" class="match-link">Preview →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">📺 Where to Watch</div>
-      <div class="sec-line"></div>
-    </div>
-    <div class="info-card">
-      <div class="info-row">
-        <div class="info-icon">📺</div>
-        <div class="info-text">
-          <div class="info-name">Sky Sports Premier League</div>
-          <div class="info-sub">Main coverage — all 10 games simultaneously</div>
-        </div>
-        <div class="info-pill live">Live</div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon">📺</div>
-        <div class="info-text">
-          <div class="info-name">Sky Sports Main Event</div>
-          <div class="info-sub">Key match of the day</div>
-        </div>
-        <div class="info-pill live">Live</div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon">📱</div>
-        <div class="info-text">
-          <div class="info-name">Sky Go / NOW TV</div>
-          <div class="info-sub">Stream on mobile, tablet or smart TV</div>
-        </div>
-        <div class="info-pill stream">Stream</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">🔗 Explore More</div>
-      <div class="sec-line"></div>
-    </div>
-    <div class="ql-grid">
-      <a href="/premier-league/table/" class="ql-item">
-        <div class="ql-icon">📊</div>
-        <div><div class="ql-label">Final Table</div><div class="ql-sub">Full standings</div></div>
-      </a>
-      <a href="/premier-league/results/" class="ql-item">
-        <div class="ql-icon">✅</div>
-        <div><div class="ql-label">GW37 Results</div><div class="ql-sub">Last week</div></div>
-      </a>
-      <a href="/premier-league/news/" class="ql-item">
-        <div class="ql-icon">📰</div>
-        <div><div class="ql-label">PL News</div><div class="ql-sub">Latest stories</div></div>
-      </a>
-      <a href="/premier-league/teams/" class="ql-item">
-        <div class="ql-icon">👕</div>
-        <div><div class="ql-label">All Teams</div><div class="ql-sub">20 clubs</div></div>
-      </a>
-    </div>
-  </div>
-
-</div>
-
-<footer class="site-footer">
-  <div class="footer-logo">Goal<em>Current</em><span>.live</span></div>
-  <div class="footer-links">
-    <a href="/about.html">About</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/terms.html">Terms</a>
-    <a href="/disclaimer.html">Disclaimer</a>
-    <a href="mailto:info@goalcurrent.live">Contact</a>
-  </div>
-  <div class="footer-copy">© 2026 Ashna4All (A. Zafarani) · All Rights Reserved</div>
-  <div class="footer-fan">⚽ Independent fan site · Not affiliated with FIFA, UEFA or Premier League</div>
-</footer>
-
-<div id="cookie-banner">
-  <p>We use cookies for analytics and ads. See our <a href="/privacy.html">Privacy Policy</a>.</p>
-  <button class="cookie-btn" onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('gc_cookie','1')">Accept</button>
 </div>
 
 <script>
-if(localStorage.getItem('gc_cookie')) document.getElementById('cookie-banner').style.display='none';
-function toggleTab(id){
-  document.querySelectorAll('.gc-tab-wrap').forEach(function(el){
-    if(el.id !== id) el.classList.remove('open');
-  });
-  document.getElementById(id).classList.toggle('open');
+// Cookie
+if(!localStorage.getItem('gc_ck')) setTimeout(function(){ document.getElementById('gc-cookie-banner').style.display='block'; }, 2000);
+
+// Sidebar accordion
+function sbToggle(id, btn) {
+  var links = document.getElementById(id);
+  links.classList.toggle('open');
+  btn.classList.toggle('open');
 }
-document.addEventListener('click',function(e){
-  if(!e.target.closest('.gc-tab-wrap')){
-    document.querySelectorAll('.gc-tab-wrap').forEach(function(el){ el.classList.remove('open'); });
-  }
-});
 </script>
 </body>
 </html>
