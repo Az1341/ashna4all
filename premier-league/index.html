@@ -36,10 +36,6 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-
-/* ══════════════════════════════════
-   MAIN SITE HEADER (from index.html)
-   ══════════════════════════════════ */
 .gc-topbar {
   position: sticky; top: 0; z-index: 200;
   background: rgba(255,255,255,0.88);
@@ -57,8 +53,6 @@ body {
 }
 .gc-topbar-logo em { color: var(--blue); font-style: normal; }
 .gc-topbar-logo span { color: var(--pl-green); }
-
-/* Main nav links */
 .gc-mainnav {
   display: flex; align-items: center; gap: 2px;
   flex: 1; justify-content: center;
@@ -72,11 +66,7 @@ body {
 }
 .gc-mainnav a:hover { background: rgba(0,0,0,0.05); color: var(--text); }
 .gc-mainnav a.active { background: rgba(0,122,255,0.1); color: var(--blue); font-weight: 600; }
-
-/* ── SECTION DROPDOWNS (PL / WC26 / UCL) ── */
-.gc-section-tabs {
-  display: flex; align-items: center; gap: 6px; margin-left: 12px;
-}
+.gc-section-tabs { display: flex; align-items: center; gap: 6px; margin-left: 12px; }
 .gc-tab-wrap { position: relative; }
 .gc-tab-btn {
   display: flex; align-items: center; gap: 5px;
@@ -91,13 +81,8 @@ body {
 .gc-tab-btn.wc-tab.active-tab { background: #c8001e; border-color: #c8001e; color: #fff; }
 .gc-tab-btn.ucl-tab.active-tab { background: #001e62; border-color: #001e62; color: #fff; }
 .gc-tab-icon { font-size: 14px; }
-.gc-tab-chevron {
-  font-size: 9px; margin-left: 1px; opacity: 0.6;
-  transition: transform 0.2s;
-}
+.gc-tab-chevron { font-size: 9px; margin-left: 1px; opacity: 0.6; transition: transform 0.2s; }
 .gc-tab-wrap.open .gc-tab-chevron { transform: rotate(180deg); }
-
-/* Dropdown menu */
 .gc-dropdown {
   display: none;
   position: absolute; top: calc(100% + 8px); right: 0;
@@ -127,10 +112,6 @@ body {
   text-transform: uppercase; color: var(--text3);
   padding: 10px 16px 4px;
 }
-
-/* ══════════════════════════════════
-   PL SUB-HEADER (page-level nav)
-   ══════════════════════════════════ */
 .pl-subheader {
   position: sticky; top: 56px; z-index: 150;
   background: rgba(255,255,255,0.92);
@@ -151,13 +132,7 @@ body {
 .pl-subheader a:hover { color: var(--text); background: rgba(0,0,0,0.05); }
 .pl-subheader a.active { color: var(--pl-purple); font-weight: 700; background: rgba(56,0,60,0.07); }
 .pl-subheader-right { margin-left: auto; color: var(--text3); font-size: 12px; white-space: nowrap; flex-shrink: 0; padding-left: 12px; }
-
-/* ══════════════════════════════════
-   PAGE CONTENT
-   ══════════════════════════════════ */
 .page-wrap { max-width: 800px; margin: 0 auto; padding: 24px 16px 80px; }
-
-/* HERO */
 .hero {
   text-align: center; padding: 32px 20px 28px;
   background: linear-gradient(160deg, var(--pl-purple) 0%, #5c0070 100%);
@@ -195,8 +170,6 @@ body {
   color: #fff; font-size: 13px; font-weight: 600;
   padding: 7px 18px; border-radius: 24px;
 }
-
-/* CHAMPIONS CARD */
 .champs-card {
   background: linear-gradient(135deg, #fff8e7, #fff3cd);
   border: 1.5px solid #f5c842;
@@ -221,8 +194,6 @@ body {
   color: #7a5200; font-size: 12px; font-weight: 600;
   padding: 4px 14px; border-radius: 20px;
 }
-
-/* ALERT CARD */
 .alert-card {
   background: #fff5f5; border: 1.5px solid #ffcdd2;
   border-left: 4px solid var(--red);
@@ -231,15 +202,21 @@ body {
 .alert-label { font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
 .alert-card p { font-size: 13.5px; color: #3a3a3c; line-height: 1.55; }
 .alert-card strong { color: #1c1c1e; }
-
-/* SECTION HEADING */
 .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .sec-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); white-space: nowrap; }
 .sec-line { flex: 1; height: 1px; background: var(--border); }
 .section { margin-bottom: 28px; }
 
-/* MATCH CARDS */
-.matches-list { display: flex; flex-direction: column; gap: 8px; }
+/* ── FIX 1: 2-COLUMN GRID instead of stacked list ── */
+.matches-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media(max-width: 600px) {
+  .matches-list { grid-template-columns: 1fr; }
+}
+
 .match-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 14px 16px;
@@ -249,7 +226,6 @@ body {
 .match-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 .match-card.rel { border-left: 4px solid var(--red); background: #fff8f8; }
 .match-card.gold { border-left: 4px solid var(--gold); background: #fffcf0; }
-
 .match-badge {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 10px; font-weight: 700; letter-spacing: 1px;
@@ -259,19 +235,17 @@ body {
 .match-badge.gold { background: #fff8e1; color: #9a6a00; }
 .match-badge.blue { background: #e3f2fd; color: #0066cc; }
 .match-badge.gray { background: #f5f5f5; color: #6e6e73; }
-
 .match-row {
   display: grid; grid-template-columns: 1fr 72px 1fr;
   align-items: center; gap: 8px;
 }
 .team-home { text-align: right; }
 .team-away { text-align: left; }
-.team-name { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; line-height: 1.15; }
+.team-name { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; line-height: 1.15; }
 .team-note { font-size: 11px; color: var(--text3); margin-top: 2px; }
 .match-mid { text-align: center; }
 .match-vs { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1px; }
 .match-time { font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
-
 .match-foot {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: 10px; padding-top: 9px; border-top: 1px solid #f0f0f0;
@@ -282,8 +256,6 @@ body {
   text-decoration: none; transition: opacity 0.18s;
 }
 .match-link:hover { opacity: 0.7; }
-
-/* TV CARD */
 .info-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
@@ -307,8 +279,6 @@ body {
 }
 .info-pill.live { background: #ffebee; color: var(--red); }
 .info-pill.stream { background: #e8f5e9; color: #1b7e2e; }
-
-/* QUICK LINKS GRID */
 .ql-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .ql-item {
   display: flex; align-items: center; gap: 11px;
@@ -324,8 +294,6 @@ body {
 }
 .ql-label { font-size: 14px; font-weight: 700; color: var(--text); }
 .ql-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
-
-/* COOKIE */
 #cookie-banner {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
   background: rgba(255,255,255,0.95);
@@ -341,8 +309,6 @@ body {
   padding: 8px 20px; border-radius: 20px;
   font-family: var(--font); font-weight: 600; font-size: 13px; cursor: pointer;
 }
-
-/* FOOTER */
 .site-footer {
   border-top: 1px solid var(--border); padding: 24px 20px 60px; text-align: center;
   background: #f2f2f7;
@@ -355,8 +321,6 @@ body {
 .footer-links a:hover { color: var(--blue); }
 .footer-copy { font-size: 11px; color: #aeaeb2; }
 .footer-fan { font-size: 11px; color: #c7c7cc; margin-top: 4px; }
-
-/* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 .fu { animation: fadeUp 0.4s ease both; }
 .fu:nth-child(1){animation-delay:.04s}.fu:nth-child(2){animation-delay:.08s}
@@ -364,22 +328,19 @@ body {
 .fu:nth-child(5){animation-delay:.20s}.fu:nth-child(6){animation-delay:.24s}
 .fu:nth-child(7){animation-delay:.28s}.fu:nth-child(8){animation-delay:.32s}
 .fu:nth-child(9){animation-delay:.36s}.fu:nth-child(10){animation-delay:.40s}
-
 @media(max-width:480px){
   .gc-mainnav { display: none; }
-  .team-name { font-size: 14px; }
+  .team-name { font-size: 13px; }
   .match-time { font-size: 16px; }
   .ql-grid { grid-template-columns: 1fr; }
-  .match-row { grid-template-columns: 1fr 60px 1fr; }
+  .match-row { grid-template-columns: 1fr 56px 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ MAIN SITE HEADER (frozen) ══ -->
 <header class="gc-topbar">
   <a href="/" class="gc-topbar-logo">Goal<em>Current</em><span>.live</span></a>
-
   <nav class="gc-mainnav">
     <a href="/">🏠 Home</a>
     <a href="#">🔴 Live</a>
@@ -388,11 +349,7 @@ body {
     <a href="#">⭐ My Teams</a>
     <a href="#">📰 Latest News</a>
   </nav>
-
-  <!-- PL / WC26 / UCL dropdown tabs -->
   <div class="gc-section-tabs">
-
-    <!-- PL TAB -->
     <div class="gc-tab-wrap" id="tab-pl">
       <button class="gc-tab-btn active-tab" onclick="toggleTab('tab-pl')">
         <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> PL
@@ -408,8 +365,6 @@ body {
         <a href="/premier-league/teams/"><span class="dd-icon">👕</span> Teams</a>
       </div>
     </div>
-
-    <!-- WC26 TAB -->
     <div class="gc-tab-wrap" id="tab-wc">
       <button class="gc-tab-btn wc-tab" onclick="toggleTab('tab-wc')">
         <span class="gc-tab-icon">🏆</span> WC26
@@ -424,8 +379,6 @@ body {
         <a href="/worldcup2026/news/"><span class="dd-icon">📰</span> News</a>
       </div>
     </div>
-
-    <!-- UCL TAB -->
     <div class="gc-tab-wrap" id="tab-ucl">
       <button class="gc-tab-btn ucl-tab" onclick="toggleTab('tab-ucl')">
         <span class="gc-tab-icon">⭐</span> UCL
@@ -440,11 +393,9 @@ body {
         <a href="/ucl/news/"><span class="dd-icon">📰</span> News</a>
       </div>
     </div>
-
   </div>
 </header>
 
-<!-- ══ PL PAGE SUB-NAV (frozen below header) ══ -->
 <nav class="pl-subheader">
   <a href="/premier-league/" class="active">Overview</a>
   <a href="/premier-league/table/">Table</a>
@@ -455,10 +406,8 @@ body {
   <span class="pl-subheader-right">← <a href="/" style="color:inherit;text-decoration:none">Back to Home</a></span>
 </nav>
 
-<!-- ══ PAGE CONTENT ══ -->
 <div class="page-wrap">
 
-  <!-- HERO -->
   <div class="hero fu">
     <div class="season-pill">Premier League 2025/26</div>
     <h1>Final Day <em>2026</em></h1>
@@ -466,22 +415,20 @@ body {
     <div class="kickoff-pill">🕓 Sunday 24 May · 16:00 BST</div>
   </div>
 
-  <!-- CHAMPIONS -->
   <div class="champs-card fu">
     <span class="trophy">🏆</span>
     <div class="champs-label">Premier League Champions 2025/26</div>
     <div class="champs-name">Arsenal</div>
     <div class="champs-sub">First Premier League title in 22 years</div>
-    <div class="champs-pts">Confirmed Champions</div>
+    <div class="champs-pts">82 Points · Confirmed Champions</div>
   </div>
 
-  <!-- RELEGATION ALERT -->
+  <!-- FIX 2: Correct relegation text — Sunderland is SAFE (10th, 51pts) -->
   <div class="alert-card fu">
-    <div class="alert-label">🔴 Relegation Battle — Final Day Decider</div>
-    <p>The bottom of the table goes to the wire today. <strong>Tottenham, Sunderland</strong> and <strong>West Ham</strong> are all battling to survive. Every result at 16:00 BST could decide who gets relegated. Drama guaranteed.</p>
+    <div class="alert-label">⚡ Relegation Battle — Final Day Decider</div>
+    <p><strong>Burnley</strong> and <strong>Wolves</strong> are already relegated. <strong>Tottenham</strong> (17th, 38pts) and <strong>West Ham</strong> (18th, 36pts) are fighting to survive today. Every result at 16:00 BST matters.</p>
   </div>
 
-  <!-- FIXTURES -->
   <div class="section">
     <div class="sec-head">
       <div class="sec-title">⚽ Final Day Fixtures — Sunday 24 May · 16:00 BST</div>
@@ -584,13 +531,11 @@ body {
         </div>
       </div>
 
-      <div class="match-card rel fu">
-        <div class="match-badge rel">🔴 Relegation Decider</div>
+      <!-- FIX 3: Sunderland is SAFE — no relegation badge -->
+      <div class="match-card fu">
+        <div class="match-badge blue">🔵 Top Half</div>
         <div class="match-row">
-          <div class="team-home">
-            <div class="team-name">Sunderland</div>
-            <div class="team-note">Fighting to stay up</div>
-          </div>
+          <div class="team-home"><div class="team-name">Sunderland</div></div>
           <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
           <div class="team-away"><div class="team-name">Chelsea</div></div>
         </div>
@@ -605,7 +550,7 @@ body {
         <div class="match-row">
           <div class="team-home">
             <div class="team-name">Tottenham</div>
-            <div class="team-note">In the drop zone</div>
+            <div class="team-note">17th · 38pts · Must not lose</div>
           </div>
           <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
           <div class="team-away"><div class="team-name">Everton</div></div>
@@ -621,7 +566,7 @@ body {
         <div class="match-row">
           <div class="team-home">
             <div class="team-name">West Ham</div>
-            <div class="team-note">Need points to survive</div>
+            <div class="team-note">18th · 36pts · Must win</div>
           </div>
           <div class="match-mid"><div class="match-vs">VS</div><div class="match-time">16:00</div></div>
           <div class="team-away"><div class="team-name">Leeds United</div></div>
@@ -635,7 +580,6 @@ body {
     </div>
   </div>
 
-  <!-- WHERE TO WATCH -->
   <div class="section">
     <div class="sec-head">
       <div class="sec-title">📺 Where to Watch</div>
@@ -669,7 +613,6 @@ body {
     </div>
   </div>
 
-  <!-- QUICK LINKS -->
   <div class="section">
     <div class="sec-head">
       <div class="sec-title">🔗 Explore More</div>
@@ -695,9 +638,8 @@ body {
     </div>
   </div>
 
-</div><!-- /page-wrap -->
+</div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-logo">Goal<em>Current</em><span>.live</span></div>
   <div class="footer-links">
@@ -711,30 +653,22 @@ body {
   <div class="footer-fan">⚽ Independent fan site · Not affiliated with FIFA, UEFA or Premier League</div>
 </footer>
 
-<!-- COOKIE -->
 <div id="cookie-banner">
   <p>We use cookies for analytics and ads. See our <a href="/privacy.html">Privacy Policy</a>.</p>
   <button class="cookie-btn" onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('gc_cookie','1')">Accept</button>
 </div>
 
 <script>
-// Cookie consent
-if(localStorage.getItem('gc_cookie')){
-  document.getElementById('cookie-banner').style.display='none';
-}
-// Dropdown toggle
+if(localStorage.getItem('gc_cookie')) document.getElementById('cookie-banner').style.display='none';
 function toggleTab(id){
   document.querySelectorAll('.gc-tab-wrap').forEach(function(el){
     if(el.id !== id) el.classList.remove('open');
   });
   document.getElementById(id).classList.toggle('open');
 }
-// Close on outside click
 document.addEventListener('click',function(e){
   if(!e.target.closest('.gc-tab-wrap')){
-    document.querySelectorAll('.gc-tab-wrap').forEach(function(el){
-      el.classList.remove('open');
-    });
+    document.querySelectorAll('.gc-tab-wrap').forEach(function(el){ el.classList.remove('open'); });
   }
 });
 </script>
