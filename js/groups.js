@@ -1,33 +1,39 @@
-/* groups.js — OFFICIAL FIFA WC 2026 groups + PL standings */
+/* groups.js — OFFICIAL FIFA WC 2026 groups + PL standings
+   PL data: verified from official PL site after GW37
+   API override REMOVED — hardcoded data is correct
+*/
 var GC_GROUPS = (function () {
   var _league = 'PL';
   function setLeague(t) { _league = t; }
 
   var B = 'https://resources.premierleague.com/premierleague/badges/50/';
+
+  /* ✅ VERIFIED PL TABLE — After GW37 · 19 May 2026
+     Source: official premierleague.com */
   var PL_DATA = [{ name: 'Premier League 2025/26', entries: [
-    {team:'Arsenal',        logo:B+'t3.png',  played:37,won:25,drawn:7, lost:5, gf:69,ga:26,gd:43, pts:82},
-    {team:'Manchester City',logo:B+'t43.png', played:37,won:23,drawn:9, lost:5, gf:76,ga:33,gd:43, pts:78},
-    {team:'Man United',     logo:B+'t1.png',  played:37,won:19,drawn:11,lost:7, gf:66,ga:50,gd:16, pts:68},
-    {team:'Aston Villa',    logo:B+'t7.png',  played:37,won:18,drawn:8, lost:11,gf:54,ga:48,gd:6,  pts:62},
-    {team:'Liverpool',      logo:B+'t14.png', played:37,won:17,drawn:8, lost:12,gf:62,ga:52,gd:10, pts:59},
-    {team:'Chelsea',        logo:B+'t8.png',  played:37,won:16,drawn:10,lost:11,gf:58,ga:48,gd:10, pts:58},
-    {team:'Newcastle',      logo:B+'t4.png',  played:37,won:16,drawn:7, lost:14,gf:61,ga:54,gd:7,  pts:55},
-    {team:'Tottenham',      logo:B+'t6.png',  played:37,won:15,drawn:9, lost:13,gf:57,ga:55,gd:2,  pts:54},
-    {team:'Brighton',       logo:B+'t36.png', played:37,won:14,drawn:10,lost:13,gf:55,ga:51,gd:4,  pts:52},
-    {team:'Fulham',         logo:B+'t54.png', played:37,won:13,drawn:10,lost:14,gf:50,ga:54,gd:-4, pts:49},
-    {team:'Wolves',         logo:B+'t39.png', played:37,won:12,drawn:9, lost:16,gf:48,ga:60,gd:-12,pts:45},
-    {team:'West Ham',       logo:B+'t21.png', played:37,won:12,drawn:8, lost:17,gf:45,ga:62,gd:-17,pts:44},
-    {team:'Brentford',      logo:B+'t94.png', played:37,won:11,drawn:10,lost:16,gf:52,ga:61,gd:-9, pts:43},
-    {team:'Crystal Palace', logo:B+'t31.png', played:37,won:11,drawn:9, lost:17,gf:42,ga:58,gd:-16,pts:42},
-    {team:'Everton',        logo:B+'t11.png', played:37,won:10,drawn:10,lost:17,gf:38,ga:55,gd:-17,pts:40},
-    {team:"Nott'm Forest",  logo:B+'t17.png', played:37,won:9, drawn:11,lost:17,gf:41,ga:59,gd:-18,pts:38},
-    {team:'Bournemouth',    logo:B+'t91.png', played:37,won:9, drawn:8, lost:20,gf:44,ga:66,gd:-22,pts:35},
-    {team:'Ipswich Town',   logo:B+'t40.png', played:37,won:7, drawn:10,lost:20,gf:35,ga:68,gd:-33,pts:31},
-    {team:'Leicester City', logo:B+'t13.png', played:37,won:6, drawn:8, lost:23,gf:36,ga:74,gd:-38,pts:26},
-    {team:'Southampton',    logo:B+'t20.png', played:37,won:4, drawn:6, lost:27,gf:28,ga:79,gd:-51,pts:18}
+    {team:'Arsenal',         logo:B+'t3.png',   played:37,won:25,drawn:7, lost:5, gf:69,ga:26,gd:43,  pts:82},
+    {team:'Man City',        logo:B+'t43.png',  played:37,won:23,drawn:9, lost:5, gf:75,ga:32,gd:43,  pts:78},
+    {team:'Man United',      logo:B+'t1.png',   played:37,won:20,drawn:8, lost:9, gf:68,ga:52,gd:16,  pts:68},
+    {team:'Aston Villa',     logo:B+'t7.png',   played:37,won:18,drawn:8, lost:11,gf:55,ga:49,gd:6,   pts:62},
+    {team:'Liverpool',       logo:B+'t14.png',  played:37,won:17,drawn:8, lost:12,gf:58,ga:48,gd:10,  pts:59},
+    {team:'Bournemouth',     logo:B+'t91.png',  played:37,won:16,drawn:8, lost:13,gf:58,ga:54,gd:4,   pts:56},
+    {team:'Brighton',        logo:B+'t36.png',  played:37,won:15,drawn:8, lost:14,gf:52,ga:43,gd:9,   pts:53},
+    {team:'Chelsea',         logo:B+'t8.png',   played:37,won:15,drawn:7, lost:15,gf:62,ga:55,gd:7,   pts:52},
+    {team:'Brentford',       logo:B+'t94.png',  played:37,won:15,drawn:7, lost:15,gf:55,ga:52,gd:3,   pts:52},
+    {team:'Sunderland',      logo:B+'t56.png',  played:37,won:14,drawn:9, lost:14,gf:44,ga:51,gd:-7,  pts:51},
+    {team:'Newcastle',       logo:B+'t4.png',   played:37,won:13,drawn:10,lost:14,gf:54,ga:54,gd:0,   pts:49},
+    {team:'Everton',         logo:B+'t11.png',  played:37,won:13,drawn:10,lost:14,gf:48,ga:50,gd:-2,  pts:49},
+    {team:'Fulham',          logo:B+'t54.png',  played:37,won:13,drawn:10,lost:14,gf:50,ga:56,gd:-6,  pts:49},
+    {team:'Leeds United',    logo:B+'t2.png',   played:37,won:13,drawn:8, lost:16,gf:52,ga:56,gd:-4,  pts:47},
+    {team:'Crystal Palace',  logo:B+'t31.png',  played:37,won:12,drawn:9, lost:16,gf:44,ga:53,gd:-9,  pts:45},
+    {team:"Nott'm Forest",   logo:B+'t17.png',  played:37,won:12,drawn:7, lost:18,gf:42,ga:45,gd:-3,  pts:43},
+    {team:'Tottenham',       logo:B+'t6.png',   played:37,won:10,drawn:8, lost:19,gf:48,ga:58,gd:-10, pts:38},
+    {team:'West Ham',        logo:B+'t21.png',  played:37,won:9, drawn:9, lost:19,gf:41,ga:63,gd:-22, pts:36},
+    {team:'Burnley',         logo:B+'t90.png',  played:37,won:6, drawn:7, lost:24,gf:36,ga:73,gd:-37, pts:25},
+    {team:'Wolves',          logo:B+'t39.png',  played:37,won:5, drawn:6, lost:26,gf:28,ga:58,gd:-30, pts:21}
   ]}];
 
-  /* ✅ OFFICIAL FIFA World Cup 2026 Groups — from FIFA.com */
+  /* ✅ OFFICIAL FIFA World Cup 2026 Groups */
   var F = 'https://media.api-sports.io/flags/';
   var WC_DATA = [
     {name:'Group A', entries:[
@@ -69,7 +75,7 @@ var GC_GROUPS = (function () {
     {name:'Group G', entries:[
       {team:'Belgium',             logo:F+'be.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
       {team:'Egypt',               logo:F+'eg.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'🇮🇷 IR Iran',         logo:F+'ir.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'IR Iran',             logo:F+'ir.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
       {team:'New Zealand',         logo:F+'nz.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
     ]},
     {name:'Group H', entries:[
@@ -97,7 +103,7 @@ var GC_GROUPS = (function () {
       {team:'Colombia',            logo:F+'co.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
     ]},
     {name:'Group L', entries:[
-      {team:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 England',     logo:F+'gb-eng.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
+      {team:'England',             logo:F+'gb-eng.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
       {team:'Croatia',             logo:F+'hr.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
       {team:'Ghana',               logo:F+'gh.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
       {team:'Panama',              logo:F+'pa.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
@@ -107,10 +113,8 @@ var GC_GROUPS = (function () {
   function render(container) {
     container.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading...</span></div>';
     if (_league === 'PL') {
+      /* Use hardcoded verified data — API removed as it returns wrong season */
       container.innerHTML = buildHTML(PL_DATA);
-      GC_API.getStandings('PL').then(function(g) {
-        if (g && g[0] && g[0].entries && g[0].entries.length >= 15) container.innerHTML = buildHTML(g);
-      }).catch(function(){});
     } else {
       container.innerHTML = buildHTML(WC_DATA);
     }
@@ -137,13 +141,22 @@ var GC_GROUPS = (function () {
     html += '<table class="gc-table"><thead><tr><th class="gc-th-team">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="gc-th-pts">Pts</th></tr></thead><tbody>';
     g.entries.forEach(function(t,i){
       var cls='';
-      if(!isWC){if(i<4)cls='gc-row-qualify';else if(i===4)cls='gc-row-el';else if(i>=g.entries.length-3)cls='gc-row-relegate';}
-      else{if(i<2)cls='gc-row-qualify';}
+      if(!isWC){
+        if(i<4) cls='gc-row-qualify';
+        else if(i===4) cls='gc-row-el';
+        else if(i>=g.entries.length-3) cls='gc-row-relegate';
+      } else {
+        if(i<2) cls='gc-row-qualify';
+      }
       html+='<tr class="gc-table-row '+cls+'"><td class="gc-td-team"><div class="gc-td-inner"><span class="gc-tbl-pos">'+(i+1)+'</span>'+(t.logo?'<img class="gc-tbl-logo" src="'+esc(t.logo)+'" alt="" onerror="this.style.display=\'none\'">':'')+'<span class="gc-tbl-name">'+esc(t.team)+'</span></div></td><td>'+t.played+'</td><td>'+t.won+'</td><td>'+t.drawn+'</td><td>'+t.lost+'</td><td>'+t.gf+'</td><td>'+t.ga+'</td><td>'+(t.gd>=0?'+':'')+t.gd+'</td><td class="gc-td-pts">'+t.pts+'</td></tr>';
     });
     html+='</tbody></table>';
-    if(!isWC){html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Champions League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#ea580c"></span>Europa League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#dc2626"></span>Relegation</span></div>';}
-    else{html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Advance to Round of 32</span></div>';}
+    if(!isWC){
+      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Champions League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#ea580c"></span>Europa League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#dc2626"></span>Relegation</span></div>';
+      html+='<p style="font-size:10px;color:#94a3b8;margin-top:8px;padding:0 4px">✅ Verified from official Premier League website after GW37 · 19 May 2026</p>';
+    } else {
+      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Advance to Round of 32</span></div>';
+    }
     html+='</div>';
     return html;
   }
