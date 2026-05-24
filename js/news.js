@@ -1,346 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#1a1f2e">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://goalcurrent.live/premier-league/news/">
-  <title>Premier League News — Arsenal Champions 2025/26 | GoalCurrent.live</title>
-  <meta name="description" content="Premier League 2025/26 news. Arsenal lift the trophy at Selhurst Park, Pep Guardiola farewell, trophy parade details and more.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <style>
-    :root {
-      --sb-w:240px; --sb-bg:#1a1f2e;
-      --sb-border:rgba(255,255,255,0.08);
-      --sb-hover:rgba(255,255,255,0.07);
-      --sb-active:rgba(37,99,235,0.22);
-      --sb-text:rgba(255,255,255,0.78);
-      --sb-text-dim:rgba(255,255,255,0.38);
-      --sb-accent:#3b82f6;
-      --ucl:#2563eb; --el:#d97706; --ecl:#16a34a; --rel:#dc2626;
+/* ============================================================
+   GoalCurrent.live — News Manager v4
+   Updated: 24 May 2026 — Season Complete
+   - Breaking ticker removed (season over)
+   - PL Final Day news updated to FT results
+   ============================================================ */
+
+var GC_NEWS = [
+
+  /* ── NORMAL — PL Season Complete News ── */
+  {
+    type:      "normal",
+    tag:       "PL SEASON COMPLETE",
+    tagColor:  "#37003c",
+    emoji:     "🏆",
+    title:     "Arsenal Champions! The Story of a Historic Title",
+    body:      "Arsenal end 22-year wait. Arteta's side finish with 85 points — lifting the trophy at Selhurst Park.",
+    meta:      "Sky Sports · 24 May 2026",
+    image_url: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80",
+    source_url:"/premier-league/news/",
+    source_label:"GoalCurrent · PL News"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#dc2626",
+    emoji:     "⬇️",
+    title:     "West Ham Relegated — Spurs Survive on Final Day",
+    body:      "West Ham went down despite winning 3-0 vs Leeds. Tottenham survived with 1-0 vs Everton. Burnley and Wolves also relegated.",
+    meta:      "BBC Sport · 24 May 2026",
+    image_url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    source_url:"/premier-league/news/",
+    source_label:"GoalCurrent · PL News"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#37003c",
+    emoji:     "👋",
+    title:     "Pep Guardiola Leaves Man City After 10 Years",
+    body:      "Pep's final game ended in a 1-2 defeat to Aston Villa. The North Stand at the Etihad will be renamed in his honour.",
+    meta:      "Sky Sports · 24 May 2026",
+    image_url: "https://images.unsplash.com/photo-1551958219-acbc630e2914?w=800&q=80",
+    source_url:"/premier-league/news/",
+    source_label:"GoalCurrent · PL News"
+  },
+  {
+    type:      "normal",
+    tag:       "PL FINAL DAY",
+    tagColor:  "#37003c",
+    emoji:     "🎉",
+    title:     "Arsenal Trophy Parade — Sunday 31 May, 2pm, Islington",
+    body:      "Arsenal's trophy parade route confirmed: Drayton Park → Highbury Grove → St Paul's Road → Upper Street. Free event.",
+    meta:      "Arsenal.com · 24 May 2026",
+    image_url: "https://images.unsplash.com/photo-1487466365202-1afdb86c764e?w=800&q=80",
+    source_url:"https://www.arsenal.com/news/premier-league-title-parade-confirmed",
+    source_label:"Arsenal.com"
+  },
+
+  /* ── UCL FINAL NEWS ── */
+  {
+    type:      "normal",
+    tag:       "UCL FINAL",
+    tagColor:  "#001489",
+    emoji:     "⭐",
+    title:     "Dembele Fit for UCL Final vs Arsenal",
+    body:      "PSG star confirms he will play despite calf scare. 'I have no doubt about it.'",
+    meta:      "beIN Sports · 2 days ago",
+    image_url: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
+    source_url:"https://psgtalk.com/2026/05/psg-good-news-ucl-final-arsenal/",
+    source_label:"PSG Talk"
+  },
+  {
+    type:      "normal",
+    tag:       "UCL FINAL",
+    tagColor:  "#001489",
+    emoji:     "🎵",
+    title:     "The Killers to Headline UCL Final Kick Off Show",
+    body:      "The Killers headline the Budapest Kick Off Show. 30 May · 17:00 UK · Puskas Arena.",
+    meta:      "UEFA.com · 2 weeks ago",
+    image_url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80",
+    source_url:"https://www.uefa.com/uefachampionsleague/",
+    source_label:"UEFA"
+  },
+
+  /* ── WORLD CUP 2026 NEWS ── */
+  {
+    type:      "normal",
+    tag:       "WORLD CUP 2026",
+    tagColor:  "#d97706",
+    emoji:     "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    title:     "England WC2026 Squad — Kane Leads, Foden & Palmer OUT",
+    body:      "Thomas Tuchel names 26-man squad. Kane captains. Saka, Bellingham and Rice all included. First match vs Croatia 17 June, Dallas.",
+    meta:      "England FA · 22 May 2026",
+    image_url: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80",
+    source_url:"https://www.englandfootball.com/",
+    source_label:"England FA"
+  },
+  {
+    type:      "normal",
+    tag:       "WORLD CUP 2026",
+    tagColor:  "#d97706",
+    emoji:     "🇧🇷",
+    title:     "Neymar Back! Brazil Name WC Squad Under Ancelotti",
+    body:      "Neymar makes Brazil's World Cup squad alongside Vinicius Jr, Raphinha and Gabriel Martinelli.",
+    meta:      "Football365 · 4 days ago",
+    image_url: "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&q=80",
+    source_url:"https://www.football365.com/",
+    source_label:"Football365"
+  },
+  {
+    type:      "normal",
+    tag:       "WORLD CUP 2026",
+    tagColor:  "#d97706",
+    emoji:     "🇭🇷",
+    title:     "Modric, 40, Named in Croatia WC2026 Squad",
+    body:      "Luka Modric, at 40 years old, has been included in Croatia's World Cup squad.",
+    meta:      "Yahoo Sports · Yesterday",
+    image_url: "https://images.unsplash.com/photo-1551958219-acbc630e2914?w=800&q=80",
+    source_url:"https://sports.yahoo.com/",
+    source_label:"Yahoo Sports"
+  },
+  {
+    type:      "normal",
+    tag:       "WORLD CUP 2026",
+    tagColor:  "#d97706",
+    emoji:     "🇿🇦",
+    title:     "South Africa Name WC Preliminary Squad",
+    body:      "Bafana Bafana reveal their squad ahead of June 11 opener vs Mexico at Estadio Azteca.",
+    meta:      "Yahoo Sports · Yesterday",
+    image_url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    source_url:"https://sports.yahoo.com/",
+    source_label:"Yahoo Sports"
+  }
+];
+
+/* ============================================================
+   RENDERER
+   ============================================================ */
+(function () {
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function injectStyles() {
+    if (document.getElementById('gc-news-style')) return;
+    var s = document.createElement('style');
+    s.id = 'gc-news-style';
+    s.textContent = [
+      '#gc-news-carousel-wrap{padding:0 16px;margin-bottom:16px}',
+      '#gc-news-carousel-wrap .gc-news-carousel-title{font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}',
+      '#gc-news-carousel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}',
+      '#gc-news-carousel::-webkit-scrollbar{display:none}',
+      '.gc-news-card{flex-shrink:0;width:260px;height:320px;border-radius:18px;overflow:hidden;position:relative;scroll-snap-align:start;box-shadow:0 6px 24px rgba(0,0,0,0.22);cursor:pointer}',
+      '.gc-news-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transition:transform .3s}',
+      '.gc-news-card:hover .gc-news-card-bg{transform:scale(1.04)}',
+      '.gc-news-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.90) 0%,rgba(0,0,0,0.35) 55%,rgba(0,0,0,0.0) 100%);z-index:1}',
+      '.gc-news-card-content{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:14px}',
+      '.gc-news-card-tag{display:inline-block;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-bottom:6px;color:#fff}',
+      '.gc-news-card-title{font-size:14px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:6px;text-shadow:0 1px 6px rgba(0,0,0,0.6)}',
+      '.gc-news-card-meta{font-size:10px;color:rgba(255,255,255,0.6);margin-bottom:10px}',
+      '.gc-news-card-btns{display:flex;gap:6px}',
+      '.gc-news-card-btn{flex:1;padding:8px 0;border-radius:9px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;text-align:center;text-decoration:none;color:#fff;display:block;background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.22);transition:background .2s}',
+      '.gc-news-card-btn:hover{background:rgba(255,255,255,0.32)}',
+      '.gc-news-card-btn.read{background:rgba(37,99,235,0.85);border-color:rgba(37,99,235,0.5)}'
+    ].join('');
+    document.head.appendChild(s);
+  }
+
+  function buildCarousel(items) {
+    function tryInsert() {
+      var content = document.getElementById('gc-content');
+      if (!content || document.getElementById('gc-news-carousel-wrap')) return false;
+      var wrap = document.createElement('div');
+      wrap.id = 'gc-news-carousel-wrap';
+      var titleEl = document.createElement('div');
+      titleEl.className = 'gc-news-carousel-title';
+      titleEl.textContent = '📰 Latest News — Swipe →';
+      wrap.appendChild(titleEl);
+      var carousel = document.createElement('div');
+      carousel.id = 'gc-news-carousel';
+      items.forEach(function(n) {
+        var card = document.createElement('div');
+        card.className = 'gc-news-card';
+        var bgImg = n.image_url || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80';
+        var readBtn = n.source_url ?
+          '<a class="gc-news-card-btn read" href="' + esc(n.source_url) + '" target="_blank" rel="noopener">&#128279; Read</a>' : '';
+        var shareBtn = '<a class="gc-news-card-btn" onclick="if(navigator.share)navigator.share({title:\'' + esc(n.title).replace(/\'/g,'') + '\',url:\'' + esc(n.source_url||'https://goalcurrent.live') + '\'});return false;" href="#">&#128257; Share</a>';
+        card.innerHTML =
+          '<div class="gc-news-card-bg" style="background-image:url(' + esc(bgImg) + ')"></div>' +
+          '<div class="gc-news-card-overlay"></div>' +
+          '<div class="gc-news-card-content">' +
+            (n.tag ? '<span class="gc-news-card-tag" style="background:' + esc(n.tagColor||'#2563eb') + '">' + esc(n.emoji||'') + ' ' + esc(n.tag) + '</span>' : '') +
+            '<div class="gc-news-card-title">' + esc(n.title) + '</div>' +
+            (n.meta ? '<div class="gc-news-card-meta">' + esc(n.meta) + '</div>' : '') +
+            '<div class="gc-news-card-btns">' + readBtn + shareBtn + '</div>' +
+          '</div>';
+        carousel.appendChild(card);
+      });
+      wrap.appendChild(carousel);
+      var signup = content.querySelector('.gc-signup-card');
+      if (signup && signup.parentNode) signup.parentNode.insertBefore(wrap, signup);
+      else content.appendChild(wrap);
+      return true;
     }
-    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    body { background:#1a1f2e; color:#f1f5f9; font-family:Verdana,Geneva,sans-serif; min-height:100vh; }
-    #gc-app { display:flex; min-height:100vh; }
-
-    /* SIDEBAR */
-    .gc-sidebar { width:var(--sb-w); flex-shrink:0; background:var(--sb-bg); position:fixed; top:0; left:0; bottom:0; z-index:400; overflow-y:auto; scrollbar-width:none; border-right:1px solid var(--sb-border); display:flex; flex-direction:column; }
-    .gc-sidebar::-webkit-scrollbar { display:none; }
-    .sb-logo { display:flex; align-items:center; gap:10px; padding:18px 16px 16px; border-bottom:1px solid var(--sb-border); text-decoration:none; flex-shrink:0; }
-    .sb-logo img { height:42px; width:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4)); flex-shrink:0; }
-    .sb-logo-text { font-size:16px; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.1; }
-    .sb-logo-text em { color:#60a5fa; font-style:normal; }
-    .sb-logo-text span { color:#34d399; font-weight:400; }
-    .sb-section { padding:10px 0 4px; }
-    .sb-section-label { font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--sb-text-dim); padding:6px 16px; display:block; }
-    .sb-nav-link { display:flex; align-items:center; gap:10px; padding:9px 16px; color:var(--sb-text); font-size:12.5px; font-weight:600; transition:all 0.18s; border-left:3px solid transparent; background:none; border-right:none; border-top:none; border-bottom:none; width:100%; text-align:left; cursor:pointer; font-family:Verdana,Geneva,sans-serif; }
-    .sb-nav-link:hover { background:var(--sb-hover); color:#fff; }
-    .sb-nav-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
-    .sb-divider { height:1px; background:var(--sb-border); margin:6px 16px; }
-    .sb-comp-btn { width:100%; display:flex; align-items:center; gap:8px; padding:10px 16px; background:none; border:none; cursor:pointer; font-size:12.5px; font-weight:700; color:var(--sb-text); text-align:left; transition:background 0.18s; border-left:3px solid transparent; font-family:Verdana,Geneva,sans-serif; }
-    .sb-comp-btn:hover { background:var(--sb-hover); color:#fff; }
-    .sb-comp-icon { font-size:14px; flex-shrink:0; }
-    .sb-comp-name { flex:1; }
-    .sb-comp-badge { font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px; flex-shrink:0; }
-    .sb-comp-badge.pl  { background:rgba(56,0,60,0.8);  color:#e9b4ff; }
-    .sb-comp-badge.wc  { background:rgba(200,0,30,0.6); color:#ffa5b4; }
-    .sb-comp-badge.ucl { background:rgba(0,30,98,0.8);  color:#93c5fd; }
-    .sb-chevron { font-size:9px; color:var(--sb-text-dim); transition:transform 0.2s; flex-shrink:0; }
-    .sb-comp-btn.open .sb-chevron { transform:rotate(180deg); }
-    .sb-links { display:none; padding:2px 0 4px; }
-    .sb-links.open { display:block; }
-    .sb-links a { display:flex; align-items:center; gap:8px; padding:7px 16px 7px 42px; font-size:12px; font-weight:500; color:var(--sb-text-dim); text-decoration:none; transition:all 0.16s; border-left:3px solid transparent; }
-    .sb-links a:hover { color:#fff; background:var(--sb-hover); }
-    .sb-links a.active { color:#fff; border-left-color:var(--sb-accent); background:rgba(37,99,235,0.1); }
-    .sb-link-icon { font-size:12px; width:16px; text-align:center; flex-shrink:0; }
-    .sb-footer { margin-top:auto; padding:14px 16px; border-top:1px solid var(--sb-border); font-size:10px; color:var(--sb-text-dim); line-height:1.7; }
-    .sb-footer a { color:rgba(255,255,255,0.3); text-decoration:none; }
-
-    /* MAIN */
-    .gc-main-wrap { margin-left:var(--sb-w); flex:1; min-width:0; }
-    .gc-page-content { padding:24px 24px 130px; max-width:900px; }
-    .bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; }
-    .bc a { color:var(--sb-text-dim); text-decoration:none; }
-    .bc a:hover { color:#fff; }
-    .page-title { font-size:22px; font-weight:800; color:#fff; margin-bottom:4px; }
-    .page-sub { font-size:12px; color:var(--sb-text-dim); margin-bottom:24px; }
-
-    /* FEATURED NEWS CARD */
-    .news-featured {
-      border-radius:16px; overflow:hidden;
-      border:1px solid var(--sb-border); margin-bottom:24px;
-      background:rgba(255,255,255,0.03);
+    if (!tryInsert()) {
+      var ob = new MutationObserver(function() { if (tryInsert()) ob.disconnect(); });
+      ob.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function(){ ob.disconnect(); }, 30000);
     }
-    .news-featured img {
-      width:100%; height:220px; object-fit:cover; display:block;
+  }
+
+  function init() {
+    injectStyles();
+    /* No breaking ticker — season is complete */
+    var normal = GC_NEWS.filter(function(n){ return n.type === 'normal'; });
+    if (normal.length) {
+      setTimeout(function(){ buildCarousel(normal); }, 2000);
     }
-    .news-featured-body { padding:18px 20px; }
-    .news-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
-    .tag-champ { background:rgba(56,0,60,0.6); color:#e9b4ff; }
-    .tag-farewell { background:rgba(37,99,235,0.2); color:#93c5fd; }
-    .tag-award { background:rgba(217,119,6,0.2); color:#fbbf24; }
-    .tag-parade { background:rgba(22,163,74,0.2); color:#86efac; }
-    .tag-rel { background:rgba(220,38,38,0.2); color:#fca5a5; }
-    .tag-ucl { background:rgba(0,30,98,0.4); color:#93c5fd; }
-    .news-featured-body h2 { font-size:18px; font-weight:800; color:#fff; line-height:1.3; margin-bottom:8px; }
-    .news-featured-body p { font-size:12px; color:var(--sb-text); line-height:1.7; margin-bottom:12px; }
-    .news-meta { font-size:10px; color:var(--sb-text-dim); margin-bottom:14px; }
-    .news-video-btn {
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(255,0,0,0.15); border:1px solid rgba(255,0,0,0.3);
-      color:#ff6b6b; padding:8px 16px; border-radius:8px;
-      font-size:11px; font-weight:700; text-decoration:none; transition:all 0.18s;
-    }
-    .news-video-btn:hover { background:rgba(255,0,0,0.25); color:#fff; }
+  }
 
-    /* NEWS GRID */
-    .news-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-bottom:24px; }
-    .news-card {
-      background:rgba(255,255,255,0.03); border:1px solid var(--sb-border);
-      border-radius:14px; overflow:hidden; transition:all 0.18s;
-    }
-    .news-card:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15); }
-    .news-card img { width:100%; height:140px; object-fit:cover; display:block; }
-    .news-card-body { padding:14px 16px; }
-    .news-card-body h3 { font-size:13px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:6px; }
-    .news-card-body p { font-size:11px; color:var(--sb-text); line-height:1.6; margin-bottom:10px; }
-    .news-card-meta { font-size:10px; color:var(--sb-text-dim); }
-    .news-card-link { display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:11px; font-weight:700; color:#60a5fa; text-decoration:none; }
-    .news-card-link:hover { color:#fff; }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 
-    /* PARADE BOX */
-    .parade-box {
-      background:linear-gradient(135deg,rgba(22,163,74,0.12),rgba(22,163,74,0.04));
-      border:1px solid rgba(22,163,74,0.25); border-radius:14px;
-      padding:18px 20px; margin-bottom:24px;
-    }
-    .parade-box h3 { font-size:15px; font-weight:800; color:#4ade80; margin-bottom:10px; }
-    .parade-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
-    .parade-item { background:rgba(22,163,74,0.1); border-radius:8px; padding:8px 14px; font-size:11px; color:#86efac; font-weight:600; }
-    .parade-item span { display:block; font-size:9px; color:rgba(134,239,172,0.6); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
-    .parade-note { font-size:11px; color:var(--sb-text-dim); line-height:1.6; margin-top:10px; }
-
-    /* UCL FINAL BOX */
-    .ucl-box {
-      background:linear-gradient(135deg,rgba(37,99,235,0.12),rgba(37,99,235,0.04));
-      border:1px solid rgba(37,99,235,0.25); border-radius:14px;
-      padding:18px 20px; margin-bottom:24px;
-      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-    }
-    .ucl-box-icon { font-size:40px; flex-shrink:0; }
-    .ucl-box h3 { font-size:15px; font-weight:800; color:#93c5fd; margin-bottom:6px; }
-    .ucl-box p { font-size:12px; color:var(--sb-text); line-height:1.6; }
-
-    /* Quick links */
-    .quick-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-top:8px; }
-    .ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }
-    .ql:hover { background:rgba(255,255,255,0.08); color:#fff; }
-    .ql span:first-child { font-size:20px; }
-
-    /* Nord */
-    #gc-nord-fixed { position:fixed; bottom:0; left:var(--sb-w); right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; }
-    #gc-nord-fixed a { padding:4px 12px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }
-
-    /* Mobile */
-    @media(max-width:768px) {
-      .gc-sidebar { transform:translateX(-100%); transition:transform 0.28s ease; }
-      .gc-sidebar.open { transform:translateX(0); box-shadow:4px 0 24px rgba(0,0,0,0.5); }
-      .gc-main-wrap { margin-left:0; }
-      .gc-page-content { padding:12px 12px 130px; }
-      #gc-nord-fixed { left:0 !important; bottom:64px !important; right:0 !important; }
-      .sb-hamburger { position:fixed; top:12px; right:12px; z-index:9999; background:var(--sb-bg); border:none; border-radius:10px; width:42px; height:42px; font-size:20px; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.3); }
-      .news-featured img { height:160px; }
-      .news-grid { grid-template-columns:1fr; }
-    }
-    @media(min-width:769px) { .sb-hamburger { display:none; } }
-  </style>
-</head>
-<body>
-
-<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
-
-<div id="gc-app">
-  <aside class="gc-sidebar" id="gc-sidebar">
-    <a href="/" class="sb-logo">
-      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
-      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-    </a>
-    <div class="sb-section">
-      <span class="sb-section-label">Main Menu</span>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏠</span> Home</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🔴</span> Live Scores</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📅</span> Schedule</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏅</span> Standings</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">⭐</span> My Teams</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📰</span> Latest News</button>
-    </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <span class="sb-section-label">Competitions</span>
-      <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-        <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links open" id="sb-pl">
-        <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/premier-league/news/" class="active"><span class="sb-link-icon">📰</span> News</a>
-        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-        <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-        <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-wc">
-        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-        <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-ucl">
-        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-    </div>
-    <div class="sb-footer">
-      © 2026 Ashna4All (A. Zafarani)<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-      <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
-    </div>
-  </aside>
-
-  <div class="gc-main-wrap">
-    <main class="gc-page-content">
-      <div class="bc"><a href="/">GoalCurrent.live</a> › <a href="/premier-league/">Premier League</a> › News</div>
-      <div class="page-title">📰 Premier League News</div>
-      <div class="page-sub">2025/26 Season · Final Day & End of Season · 24 May 2026</div>
-
-      <!-- STORY 1 — FEATURED: Arsenal trophy lift -->
-      <div class="news-featured">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Premier_League_Logo.svg/800px-Premier_League_Logo.svg.png" alt="Arsenal Premier League Champions trophy celebration" loading="eager">
-        <div class="news-featured-body">
-          <span class="news-tag tag-champ">🏆 Breaking News</span>
-          <h2>Arsenal Lift the Premier League Trophy at Selhurst Park</h2>
-          <p>Arsenal are Premier League Champions for the first time in 22 years. Captain Martin Odegaard lifted the trophy at Selhurst Park after Arsenal's 2–1 win over Crystal Palace on the final day. The Gunners wore their white third strip for the match before changing into their iconic red home kit for the trophy presentation — meaning all the historic images show Odegaard lifting the trophy in Arsenal red.</p>
-          <p>It is the first time in Premier League history that Arsenal have lifted the trophy at an away ground. Their previous three lifts all took place at their old home, Highbury. Arsenal won the league for the 14th time overall, finishing with 85 points.</p>
-          <div class="news-meta">📅 24 May 2026 · ⚽ Premier League · 🏟️ Selhurst Park, London</div>
-          <a href="https://www.youtube.com/results?search_query=Arsenal+Premier+League+trophy+lift+2026" target="_blank" rel="noopener" class="news-video-btn">▶ Watch Trophy Lift on YouTube</a>
-        </div>
-      </div>
-
-      <!-- PARADE BOX -->
-      <div class="parade-box">
-        <h3>🎉 Arsenal Trophy Parade — Sunday 31 May 2026</h3>
-        <div class="parade-row">
-          <div class="parade-item"><span>Date</span>Sunday 31 May 2026</div>
-          <div class="parade-item"><span>Start Time</span>2:00 PM BST</div>
-          <div class="parade-item"><span>Location</span>Islington, London</div>
-        </div>
-        <div class="parade-note">The parade follows Arsenal's UEFA Champions League final against PSG in Budapest on Saturday 30 May (5pm BST). The route passes through Drayton Park, Highbury Grove, St Paul's Road and Upper Street. If Arsenal win the UCL final, the parade will also celebrate that historic double.</div>
-        <a href="https://www.arsenal.com/news/premier-league-title-parade-confirmed" target="_blank" rel="noopener" class="news-card-link">📋 Official Arsenal Parade Info →</a>
-      </div>
-
-      <!-- UCL FINAL BOX -->
-      <div class="ucl-box">
-        <div class="ucl-box-icon">⭐</div>
-        <div>
-          <h3>Arsenal vs PSG — UEFA Champions League Final</h3>
-          <p>Arsenal face Paris Saint-Germain in the Champions League final in Budapest, Hungary on Saturday 30 May 2026 at 5:00pm BST. Mikel Arteta's side could complete an historic Double.</p>
-          <a href="https://www.youtube.com/results?search_query=Arsenal+PSG+Champions+League+final+2026" target="_blank" rel="noopener" class="news-card-link" style="margin-top:8px;">▶ Watch UCL Final Preview →</a>
-        </div>
-      </div>
-
-      <!-- NEWS GRID -->
-      <div class="news-grid">
-
-        <!-- Story 2: Pep farewell -->
-        <div class="news-card">
-          <img src="https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pep Guardiola farewell Manchester City" loading="lazy">
-          <div class="news-card-body">
-            <span class="news-tag tag-farewell">👋 Farewell</span>
-            <h3>Pep Guardiola Leaves Manchester City After 10 Years</h3>
-            <p>Pep Guardiola ended his historic 10-year reign at Manchester City after their 2–1 home defeat to Aston Villa on the final day. The Etihad's North Stand has been renamed the "Pep Guardiola Stand" and a statue has been commissioned in his honour.</p>
-            <div class="news-card-meta">📅 24 May 2026 · Manchester City</div>
-            <a href="https://www.youtube.com/results?search_query=Pep+Guardiola+farewell+Manchester+City+2026" target="_blank" rel="noopener" class="news-card-link">▶ Watch Pep's Farewell →</a>
-          </div>
-        </div>
-
-        <!-- Story 3: Awards -->
-        <div class="news-card">
-          <img src="https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Premier League Player of the Season award" loading="lazy">
-          <div class="news-card-body">
-            <span class="news-tag tag-award">🎖️ Awards</span>
-            <h3>Bruno Fernandes Wins PL Player of the Season</h3>
-            <p>Bruno Fernandes claimed the Premier League Player of the Season award after a outstanding 2025/26 campaign with Manchester United. Nico O'Reilly was named Young Player of the Season.</p>
-            <div class="news-card-meta">📅 24 May 2026 · Premier League Awards</div>
-            <a href="https://www.premierleague.com" target="_blank" rel="noopener" class="news-card-link">🏆 PL Official Site →</a>
-          </div>
-        </div>
-
-        <!-- Story 4: Salah farewell -->
-        <div class="news-card">
-          <img src="https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Liverpool Anfield farewell" loading="lazy">
-          <div class="news-card-body">
-            <span class="news-tag tag-farewell">😢 Farewell</span>
-            <h3>Mohamed Salah Says Goodbye to Liverpool After 9 Years</h3>
-            <p>Mohamed Salah played his final game for Liverpool in their 1–1 draw with Brentford at Anfield. The Egyptian King ends a remarkable 9-year spell as Liverpool's greatest ever goalscorer.</p>
-            <div class="news-card-meta">📅 24 May 2026 · Liverpool FC</div>
-            <a href="https://www.youtube.com/results?search_query=Salah+farewell+Liverpool+2026" target="_blank" rel="noopener" class="news-card-link">▶ Watch Salah Tribute →</a>
-          </div>
-        </div>
-
-        <!-- Story 5: Relegation -->
-        <div class="news-card">
-          <img src="https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Relegation Premier League" loading="lazy">
-          <div class="news-card-body">
-            <span class="news-tag tag-rel">⚠️ Relegation</span>
-            <h3>West Ham Relegated — Spurs Survive on Final Day</h3>
-            <p>West Ham United were relegated to the Championship despite winning 3–0 at home against Leeds United. Tottenham Hotspur survived with a 1–0 win over Everton, finishing 17th on 41 points. Burnley and Wolves were also relegated.</p>
-            <div class="news-card-meta">📅 24 May 2026 · GW38 Final Day</div>
-            <a href="/premier-league/results/" class="news-card-link">✅ See All Results →</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Quick links -->
-      <div class="quick-links">
-        <a href="/premier-league/" class="ql"><span>🏠</span><span>PL Overview</span></a>
-        <a href="/premier-league/table/" class="ql"><span>📊</span><span>Final Table</span></a>
-        <a href="/premier-league/results/" class="ql"><span>✅</span><span>GW38 Results</span></a>
-        <a href="/premier-league/teams/" class="ql"><span>👕</span><span>All Teams</span></a>
-      </div>
-
-    </main>
-  </div>
-</div>
-
-<div id="gc-nord-fixed">
-  <span style="color:#fff;font-size:11px;font-weight:600;white-space:nowrap">🔒 NordVPN — 75% off + 3 months FREE</span>
-  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#1dbf73;">Get Deal →</a>
-  <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="background:#0066cc;">NordPass</a>
-  <span style="font-size:9px;color:#475569">#AD · <a href="/disclaimer.html" style="color:#475569;text-decoration:underline">Affiliate link</a></span>
-</div>
-
-<script>
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('DOMContentLoaded',function(){
-  document.addEventListener('click',function(e){
-    var sb=document.getElementById('gc-sidebar'),hb=document.querySelector('.sb-hamburger');
-    if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
-  });
-});
-</script>
-</body>
-</html>
+})();
