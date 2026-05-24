@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+  <!-- Google Analytics — loaded after page render -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-X84HCE5KGT');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X84HCE5KGT', {'send_page_view': true});
+      window.gtag = gtag;
+    });
   </script>
 
   <meta charset="UTF-8">
@@ -32,8 +38,20 @@
   <meta name="twitter:description" content="Live Premier League &amp; World Cup 2026 scores, fixtures and standings.">
   <meta name="twitter:image" content="https://goalcurrent.live/og-image.png">
 
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- DNS prefetch for speed -->
+  <link rel="dns-prefetch" href="//images.unsplash.com">
+  <link rel="dns-prefetch" href="//resources.premierleague.com">
+  <link rel="dns-prefetch" href="//site.api.espn.com">
+  <link rel="dns-prefetch" href="//cdn.onesignal.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <!-- Preload critical CSS non-blocking -->
+  <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
 
@@ -98,6 +116,9 @@
       --nav-h: 64px;
     }
 
+    /* Performance hints */
+    * { -webkit-tap-highlight-color: transparent; }
+    img { content-visibility: auto; }
     /* Layout */
     #gc-app {
       display: flex;
@@ -321,6 +342,12 @@
       background-size: 200% 100%;
       animation: gc-skeleton-pulse 1.5s infinite;
       border-radius: 12px; height: 80px; margin: 12px 0;
+      content-visibility: auto;
+    }
+    /* Performance: hide offscreen content until needed */
+    .gc-news-card, .gc-group-card {
+      content-visibility: auto;
+      contain-intrinsic-size: 260px 320px;
     }
     @keyframes gc-skeleton-pulse {
       0%   { background-position: 200% 0; }
@@ -347,6 +374,7 @@
     <!-- Logo -->
     <a href="/" class="sb-logo">
       <img src="/logo.svg" alt="GoalCurrent logo"
+           width="42" height="42" fetchpriority="high"
            onerror="this.style.display='none'">
       <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
     </a>
