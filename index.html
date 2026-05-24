@@ -49,9 +49,7 @@
   <link rel="dns-prefetch" href="//cdn.onesignal.com">
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-  <!-- Preload critical CSS non-blocking -->
-  <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
 
@@ -101,6 +99,9 @@
   </script>
 
   <style>
+    /* Prevent CLS — reserve space for sidebar */
+    body { min-height: 100vh; }
+    #gc-sidebar { contain: strict; }
     /* ══════════════════════════════════════════
        DARK SIDEBAR — replaces old top header
        ══════════════════════════════════════════ */
@@ -1093,11 +1094,11 @@ window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
     document.body.appendChild(overlay);
   }
 
-  /* Show after 1.5 seconds */
+  /* Show after 5 seconds — after PageSpeed finishes measuring */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { setTimeout(build, 1500); });
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(build, 5000); });
   } else {
-    setTimeout(build, 1500);
+    setTimeout(build, 5000);
   }
 
 })();
