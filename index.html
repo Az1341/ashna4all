@@ -858,11 +858,11 @@ window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
 
       /* Predictions */
       .gc-fd-pred-title {
-        font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-        text-transform: uppercase; color: #6e6e73;
+        font-size: 13px; font-weight: 800;
+        color: #1c1c1e; background: #f2f2f7;
+        border-radius: 10px; padding: 10px 14px;
         margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
       }
-      .gc-fd-pred-title::after { content: ''; flex: 1; height: 1px; background: #e5e5ea; }
 
       .gc-fd-pred {
         display: flex; align-items: center;
@@ -1029,9 +1029,18 @@ window.addEventListener('DOMContentLoaded', function(){ GC_POPUP.init(); });
             <div class="gc-fd-pred-score rel">1 – 2</div>
           </div>
 
-          <div class="gc-fd-disclaimer">
-            🔮 Predictions sourced from LiveScore.com · For entertainment only · Not betting advice<br>
-            Verified fixtures from official Premier League website
+          <div class="gc-fd-disclaimer" style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:10px 12px;margin-top:14px;text-align:left">
+            <div style="font-size:11px;font-weight:800;color:#856404;margin-bottom:4px">⚠️ Gambling Responsibility Notice</div>
+            <div style="font-size:10px;color:#533f03;line-height:1.6">
+              These predictions are for <strong>entertainment purposes only</strong> and are not betting advice.
+              GoalCurrent.live accepts <strong>no responsibility</strong> for any financial losses incurred
+              as a result of acting on these predictions. If you choose to bet, you do so
+              entirely at your <strong>own risk</strong>.<br><br>
+              🔞 Must be 18+ to gamble · <a href="https://www.begambleaware.org" target="_blank" rel="noopener" style="color:#533f03;font-weight:700">BeGambleAware.org</a> · <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener" style="color:#533f03;font-weight:700">GamStop.co.uk</a>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#aeaeb2;text-align:center;margin-top:8px">
+            🔮 Predictions sourced from LiveScore.com · Fixtures verified from premierleague.com
           </div>
         </div>
       </div>
