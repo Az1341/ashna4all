@@ -107,10 +107,21 @@
     /* Hide old header */
     .gc-header { display: none !important; }
 
-    /* Fix breaking news ticker — must be right of sidebar */
-    #gc-breaking-bar, .gc-breaking-bar, [class*="breaking-bar"] {
+    /* Fix breaking ticker — #gc-breaking-ticker is created by news.js */
+    #gc-breaking-ticker {
+      position: fixed !important;
+      top: 0 !important;
       left: var(--sb-w) !important;
+      right: 0 !important;
+      width: auto !important;
       z-index: 350 !important;
+    }
+    @media(max-width: 768px) {
+      #gc-breaking-ticker {
+        left: 58px !important;
+        right: 0 !important;
+        width: auto !important;
+      }
     }
     .gc-header { display: none !important; }
 
