@@ -9,7 +9,6 @@
   <title>Premier League Table 2025/26 — Final Standings | GoalCurrent.live</title>
   <meta name="description" content="Premier League final table 2025/26. Arsenal champions 85 points. Full standings after GW38, 24 May 2026. European qualification confirmed.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <link rel="stylesheet" href="../css/style.css">
   <style>
     :root {
       --sb-w:240px; --sb-bg:#1a1f2e;
@@ -21,40 +20,47 @@
       --sb-accent:#3b82f6;
       --ucl:#2563eb; --el:#d97706; --ecl:#16a34a; --rel:#dc2626;
     }
-    * { -webkit-tap-highlight-color:transparent; }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    body { background:#1a1f2e; color:#f1f5f9; font-family:Verdana,Geneva,sans-serif; min-height:100vh; }
+    #gc-app { display:flex; min-height:100vh; }
+
+    /* SIDEBAR */
     .gc-sidebar { width:var(--sb-w); flex-shrink:0; background:var(--sb-bg); position:fixed; top:0; left:0; bottom:0; z-index:400; overflow-y:auto; scrollbar-width:none; border-right:1px solid var(--sb-border); display:flex; flex-direction:column; }
     .gc-sidebar::-webkit-scrollbar { display:none; }
     .sb-logo { display:flex; align-items:center; gap:10px; padding:18px 16px 16px; border-bottom:1px solid var(--sb-border); text-decoration:none; flex-shrink:0; }
-    .sb-logo-text { font-family:Verdana,sans-serif; font-size:16px; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.1; }
+    .sb-logo img { height:42px; width:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4)); flex-shrink:0; }
+    .sb-logo-text { font-size:16px; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.1; }
     .sb-logo-text em { color:#60a5fa; font-style:normal; }
     .sb-logo-text span { color:#34d399; font-weight:400; }
     .sb-section { padding:10px 0 4px; }
-    .sb-section-label { font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--sb-text-dim); padding:6px 16px; display:block; font-family:Verdana,sans-serif; }
-    .sb-nav-link { display:flex; align-items:center; gap:10px; padding:9px 16px; color:var(--sb-text); text-decoration:none; font-family:Verdana,sans-serif; font-size:12.5px; font-weight:600; transition:all 0.18s; border-left:3px solid transparent; background:none; border-right:none; border-top:none; border-bottom:none; width:100%; text-align:left; cursor:pointer; }
+    .sb-section-label { font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--sb-text-dim); padding:6px 16px; display:block; }
+    .sb-nav-link { display:flex; align-items:center; gap:10px; padding:9px 16px; color:var(--sb-text); text-decoration:none; font-size:12.5px; font-weight:600; transition:all 0.18s; border-left:3px solid transparent; background:none; border-right:none; border-top:none; border-bottom:none; width:100%; text-align:left; cursor:pointer; font-family:Verdana,Geneva,sans-serif; }
     .sb-nav-link:hover { background:var(--sb-hover); color:#fff; }
     .sb-nav-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
     .sb-divider { height:1px; background:var(--sb-border); margin:6px 16px; }
-    .sb-comp-btn { width:100%; display:flex; align-items:center; gap:8px; padding:10px 16px; background:none; border:none; cursor:pointer; font-family:Verdana,sans-serif; font-size:12.5px; font-weight:700; color:var(--sb-text); text-align:left; transition:background 0.18s; border-left:3px solid transparent; }
+    .sb-comp-btn { width:100%; display:flex; align-items:center; gap:8px; padding:10px 16px; background:none; border:none; cursor:pointer; font-size:12.5px; font-weight:700; color:var(--sb-text); text-align:left; transition:background 0.18s; border-left:3px solid transparent; font-family:Verdana,Geneva,sans-serif; }
     .sb-comp-btn:hover { background:var(--sb-hover); color:#fff; }
     .sb-comp-icon { font-size:14px; flex-shrink:0; }
     .sb-comp-name { flex:1; }
     .sb-comp-badge { font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px; flex-shrink:0; }
-    .sb-comp-badge.pl { background:rgba(56,0,60,0.8); color:#e9b4ff; }
-    .sb-comp-badge.wc { background:rgba(200,0,30,0.6); color:#ffa5b4; }
-    .sb-comp-badge.ucl-b { background:rgba(0,30,98,0.8); color:#93c5fd; }
+    .sb-comp-badge.pl  { background:rgba(56,0,60,0.8);  color:#e9b4ff; }
+    .sb-comp-badge.wc  { background:rgba(200,0,30,0.6); color:#ffa5b4; }
+    .sb-comp-badge.ucl { background:rgba(0,30,98,0.8);  color:#93c5fd; }
     .sb-chevron { font-size:9px; color:var(--sb-text-dim); transition:transform 0.2s; flex-shrink:0; }
     .sb-comp-btn.open .sb-chevron { transform:rotate(180deg); }
     .sb-links { display:none; padding:2px 0 4px; }
     .sb-links.open { display:block; }
-    .sb-links a { display:flex; align-items:center; gap:8px; padding:7px 16px 7px 42px; font-family:Verdana,sans-serif; font-size:12px; font-weight:500; color:var(--sb-text-dim); text-decoration:none; transition:all 0.16s; border-left:3px solid transparent; }
+    .sb-links a { display:flex; align-items:center; gap:8px; padding:7px 16px 7px 42px; font-size:12px; font-weight:500; color:var(--sb-text-dim); text-decoration:none; transition:all 0.16s; border-left:3px solid transparent; }
     .sb-links a:hover { color:#fff; background:var(--sb-hover); }
-    .sb-links a.active { color:#fff; }
+    .sb-links a.active { color:#fff; border-left-color:var(--sb-accent); background:rgba(37,99,235,0.1); }
     .sb-link-icon { font-size:12px; width:16px; text-align:center; flex-shrink:0; }
-    .sb-footer { margin-top:auto; padding:14px 16px; border-top:1px solid var(--sb-border); font-family:Verdana,sans-serif; font-size:10px; color:var(--sb-text-dim); line-height:1.7; }
+    .sb-footer { margin-top:auto; padding:14px 16px; border-top:1px solid var(--sb-border); font-size:10px; color:var(--sb-text-dim); line-height:1.7; }
     .sb-footer a { color:rgba(255,255,255,0.3); text-decoration:none; }
+
+    /* MAIN */
     .gc-main-wrap { margin-left:var(--sb-w); flex:1; min-width:0; }
-    .gc-page-content { padding:24px 24px 130px; max-width:900px; }
-    .bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; font-family:Verdana,sans-serif; }
+    .gc-page-content { padding:24px 24px 130px; max-width:920px; }
+    .bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; }
     .bc a { color:var(--sb-text-dim); text-decoration:none; }
     .bc a:hover { color:#fff; }
 
@@ -63,21 +69,21 @@
     .champ-banner::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent); background-size:200% 100%; animation:shimmer 3s linear infinite; }
     @keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
     .champ-trophy { font-size:48px; flex-shrink:0; }
-    .champ-text h2 { font-family:Verdana,sans-serif; font-size:19px; font-weight:800; color:#fff; margin-bottom:4px; }
+    .champ-text h2 { font-size:19px; font-weight:800; color:#fff; margin-bottom:4px; }
     .champ-text h2 em { color:#00ff85; font-style:normal; }
-    .champ-text p { font-family:Verdana,sans-serif; font-size:11px; color:rgba(255,255,255,0.7); }
+    .champ-text p { font-size:11px; color:rgba(255,255,255,0.7); }
     .champ-pts { margin-left:auto; text-align:center; flex-shrink:0; }
-    .champ-pts .num { font-family:Verdana,sans-serif; font-size:36px; font-weight:800; color:#ffd700; line-height:1; }
-    .champ-pts .lbl { font-family:Verdana,sans-serif; font-size:10px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; }
+    .champ-pts .num { font-size:36px; font-weight:800; color:#ffd700; line-height:1; }
+    .champ-pts .lbl { font-size:10px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; }
 
     /* Table header */
     .tbl-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
-    .tbl-title { font-family:Verdana,sans-serif; font-size:17px; font-weight:800; color:#fff; }
-    .tbl-subtitle { font-family:Verdana,sans-serif; font-size:11px; color:var(--sb-text-dim); margin-top:2px; }
-    .tbl-updated { font-family:Verdana,sans-serif; font-size:10px; color:var(--sb-text-dim); background:rgba(255,255,255,0.06); padding:4px 10px; border-radius:20px; white-space:nowrap; }
+    .tbl-title { font-size:17px; font-weight:800; color:#fff; }
+    .tbl-subtitle { font-size:11px; color:var(--sb-text-dim); margin-top:2px; }
+    .tbl-updated { font-size:10px; color:var(--sb-text-dim); background:rgba(255,255,255,0.06); padding:4px 10px; border-radius:20px; white-space:nowrap; }
 
     /* Table */
-    .pl-table { width:100%; border-collapse:collapse; font-family:Verdana,sans-serif; }
+    .pl-table { width:100%; border-collapse:collapse; }
     .pl-table thead th { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--sb-text-dim); padding:8px 10px; text-align:center; border-bottom:1px solid var(--sb-border); }
     .pl-table thead th:nth-child(2) { text-align:left; }
     .pl-table tbody tr { border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.15s; }
@@ -101,7 +107,6 @@
     .pts-cell { font-size:14px; font-weight:800; color:#fff; }
     .gd-pos { color:#4ade80; }
     .gd-neg { color:#f87171; }
-    .gd-neu { color:var(--sb-text-dim); }
     tr.ucl-row { background:rgba(37,99,235,0.06); }
     tr.el-row  { background:rgba(217,119,6,0.06); }
     tr.ecl-row { background:rgba(22,163,74,0.06); }
@@ -109,26 +114,28 @@
 
     /* Legend */
     .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.03); border:1px solid var(--sb-border); border-radius:12px; }
-    .legend-item { display:flex; align-items:center; gap:8px; font-family:Verdana,sans-serif; font-size:11px; color:var(--sb-text-dim); }
+    .legend-item { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--sb-text-dim); }
     .legend-bar { width:12px; height:16px; border-radius:2px; flex-shrink:0; }
-    .source-note { font-family:Verdana,sans-serif; font-size:10px; color:var(--sb-text-dim); margin-top:14px; text-align:center; }
+    .source-note { font-size:10px; color:var(--sb-text-dim); margin-top:14px; text-align:center; }
     .source-note a { color:rgba(255,255,255,0.3); text-decoration:none; }
 
     /* Quick links */
     .quick-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:24px; }
-    .ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-family:Verdana,sans-serif; font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }
+    .ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }
     .ql:hover { background:rgba(255,255,255,0.08); color:#fff; }
     .ql span:first-child { font-size:20px; }
 
-    #gc-nord-fixed { position:fixed; bottom:0; left:240px; right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; font-family:Verdana,sans-serif; }
+    /* Nord */
+    #gc-nord-fixed { position:fixed; bottom:0; left:var(--sb-w); right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; }
     #gc-nord-fixed a { padding:4px 12px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }
 
+    /* Mobile */
     @media(max-width:768px) {
       .gc-sidebar { transform:translateX(-100%); transition:transform 0.28s ease; }
       .gc-sidebar.open { transform:translateX(0); box-shadow:4px 0 24px rgba(0,0,0,0.5); }
       .gc-main-wrap { margin-left:0; }
       .gc-page-content { padding:12px 12px 130px; }
-      #gc-nord-fixed { left:0 !important; bottom:64px !important; }
+      #gc-nord-fixed { left:0 !important; bottom:64px !important; right:0 !important; }
       .sb-hamburger { position:fixed; top:12px; right:12px; z-index:9999; background:var(--sb-bg); border:none; border-radius:10px; width:42px; height:42px; font-size:20px; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.3); }
       .hide-mobile { display:none; }
       .champ-pts { margin-left:0; }
@@ -140,21 +147,20 @@
 
 <button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
 
-<div id="gc-app" style="display:flex;min-height:100vh;">
-
+<div id="gc-app">
   <aside class="gc-sidebar" id="gc-sidebar">
     <a href="/" class="sb-logo">
-      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" onerror="this.style.display='none'">
+      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
       <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
     </a>
     <div class="sb-section">
       <span class="sb-section-label">Main Menu</span>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏠</span> Home</button>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🔴</span> Live Scores</button>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📅</span> Schedule</button>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏅</span> Standings</button>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">⭐</span> My Teams</button>
+      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📰</span> Latest News</button>
     </div>
     <div class="sb-divider"></div>
     <div class="sb-section">
@@ -184,7 +190,7 @@
       </div>
       <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
         <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl-b">UCL</span><span class="sb-chevron">▼</span>
+        <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
       </button>
       <div class="sb-links" id="sb-ucl">
         <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
@@ -203,7 +209,6 @@
 
   <div class="gc-main-wrap">
     <main class="gc-page-content">
-
       <div class="bc"><a href="/">GoalCurrent.live</a> › <a href="/premier-league/">Premier League</a> › Table</div>
 
       <div class="champ-banner">
@@ -212,10 +217,7 @@
           <h2>Arsenal — <em>Premier League Champions!</em></h2>
           <p>First title in 22 years · 2025/26 Season · GW38 Final Day · 24 May 2026</p>
         </div>
-        <div class="champ-pts">
-          <div class="num">85</div>
-          <div class="lbl">Points</div>
-        </div>
+        <div class="champ-pts"><div class="num">85</div><div class="lbl">Points</div></div>
       </div>
 
       <div class="tbl-header">
@@ -235,106 +237,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="ucl-row">
-            <td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">1</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Arsenal <span class="team-badge badge-champ">🏆 Champions</span></span></div></td>
-            <td>38</td><td class="hide-mobile">26</td><td class="hide-mobile">7</td><td class="hide-mobile">5</td><td><span class="gd-pos">+44</span></td><td class="pts-cell">85</td>
-          </tr>
-          <tr class="ucl-row">
-            <td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">2</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Manchester City</span></div></td>
-            <td>38</td><td class="hide-mobile">23</td><td class="hide-mobile">9</td><td class="hide-mobile">6</td><td><span class="gd-pos">+42</span></td><td class="pts-cell">78</td>
-          </tr>
-          <tr class="ucl-row">
-            <td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">3</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Manchester United</span></div></td>
-            <td>38</td><td class="hide-mobile">20</td><td class="hide-mobile">11</td><td class="hide-mobile">7</td><td><span class="gd-pos">+19</span></td><td class="pts-cell">71</td>
-          </tr>
-          <tr class="ucl-row">
-            <td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">4</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">Aston Villa</span></div></td>
-            <td>38</td><td class="hide-mobile">19</td><td class="hide-mobile">8</td><td class="hide-mobile">11</td><td><span class="gd-pos">+7</span></td><td class="pts-cell">65</td>
-          </tr>
-          <tr class="ucl-row">
-            <td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">5</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Liverpool</span></div></td>
-            <td>38</td><td class="hide-mobile">17</td><td class="hide-mobile">9</td><td class="hide-mobile">12</td><td><span class="gd-pos">+10</span></td><td class="pts-cell">60</td>
-          </tr>
-          <tr class="el-row">
-            <td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">6</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🍒</span><span class="team-name">AFC Bournemouth</span></div></td>
-            <td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">18</td><td class="hide-mobile">7</td><td><span class="gd-pos">+4</span></td><td class="pts-cell">57</td>
-          </tr>
-          <tr class="el-row">
-            <td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">7</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Sunderland</span></div></td>
-            <td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">12</td><td class="hide-mobile">12</td><td><span class="gd-neg">-6</span></td><td class="pts-cell">54</td>
-          </tr>
-          <tr class="ecl-row">
-            <td><div class="pos-cell"><div class="pos-bar ecl"></div><div class="pos-num">8</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Brighton</span></div></td>
-            <td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">53</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">9</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🐝</span><span class="team-name">Brentford</span></div></td>
-            <td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+3</span></td><td class="pts-cell">53</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">10</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Chelsea</span></div></td>
-            <td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">10</td><td class="hide-mobile">14</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">52</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">11</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Fulham</span></div></td>
-            <td>38</td><td class="hide-mobile">15</td><td class="hide-mobile">7</td><td class="hide-mobile">16</td><td><span class="gd-neg">-4</span></td><td class="pts-cell">52</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">12</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Newcastle United</span></div></td>
-            <td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">7</td><td class="hide-mobile">17</td><td><span class="gd-neg">-2</span></td><td class="pts-cell">49</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">13</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Everton</span></div></td>
-            <td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">10</td><td class="hide-mobile">15</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">49</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">14</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Leeds United</span></div></td>
-            <td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">14</td><td class="hide-mobile">13</td><td><span class="gd-neg">-7</span></td><td class="pts-cell">47</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">15</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🦅</span><span class="team-name">Crystal Palace</span></div></td>
-            <td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">12</td><td class="hide-mobile">15</td><td><span class="gd-neg">-10</span></td><td class="pts-cell">45</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">16</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Nottm Forest</span></div></td>
-            <td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">11</td><td class="hide-mobile">16</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">44</td>
-          </tr>
-          <tr>
-            <td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">17</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">⚪</span><span class="team-name">Tottenham Hotspur</span></div></td>
-            <td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">11</td><td class="hide-mobile">17</td><td><span class="gd-neg">-9</span></td><td class="pts-cell">41</td>
-          </tr>
-          <tr class="rel-row">
-            <td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">18</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">West Ham United <span class="team-badge badge-rel">↓ Relegated</span></span></div></td>
-            <td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">9</td><td class="hide-mobile">19</td><td><span class="gd-neg">-19</span></td><td class="pts-cell">39</td>
-          </tr>
-          <tr class="rel-row">
-            <td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">19</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🟤</span><span class="team-name">Burnley <span class="team-badge badge-rel">↓ Relegated</span></span></div></td>
-            <td>38</td><td class="hide-mobile">4</td><td class="hide-mobile">10</td><td class="hide-mobile">24</td><td><span class="gd-neg">-37</span></td><td class="pts-cell">22</td>
-          </tr>
-          <tr class="rel-row">
-            <td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">20</div></div></td>
-            <td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Wolverhampton W. <span class="team-badge badge-rel">↓ Relegated</span></span></div></td>
-            <td>38</td><td class="hide-mobile">3</td><td class="hide-mobile">11</td><td class="hide-mobile">24</td><td><span class="gd-neg">-41</span></td><td class="pts-cell">20</td>
-          </tr>
+          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">1</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Arsenal <span class="team-badge badge-champ">🏆 Champions</span></span></div></td><td>38</td><td class="hide-mobile">26</td><td class="hide-mobile">7</td><td class="hide-mobile">5</td><td><span class="gd-pos">+44</span></td><td class="pts-cell">85</td></tr>
+          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">2</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Manchester City</span></div></td><td>38</td><td class="hide-mobile">23</td><td class="hide-mobile">9</td><td class="hide-mobile">6</td><td><span class="gd-pos">+42</span></td><td class="pts-cell">78</td></tr>
+          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">3</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Manchester United</span></div></td><td>38</td><td class="hide-mobile">20</td><td class="hide-mobile">11</td><td class="hide-mobile">7</td><td><span class="gd-pos">+19</span></td><td class="pts-cell">71</td></tr>
+          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">4</div></div></td><td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">Aston Villa</span></div></td><td>38</td><td class="hide-mobile">19</td><td class="hide-mobile">8</td><td class="hide-mobile">11</td><td><span class="gd-pos">+7</span></td><td class="pts-cell">65</td></tr>
+          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">5</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Liverpool</span></div></td><td>38</td><td class="hide-mobile">17</td><td class="hide-mobile">9</td><td class="hide-mobile">12</td><td><span class="gd-pos">+10</span></td><td class="pts-cell">60</td></tr>
+          <tr class="el-row"><td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">6</div></div></td><td><div class="team-cell"><span class="team-emoji">🍒</span><span class="team-name">AFC Bournemouth</span></div></td><td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">18</td><td class="hide-mobile">7</td><td><span class="gd-pos">+4</span></td><td class="pts-cell">57</td></tr>
+          <tr class="el-row"><td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">7</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Sunderland</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">12</td><td class="hide-mobile">12</td><td><span class="gd-neg">-6</span></td><td class="pts-cell">54</td></tr>
+          <tr class="ecl-row"><td><div class="pos-cell"><div class="pos-bar ecl"></div><div class="pos-num">8</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Brighton</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">53</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">9</div></div></td><td><div class="team-cell"><span class="team-emoji">🐝</span><span class="team-name">Brentford</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+3</span></td><td class="pts-cell">53</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">10</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Chelsea</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">10</td><td class="hide-mobile">14</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">52</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">11</div></div></td><td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Fulham</span></div></td><td>38</td><td class="hide-mobile">15</td><td class="hide-mobile">7</td><td class="hide-mobile">16</td><td><span class="gd-neg">-4</span></td><td class="pts-cell">52</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">12</div></div></td><td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Newcastle United</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">7</td><td class="hide-mobile">17</td><td><span class="gd-neg">-2</span></td><td class="pts-cell">49</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">13</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Everton</span></div></td><td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">10</td><td class="hide-mobile">15</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">49</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">14</div></div></td><td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Leeds United</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">14</td><td class="hide-mobile">13</td><td><span class="gd-neg">-7</span></td><td class="pts-cell">47</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">15</div></div></td><td><div class="team-cell"><span class="team-emoji">🦅</span><span class="team-name">Crystal Palace</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">12</td><td class="hide-mobile">15</td><td><span class="gd-neg">-10</span></td><td class="pts-cell">45</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">16</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Nottm Forest</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">11</td><td class="hide-mobile">16</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">44</td></tr>
+          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">17</div></div></td><td><div class="team-cell"><span class="team-emoji">⚪</span><span class="team-name">Tottenham Hotspur</span></div></td><td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">11</td><td class="hide-mobile">17</td><td><span class="gd-neg">-9</span></td><td class="pts-cell">41</td></tr>
+          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">18</div></div></td><td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">West Ham United <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">9</td><td class="hide-mobile">19</td><td><span class="gd-neg">-19</span></td><td class="pts-cell">39</td></tr>
+          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">19</div></div></td><td><div class="team-cell"><span class="team-emoji">🟤</span><span class="team-name">Burnley <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">4</td><td class="hide-mobile">10</td><td class="hide-mobile">24</td><td><span class="gd-neg">-37</span></td><td class="pts-cell">22</td></tr>
+          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">20</div></div></td><td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Wolverhampton W. <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">3</td><td class="hide-mobile">11</td><td class="hide-mobile">24</td><td><span class="gd-neg">-41</span></td><td class="pts-cell">20</td></tr>
         </tbody>
       </table>
 
@@ -344,7 +266,6 @@
         <div class="legend-item"><div class="legend-bar" style="background:var(--ecl)"></div> UEFA Conference League Qualifiers (Pos 8)</div>
         <div class="legend-item"><div class="legend-bar" style="background:var(--rel)"></div> Relegation (Pos 18–20)</div>
       </div>
-
       <div class="source-note">Source: <a href="https://www.bbc.co.uk/sport/football/tables" target="_blank" rel="noopener">BBC Sport</a> · Last updated 24 May 2026 at 18:16</div>
 
       <div class="quick-links">
@@ -353,7 +274,6 @@
         <a href="/premier-league/news/" class="ql"><span>📰</span><span>Latest News</span></a>
         <a href="/premier-league/teams/" class="ql"><span>👕</span><span>All Teams</span></a>
       </div>
-
     </main>
   </div>
 </div>
@@ -366,16 +286,12 @@
 </div>
 
 <script>
-function sbToggle(id, btn) {
-  document.getElementById(id).classList.toggle('open');
-  btn.classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  var sidebar = document.getElementById('gc-sidebar');
-  var hamburger = document.querySelector('.sb-hamburger');
-  if (window.innerWidth <= 768 && sidebar && !sidebar.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
-    sidebar.classList.remove('open');
-  }
+function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('click',function(e){
+    var sb=document.getElementById('gc-sidebar'),hb=document.querySelector('.sb-hamburger');
+    if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
+  });
 });
 </script>
 </body>
