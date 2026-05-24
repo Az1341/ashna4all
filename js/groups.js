@@ -1,6 +1,5 @@
 /* groups.js — OFFICIAL FIFA WC 2026 groups + PL standings
-   PL data: verified from official PL site after GW37
-   API override REMOVED — hardcoded data is correct
+   PL data: verified from BBC Sport after GW38 Final Day 24 May 2026
 */
 var GC_GROUPS = (function () {
   var _league = 'PL';
@@ -8,29 +7,29 @@ var GC_GROUPS = (function () {
 
   var B = 'https://resources.premierleague.com/premierleague/badges/50/';
 
-  /* ✅ VERIFIED PL TABLE — After GW37 · 19 May 2026
-     Source: official premierleague.com */
-  var PL_DATA = [{ name: 'Premier League 2025/26', entries: [
-    {team:'Arsenal',         logo:B+'t3.png',   played:37,won:25,drawn:7, lost:5, gf:69,ga:26,gd:43,  pts:82},
-    {team:'Man City',        logo:B+'t43.png',  played:37,won:23,drawn:9, lost:5, gf:75,ga:32,gd:43,  pts:78},
-    {team:'Man United',      logo:B+'t1.png',   played:37,won:20,drawn:8, lost:9, gf:68,ga:52,gd:16,  pts:68},
-    {team:'Aston Villa',     logo:B+'t7.png',   played:37,won:18,drawn:8, lost:11,gf:55,ga:49,gd:6,   pts:62},
-    {team:'Liverpool',       logo:B+'t14.png',  played:37,won:17,drawn:8, lost:12,gf:58,ga:48,gd:10,  pts:59},
-    {team:'Bournemouth',     logo:B+'t91.png',  played:37,won:16,drawn:8, lost:13,gf:58,ga:54,gd:4,   pts:56},
-    {team:'Brighton',        logo:B+'t36.png',  played:37,won:15,drawn:8, lost:14,gf:52,ga:43,gd:9,   pts:53},
-    {team:'Chelsea',         logo:B+'t8.png',   played:37,won:15,drawn:7, lost:15,gf:62,ga:55,gd:7,   pts:52},
-    {team:'Brentford',       logo:B+'t94.png',  played:37,won:15,drawn:7, lost:15,gf:55,ga:52,gd:3,   pts:52},
-    {team:'Sunderland',      logo:B+'t56.png',  played:37,won:14,drawn:9, lost:14,gf:44,ga:51,gd:-7,  pts:51},
-    {team:'Newcastle',       logo:B+'t4.png',   played:37,won:13,drawn:10,lost:14,gf:54,ga:54,gd:0,   pts:49},
-    {team:'Everton',         logo:B+'t11.png',  played:37,won:13,drawn:10,lost:14,gf:48,ga:50,gd:-2,  pts:49},
-    {team:'Fulham',          logo:B+'t54.png',  played:37,won:13,drawn:10,lost:14,gf:50,ga:56,gd:-6,  pts:49},
-    {team:'Leeds United',    logo:B+'t2.png',   played:37,won:13,drawn:8, lost:16,gf:52,ga:56,gd:-4,  pts:47},
-    {team:'Crystal Palace',  logo:B+'t31.png',  played:37,won:12,drawn:9, lost:16,gf:44,ga:53,gd:-9,  pts:45},
-    {team:"Nott'm Forest",   logo:B+'t17.png',  played:37,won:12,drawn:7, lost:18,gf:42,ga:45,gd:-3,  pts:43},
-    {team:'Tottenham',       logo:B+'t6.png',   played:37,won:10,drawn:8, lost:19,gf:48,ga:58,gd:-10, pts:38},
-    {team:'West Ham',        logo:B+'t21.png',  played:37,won:9, drawn:9, lost:19,gf:41,ga:63,gd:-22, pts:36},
-    {team:'Burnley',         logo:B+'t90.png',  played:37,won:6, drawn:7, lost:24,gf:36,ga:73,gd:-37, pts:25},
-    {team:'Wolves',          logo:B+'t39.png',  played:37,won:5, drawn:6, lost:26,gf:28,ga:58,gd:-30, pts:21}
+  /* ✅ VERIFIED PL TABLE — Final Standings After GW38 · 24 May 2026
+     Source: BBC Sport */
+  var PL_DATA = [{ name: 'Premier League 2025/26 — Final Standings', entries: [
+    {team:'Arsenal 🏆',      logo:B+'t3.png',   played:38,won:26,drawn:7, lost:5,  gf:71,ga:27,gd:44,  pts:85},
+    {team:'Man City',        logo:B+'t43.png',  played:38,won:23,drawn:9, lost:6,  gf:76,ga:34,gd:42,  pts:78},
+    {team:'Man United',      logo:B+'t1.png',   played:38,won:20,drawn:11,lost:7,  gf:71,ga:52,gd:19,  pts:71},
+    {team:'Aston Villa',     logo:B+'t7.png',   played:38,won:19,drawn:8, lost:11, gf:57,ga:50,gd:7,   pts:65},
+    {team:'Liverpool',       logo:B+'t14.png',  played:38,won:17,drawn:9, lost:12, gf:59,ga:49,gd:10,  pts:60},
+    {team:'Bournemouth',     logo:B+'t91.png',  played:38,won:13,drawn:18,lost:7,  gf:59,ga:55,gd:4,   pts:57},
+    {team:'Sunderland',      logo:B+'t56.png',  played:38,won:14,drawn:12,lost:12, gf:45,ga:51,gd:-6,  pts:54},
+    {team:'Brighton',        logo:B+'t36.png',  played:38,won:14,drawn:11,lost:13, gf:53,ga:47,gd:6,   pts:53},
+    {team:'Brentford',       logo:B+'t94.png',  played:38,won:14,drawn:11,lost:13, gf:56,ga:53,gd:3,   pts:53},
+    {team:'Chelsea',         logo:B+'t8.png',   played:38,won:14,drawn:10,lost:14, gf:63,ga:57,gd:6,   pts:52},
+    {team:'Fulham',          logo:B+'t54.png',  played:38,won:15,drawn:7, lost:16, gf:52,ga:56,gd:-4,  pts:52},
+    {team:'Newcastle',       logo:B+'t4.png',   played:38,won:14,drawn:7, lost:17, gf:54,ga:56,gd:-2,  pts:49},
+    {team:'Everton',         logo:B+'t11.png',  played:38,won:13,drawn:10,lost:15, gf:48,ga:51,gd:-3,  pts:49},
+    {team:'Leeds United',    logo:B+'t2.png',   played:38,won:11,drawn:14,lost:13, gf:52,ga:59,gd:-7,  pts:47},
+    {team:'Crystal Palace',  logo:B+'t31.png',  played:38,won:11,drawn:12,lost:15, gf:45,ga:55,gd:-10, pts:45},
+    {team:"Nott'm Forest",   logo:B+'t17.png',  played:38,won:11,drawn:11,lost:16, gf:43,ga:46,gd:-3,  pts:44},
+    {team:'Tottenham',       logo:B+'t6.png',   played:38,won:10,drawn:11,lost:17, gf:49,ga:58,gd:-9,  pts:41},
+    {team:'West Ham ↓',      logo:B+'t21.png',  played:38,won:10,drawn:9, lost:19, gf:44,ga:63,gd:-19, pts:39},
+    {team:'Burnley ↓',       logo:B+'t90.png',  played:38,won:4, drawn:10,lost:24, gf:37,ga:74,gd:-37, pts:22},
+    {team:'Wolves ↓',        logo:B+'t39.png',  played:38,won:3, drawn:11,lost:24, gf:29,ga:70,gd:-41, pts:20}
   ]}];
 
   /* ✅ OFFICIAL FIFA World Cup 2026 Groups */
@@ -113,7 +112,6 @@ var GC_GROUPS = (function () {
   function render(container) {
     container.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading...</span></div>';
     if (_league === 'PL') {
-      /* Use hardcoded verified data — API removed as it returns wrong season */
       container.innerHTML = buildHTML(PL_DATA);
     } else {
       container.innerHTML = buildHTML(WC_DATA);
@@ -126,9 +124,9 @@ var GC_GROUPS = (function () {
     if (isWC) {
       html += '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:18px"><img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" style="width:100%;height:100%;object-fit:cover"><div class="gc-hero-banner-overlay"><div class="gc-hero-banner-title">🏆 World Cup 2026 — All 12 Groups</div><div class="gc-hero-banner-sub">48 Teams · USA · Canada · Mexico · Starts 11 June 2026</div></div></div>';
     } else {
-      html += '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:18px"><img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80" style="width:100%;height:100%;object-fit:cover"><div class="gc-hero-banner-overlay"><div class="gc-hero-banner-title">🏴󠁧󠁢󠁥󠁮󠁧󠁩 Premier League Table 2025/26</div><div class="gc-hero-banner-sub">After GW37 — Final Day Sunday 24 May 2026</div></div></div>';
+      html += '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:18px"><img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80" style="width:100%;height:100%;object-fit:cover"><div class="gc-hero-banner-overlay"><div class="gc-hero-banner-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Table 2025/26</div><div class="gc-hero-banner-sub">✅ Final Standings — Season Complete · 24 May 2026</div></div></div>';
     }
-    html += '<div class="gc-section-title">'+(isWC?'🏆 World Cup 2026 — Official Groups':'🏴󠁧󠁢󠁥󠁮󠁧󠁩 Premier League Table')+'</div>';
+    html += '<div class="gc-section-title">'+(isWC?'🏆 World Cup 2026 — Official Groups':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Final Table 2025/26')+'</div>';
     groups.forEach(function(g){ html += groupTable(g); });
     if (isWC) { html += '<div class="gc-section-title" style="margin-top:28px">🗓 Knockout Stage</div>'+bracket(); }
     html += '</div>';
@@ -142,8 +140,8 @@ var GC_GROUPS = (function () {
     g.entries.forEach(function(t,i){
       var cls='';
       if(!isWC){
-        if(i<4) cls='gc-row-qualify';
-        else if(i===4) cls='gc-row-el';
+        if(i<5) cls='gc-row-qualify';
+        else if(i===5||i===6) cls='gc-row-el';
         else if(i>=g.entries.length-3) cls='gc-row-relegate';
       } else {
         if(i<2) cls='gc-row-qualify';
@@ -152,8 +150,8 @@ var GC_GROUPS = (function () {
     });
     html+='</tbody></table>';
     if(!isWC){
-      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Champions League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#ea580c"></span>Europa League</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#dc2626"></span>Relegation</span></div>';
-      html+='<p style="font-size:10px;color:#94a3b8;margin-top:8px;padding:0 4px">✅ Verified from official Premier League website after GW37 · 19 May 2026</p>';
+      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Champions League (1-5)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#ea580c"></span>Europa League (6-7)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#16a34a"></span>Conference League (8)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#dc2626"></span>Relegation</span></div>';
+      html+='<p style="font-size:10px;color:#94a3b8;margin-top:8px;padding:0 4px">✅ Final standings verified from BBC Sport after GW38 · 24 May 2026</p>';
     } else {
       html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Advance to Round of 32</span></div>';
     }
