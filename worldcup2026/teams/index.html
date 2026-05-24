@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | GoalCurrent.live</title>
+<meta name="description" content="This page is coming soon on GoalCurrent.live — your home for live football scores, Premier League, World Cup 2026 and UCL Final.">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+:root {
+  --sb-w: 240px;
+  --sb-bg: #1a1f2e;
+  --sb-border: rgba(255,255,255,0.08);
+  --sb-hover: rgba(255,255,255,0.07);
+  --sb-active: rgba(37,99,235,0.22);
+  --sb-text: rgba(255,255,255,0.78);
+  --sb-text-dim: rgba(255,255,255,0.38);
+  --sb-accent: #3b82f6;
+  --font: Verdana, Geneva, Tahoma, sans-serif;
+  --blue: #2563eb; --t1: #0f172a; --t2: #334155; --t3: #64748b; --t4: #94a3b8;
+  --bg1: #dbeafe; --bg2: #eff6ff; --bg3: #e0f2fe;
+  --glass: rgba(255,255,255,0.62);
+  --glass-border: rgba(255,255,255,0.82);
+  --glass-shadow: 0 4px 20px rgba(100,160,220,0.14);
+  --blur: blur(22px);
+  --r-md: 16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body {
+  font-family: var(--font);
+  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
+  background-attachment: fixed;
+  min-height: 100vh; display: flex; overflow-x: hidden;
+}
 
+/* ── SIDEBAR ── */
+.gc-sidebar {
+  width: var(--sb-w); flex-shrink: 0;
+  background: var(--sb-bg);
+  position: fixed; top: 0; left: 0; bottom: 0;
+  z-index: 300; overflow-y: auto;
+  -ms-overflow-style: none; scrollbar-width: none;
+  border-right: 1px solid var(--sb-border);
+  display: flex; flex-direction: column;
+}
+.gc-sidebar::-webkit-scrollbar{display:none}
+.sb-logo{display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0}
+.sb-logo img{height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));flex-shrink:0}
+.sb-logo-text{font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.3px;line-height:1.1}
+.sb-logo-text em{color:#60a5fa;font-style:normal}
+.sb-logo-text span{color:#34d399;font-weight:400}
+.sb-section{padding:10px 0 4px}
+.sb-section-label{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--sb-text-dim);padding:6px 16px;display:block}
+.sb-nav-link{display:flex;align-items:center;gap:10px;padding:9px 16px;color:var(--sb-text);text-decoration:none;font-size:12.5px;font-weight:600;transition:all 0.18s;border-left:3px solid transparent}
+.sb-nav-link:hover{background:var(--sb-hover);color:#fff}
+.sb-nav-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
+.sb-divider{height:1px;background:var(--sb-border);margin:6px 16px}
+.sb-comp-btn{width:100%;display:flex;align-items:center;gap:8px;padding:10px 16px;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:12.5px;font-weight:700;color:var(--sb-text);text-align:left;transition:background 0.18s;border-left:3px solid transparent}
+.sb-comp-btn:hover{background:var(--sb-hover);color:#fff}
+.sb-comp-icon{font-size:14px;flex-shrink:0}
+.sb-comp-name{flex:1}
+.sb-comp-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0}
+.sb-comp-badge.pl{background:rgba(56,0,60,0.8);color:#e9b4ff}
+.sb-comp-badge.wc{background:rgba(200,0,30,0.6);color:#ffa5b4}
+.sb-comp-badge.ucl{background:rgba(0,30,98,0.8);color:#93c5fd}
+.sb-chevron{font-size:9px;color:var(--sb-text-dim);transition:transform 0.2s;flex-shrink:0}
+.sb-comp-btn.open .sb-chevron{transform:rotate(180deg)}
+.sb-links{display:none;padding:2px 0 4px}
+.sb-links.open{display:block}
+.sb-links a{display:flex;align-items:center;gap:8px;padding:7px 16px 7px 42px;font-size:12px;font-weight:500;color:var(--sb-text-dim);text-decoration:none;transition:all 0.16s;border-left:3px solid transparent}
+.sb-links a:hover{color:#fff;background:var(--sb-hover)}
+.sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
+.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7}
+.sb-footer a{color:rgba(255,255,255,0.3);text-decoration:none}
+
+/* ── PAGE ── */
+.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 100px;text-align:center}
+
+/* ── COMING SOON CONTENT ── */
+.cs-icon{font-size:72px;margin-bottom:16px;animation:cs-float 3s ease-in-out infinite}
+@keyframes cs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.cs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);color:var(--blue);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+
+.cs-title{font-size:28px;font-weight:800;color:var(--t1);letter-spacing:-0.5px;margin-bottom:8px}
+.cs-title em{color:var(--blue);font-style:normal}
+.cs-sub{font-size:14px;color:var(--t3);line-height:1.7;max-width:420px;margin:0 auto 28px}
+
+/* ── QUICK LINKS ── */
+.cs-links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:440px;width:100%;margin-bottom:28px}
+.cs-link{display:flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 16px;text-decoration:none;color:var(--t1);box-shadow:var(--glass-shadow);transition:all 0.2s;font-family:var(--font)}
+.cs-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(100,160,220,0.22);border-color:rgba(37,99,235,0.3)}
+.cs-link-icon{font-size:20px;flex-shrink:0}
+.cs-link-label{font-size:13px;font-weight:700;color:var(--t1)}
+.cs-link-sub{font-size:10.5px;color:var(--t4);margin-top:2px}
+.cs-link-home{grid-column:1/-1;background:linear-gradient(135deg,#2563eb,#3b82f6);border-color:transparent}
+.cs-link-home .cs-link-label,.cs-link-home .cs-link-sub{color:#fff}
+
+/* ── EMAIL SIGNUP ── */
+.cs-email-box{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:20px;max-width:420px;width:100%;box-shadow:var(--glass-shadow)}
+.cs-email-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.cs-email-sub{font-size:11.5px;color:var(--t3);margin-bottom:14px}
+.cs-email-row{display:flex;gap:8px}
+.cs-email-input{flex:1;padding:10px 14px;border:1.5px solid rgba(37,99,235,0.2);border-radius:10px;background:rgba(255,255,255,0.9);font-family:var(--font);font-size:12.5px;color:var(--t1);outline:none}
+.cs-email-btn{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+
+/* ── MOBILE ── */
+.sb-hamburger{display:none;position:fixed;top:38px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
+@media(max-width:768px){
+  .gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}
+  .gc-sidebar.open{transform:translateX(0)}
+  .gc-page-wrap{margin-left:0;padding:30px 16px 100px}
+  .sb-hamburger{display:flex}
+  .cs-links{grid-template-columns:1fr}
+  .cs-link-home{grid-column:1}
+  .cs-email-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<aside class="gc-sidebar" id="gc-sidebar">
+  <a href="/" class="sb-logo">
+    <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
+    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+  </a>
+  <div class="sb-section">
+    <span class="sb-section-label">Main Menu</span>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
+    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+  </div>
+  <div class="sb-divider"></div>
+  <div class="sb-section">
+    <span class="sb-section-label">Competitions</span>
+    <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
+      <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
+      <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
+    </button>
+    <div class="sb-links" id="sb-pl">
+      <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
+      <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
+      <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+      <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
+      <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
+      <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+    </div>
+    <button class="sb-comp-btn open" onclick="sbToggle('sb-wc',this)">
+      <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
+      <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
+    </button>
+    <div class="sb-links open" id="sb-wc">
+      <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
+      <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
+      <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+      <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+      <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
+    </div>
+    <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+      <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
+      <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
+    </button>
+    <div class="sb-links" id="sb-ucl">
+      <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
+      <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+      <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
+      <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+      <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
+    </div>
+  </div>
+  <div class="sb-footer">
+    © 2026 Ashna4All (A. Zafarani)<br>
+    Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
+    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</aside>
+
+<div class="gc-page-wrap">
+
+  <div class="cs-icon">🚧</div>
+
+  <div class="cs-badge">⚙️ GoalCurrent.live — Coming Soon</div>
+
+  <div class="cs-title">This Page is <em>Coming Soon!</em></div>
+
+  <p class="cs-sub">
+    We are working hard to bring you the best live scores, fixtures, standings and news for this section.
+    Check back very soon — it will be ready before the <strong>World Cup 2026</strong> kicks off on <strong>11 June!</strong>
+  </p>
+
+  <!-- Quick Links -->
+  <div class="cs-links">
+    <a href="/" class="cs-link cs-link-home">
+      <div class="cs-link-icon">🏠</div>
+      <div><div class="cs-link-label">Go to Homepage</div><div class="cs-link-sub">Live scores · News · Fixtures</div></div>
+    </a>
+    <a href="/worldcup2026/" class="cs-link">
+      <div class="cs-link-icon">🏆</div>
+      <div><div class="cs-link-label">World Cup 2026</div><div class="cs-link-sub">Groups · Fixtures · Teams</div></div>
+    </a>
+    <a href="/ucl/" class="cs-link">
+      <div class="cs-link-icon">⭐</div>
+      <div><div class="cs-link-label">UCL Final</div><div class="cs-link-sub">PSG vs Arsenal · 30 May</div></div>
+    </a>
+    <a href="/premier-league/" class="cs-link">
+      <div class="cs-link-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <div><div class="cs-link-label">Premier League</div><div class="cs-link-sub">Table · Results · News</div></div>
+    </a>
+  </div>
+
+  <!-- Email signup -->
+  <div class="cs-email-box">
+    <div class="cs-email-title">📬 Get Notified When It Launches!</div>
+    <div class="cs-email-sub">Subscribe for free — we'll email you when this page goes live</div>
+    <div class="cs-email-row">
+      <input type="email" class="cs-email-input" id="cs-email" placeholder="Your email address">
+      <button class="cs-email-btn" onclick="csSubscribe()">Notify Me →</button>
+    </div>
+    <div id="cs-msg" style="display:none;margin-top:8px;font-size:12px;color:#16a34a;font-weight:600;font-family:Verdana,sans-serif">✅ Thank you! We will notify you when this page is ready.</div>
+  </div>
+
+</div>
+
+<script>
+function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
+
+function csSubscribe() {
+  var input = document.getElementById('cs-email');
+  var msg = document.getElementById('cs-msg');
+  if (!input.value || input.value.indexOf('@') < 0) {
+    input.style.borderColor = '#dc2626';
+    return;
+  }
+  input.style.borderColor = '#16a34a';
+  var form = document.createElement('form');
+  form.method='POST';
+  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+  form.target='_blank'; form.style.display='none';
+  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
+  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
+  var f3=document.createElement('input');f3.name='locale';f3.value='en';
+  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
+  document.body.appendChild(form);form.submit();document.body.removeChild(form);
+  msg.style.display='block';
+  input.value='';
+}
+
+document.addEventListener('click',function(e){
+  var sb=document.getElementById('gc-sidebar');
+  var hb=document.querySelector('.sb-hamburger');
+  if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
+});
+</script>
+</body>
+</html>
