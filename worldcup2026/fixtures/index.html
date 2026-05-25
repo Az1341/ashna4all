@@ -113,6 +113,12 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .score-vs{font-size:14px;color:#94a3b8;font-weight:600}
 .score-time{font-size:11px;color:var(--blue);margin-top:3px;font-weight:600}
 .match-num{font-size:9px;color:#cbd5e1;margin-top:2px}
+.tv-bar{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(229,231,235,0.5);flex-wrap:wrap}
+.tv-flag{font-size:14px}
+.tv-label{font-size:11px;color:#2563eb;font-weight:600}
+.tv-switcher{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.58);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.85);border-radius:14px;padding:12px 16px;margin-bottom:14px;box-shadow:0 4px 20px rgba(100,160,220,0.1)}
+.tv-switcher select{flex:1;background:rgba(255,255,255,0.8);border:1px solid rgba(203,213,225,0.8);border-radius:8px;padding:8px 10px;font-size:12px;color:#0f172a;outline:none;cursor:pointer;font-family:Verdana,Geneva,Tahoma,sans-serif}
+.tv-switcher-label{font-size:12px;font-weight:700;color:#0f172a;white-space:nowrap}
 .loading{text-align:center;padding:36px 20px;color:#64748b;font-size:13px}
 .spin{width:28px;height:28px;border:3px solid rgba(37,99,235,0.15);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -178,6 +184,7 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
       <div style="font-size:15px;font-weight:700;color:#0f172a">📅 World Cup 2026 — Fixtures</div>
     </div>
     <span style="font-size:11px;color:#64748b" id="hdrPhase">11 Jun – 19 Jul 2026</span>
+    <span style="font-size:10px;background:rgba(59,130,246,0.1);color:#3b82f6;padding:3px 8px;border-radius:10px;font-weight:600" id="tzBadge">🕐 Local Time</span>
   </header>
   <div class="gc-ticker">
     <div class="gc-ticker-track">
@@ -214,11 +221,18 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
         <div class="phase-dot"><i style="background:var(--gold)"></i>Selected</div>
       </div>
     </div>
+    <!-- TV COUNTRY SWITCHER -->
+    <div class="tv-switcher">
+      <span class="tv-switcher-label">📺 TV in:</span>
+      <select id="countrySelect" onchange="changeCountry(this.value)"></select>
+      <span id="tvPreview" style="font-size:11px;color:#64748b"></span>
+    </div>
+
     <div id="fixturesOut">
       <div class="loading">
         <div style="font-size:36px;margin-bottom:10px">📅</div>
         <strong>Select a match day above</strong><br>
-        <span style="font-size:12px;color:#94a3b8">All 104 fixtures loaded from official FIFA schedule</span>
+        <span style="font-size:12px;color:#94a3b8">All 104 fixtures · TV times in your local timezone</span>
       </div>
     </div>
   </main>
@@ -267,6 +281,112 @@ const FLAGS = {
   'England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Croatia':'🇭🇷','Ghana':'🇬🇭','Panama':'🇵🇦',
 };
 const flag = n => FLAGS[n] || '⚽';
+
+// ══════════════════════════════════════════════
+// TV BROADCASTERS BY COUNTRY
+// Source: Official FIFA World Cup 2026 broadcast rights
+// ══════════════════════════════════════════════
+const TV_BROADCASTERS = {
+  'GB': { flag:'🇬🇧', name:'United Kingdom',   channels:['BBC One','BBC Two','ITV','ITVX'] },
+  'US': { flag:'🇺🇸', name:'United States',    channels:['Fox','FS1','Telemundo','Peacock'] },
+  'CA': { flag:'🇨🇦', name:'Canada',           channels:['CTV','TSN','RDS','Noovo'] },
+  'AU': { flag:'🇦🇺', name:'Australia',        channels:['SBS','SBS On Demand'] },
+  'DE': { flag:'🇩🇪', name:'Germany',          channels:['ARD','ZDF','MagentaTV'] },
+  'FR': { flag:'🇫🇷', name:'France',           channels:['TF1','M6','beIN Sports'] },
+  'ES': { flag:'🇪🇸', name:'Spain',            channels:['RTVE','TVE La 1','Mediaset'] },
+  'IT': { flag:'🇮🇹', name:'Italy',            channels:['RAI','Mediaset','Sky Sport'] },
+  'PT': { flag:'🇵🇹', name:'Portugal',         channels:['RTP','Sport TV'] },
+  'NL': { flag:'🇳🇱', name:'Netherlands',      channels:['NOS','Ziggo Sport'] },
+  'BE': { flag:'🇧🇪', name:'Belgium',          channels:['RTBF','VRT','Eleven Sports'] },
+  'AR': { flag:'🇦🇷', name:'Argentina',        channels:['TyC Sports','TV Pública','DSports'] },
+  'BR': { flag:'🇧🇷', name:'Brazil',           channels:['TV Globo','SporTV','Cazé TV'] },
+  'MX': { flag:'🇲🇽', name:'Mexico',           channels:['Televisa','TV Azteca','Sky México'] },
+  'JP': { flag:'🇯🇵', name:'Japan',            channels:['NHK','TV Asahi','ABEMA'] },
+  'KR': { flag:'🇰🇷', name:'South Korea',      channels:['KBS','MBC','SBS','SPOTV'] },
+  'SA': { flag:'🇸🇦', name:'Saudi Arabia',     channels:['beIN Sports','Saudi Sports'] },
+  'AE': { flag:'🇦🇪', name:'UAE',              channels:['beIN Sports'] },
+  'QA': { flag:'🇶🇦', name:'Qatar',            channels:['beIN Sports'] },
+  'EG': { flag:'🇪🇬', name:'Egypt',            channels:['beIN Sports','Al Ahly TV'] },
+  'MA': { flag:'🇲🇦', name:'Morocco',          channels:['2M','SNRT','beIN Sports'] },
+  'NG': { flag:'🇳🇬', name:'Nigeria',          channels:['NTA','SuperSport','DSTV'] },
+  'ZA': { flag:'🇿🇦', name:'South Africa',     channels:['SuperSport','SABC','DSTV'] },
+  'GH': { flag:'🇬🇭', name:'Ghana',            channels:['GTV Sports','SuperSport'] },
+  'IR': { flag:'🇮🇷', name:'Iran',             channels:['IRIB TV3','Varzesh TV'] },
+  'IN': { flag:'🇮🇳', name:'India',            channels:['Sports18','JioCinema','Sony Ten'] },
+  'PK': { flag:'🇵🇰', name:'Pakistan',         channels:['PTV Sports','ARY Sports'] },
+  'TR': { flag:'🇹🇷', name:'Turkey',           channels:['TRT Spor','TRT 1','beIN Sports'] },
+  'PL': { flag:'🇵🇱', name:'Poland',           channels:['TVP Sport','Polsat Sport'] },
+  'NO': { flag:'🇳🇴', name:'Norway',           channels:['TV 2','TV 2 Play'] },
+  'SE': { flag:'🇸🇪', name:'Sweden',           channels:['SVT','TV4','Viaplay'] },
+  'DK': { flag:'🇩🇰', name:'Denmark',          channels:['DR','TV 2','Viaplay'] },
+  'CH': { flag:'🇨🇭', name:'Switzerland',      channels:['SRF','RTS','RSI'] },
+  'AT': { flag:'🇦🇹', name:'Austria',          channels:['ORF','ServusTV'] },
+  'NZ': { flag:'🇳🇿', name:'New Zealand',      channels:['Sky Sport NZ','TVNZ'] },
+  'CL': { flag:'🇨🇱', name:'Chile',            channels:['Canal 13','CHV','DSports'] },
+  'CO': { flag:'🇨🇴', name:'Colombia',         channels:['RCN','Caracol','ESPN'] },
+  'PE': { flag:'🇵🇪', name:'Peru',             channels:['América TV','Movistar Deportes'] },
+  'UY': { flag:'🇺🇾', name:'Uruguay',          channels:['TCC','Canal 10','DSports'] },
+  'EC': { flag:'🇪🇨', name:'Ecuador',          channels:['TC Televisión','Canal 1'] },
+  'VE': { flag:'🇻🇪', name:'Venezuela',        channels:['Meridiano TV','DSports'] },
+  'UZ': { flag:'🇺🇿', name:'Uzbekistan',       channels:['Uzbekistan TV','MyTV Sport'] },
+  'JO': { flag:'🇯🇴', name:'Jordan',           channels:['Jordan TV','beIN Sports'] },
+  'IQ': { flag:'🇮🇶', name:'Iraq',             channels:['Al Iraqiya Sport','beIN Sports'] },
+  'DZ': { flag:'🇩🇿', name:'Algeria',          channels:['ENTV','beIN Sports'] },
+  'SN': { flag:'🇸🇳', name:'Senegal',          channels:['RTS','Canal+ Afrique'] },
+  'CM': { flag:'🇨🇲', name:'Cameroon',         channels:['CRTV','Canal+ Afrique'] },
+  'HT': { flag:'🇭🇹', name:'Haiti',            channels:['Télévision Nationale d\'Haïti'] },
+  'PA': { flag:'🇵🇦', name:'Panama',           channels:['TVN Panamá','RPC TV'] },
+  'CR': { flag:'🇨🇷', name:'Costa Rica',       channels:['Teletica','Repretel'] },
+  'HN': { flag:'🇭🇳', name:'Honduras',         channels:['TVC','Canal 5'] },
+  'ID': { flag:'🇮🇩', name:'Indonesia',        channels:['RCTI','iNews TV','Moji'] },
+  'CD': { flag:'🇨🇩', name:'DR Congo',         channels:['RTNC','Canal+ Afrique'] },
+  'RS': { flag:'🇷🇸', name:'Serbia',           channels:['RTS','Arena Sport'] },
+  'HR': { flag:'🇭🇷', name:'Croatia',          channels:['HRT','MAXtv'] },
+  'BA': { flag:'🇧🇦', name:'Bosnia',           channels:['BHRT','Arena Sport'] },
+  'SI': { flag:'🇸🇮', name:'Slovenia',         channels:['RTV SLO'] },
+  'SK': { flag:'🇸🇰', name:'Slovakia',         channels:['RTVS','JOJ Sport'] },
+  'CZ': { flag:'🇨🇿', name:'Czech Republic',   channels:['ČT Sport','Nova Sport'] },
+  'RO': { flag:'🇷🇴', name:'Romania',          channels:['TVR Sport','Digi Sport'] },
+};
+
+// Detect visitor country via timezone/locale
+function detectCountry() {
+  // Try saved country first
+  const saved = localStorage.getItem('gc_country');
+  if(saved) return saved;
+
+  // Detect from timezone
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const tzCountry = {
+    'Europe/London':'GB','America/New_York':'US','America/Los_Angeles':'US',
+    'America/Chicago':'US','America/Denver':'US','America/Toronto':'CA',
+    'America/Vancouver':'CA','Australia/Sydney':'AU','Australia/Melbourne':'AU',
+    'Europe/Berlin':'DE','Europe/Paris':'FR','Europe/Madrid':'ES',
+    'Europe/Rome':'IT','Europe/Lisbon':'PT','Europe/Amsterdam':'NL',
+    'Europe/Brussels':'BE','America/Argentina/Buenos_Aires':'AR',
+    'America/Sao_Paulo':'BR','America/Mexico_City':'MX','Asia/Tokyo':'JP',
+    'Asia/Seoul':'KR','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA',
+    'Africa/Cairo':'EG','Africa/Casablanca':'MA','Africa/Lagos':'NG',
+    'Africa/Johannesburg':'ZA','Asia/Tehran':'IR','Asia/Kolkata':'IN',
+    'Asia/Karachi':'PK','Europe/Istanbul':'TR','Europe/Warsaw':'PL',
+    'Europe/Oslo':'NO','Europe/Stockholm':'SE','Europe/Copenhagen':'DK',
+    'Europe/Zurich':'CH','Europe/Vienna':'AT','Pacific/Auckland':'NZ',
+    'America/Santiago':'CL','America/Bogota':'CO','America/Lima':'PE',
+    'America/Montevideo':'UY','America/Guayaquil':'EC','America/Caracas':'VE',
+    'Asia/Tashkent':'UZ','Asia/Amman':'JO','Asia/Baghdad':'IQ',
+    'Africa/Algiers':'DZ','Africa/Dakar':'SN','Africa/Douala':'CM',
+    'America/Panama':'PA','Asia/Jakarta':'ID','Africa/Kinshasa':'CD',
+    'Europe/Belgrade':'RS','Europe/Zagreb':'HR','Europe/Sarajevo':'BA',
+    'Europe/Prague':'CZ','Europe/Bratislava':'SK',
+  };
+  return tzCountry[tz] || 'GB';
+}
+
+let USER_COUNTRY = detectCountry();
+
+function getTVInfo() {
+  return TV_BROADCASTERS[USER_COUNTRY] || TV_BROADCASTERS['GB'];
+}
 
 // ══════════════════════════════════════════════
 // OFFICIAL FIFA SCHEDULE — All 104 matches
@@ -496,6 +616,9 @@ let liveDB={}; // from API
 function toDS(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 
 document.addEventListener('DOMContentLoaded',()=>{
+  // Show visitor's timezone in header
+  document.getElementById('tzBadge').textContent = `🕐 ${TZ_LABEL}`;
+
   const today=toDS(new Date());
   selDate = SCHEDULE[today] ? today : '2026-06-11';
   curMonth = new Date(selDate+'T12:00:00').getMonth();
@@ -541,6 +664,59 @@ function nextMonth(){
   curMonth++; if(curMonth>11){curMonth=0;curYear++;} renderCal();
 }
 
+// ── TIMEZONE CONVERSION ──
+// Convert BST match time to visitor's local time
+// BST = UTC+1 in summer
+const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const userLocale = navigator.language || 'en-GB';
+
+function bstToLocal(dateStr, timeStr) {
+  // Build a full UTC datetime from BST (BST = UTC+1)
+  // e.g. dateStr='2026-06-11', timeStr='20:00'
+  const [h, m] = timeStr.split(':').map(Number);
+  // BST is UTC+1, so subtract 1hr to get UTC
+  const utcHour = h - 1;
+  let utcDate = dateStr;
+  // If subtracting 1hr goes negative, adjust date
+  let adjustedHour = utcHour;
+  if (utcHour < 0) {
+    adjustedHour = 23;
+    // previous day — but we show the LOCAL date so this handles itself
+  }
+  const utcStr = `${dateStr}T${String(adjustedHour < 0 ? 23 : adjustedHour).padStart(2,'0')}:${String(m).padStart(2,'0')}:00Z`;
+  const dt = new Date(utcStr);
+
+  const localTime = dt.toLocaleTimeString(userLocale, {
+    hour: '2-digit', minute: '2-digit',
+    timeZone: userTZ
+  });
+
+  const localDate = dt.toLocaleDateString(userLocale, {
+    weekday:'short', day:'numeric', month:'short',
+    timeZone: userTZ
+  });
+
+  // Check if local date differs from schedule date (important for overnight games)
+  const scheduledLocalDate = dt.toLocaleDateString('en-CA', { timeZone: userTZ }); // YYYY-MM-DD
+
+  return { localTime, localDate, utcDate: dt, scheduledLocalDate };
+}
+
+// Get user's timezone label
+function getTZLabel() {
+  try {
+    const now = new Date();
+    const tzOffset = now.toLocaleTimeString('en-GB', {
+      timeZoneName: 'short', timeZone: userTZ
+    }).split(' ').pop();
+    return tzOffset || userTZ.split('/').pop().replace('_',' ');
+  } catch(e) {
+    return 'Local';
+  }
+}
+
+const TZ_LABEL = getTZLabel();
+
 // ── LIVE API ──
 async function loadLiveData(){
   try{
@@ -574,9 +750,13 @@ function showDay(ds){
 
   // Merge static + live data
   const cards = matches.map(m=>{
+    // Convert BST time to visitor's local time
+    const {localTime, localDate, utcDate, scheduledLocalDate} = bstToLocal(ds, m.t);
+    const isOtherDay = scheduledLocalDate !== ds; // match falls on different local date
+
     // Try to find live data match
     const live = liveMatches.find(lm=>{
-      const hn=lm.homeTeam?.name||''; const an=lm.awayTeam?.name||'';
+      const hn=lm.homeTeam?.name||'';
       return (hn.includes(m.h.split(' ')[0])||m.h.includes(hn.split(' ')[0]||'XXX'));
     });
     const status = live?.status||'TIMED';
@@ -585,16 +765,19 @@ function showDay(ds){
     let badge='';
     if(isLive) badge=`<span class="badge-live"><span class="live-dot"></span> LIVE ${live?.minute?live.minute+"'":''}${status==='PAUSED'?' HT':''}</span>`;
     else if(isFin) badge=`<span class="badge-ft">Full Time</span>`;
-    else badge=`<span class="badge-time">⏰ ${m.t} BST</span>`;
+    else badge=`<span class="badge-time">⏰ ${localTime} ${TZ_LABEL}${isOtherDay?` <span style="font-size:9px;opacity:0.7">(${localDate})</span>`:''}</span>`;
+
     let scoreHtml='';
     if(isLive||isFin){
       const h=live?.score?.fullTime?.home??live?.score?.halfTime?.home??'–';
       const a=live?.score?.fullTime?.away??live?.score?.halfTime?.away??'–';
       scoreHtml=`<div class="score-num">${h} – ${a}</div>`;
     } else {
-      scoreHtml=`<div class="score-vs">vs</div><div class="score-time">${m.t} BST</div>`;
+      scoreHtml=`<div class="score-vs">vs</div><div class="score-time">${localTime} ${TZ_LABEL}</div>`;
     }
     const grpLabel = m.g!=='—' ? `Group ${m.g} · ` : '';
+    const tv = getTVInfo();
+    const tvHtml = `<div class="tv-bar"><span class="tv-flag">${tv.flag}</span><span class="tv-label">📺 ${tv.channels.join(' · ')}</span></div>`;
     return `<div class="match-card${isLive?' live':''}">
       <div class="match-top">
         <div><div class="match-stage">${grpLabel}${m.s}</div><div class="match-venue">📍 ${m.v}</div></div>
@@ -605,6 +788,7 @@ function showDay(ds){
         <div class="score-mid">${scoreHtml}</div>
         <div class="team"><div class="team-flag">${flag(m.a)}</div><div class="team-name">${m.a}</div></div>
       </div>
+      ${tvHtml}
     </div>`;
   }).join('');
 
