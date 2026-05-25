@@ -8,41 +8,276 @@
 <link rel="stylesheet" href="../../css/style.css">
 
 <style>
-body{margin:0;font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);color:#0f172a}
-.header{background:rgba(255,255,255,.85);backdrop-filter:blur(18px);padding:16px;border-bottom:1px solid rgba(255,255,255,.9);position:sticky;top:0;z-index:10}
-.header h1{font-size:18px;margin:0}
-.header p{font-size:12px;color:#64748b;margin:4px 0 0}
-.main{padding:14px;max-width:1200px;margin:auto}
-.controls{display:grid;grid-template-columns:1fr 150px;gap:10px;margin-bottom:14px}
-.controls input,.controls select{padding:11px;border-radius:12px;border:1px solid #bfdbfe;background:white;font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.stat{background:rgba(255,255,255,.75);border:1px solid white;border-radius:14px;padding:12px;text-align:center}
-.stat b{font-size:22px;color:#2563eb}
-.stat span{display:block;font-size:10px;color:#64748b;margin-top:3px}
-.group-card{background:rgba(255,255,255,.75);border:1px solid white;border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 6px 24px rgba(100,160,220,.15)}
-.group-head{display:flex;justify-content:space-between;align-items:center;padding:14px 14px;background:rgba(37,99,235,.08);border-bottom:1px solid rgba(37,99,235,.12)}
-.group-head h2{font-size:15px;margin:0;color:#1d4ed8}
-.group-head span{font-size:11px;color:#64748b}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;background:white}
-th{font-size:10px;text-transform:uppercase;color:#64748b;background:#f8fafc;padding:9px 6px;text-align:center}
-td{font-size:12px;padding:10px 6px;border-top:1px solid #e2e8f0;text-align:center}
-td.team{text-align:left;font-weight:700;min-width:150px}
-.flag{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;margin-right:8px;vertical-align:middle;font-size:18px}
-.england-flag{position:relative;background:white;border:1px solid #cbd5e1;border-radius:2px}
-.england-flag:before{content:"";position:absolute;left:11px;top:0;width:5px;height:100%;background:#dc2626}
-.england-flag:after{content:"";position:absolute;left:0;top:7px;width:100%;height:5px;background:#dc2626}
-.badge{display:inline-block;background:#dbeafe;color:#2563eb;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700}
-.live-note{font-size:11px;color:#64748b;padding:10px 14px;background:#f8fafc;border-top:1px solid #e2e8f0}
-.no-results{background:white;border-radius:14px;padding:30px;text-align:center;color:#64748b}
-.footer{background:#1a1f2e;color:#a8b2c8;padding:18px;font-size:11px;line-height:1.7}
-.footer a{color:#a8b2c8;text-decoration:none;margin-right:10px}
-.adbar{background:rgba(255,255,255,.7);padding:10px;text-align:center;font-size:12px;border-top:1px solid white}
+body{
+  margin:0;
+  font-family:Verdana,Geneva,Tahoma,sans-serif;
+  background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);
+  color:#0f172a;
+}
+
+.header{
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,.9);
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 18px rgba(37,99,235,.08);
+}
+
+.header h1{
+  font-size:18px;
+  margin:0;
+}
+
+.header p{
+  font-size:12px;
+  color:#64748b;
+  margin:4px 0 0;
+}
+
+.main{
+  padding:14px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:1fr 160px;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.controls input,
+.controls select{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #bfdbfe;
+  background:white;
+  font-size:13px;
+  outline:none;
+}
+
+.controls input:focus,
+.controls select:focus{
+  border-color:#2563eb;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.stat{
+  background:rgba(255,255,255,.78);
+  border:1px solid white;
+  border-radius:16px;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(37,99,235,.06);
+}
+
+.stat b{
+  font-size:24px;
+  color:#2563eb;
+}
+
+.stat span{
+  display:block;
+  font-size:10px;
+  color:#64748b;
+  margin-top:3px;
+}
+
+.group-card{
+  background:#ffffff;
+  border:1px solid #bfdbfe;
+  border-radius:20px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:0 8px 28px rgba(37,99,235,.14);
+}
+
+.group-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 16px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.group-head h2{
+  font-size:16px;
+  margin:0;
+  color:white;
+  font-weight:800;
+  letter-spacing:.4px;
+}
+
+.group-head span{
+  font-size:11px;
+  color:rgba(255,255,255,.82);
+}
+
+.table-wrap{
+  overflow-x:auto;
+  background:white;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+
+th{
+  font-size:10px;
+  text-transform:uppercase;
+  color:#475569;
+  background:#dbeafe;
+  padding:10px 6px;
+  text-align:center;
+  font-weight:800;
+  border-bottom:2px solid #93c5fd;
+}
+
+td{
+  font-size:12px;
+  padding:11px 6px;
+  border-top:1px solid #dbeafe;
+  text-align:center;
+  background:white;
+}
+
+td.team{
+  text-align:left;
+  min-width:160px;
+  font-weight:700;
+}
+
+tbody tr:nth-child(1){
+  background:rgba(34,197,94,.10);
+}
+
+tbody tr:nth-child(2){
+  background:rgba(59,130,246,.08);
+}
+
+tbody tr:hover{
+  background:#eff6ff;
+  transition:.2s;
+}
+
+.flag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:20px;
+  margin-right:8px;
+  vertical-align:middle;
+  font-size:18px;
+}
+
+.england-flag{
+  position:relative;
+  background:white;
+  border:1px solid #cbd5e1;
+  border-radius:2px;
+}
+
+.england-flag:before{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:0;
+  width:5px;
+  height:100%;
+  background:#dc2626;
+}
+
+.england-flag:after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:7px;
+  width:100%;
+  height:5px;
+  background:#dc2626;
+}
+
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.18);
+  color:white;
+  border-radius:999px;
+  padding:4px 9px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.live-note{
+  font-size:11px;
+  color:#64748b;
+  padding:10px 14px;
+  background:#f8fafc;
+  border-top:1px solid #e2e8f0;
+}
+
+.no-results{
+  background:white;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
+  color:#64748b;
+}
+
+.footer{
+  background:#1a1f2e;
+  color:#a8b2c8;
+  padding:18px;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.footer a{
+  color:#a8b2c8;
+  text-decoration:none;
+  margin-right:10px;
+}
+
+.adbar{
+  background:rgba(255,255,255,.75);
+  padding:10px;
+  text-align:center;
+  font-size:12px;
+  border-top:1px solid white;
+}
+
 @media(max-width:768px){
-.controls{grid-template-columns:1fr}
-.stats{grid-template-columns:repeat(2,1fr)}
-td,th{font-size:10px;padding:8px 4px}
-td.team{min-width:130px}
+
+.controls{
+  grid-template-columns:1fr;
+}
+
+.stats{
+  grid-template-columns:repeat(2,1fr);
+}
+
+td,th{
+  font-size:10px;
+  padding:8px 4px;
+}
+
+td.team{
+  min-width:130px;
+}
+
 }
 </style>
 </head>
@@ -51,221 +286,228 @@ td.team{min-width:130px}
 
 <header class="header">
   <h1>🏆 World Cup 2026 Groups & Teams</h1>
-  <p>Live-style group tables, search and filters</p>
+  <p>Live-style standings tables and team tracking</p>
 </header>
 
 <main class="main">
 
-  <div class="stats">
-    <div class="stat"><b>48</b><span>Teams</span></div>
-    <div class="stat"><b>12</b><span>Groups</span></div>
-    <div class="stat"><b>104</b><span>Matches</span></div>
-    <div class="stat"><b>32</b><span>Advance</span></div>
-  </div>
+<div class="stats">
+  <div class="stat"><b>48</b><span>Teams</span></div>
+  <div class="stat"><b>12</b><span>Groups</span></div>
+  <div class="stat"><b>104</b><span>Matches</span></div>
+  <div class="stat"><b>32</b><span>Advance</span></div>
+</div>
 
-  <div class="controls">
-    <input id="searchBox" type="search" placeholder="Search England, Brazil, Group L, UEFA...">
-    <select id="groupSelect">
-      <option value="">All Groups</option>
-    </select>
-  </div>
+<div class="controls">
+  <input id="searchBox" type="search" placeholder="Search England, Brazil, Group L, UEFA...">
+  <select id="groupSelect">
+    <option value="">All Groups</option>
+  </select>
+</div>
 
-  <div id="groupsContainer"></div>
+<div id="groupsContainer"></div>
 
 </main>
 
 <div class="adbar">
-  🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
-  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#4687ff;color:white;padding:3px 10px;border-radius:20px;font-weight:700;text-decoration:none;margin-left:6px">Get Deal →</a>
+🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
+<a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:4px 12px;border-radius:20px;font-weight:700;text-decoration:none;margin-left:6px">Get Deal →</a>
 </div>
 
 <footer class="footer">
-  <div>
-    <a href="../../index.html">Home</a>
-    <a href="../../about.html">About</a>
-    <a href="../../contact.html">Contact</a>
-    <a href="../../privacy.html">Privacy</a>
-    <a href="../../terms.html">Terms</a>
-    <a href="../../disclaimer.html">Disclaimer</a>
-    <a href="../../cookies.html">Cookies</a>
-  </div>
-  <div style="margin-top:10px">
-    © 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
-    Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
-  </div>
+<div>
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About</a>
+<a href="../../contact.html">Contact</a>
+<a href="../../privacy.html">Privacy</a>
+<a href="../../terms.html">Terms</a>
+</div>
+
+<div style="margin-top:10px">
+© 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
+Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+</div>
 </footer>
 
 <script>
 const GROUPS = [
-  {id:'A',teams:[
-    ['Mexico','🇲🇽','CONCACAF'],
-    ['South Africa','🇿🇦','CAF'],
-    ['South Korea','🇰🇷','AFC'],
-    ['Play-off Winner','⚽','TBD']
-  ]},
-  {id:'B',teams:[
-    ['Canada','🇨🇦','CONCACAF'],
-    ['Qatar','🇶🇦','AFC'],
-    ['Switzerland','🇨🇭','UEFA'],
-    ['Play-off Winner','⚽','TBD']
-  ]},
-  {id:'C',teams:[
-    ['Brazil','🇧🇷','CONMEBOL'],
-    ['Morocco','🇲🇦','CAF'],
-    ['Haiti','🇭🇹','CONCACAF'],
-    ['Scotland','🏴󠁧󠁢󠁳󠁣󠁴󠁿','UEFA']
-  ]},
-  {id:'D',teams:[
-    ['United States','🇺🇸','CONCACAF'],
-    ['Paraguay','🇵🇾','CONMEBOL'],
-    ['Australia','🇦🇺','AFC'],
-    ['Play-off Winner','⚽','TBD']
-  ]},
-  {id:'E',teams:[
-    ['Germany','🇩🇪','UEFA'],
-    ['Curaçao','🇨🇼','CONCACAF'],
-    ['Ivory Coast','🇨🇮','CAF'],
-    ['Ecuador','🇪🇨','CONMEBOL']
-  ]},
-  {id:'F',teams:[
-    ['Netherlands','🇳🇱','UEFA'],
-    ['Japan','🇯🇵','AFC'],
-    ['Tunisia','🇹🇳','CAF'],
-    ['Play-off Winner','⚽','TBD']
-  ]},
-  {id:'G',teams:[
-    ['Belgium','🇧🇪','UEFA'],
-    ['Egypt','🇪🇬','CAF'],
-    ['Iran','🇮🇷','AFC'],
-    ['New Zealand','🇳🇿','OFC']
-  ]},
-  {id:'H',teams:[
-    ['Spain','🇪🇸','UEFA'],
-    ['Uruguay','🇺🇾','CONMEBOL'],
-    ['Saudi Arabia','🇸🇦','AFC'],
-    ['Cape Verde','🇨🇻','CAF']
-  ]},
-  {id:'I',teams:[
-    ['France','🇫🇷','UEFA'],
-    ['Senegal','🇸🇳','CAF'],
-    ['Norway','🇳🇴','UEFA'],
-    ['Play-off Winner','⚽','TBD']
-  ]},
-  {id:'J',teams:[
-    ['Argentina','🇦🇷','CONMEBOL'],
-    ['Algeria','🇩🇿','CAF'],
-    ['Austria','🇦🇹','UEFA'],
-    ['Jordan','🇯🇴','AFC']
-  ]},
-  {id:'K',teams:[
-    ['Portugal','🇵🇹','UEFA'],
-    ['Colombia','🇨🇴','CONMEBOL'],
-    ['Uzbekistan','🇺🇿','AFC'],
-    ['DR Congo','🇨🇩','CAF']
-  ]},
-  {id:'L',teams:[
-    ['England','ENGLAND','UEFA'],
-    ['Croatia','🇭🇷','UEFA'],
-    ['Ghana','🇬🇭','CAF'],
-    ['Panama','🇵🇦','CONCACAF']
-  ]}
+{id:'A',teams:[
+['Mexico','🇲🇽','CONCACAF'],
+['South Africa','🇿🇦','CAF'],
+['South Korea','🇰🇷','AFC'],
+['Play-off Winner','⚽','TBD']
+]},
+{id:'B',teams:[
+['Canada','🇨🇦','CONCACAF'],
+['Qatar','🇶🇦','AFC'],
+['Switzerland','🇨🇭','UEFA'],
+['Play-off Winner','⚽','TBD']
+]},
+{id:'C',teams:[
+['Brazil','🇧🇷','CONMEBOL'],
+['Morocco','🇲🇦','CAF'],
+['Haiti','🇭🇹','CONCACAF'],
+['Scotland','🏴','UEFA']
+]},
+{id:'D',teams:[
+['United States','🇺🇸','CONCACAF'],
+['Paraguay','🇵🇾','CONMEBOL'],
+['Australia','🇦🇺','AFC'],
+['Play-off Winner','⚽','TBD']
+]},
+{id:'E',teams:[
+['Germany','🇩🇪','UEFA'],
+['Curaçao','🇨🇼','CONCACAF'],
+['Ivory Coast','🇨🇮','CAF'],
+['Ecuador','🇪🇨','CONMEBOL']
+]},
+{id:'F',teams:[
+['Netherlands','🇳🇱','UEFA'],
+['Japan','🇯🇵','AFC'],
+['Tunisia','🇹🇳','CAF'],
+['Play-off Winner','⚽','TBD']
+]},
+{id:'G',teams:[
+['Belgium','🇧🇪','UEFA'],
+['Egypt','🇪🇬','CAF'],
+['Iran','🇮🇷','AFC'],
+['New Zealand','🇳🇿','OFC']
+]},
+{id:'H',teams:[
+['Spain','🇪🇸','UEFA'],
+['Uruguay','🇺🇾','CONMEBOL'],
+['Saudi Arabia','🇸🇦','AFC'],
+['Cape Verde','🇨🇻','CAF']
+]},
+{id:'I',teams:[
+['France','🇫🇷','UEFA'],
+['Senegal','🇸🇳','CAF'],
+['Norway','🇳🇴','UEFA'],
+['Play-off Winner','⚽','TBD']
+]},
+{id:'J',teams:[
+['Argentina','🇦🇷','CONMEBOL'],
+['Algeria','🇩🇿','CAF'],
+['Austria','🇦🇹','UEFA'],
+['Jordan','🇯🇴','AFC']
+]},
+{id:'K',teams:[
+['Portugal','🇵🇹','UEFA'],
+['Colombia','🇨🇴','CONMEBOL'],
+['Uzbekistan','🇺🇿','AFC'],
+['DR Congo','🇨🇩','CAF']
+]},
+{id:'L',teams:[
+['England','ENGLAND','UEFA'],
+['Croatia','🇭🇷','UEFA'],
+['Ghana','🇬🇭','CAF'],
+['Panama','🇵🇦','CONCACAF']
+]}
 ];
 
 function flagHTML(flag){
-  if(flag === 'ENGLAND'){
-    return '<span class="flag england-flag"></span>';
-  }
-  return '<span class="flag">'+flag+'</span>';
+if(flag==='ENGLAND'){
+return '<span class="flag england-flag"></span>';
+}
+return '<span class="flag">'+flag+'</span>';
 }
 
-function makeTeamRow(team){
-  const name = team[0];
-  const flag = team[1];
-  const conf = team[2];
-
-  return `
-    <tr>
-      <td class="team">${flagHTML(flag)}${name}<br><span style="font-size:10px;color:#64748b">${conf}</span></td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td><strong>0</strong></td>
-    </tr>
-  `;
+function row(team){
+return `
+<tr>
+<td class="team">${flagHTML(team[1])}${team[0]}<br><span style="font-size:10px;color:#64748b">${team[2]}</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+`;
 }
 
-function renderGroups(){
-  const search = document.getElementById('searchBox').value.toLowerCase().trim();
-  const selectedGroup = document.getElementById('groupSelect').value;
-  const container = document.getElementById('groupsContainer');
+function render(){
 
-  let html = '';
+const search=document.getElementById('searchBox').value.toLowerCase().trim();
+const selected=document.getElementById('groupSelect').value;
 
-  GROUPS.forEach(group => {
-    if(selectedGroup && group.id !== selectedGroup) return;
+const container=document.getElementById('groupsContainer');
 
-    const groupText = ('group ' + group.id + ' ' + group.teams.map(t => t.join(' ')).join(' ')).toLowerCase();
-    if(search && !groupText.includes(search)) return;
+let html='';
 
-    html += `
-      <section class="group-card">
-        <div class="group-head">
-          <h2>Group ${group.id}</h2>
-          <span><span class="badge">Live table</span></span>
-        </div>
+GROUPS.forEach(group=>{
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th style="text-align:left">Team</th>
-                <th>P</th>
-                <th>W</th>
-                <th>D</th>
-                <th>L</th>
-                <th>GF</th>
-                <th>GA</th>
-                <th>GD</th>
-                <th>Pts</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${group.teams.map(makeTeamRow).join('')}
-            </tbody>
-          </table>
-        </div>
+if(selected && selected!==group.id) return;
 
-        <div class="live-note">
-          Status: pre-tournament table. This structure is ready for live scores and automatic standings updates when match results are connected.
-        </div>
-      </section>
-    `;
-  });
+const haystack=('group '+group.id+' '+group.teams.flat().join(' ')).toLowerCase();
 
-  container.innerHTML = html || '<div class="no-results">No group or team found.</div>';
+if(search && !haystack.includes(search)) return;
+
+html+=`
+<section class="group-card">
+
+<div class="group-head">
+<h2>Group ${group.id}</h2>
+<span><span class="badge">LIVE TABLE</span></span>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Team</th>
+<th>P</th>
+<th>W</th>
+<th>D</th>
+<th>L</th>
+<th>GF</th>
+<th>GA</th>
+<th>GD</th>
+<th>Pts</th>
+</tr>
+</thead>
+
+<tbody>
+${group.teams.map(row).join('')}
+</tbody>
+
+</table>
+</div>
+
+<div class="live-note">
+Live standings system ready for future automatic score updates.
+</div>
+
+</section>
+`;
+
+});
+
+container.innerHTML=html || '<div class="no-results">No teams or groups found.</div>';
+
 }
 
 function init(){
-  const select = document.getElementById('groupSelect');
 
-  GROUPS.forEach(group => {
-    const option = document.createElement('option');
-    option.value = group.id;
-    option.textContent = 'Group ' + group.id;
-    select.appendChild(option);
-  });
+const select=document.getElementById('groupSelect');
 
-  document.getElementById('searchBox').addEventListener('input', renderGroups);
-  document.getElementById('groupSelect').addEventListener('change', renderGroups);
+GROUPS.forEach(g=>{
+const option=document.createElement('option');
+option.value=g.id;
+option.textContent='Group '+g.id;
+select.appendChild(option);
+});
 
-  renderGroups();
+document.getElementById('searchBox').addEventListener('input',render);
+document.getElementById('groupSelect').addEventListener('change',render);
+
+render();
+
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded',init);
 </script>
 
 </body>
