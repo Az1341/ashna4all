@@ -3,565 +3,1376 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FIFA World Cup 2026: Live Scores, Schedule & Standings | GoalCurrent.live</title>
-<meta name="description" content="Get real-time FIFA World Cup 2026 live scores, full match schedule, group standings, and latest news from USA, Canada & Mexico. Your ultimate WC26 hub!">
-<meta name="keywords" content="World Cup 2026, FIFA World Cup, WC26, live scores, schedule, fixtures, standings, groups, USA, Canada, Mexico, football, soccer">
-<link rel="canonical" href="https://goalcurrent.live/worldcup2026/">
-<link rel="icon" href="/favicon.ico">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://goalcurrent.live/worldcup2026/">
-<meta property="og:title" content="FIFA World Cup 2026: Live Scores, Schedule & Standings | GoalCurrent.live">
-<meta property="og:description" content="Get real-time FIFA World Cup 2026 live scores, full match schedule, group standings and latest news from USA, Canada & Mexico.">
-<meta property="og:image" content="https://goalcurrent.live/images/wc26-social-share.jpg">
-<meta property="og:site_name" content="GoalCurrent.live">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FIFA World Cup 2026: Live Scores, Schedule & Standings | GoalCurrent.live">
-<meta name="twitter:description" content="Get real-time FIFA World Cup 2026 live scores, full match schedule, group standings and latest news.">
-<meta name="twitter:image" content="https://goalcurrent.live/images/wc26-social-share.jpg">
-<link rel="stylesheet" href="/css/style.css">
+<title>World Cup 2026 | GoalCurrent.live</title>
+<meta name="description" content="FIFA World Cup 2026 live scores, groups, fixtures, teams and news. USA, Canada & Mexico. Free live football scores.">
+<meta name="author" content="Ahmad Zafarani - Ashna4All">
+<link rel="stylesheet" href="css/style.css">
 <style>
+/* ── LEFT DARK SIDEBAR (matching .live) ── */
 :root {
   --sb-w: 240px;
   --sb-bg: #1a1f2e;
-  --sb-border: rgba(255,255,255,0.08);
-  --sb-hover: rgba(255,255,255,0.07);
-  --sb-active: rgba(37,99,235,0.22);
-  --sb-text: rgba(255,255,255,0.78);
-  --sb-text-dim: rgba(255,255,255,0.38);
+  --sb-hover: #252b3d;
+  --sb-active: #2d3448;
+  --sb-border: rgba(255,255,255,0.06);
+  --sb-text: #a8b2c8;
+  --sb-text-active: #ffffff;
   --sb-accent: #3b82f6;
-  --font: Verdana, Geneva, Tahoma, sans-serif;
-  --blue: #2563eb; --red: #dc2626; --green: #16a34a;
-  --gold: #d97706; --t1: #0f172a; --t2: #334155;
-  --t3: #64748b; --t4: #94a3b8;
-  --bg1: #dbeafe; --bg2: #eff6ff; --bg3: #e0f2fe;
-  --r-sm: 10px; --r-md: 16px; --r-lg: 22px;
-  --glass: rgba(255,255,255,0.62);
-  --glass-border: rgba(255,255,255,0.82);
-  --glass-shadow: 0 4px 20px rgba(100,160,220,0.14);
-  --blur: blur(22px);
+  --hdr-h: 60px;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+
+/* RESET BODY for sidebar layout */
 body {
-  font-family: var(--font);
-  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
-  background-attachment: fixed;
-  color: var(--t1); min-height: 100vh;
-  display: flex; overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ── SIDEBAR ── */
-.gc-sidebar {
-  width: var(--sb-w); flex-shrink: 0;
+.gc-sidebar-left {
+  width: var(--sb-w);
+  min-width: var(--sb-w);
   background: var(--sb-bg);
-  position: fixed; top: 0; left: 0; bottom: 0;
-  z-index: 300; overflow-y: auto;
-  -ms-overflow-style: none; scrollbar-width: none;
-  border-right: 1px solid var(--sb-border);
-  display: flex; flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 300;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
-.gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo { display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0; }
-.sb-logo img { height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));flex-shrink:0; }
-.sb-logo-text { font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.3px;line-height:1.1; }
-.sb-logo-text em { color:#60a5fa;font-style:normal; }
-.sb-logo-text span { color:#34d399;font-weight:400; }
-.sb-section { padding:10px 0 4px; }
-.sb-section-label { font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--sb-text-dim);padding:6px 16px;display:block; }
-.sb-nav-link { display:flex;align-items:center;gap:10px;padding:9px 16px;color:var(--sb-text);text-decoration:none;font-size:12.5px;font-weight:600;transition:all 0.18s;border-left:3px solid transparent; }
-.sb-nav-link:hover { background:var(--sb-hover);color:#fff; }
-.sb-nav-link.active { background:var(--sb-active);color:#fff;border-left-color:var(--sb-accent); }
-.sb-nav-icon { font-size:14px;width:20px;text-align:center;flex-shrink:0; }
-.sb-divider { height:1px;background:var(--sb-border);margin:6px 16px; }
-.sb-comp-btn { width:100%;display:flex;align-items:center;gap:8px;padding:10px 16px;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:12.5px;font-weight:700;color:var(--sb-text);text-align:left;transition:background 0.18s;border-left:3px solid transparent; }
-.sb-comp-btn:hover { background:var(--sb-hover);color:#fff; }
-.sb-comp-icon { font-size:14px;flex-shrink:0; }
-.sb-comp-name { flex:1; }
-.sb-comp-badge { font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0; }
-.sb-comp-badge.pl  { background:rgba(56,0,60,0.8);color:#e9b4ff; }
-.sb-comp-badge.wc  { background:rgba(200,0,30,0.6);color:#ffa5b4; }
-.sb-comp-badge.ucl { background:rgba(0,30,98,0.8);color:#93c5fd; }
-.sb-chevron { font-size:9px;color:var(--sb-text-dim);transition:transform 0.2s;flex-shrink:0; }
-.sb-comp-btn.open .sb-chevron { transform:rotate(180deg); }
-.sb-links { display:none;padding:2px 0 4px; }
-.sb-links.open { display:block; }
-.sb-links a { display:flex;align-items:center;gap:8px;padding:7px 16px 7px 42px;font-size:12px;font-weight:500;color:var(--sb-text-dim);text-decoration:none;transition:all 0.16s;border-left:3px solid transparent; }
-.sb-links a:hover { color:#fff;background:var(--sb-hover); }
-.sb-links a.active { color:var(--sb-accent);background:var(--sb-active);border-left-color:var(--sb-accent);font-weight:700; }
-.sb-link-icon { font-size:12px;width:16px;text-align:center;flex-shrink:0; }
-.sb-footer { margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7; }
-.sb-footer a { color:rgba(255,255,255,0.3);text-decoration:none; }
+.gc-sidebar-left::-webkit-scrollbar { display: none; }
 
-/* ── PAGE WRAP ── */
-.gc-page-wrap { margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column; }
-.gc-topbar { background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1); }
-.gc-breadcrumb { font-size:12px;color:var(--t3); }
-.gc-breadcrumb a { color:var(--blue);text-decoration:none; }
-.gc-topbar-badge { background:linear-gradient(135deg,#c8001e,#ff0030);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap; }
-.gc-content { padding:24px 28px 100px;flex:1; }
-.pg-title { font-size:20px;font-weight:700;color:var(--t1);margin-bottom:4px;letter-spacing:-0.3px; }
-.pg-title em { color:#c8001e;font-style:normal; }
-.pg-sub { font-size:11px;color:var(--t3);margin-bottom:20px; }
-.sec-head { display:flex;align-items:center;gap:10px;margin:20px 0 14px; }
-.sec-title { font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap; }
-.sec-line { flex:1;height:1px;background:rgba(100,160,220,0.2); }
+.sb-logo {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--sb-border);
+}
 
-/* ── HERO BANNER ── */
+.sb-logo a {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sb-logo span {
+  color: #3b82f6;
+}
+
+.sb-section-label {
+  padding: 16px 16px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(168,178,200,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--sb-text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.sb-item:hover {
+  background: var(--sb-hover);
+  color: var(--sb-text-active);
+}
+
+.sb-item.active {
+  background: var(--sb-active);
+  color: var(--sb-text-active);
+  border-left: 3px solid var(--sb-accent);
+}
+
+.sb-item .sb-icon { width: 18px; text-align: center; font-size: 15px; }
+
+.sb-competition {
+  border-top: 1px solid var(--sb-border);
+  margin-top: 4px;
+}
+
+.sb-comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  color: var(--sb-text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sb-comp-header:hover { background: var(--sb-hover); color: white; }
+
+.sb-comp-header .sb-badge {
+  font-size: 10px;
+  background: rgba(59,130,246,0.2);
+  color: #60a5fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.sb-sub-items { display: none; }
+.sb-sub-items.open { display: block; }
+
+.sb-sub-item {
+  display: block;
+  padding: 8px 16px 8px 40px;
+  color: rgba(168,178,200,0.75);
+  text-decoration: none;
+  font-size: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sb-sub-item:hover {
+  background: var(--sb-hover);
+  color: white;
+}
+
+.sb-sub-item.active {
+  color: #60a5fa;
+}
+
+/* Sidebar footer */
+.sb-footer {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid var(--sb-border);
+  font-size: 11px;
+  color: rgba(168,178,200,0.4);
+  line-height: 1.6;
+}
+
+.sb-footer a {
+  color: rgba(168,178,200,0.5);
+  text-decoration: none;
+}
+
+.sb-footer a:hover { color: white; }
+
+.sb-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.sb-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--sb-hover);
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.sb-social a:hover { background: var(--sb-active); }
+
+/* ── MAIN CONTENT (right of sidebar) ── */
+.gc-main {
+  margin-left: var(--sb-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOP HEADER ── */
+.gc-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: var(--hdr-h);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255,255,255,0.82);
+  box-shadow: 0 1px 24px rgba(100,160,220,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.gc-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gc-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+/* ── TICKER ── */
+.gc-ticker {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255,255,255,0.82);
+  padding: 8px 0;
+  overflow: hidden;
+}
+
+.gc-ticker-track {
+  display: flex;
+  gap: 40px;
+  animation: ticker-scroll 25s linear infinite;
+  white-space: nowrap;
+}
+
+.gc-ticker-item {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+/* ── PAGE CONTENT ── */
+.gc-content {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #e0f2fe 100%);
+  background-attachment: fixed;
+}
+
+/* ── WC HERO ── */
 .wc-hero {
-  background: linear-gradient(135deg, #002868 0%, #bf0a30 50%, #002868 100%);
-  border-radius: var(--r-lg); padding: 28px 24px;
-  margin-bottom: 20px; color: #fff; position: relative; overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #1a1f2e 0%, #1e3a5f 60%, #1a1f2e 100%);
+  border-radius: 18px;
+  padding: 28px 24px;
+  color: white;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.wc-hero::before { content:'2026';position:absolute;right:-10px;top:-20px;font-size:120px;font-weight:900;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none; }
-.wc-hero-label { font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px; }
-.wc-hero-title { font-size:28px;font-weight:800;line-height:1.1;margin-bottom:8px;letter-spacing:-0.5px; }
-.wc-hero-title em { color:#ffd700;font-style:normal; }
-.wc-hero-sub { font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:16px; }
-.wc-hosts { display:flex;gap:10px;flex-wrap:wrap; }
-.wc-host-pill { display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;color:#fff; }
+
+.wc-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(59,130,246,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wc-hero-left { position: relative; z-index: 1; }
+
+.wc-hero h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.wc-hero h1 span { color: #fbbf24; }
+
+.wc-hero p { color: #a8b2c8; font-size: 13px; }
+
+.wc-trophy {
+  font-size: 72px;
+  position: relative;
+  z-index: 1;
+  opacity: 0.9;
+}
 
 /* ── COUNTDOWN ── */
 .wc-countdown {
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md); padding: 18px 20px;
-  margin-bottom: 20px; text-align: center;
-  box-shadow: var(--glass-shadow);
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 0;
 }
-.wc-cd-label { font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);margin-bottom:12px; }
-.wc-cd-units { display:flex;justify-content:center;gap:12px; }
-.wc-cd-unit { background:#002868;border-radius:10px;padding:10px 16px;min-width:60px;text-align:center; }
-.wc-cd-val { display:block;font-size:24px;font-weight:800;color:#ffd700;line-height:1; }
-.wc-cd-lbl { display:block;font-size:9px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:3px; }
 
-/* ── STATS ── */
-.wc-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px; }
-.wc-stat { background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--glass-shadow); }
-.wc-stat-icon { font-size:24px;width:42px;height:42px;background:rgba(255,255,255,0.8);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
-.wc-stat-val { font-size:18px;font-weight:700;color:var(--t1);line-height:1; }
-.wc-stat-lbl { font-size:9.5px;color:var(--t4);text-transform:uppercase;letter-spacing:0.7px;font-weight:700;margin-top:3px; }
-
-/* ── GROUPS GRID ── */
-.wc-groups-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
-@media(min-width:1400px) { .wc-groups-grid { grid-template-columns:repeat(4,1fr); } }
-
-.wc-group-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md); padding: 14px;
-  box-shadow: var(--glass-shadow);
-  transition: all 0.2s; cursor: pointer;
-  text-decoration: none; display: block; color: var(--t1);
+.cd-box {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+  min-width: 60px;
 }
-.wc-group-card:hover { box-shadow:0 8px 28px rgba(100,160,220,0.22);transform:translateY(-2px);border-color:rgba(37,99,235,0.3); }
-.wc-group-card.death { border-top:3px solid var(--red);background:rgba(220,38,38,0.03); }
-.wc-group-card.strong { border-top:3px solid var(--gold); }
 
-.wc-group-name { font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between; }
-.wc-death-badge { font-size:8px;font-weight:700;background:rgba(220,38,38,0.1);color:var(--red);padding:2px 6px;border-radius:4px;letter-spacing:0.5px; }
-.wc-strong-badge { font-size:8px;font-weight:700;background:rgba(217,119,6,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;letter-spacing:0.5px; }
+.cd-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fbbf24;
+  line-height: 1;
+}
 
-.wc-group-teams { display:flex;flex-direction:column;gap:5px; }
-.wc-group-team { display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--t2); }
-.wc-group-team-flag { font-size:16px;flex-shrink:0;width:22px; }
+.cd-lbl {
+  font-size: 9px;
+  color: #a8b2c8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
 
-/* ── FEATURES GRID ── */
-.wc-features { display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px; }
-.wc-feature { background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:18px;box-shadow:var(--glass-shadow);display:flex;align-items:flex-start;gap:14px; }
-.wc-feature-icon { font-size:28px;flex-shrink:0; }
-.wc-feature-title { font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px; }
-.wc-feature-sub { font-size:11.5px;color:var(--t3);line-height:1.5; }
+/* ── GLASS CARDS ── */
+.glass-card {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 32px rgba(100,160,220,0.18);
+}
 
-/* ── WHERE TO WATCH ── */
-.wtw-card { background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--glass-shadow); }
-.wtw-row { display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(100,160,220,0.1); }
-.wtw-row:last-child { border-bottom:none; }
-.wtw-flag { font-size:20px;flex-shrink:0; }
-.wtw-info { flex:1; }
-.wtw-name { font-size:13.5px;font-weight:700;color:var(--t1); }
-.wtw-channels { font-size:11px;color:var(--t3);margin-top:2px; }
-.wtw-pill { font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;background:rgba(37,99,235,0.1);color:var(--blue); }
+.glass-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+}
 
-/* ── ARTICLE CARD ── */
-.wc-article { background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;box-shadow:var(--glass-shadow);text-decoration:none;color:var(--t1);display:block;transition:all 0.2s; }
-.wc-article:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(100,160,220,0.2); }
-.wc-article-tag { font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block; }
-.wc-article-title { font-size:14px;font-weight:700;color:var(--t1);line-height:1.4;margin-bottom:6px; }
-.wc-article-excerpt { font-size:11.5px;color:var(--t3);line-height:1.6; }
+/* ── STATS BAR ── */
+.wc-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
-/* ── COOKIE ── */
-#gc-cookie { position:fixed;bottom:20px;left:calc(var(--sb-w) + 12px);right:12px;z-index:9999;max-width:520px;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:14px 18px;box-shadow:0 8px 40px rgba(0,0,0,0.5);font-size:11px;color:#94a3b8;line-height:1.6; }
-#gc-cookie a { color:#60a5fa; }
-.ck-btn { background:#2563eb;border:none;color:#fff;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px;font-family:var(--font); }
+.wc-stat {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: 14px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(100,160,220,0.12);
+}
 
-/* ── MOBILE ── */
-.sb-hamburger { display:none;position:fixed;top:38px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3); }
-@media(max-width:768px){
-  .gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}
-  .gc-sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,0.5)}
-  .gc-page-wrap{margin-left:0}
-  .gc-content{padding:16px 14px 100px}
-  .wc-stats{grid-template-columns:repeat(2,1fr)}
-  .wc-groups-grid{grid-template-columns:repeat(2,1fr)}
-  .wc-features{grid-template-columns:1fr}
-  .sb-hamburger{display:flex}
-  .gc-topbar{padding:10px 16px}
+.wc-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2563eb;
+  line-height: 1;
+}
+
+.wc-stat-lbl {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ── TABS ── */
+.wc-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.82);
+  padding: 4px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.wc-tabs::-webkit-scrollbar { display: none; }
+
+.wc-tab {
+  border: none;
+  background: transparent;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wc-tab.active {
+  background: rgba(255,255,255,0.92);
+  color: #2563eb;
+  box-shadow: 0 2px 10px rgba(37,99,235,0.18);
+}
+
+/* ── MATCH CARD ── */
+.match-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  transition: 0.2s;
+}
+
+.match-card:hover {
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 4px 16px rgba(100,160,220,0.15);
+}
+
+.match-card.live-card {
+  border-left: 3px solid #dc2626;
+  background: rgba(254,242,242,0.75);
+}
+
+.match-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(220,38,38,0.1);
+  color: #dc2626;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #dc2626;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.finished-badge {
+  background: rgba(100,116,139,0.1);
+  color: #64748b;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.upcoming-badge {
+  background: rgba(37,99,235,0.1);
+  color: #2563eb;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.match-teams-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.team-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.team-flag { font-size: 26px; }
+
+.team-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.score-col {
+  min-width: 80px;
+  text-align: center;
+}
+
+.score-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 2px;
+}
+
+.score-vs {
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* ── GROUP TABLE ── */
+.group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.group-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.group-header {
+  background: var(--sb-bg);
+  color: white;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.group-header span { color: #fbbf24; }
+
+.g-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.g-table th {
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 10px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(229,231,235,0.5);
+}
+
+.g-table th:not(:first-child) { text-align: center; }
+
+.g-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(229,231,235,0.3);
+  color: #334155;
+}
+
+.g-table td:not(:first-child) { text-align: center; }
+.g-table tr:last-child td { border-bottom: none; }
+
+.g-table tr:nth-child(1) td,
+.g-table tr:nth-child(2) td {
+  background: rgba(16,185,129,0.04);
+}
+
+.qualify-bar {
+  display: inline-block;
+  width: 3px;
+  height: 16px;
+  background: #10b981;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.pts-strong { font-weight: 700; color: #0f172a; }
+
+/* ── TEAMS GRID ── */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.team-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 16px 10px;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  background: rgba(255,255,255,0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(100,160,220,0.15);
+}
+
+.team-card .flag { font-size: 30px; margin-bottom: 6px; }
+.team-card .name { font-size: 12px; font-weight: 600; color: #0f172a; }
+.team-card .conf { font-size: 10px; color: #94a3b8; margin-top: 2px; }
+
+/* ── NEWS ── */
+.news-item {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  transition: 0.2s;
+}
+
+.news-item:hover {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 16px rgba(100,160,220,0.12);
+}
+
+.news-emoji { font-size: 28px; min-width: 36px; }
+
+.news-body .news-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.news-body .news-meta {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ── LOADING ── */
+.loading-box {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+}
+
+.spin {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(37,99,235,0.15);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── SECTION (tab content) ── */
+.wc-section { display: none; }
+.wc-section.active { display: block; }
+
+/* ── FOOTER ── */
+.gc-footer {
+  background: var(--sb-bg);
+  color: #a8b2c8;
+  padding: 24px 20px;
+  font-size: 12px;
+  margin-left: 0;
+}
+
+.gc-footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gc-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.gc-footer-links a {
+  color: #a8b2c8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.gc-footer-links a:hover { color: white; }
+
+.gc-footer-social {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.gc-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.gc-footer-social a:hover { background: rgba(255,255,255,0.15); }
+
+.gc-footer-copy {
+  color: rgba(168,178,200,0.5);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════
+   DESKTOP — sidebar always visible
+══════════════════════════════ */
+@media (min-width: 769px) {
+  .gc-sidebar-left {
+    transform: translateX(0) !important;
+    position: fixed !important;
+  }
+  .gc-mobile-toggle { display: none !important; }
+  .sb-overlay { display: none !important; }
+  .gc-main { margin-left: var(--sb-w) !important; }
+}
+
+/* ══════════════════════════════
+   MOBILE — full responsive fix
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Sidebar hidden off-screen */
+  .gc-sidebar-left {
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease !important;
+    position: fixed !important;
+    z-index: 500 !important;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.3) !important;
+  }
+  .gc-sidebar-left.open {
+    transform: translateX(0) !important;
+  }
+
+  /* Main takes full width */
+  .gc-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Show hamburger */
+  .gc-mobile-toggle {
+    display: block !important;
+  }
+
+  /* Overlay */
+  .sb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 400;
+  }
+  .sb-overlay.show { display: block !important; }
+
+  /* Hero */
+  .wc-hero {
+    flex-direction: column !important;
+    padding: 18px 14px !important;
+  }
+  .wc-trophy { display: none !important; }
+  .wc-hero h1 { font-size: 20px !important; }
+  .wc-countdown { gap: 6px !important; }
+  .cd-box { min-width: 48px !important; padding: 8px 10px !important; }
+  .cd-num { font-size: 20px !important; }
+
+  /* Stats 2 columns */
+  .wc-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .wc-stat-num { font-size: 22px !important; }
+
+  /* Tabs wrap on mobile */
+  .wc-tabs {
+    border-radius: 12px !important;
+    padding: 3px !important;
+  }
+  .wc-tab {
+    padding: 7px 10px !important;
+    font-size: 11px !important;
+  }
+
+  /* Groups 1 column */
+  .group-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Teams 3 columns */
+  .teams-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 7px !important;
+  }
+  .team-card { padding: 10px 6px !important; }
+  .team-card .flag { font-size: 20px !important; }
+  .team-card .name { font-size: 10px !important; }
+
+  /* Match cards */
+  .match-card { padding: 11px 12px !important; }
+  .team-flag { font-size: 20px !important; }
+  .team-name { font-size: 10px !important; }
+  .score-val { font-size: 20px !important; }
+
+  /* Glass cards */
+  .glass-card {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Content padding */
+  .gc-content { padding: 10px !important; }
+
+  /* Header */
+  .gc-header { padding: 0 12px !important; }
+  .gc-header-title { font-size: 14px !important; }
+
+  /* Footer */
+  .gc-footer { padding: 16px 12px !important; }
+  .gc-footer-links {
+    gap: 8px !important;
+    font-size: 11px !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 
-<aside class="gc-sidebar" id="gc-sidebar">
-  <a href="/" class="sb-logo">
-    <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
-    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+<!-- ═══════════════════════════════════════ -->
+<!-- LEFT DARK SIDEBAR (matching .live) -->
+<!-- ═══════════════════════════════════════ -->
+<nav class="gc-sidebar-left" id="sidebarLeft">
+
+  <div class="sb-logo">
+    <a href="index.html">⚽ Goal<span>Current</span>.online</a>
+  </div>
+
+  <div class="sb-section-label">Main Menu</div>
+  <a href="index.html" class="sb-item">
+    <span class="sb-icon">🏠</span> Home
   </a>
-  <div class="sb-section">
-    <span class="sb-section-label">Main Menu</span>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
-  </div>
-  <div class="sb-divider"></div>
-  <div class="sb-section">
-    <span class="sb-section-label">Competitions</span>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
-      <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-      <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-pl">
-      <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-      <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-      <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+  <a href="live.html" class="sb-item">
+    <span class="sb-icon">🔴</span> Live Scores
+  </a>
+  <a href="today.html" class="sb-item">
+    <span class="sb-icon">📅</span> Today
+  </a>
+  <a href="fixtures.html" class="sb-item">
+    <span class="sb-icon">📋</span> Fixtures
+  </a>
+  <a href="table.html" class="sb-item">
+    <span class="sb-icon">🏅</span> Table
+  </a>
+  <a href="highlights.html" class="sb-item">
+    <span class="sb-icon">🎬</span> Highlights
+  </a>
+
+  <div class="sb-section-label">Competitions</div>
+
+  <!-- Premier League -->
+  <div class="sb-competition">
+    <div class="sb-comp-header" onclick="toggleSbSub('pl-sub')">
+      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span>
+      <span class="sb-badge">PL</span>
     </div>
-    <button class="sb-comp-btn open" onclick="sbToggle('sb-wc',this)">
-      <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-      <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links open" id="sb-wc">
-      <a href="/worldcup2026/" class="active"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-      <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-    </div>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-      <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-      <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-ucl">
-      <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
+    <div class="sb-sub-items" id="pl-sub">
+      <a href="premier-league.html" class="sb-sub-item">🏠 Overview</a>
+      <a href="table.html" class="sb-sub-item">📊 Table</a>
+      <a href="fixtures.html" class="sb-sub-item">📅 Fixtures</a>
+      <a href="results.html" class="sb-sub-item">✅ Results</a>
     </div>
   </div>
+
+  <!-- World Cup 2026 -->
+  <div class="sb-competition">
+    <div class="sb-comp-header" onclick="toggleSbSub('wc-sub')" style="color:white;background:rgba(251,191,36,0.1)">
+      <span>🏆 World Cup 2026</span>
+      <span class="sb-badge" style="background:rgba(251,191,36,0.2);color:#fbbf24">WC26</span>
+    </div>
+    <div class="sb-sub-items open" id="wc-sub">
+      <a href="worldcup.html" class="sb-sub-item active">🏠 Overview</a>
+      <a href="worldcup-groups.html" class="sb-sub-item">🔢 Groups</a>
+      <a href="worldcup-fixtures.html" class="sb-sub-item">📅 Fixtures</a>
+      <a href="worldcup-teams.html" class="sb-sub-item">👕 Teams</a>
+      <a href="worldcup-news.html" class="sb-sub-item">📰 News</a>
+    </div>
+  </div>
+
+  <!-- UCL -->
+  <div class="sb-competition">
+    <div class="sb-comp-header" onclick="toggleSbSub('ucl-sub')">
+      <span>⭐ Champions League</span>
+      <span class="sb-badge">UCL</span>
+    </div>
+    <div class="sb-sub-items" id="ucl-sub">
+      <a href="ucl.html" class="sb-sub-item">🏠 Overview</a>
+      <a href="ucl-fixtures.html" class="sb-sub-item">📅 Fixtures</a>
+      <a href="ucl-results.html" class="sb-sub-item">✅ Results</a>
+    </div>
+  </div>
+
+  <!-- Sidebar Footer -->
   <div class="sb-footer">
-    © 2026 Ashna4All (A. Zafarani)<br>
-    Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+    <div class="sb-social">
+      <a href="https://twitter.com/GoalCurrentlive" target="_blank" title="Twitter/X">𝕏</a>
+      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" title="TikTok">🎵</a>
+      <a href="https://instagram.com/goalcurrentlive" target="_blank" title="Instagram">📸</a>
+    </div>
+    <div style="margin-top:10px">
+      © 2026 <strong style="color:#a8b2c8">Ashna4All</strong><br>
+      Ahmad Zafarani<br>
+      <a href="about.html">About</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Terms</a> ·
+      <a href="disclaimer.html">Disclaimer</a> ·
+      <a href="contact.html">Contact</a>
+    </div>
   </div>
-</aside>
 
-<div class="gc-page-wrap">
-  <div class="gc-topbar">
-    <div class="gc-breadcrumb"><a href="/">GoalCurrent.live</a> › World Cup 2026</div>
-    <div class="gc-topbar-badge">🏆 Starts 11 June 2026</div>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- MAIN CONTENT -->
+<!-- ═══════════════════════════════════════ -->
+<div class="gc-main">
+
+  <!-- HEADER -->
+  <div class="gc-header">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="gc-mobile-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="gc-header-title">🏆 FIFA World Cup 2026</div>
+    </div>
+    <div class="gc-header-right">
+      <span style="font-size:12px;color:#64748b">USA · Canada · Mexico</span>
+    </div>
   </div>
 
+  <!-- TICKER -->
+  <div class="gc-ticker">
+    <div class="gc-ticker-track" id="tickerTrack">
+      <span class="gc-ticker-item">🏆 World Cup 2026 — 11 June to 19 July</span>
+      <span class="gc-ticker-item">⚽ 48 Teams · 104 Matches · 16 Venues</span>
+      <span class="gc-ticker-item">🇺🇸 USA · 🇨🇦 Canada · 🇲🇽 Mexico</span>
+      <span class="gc-ticker-item">🥇 Argentina — Defending Champions</span>
+      <span class="gc-ticker-item">📅 Opening Match: 11 June 2026 · Mexico City</span>
+      <span class="gc-ticker-item">🏟️ Final: 19 July 2026 · MetLife Stadium, New York</span>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
   <div class="gc-content">
 
-    <!-- HERO -->
+    <!-- WC HERO -->
     <div class="wc-hero">
-      <div class="wc-hero-label">FIFA World Cup 2026</div>
-      <div class="wc-hero-title">The World's <em>Biggest</em> Tournament</div>
-      <div class="wc-hero-sub">48 teams · 12 groups · 104 matches · USA, Canada & Mexico</div>
-      <div class="wc-hosts">
-        <div class="wc-host-pill">🇺🇸 USA</div>
-        <div class="wc-host-pill">🇨🇦 Canada</div>
-        <div class="wc-host-pill">🇲🇽 Mexico</div>
-        <div class="wc-host-pill">📅 11 Jun – 19 Jul 2026</div>
+      <div class="wc-hero-left">
+        <div style="font-size:11px;color:#60a5fa;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">FIFA Official Tournament</div>
+        <h1>FIFA World Cup <span>2026™</span></h1>
+        <p>USA · Canada · Mexico &nbsp;|&nbsp; 11 June – 19 July 2026</p>
+        <div class="wc-countdown">
+          <div class="cd-box"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hrs</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Sec</div></div>
+        </div>
       </div>
-    </div>
-
-    <!-- COUNTDOWN -->
-    <div class="wc-countdown">
-      <div class="wc-cd-label">⏱ Countdown to Kick-Off — Mexico vs South Africa · 11 June 2026</div>
-      <div class="wc-cd-units">
-        <div class="wc-cd-unit"><span class="wc-cd-val" id="cd-d">--</span><span class="wc-cd-lbl">Days</span></div>
-        <div class="wc-cd-unit"><span class="wc-cd-val" id="cd-h">--</span><span class="wc-cd-lbl">Hrs</span></div>
-        <div class="wc-cd-unit"><span class="wc-cd-val" id="cd-m">--</span><span class="wc-cd-lbl">Min</span></div>
-        <div class="wc-cd-unit"><span class="wc-cd-val" id="cd-s">--</span><span class="wc-cd-lbl">Sec</span></div>
-      </div>
+      <div class="wc-trophy">🏆</div>
     </div>
 
     <!-- STATS -->
     <div class="wc-stats">
-      <div class="wc-stat"><div class="wc-stat-icon">🌍</div><div><div class="wc-stat-val">48</div><div class="wc-stat-lbl">Teams</div></div></div>
-      <div class="wc-stat"><div class="wc-stat-icon">⚽</div><div><div class="wc-stat-val">104</div><div class="wc-stat-lbl">Matches</div></div></div>
-      <div class="wc-stat"><div class="wc-stat-icon">🏟️</div><div><div class="wc-stat-val">16</div><div class="wc-stat-lbl">Venues</div></div></div>
-      <div class="wc-stat"><div class="wc-stat-icon">🔢</div><div><div class="wc-stat-val">12</div><div class="wc-stat-lbl">Groups</div></div></div>
+      <div class="wc-stat"><div class="wc-stat-num">48</div><div class="wc-stat-lbl">Teams</div></div>
+      <div class="wc-stat"><div class="wc-stat-num">104</div><div class="wc-stat-lbl">Matches</div></div>
+      <div class="wc-stat"><div class="wc-stat-num">16</div><div class="wc-stat-lbl">Venues</div></div>
+      <div class="wc-stat"><div class="wc-stat-num">39</div><div class="wc-stat-lbl">Days</div></div>
     </div>
 
-    <!-- GROUPS -->
-    <div class="sec-head">
-      <div class="sec-title">🔢 All 12 Groups A–L</div>
-      <div class="sec-line"></div>
+    <!-- TABS -->
+    <div class="wc-tabs">
+      <button class="wc-tab active" onclick="showTab('scores',this)">⚡ Live Scores</button>
+      <button class="wc-tab" onclick="showTab('fixtures',this)">📅 Fixtures</button>
+      <button class="wc-tab" onclick="showTab('groups',this)">🔢 Groups</button>
+      <button class="wc-tab" onclick="showTab('teams',this)">👕 Teams</button>
+      <button class="wc-tab" onclick="showTab('news',this)">📰 News</button>
     </div>
 
-    <div class="wc-groups-grid">
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group A</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇲🇽</span>Mexico</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇿🇦</span>South Africa</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇰🇷</span>South Korea</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇿</span>Czechia</div>
+    <!-- ── LIVE SCORES TAB ── -->
+    <div class="wc-section active" id="tab-scores">
+      <div class="glass-card">
+        <div class="glass-card-title">⚡ Live & Today's Matches</div>
+        <div id="scoresContainer">
+          <div class="loading-box">
+            <div class="spin"></div>
+            <p>Loading matches...</p>
+          </div>
         </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group B</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇦</span>Canada</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇭</span>Switzerland</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇶🇦</span>Qatar</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇧🇦</span>Bosnia & Herz.</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group C</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇧🇷</span>Brazil</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇲🇦</span>Morocco</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>Scotland</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇭🇹</span>Haiti</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group D</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇺🇸</span>USA</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇵🇾</span>Paraguay</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇦🇺</span>Australia</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇹🇷</span>Türkiye</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group E</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇩🇪</span>Germany</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇼</span>Curaçao</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇮</span>Ivory Coast</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇪🇨</span>Ecuador</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card strong">
-        <div class="wc-group-name">Group F <span class="wc-strong-badge">⚡ Tough</span></div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇳🇱</span>Netherlands</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇯🇵</span>Japan</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇸🇪</span>Sweden</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇹🇳</span>Tunisia</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group G</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇧🇪</span>Belgium</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇪🇬</span>Egypt</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇮🇷</span>IR Iran</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇳🇿</span>New Zealand</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group H</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇪🇸</span>Spain</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇻</span>Cape Verde</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇸🇦</span>Saudi Arabia</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇺🇾</span>Uruguay</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card death">
-        <div class="wc-group-name">Group I <span class="wc-death-badge">💀 Group of Death</span></div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇫🇷</span>France</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇸🇳</span>Senegal</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇳🇴</span>Norway</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇮🇶</span>Iraq</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group J</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇦🇷</span>Argentina</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇩🇿</span>Algeria</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇦🇹</span>Austria</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇯🇴</span>Jordan</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card">
-        <div class="wc-group-name">Group K</div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇵🇹</span>Portugal</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇴</span>Colombia</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇺🇿</span>Uzbekistan</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇨🇩</span>DR Congo</div>
-        </div>
-      </a>
-
-      <a href="/worldcup2026/groups/" class="wc-group-card death">
-        <div class="wc-group-name">Group L <span class="wc-death-badge">💀 Group of Death</span></div>
-        <div class="wc-group-teams">
-          <div class="wc-group-team"><span class="wc-group-team-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇭🇷</span>Croatia</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇬🇭</span>Ghana</div>
-          <div class="wc-group-team"><span class="wc-group-team-flag">🇵🇦</span>Panama</div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- WHERE TO WATCH -->
-    <div class="sec-head">
-      <div class="sec-title">📺 Where to Watch — UK</div>
-      <div class="sec-line"></div>
-    </div>
-    <div class="wtw-card">
-      <div class="wtw-row">
-        <div class="wtw-flag">📺</div>
-        <div class="wtw-info"><div class="wtw-name">BBC One & BBC Two</div><div class="wtw-channels">Free-to-air · Selected matches · BBC iPlayer streaming</div></div>
-        <div class="wtw-pill">Free</div>
-      </div>
-      <div class="wtw-row">
-        <div class="wtw-flag">📺</div>
-        <div class="wtw-info"><div class="wtw-name">ITV1 & ITVX</div><div class="wtw-channels">Free-to-air · Selected matches · Live streaming on ITVX</div></div>
-        <div class="wtw-pill">Free</div>
-      </div>
-      <div class="wtw-row">
-        <div class="wtw-flag">🌍</div>
-        <div class="wtw-info"><div class="wtw-name">USA — Fox Sports & Telemundo</div><div class="wtw-channels">English on Fox · Spanish on Telemundo · Peacock streaming</div></div>
-        <div class="wtw-pill">Cable/Stream</div>
-      </div>
-      <div class="wtw-row">
-        <div class="wtw-flag">🌍</div>
-        <div class="wtw-info"><div class="wtw-name">All times in your local time</div><div class="wtw-channels">GoalCurrent.live automatically shows kick-off times in your timezone</div></div>
-        <div class="wtw-pill">Auto 🕐</div>
       </div>
     </div>
 
-    <!-- ARTICLES -->
-    <div class="sec-head">
-      <div class="sec-title">📰 World Cup 2026 Analysis</div>
-      <div class="sec-line"></div>
-    </div>
-    <div class="wc-features">
-      <a href="/blog-wc2026-groups-of-death.html" class="wc-article">
-        <span class="wc-article-tag">💀 Groups of Death</span>
-        <div class="wc-article-title">FIFA World Cup 2026: The Groups of Death Revealed</div>
-        <div class="wc-article-excerpt">Groups I (France, Norway, Senegal) and L (England, Croatia, Ghana) stand out as the toughest paths to the knockout stages.</div>
-      </a>
-      <a href="/blog-england-croatia.html" class="wc-article">
-        <span class="wc-article-tag">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        <div class="wc-article-title">England vs Croatia — World Cup 2026 Preview</div>
-        <div class="wc-article-excerpt">Kane leads England at the World Cup. First match vs Croatia on 17 June in Dallas. Can Tuchel's side go all the way?</div>
-      </a>
+    <!-- ── FIXTURES TAB ── -->
+    <div class="wc-section" id="tab-fixtures">
+      <div class="glass-card">
+        <div class="glass-card-title">📅 World Cup 2026 Fixtures</div>
+        <div id="fixturesContainer">
+          <div class="loading-box">
+            <div class="spin"></div>
+            <p>Loading fixtures...</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- QUICK LINKS -->
-    <div class="sec-head">
-      <div class="sec-title">🔗 Explore World Cup 2026</div>
-      <div class="sec-line"></div>
-    </div>
-    <div class="wc-stats" style="margin-bottom:0">
-      <a href="/worldcup2026/groups/" style="text-decoration:none" class="wc-stat">
-        <div class="wc-stat-icon">🔢</div>
-        <div><div class="wc-stat-val" style="font-size:14px">Groups</div><div class="wc-stat-lbl">A–L Standings</div></div>
-      </a>
-      <a href="/worldcup2026/fixtures/" style="text-decoration:none" class="wc-stat">
-        <div class="wc-stat-icon">📅</div>
-        <div><div class="wc-stat-val" style="font-size:14px">Fixtures</div><div class="wc-stat-lbl">104 Matches</div></div>
-      </a>
-      <a href="/worldcup2026/teams/" style="text-decoration:none" class="wc-stat">
-        <div class="wc-stat-icon">👕</div>
-        <div><div class="wc-stat-val" style="font-size:14px">Teams</div><div class="wc-stat-lbl">All 48 Nations</div></div>
-      </a>
-      <a href="/worldcup2026/news/" style="text-decoration:none" class="wc-stat">
-        <div class="wc-stat-icon">📰</div>
-        <div><div class="wc-stat-val" style="font-size:14px">News</div><div class="wc-stat-lbl">Latest WC26</div></div>
-      </a>
+    <!-- ── GROUPS TAB ── -->
+    <div class="wc-section" id="tab-groups">
+      <div class="glass-card">
+        <div class="glass-card-title">🔢 Group Stage — 12 Groups · 48 Teams</div>
+        <div id="groupsContainer">
+          <div class="loading-box">
+            <div class="spin"></div>
+            <p>Loading groups...</p>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- ── TEAMS TAB ── -->
+    <div class="wc-section" id="tab-teams">
+      <div class="glass-card">
+        <div class="glass-card-title">👕 48 Nations — World Cup 2026</div>
+        <div id="teamsContainer">
+          <div class="loading-box">
+            <div class="spin"></div>
+            <p>Loading teams...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NEWS TAB ── -->
+    <div class="wc-section" id="tab-news">
+      <div class="glass-card">
+        <div class="glass-card-title">📰 World Cup 2026 News</div>
+        <div id="newsContainer"></div>
+      </div>
+    </div>
+
+  </div><!-- /.gc-content -->
+
+  <!-- AFFILIATE AD BAR -->
+  <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.82);padding:8px 16px;font-size:12px;text-align:center">
+    🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#4687ff;color:white;padding:3px 10px;border-radius:20px;font-weight:700;text-decoration:none;margin:0 6px">Get Deal →</a> <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#4687ff;font-weight:600;text-decoration:none">NordPass</a> <span style="color:#94a3b8;font-size:10px">#AD · <a href="disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
   </div>
-</div>
 
-<div id="gc-cookie" style="display:none">
-  🍪 We use cookies for analytics and ads. <a href="/privacy.html">Privacy Policy</a>
-  <br><button class="ck-btn" onclick="this.closest('#gc-cookie').style.display='none';localStorage.setItem('gc_ck','1')">Accept ✓</button>
-</div>
+  <!-- FOOTER -->
+  <footer class="gc-footer">
+    <div class="gc-footer-inner">
+      <div class="gc-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="cookies.html">Cookie Policy</a>
+      </div>
+      <div class="gc-footer-social">
+        <a href="https://twitter.com/GoalCurrentlive" target="_blank">𝕏</a>
+        <a href="https://tiktok.com/@goalcurrentlive" target="_blank">🎵</a>
+        <a href="https://instagram.com/goalcurrentlive" target="_blank">📸</a>
+      </div>
+      <div class="gc-footer-copy">
+        © 2026 <strong>Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+        Independent fan site · Not affiliated with FIFA, UEFA or the Premier League<br>
+        Data provided by <a href="https://football-data.org" style="color:#a8b2c8">football-data.org</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /.gc-main -->
 
 <script>
-if(!localStorage.getItem('gc_ck')) setTimeout(function(){document.getElementById('gc-cookie').style.display='block';},2000);
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
+// ═══════════════════════════════════════
+// CONFIG — Replace with your key privately
+// ═══════════════════════════════════════
+const API_KEY = localStorage.getItem('fd_key') || 'YOUR_KEY_HERE';
+const API_BASE = 'https://api.football-data.org/v4';
+const WC_ID = 2000; // World Cup competition ID
 
-// Countdown to 11 June 2026 19:00 UTC (first match)
-function wcCountdown() {
-  var target = new Date('2026-06-11T19:00:00Z');
-  function tick() {
-    var diff = target - new Date();
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  startCountdown();
+  loadScores();
+  loadNews();
+});
+
+// ── SIDEBAR TOGGLE (mobile) ──
+function toggleSidebar() {
+  const sb = document.getElementById('sidebarLeft');
+  const ov = document.getElementById('sbOverlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('show');
+  document.body.style.overflow = sb.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeSidebar() {
+  document.getElementById('sidebarLeft').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ── SIDEBAR ACCORDION ──
+function toggleSbSub(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// ── TABS ──
+function showTab(name, btn) {
+  document.querySelectorAll('.wc-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.wc-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'groups') loadGroups();
+  if (name === 'teams') loadTeams();
+  if (name === 'fixtures') loadFixtures();
+}
+
+// ── COUNTDOWN ──
+function startCountdown() {
+  const target = new Date('2026-06-11T19:00:00Z');
+  function update() {
+    const diff = target - new Date();
     if (diff <= 0) {
-      document.getElementById('cd-d').textContent = '0';
-      document.getElementById('cd-h').textContent = '00';
-      document.getElementById('cd-m').textContent = '00';
-      document.getElementById('cd-s').textContent = '00';
+      ['d','h','m','s'].forEach(x => document.getElementById('cd-'+x).textContent = '00');
       return;
     }
-    var d = Math.floor(diff/86400000);
-    var h = Math.floor((diff%86400000)/3600000);
-    var m = Math.floor((diff%3600000)/60000);
-    var s = Math.floor((diff%60000)/1000);
-    function pad(n){return n<10?'0'+n:''+n;}
-    document.getElementById('cd-d').textContent = d;
-    document.getElementById('cd-h').textContent = pad(h);
-    document.getElementById('cd-m').textContent = pad(m);
-    document.getElementById('cd-s').textContent = pad(s);
+    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor(diff%60000/1000)).padStart(2,'0');
   }
-  tick();
-  setInterval(tick, 1000);
+  update(); setInterval(update, 1000);
 }
-wcCountdown();
 
-// Close sidebar on outside click mobile
-document.addEventListener('click', function(e) {
-  var sb = document.getElementById('gc-sidebar');
-  var hb = document.querySelector('.sb-hamburger');
-  if (window.innerWidth <= 768 && sb && !sb.contains(e.target) && hb && !hb.contains(e.target)) {
-    sb.classList.remove('open');
+// ── API FETCH ──
+async function apiFetch(url) {
+  try {
+    const r = await fetch(API_BASE + url, {
+      headers: { 'X-Auth-Token': API_KEY }
+    });
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e) {
+    console.error('API:', e);
+    return null;
   }
-});
+}
+
+// ── FLAG MAP ──
+const flags = {
+  'Brazil':'🇧🇷','Argentina':'🇦🇷','France':'🇫🇷','Germany':'🇩🇪','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  'Spain':'🇪🇸','Portugal':'🇵🇹','Netherlands':'🇳🇱','Belgium':'🇧🇪','Italy':'🇮🇹',
+  'Uruguay':'🇺🇾','Colombia':'🇨🇴','Mexico':'🇲🇽','United States':'🇺🇸','Canada':'🇨🇦',
+  'Japan':'🇯🇵','South Korea':'🇰🇷','Australia':'🇦🇺','Senegal':'🇸🇳','Morocco':'🇲🇦',
+  'Iran':'🇮🇷','Saudi Arabia':'🇸🇦','Ecuador':'🇪🇨','Switzerland':'🇨🇭',
+  'Croatia':'🇭🇷','Denmark':'🇩🇰','Poland':'🇵🇱','Serbia':'🇷🇸',
+  'Ghana':'🇬🇭','Cameroon':'🇨🇲','Tunisia':'🇹🇳','Nigeria':'🇳🇬',
+  'Costa Rica':'🇨🇷','Panama':'🇵🇦','Chile':'🇨🇱','Peru':'🇵🇪',
+  'New Zealand':'🇳🇿','Indonesia':'🇮🇩','Iraq':'🇮🇶','Venezuela':'🇻🇪',
+};
+const flag = n => flags[n] || '🏳️';
+
+function scoreBadge(m) {
+  if (m.status === 'IN_PLAY' || m.status === 'PAUSED')
+    return `<span class="live-badge"><span class="live-dot"></span> LIVE</span>`;
+  if (m.status === 'FINISHED') return `<span class="finished-badge">FT</span>`;
+  const t = new Date(m.utcDate).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  return `<span class="upcoming-badge">${t}</span>`;
+}
+
+function scoreVal(m) {
+  if (m.status === 'TIMED' || m.status === 'SCHEDULED')
+    return `<span class="score-vs">vs</span>`;
+  const h = m.score?.fullTime?.home ?? '-';
+  const a = m.score?.fullTime?.away ?? '-';
+  return `<span class="score-val">${h} – ${a}</span>`;
+}
+
+function matchHTML(m) {
+  const live = m.status === 'IN_PLAY' || m.status === 'PAUSED';
+  return `
+  <div class="match-card ${live ? 'live-card' : ''}">
+    <div class="match-meta">
+      <span>${m.competition?.name || 'World Cup 2026'}</span>
+      ${scoreBadge(m)}
+    </div>
+    <div class="match-teams-row">
+      <div class="team-col">
+        <div class="team-flag">${flag(m.homeTeam?.name)}</div>
+        <div class="team-name">${m.homeTeam?.shortName || m.homeTeam?.name || 'TBD'}</div>
+      </div>
+      <div class="score-col">${scoreVal(m)}</div>
+      <div class="team-col">
+        <div class="team-flag">${flag(m.awayTeam?.name)}</div>
+        <div class="team-name">${m.awayTeam?.shortName || m.awayTeam?.name || 'TBD'}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── LOAD SCORES ──
+async function loadScores() {
+  const today = new Date().toISOString().split('T')[0];
+  let data = await apiFetch(`/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`);
+  if (!data?.matches?.length) {
+    data = await apiFetch(`/competitions/PL/matches?dateFrom=${today}&dateTo=${today}`);
+  }
+  const el = document.getElementById('scoresContainer');
+  if (!data?.matches?.length) {
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:#64748b">
+      <div style="font-size:32px;margin-bottom:8px">🏆</div>
+      <strong>World Cup starts 11 June 2026!</strong><br>
+      <span style="font-size:12px">No matches today. Check back on June 11!</span>
+    </div>`;
+    return;
+  }
+  el.innerHTML = data.matches.map(matchHTML).join('');
+  if (data.matches.some(m => m.status==='IN_PLAY')) setTimeout(loadScores, 60000);
+}
+
+// ── LOAD FIXTURES ──
+async function loadFixtures() {
+  const el = document.getElementById('fixturesContainer');
+  el.innerHTML = '<div class="loading-box"><div class="spin"></div><p>Loading...</p></div>';
+  const data = await apiFetch('/competitions/WC/matches');
+  if (!data?.matches?.length) {
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:#64748b">Fixtures available from 11 June 2026</div>`;
+    return;
+  }
+  const byDate = {};
+  data.matches.forEach(m => {
+    const d = new Date(m.utcDate).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    if (!byDate[d]) byDate[d] = [];
+    byDate[d].push(m);
+  });
+  el.innerHTML = Object.entries(byDate).map(([date, ms]) => `
+    <div style="margin-bottom:20px">
+      <div style="font-size:12px;font-weight:700;color:#2563eb;padding:8px 0;border-bottom:1px solid rgba(37,99,235,0.15);margin-bottom:8px">📅 ${date}</div>
+      ${ms.map(matchHTML).join('')}
+    </div>`).join('');
+}
+
+// ── LOAD GROUPS ──
+async function loadGroups() {
+  const el = document.getElementById('groupsContainer');
+  el.innerHTML = '<div class="loading-box"><div class="spin"></div><p>Loading groups...</p></div>';
+  const data = await apiFetch('/competitions/WC/standings');
+  if (!data?.standings?.length) {
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:#64748b">
+      Group standings available from 11 June 2026
+    </div>`;
+    return;
+  }
+  el.innerHTML = `<div class="group-grid">${data.standings.map(g => `
+    <div class="group-card">
+      <div class="group-header">Group <span>${g.group?.replace('GROUP_','') || ''}</span></div>
+      <table class="g-table">
+        <thead><tr>
+          <th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th>
+        </tr></thead>
+        <tbody>${g.table.map((t,i) => `
+          <tr>
+            <td>${i<2?'<span class="qualify-bar"></span>':''}${flag(t.team?.name)} ${t.team?.shortName||t.team?.name}</td>
+            <td>${t.playedGames}</td>
+            <td>${t.won}</td>
+            <td>${t.draw}</td>
+            <td>${t.lost}</td>
+            <td class="pts-strong">${t.points}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`).join('')}</div>`;
+}
+
+// ── LOAD TEAMS ──
+async function loadTeams() {
+  const el = document.getElementById('teamsContainer');
+  el.innerHTML = '<div class="loading-box"><div class="spin"></div><p>Loading teams...</p></div>';
+  const data = await apiFetch('/competitions/WC/teams');
+  if (!data?.teams?.length) {
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:#64748b">Teams data coming soon</div>`;
+    return;
+  }
+  el.innerHTML = `<div class="teams-grid">${data.teams.map(t => `
+    <div class="team-card">
+      <div class="flag">${flag(t.name)}</div>
+      <div class="name">${t.shortName||t.name}</div>
+      <div class="conf">${t.area?.name||''}</div>
+    </div>`).join('')}</div>`;
+}
+
+// ── LOAD NEWS (static for now) ──
+function loadNews() {
+  const news = [
+    { e:'🏆', t:'World Cup 2026 — 17 Days to Go!', m:'USA · Canada · Mexico host the biggest World Cup ever with 48 teams', d:'25 May 2026' },
+    { e:'🇦🇷', t:'Argentina: Defending Champions Ready', m:"Messi leads Argentina's squad for the 2026 World Cup in North America", d:'24 May 2026' },
+    { e:'🏟️', t:'16 Venues Across 3 Countries', m:'MetLife Stadium (NY) hosts the final on 19 July 2026', d:'23 May 2026' },
+    { e:'⚽', t:'48 Teams — Most Ever in World Cup History', m:'First ever 48-team World Cup with 12 groups of 4 teams each', d:'22 May 2026' },
+    { e:'🇫🇷', t:'France: Mbappe Eyes Back-to-Back Titles', m:"Kylian Mbappe leads France's quest to defend their 2022 crown", d:'21 May 2026' },
+    { e:'🇧🇷', t:'Brazil Return to Hunt Fifth Star', m:'Vinicius Junior leads Brazil into the tournament as one of the favourites', d:'20 May 2026' },
+  ];
+  document.getElementById('newsContainer').innerHTML = news.map(n => `
+    <div class="news-item">
+      <div class="news-emoji">${n.e}</div>
+      <div class="news-body">
+        <div class="news-title">${n.t}</div>
+        <div class="news-meta">${n.m} · <span>${n.d}</span></div>
+      </div>
+    </div>`).join('');
+}
 </script>
+
 </body>
 </html>
