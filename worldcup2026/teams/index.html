@@ -3,368 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Cup 2026 Teams | GoalCurrent.live</title>
+<title>World Cup 2026 Groups & Teams | GoalCurrent.live</title>
+<meta name="description" content="World Cup 2026 groups, teams, standings tables and live updates on GoalCurrent.live.">
 <link rel="stylesheet" href="../../css/style.css">
 
 <style>
-body{
-  margin:0;
-  font-family:Verdana,sans-serif;
-  background:#eef6ff;
-  color:#0f172a;
-}
-
-.gc-header{
-  background:#ffffff;
-  padding:16px;
-  position:sticky;
-  top:0;
-  border-bottom:1px solid #dbeafe;
-  z-index:100;
-}
-
-.gc-title{
-  font-size:20px;
-  font-weight:700;
-}
-
-.gc-content{
-  padding:16px;
-}
-
-.controls{
-  display:grid;
-  grid-template-columns:1fr 160px 180px;
-  gap:10px;
-  margin-bottom:20px;
-}
-
-.controls input,
-.controls select{
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #cbd5e1;
-  background:white;
-  font-size:13px;
-}
-
-.summary{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-bottom:20px;
-}
-
-.summary-card{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  text-align:center;
-  border:1px solid #dbeafe;
-}
-
-.summary-number{
-  font-size:24px;
-  font-weight:800;
-  color:#2563eb;
-}
-
-.summary-label{
-  font-size:11px;
-  color:#64748b;
-  margin-top:4px;
-}
-
-.group-title{
-  font-size:16px;
-  font-weight:700;
-  margin:25px 0 12px;
-  color:#2563eb;
-}
-
-.teams-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
-  gap:12px;
-}
-
-.team-card{
-  background:white;
-  border-radius:16px;
-  padding:16px 10px;
-  text-align:center;
-  border:1px solid #dbeafe;
-  transition:0.2s;
-}
-
-.team-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 6px 18px rgba(37,99,235,0.12);
-}
-
-.flag{
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.team-name{
-  font-size:12px;
-  font-weight:700;
-}
-
-.team-conf{
-  font-size:10px;
-  color:#64748b;
-  margin-top:4px;
-}
-
-.team-group{
-  display:inline-block;
-  margin-top:8px;
-  padding:3px 10px;
-  border-radius:999px;
-  background:#dbeafe;
-  color:#2563eb;
-  font-size:10px;
-  font-weight:700;
-}
-
-.no-results{
-  text-align:center;
-  padding:40px;
-  color:#64748b;
-}
-
+body{margin:0;font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);color:#0f172a}
+.header{background:rgba(255,255,255,.85);backdrop-filter:blur(18px);padding:16px;border-bottom:1px solid rgba(255,255,255,.9);position:sticky;top:0;z-index:10}
+.header h1{font-size:18px;margin:0}
+.header p{font-size:12px;color:#64748b;margin:4px 0 0}
+.main{padding:14px;max-width:1200px;margin:auto}
+.controls{display:grid;grid-template-columns:1fr 150px;gap:10px;margin-bottom:14px}
+.controls input,.controls select{padding:11px;border-radius:12px;border:1px solid #bfdbfe;background:white;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:rgba(255,255,255,.75);border:1px solid white;border-radius:14px;padding:12px;text-align:center}
+.stat b{font-size:22px;color:#2563eb}
+.stat span{display:block;font-size:10px;color:#64748b;margin-top:3px}
+.group-card{background:rgba(255,255,255,.75);border:1px solid white;border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 6px 24px rgba(100,160,220,.15)}
+.group-head{display:flex;justify-content:space-between;align-items:center;padding:14px 14px;background:rgba(37,99,235,.08);border-bottom:1px solid rgba(37,99,235,.12)}
+.group-head h2{font-size:15px;margin:0;color:#1d4ed8}
+.group-head span{font-size:11px;color:#64748b}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:white}
+th{font-size:10px;text-transform:uppercase;color:#64748b;background:#f8fafc;padding:9px 6px;text-align:center}
+td{font-size:12px;padding:10px 6px;border-top:1px solid #e2e8f0;text-align:center}
+td.team{text-align:left;font-weight:700;min-width:150px}
+.flag{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;margin-right:8px;vertical-align:middle;font-size:18px}
+.england-flag{position:relative;background:white;border:1px solid #cbd5e1;border-radius:2px}
+.england-flag:before{content:"";position:absolute;left:11px;top:0;width:5px;height:100%;background:#dc2626}
+.england-flag:after{content:"";position:absolute;left:0;top:7px;width:100%;height:5px;background:#dc2626}
+.badge{display:inline-block;background:#dbeafe;color:#2563eb;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700}
+.live-note{font-size:11px;color:#64748b;padding:10px 14px;background:#f8fafc;border-top:1px solid #e2e8f0}
+.no-results{background:white;border-radius:14px;padding:30px;text-align:center;color:#64748b}
+.footer{background:#1a1f2e;color:#a8b2c8;padding:18px;font-size:11px;line-height:1.7}
+.footer a{color:#a8b2c8;text-decoration:none;margin-right:10px}
+.adbar{background:rgba(255,255,255,.7);padding:10px;text-align:center;font-size:12px;border-top:1px solid white}
 @media(max-width:768px){
-
-  .controls{
-    grid-template-columns:1fr;
-  }
-
-  .summary{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .teams-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
+.controls{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(2,1fr)}
+td,th{font-size:10px;padding:8px 4px}
+td.team{min-width:130px}
 }
 </style>
 </head>
 
 <body>
 
-<header class="gc-header">
-  <div class="gc-title">🏆 World Cup 2026 Teams</div>
+<header class="header">
+  <h1>🏆 World Cup 2026 Groups & Teams</h1>
+  <p>Live-style group tables, search and filters</p>
 </header>
 
-<main class="gc-content">
+<main class="main">
 
-<div class="summary">
-  <div class="summary-card">
-    <div class="summary-number">48</div>
-    <div class="summary-label">Teams</div>
+  <div class="stats">
+    <div class="stat"><b>48</b><span>Teams</span></div>
+    <div class="stat"><b>12</b><span>Groups</span></div>
+    <div class="stat"><b>104</b><span>Matches</span></div>
+    <div class="stat"><b>32</b><span>Advance</span></div>
   </div>
 
-  <div class="summary-card">
-    <div class="summary-number">12</div>
-    <div class="summary-label">Groups</div>
+  <div class="controls">
+    <input id="searchBox" type="search" placeholder="Search England, Brazil, Group L, UEFA...">
+    <select id="groupSelect">
+      <option value="">All Groups</option>
+    </select>
   </div>
 
-  <div class="summary-card">
-    <div class="summary-number">6</div>
-    <div class="summary-label">Confederations</div>
-  </div>
-
-  <div class="summary-card">
-    <div class="summary-number">104</div>
-    <div class="summary-label">Matches</div>
-  </div>
-</div>
-
-<div class="controls">
-  <input type="search" id="search" placeholder="Search team...">
-
-  <select id="groupFilter">
-    <option value="">All Groups</option>
-  </select>
-
-  <select id="confFilter">
-    <option value="">All Confederations</option>
-  </select>
-</div>
-
-<div id="teamsContainer"></div>
+  <div id="groupsContainer"></div>
 
 </main>
 
+<div class="adbar">
+  🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
+  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#4687ff;color:white;padding:3px 10px;border-radius:20px;font-weight:700;text-decoration:none;margin-left:6px">Get Deal →</a>
+</div>
+
+<footer class="footer">
+  <div>
+    <a href="../../index.html">Home</a>
+    <a href="../../about.html">About</a>
+    <a href="../../contact.html">Contact</a>
+    <a href="../../privacy.html">Privacy</a>
+    <a href="../../terms.html">Terms</a>
+    <a href="../../disclaimer.html">Disclaimer</a>
+    <a href="../../cookies.html">Cookies</a>
+  </div>
+  <div style="margin-top:10px">
+    © 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
+    Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+  </div>
+</footer>
+
 <script>
-const TEAMS = [
-
-{name:'Mexico',flag:'🇲🇽',group:'A',conf:'CONCACAF'},
-{name:'South Africa',flag:'🇿🇦',group:'A',conf:'CAF'},
-{name:'South Korea',flag:'🇰🇷',group:'A',conf:'AFC'},
-{name:'Play-off Winner',flag:'⚽',group:'A',conf:'TBD'},
-
-{name:'Canada',flag:'🇨🇦',group:'B',conf:'CONCACAF'},
-{name:'Qatar',flag:'🇶🇦',group:'B',conf:'AFC'},
-{name:'Switzerland',flag:'🇨🇭',group:'B',conf:'UEFA'},
-{name:'Play-off Winner',flag:'⚽',group:'B',conf:'TBD'},
-
-{name:'Brazil',flag:'🇧🇷',group:'C',conf:'CONMEBOL'},
-{name:'Morocco',flag:'🇲🇦',group:'C',conf:'CAF'},
-{name:'Haiti',flag:'🇭🇹',group:'C',conf:'CONCACAF'},
-{name:'Scotland',flag:'🏴',group:'C',conf:'UEFA'},
-
-{name:'United States',flag:'🇺🇸',group:'D',conf:'CONCACAF'},
-{name:'Paraguay',flag:'🇵🇾',group:'D',conf:'CONMEBOL'},
-{name:'Australia',flag:'🇦🇺',group:'D',conf:'AFC'},
-{name:'Play-off Winner',flag:'⚽',group:'D',conf:'TBD'},
-
-{name:'Germany',flag:'🇩🇪',group:'E',conf:'UEFA'},
-{name:'Curaçao',flag:'🇨🇼',group:'E',conf:'CONCACAF'},
-{name:'Ivory Coast',flag:'🇨🇮',group:'E',conf:'CAF'},
-{name:'Ecuador',flag:'🇪🇨',group:'E',conf:'CONMEBOL'},
-
-{name:'Netherlands',flag:'🇳🇱',group:'F',conf:'UEFA'},
-{name:'Japan',flag:'🇯🇵',group:'F',conf:'AFC'},
-{name:'Tunisia',flag:'🇹🇳',group:'F',conf:'CAF'},
-{name:'Play-off Winner',flag:'⚽',group:'F',conf:'TBD'},
-
-{name:'Belgium',flag:'🇧🇪',group:'G',conf:'UEFA'},
-{name:'Egypt',flag:'🇪🇬',group:'G',conf:'CAF'},
-{name:'Iran',flag:'🇮🇷',group:'G',conf:'AFC'},
-{name:'New Zealand',flag:'🇳🇿',group:'G',conf:'OFC'},
-
-{name:'Spain',flag:'🇪🇸',group:'H',conf:'UEFA'},
-{name:'Uruguay',flag:'🇺🇾',group:'H',conf:'CONMEBOL'},
-{name:'Saudi Arabia',flag:'🇸🇦',group:'H',conf:'AFC'},
-{name:'Cape Verde',flag:'🇨🇻',group:'H',conf:'CAF'},
-
-{name:'France',flag:'🇫🇷',group:'I',conf:'UEFA'},
-{name:'Senegal',flag:'🇸🇳',group:'I',conf:'CAF'},
-{name:'Norway',flag:'🇳🇴',group:'I',conf:'UEFA'},
-{name:'Play-off Winner',flag:'⚽',group:'I',conf:'TBD'},
-
-{name:'Argentina',flag:'🇦🇷',group:'J',conf:'CONMEBOL'},
-{name:'Algeria',flag:'🇩🇿',group:'J',conf:'CAF'},
-{name:'Austria',flag:'🇦🇹',group:'J',conf:'UEFA'},
-{name:'Jordan',flag:'🇯🇴',group:'J',conf:'AFC'},
-
-{name:'Portugal',flag:'🇵🇹',group:'K',conf:'UEFA'},
-{name:'Colombia',flag:'🇨🇴',group:'K',conf:'CONMEBOL'},
-{name:'Uzbekistan',flag:'🇺🇿',group:'K',conf:'AFC'},
-{name:'DR Congo',flag:'🇨🇩',group:'K',conf:'CAF'},
-
-{name:'England',flag:'🏴',group:'L',conf:'UEFA'},
-{name:'Croatia',flag:'🇭🇷',group:'L',conf:'UEFA'},
-{name:'Ghana',flag:'🇬🇭',group:'L',conf:'CAF'},
-{name:'Panama',flag:'🇵🇦',group:'L',conf:'CONCACAF'}
-
+const GROUPS = [
+  {id:'A',teams:[
+    ['Mexico','🇲🇽','CONCACAF'],
+    ['South Africa','🇿🇦','CAF'],
+    ['South Korea','🇰🇷','AFC'],
+    ['Play-off Winner','⚽','TBD']
+  ]},
+  {id:'B',teams:[
+    ['Canada','🇨🇦','CONCACAF'],
+    ['Qatar','🇶🇦','AFC'],
+    ['Switzerland','🇨🇭','UEFA'],
+    ['Play-off Winner','⚽','TBD']
+  ]},
+  {id:'C',teams:[
+    ['Brazil','🇧🇷','CONMEBOL'],
+    ['Morocco','🇲🇦','CAF'],
+    ['Haiti','🇭🇹','CONCACAF'],
+    ['Scotland','🏴󠁧󠁢󠁳󠁣󠁴󠁿','UEFA']
+  ]},
+  {id:'D',teams:[
+    ['United States','🇺🇸','CONCACAF'],
+    ['Paraguay','🇵🇾','CONMEBOL'],
+    ['Australia','🇦🇺','AFC'],
+    ['Play-off Winner','⚽','TBD']
+  ]},
+  {id:'E',teams:[
+    ['Germany','🇩🇪','UEFA'],
+    ['Curaçao','🇨🇼','CONCACAF'],
+    ['Ivory Coast','🇨🇮','CAF'],
+    ['Ecuador','🇪🇨','CONMEBOL']
+  ]},
+  {id:'F',teams:[
+    ['Netherlands','🇳🇱','UEFA'],
+    ['Japan','🇯🇵','AFC'],
+    ['Tunisia','🇹🇳','CAF'],
+    ['Play-off Winner','⚽','TBD']
+  ]},
+  {id:'G',teams:[
+    ['Belgium','🇧🇪','UEFA'],
+    ['Egypt','🇪🇬','CAF'],
+    ['Iran','🇮🇷','AFC'],
+    ['New Zealand','🇳🇿','OFC']
+  ]},
+  {id:'H',teams:[
+    ['Spain','🇪🇸','UEFA'],
+    ['Uruguay','🇺🇾','CONMEBOL'],
+    ['Saudi Arabia','🇸🇦','AFC'],
+    ['Cape Verde','🇨🇻','CAF']
+  ]},
+  {id:'I',teams:[
+    ['France','🇫🇷','UEFA'],
+    ['Senegal','🇸🇳','CAF'],
+    ['Norway','🇳🇴','UEFA'],
+    ['Play-off Winner','⚽','TBD']
+  ]},
+  {id:'J',teams:[
+    ['Argentina','🇦🇷','CONMEBOL'],
+    ['Algeria','🇩🇿','CAF'],
+    ['Austria','🇦🇹','UEFA'],
+    ['Jordan','🇯🇴','AFC']
+  ]},
+  {id:'K',teams:[
+    ['Portugal','🇵🇹','UEFA'],
+    ['Colombia','🇨🇴','CONMEBOL'],
+    ['Uzbekistan','🇺🇿','AFC'],
+    ['DR Congo','🇨🇩','CAF']
+  ]},
+  {id:'L',teams:[
+    ['England','ENGLAND','UEFA'],
+    ['Croatia','🇭🇷','UEFA'],
+    ['Ghana','🇬🇭','CAF'],
+    ['Panama','🇵🇦','CONCACAF']
+  ]}
 ];
 
-function initFilters(){
-
-  const groups=[...new Set(TEAMS.map(t=>t.group))];
-  const confs=[...new Set(TEAMS.map(t=>t.conf))];
-
-  const groupFilter=document.getElementById('groupFilter');
-  const confFilter=document.getElementById('confFilter');
-
-  groups.forEach(group=>{
-    const option=document.createElement('option');
-    option.value=group;
-    option.textContent='Group '+group;
-    groupFilter.appendChild(option);
-  });
-
-  confs.forEach(conf=>{
-    const option=document.createElement('option');
-    option.value=conf;
-    option.textContent=conf;
-    confFilter.appendChild(option);
-  });
-
+function flagHTML(flag){
+  if(flag === 'ENGLAND'){
+    return '<span class="flag england-flag"></span>';
+  }
+  return '<span class="flag">'+flag+'</span>';
 }
 
-function renderTeams(){
+function makeTeamRow(team){
+  const name = team[0];
+  const flag = team[1];
+  const conf = team[2];
 
-  const search=document.getElementById('search').value.toLowerCase();
-  const group=document.getElementById('groupFilter').value;
-  const conf=document.getElementById('confFilter').value;
+  return `
+    <tr>
+      <td class="team">${flagHTML(flag)}${name}<br><span style="font-size:10px;color:#64748b">${conf}</span></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td><strong>0</strong></td>
+    </tr>
+  `;
+}
 
-  let filtered=TEAMS.filter(team=>{
+function renderGroups(){
+  const search = document.getElementById('searchBox').value.toLowerCase().trim();
+  const selectedGroup = document.getElementById('groupSelect').value;
+  const container = document.getElementById('groupsContainer');
 
-    const matchesSearch=
-      team.name.toLowerCase().includes(search) ||
-      team.group.toLowerCase().includes(search) ||
-      team.conf.toLowerCase().includes(search);
+  let html = '';
 
-    const matchesGroup=!group || team.group===group;
-    const matchesConf=!conf || team.conf===conf;
+  GROUPS.forEach(group => {
+    if(selectedGroup && group.id !== selectedGroup) return;
 
-    return matchesSearch && matchesGroup && matchesConf;
+    const groupText = ('group ' + group.id + ' ' + group.teams.map(t => t.join(' ')).join(' ')).toLowerCase();
+    if(search && !groupText.includes(search)) return;
 
-  });
-
-  const container=document.getElementById('teamsContainer');
-
-  if(!filtered.length){
-    container.innerHTML='<div class="no-results">No teams found.</div>';
-    return;
-  }
-
-  const grouped={};
-
-  filtered.forEach(team=>{
-    if(!grouped[team.group]){
-      grouped[team.group]=[];
-    }
-    grouped[team.group].push(team);
-  });
-
-  container.innerHTML=Object.entries(grouped).map(([group,teams])=>`
-
-    <div class="group-title">Group ${group}</div>
-
-    <div class="teams-grid">
-
-      ${teams.map(team=>`
-
-        <div class="team-card">
-
-          <div class="flag">${team.flag}</div>
-
-          <div class="team-name">${team.name}</div>
-
-          <div class="team-conf">${team.conf}</div>
-
-          <div class="team-group">Group ${team.group}</div>
-
+    html += `
+      <section class="group-card">
+        <div class="group-head">
+          <h2>Group ${group.id}</h2>
+          <span><span class="badge">Live table</span></span>
         </div>
 
-      `).join('')}
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align:left">Team</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${group.teams.map(makeTeamRow).join('')}
+            </tbody>
+          </table>
+        </div>
 
-    </div>
+        <div class="live-note">
+          Status: pre-tournament table. This structure is ready for live scores and automatic standings updates when match results are connected.
+        </div>
+      </section>
+    `;
+  });
 
-  `).join('');
-
+  container.innerHTML = html || '<div class="no-results">No group or team found.</div>';
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+function init(){
+  const select = document.getElementById('groupSelect');
 
-  initFilters();
+  GROUPS.forEach(group => {
+    const option = document.createElement('option');
+    option.value = group.id;
+    option.textContent = 'Group ' + group.id;
+    select.appendChild(option);
+  });
 
-  renderTeams();
+  document.getElementById('searchBox').addEventListener('input', renderGroups);
+  document.getElementById('groupSelect').addEventListener('change', renderGroups);
 
-  document.getElementById('search').addEventListener('input',renderTeams);
+  renderGroups();
+}
 
-  document.getElementById('groupFilter').addEventListener('change',renderTeams);
-
-  document.getElementById('confFilter').addEventListener('change',renderTeams);
-
-});
+document.addEventListener('DOMContentLoaded', init);
 </script>
 
 </body>
