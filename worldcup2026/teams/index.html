@@ -1,1 +1,371 @@
-<script src="../../js/worldcup-teams.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Teams | GoalCurrent.live</title>
+<link rel="stylesheet" href="../../css/style.css">
+
+<style>
+body{
+  margin:0;
+  font-family:Verdana,sans-serif;
+  background:#eef6ff;
+  color:#0f172a;
+}
+
+.gc-header{
+  background:#ffffff;
+  padding:16px;
+  position:sticky;
+  top:0;
+  border-bottom:1px solid #dbeafe;
+  z-index:100;
+}
+
+.gc-title{
+  font-size:20px;
+  font-weight:700;
+}
+
+.gc-content{
+  padding:16px;
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:1fr 160px 180px;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.controls input,
+.controls select{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #cbd5e1;
+  background:white;
+  font-size:13px;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.summary-card{
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+  border:1px solid #dbeafe;
+}
+
+.summary-number{
+  font-size:24px;
+  font-weight:800;
+  color:#2563eb;
+}
+
+.summary-label{
+  font-size:11px;
+  color:#64748b;
+  margin-top:4px;
+}
+
+.group-title{
+  font-size:16px;
+  font-weight:700;
+  margin:25px 0 12px;
+  color:#2563eb;
+}
+
+.teams-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:12px;
+}
+
+.team-card{
+  background:white;
+  border-radius:16px;
+  padding:16px 10px;
+  text-align:center;
+  border:1px solid #dbeafe;
+  transition:0.2s;
+}
+
+.team-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 18px rgba(37,99,235,0.12);
+}
+
+.flag{
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.team-name{
+  font-size:12px;
+  font-weight:700;
+}
+
+.team-conf{
+  font-size:10px;
+  color:#64748b;
+  margin-top:4px;
+}
+
+.team-group{
+  display:inline-block;
+  margin-top:8px;
+  padding:3px 10px;
+  border-radius:999px;
+  background:#dbeafe;
+  color:#2563eb;
+  font-size:10px;
+  font-weight:700;
+}
+
+.no-results{
+  text-align:center;
+  padding:40px;
+  color:#64748b;
+}
+
+@media(max-width:768px){
+
+  .controls{
+    grid-template-columns:1fr;
+  }
+
+  .summary{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .teams-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="gc-header">
+  <div class="gc-title">🏆 World Cup 2026 Teams</div>
+</header>
+
+<main class="gc-content">
+
+<div class="summary">
+  <div class="summary-card">
+    <div class="summary-number">48</div>
+    <div class="summary-label">Teams</div>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-number">12</div>
+    <div class="summary-label">Groups</div>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-number">6</div>
+    <div class="summary-label">Confederations</div>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-number">104</div>
+    <div class="summary-label">Matches</div>
+  </div>
+</div>
+
+<div class="controls">
+  <input type="search" id="search" placeholder="Search team...">
+
+  <select id="groupFilter">
+    <option value="">All Groups</option>
+  </select>
+
+  <select id="confFilter">
+    <option value="">All Confederations</option>
+  </select>
+</div>
+
+<div id="teamsContainer"></div>
+
+</main>
+
+<script>
+const TEAMS = [
+
+{name:'Mexico',flag:'🇲🇽',group:'A',conf:'CONCACAF'},
+{name:'South Africa',flag:'🇿🇦',group:'A',conf:'CAF'},
+{name:'South Korea',flag:'🇰🇷',group:'A',conf:'AFC'},
+{name:'Play-off Winner',flag:'⚽',group:'A',conf:'TBD'},
+
+{name:'Canada',flag:'🇨🇦',group:'B',conf:'CONCACAF'},
+{name:'Qatar',flag:'🇶🇦',group:'B',conf:'AFC'},
+{name:'Switzerland',flag:'🇨🇭',group:'B',conf:'UEFA'},
+{name:'Play-off Winner',flag:'⚽',group:'B',conf:'TBD'},
+
+{name:'Brazil',flag:'🇧🇷',group:'C',conf:'CONMEBOL'},
+{name:'Morocco',flag:'🇲🇦',group:'C',conf:'CAF'},
+{name:'Haiti',flag:'🇭🇹',group:'C',conf:'CONCACAF'},
+{name:'Scotland',flag:'🏴',group:'C',conf:'UEFA'},
+
+{name:'United States',flag:'🇺🇸',group:'D',conf:'CONCACAF'},
+{name:'Paraguay',flag:'🇵🇾',group:'D',conf:'CONMEBOL'},
+{name:'Australia',flag:'🇦🇺',group:'D',conf:'AFC'},
+{name:'Play-off Winner',flag:'⚽',group:'D',conf:'TBD'},
+
+{name:'Germany',flag:'🇩🇪',group:'E',conf:'UEFA'},
+{name:'Curaçao',flag:'🇨🇼',group:'E',conf:'CONCACAF'},
+{name:'Ivory Coast',flag:'🇨🇮',group:'E',conf:'CAF'},
+{name:'Ecuador',flag:'🇪🇨',group:'E',conf:'CONMEBOL'},
+
+{name:'Netherlands',flag:'🇳🇱',group:'F',conf:'UEFA'},
+{name:'Japan',flag:'🇯🇵',group:'F',conf:'AFC'},
+{name:'Tunisia',flag:'🇹🇳',group:'F',conf:'CAF'},
+{name:'Play-off Winner',flag:'⚽',group:'F',conf:'TBD'},
+
+{name:'Belgium',flag:'🇧🇪',group:'G',conf:'UEFA'},
+{name:'Egypt',flag:'🇪🇬',group:'G',conf:'CAF'},
+{name:'Iran',flag:'🇮🇷',group:'G',conf:'AFC'},
+{name:'New Zealand',flag:'🇳🇿',group:'G',conf:'OFC'},
+
+{name:'Spain',flag:'🇪🇸',group:'H',conf:'UEFA'},
+{name:'Uruguay',flag:'🇺🇾',group:'H',conf:'CONMEBOL'},
+{name:'Saudi Arabia',flag:'🇸🇦',group:'H',conf:'AFC'},
+{name:'Cape Verde',flag:'🇨🇻',group:'H',conf:'CAF'},
+
+{name:'France',flag:'🇫🇷',group:'I',conf:'UEFA'},
+{name:'Senegal',flag:'🇸🇳',group:'I',conf:'CAF'},
+{name:'Norway',flag:'🇳🇴',group:'I',conf:'UEFA'},
+{name:'Play-off Winner',flag:'⚽',group:'I',conf:'TBD'},
+
+{name:'Argentina',flag:'🇦🇷',group:'J',conf:'CONMEBOL'},
+{name:'Algeria',flag:'🇩🇿',group:'J',conf:'CAF'},
+{name:'Austria',flag:'🇦🇹',group:'J',conf:'UEFA'},
+{name:'Jordan',flag:'🇯🇴',group:'J',conf:'AFC'},
+
+{name:'Portugal',flag:'🇵🇹',group:'K',conf:'UEFA'},
+{name:'Colombia',flag:'🇨🇴',group:'K',conf:'CONMEBOL'},
+{name:'Uzbekistan',flag:'🇺🇿',group:'K',conf:'AFC'},
+{name:'DR Congo',flag:'🇨🇩',group:'K',conf:'CAF'},
+
+{name:'England',flag:'🏴',group:'L',conf:'UEFA'},
+{name:'Croatia',flag:'🇭🇷',group:'L',conf:'UEFA'},
+{name:'Ghana',flag:'🇬🇭',group:'L',conf:'CAF'},
+{name:'Panama',flag:'🇵🇦',group:'L',conf:'CONCACAF'}
+
+];
+
+function initFilters(){
+
+  const groups=[...new Set(TEAMS.map(t=>t.group))];
+  const confs=[...new Set(TEAMS.map(t=>t.conf))];
+
+  const groupFilter=document.getElementById('groupFilter');
+  const confFilter=document.getElementById('confFilter');
+
+  groups.forEach(group=>{
+    const option=document.createElement('option');
+    option.value=group;
+    option.textContent='Group '+group;
+    groupFilter.appendChild(option);
+  });
+
+  confs.forEach(conf=>{
+    const option=document.createElement('option');
+    option.value=conf;
+    option.textContent=conf;
+    confFilter.appendChild(option);
+  });
+
+}
+
+function renderTeams(){
+
+  const search=document.getElementById('search').value.toLowerCase();
+  const group=document.getElementById('groupFilter').value;
+  const conf=document.getElementById('confFilter').value;
+
+  let filtered=TEAMS.filter(team=>{
+
+    const matchesSearch=
+      team.name.toLowerCase().includes(search) ||
+      team.group.toLowerCase().includes(search) ||
+      team.conf.toLowerCase().includes(search);
+
+    const matchesGroup=!group || team.group===group;
+    const matchesConf=!conf || team.conf===conf;
+
+    return matchesSearch && matchesGroup && matchesConf;
+
+  });
+
+  const container=document.getElementById('teamsContainer');
+
+  if(!filtered.length){
+    container.innerHTML='<div class="no-results">No teams found.</div>';
+    return;
+  }
+
+  const grouped={};
+
+  filtered.forEach(team=>{
+    if(!grouped[team.group]){
+      grouped[team.group]=[];
+    }
+    grouped[team.group].push(team);
+  });
+
+  container.innerHTML=Object.entries(grouped).map(([group,teams])=>`
+
+    <div class="group-title">Group ${group}</div>
+
+    <div class="teams-grid">
+
+      ${teams.map(team=>`
+
+        <div class="team-card">
+
+          <div class="flag">${team.flag}</div>
+
+          <div class="team-name">${team.name}</div>
+
+          <div class="team-conf">${team.conf}</div>
+
+          <div class="team-group">Group ${team.group}</div>
+
+        </div>
+
+      `).join('')}
+
+    </div>
+
+  `).join('');
+
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+  initFilters();
+
+  renderTeams();
+
+  document.getElementById('search').addEventListener('input',renderTeams);
+
+  document.getElementById('groupFilter').addEventListener('change',renderTeams);
+
+  document.getElementById('confFilter').addEventListener('change',renderTeams);
+
+});
+</script>
+
+</body>
+</html>
