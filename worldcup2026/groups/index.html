@@ -198,32 +198,68 @@ function openSidebar(){document.getElementById('gcSidebar').classList.add('open'
 function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
 function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 
-async function loadGroups() {
+// Static WC 2026 groups — all 48 confirmed teams
+// Official WC 2026 Groups — verified from ESPN, Yahoo Sports, Bleacher Report
+const WC_GROUPS = {
+  'A': [['🇲🇽','Mexico'],['🇿🇦','South Africa'],['🇰🇷','South Korea'],['🇨🇿','Czechia']],
+  'B': [['🇨🇦','Canada'],['🇧🇦','Bosnia-Herzegovina'],['🇶🇦','Qatar'],['🇨🇭','Switzerland']],
+  'C': [['🇧🇷','Brazil'],['🇲🇦','Morocco'],['🇭🇹','Haiti'],['🏴󠁧󠁢󠁳󠁣󠁴󠁿','Scotland']],
+  'D': [['🇺🇸','United States'],['🇵🇾','Paraguay'],['🇦🇺','Australia'],['🇹🇷','Türkiye']],
+  'E': [['🇩🇪','Germany'],['🇨🇼','Curaçao'],['🇨🇮','Ivory Coast'],['🇪🇨','Ecuador']],
+  'F': [['🇳🇱','Netherlands'],['🇯🇵','Japan'],['🇸🇪','Sweden'],['🇹🇳','Tunisia']],
+  'G': [['🇧🇪','Belgium'],['🇪🇬','Egypt'],['🇮🇷','Iran'],['🇳🇿','New Zealand']],
+  'H': [['🇪🇸','Spain'],['🇨🇻','Cape Verde'],['🇸🇦','Saudi Arabia'],['🇺🇾','Uruguay']],
+  'I': [['🇫🇷','France'],['🇸🇳','Senegal'],['🇮🇶','Iraq'],['🇳🇴','Norway']],
+  'J': [['🇦🇷','Argentina'],['🇩🇿','Algeria'],['🇦🇹','Austria'],['🇯🇴','Jordan']],
+  'K': [['🇵🇹','Portugal'],['🇨🇩','DR Congo'],['🇺🇿','Uzbekistan'],['🇨🇴','Colombia']],
+  'L': [['🏴󠁧󠁢󠁥󠁮󠁧󠁿','England'],['🇭🇷','Croatia'],['🇬🇭','Ghana'],['🇵🇦','Panama']],
+};
+
+function renderStaticGroups() {
   const el = document.getElementById('groupsContainer');
-  if(!API_KEY){
-    el.innerHTML = `<div class="loading">⚽ Group standings will be live from <strong>11 June 2026</strong>.<br><span style="font-size:12px;color:#94a3b8">Add your API key in settings to see live data.</span></div>`;
-    return;
-  }
-  const data = await fetch(API_BASE+'/competitions/WC/standings',{headers:{'X-Auth-Token':API_KEY}}).then(r=>r.json()).catch(()=>null);
-  if(!data?.standings?.length){
-    el.innerHTML=`<div class="loading">🏆 Group standings available from <strong>11 June 2026</strong>.<br><span style="font-size:12px;color:#94a3b8">Check back when the tournament begins!</span></div>`;
-    return;
-  }
-  el.innerHTML=`<div class="group-grid">${data.standings.map(g=>`
+  el.innerHTML = `<div class="group-grid">${Object.entries(WC_GROUPS).map(([grp, teams]) => `
     <div class="group-card">
-      <div class="group-header">Group <span>${g.group?.replace('GROUP_','')||''}</span></div>
+      <div class="group-header">Group <span>${grp}</span></div>
       <table class="g-table">
-        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
-        <tbody>${g.table.map((t,i)=>`
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr></thead>
+        <tbody>${teams.map(([fl,name],i) => `
           <tr>
-            <td>${i<2?'<span class="qualify-bar"></span>':''}${flag(t.team?.name)} ${t.team?.shortName||t.team?.name}</td>
-            <td>${t.playedGames}</td><td>${t.won}</td><td>${t.draw}</td><td>${t.lost}</td>
-            <td>${t.goalDifference>0?'+':''}${t.goalDifference}</td>
-            <td class="pts-strong">${t.points}</td>
+            <td>${i<2?'<span class="qualify-bar"></span>':''}${fl} ${name}</td>
+            <td>0</td><td>0</td><td>0</td><td>0</td>
+            <td class="pts-strong">0</td>
           </tr>`).join('')}
         </tbody>
       </table>
-    </div>`).join('')}</div>`;
+    </div>`).join('')}</div>
+  <p style="text-align:center;font-size:11px;color:#94a3b8;margin-top:14px">⚽ Live standings update automatically from <strong>11 June 2026</strong></p>`;
+}
+
+async function loadGroups() {
+  const el = document.getElementById('groupsContainer');
+  // Try API first for live data
+  if(API_KEY) {
+    const data = await fetch(API_BASE+'/competitions/WC/standings',{headers:{'X-Auth-Token':API_KEY}}).then(r=>r.json()).catch(()=>null);
+    if(data?.standings?.length){
+      el.innerHTML=`<div class="group-grid">${data.standings.map(g=>`
+        <div class="group-card">
+          <div class="group-header">Group <span>${g.group?.replace('GROUP_','')||''}</span></div>
+          <table class="g-table">
+            <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>
+            <tbody>${g.table.map((t,i)=>`
+              <tr>
+                <td>${i<2?'<span class="qualify-bar"></span>':''}${flag(t.team?.name)} ${t.team?.shortName||t.team?.name}</td>
+                <td>${t.playedGames}</td><td>${t.won}</td><td>${t.draw}</td><td>${t.lost}</td>
+                <td>${t.goalDifference>0?'+':''}${t.goalDifference}</td>
+                <td class="pts-strong">${t.points}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>`).join('')}</div>`;
+      return;
+    }
+  }
+  // Fallback: show static groups
+  renderStaticGroups();
 }
 
 document.addEventListener('DOMContentLoaded', loadGroups);
