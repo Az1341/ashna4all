@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Cup 2026 Teams | GoalCurrent.live</title>
-<meta name="description" content="All 48 teams at FIFA World Cup 2026 — USA, Canada & Mexico. Browse by confederation.">
+<title>World Cup 2026 News | GoalCurrent.live</title>
+<meta name="description" content="Latest FIFA World Cup 2026 news, updates and analysis from GoalCurrent.live.">
 <meta name="author" content="Ahmad Zafarani - Ashna4All">
 <link rel="stylesheet" href="../../css/style.css">
 <style>
@@ -46,17 +46,14 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .gc-content{flex:1;padding:16px}
 .g-card{background:rgba(255,255,255,0.58);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,0.85);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 6px 28px rgba(100,160,220,0.14)}
 .g-card-title{font-size:14px;font-weight:700;color:#0f172a;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.7);display:flex;align-items:center;gap:7px}
-.loading{text-align:center;padding:36px 20px;color:#64748b;font-size:13px}
-.spin{width:28px;height:28px;border:3px solid rgba(37,99,235,0.15);border-top-color:#2563eb;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
-.team-card{background:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.9);border-radius:12px;padding:14px 8px;text-align:center;transition:0.2s;cursor:pointer}
-.team-card:hover{background:rgba(255,255,255,0.95);transform:translateY(-2px);box-shadow:0 4px 16px rgba(100,160,220,0.15)}
-.team-card .flag{font-size:28px;margin-bottom:5px}
-.team-card .name{font-size:11px;font-weight:600;color:#0f172a;line-height:1.2}
-.team-card .conf{font-size:10px;color:#94a3b8;margin-top:2px}
-.conf-label{font-size:12px;font-weight:700;color:#2563eb;padding:10px 0 8px;border-bottom:1px solid rgba(37,99,235,0.15);margin-bottom:10px;margin-top:16px}
-.conf-label:first-child{margin-top:0}
+.news-item{background:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.9);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;gap:12px;transition:0.2s;cursor:pointer}
+.news-item:hover{background:rgba(255,255,255,0.95);box-shadow:0 4px 16px rgba(100,160,220,0.12);transform:translateY(-1px)}
+.news-emoji{font-size:28px;min-width:36px;text-align:center}
+.news-title{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:5px;line-height:1.3}
+.news-desc{font-size:12px;color:#334155;line-height:1.5;margin-bottom:5px}
+.news-meta{font-size:10px;color:#94a3b8}
+.news-tag{display:inline-block;background:rgba(37,99,235,0.1);color:#2563eb;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;margin-right:5px;margin-bottom:5px}
+.featured-card{background:linear-gradient(135deg,#1a1f2e,#1e3a5f);border-radius:16px;padding:20px;color:white;margin-bottom:14px}
 .gc-ad-bar{background:rgba(255,255,255,0.55);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.82);padding:8px 16px;font-size:12px;text-align:center}
 .gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7}
 .gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
@@ -67,7 +64,7 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .gc-footer-social a:hover{background:rgba(255,255,255,0.15);color:white}
 .gc-footer-copy{color:rgba(168,178,200,0.45);font-size:10px;line-height:1.8}
 @media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
-@media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important;box-shadow:4px 0 24px rgba(0,0,0,0.3)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:10px!important}.g-card{padding:14px!important;border-radius:14px!important}.teams-grid{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important;box-shadow:4px 0 24px rgba(0,0,0,0.3)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:10px!important}.g-card{padding:14px!important;border-radius:14px!important}.news-item{padding:12px!important}}
 </style>
 </head>
 <body>
@@ -93,8 +90,8 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
       <a href="../../worldcup2026/index.html" class="sb-sub-link">🏠 Overview</a>
       <a href="../../worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
       <a href="../../worldcup2026/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="../../worldcup2026/teams/index.html" class="sb-sub-link active">👕 Teams</a>
-      <a href="../../worldcup2026/news/index.html" class="sb-sub-link">📰 News</a>
+      <a href="../../worldcup2026/teams/index.html" class="sb-sub-link">👕 Teams</a>
+      <a href="../../worldcup2026/news/index.html" class="sb-sub-link active">📰 News</a>
     </div>
   </div>
   <div class="sb-foot">
@@ -112,23 +109,116 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
   <header class="gc-header">
     <div style="display:flex;align-items:center;gap:10px">
       <button class="gc-hamburger" onclick="openSidebar()">☰</button>
-      <div style="font-size:15px;font-weight:700;color:#0f172a">👕 World Cup 2026 — Teams</div>
+      <div style="font-size:15px;font-weight:700;color:#0f172a">📰 World Cup 2026 — News</div>
     </div>
-    <span style="font-size:11px;color:#64748b">48 Nations</span>
+    <span style="font-size:11px;color:#64748b">goalcurrent.live</span>
   </header>
   <div class="gc-ticker">
     <div class="gc-ticker-track">
-      <span class="gc-ticker-item">🏆 World Cup 2026 — 48 Teams from 6 Confederations</span>
-      <span class="gc-ticker-item">🌍 UEFA: 16 · CONMEBOL: 6 · CONCACAF: 6 · AFC: 8 · CAF: 9 · OFC: 1 + Hosts: 3</span>
+      <span class="gc-ticker-item">🏆 World Cup 2026 — 17 Days to Go! · USA · Canada · Mexico</span>
+      <span class="gc-ticker-item">📰 Latest news, squads, previews and analysis</span>
+      <span class="gc-ticker-item">⚽ Follow us @GoalCurrentlive for live updates</span>
     </div>
   </div>
 
   <main class="gc-content">
-    <div class="g-card">
-      <div class="g-card-title">🌍 48 Nations — World Cup 2026</div>
-      <div id="teamsContainer">
-        <div class="loading"><div class="spin"></div>Loading teams...</div>
+
+    <!-- Featured -->
+    <div class="featured-card">
+      <div style="font-size:11px;color:#fbbf24;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">🔥 Featured</div>
+      <div style="font-size:18px;font-weight:800;margin-bottom:6px">World Cup 2026 — 17 Days Away!</div>
+      <div style="font-size:12px;color:#a8b2c8;line-height:1.6">The biggest World Cup in history kicks off on 11 June 2026. For the first time ever, 48 teams from across the globe will compete across 16 venues in the USA, Canada and Mexico. Follow all the action live on GoalCurrent.live.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:rgba(251,191,36,0.2);color:#fbbf24;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600">48 Teams</span>
+        <span style="background:rgba(59,130,246,0.2);color:#60a5fa;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600">104 Matches</span>
+        <span style="background:rgba(16,185,129,0.2);color:#34d399;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600">3 Host Nations</span>
       </div>
+    </div>
+
+    <!-- News Articles -->
+    <div class="g-card">
+      <div class="g-card-title">📰 Latest World Cup 2026 News</div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇦🇷</div>
+        <div>
+          <div class="news-title">Argentina — Can Messi Lead Them to Back-to-Back Titles?</div>
+          <div class="news-desc">Defending champions Argentina arrive in North America with Messi leading the squad. At 38, this could be his final World Cup — and he's determined to go out on top.</div>
+          <div><span class="news-tag">Argentina</span><span class="news-tag">Messi</span></div>
+          <div class="news-meta">25 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇫🇷</div>
+        <div>
+          <div class="news-title">France — Mbappe Hungry for World Cup Glory</div>
+          <div class="news-desc">Kylian Mbappe leads one of the most talented French squads ever assembled. France are among the top favourites to lift the trophy in New York on 19 July.</div>
+          <div><span class="news-tag">France</span><span class="news-tag">Mbappe</span></div>
+          <div class="news-meta">24 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇧🇷</div>
+        <div>
+          <div class="news-title">Brazil — Vinicius Jr Leads the Seleção's Title Hunt</div>
+          <div class="news-desc">Brazil have not won the World Cup since 2002. Vinicius Junior, Rodrygo and Endrick lead a young and exciting Seleção squad hungry to end the drought.</div>
+          <div><span class="news-tag">Brazil</span><span class="news-tag">Vinicius Jr</span></div>
+          <div class="news-meta">23 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🏟️</div>
+        <div>
+          <div class="news-title">MetLife Stadium — The Home of the World Cup Final</div>
+          <div class="news-desc">The 82,500-seat MetLife Stadium in New Jersey hosts the World Cup Final on 19 July 2026. It's one of the largest stadiums in the world and has hosted multiple Super Bowls.</div>
+          <div><span class="news-tag">Venues</span><span class="news-tag">Final</span></div>
+          <div class="news-meta">22 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇬🇧</div>
+        <div>
+          <div class="news-title">England — Bellingham Leads Three Lions Into 2026</div>
+          <div class="news-desc">Jude Bellingham captains England in what could be their best chance of ending 60 years of hurt. With a strong squad and momentum from Euro 2024, hopes are high.</div>
+          <div><span class="news-tag">England</span><span class="news-tag">Bellingham</span></div>
+          <div class="news-meta">21 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇪🇸</div>
+        <div>
+          <div class="news-title">Spain — Yamal and Nico Williams Ready to Shine</div>
+          <div class="news-desc">Lamine Yamal, the teenage sensation who starred at Euro 2024, leads Spain's attack alongside Nico Williams. Spain are genuine contenders to claim a fourth World Cup title.</div>
+          <div><span class="news-tag">Spain</span><span class="news-tag">Yamal</span></div>
+          <div class="news-meta">20 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🌍</div>
+        <div>
+          <div class="news-title">Morocco — Africa's Best Chance Yet at World Cup Glory</div>
+          <div class="news-desc">After their historic semi-final run in Qatar 2022, Morocco have their sights set on going further. They are the strongest African side and a genuine dark horse for the title.</div>
+          <div><span class="news-tag">Morocco</span><span class="news-tag">Africa</span></div>
+          <div class="news-meta">19 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-emoji">🇺🇸</div>
+        <div>
+          <div class="news-title">USA — Home Advantage Could Be the Difference</div>
+          <div class="news-desc">The United States host their first World Cup since 1994. With passionate home support and a talented squad led by Christian Pulisic, the USMNT are looking to make history.</div>
+          <div><span class="news-tag">USA</span><span class="news-tag">Hosts</span></div>
+          <div class="news-meta">18 May 2026 · GoalCurrent.live</div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -137,59 +227,14 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
   <footer class="gc-footer">
     <div class="gc-footer-links"><a href="../../about.html">About</a><a href="../../contact.html">Contact</a><a href="../../privacy.html">Privacy Policy</a><a href="../../terms.html">Terms</a><a href="../../disclaimer.html">Disclaimer</a><a href="../../cookies.html">Cookies</a></div>
     <div class="gc-footer-social"><a href="https://twitter.com/GoalCurrentlive" target="_blank">𝕏</a><a href="https://tiktok.com/@goalcurrentlive" target="_blank">🎵</a><a href="https://instagram.com/goalcurrentlive" target="_blank">📸</a></div>
-    <div class="gc-footer-copy">© 2026 <strong style="color:#a8b2c8">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>Independent fan site · Not affiliated with FIFA, UEFA or the Premier League<br>Data provided by <a href="https://football-data.org" style="color:#6b7a99">football-data.org</a></div>
+    <div class="gc-footer-copy">© 2026 <strong style="color:#a8b2c8">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</div>
   </footer>
 </div>
 
 <script>
-const API_KEY = localStorage.getItem('fd_key') || '';
-const API_BASE = 'https://api.football-data.org/v4';
-const FLAGS = {'Brazil':'🇧🇷','Argentina':'🇦🇷','France':'🇫🇷','Germany':'🇩🇪','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Spain':'🇪🇸','Portugal':'🇵🇹','Netherlands':'🇳🇱','Italy':'🇮🇹','Belgium':'🇧🇪','Mexico':'🇲🇽','United States':'🇺🇸','Canada':'🇨🇦','Japan':'🇯🇵','Morocco':'🇲🇦','Uruguay':'🇺🇾','Colombia':'🇨🇴','South Korea':'🇰🇷','Australia':'🇦🇺','Senegal':'🇸🇳','Iran':'🇮🇷','Saudi Arabia':'🇸🇦','Ecuador':'🇪🇨','Switzerland':'🇨🇭','Croatia':'🇭🇷','Denmark':'🇩🇰','Poland':'🇵🇱','Serbia':'🇷🇸','Ghana':'🇬🇭','Cameroon':'🇨🇲','Tunisia':'🇹🇳','Nigeria':'🇳🇬','Costa Rica':'🇨🇷','Panama':'🇵🇦','Chile':'🇨🇱','Peru':'🇵🇪','New Zealand':'🇳🇿','Indonesia':'🇮🇩','Iraq':'🇮🇶','Venezuela':'🇻🇪','Qatar':'🇶🇦','Albania':'🇦🇱','Slovenia':'🇸🇮','Slovakia':'🇸🇰','Georgia':'🇬🇪','Romania':'🇷🇴','Austria':'🇦🇹','Turkey':'🇹🇷','Ukraine':'🇺🇦'};
-const flag = n => FLAGS[n] || '⚽';
 function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden'}
 function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
 function toggleSub(id){document.getElementById(id).classList.toggle('open')}
-
-async function loadTeams(){
-  const el=document.getElementById('teamsContainer');
-  if(!API_KEY){
-    // Show static 48 teams grouped by confederation
-    const teams = {
-      '🇪🇺 UEFA (16)':['France','Germany','England','Spain','Portugal','Netherlands','Belgium','Italy','Croatia','Denmark','Poland','Serbia','Switzerland','Austria','Turkey','Ukraine'],
-      '🌎 CONMEBOL (6)':['Brazil','Argentina','Uruguay','Colombia','Ecuador','Chile'],
-      '🌍 CAF (9)':['Morocco','Senegal','Nigeria','Ghana','Cameroon','Tunisia','Egypt','Algeria','Ivory Coast'],
-      '🌏 AFC (8)':['Japan','South Korea','Iran','Saudi Arabia','Australia','Indonesia','Iraq','Qatar'],
-      '🌎 CONCACAF (6)':['United States','Mexico','Canada','Costa Rica','Panama','Jamaica'],
-      '🌊 OFC (1)':['New Zealand'],
-    };
-    el.innerHTML=Object.entries(teams).map(([conf,ts])=>`
-      <div class="conf-label">${conf}</div>
-      <div class="teams-grid">${ts.map(t=>`
-        <div class="team-card">
-          <div class="flag">${flag(t)}</div>
-          <div class="name">${t}</div>
-        </div>`).join('')}
-      </div>`).join('');
-    return;
-  }
-  const data=await fetch(API_BASE+'/competitions/WC/teams',{headers:{'X-Auth-Token':API_KEY}}).then(r=>r.json()).catch(()=>null);
-  if(!data?.teams?.length){el.innerHTML=`<div class="loading">Teams data coming soon.</div>`;return}
-  const byConf={};
-  data.teams.forEach(t=>{
-    const c=t.area?.name||'Other';
-    if(!byConf[c])byConf[c]=[];
-    byConf[c].push(t);
-  });
-  el.innerHTML=Object.entries(byConf).map(([conf,ts])=>`
-    <div class="conf-label">🌍 ${conf}</div>
-    <div class="teams-grid">${ts.map(t=>`
-      <div class="team-card">
-        <div class="flag">${flag(t.name)}</div>
-        <div class="name">${t.shortName||t.name}</div>
-      </div>`).join('')}
-    </div>`).join('');
-}
-document.addEventListener('DOMContentLoaded',loadTeams);
 </script>
 </body>
 </html>
