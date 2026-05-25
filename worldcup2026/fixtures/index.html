@@ -287,7 +287,7 @@ const flag = n => FLAGS[n] || '⚽';
 // Source: Official FIFA World Cup 2026 broadcast rights
 // ══════════════════════════════════════════════
 const TV_BROADCASTERS = {
-  'GB': { flag:'🇬🇧', name:'United Kingdom',   channels:['BBC One','BBC Two','ITV','ITVX'] },
+  'GB': { flag:'🇬🇧', name:'United Kingdom',   channels:['BBC','ITV'] },
   'US': { flag:'🇺🇸', name:'United States',    channels:['Fox','FS1','Telemundo','Peacock'] },
   'CA': { flag:'🇨🇦', name:'Canada',           channels:['CTV','TSN','RDS','Noovo'] },
   'AU': { flag:'🇦🇺', name:'Australia',        channels:['SBS','SBS On Demand'] },
@@ -395,206 +395,200 @@ function getTVInfo() {
 const SCHEDULE = {
   // ── 11 June (Thu) ──
   '2026-06-11':[
-    {n:1, h:'Mexico',       a:'South Africa',   t:'20:00',v:'Mexico City',    g:'A', s:'Group Stage'},
+    {n:1, h:'Mexico',       a:'South Africa',   t:'20:00',v:'Mexico City',    g:'A', s:'Group Stage', uk:'ITV'},
   ],
   // ── 12 June (Fri) ──
   '2026-06-12':[
-    {n:2, h:'South Korea',  a:'Czechia',         t:'03:00',v:'Guadalajara',   g:'A', s:'Group Stage'},
-    {n:3, h:'Canada',       a:'Bosnia & Herz.',  t:'20:00',v:'Toronto',       g:'B', s:'Group Stage'},
+    {n:2, h:'South Korea',  a:'Czechia',         t:'03:00',v:'Guadalajara',   g:'A', s:'Group Stage', uk:'ITV'},
+    {n:3, h:'Canada',       a:'Bosnia & Herz.',  t:'20:00',v:'Toronto',       g:'B', s:'Group Stage', uk:'BBC'},
   ],
   // ── 13 June (Sat) ──
   '2026-06-13':[
-    {n:4, h:'USA',          a:'Paraguay',        t:'02:00',v:'Los Angeles',   g:'D', s:'Group Stage'},
-    {n:5, h:'Australia',    a:'Türkiye',         t:'05:00',v:'Seattle',       g:'D', s:'Group Stage'},
-    {n:6, h:'Qatar',        a:'Switzerland',     t:'20:00',v:'San Francisco', g:'B', s:'Group Stage'},
-    {n:7, h:'Brazil',       a:'Morocco',         t:'23:00',v:'New York/NJ',   g:'C', s:'Group Stage'},
+    {n:4, h:'USA',          a:'Paraguay',        t:'02:00',v:'Los Angeles',   g:'D', s:'Group Stage', uk:'BBC'},
+    {n:5, h:'Australia',    a:'Türkiye',         t:'05:00',v:'Seattle',       g:'D', s:'Group Stage', uk:'ITV'},
+    {n:6, h:'Qatar',        a:'Switzerland',     t:'20:00',v:'San Francisco', g:'B', s:'Group Stage', uk:'ITV'},
+    {n:7, h:'Brazil',       a:'Morocco',         t:'23:00',v:'New York/NJ',   g:'C', s:'Group Stage', uk:'BBC'},
   ],
   // ── 14 June (Sun) ──
   '2026-06-14':[
-    {n:8, h:'Haiti',        a:'Scotland',        t:'00:00',v:'Boston',        g:'C', s:'Group Stage'},
-    {n:9, h:'Germany',      a:'Curaçao',         t:'18:00',v:'Houston',       g:'E', s:'Group Stage'},
-    {n:10,h:'Saudi Arabia', a:'Uruguay',         t:'23:00',v:'Miami',         g:'H', s:'Group Stage'},
+    {n:8, h:'Haiti',        a:'Scotland',        t:'00:00',v:'Boston',        g:'C', s:'Group Stage', uk:'BBC'},
+    {n:9, h:'Germany',      a:'Curaçao',         t:'18:00',v:'Houston',       g:'E', s:'Group Stage', uk:'ITV'},
+    {n:10,h:'Netherlands',  a:'Japan',           t:'21:00',v:'Seattle',       g:'F', s:'Group Stage', uk:'ITV'},
+    {n:11,h:'Saudi Arabia', a:'Uruguay',         t:'23:00',v:'Miami',         g:'H', s:'Group Stage', uk:'ITV'},
   ],
   // ── 15 June (Mon) ──
   '2026-06-15':[
-    {n:11,h:'Netherlands',  a:'Japan',           t:'02:00',v:'Seattle',       g:'F', s:'Group Stage'},
-    {n:12,h:'Spain',        a:'Cape Verde',      t:'19:00',v:'Atlanta',       g:'H', s:'Group Stage'},
-    {n:14,h:'Ivory Coast',  a:'Ecuador',         t:'21:00',v:'Houston',       g:'E', s:'Group Stage'},
+    {n:12,h:'Sweden',       a:'Tunisia',         t:'03:00',v:'Monterrey',     g:'F', s:'Group Stage', uk:'ITV'},
+    {n:13,h:'Ivory Coast',  a:'Ecuador',         t:'00:00',v:'Houston',       g:'E', s:'Group Stage', uk:'BBC'},
+    {n:14,h:'Spain',        a:'Cape Verde',      t:'17:00',v:'Atlanta',       g:'H', s:'Group Stage', uk:'ITV'},
+    {n:15,h:'Belgium',      a:'Egypt',           t:'20:00',v:'Vancouver',     g:'G', s:'Group Stage', uk:'BBC'},
+    {n:16,h:'Saudi Arabia', a:'Uruguay',         t:'23:00',v:'Miami',         g:'H', s:'Group Stage', uk:'ITV'},
   ],
   // ── 16 June (Tue) ──
   '2026-06-16':[
-    {n:12,h:'Sweden',       a:'Tunisia',         t:'03:00',v:'Monterrey',     g:'F', s:'Group Stage'},
-    {n:15,h:'Iran',         a:'New Zealand',     t:'02:00',v:'Vancouver',     g:'G', s:'Group Stage'},
-    {n:16,h:'Belgium',      a:'Egypt',           t:'20:00',v:'Vancouver',     g:'G', s:'Group Stage'},
-    {n:17,h:'Ghana',        a:'Panama',          t:'20:00',v:'Toronto',       g:'L', s:'Group Stage'},
-    {n:18,h:'France',       a:'Senegal',         t:'23:00',v:'New York/NJ',   g:'I', s:'Group Stage'},
+    {n:17,h:'Iran',         a:'New Zealand',     t:'02:00',v:'Vancouver',     g:'G', s:'Group Stage', uk:'BBC'},
+    {n:18,h:'France',       a:'Senegal',         t:'20:00',v:'New York/NJ',   g:'I', s:'Group Stage', uk:'BBC'},
+    {n:19,h:'Iraq',         a:'Norway',          t:'23:00',v:'Philadelphia',  g:'I', s:'Group Stage', uk:'BBC'},
   ],
   // ── 17 June (Wed) ──
   '2026-06-17':[
-    {n:21,h:'England',      a:'Croatia',         t:'21:00',v:'Dallas',        g:'L', s:'Group Stage'},
-    {n:22,h:'Uzbekistan',   a:'Colombia',        t:'21:00',v:'Kansas City',   g:'K', s:'Group Stage'},
+    {n:20,h:'Argentina',    a:'Algeria',         t:'02:00',v:'Dallas',        g:'J', s:'Group Stage', uk:'ITV'},
+    {n:21,h:'Austria',      a:'Jordan',          t:'05:00',v:'San Francisco', g:'J', s:'Group Stage', uk:'BBC'},
+    {n:22,h:'Portugal',     a:'Congo DR',        t:'18:00',v:'Houston',       g:'K', s:'Group Stage', uk:'BBC'},
+    {n:23,h:'England',      a:'Croatia',         t:'21:00',v:'Dallas',        g:'L', s:'Group Stage', uk:'ITV'},
   ],
   // ── 18 June (Thu) ──
   '2026-06-18':[
-    {n:19,h:'Argentina',    a:'Algeria',         t:'02:00',v:'Dallas',        g:'J', s:'Group Stage'},
-    {n:20,h:'Austria',      a:'Jordan',          t:'05:00',v:'San Francisco', g:'J', s:'Group Stage'},
-    {n:23,h:'Portugal',     a:'Congo DR',        t:'18:00',v:'Houston',       g:'K', s:'Group Stage'},
-    {n:25,h:'Czechia',      a:'South Africa',    t:'17:00',v:'Guadalajara',   g:'A', s:'Group Stage'},
-    {n:26,h:'Canada',       a:'Switzerland',     t:'20:00',v:'Toronto',       g:'B', s:'Group Stage'},
+    {n:24,h:'Ghana',        a:'Panama',          t:'00:00',v:'Toronto',       g:'L', s:'Group Stage', uk:'ITV'},
+    {n:25,h:'Uzbekistan',   a:'Colombia',        t:'03:00',v:'Kansas City',   g:'K', s:'Group Stage', uk:'BBC'},
+    {n:26,h:'Czechia',      a:'South Africa',    t:'17:00',v:'Guadalajara',   g:'A', s:'Group Stage', uk:'BBC'},
+    {n:27,h:'Switzerland',  a:'Bosnia & Herz.',  t:'20:00',v:'Seattle',       g:'B', s:'Group Stage', uk:'ITV'},
+    {n:28,h:'Canada',       a:'Qatar',           t:'23:00',v:'Toronto',       g:'B', s:'Group Stage', uk:'ITV'},
   ],
   // ── 19 June (Fri) ──
   '2026-06-19':[
-    {n:24,h:'Uzbekistan',   a:'Colombia',        t:'03:00',v:'Kansas City',   g:'K', s:'Group Stage'},
-    {n:27,h:'Mexico',       a:'South Korea',     t:'23:00',v:'Guadalajara',   g:'A', s:'Group Stage'},
-    {n:29,h:'USA',          a:'Australia',       t:'23:00',v:'Los Angeles',   g:'D', s:'Group Stage'},
-    {n:30,h:'Scotland',     a:'Morocco',         t:'23:00',v:'Boston',        g:'C', s:'Group Stage'},
+    {n:29,h:'Mexico',       a:'South Korea',     t:'02:00',v:'Guadalajara',   g:'A', s:'Group Stage', uk:'BBC'},
+    {n:30,h:'USA',          a:'Australia',       t:'20:00',v:'Los Angeles',   g:'D', s:'Group Stage', uk:'BBC'},
+    {n:31,h:'Scotland',     a:'Morocco',         t:'23:00',v:'Boston',        g:'C', s:'Group Stage', uk:'ITV'},
   ],
   // ── 20 June (Sat) ──
   '2026-06-20':[
-    {n:28,h:'Brazil',       a:'Haiti',           t:'02:00',v:'Philadelphia',  g:'C', s:'Group Stage'},
-    {n:32,h:'Tunisia',      a:'Japan',           t:'20:00',v:'Monterrey',     g:'F', s:'Group Stage'},
-    {n:33,h:'Norway',       a:'Senegal',         t:'21:00',v:'Toronto',       g:'I', s:'Group Stage'},
+    {n:32,h:'Turkey',       a:'Paraguay',        t:'05:00',v:'San Francisco', g:'D', s:'Group Stage', uk:'ITV'},
+    {n:33,h:'Brazil',       a:'Haiti',           t:'02:00',v:'Philadelphia',  g:'C', s:'Group Stage', uk:'ITV'},
+    {n:34,h:'Netherlands',  a:'Sweden',          t:'18:00',v:'Seattle',       g:'F', s:'Group Stage', uk:'BBC'},
+    {n:35,h:'Germany',      a:'Ivory Coast',     t:'21:00',v:'Houston',       g:'E', s:'Group Stage', uk:'ITV'},
   ],
   // ── 21 June (Sun) ──
   '2026-06-21':[
-    {n:31,h:'Turkey',       a:'Paraguay',        t:'04:00',v:'San Francisco', g:'D', s:'Group Stage'},
-    {n:34,h:'Germany',      a:'Ivory Coast',     t:'01:00',v:'Houston',       g:'E', s:'Group Stage'},
-    {n:35,h:'Netherlands',  a:'Sweden',          t:'18:00',v:'Seattle',       g:'F', s:'Group Stage'},
-    {n:38,h:'Argentina',    a:'Austria',         t:'17:00',v:'Dallas',        g:'J', s:'Group Stage'},
+    {n:36,h:'Japan',        a:'Tunisia',         t:'05:00',v:'Monterrey',     g:'F', s:'Group Stage', uk:'BBC'},
+    {n:37,h:'Curaçao',      a:'Ecuador',         t:'01:00',v:'Kansas City',   g:'E', s:'Group Stage', uk:'BBC'},
+    {n:38,h:'Spain',        a:'Saudi Arabia',    t:'17:00',v:'Miami',         g:'H', s:'Group Stage', uk:'BBC'},
+    {n:39,h:'Belgium',      a:'Iran',            t:'20:00',v:'Vancouver',     g:'G', s:'Group Stage', uk:'ITV'},
+    {n:40,h:'Cape Verde',   a:'Uruguay',         t:'23:00',v:'Miami',         g:'H', s:'Group Stage', uk:'BBC'},
   ],
   // ── 22 June (Mon) ──
   '2026-06-22':[
-    {n:36,h:'Ecuador',      a:'Curaçao',         t:'01:00',v:'Kansas City',   g:'E', s:'Group Stage'},
-    {n:37,h:'Spain',        a:'Saudi Arabia',    t:'23:00',v:'Miami',         g:'H', s:'Group Stage'},
-    {n:39,h:'New Zealand',  a:'Egypt',           t:'20:00',v:'Vancouver',     g:'G', s:'Group Stage'},
-    {n:42,h:'France',       a:'Iraq',            t:'22:00',v:'Los Angeles',   g:'I', s:'Group Stage'},
+    {n:41,h:'Egypt',        a:'New Zealand',     t:'02:00',v:'Vancouver',     g:'G', s:'Group Stage', uk:'ITV'},
+    {n:42,h:'Argentina',    a:'Austria',         t:'18:00',v:'Dallas',        g:'J', s:'Group Stage', uk:'BBC'},
+    {n:43,h:'France',       a:'Iraq',            t:'22:00',v:'Los Angeles',   g:'I', s:'Group Stage', uk:'BBC'},
   ],
   // ── 23 June (Tue) ──
   '2026-06-23':[
-    {n:40,h:'Jordan',       a:'Algeria',         t:'02:00',v:'San Francisco', g:'J', s:'Group Stage'},
-    {n:41,h:'England',      a:'Ghana',           t:'01:00',v:'Boston',        g:'L', s:'Group Stage'},
-    {n:43,h:'Belgium',      a:'Iran',            t:'18:00',v:'Seattle',       g:'G', s:'Group Stage'},
-    {n:45,h:'Panama',       a:'Croatia',         t:'21:00',v:'Toronto',       g:'L', s:'Group Stage'},
-    {n:46,h:'Uruguay',      a:'Cape Verde',      t:'00:00',v:'Miami',         g:'H', s:'Group Stage'},
+    {n:44,h:'Senegal',      a:'Norway',          t:'01:00',v:'Toronto',       g:'I', s:'Group Stage', uk:'ITV'},
+    {n:45,h:'Algeria',      a:'Jordan',          t:'04:00',v:'San Francisco', g:'J', s:'Group Stage', uk:'ITV'},
+    {n:46,h:'Portugal',     a:'Uzbekistan',      t:'18:00',v:'Atlanta',       g:'K', s:'Group Stage', uk:'ITV'},
+    {n:47,h:'England',      a:'Ghana',           t:'21:00',v:'Boston',        g:'L', s:'Group Stage', uk:'BBC'},
   ],
   // ── 24 June (Wed) ──
   '2026-06-24':[
-    {n:44,h:'Switzerland',  a:'Canada',          t:'04:00',v:'Toronto',       g:'B', s:'Group Stage'},
-    {n:47,h:'Morocco',      a:'Haiti',           t:'18:00',v:'Philadelphia',  g:'C', s:'Group Stage'},
-    {n:49,h:'Ecuador',      a:'Germany',         t:'23:00',v:'Dallas',        g:'E', s:'Group Stage'},
-    {n:50,h:'Scotland',     a:'Brazil',          t:'23:00',v:'New York/NJ',   g:'C', s:'Group Stage'},
+    {n:48,h:'Croatia',      a:'Panama',          t:'00:00',v:'Dallas',        g:'L', s:'Group Stage', uk:'BBC'},
+    {n:49,h:'Colombia',     a:'Congo DR',        t:'03:00',v:'Kansas City',   g:'K', s:'Group Stage', uk:'ITV'},
+    {n:50,h:'Canada',       a:'Switzerland',     t:'20:00',v:'Toronto',       g:'B', s:'Group Stage', uk:'ITV'},
+    {n:51,h:'Bosnia & Herz.',a:'Qatar',          t:'20:00',v:'Seattle',       g:'B', s:'Group Stage', uk:'ITV'},
+    {n:52,h:'Scotland',     a:'Brazil',          t:'23:00',v:'New York/NJ',   g:'C', s:'Group Stage', uk:'BBC'},
+    {n:53,h:'Morocco',      a:'Haiti',           t:'23:00',v:'Philadelphia',  g:'C', s:'Group Stage', uk:'BBC'},
   ],
   // ── 25 June (Thu) ──
   '2026-06-25':[
-    {n:48,h:'Colombia',     a:'Congo DR',        t:'03:00',v:'Kansas City',   g:'K', s:'Group Stage'},
-    {n:51,h:'South Africa', a:'South Korea',     t:'20:00',v:'Guadalajara',   g:'A', s:'Group Stage'},
-    {n:52,h:'Bosnia & Herz.',a:'Qatar',          t:'20:00',v:'Seattle',       g:'B', s:'Group Stage'},
+    {n:54,h:'Mexico',       a:'Czechia',         t:'02:00',v:'Mexico City',   g:'A', s:'Group Stage', uk:'BBC'},
+    {n:55,h:'South Africa', a:'South Korea',     t:'02:00',v:'Guadalajara',   g:'A', s:'Group Stage', uk:'BBC'},
+    {n:56,h:'Germany',      a:'Ecuador',         t:'21:00',v:'Dallas',        g:'E', s:'Group Stage', uk:'BBC'},
+    {n:57,h:'Curaçao',      a:'Ivory Coast',     t:'21:00',v:'Kansas City',   g:'E', s:'Group Stage', uk:'BBC'},
   ],
   // ── 26 June (Fri) ──
   '2026-06-26':[
-    {n:53,h:'Czechia',      a:'Mexico',          t:'02:00',v:'Mexico City',   g:'A', s:'Group Stage'},
-    {n:54,h:'Portugal',     a:'Uzbekistan',      t:'02:00',v:'Atlanta',       g:'K', s:'Group Stage'},
-    {n:55,h:'Tunisia',      a:'Netherlands',     t:'21:00',v:'Monterrey',     g:'F', s:'Group Stage'},
-    {n:56,h:'Curaçao',      a:'Ivory Coast',     t:'21:00',v:'Kansas City',   g:'E', s:'Group Stage'},
+    {n:58,h:'Turkey',       a:'USA',             t:'03:00',v:'Los Angeles',   g:'D', s:'Group Stage', uk:'ITV'},
+    {n:59,h:'Paraguay',     a:'Australia',       t:'03:00',v:'San Francisco', g:'D', s:'Group Stage', uk:'ITV'},
+    {n:60,h:'Japan',        a:'Sweden',          t:'00:00',v:'Los Angeles',   g:'F', s:'Group Stage', uk:'BBC'},
+    {n:61,h:'Netherlands',  a:'Tunisia',         t:'00:00',v:'Monterrey',     g:'F', s:'Group Stage', uk:'BBC'},
+    {n:62,h:'France',       a:'Norway',          t:'20:00',v:'New York/NJ',   g:'I', s:'Group Stage', uk:'ITV'},
+    {n:63,h:'Senegal',      a:'Iraq',            t:'20:00',v:'Philadelphia',  g:'I', s:'Group Stage', uk:'ITV'},
   ],
   // ── 27 June (Sat) ──
   '2026-06-27':[
-    {n:57,h:'Japan',        a:'Sweden',          t:'00:00',v:'Los Angeles',   g:'F', s:'Group Stage'},
-    {n:58,h:'Paraguay',     a:'Australia',       t:'00:00',v:'San Francisco', g:'D', s:'Group Stage'},
-    {n:61,h:'Panama',       a:'England',         t:'20:00',v:'Boston',        g:'L', s:'Group Stage'},
-    {n:62,h:'Senegal',      a:'Iraq',            t:'20:00',v:'Philadelphia',  g:'I', s:'Group Stage'},
-    {n:67,h:'Croatia',      a:'Ghana',           t:'22:00',v:'Dallas',        g:'L', s:'Group Stage'},
-    {n:68,h:'Colombia',     a:'Portugal',        t:'22:00',v:'Miami',         g:'K', s:'Group Stage'},
-    {n:71,h:'Algeria',      a:'Austria',         t:'00:30',v:'Atlanta',       g:'J', s:'Group Stage'},
-    {n:72,h:'Congo DR',     a:'Uzbekistan',      t:'00:30',v:'Kansas City',   g:'K', s:'Group Stage'},
+    {n:64,h:'Cape Verde',   a:'Saudi Arabia',    t:'01:00',v:'Miami',         g:'H', s:'Group Stage', uk:'ITV'},
+    {n:65,h:'Uruguay',      a:'Spain',           t:'01:00',v:'Atlanta',       g:'H', s:'Group Stage', uk:'ITV'},
+    {n:66,h:'Egypt',        a:'Iran',            t:'04:00',v:'Vancouver',     g:'G', s:'Group Stage', uk:'BBC'},
+    {n:67,h:'New Zealand',  a:'Belgium',         t:'04:00',v:'Seattle',       g:'G', s:'Group Stage', uk:'BBC'},
+    {n:68,h:'England',      a:'Panama',          t:'22:00',v:'Boston',        g:'L', s:'Group Stage', uk:'ITV'},
+    {n:69,h:'Croatia',      a:'Ghana',           t:'22:00',v:'Dallas',        g:'L', s:'Group Stage', uk:'ITV'},
   ],
   // ── 28 June (Sun) ──
   '2026-06-28':[
-    {n:59,h:'Turkey',       a:'USA',             t:'03:00',v:'Los Angeles',   g:'D', s:'Group Stage'},
-    {n:60,h:'New Zealand',  a:'Belgium',         t:'03:00',v:'Vancouver',     g:'G', s:'Group Stage'},
-    {n:63,h:'Egypt',        a:'Iran',            t:'04:00',v:'Vancouver',     g:'G', s:'Group Stage'},
-    {n:64,h:'Cape Verde',   a:'Saudi Arabia',    t:'04:00',v:'Miami',         g:'H', s:'Group Stage'},
-    {n:65,h:'Uruguay',      a:'Spain',           t:'01:00',v:'Atlanta',       g:'H', s:'Group Stage'},
-    {n:66,h:'Norway',       a:'France',          t:'01:00',v:'New York/NJ',   g:'I', s:'Group Stage'},
-    {n:69,h:'Jordan',       a:'Argentina',       t:'03:00',v:'Kansas City',   g:'J', s:'Group Stage'},
-    {n:70,h:'Egypt',        a:'Iran',            t:'04:00',v:'Seattle',       g:'G', s:'Group Stage'},
-    {n:73,h:'2nd Group A',  a:'2nd Group B',     t:'20:00',v:'Houston',       g:'—', s:'Round of 32'},
-    {n:74,h:'1st Group F',  a:'2nd Group C',     t:'21:30',v:'Los Angeles',   g:'—', s:'Round of 32'},
+    {n:70,h:'Algeria',      a:'Austria',         t:'03:00',v:'Atlanta',       g:'J', s:'Group Stage', uk:'BBC'},
+    {n:71,h:'Argentina',    a:'Jordan',          t:'03:00',v:'Kansas City',   g:'J', s:'Group Stage', uk:'BBC'},
+    {n:72,h:'Colombia',     a:'Portugal',        t:'00:30',v:'Miami',         g:'K', s:'Group Stage', uk:'BBC'},
+    {n:73,h:'Congo DR',     a:'Uzbekistan',      t:'00:30',v:'Kansas City',   g:'K', s:'Group Stage', uk:'BBC'},
+    {n:74,h:'2nd Group A',  a:'2nd Group B',     t:'20:00',v:'Houston',       g:'—', s:'Round of 32', uk:'TBC'},
+    {n:75,h:'1st Group F',  a:'2nd Group C',     t:'21:30',v:'Los Angeles',   g:'—', s:'Round of 32', uk:'TBC'},
   ],
   // ── 29 June (Mon) ──
   '2026-06-29':[
-    {n:75,h:'1st Group C',  a:'2nd Group F',     t:'02:00',v:'New York/NJ',   g:'—', s:'Round of 32'},
-    {n:76,h:'1st Group D',  a:'2nd Group E',     t:'18:00',v:'Dallas',        g:'—', s:'Round of 32'},
-    {n:77,h:'1st Group I',  a:'3rd CDFGH',       t:'22:00',v:'Philadelphia',  g:'—', s:'Round of 32'},
-    {n:78,h:'2nd Group E',  a:'2nd Group I',     t:'18:00',v:'Houston',       g:'—', s:'Round of 32'},
+    {n:76,h:'1st Group C',  a:'2nd Group F',     t:'02:00',v:'New York/NJ',   g:'—', s:'Round of 32', uk:'TBC'},
+    {n:77,h:'1st Group D',  a:'2nd Group E',     t:'18:00',v:'Dallas',        g:'—', s:'Round of 32', uk:'TBC'},
+    {n:78,h:'1st Group I',  a:'3rd Group',       t:'22:00',v:'Philadelphia',  g:'—', s:'Round of 32', uk:'TBC'},
+    {n:79,h:'2nd Group E',  a:'2nd Group I',     t:'18:00',v:'Houston',       g:'—', s:'Round of 32', uk:'TBC'},
   ],
   // ── 30 June (Tue) ──
   '2026-06-30':[
-    {n:79,h:'1st Group A',  a:'3rd CEFHI',       t:'02:00',v:'Mexico City',   g:'—', s:'Round of 32'},
-    {n:80,h:'1st Group E',  a:'3rd ABCDF',       t:'17:00',v:'Guadalajara',   g:'—', s:'Round of 32'},
-    {n:81,h:'1st Group D',  a:'3rd BEFIJ',       t:'01:00',v:'Los Angeles',   g:'—', s:'Round of 32'},
-    {n:82,h:'1st Group G',  a:'3rd AEHIJ',       t:'21:00',v:'Vancouver',     g:'—', s:'Round of 32'},
+    {n:80,h:'1st Group A',  a:'3rd Group',       t:'02:00',v:'Mexico City',   g:'—', s:'Round of 32', uk:'TBC'},
+    {n:81,h:'1st Group E',  a:'3rd Group',       t:'17:00',v:'Guadalajara',   g:'—', s:'Round of 32', uk:'TBC'},
+    {n:82,h:'1st Group D',  a:'3rd Group',       t:'01:00',v:'Los Angeles',   g:'—', s:'Round of 32', uk:'TBC'},
+    {n:83,h:'1st Group G',  a:'3rd Group',       t:'21:00',v:'Vancouver',     g:'—', s:'Round of 32', uk:'TBC'},
   ],
-  // ── 1 July (Wed) ──
+  // ── 1 July ──
   '2026-07-01':[
-    {n:83,h:'2nd Group K',  a:'2nd Group L',     t:'00:00',v:'Atlanta',       g:'—', s:'Round of 32'},
-    {n:84,h:'1st Group H',  a:'2nd Group J',     t:'20:00',v:'Miami',         g:'—', s:'Round of 32'},
-    {n:85,h:'1st Group L',  a:'3rd EHIJK',       t:'04:00',v:'Boston',        g:'—', s:'Round of 32'},
-    {n:86,h:'1st Group J',  a:'2nd Group H',     t:'23:00',v:'Kansas City',   g:'—', s:'Round of 32'},
+    {n:84,h:'2nd Group K',  a:'2nd Group L',     t:'00:00',v:'Atlanta',       g:'—', s:'Round of 32', uk:'TBC'},
+    {n:85,h:'1st Group H',  a:'2nd Group J',     t:'20:00',v:'Miami',         g:'—', s:'Round of 32', uk:'TBC'},
+    {n:86,h:'1st Group L',  a:'3rd Group',       t:'04:00',v:'Boston',        g:'—', s:'Round of 32', uk:'TBC'},
+    {n:87,h:'1st Group J',  a:'2nd Group H',     t:'23:00',v:'Kansas City',   g:'—', s:'Round of 32', uk:'TBC'},
   ],
-  // ── 2 July (Thu) ──
+  // ── 2 July ──
   '2026-07-02':[
-    {n:87,h:'1st Group K',  a:'3rd DEIJL',       t:'02:30',v:'Dallas',        g:'—', s:'Round of 32'},
-    {n:88,h:'2nd Group D',  a:'2nd Group G',     t:'19:00',v:'Seattle',       g:'—', s:'Round of 32'},
-    {n:89,h:'W74',          a:'W77',             t:'22:00',v:'Houston',       g:'—', s:'Round of 32'},
-    {n:90,h:'W73',          a:'W75',             t:'18:00',v:'New York/NJ',   g:'—', s:'Round of 32'},
+    {n:88,h:'1st Group K',  a:'3rd Group',       t:'02:30',v:'Dallas',        g:'—', s:'Round of 32', uk:'TBC'},
+    {n:89,h:'2nd Group D',  a:'2nd Group G',     t:'19:00',v:'Seattle',       g:'—', s:'Round of 32', uk:'TBC'},
   ],
-  // ── 3 July (Fri) ──
-  '2026-07-03':[
-    {n:91,h:'W76',          a:'W78',             t:'21:00',v:'Los Angeles',   g:'—', s:'Round of 32'},
-    {n:92,h:'W79',          a:'W80',             t:'01:00',v:'Vancouver',     g:'—', s:'Round of 32'},
-  ],
-  // ── 6 July (Mon) — Round of 16 ──
+  // ── 6 July — Round of 16 ──
   '2026-07-06':[
-    {n:93,h:'W81',          a:'W82',             t:'20:00',v:'Kansas City',   g:'—', s:'Round of 16'},
-    {n:94,h:'W85',          a:'W87',             t:'01:00',v:'Seattle',       g:'—', s:'Round of 16'},
+    {n:90,h:'R32 Winner',   a:'R32 Winner',      t:'20:00',v:'Kansas City',   g:'—', s:'Round of 16', uk:'TBC'},
+    {n:91,h:'R32 Winner',   a:'R32 Winner',      t:'23:30',v:'New York/NJ',   g:'—', s:'Round of 16', uk:'TBC'},
   ],
-  // ── 7 July (Tue) ──
+  // ── 7 July ──
   '2026-07-07':[
-    {n:95,h:'W83',          a:'W84',             t:'17:00',v:'Dallas',        g:'—', s:'Round of 16'},
-    {n:96,h:'W81',          a:'W82',             t:'21:00',v:'Miami',         g:'—', s:'Round of 16'},
+    {n:92,h:'R32 Winner',   a:'R32 Winner',      t:'20:00',v:'Dallas',        g:'—', s:'Round of 16', uk:'TBC'},
+    {n:93,h:'R32 Winner',   a:'R32 Winner',      t:'23:30',v:'Los Angeles',   g:'—', s:'Round of 16', uk:'TBC'},
   ],
-  // ── 8 July (Wed) ──
+  // ── 8 July ──
   '2026-07-08':[
-    {n:97,h:'W89',          a:'W90',             t:'21:00',v:'Philadelphia',  g:'—', s:'Round of 16'},
-    {n:98,h:'W95',          a:'W96',             t:'02:00',v:'Boston',        g:'—', s:'Round of 16'},
+    {n:94,h:'R32 Winner',   a:'R32 Winner',      t:'20:00',v:'Vancouver',     g:'—', s:'Round of 16', uk:'TBC'},
+    {n:95,h:'R32 Winner',   a:'R32 Winner',      t:'23:30',v:'Philadelphia',  g:'—', s:'Round of 16', uk:'TBC'},
   ],
-  // ── 9 July (Thu) ──
+  // ── 9 July ──
   '2026-07-09':[
-    {n:99, h:'W91',         a:'W92',             t:'22:00',v:'Atlanta',       g:'—', s:'Round of 16'},
-    {n:100,h:'W93',         a:'W94',             t:'02:00',v:'Houston',       g:'—', s:'Round of 16'},
+    {n:96,h:'R32 Winner',   a:'R32 Winner',      t:'20:00',v:'Miami',         g:'—', s:'Round of 16', uk:'TBC'},
+    {n:97,h:'R32 Winner',   a:'R32 Winner',      t:'23:30',v:'Atlanta',       g:'—', s:'Round of 16', uk:'TBC'},
   ],
-  // ── 11 July (Sat) — Quarter-Finals ──
+  // ── 11 July — Quarter-Finals ──
   '2026-07-11':[
-    {n:101,h:'QF Winner 1', a:'QF Winner 2',     t:'20:00',v:'Los Angeles',   g:'—', s:'Quarter-Final'},
-    {n:102,h:'QF Winner 3', a:'QF Winner 4',     t:'20:00',v:'Dallas',        g:'—', s:'Quarter-Final'},
+    {n:98,h:'QF',           a:'QF',              t:'20:00',v:'Los Angeles',   g:'—', s:'Quarter-Final', uk:'TBC'},
+    {n:99,h:'QF',           a:'QF',              t:'23:30',v:'Dallas',        g:'—', s:'Quarter-Final', uk:'TBC'},
   ],
-  // ── 12 July (Sun) ──
+  // ── 12 July ──
   '2026-07-12':[
-    {n:103,h:'QF Winner 5', a:'QF Winner 6',     t:'00:00',v:'New York/NJ',   g:'—', s:'Quarter-Final'},
-    {n:104,h:'QF Winner 7', a:'QF Winner 8',     t:'00:00',v:'Atlanta',       g:'—', s:'Quarter-Final'},
+    {n:100,h:'QF',          a:'QF',              t:'20:00',v:'New York/NJ',   g:'—', s:'Quarter-Final', uk:'TBC'},
+    {n:101,h:'QF',          a:'QF',              t:'23:30',v:'Atlanta',       g:'—', s:'Quarter-Final', uk:'TBC'},
   ],
-  // ── 15 July (Wed) — Semi-Finals ──
+  // ── 15 July — Semi-Finals ──
   '2026-07-15':[
-    {n:105,h:'SF Winner 1', a:'SF Winner 2',     t:'22:00',v:'New York/NJ',   g:'—', s:'Semi-Final'},
+    {n:102,h:'SF',          a:'SF',              t:'22:00',v:'New York/NJ',   g:'—', s:'Semi-Final', uk:'TBC'},
   ],
-  // ── 16 July (Thu) ──
+  // ── 16 July ──
   '2026-07-16':[
-    {n:106,h:'SF Winner 3', a:'SF Winner 4',     t:'02:00',v:'Atlanta',       g:'—', s:'Semi-Final'},
+    {n:103,h:'SF',          a:'SF',              t:'02:00',v:'Atlanta',       g:'—', s:'Semi-Final', uk:'TBC'},
   ],
-  // ── 19 July (Sun) — FINAL ──
+  // ── 19 July — FINAL ──
   '2026-07-19':[
-    {n:104,h:'TBD',         a:'TBD',             t:'20:00',v:'MetLife Stadium, New Jersey',g:'—',s:'🏆 FINAL'},
+    {n:104,h:'TBD',         a:'TBD',             t:'20:00',v:'MetLife Stadium, New Jersey', g:'—', s:'🏆 FINAL', uk:'TBC'},
   ],
 };
 
@@ -618,6 +612,19 @@ function toDS(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2
 document.addEventListener('DOMContentLoaded',()=>{
   // Show visitor's timezone in header
   document.getElementById('tzBadge').textContent = `🕐 ${TZ_LABEL}`;
+
+  // Build country selector
+  const sel = document.getElementById('countrySelect');
+  Object.entries(TV_BROADCASTERS)
+    .sort((a,b) => a[1].name.localeCompare(b[1].name))
+    .forEach(([code, info]) => {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = `${info.flag} ${info.name}`;
+      if(code === USER_COUNTRY) opt.selected = true;
+      sel.appendChild(opt);
+    });
+  updateTVPreview();
 
   const today=toDS(new Date());
   selDate = SCHEDULE[today] ? today : '2026-06-11';
@@ -776,8 +783,25 @@ function showDay(ds){
       scoreHtml=`<div class="score-vs">vs</div><div class="score-time">${localTime} ${TZ_LABEL}</div>`;
     }
     const grpLabel = m.g!=='—' ? `Group ${m.g} · ` : '';
-    const tv = getTVInfo();
-    const tvHtml = `<div class="tv-bar"><span class="tv-flag">${tv.flag}</span><span class="tv-label">📺 ${tv.channels.join(' · ')}</span></div>`;
+
+    // TV broadcaster display
+    let tvHtml = '';
+    if(USER_COUNTRY === 'GB') {
+      // Show specific BBC/ITV for UK visitors
+      const ukCh = m.uk || 'TBC';
+      const chColor = ukCh==='BBC' ? '#e53e3e' : ukCh==='ITV' ? '#00509d' : '#64748b';
+      const chIcon = ukCh==='BBC' ? '🔴' : ukCh==='ITV' ? '🔵' : '📺';
+      if(ukCh !== 'TBC') {
+        tvHtml = `<div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(229,231,235,0.5);font-size:11px;font-weight:700;color:${chColor}">${chIcon} 🇬🇧 Watch on ${ukCh}</div>`;
+      }
+    } else {
+      // Show broadcaster for other countries
+      const tv = getTVInfo();
+      if(tv && tv.channels.length) {
+        tvHtml = `<div style="margin-top:8px;padding-top:7px;border-top:1px solid rgba(229,231,235,0.5);font-size:11px;color:#2563eb;font-weight:600">📺 ${tv.flag} ${tv.channels.join(' · ')}</div>`;
+      }
+    }
+
     return `<div class="match-card${isLive?' live':''}">
       <div class="match-top">
         <div><div class="match-stage">${grpLabel}${m.s}</div><div class="match-venue">📍 ${m.v}</div></div>
@@ -816,6 +840,19 @@ function showDay(ds){
 
   setTimeout(()=>out.scrollIntoView({behavior:'smooth',block:'nearest'}),200);
   if(hasLive) setTimeout(()=>{loadLiveData();},60000);
+}
+
+function changeCountry(code) {
+  USER_COUNTRY = code;
+  localStorage.setItem('gc_country', code);
+  updateTVPreview();
+  if(selDate) showDay(selDate);
+}
+
+function updateTVPreview() {
+  const tv = getTVInfo();
+  const preview = document.getElementById('tvPreview');
+  if(preview) preview.textContent = tv.channels.slice(0,2).join(' · ');
 }
 
 function toggleDay(){ document.getElementById('dayBlock')?.classList.toggle('expanded'); }
