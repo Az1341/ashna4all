@@ -4,264 +4,326 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UCL Teams 2025/26 | GoalCurrent.live</title>
-<meta name="description" content="UEFA Champions League 2025/26 finalist teams — PSG and Arsenal squad info, key players and stats.">
+<meta name="description" content="UEFA Champions League 2025/26 finalist teams — PSG and Arsenal squads for the UCL Final 2026.">
 <link rel="canonical" href="https://goalcurrent.live/ucl/teams/">
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-:root{--sb-w:240px;--sb-bg:#1a1f2e;--sb-border:rgba(255,255,255,0.08);--sb-hover:rgba(255,255,255,0.07);--sb-active:rgba(37,99,235,0.22);--sb-text:rgba(255,255,255,0.78);--sb-text-dim:rgba(255,255,255,0.38);--sb-accent:#3b82f6;--font:Verdana,Geneva,Tahoma,sans-serif;--blue:#2563eb;--t1:#0f172a;--t2:#334155;--t3:#64748b;--t4:#94a3b8;--bg1:#dbeafe;--bg2:#eff6ff;--bg3:#e0f2fe;--glass:rgba(255,255,255,0.62);--glass-border:rgba(255,255,255,0.82);--glass-shadow:0 4px 20px rgba(100,160,220,0.14);--blur:blur(22px);--r-md:16px;--ucl:#001e62;--ucl-gold:#ffd700}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;min-height:100vh;display:flex;overflow-x:hidden}
-.gc-sidebar{width:var(--sb-w);flex-shrink:0;background:var(--sb-bg);position:fixed;top:0;left:0;bottom:0;z-index:300;overflow-y:auto;-ms-overflow-style:none;scrollbar-width:none;border-right:1px solid var(--sb-border);display:flex;flex-direction:column}
+body{
+  font-family:Verdana,Geneva,Tahoma,sans-serif;
+  background:linear-gradient(135deg,#dbeafe,#eff6ff,#e0f2fe);
+  background-attachment:fixed;
+  min-height:100vh;
+  color:#0f172a;
+}
+
+/* ── SIDEBAR ── */
+.gc-sidebar{
+  width:240px;background:#1a1f2e;
+  position:fixed;top:0;left:0;bottom:0;
+  z-index:300;overflow-y:auto;
+  display:flex;flex-direction:column;
+  scrollbar-width:none;
+}
 .gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0}
-.sb-logo img{height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));flex-shrink:0}
-.sb-logo-text{font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.3px;line-height:1.1}
+.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none;display:block}
+.sb-logo-text{font-size:16px;font-weight:700;color:#fff}
 .sb-logo-text em{color:#60a5fa;font-style:normal}
-.sb-logo-text span{color:#34d399;font-weight:400}
-.sb-section{padding:10px 0 4px}
-.sb-section-label{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--sb-text-dim);padding:6px 16px;display:block}
-.sb-nav-link{display:flex;align-items:center;gap:10px;padding:9px 16px;color:var(--sb-text);text-decoration:none;font-size:12.5px;font-weight:600;transition:all 0.18s;border-left:3px solid transparent}
-.sb-nav-link:hover{background:var(--sb-hover);color:#fff}
-.sb-nav-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
-.sb-divider{height:1px;background:var(--sb-border);margin:6px 16px}
-.sb-comp-btn{width:100%;display:flex;align-items:center;gap:8px;padding:10px 16px;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:12.5px;font-weight:700;color:var(--sb-text);text-align:left;transition:background 0.18s;border-left:3px solid transparent}
-.sb-comp-btn:hover{background:var(--sb-hover);color:#fff}
-.sb-comp-icon{font-size:14px;flex-shrink:0}
-.sb-comp-name{flex:1}
-.sb-comp-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0}
-.sb-comp-badge.pl{background:rgba(56,0,60,0.8);color:#e9b4ff}
-.sb-comp-badge.wc{background:rgba(200,0,30,0.6);color:#ffa5b4}
-.sb-comp-badge.ucl{background:rgba(0,30,98,0.8);color:#93c5fd}
-.sb-chevron{font-size:9px;color:var(--sb-text-dim);transition:transform 0.2s;flex-shrink:0}
-.sb-comp-btn.open .sb-chevron{transform:rotate(180deg)}
-.sb-links{display:none;padding:2px 0 4px}
-.sb-links.open{display:block}
-.sb-links a{display:flex;align-items:center;gap:8px;padding:7px 16px 7px 42px;font-size:12px;font-weight:500;color:var(--sb-text-dim);text-decoration:none;transition:all 0.16s;border-left:3px solid transparent}
-.sb-links a:hover{color:#fff;background:var(--sb-hover)}
-.sb-links a.active{color:var(--sb-accent);background:var(--sb-active);border-left-color:var(--sb-accent);font-weight:700}
-.sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
-.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7}
-.sb-footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column}
-.gc-topbar{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1)}
-.gc-breadcrumb{font-size:12px;color:var(--t3)}
-.gc-breadcrumb a{color:var(--blue);text-decoration:none}
-.gc-topbar-badge{background:linear-gradient(135deg,var(--ucl),#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
-.gc-content{padding:24px 28px 100px;flex:1}
-.sec-head{display:flex;align-items:center;gap:10px;margin:20px 0 14px}
-.sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}
-.sec-line{flex:1;height:1px;background:rgba(100,160,220,0.2)}
-.finals-banner{background:linear-gradient(135deg,#001e62,#0033aa);border-radius:var(--r-md);padding:20px;margin-bottom:20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;text-align:center;box-shadow:0 8px 28px rgba(0,30,98,0.3)}
-.finals-team{display:flex;flex-direction:column;align-items:center;gap:8px}
-.finals-flag{width:64px;height:44px;object-fit:cover;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.finals-name{font-size:18px;font-weight:900;color:#fff}
-.finals-sub{font-size:10px;color:rgba(255,255,255,0.55)}
-.finals-vs{font-size:28px;font-weight:900;color:var(--ucl-gold)}
-.teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.team-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:18px;box-shadow:var(--glass-shadow)}
-.team-card.psg{border-top:3px solid #001e62}
-.team-card.ars{border-top:3px solid #dc2626}
-.team-card-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(100,160,220,0.12)}
-.team-flag-lg{width:52px;height:36px;object-fit:cover;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.12)}
-.team-card-name{font-size:16px;font-weight:900;color:var(--t1)}
-.team-card-sub{font-size:10px;color:var(--t4);margin-top:2px}
-.team-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.team-stat{background:rgba(255,255,255,0.7);border-radius:10px;padding:10px 6px;text-align:center}
-.team-stat-val{font-size:18px;font-weight:900;color:var(--ucl);line-height:1}
-.team-stat-lbl{font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px}
-.pos-label{font-size:9px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--t4);margin-bottom:6px;margin-top:10px}
-.player-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(100,160,220,0.07);font-size:12px;color:var(--t2)}
-.player-row:last-child{border-bottom:none}
-.player-num{font-size:10px;font-weight:800;color:var(--t4);width:20px;flex-shrink:0;text-align:center}
-.player-name{font-weight:700;flex:1}
-.player-nat{font-size:12px}
-.player-star{font-size:10px;background:rgba(245,158,11,0.15);color:#d97706;padding:2px 5px;border-radius:4px;font-weight:800}
-.sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
-@media(max-width:768px){.gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}.gc-sidebar.open{transform:translateX(0)}.gc-page-wrap{margin-left:0}.gc-content{padding:16px 14px 100px}.sb-hamburger{display:flex}.teams-grid{grid-template-columns:1fr}.finals-banner{grid-template-columns:1fr auto 1fr;gap:8px}.finals-name{font-size:14px}.gc-topbar{padding:10px 14px}}
-.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center;}
+.sb-logo-text span{color:#34d399}
+.sb-section-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 16px 4px;display:block}
+.sb-links-group a,.sb-nav-link{display:block;padding:9px 16px 9px 42px;font-size:12px;color:rgba(255,255,255,.7);text-decoration:none}
+.sb-nav-link{padding-left:16px;font-size:12.5px;font-weight:600}
+.sb-nav-link:hover,.sb-links-group a:hover{background:rgba(255,255,255,.07);color:#fff}
+.sb-links-group a.active{color:#3b82f6;font-weight:700;background:rgba(37,99,235,.2)}
+.sb-comp-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:none;border:none;color:rgba(255,255,255,.78);font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;border-top:1px solid rgba(255,255,255,.06)}
+.sb-comp-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.sb-comp-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px}
+.sb-badge-pl{background:rgba(56,0,60,.8);color:#e9b4ff}
+.sb-badge-wc{background:rgba(200,0,30,.6);color:#ffa5b4}
+.sb-badge-ucl{background:rgba(0,30,98,.8);color:#93c5fd}
+.sb-links-group{display:none}
+.sb-links-group.open{display:block}
+.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;color:rgba(255,255,255,.35);line-height:1.7}
+.sb-footer a{color:rgba(255,255,255,.3);text-decoration:none}
+
+/* ── MAIN CONTENT ── */
+.gc-main{
+  margin-left:240px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ── TOPBAR ── */
+.gc-topbar{
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.9);
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 1px 12px rgba(100,160,220,.1);
+}
+.gc-breadcrumb{font-size:12px;color:#64748b}
+.gc-breadcrumb a{color:#2563eb;text-decoration:none}
+.gc-topbar-badge{background:linear-gradient(135deg,#001e62,#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px}
+
+/* ── PAGE CONTENT ── */
+.gc-content{
+  padding:20px;
+  flex:1;
+}
+
+/* ── FINAL BANNER ── */
+.final-banner{
+  background:linear-gradient(135deg,#001e62,#0033aa);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  text-align:center;
+  color:white;
+}
+.final-banner-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd700;margin-bottom:16px}
+.final-matchup{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px}
+.final-team{display:flex;flex-direction:column;align-items:center;gap:8px}
+.final-team img{width:60px;height:40px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.final-team-name{font-size:18px;font-weight:900;color:white}
+.final-team-sub{font-size:10px;color:rgba(255,255,255,.55)}
+.final-vs{font-size:28px;font-weight:900;color:#ffd700}
+.final-info{font-size:11px;color:rgba(255,255,255,.65)}
+
+/* ── TEAM CARD ── */
+.team-card{
+  background:white;
+  border-radius:16px;
+  margin-bottom:16px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(100,160,220,.15);
+}
+.team-card-header{
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  border-bottom:1px solid #f1f5f9;
+}
+.team-card-header img{width:48px;height:32px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.team-card-name{font-size:16px;font-weight:900;color:#0f172a}
+.team-card-sub{font-size:11px;color:#64748b;margin-top:2px}
+.team-stats-row{
+  display:flex;
+  border-bottom:1px solid #f1f5f9;
+}
+.team-stat{flex:1;text-align:center;padding:12px 8px;border-right:1px solid #f1f5f9}
+.team-stat:last-child{border-right:none}
+.team-stat-val{font-size:18px;font-weight:900;color:#001e62;line-height:1}
+.team-stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;margin-top:3px}
+.squad-table{width:100%;border-collapse:collapse}
+.squad-table th{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#94a3b8;padding:8px 20px;text-align:left;background:#f8faff;border-bottom:1px solid #e2e8f0}
+.squad-table td{padding:8px 20px;border-bottom:1px solid #f1f5f9;font-size:12px;color:#334155;vertical-align:middle}
+.squad-table tr:last-child td{border-bottom:none}
+.squad-table tr:hover td{background:#f8faff}
+.squad-num{font-size:11px;font-weight:700;color:#94a3b8;width:30px}
+.squad-name{font-weight:700;color:#0f172a}
+.squad-pos-group{background:#f8faff;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#64748b;padding:6px 20px;border-bottom:1px solid #e2e8f0}
+.key-badge{font-size:9px;background:rgba(245,158,11,.15);color:#d97706;padding:2px 6px;border-radius:4px;font-weight:800;margin-left:4px}
+
+/* ── AD BAR ── */
+.gc-ad-bar{background:rgba(255,255,255,.8);border-top:1px solid rgba(255,255,255,.9);padding:8px 20px;font-size:12px;text-align:center}
+
+/* ── SUBSCRIBE ── */
+.gc-subscribe{background:linear-gradient(135deg,#001a4d,#003fb8);padding:16px 20px}
+.gc-subscribe-title{font-size:12px;font-weight:800;color:#ffd700;margin-bottom:10px}
+.gc-subscribe-row{display:flex;gap:8px}
+.gc-subscribe-row input{padding:9px 14px;border-radius:8px;border:none;font-size:12px;flex:1;outline:none;font-family:inherit}
+.gc-subscribe-row button{background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:8px}
+
+/* ── FOOTER ── */
+.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px;font-size:11px;line-height:1.7}
+.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.gc-footer-links a{color:#a8b2c8;text-decoration:none}
+.gc-footer-copy{color:rgba(168,178,200,.4);font-size:10px}
+
+/* ── HAMBURGER ── */
+.gc-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:#1a1f2e;border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200}
+
+@media(max-width:768px){
+  .gc-hamburger{display:flex;align-items:center;justify-content:center}
+  .gc-main{margin-left:0}
+  .gc-sidebar{transform:translateX(-100%);transition:transform .3s}
+  .gc-sidebar.open{transform:translateX(0);z-index:500}
+  .sb-overlay.show{display:block}
+  .final-matchup{gap:12px}
+  .final-vs{font-size:20px}
+  .final-team-name{font-size:14px}
+  .gc-content{padding:12px}
+}
 </style>
 </head>
 <body>
-<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
-<aside class="gc-sidebar" id="gc-sidebar">
-  <a href="/" class="sb-logo">
-    <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
+
+<button class="gc-hamburger" id="hamburger" aria-label="Menu">☰</button>
+<div class="sb-overlay" id="overlay"></div>
+
+<aside class="gc-sidebar" id="sidebar">
+  <a href="/ucl/" class="sb-logo">
     <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
   </a>
-  <div class="sb-section">
-    <span class="sb-section-label">Main Menu</span>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+  <span class="sb-section-label">Main Menu</span>
+  <a href="/" class="sb-nav-link">🏠 Home</a>
+  <a href="/" class="sb-nav-link">🔴 Live Scores</a>
+  <a href="/" class="sb-nav-link">📅 Schedule</a>
+  <a href="/" class="sb-nav-link">🏅 Standings</a>
+
+  <span class="sb-section-label">Competitions</span>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-pl',this)">
+    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-comp-badge sb-badge-pl">PL</span>
+  </button>
+  <div class="sb-links-group" id="g-pl">
+    <a href="/premier-league/">🏠 Overview</a>
+    <a href="/premier-league/table/">📊 Table</a>
+    <a href="/premier-league/fixtures/">📅 Fixtures</a>
+    <a href="/premier-league/results/">✅ Results</a>
+    <a href="/premier-league/news/">📰 News</a>
   </div>
-  <div class="sb-divider"></div>
-  <div class="sb-section">
-    <span class="sb-section-label">Competitions</span>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
-      <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-      <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-pl">
-      <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-      <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-      <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-    </div>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-      <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-      <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-wc">
-      <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-      <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-    </div>
-    <button class="sb-comp-btn open" onclick="sbToggle('sb-ucl',this)">
-      <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-      <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links open" id="sb-ucl">
-      <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/ucl/teams/" class="active"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-    </div>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-wc',this)">
+    <span>🏆 World Cup 2026</span><span class="sb-comp-badge sb-badge-wc">WC26</span>
+  </button>
+  <div class="sb-links-group" id="g-wc">
+    <a href="/worldcup2026/">🏠 Overview</a>
+    <a href="/worldcup2026/groups/">🔢 Groups</a>
+    <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
+    <a href="/worldcup2026/teams/">👕 Teams</a>
+    <a href="/worldcup2026/news/">📰 News</a>
   </div>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-ucl',this)">
+    <span>⭐ Champions League</span><span class="sb-comp-badge sb-badge-ucl">UCL</span>
+  </button>
+  <div class="sb-links-group open" id="g-ucl">
+    <a href="/ucl/">🏠 Overview</a>
+    <a href="/ucl/fixtures/">📅 Fixtures</a>
+    <a href="/ucl/results/">✅ Results</a>
+    <a href="/ucl/teams/" class="active">👕 Teams</a>
+    <a href="/ucl/news/">📰 News</a>
+  </div>
+
   <div class="sb-footer">
-    © 2026 Ashna4All (A. Zafarani)<br>
-    Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
+    © 2026 Ashna4All · Ahmad Zafarani<br>
     <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
   </div>
 </aside>
 
-<div class="gc-page-wrap">
+<div class="gc-main">
+
   <div class="gc-topbar">
     <div class="gc-breadcrumb"><a href="/">GoalCurrent.live</a> › <a href="/ucl/">Champions League</a> › Teams</div>
     <div class="gc-topbar-badge">👕 UCL 2025/26 Finalists</div>
   </div>
+
   <div class="gc-content">
 
-    <!-- FINAL BANNER -->
-    <div class="finals-banner">
-      <div class="finals-team">
-        <img src="https://flagcdn.com/w80/fr.png" class="finals-flag" alt="PSG">
-        <div class="finals-name">PSG</div>
-        <div class="finals-sub">Defending Champions</div>
-      </div>
-      <div class="finals-vs">VS</div>
-      <div class="finals-team">
-        <img src="https://flagcdn.com/w80/gb-eng.png" class="finals-flag" alt="Arsenal">
-        <div class="finals-name">Arsenal</div>
-        <div class="finals-sub">First final since 2006</div>
-      </div>
-    </div>
-    <p style="text-align:center;font-size:11px;color:var(--t4);margin-bottom:20px">⭐ UCL Final · Saturday 30 May 2026 · 17:00 BST · Puskás Aréna, Budapest</p>
-
-    <div class="sec-head"><div class="sec-title">👕 FINALIST SQUADS</div><div class="sec-line"></div></div>
-
-    <div class="teams-grid">
-
-      <!-- PSG -->
-      <div class="team-card psg">
-        <div class="team-card-header">
-          <img src="https://flagcdn.com/w80/fr.png" class="team-flag-lg" alt="PSG">
-          <div>
-            <div class="team-card-name">Paris Saint-Germain</div>
-            <div class="team-card-sub">🇫🇷 France · Coach: Luis Enrique · Formation: 4-3-3</div>
-          </div>
+    <div class="final-banner">
+      <div class="final-banner-title">⭐ UEFA Champions League Final 2026</div>
+      <div class="final-matchup">
+        <div class="final-team">
+          <img src="https://flagcdn.com/w80/fr.png" alt="PSG">
+          <div class="final-team-name">PSG</div>
+          <div class="final-team-sub">Defending Champions</div>
         </div>
-        <div class="team-stats-row">
-          <div class="team-stat"><div class="team-stat-val">11</div><div class="team-stat-lbl">UCL Titles</div></div>
-          <div class="team-stat"><div class="team-stat-val">2</div><div class="team-stat-lbl">Finals</div></div>
-          <div class="team-stat"><div class="team-stat-val">2025</div><div class="team-stat-lbl">Last Won</div></div>
+        <div class="final-vs">VS</div>
+        <div class="final-team">
+          <img src="https://flagcdn.com/w80/gb-eng.png" alt="Arsenal">
+          <div class="final-team-name">Arsenal</div>
+          <div class="final-team-sub">First final since 2006</div>
         </div>
-
-        <div class="pos-label">Goalkeeper</div>
-        <div class="player-row"><span class="player-num">1</span><span class="player-name">G. Donnarumma</span><span class="player-nat">🇮🇹</span></div>
-
-        <div class="pos-label">Defenders</div>
-        <div class="player-row"><span class="player-num">2</span><span class="player-name">A. Hakimi</span><span class="player-nat">🇲🇦</span></div>
-        <div class="player-row"><span class="player-num">4</span><span class="player-name">Marquinhos</span><span class="player-nat">🇧🇷</span></div>
-        <div class="player-row"><span class="player-num">5</span><span class="player-name">W. Pacho</span><span class="player-nat">🇪🇨</span></div>
-        <div class="player-row"><span class="player-num">25</span><span class="player-name">N. Mendes</span><span class="player-nat">🇵🇹</span></div>
-
-        <div class="pos-label">Midfielders</div>
-        <div class="player-row"><span class="player-num">8</span><span class="player-name">F. Ruiz</span><span class="player-nat">🇪🇸</span></div>
-        <div class="player-row"><span class="player-num">17</span><span class="player-name">Vitinha</span><span class="player-nat">🇵🇹</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">29</span><span class="player-name">W. Zaïre-Emery</span><span class="player-nat">🇫🇷</span></div>
-        <div class="player-row"><span class="player-num">87</span><span class="player-name">J. Neves</span><span class="player-nat">🇵🇹</span></div>
-
-        <div class="pos-label">Forwards</div>
-        <div class="player-row"><span class="player-num">7</span><span class="player-name">K. Kvaratskhelia</span><span class="player-nat">🇬🇪</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">9</span><span class="player-name">G. Ramos</span><span class="player-nat">🇵🇹</span></div>
-        <div class="player-row"><span class="player-num">10</span><span class="player-name">O. Dembélé</span><span class="player-nat">🇫🇷</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">29</span><span class="player-name">B. Barcola</span><span class="player-nat">🇫🇷</span></div>
       </div>
-
-      <!-- ARSENAL -->
-      <div class="team-card ars">
-        <div class="team-card-header">
-          <img src="https://flagcdn.com/w80/gb-eng.png" class="team-flag-lg" alt="Arsenal">
-          <div>
-            <div class="team-card-name">Arsenal FC</div>
-            <div class="team-card-sub">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England · Coach: Mikel Arteta · Formation: 4-3-3</div>
-          </div>
-        </div>
-        <div class="team-stats-row">
-          <div class="team-stat"><div class="team-stat-val">PL ✅</div><div class="team-stat-lbl">Champions</div></div>
-          <div class="team-stat"><div class="team-stat-val">2</div><div class="team-stat-lbl">UCL Finals</div></div>
-          <div class="team-stat"><div class="team-stat-val">2006</div><div class="team-stat-lbl">Last Final</div></div>
-        </div>
-
-        <div class="pos-label">Goalkeeper</div>
-        <div class="player-row"><span class="player-num">22</span><span class="player-name">D. Raya</span><span class="player-nat">🇪🇸</span></div>
-
-        <div class="pos-label">Defenders</div>
-        <div class="player-row"><span class="player-num">4</span><span class="player-name">B. White</span><span class="player-nat">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></div>
-        <div class="player-row"><span class="player-num">6</span><span class="player-name">Gabriel Magalhães</span><span class="player-nat">🇧🇷</span></div>
-        <div class="player-row"><span class="player-num">12</span><span class="player-name">W. Saliba</span><span class="player-nat">🇫🇷</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">35</span><span class="player-name">O. Zinchenko</span><span class="player-nat">🇺🇦</span></div>
-
-        <div class="pos-label">Midfielders</div>
-        <div class="player-row"><span class="player-num">5</span><span class="player-name">T. Partey</span><span class="player-nat">🇬🇭</span></div>
-        <div class="player-row"><span class="player-num">8</span><span class="player-name">M. Ødegaard</span><span class="player-nat">🇳🇴</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">29</span><span class="player-name">K. Havertz</span><span class="player-nat">🇩🇪</span></div>
-        <div class="player-row"><span class="player-num">41</span><span class="player-name">D. Rice</span><span class="player-nat">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="player-star">⭐ Key</span></div>
-
-        <div class="pos-label">Forwards</div>
-        <div class="player-row"><span class="player-num">7</span><span class="player-name">B. Saka</span><span class="player-nat">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="player-star">⭐ Key</span></div>
-        <div class="player-row"><span class="player-num">9</span><span class="player-name">G. Jesus</span><span class="player-nat">🇧🇷</span></div>
-        <div class="player-row"><span class="player-num">11</span><span class="player-name">G. Martinelli</span><span class="player-nat">🇧🇷</span></div>
-        <div class="player-row"><span class="player-num">19</span><span class="player-name">L. Trossard</span><span class="player-nat">🇧🇪</span></div>
-        <div class="player-row"><span class="player-num">20</span><span class="player-name">V. Gyökeres</span><span class="player-nat">🇸🇪</span></div>
-      </div>
-
+      <div class="final-info">📅 Saturday 30 May 2026 · 17:00 BST · 🏟 Puskás Aréna, Budapest · 📺 TNT Sports</div>
     </div>
 
-    <p style="font-size:10px;color:var(--t4);margin-top:20px;text-align:center">
-      👕 Expected squads · Lineups are predicted · Independent fan site · <a href="/disclaimer.html" style="color:var(--t3)">Disclaimer</a>
+    <!-- PSG -->
+    <div class="team-card">
+      <div class="team-card-header" style="border-left:4px solid #001e62">
+        <img src="https://flagcdn.com/w80/fr.png" alt="PSG">
+        <div>
+          <div class="team-card-name">Paris Saint-Germain</div>
+          <div class="team-card-sub">🇫🇷 France · Coach: Luis Enrique · 4-3-3</div>
+        </div>
+      </div>
+      <div class="team-stats-row">
+        <div class="team-stat"><div class="team-stat-val">2025</div><div class="team-stat-lbl">Last Title</div></div>
+        <div class="team-stat"><div class="team-stat-val">2</div><div class="team-stat-lbl">Finals</div></div>
+        <div class="team-stat"><div class="team-stat-val">6-5</div><div class="team-stat-lbl">Beat Bayern</div></div>
+      </div>
+      <table class="squad-table">
+        <tr><td colspan="3" class="squad-pos-group">Goalkeeper</td></tr>
+        <tr><td class="squad-num">1</td><td class="squad-name">G. Donnarumma</td><td>🇮🇹</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Defenders</td></tr>
+        <tr><td class="squad-num">2</td><td class="squad-name">A. Hakimi</td><td>🇲🇦</td></tr>
+        <tr><td class="squad-num">4</td><td class="squad-name">Marquinhos</td><td>🇧🇷</td></tr>
+        <tr><td class="squad-num">5</td><td class="squad-name">W. Pacho</td><td>🇪🇨</td></tr>
+        <tr><td class="squad-num">25</td><td class="squad-name">N. Mendes</td><td>🇵🇹</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Midfielders</td></tr>
+        <tr><td class="squad-num">8</td><td class="squad-name">F. Ruiz</td><td>🇪🇸</td></tr>
+        <tr><td class="squad-num">17</td><td class="squad-name">Vitinha <span class="key-badge">⭐ Key</span></td><td>🇵🇹</td></tr>
+        <tr><td class="squad-num">29</td><td class="squad-name">W. Zaïre-Emery</td><td>🇫🇷</td></tr>
+        <tr><td class="squad-num">87</td><td class="squad-name">J. Neves</td><td>🇵🇹</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Forwards</td></tr>
+        <tr><td class="squad-num">7</td><td class="squad-name">K. Kvaratskhelia <span class="key-badge">⭐ Key</span></td><td>🇬🇪</td></tr>
+        <tr><td class="squad-num">9</td><td class="squad-name">G. Ramos</td><td>🇵🇹</td></tr>
+        <tr><td class="squad-num">10</td><td class="squad-name">O. Dembélé <span class="key-badge">⭐ Key</span></td><td>🇫🇷</td></tr>
+        <tr><td class="squad-num">29</td><td class="squad-name">B. Barcola</td><td>🇫🇷</td></tr>
+      </table>
+    </div>
+
+    <!-- ARSENAL -->
+    <div class="team-card">
+      <div class="team-card-header" style="border-left:4px solid #dc2626">
+        <img src="https://flagcdn.com/w80/gb-eng.png" alt="Arsenal">
+        <div>
+          <div class="team-card-name">Arsenal FC</div>
+          <div class="team-card-sub">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England · Coach: Mikel Arteta · 4-3-3</div>
+        </div>
+      </div>
+      <div class="team-stats-row">
+        <div class="team-stat"><div class="team-stat-val">PL ✅</div><div class="team-stat-lbl">Champions</div></div>
+        <div class="team-stat"><div class="team-stat-val">2006</div><div class="team-stat-lbl">Last Final</div></div>
+        <div class="team-stat"><div class="team-stat-val">2-1</div><div class="team-stat-lbl">Beat Atlético</div></div>
+      </div>
+      <table class="squad-table">
+        <tr><td colspan="3" class="squad-pos-group">Goalkeeper</td></tr>
+        <tr><td class="squad-num">22</td><td class="squad-name">D. Raya</td><td>🇪🇸</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Defenders</td></tr>
+        <tr><td class="squad-num">4</td><td class="squad-name">B. White</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿</td></tr>
+        <tr><td class="squad-num">6</td><td class="squad-name">Gabriel Magalhães</td><td>🇧🇷</td></tr>
+        <tr><td class="squad-num">12</td><td class="squad-name">W. Saliba <span class="key-badge">⭐ Key</span></td><td>🇫🇷</td></tr>
+        <tr><td class="squad-num">35</td><td class="squad-name">O. Zinchenko</td><td>🇺🇦</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Midfielders</td></tr>
+        <tr><td class="squad-num">5</td><td class="squad-name">T. Partey</td><td>🇬🇭</td></tr>
+        <tr><td class="squad-num">8</td><td class="squad-name">M. Ødegaard <span class="key-badge">⭐ Key</span></td><td>🇳🇴</td></tr>
+        <tr><td class="squad-num">29</td><td class="squad-name">K. Havertz</td><td>🇩🇪</td></tr>
+        <tr><td class="squad-num">41</td><td class="squad-name">D. Rice <span class="key-badge">⭐ Key</span></td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿</td></tr>
+        <tr><td colspan="3" class="squad-pos-group">Forwards</td></tr>
+        <tr><td class="squad-num">7</td><td class="squad-name">B. Saka <span class="key-badge">⭐ Key</span></td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿</td></tr>
+        <tr><td class="squad-num">9</td><td class="squad-name">G. Jesus</td><td>🇧🇷</td></tr>
+        <tr><td class="squad-num">11</td><td class="squad-name">G. Martinelli</td><td>🇧🇷</td></tr>
+        <tr><td class="squad-num">19</td><td class="squad-name">L. Trossard</td><td>🇧🇪</td></tr>
+        <tr><td class="squad-num">20</td><td class="squad-name">V. Gyökeres</td><td>🇸🇪</td></tr>
+      </table>
+    </div>
+
+    <p style="font-size:10px;color:#94a3b8;text-align:center;margin-top:4px">
+      👕 Expected squads · Independent fan site · <a href="/disclaimer.html" style="color:#64748b">Disclaimer</a>
     </p>
 
   </div>
-</div>
-
-<script>
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('click',function(e){
-  var sb=document.getElementById('gc-sidebar');
-  var hb=document.querySelector('.sb-hamburger');
-  if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
-});
-</script>
 
   <div class="gc-ad-bar">
     🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
@@ -269,23 +331,81 @@ document.addEventListener('click',function(e){
     <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#2563eb;font-weight:800;text-decoration:none">NordPass</a>
     <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
   </div>
-  <div style="background:linear-gradient(135deg,#001e62,#0033aa);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <div>
-      <div style="font-size:13px;font-weight:800;color:#ffd700;margin-bottom:3px">📬 Get match alerts &amp; news direct to your inbox</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.6)">Free · No spam · Unsubscribe anytime</div>
+
+  <div class="gc-subscribe">
+    <div class="gc-subscribe-title">📬 Get UCL Final news &amp; updates direct to your inbox</div>
+    <div class="gc-subscribe-row">
+      <input type="email" id="gc-email-input" placeholder="Your email address">
+      <button onclick="gcSubscribe()">Subscribe →</button>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" id="gc-email-input" placeholder="Your email address" style="padding:9px 14px;border-radius:8px;border:none;font-size:12px;min-width:200px;outline:none">
-      <button onclick="gcSubscribe()" style="background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:Verdana,sans-serif">Subscribe →</button>
-    </div>
-    <div id="gc-sub-msg" style="display:none;font-size:12px;color:#34d399;font-weight:700;width:100%">✅ Thank you! We will notify you when new content is ready.</div>
+    <div class="gc-sub-msg" id="gc-sub-msg">✅ Thank you! You will receive UCL Final updates soon.</div>
   </div>
-  <div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content, save your favourites and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
-    <div style="display:flex;gap:8px">
-      <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
-      <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
+
+  <footer class="gc-footer">
+    <div class="gc-footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/disclaimer.html">Disclaimer</a>
+      <a href="/cookies.html">Cookies</a>
     </div>
+    <div class="gc-footer-copy">
+      © 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+    </div>
+  </footer>
+
+</div>
+
+<!-- Cookie Banner -->
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
+  <div style="display:flex;gap:8px">
+    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
   </div>
+</div>
+
+<script>
+// Sidebar toggle
+document.getElementById('hamburger').onclick = function(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+};
+document.getElementById('overlay').onclick = function(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+};
+function toggleGroup(id,btn){
+  document.getElementById(id).classList.toggle('open');
+}
+
+// Cookie
+function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');document.getElementById('gc-cookie-banner').style.display='none';}
+function gcDeclineCookies(){localStorage.setItem('gc_ck','no');document.getElementById('gc-cookie-banner').style.display='none';}
+if(!localStorage.getItem('gc_ck')){
+  setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex';},1500);
+}
+
+// Subscribe
+function gcSubscribe(){
+  var input=document.getElementById('gc-email-input');
+  var msg=document.getElementById('gc-sub-msg');
+  if(!input.value||input.value.indexOf('@')<0){input.style.outline='2px solid #dc2626';return;}
+  input.style.outline='2px solid #16a34a';
+  var form=document.createElement('form');
+  form.method='POST';
+  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+  form.target='_blank';form.style.display='none';
+  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
+  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
+  var f3=document.createElement('input');f3.name='locale';f3.value='en';
+  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
+  document.body.appendChild(form);form.submit();document.body.removeChild(form);
+  msg.style.display='block';
+  input.value='';
+}
+</script>
 </body>
 </html>
