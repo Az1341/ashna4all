@@ -203,5 +203,10 @@ function declineCookies(){
 }
 function toggleMobileNav(){
   var nav=document.getElementById('wcNavLinks');
-  if(nav) nav.style.display=nav.style.display==='none'?'block':'none';
+  if(!nav) return;
+  if(nav.style.display===''||nav.style.display==='none'){
+    nav.style.display='block';
+  } else {
+    nav.style.display='none';
+  }
 }
