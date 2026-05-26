@@ -5,114 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 Groups | GoalCurrent.live</title>
 <meta name="description" content="FIFA World Cup 2026 all 12 groups A-L. View standings, teams and fixtures for every group.">
-<meta name="author" content="Ahmad Zafarani - GoalCurrent.live">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/groups/">
-<meta property="og:title" content="World Cup 2026 Groups | GoalCurrent.live">
-<meta property="og:description" content="All 12 World Cup 2026 groups with standings and fixtures.">
-<meta property="og:url" content="https://goalcurrent.live/worldcup2026/groups/">
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/worldcup2026.css">
 </head>
 <body>
- <div id="wc-nav"></div>
-
+<div id="wc-nav"></div>
 <main class="wc-container">
-
-  <!-- Page Header -->
-  <div class="wc-page-header">
-    <h1>🏆 World Cup 2026 — Groups</h1>
-    <p>12 Groups · 48 Teams · Top 2 from each group advance</p>
-  </div>
-
-  <!-- Search & Filter -->
-  <div style="padding: 20px 0;">
-    <div class="wc-search-bar">
-      <span class="wc-search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search by team or group..." oninput="filterGroups()">
-    </div>
-  </div>
-
-  <!-- Qualification Legend -->
-  <div style="display:flex; gap:16px; margin-bottom:20px; font-size:0.85rem; flex-wrap:wrap;">
-    <span style="display:flex; align-items:center; gap:6px;">
-      <span style="display:inline-block; width:4px; height:18px; background:#10b981; border-radius:2px;"></span>
-      Qualify to Round of 32
-    </span>
-    <span style="display:flex; align-items:center; gap:6px;">
-      <span style="display:inline-block; width:4px; height:18px; background:#f59e0b; border-radius:2px;"></span>
-      Best 3rd place
-    </span>
-  </div>
-
-  <!-- Groups Grid -->
-  <div class="wc-groups-grid" id="groupsGrid"></div>
-
+<div class="wc-page-header">
+<h1>🏆 World Cup 2026 — Groups</h1>
+<p>12 Groups · 48 Teams · Top 2 from each group advance</p>
+</div>
+<div style="padding:20px 0;">
+<div class="wc-search-bar">
+<span class="wc-search-icon">🔍</span>
+<input type="text" id="searchInput" placeholder="Search by team or group..." oninput="filterGroups()">
+</div>
+</div>
+<div class="wc-groups-grid" id="groupsGrid"></div>
 </main>
-
 <div id="wc-footer"></div>
- <script src="/js/worldcup-data.js"></script>
-<script src="/js/worldcup-shared.js"></script>
-<script
-
-function filterGroups() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const cards = document.querySelectorAll('.wc-group-card');
-  cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    card.style.display = text.includes(query) ? 'block' : 'none';
-  });
-}
-
-function renderGroups() {
-  const grid = document.getElementById('groupsGrid');
-  let html = '';
-
-  for (const key in WC26.groups) {
-    const group = WC26.groups[key];
-    html += `
-      <div class="wc-group-card">
-        <h2>GROUP ${key}</h2>
-        <table class="wc-standings">
-          <thead>
-            <tr>
-              <th>Team</th>
-              <th>P</th>
-              <th>W</th>
-              <th>D</th>
-              <th>L</th>
-              <th>GD</th>
-              <th>Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${group.teams.map((team, i) => `
-              <tr class="${i < 2 ? 'qualified' : ''}">
-                <td>${team.flag} ${team.name}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-        <a href="/worldcup2026/groups/group-${key.toLowerCase()}/" class="wc-btn">
-          View Group ${key} →
-        </a>
-      </div>
-    `;
-  }
-
-  grid.innerHTML = html;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initWC26Page('groups');
-  renderGroups();
+<script src="../../js/worldcup-data.js"></script>
+<script src="../../js/worldcup-shared.js"></script>
+<script>
+function filterGroups(){
+var query=document.getElementById('searchInput').value.toLowerCase();
+var cards=document.querySelectorAll('.wc-group-card');
+cards.forEach(function(card){
+card.style.display=card.textContent.toLowerCase().includes(query)?'block':'none';
 });
-
+}
+function renderGroups(){
+var grid=document.getElementById('groupsGrid');
+var html='';
+var groups=WC26.groups;
+for(var key in groups){
+var group=groups[key];
+var rows='';
+for(var i=0;i<group.teams.length;i++){
+var team=group.teams[i];
+rows+='<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
+}
+html+='<div class="wc-group-card"><h2>GROUP '+key+'</h2><table class="wc-standings"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead><tbody>'+rows+'</tbody></table><a href="/worldcup2026/groups/group-'+key.toLowerCase()+'/" class="wc-btn wc-btn-primary">View Group '+key+' →</a></div>';
+}
+grid.innerHTML=html;
+}
+window.onload=function(){
+initWC26Page('groups');
+renderGroups();
+};
 </script>
 </body>
 </html>
