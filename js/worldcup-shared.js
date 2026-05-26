@@ -1,28 +1,7 @@
 /* ============================================
    GOALCURRENT.LIVE — World Cup 2026 Shared
-   Shared utilities for all WC26 pages
    Author: Ahmad Zafarani
    ============================================ */
-
-// === NAVIGATION ===
-function renderNav(activePage) {
-  return '<div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;position:sticky;top:0;z-index:200;">' +
-    '<a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">&#9917; Goal<span style="color:#f59e0b">Current</span>.live</a>' +
-    '<button onclick="window.toggleMobileNav()" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>' +
-    '</div>' +
-    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;position:sticky;top:52px;z-index:100;">' +
-    '<div style="display:flex;overflow-x:auto;scrollbar-width:none;gap:4px;padding:0 16px;">' +
-    '<a href="/worldcup2026/" style="color:' + (activePage==='home'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='home'?'#f59e0b':'transparent') + ';">&#127942; Overview</a>' +
-    '<a href="/worldcup2026/fixtures/" style="color:' + (activePage==='fixtures'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='fixtures'?'#f59e0b':'transparent') + ';">&#128197; Fixtures</a>' +
-    '<a href="/worldcup2026/groups/" style="color:' + (activePage==='groups'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='groups'?'#f59e0b':'transparent') + ';">&#128101; Groups</a>' +
-    '<a href="/worldcup2026/teams/" style="color:' + (activePage==='teams'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='teams'?'#f59e0b':'transparent') + ';">&#127758; Teams</a>' +
-    '<a href="/worldcup2026/bracket/" style="color:' + (activePage==='bracket'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='bracket'?'#f59e0b':'transparent') + ';">&#127949; Bracket</a>' +
-    '<a href="/worldcup2026/venues/" style="color:' + (activePage==='venues'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='venues'?'#f59e0b':'transparent') + ';">&#127967; Venues</a>' +
-    '<a href="/worldcup2026/news/" style="color:' + (activePage==='news'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='news'?'#f59e0b':'transparent') + ';">&#128240; News</a>' +
-    '<a href="/worldcup2026/favourites/" style="color:' + (activePage==='favourites'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='favourites'?'#f59e0b':'transparent') + ';">&#11088; Favourites</a>' +
-    '</div>' +
-    '</nav>';
-}
 
 window.toggleMobileNav = function() {
   var nav = document.getElementById('wcNavLinks');
@@ -34,7 +13,32 @@ window.toggleMobileNav = function() {
   }
 };
 
-// === FAVOURITES ===
+function renderNav(activePage) {
+  var links = [
+    ['home', '/worldcup2026/', '&#127942; Overview'],
+    ['fixtures', '/worldcup2026/fixtures/', '&#128197; Fixtures'],
+    ['groups', '/worldcup2026/groups/', '&#128101; Groups'],
+    ['teams', '/worldcup2026/teams/', '&#127758; Teams'],
+    ['bracket', '/worldcup2026/bracket/', '&#127949; Bracket'],
+    ['venues', '/worldcup2026/venues/', '&#127967; Venues'],
+    ['news', '/worldcup2026/news/', '&#128240; News'],
+    ['favourites', '/worldcup2026/favourites/', '&#11088; Favourites']
+  ];
+
+  var navLinks = links.map(function(l) {
+    var isActive = activePage === l[0];
+    return '<a href="' + l[1] + '" style="color:' + (isActive ? '#f59e0b' : '#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (isActive ? '#f59e0b' : 'transparent') + ';display:inline-block;">' + l[2] + '</a>';
+  }).join('');
+
+  return '<div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;">' +
+    '<a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">&#9917; Goal<span style="color:#f59e0b">Current</span>.live</a>' +
+    '<button id="hamburgerBtn" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>' +
+    '</div>' +
+    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;overflow-x:auto;white-space:nowrap;">' +
+    navLinks +
+    '</nav>';
+}
+
 function getFavourites() {
   return JSON.parse(localStorage.getItem('wc26_favourites') || '[]');
 }
@@ -59,7 +63,6 @@ function getFavouriteCount() {
   return getFavourites().length;
 }
 
-// === FLAGS ===
 function getFlag(teamName) {
   var groups = WC26.groups;
   for (var key in groups) {
@@ -69,7 +72,6 @@ function getFlag(teamName) {
   return '';
 }
 
-// === SEARCH ===
 function searchTeams(query) {
   var results = [];
   var q = query.toLowerCase();
@@ -83,7 +85,6 @@ function searchTeams(query) {
   return results;
 }
 
-// === COUNTDOWN ===
 function getCountdown(targetDate) {
   var now = new Date();
   var target = new Date(targetDate);
@@ -107,7 +108,6 @@ function renderCountdown(targetDate) {
     '</div>';
 }
 
-// === FOOTER ===
 function renderFooter() {
   return '<footer class="wc-footer">' +
     '<p>&#169; 2026 <a href="/">GoalCurrent.live</a> &middot; Ahmad Zafarani</p>' +
@@ -116,7 +116,6 @@ function renderFooter() {
     '</footer>';
 }
 
-// === TIME ===
 function formatKickoff(dateStr, timeStr) {
   var dt = new Date(dateStr + 'T' + timeStr);
   return dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }) + ' BST';
@@ -127,7 +126,6 @@ function formatMatchDate(dateStr) {
   return dt.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-// === NOTIFICATIONS ===
 function requestNotifications() {
   if ('Notification' in window) {
     Notification.requestPermission().then(function(p) {
@@ -136,7 +134,6 @@ function requestNotifications() {
   }
 }
 
-// === COOKIE CONSENT ===
 function renderCookieBanner() {
   if (localStorage.getItem('wc26_cookies_accepted')) return;
   var banner = document.createElement('div');
@@ -158,11 +155,23 @@ function declineCookies() {
   if (b) b.remove();
 }
 
-// === INIT ===
 function initWC26Page(activePage) {
-  var nav = document.getElementById('wc-nav');
+  var navEl = document.getElementById('wc-nav');
   var footer = document.getElementById('wc-footer');
-  if (nav) nav.innerHTML = renderNav(activePage);
+  if (navEl) navEl.innerHTML = renderNav(activePage);
   if (footer) footer.innerHTML = renderFooter();
   renderCookieBanner();
+
+  var btn = document.getElementById('hamburgerBtn');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      var nav = document.getElementById('wcNavLinks');
+      if (!nav) return;
+      if (nav.style.display === 'none') {
+        nav.style.display = 'block';
+      } else {
+        nav.style.display = 'none';
+      }
+    });
+  }
 }
