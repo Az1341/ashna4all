@@ -12,14 +12,19 @@
 .match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.75rem;color:var(--wc-muted);}
 .match-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;}
 .match-team{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.match-flag{font-size:2rem;}
+.match-flag-img{width:48px;height:32px;object-fit:cover;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
 .match-name{font-size:0.9rem;font-weight:600;color:var(--wc-white);}
 .match-center{text-align:center;}
 .match-vs{font-size:0.85rem;font-weight:700;color:var(--wc-gold);}
 .match-time{font-size:1rem;font-weight:700;color:var(--wc-blue);}
-.match-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--wc-border);}
+.match-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--wc-border);flex-wrap:wrap;gap:8px;}
+.tv-badge{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--wc-text);}
+.tv-badge span{background:rgba(29,78,216,0.2);color:#60a5fa;padding:2px 8px;border-radius:4px;font-weight:600;}
+.match-actions{display:flex;gap:8px;align-items:center;}
 .live-dot{display:inline-flex;align-items:center;gap:5px;background:rgba(239,68,68,0.15);color:#ef4444;font-size:0.75rem;font-weight:700;padding:3px 8px;border-radius:20px;}
-.live-dot span{width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;}
+.live-dot span{width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;animation:blink 1.5s infinite;}
+.fav-btn{background:none;border:none;cursor:pointer;font-size:1.3rem;transition:transform 0.2s;}
+.fav-btn:hover{transform:scale(1.2);}
 .stats-btn{background:var(--wc-blue);color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;}
 .stats-btn:hover{background:var(--wc-gold);color:var(--wc-dark);}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:999;align-items:center;justify-content:center;}
@@ -27,14 +32,14 @@
 .modal{background:var(--wc-card);border:1px solid var(--wc-border);border-radius:var(--wc-radius);padding:24px;max-width:400px;width:90%;}
 .modal h3{color:var(--wc-gold);margin-bottom:16px;}
 .stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--wc-border);font-size:0.85rem;}
-.stat-row:last-child{border-bottom:none;}
-.modal-close{display:block;margin-top:16px;text-align:center;background:var(--wc-border);color:var(--wc-text);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.9rem;}
-@keyframes pulse{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+.stat-label{color:var(--wc-muted);text-align:center;flex:1;}
+.stat-val{min-width:40px;text-align:center;}
+.modal-close{display:block;width:100%;margin-top:16px;background:var(--wc-border);color:var(--wc-text);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.9rem;}
+@keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
 </style>
 </head>
 <body>
 <div id="wc-nav"></div>
-
 <main class="wc-container">
 <div class="wc-page-header">
 <h1>🏆 Group A</h1>
@@ -73,7 +78,6 @@
 
 <div id="wc-footer"></div>
 
-<!-- Stats Modal -->
 <div class="modal-overlay" id="statsModal">
 <div class="modal">
 <h3 id="modalTitle">Match Stats</h3>
@@ -81,19 +85,38 @@
 <button class="modal-close" onclick="closeStats()">Close</button>
 </div>
 </div>
-
 <script src="../../../js/worldcup-data.js"></script>
 <script src="../../../js/worldcup-shared.js"></script>
 <script>
 var GROUP_KEY='A';
 var FIXTURES=[
-{match:1,home:'Mexico',away:'South Africa',date:'2026-06-11',time:'20:00',venue:'Mexico City'},
-{match:2,home:'Paraguay',away:'Senegal',date:'2026-06-12',time:'17:00',venue:'Dallas'},
-{match:3,home:'Mexico',away:'Paraguay',date:'2026-06-16',time:'20:00',venue:'Mexico City'},
-{match:4,home:'South Africa',away:'Senegal',date:'2026-06-16',time:'17:00',venue:'Atlanta'},
-{match:5,home:'Mexico',away:'Senegal',date:'2026-06-20',time:'20:00',venue:'Mexico City'},
-{match:6,home:'South Africa',away:'Paraguay',date:'2026-06-20',time:'20:00',venue:'Dallas'}
+{id:1,home:'Mexico',homecode:'mx',away:'South Africa',awaycode:'za',date:'2026-06-11',time:'20:00',venue:'Mexico City'},
+{id:2,home:'Paraguay',homecode:'py',away:'Senegal',awaycode:'sn',date:'2026-06-12',time:'17:00',venue:'Dallas'},
+{id:3,home:'Mexico',homecode:'mx',away:'Paraguay',awaycode:'py',date:'2026-06-16',time:'20:00',venue:'Mexico City'},
+{id:4,home:'South Africa',homecode:'za',away:'Senegal',awaycode:'sn',date:'2026-06-16',time:'17:00',venue:'Atlanta'},
+{id:5,home:'Mexico',homecode:'mx',away:'Senegal',awaycode:'sn',date:'2026-06-20',time:'20:00',venue:'Mexico City'},
+{id:6,home:'South Africa',homecode:'za',away:'Paraguay',awaycode:'py',date:'2026-06-20',time:'20:00',venue:'Dallas'}
 ];
+
+var TV_CHANNELS={
+'Europe/London':{channel:'BBC / ITV',country:'🇬🇧 United Kingdom'},
+'America/New_York':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA (East)'},
+'America/Chicago':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA (Central)'},
+'America/Los_Angeles':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA (West)'},
+'America/Mexico_City':{channel:'Televisa / TV Azteca',country:'🇲🇽 Mexico'},
+'Africa/Johannesburg':{channel:'SuperSport',country:'🇿🇦 South Africa'},
+'Europe/Paris':{channel:'TF1 / beIN Sports',country:'🇫🇷 France'},
+'Europe/Berlin':{channel:'ARD / ZDF',country:'🇩🇪 Germany'},
+'Europe/Madrid':{channel:'TVE / Mediaset',country:'🇪🇸 Spain'},
+'Asia/Tokyo':{channel:'NHK / DAZN',country:'🇯🇵 Japan'},
+'Asia/Riyadh':{channel:'SSC Sports',country:'🇸🇦 Saudi Arabia'},
+'Australia/Sydney':{channel:'SBS / Optus Sport',country:'🇦🇺 Australia'}
+};
+
+function getUserTV(){
+var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+return TV_CHANNELS[tz]||{channel:'Check local listings',country:'🌍 Your region'};
+}
 
 function isLive(date,time){
 var now=new Date();
@@ -102,38 +125,54 @@ var end=new Date(kick.getTime()+110*60000);
 return now>=kick&&now<=end;
 }
 
-function getFlag(name){
-var teams=WC26.groups[GROUP_KEY].teams;
-var t=teams.find(function(x){return x.name===name;});
-return t?t.flag:'🏳️';
+function getFavs(){return JSON.parse(localStorage.getItem('wc26_favs')||'[]');}
+function saveFavs(f){localStorage.setItem('wc26_favs',JSON.stringify(f));}
+function toggleFav(id){
+var favs=getFavs();
+var idx=favs.indexOf(id);
+if(idx>-1){favs.splice(idx,1);}else{favs.push(id);}
+saveFavs(favs);
+document.getElementById('fav-'+id).textContent=favs.indexOf(id)>-1?'⭐':'☆';
 }
 
 function renderStandings(){
 var group=WC26.groups[GROUP_KEY];
 var html='';
 group.teams.forEach(function(team,i){
-html+='<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
+var code=team.name.toLowerCase().replace(/ /g,'-');
+html+='<tr class="'+(i<2?'qualified':'')+'"><td><img src="https://flagcdn.com/w20/'+getCode(team.name)+'.png" style="width:20px;height:14px;border-radius:2px;margin-right:6px;vertical-align:middle"> '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
 });
 document.getElementById('standingsBody').innerHTML=html;
 }
 
+function getCode(name){
+var codes={'Mexico':'mx','South Africa':'za','Paraguay':'py','Senegal':'sn','USA':'us','Panama':'pa','Colombia':'co','Ghana':'gh','Canada':'ca','Honduras':'hn','Chile':'cl','Cameroon':'cm','Uruguay':'uy','Portugal':'pt','Tanzania':'tz','Iraq':'iq','Germany':'de','Australia':'au','Ivory Coast':'ci','Saudi Arabia':'sa','Brazil':'br','Japan':'jp','Croatia':'hr','France':'fr','Nigeria':'ng','New Zealand':'nz','Costa Rica':'cr','Spain':'es','South Korea':'kr','Ecuador':'ec','Bahrain':'bh','Argentina':'ar','Morocco':'ma','Ukraine':'ua','Uzbekistan':'uz','Netherlands':'nl','Peru':'pe','Indonesia':'id','DR Congo':'cd','England':'gb-eng','Slovakia':'sk','Algeria':'dz','Trinidad & Tobago':'tt','Belgium':'be','Venezuela':'ve','Thailand':'th','Egypt':'eg'};
+return codes[name]||'un';
+}
+
 function renderFixtures(){
+var tv=getUserTV();
 var html='';
+var favs=getFavs();
 FIXTURES.forEach(function(f){
 var live=isLive(f.date,f.time);
+var isFav=favs.indexOf(f.id)>-1;
 html+='<div class="match-card">';
 html+='<div class="match-header">';
-html+='<span>Group A · Match '+f.match+' · 📍 '+f.venue+'</span>';
-html+=live?'<span class="live-dot"><span></span>LIVE</span>':'<span style="color:var(--wc-muted)">'+f.date+'</span>';
+html+='<span>Group A · Match '+f.id+' · 📍 '+f.venue+'</span>';
+html+=live?'<span class="live-dot"><span></span>LIVE</span>':'<span>'+f.date+'</span>';
 html+='</div>';
 html+='<div class="match-teams">';
-html+='<div class="match-team"><div class="match-flag">'+getFlag(f.home)+'</div><div class="match-name">'+f.home+'</div></div>';
+html+='<div class="match-team"><img src="https://flagcdn.com/w80/'+f.homecode+'.png" class="match-flag-img"><div class="match-name">'+f.home+'</div></div>';
 html+='<div class="match-center"><div class="match-vs">VS</div><div class="match-time">'+f.time+' BST</div></div>';
-html+='<div class="match-team"><div class="match-flag">'+getFlag(f.away)+'</div><div class="match-name">'+f.away+'</div></div>';
+html+='<div class="match-team"><img src="https://flagcdn.com/w80/'+f.awaycode+'.png" class="match-flag-img"><div class="match-name">'+f.away+'</div></div>';
 html+='</div>';
 html+='<div class="match-footer">';
-html+='<span style="font-size:0.8rem;color:var(--wc-muted)">'+f.date+'</span>';
+html+='<div class="tv-badge">📺 <span>'+tv.channel+'</span><span style="color:var(--wc-muted);font-size:0.75rem">'+tv.country+'</span></div>';
+html+='<div class="match-actions">';
+html+='<button class="fav-btn" id="fav-'+f.id+'" onclick="toggleFav('+f.id+')">'+(isFav?'⭐':'☆')+'</button>';
 html+='<button class="stats-btn" onclick="showStats(\''+f.home+'\',\''+f.away+'\')">📊 Stats</button>';
+html+='</div>';
 html+='</div>';
 html+='</div>';
 });
@@ -143,18 +182,16 @@ document.getElementById('fixturesBody').innerHTML=html;
 function showStats(home,away){
 document.getElementById('modalTitle').textContent=home+' vs '+away;
 document.getElementById('modalContent').innerHTML=
-'<div class="stat-row"><span>'+home+'</span><span style="color:var(--wc-muted)">Possession</span><span>'+away+'</span></div>'+
-'<div class="stat-row"><span>-</span><span style="color:var(--wc-muted)">Shots</span><span>-</span></div>'+
-'<div class="stat-row"><span>-</span><span style="color:var(--wc-muted)">Shots on Target</span><span>-</span></div>'+
-'<div class="stat-row"><span>-</span><span style="color:var(--wc-muted)">Corners</span><span>-</span></div>'+
-'<div class="stat-row"><span>-</span><span style="color:var(--wc-muted)">Fouls</span><span>-</span></div>'+
-'<p style="text-align:center;margin-top:12px;font-size:0.75rem;color:var(--wc-muted)">Stats available from 11 June 2026</p>';
+'<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Possession</span><span class="stat-val">-</span></div>'+
+'<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Shots</span><span class="stat-val">-</span></div>'+
+'<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Shots on Target</span><span class="stat-val">-</span></div>'+
+'<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Corners</span><span class="stat-val">-</span></div>'+
+'<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Fouls</span><span class="stat-val">-</span></div>'+
+'<p style="text-align:center;margin-top:12px;font-size:0.75rem;color:var(--wc-muted)">Live stats available from 11 June 2026</p>';
 document.getElementById('statsModal').classList.add('show');
 }
 
-function closeStats(){
-document.getElementById('statsModal').classList.remove('show');
-}
+function closeStats(){document.getElementById('statsModal').classList.remove('show');}
 
 window.onload=function(){
 initWC26Page('groups');
