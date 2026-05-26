@@ -26,10 +26,15 @@ function renderNav(activePage) {
   `;
 }
 
-function toggleMobileNav(){
+window.toggleMobileNav = function(){
   var nav=document.getElementById('wcNavLinks');
   if(!nav) return;
-  nav.classList.toggle('mobile-open');
+  if(nav.classList.contains('nav-hidden')){
+    nav.classList.remove('nav-hidden');
+  } else {
+    nav.classList.add('nav-hidden');
+  }
+};
 }
 // === FAVOURITES ===
 function getFavourites() {
@@ -172,6 +177,6 @@ function initWC26Page(activePage) {
 
   // Add mobile nav CSS
   var style = document.createElement('style');
-  style.textContent = '.wc-nav{display:block;}.mobile-open{display:block!important;}@media(max-width:768px){#wcNavLinks{display:none;}#wcNavLinks.mobile-open{display:block;}}';
+ style.textContent = '#wcNavLinks{display:block;}#wcNavLinks.nav-hidden{display:none!important;}'; 
   document.head.appendChild(style);
 }
