@@ -158,6 +158,11 @@ function declineCookies(){
 }
 
 // === INIT ===
+window.toggleMobileNav = function(){
+  var nav=document.getElementById('wcNavLinks');
+  if(!nav) return;
+  nav.classList.toggle('mobile-open');
+};
 function initWC26Page(activePage) {
   var nav = document.getElementById('wc-nav');
   var footer = document.getElementById('wc-footer');
