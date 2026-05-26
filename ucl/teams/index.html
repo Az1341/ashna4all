@@ -79,6 +79,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 .player-star{font-size:10px;background:rgba(245,158,11,0.15);color:#d97706;padding:2px 5px;border-radius:4px;font-weight:800}
 .sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
 @media(max-width:768px){.gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}.gc-sidebar.open{transform:translateX(0)}.gc-page-wrap{margin-left:0}.gc-content{padding:16px 14px 100px}.sb-hamburger{display:flex}.teams-grid{grid-template-columns:1fr}.finals-banner{grid-template-columns:1fr auto 1fr;gap:8px}.finals-name{font-size:14px}.gc-topbar{padding:10px 14px}}
+.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center;}
 </style>
 </head>
 <body>
@@ -261,5 +262,30 @@ document.addEventListener('click',function(e){
   if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
 });
 </script>
+
+  <div class="gc-ad-bar">
+    🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
+    <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:3px 10px;border-radius:20px;font-weight:800;text-decoration:none;margin:0 6px">Get Deal →</a>
+    <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#2563eb;font-weight:800;text-decoration:none">NordPass</a>
+    <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
+  </div>
+  <div style="background:linear-gradient(135deg,#001e62,#0033aa);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:13px;font-weight:800;color:#ffd700;margin-bottom:3px">📬 Get match alerts &amp; news direct to your inbox</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.6)">Free · No spam · Unsubscribe anytime</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="email" id="gc-email-input" placeholder="Your email address" style="padding:9px 14px;border-radius:8px;border:none;font-size:12px;min-width:200px;outline:none">
+      <button onclick="gcSubscribe()" style="background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:Verdana,sans-serif">Subscribe →</button>
+    </div>
+    <div id="gc-sub-msg" style="display:none;font-size:12px;color:#34d399;font-weight:700;width:100%">✅ Thank you! We will notify you when new content is ready.</div>
+  </div>
+  <div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content, save your favourites and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
+    <div style="display:flex;gap:8px">
+      <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
+      <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
+    </div>
+  </div>
 </body>
 </html>
