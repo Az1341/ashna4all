@@ -6,36 +6,34 @@
 
 // === NAVIGATION ===
 function renderNav(activePage) {
-  return `
-    <div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;">
-      <a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">⚽ Goal<span style="color:#f59e0b">Current</span>.live</a>
-      <button onclick="toggleMobileNav()" id="hamburgerBtn" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">☰</button>
-    </div>
-    <nav class="wc-nav" id="wcNavLinks">
-      <div class="wc-nav-inner">
-        <a href="/worldcup2026/" ${activePage==='home'?'class="active"':''}>🏆 Overview</a>
-        <a href="/worldcup2026/fixtures/" ${activePage==='fixtures'?'class="active"':''}>📅 Fixtures</a>
-        <a href="/worldcup2026/groups/" ${activePage==='groups'?'class="active"':''}>👥 Groups</a>
-        <a href="/worldcup2026/teams/" ${activePage==='teams'?'class="active"':''}>🌍 Teams</a>
-        <a href="/worldcup2026/bracket/" ${activePage==='bracket'?'class="active"':''}>🏅 Bracket</a>
-        <a href="/worldcup2026/venues/" ${activePage==='venues'?'class="active"':''}>🏟️ Venues</a>
-        <a href="/worldcup2026/news/" ${activePage==='news'?'class="active"':''}>📰 News</a>
-        <a href="/worldcup2026/favourites/" ${activePage==='favourites'?'class="active"':''}>⭐ Favourites</a>
-      </div>
-    </nav>
-  `;
+  return '<div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;position:sticky;top:0;z-index:200;">' +
+    '<a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">&#9917; Goal<span style="color:#f59e0b">Current</span>.live</a>' +
+    '<button onclick="window.toggleMobileNav()" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>' +
+    '</div>' +
+    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;position:sticky;top:52px;z-index:100;">' +
+    '<div style="display:flex;overflow-x:auto;scrollbar-width:none;gap:4px;padding:0 16px;">' +
+    '<a href="/worldcup2026/" style="color:' + (activePage==='home'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='home'?'#f59e0b':'transparent') + ';">&#127942; Overview</a>' +
+    '<a href="/worldcup2026/fixtures/" style="color:' + (activePage==='fixtures'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='fixtures'?'#f59e0b':'transparent') + ';">&#128197; Fixtures</a>' +
+    '<a href="/worldcup2026/groups/" style="color:' + (activePage==='groups'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='groups'?'#f59e0b':'transparent') + ';">&#128101; Groups</a>' +
+    '<a href="/worldcup2026/teams/" style="color:' + (activePage==='teams'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='teams'?'#f59e0b':'transparent') + ';">&#127758; Teams</a>' +
+    '<a href="/worldcup2026/bracket/" style="color:' + (activePage==='bracket'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='bracket'?'#f59e0b':'transparent') + ';">&#127949; Bracket</a>' +
+    '<a href="/worldcup2026/venues/" style="color:' + (activePage==='venues'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='venues'?'#f59e0b':'transparent') + ';">&#127967; Venues</a>' +
+    '<a href="/worldcup2026/news/" style="color:' + (activePage==='news'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='news'?'#f59e0b':'transparent') + ';">&#128240; News</a>' +
+    '<a href="/worldcup2026/favourites/" style="color:' + (activePage==='favourites'?'#f59e0b':'#94a3b8') + ';text-decoration:none;padding:14px 16px;font-size:0.9rem;font-weight:500;white-space:nowrap;border-bottom:3px solid ' + (activePage==='favourites'?'#f59e0b':'transparent') + ';">&#11088; Favourites</a>' +
+    '</div>' +
+    '</nav>';
 }
 
-window.toggleMobileNav = function(){
-  var nav=document.getElementById('wcNavLinks');
-  if(!nav) return;
-  if(nav.classList.contains('nav-hidden')){
-    nav.classList.remove('nav-hidden');
+window.toggleMobileNav = function() {
+  var nav = document.getElementById('wcNavLinks');
+  if (!nav) return;
+  if (nav.style.display === 'none') {
+    nav.style.display = 'block';
   } else {
-    nav.classList.add('nav-hidden');
+    nav.style.display = 'none';
   }
 };
-}
+
 // === FAVOURITES ===
 function getFavourites() {
   return JSON.parse(localStorage.getItem('wc26_favourites') || '[]');
@@ -52,11 +50,7 @@ function isFavourite(matchId) {
 function toggleFavourite(matchId) {
   var favs = getFavourites();
   var idx = favs.indexOf(matchId);
-  if (idx > -1) {
-    favs.splice(idx, 1);
-  } else {
-    favs.push(matchId);
-  }
+  if (idx > -1) { favs.splice(idx, 1); } else { favs.push(matchId); }
   saveFavourites(favs);
   return favs.includes(matchId);
 }
@@ -69,10 +63,10 @@ function getFavouriteCount() {
 function getFlag(teamName) {
   var groups = WC26.groups;
   for (var key in groups) {
-    var team = groups[key].teams.find(function(t){ return t.name === teamName; });
+    var team = groups[key].teams.find(function(t) { return t.name === teamName; });
     if (team) return team.flag;
   }
-  return '🏳️';
+  return '';
 }
 
 // === SEARCH ===
@@ -88,6 +82,7 @@ function searchTeams(query) {
   }
   return results;
 }
+
 // === COUNTDOWN ===
 function getCountdown(targetDate) {
   var now = new Date();
@@ -105,19 +100,19 @@ function getCountdown(targetDate) {
 function renderCountdown(targetDate) {
   var cd = getCountdown(targetDate);
   return '<div class="wc-countdown">' +
-    '<div class="wc-countdown-item"><div class="wc-count-num">'+cd.days+'</div><div class="wc-count-label">Days</div></div>' +
-    '<div class="wc-countdown-item"><div class="wc-count-num">'+cd.hours+'</div><div class="wc-count-label">Hours</div></div>' +
-    '<div class="wc-countdown-item"><div class="wc-count-num">'+cd.mins+'</div><div class="wc-count-label">Mins</div></div>' +
-    '<div class="wc-countdown-item"><div class="wc-count-num">'+cd.secs+'</div><div class="wc-count-label">Secs</div></div>' +
+    '<div class="wc-countdown-item"><div class="wc-count-num">' + cd.days + '</div><div class="wc-count-label">Days</div></div>' +
+    '<div class="wc-countdown-item"><div class="wc-count-num">' + cd.hours + '</div><div class="wc-count-label">Hours</div></div>' +
+    '<div class="wc-countdown-item"><div class="wc-count-num">' + cd.mins + '</div><div class="wc-count-label">Mins</div></div>' +
+    '<div class="wc-countdown-item"><div class="wc-count-num">' + cd.secs + '</div><div class="wc-count-label">Secs</div></div>' +
     '</div>';
 }
 
 // === FOOTER ===
 function renderFooter() {
   return '<footer class="wc-footer">' +
-    '<p>© 2026 <a href="/">GoalCurrent.live</a> · Ahmad Zafarani</p>' +
-    '<p>Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</p>' +
-    '<p><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/cookies.html">Cookies</a></p>' +
+    '<p>&#169; 2026 <a href="/">GoalCurrent.live</a> &middot; Ahmad Zafarani</p>' +
+    '<p>Independent fan site &middot; Not affiliated with FIFA, UEFA or the Premier League</p>' +
+    '<p><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/disclaimer.html">Disclaimer</a> &middot; <a href="/cookies.html">Cookies</a></p>' +
     '</footer>';
 }
 
@@ -140,43 +135,34 @@ function requestNotifications() {
     });
   }
 }
+
 // === COOKIE CONSENT ===
-function renderCookieBanner(){
-  if(localStorage.getItem('wc26_cookies_accepted')) return;
-  var banner=document.createElement('div');
-  banner.id='wc26-cookie-banner';
-  banner.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#1e2d45;border-top:2px solid #f59e0b;padding:16px;z-index:9999;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:Inter,Segoe UI,sans-serif;';
-  banner.innerHTML='<div style="font-size:0.85rem;color:#e2e8f0;max-width:600px;">🍪 We use cookies to personalise content, save your favourites, and analyse traffic. By clicking <strong>Accept</strong> you agree to our <a href="/cookies.html" style="color:#f59e0b;text-decoration:none;">Cookie Policy</a>.</div><div style="display:flex;gap:8px;"><button onclick="acceptCookies()" style="background:#f59e0b;color:#111827;border:none;padding:8px 20px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.85rem;">Accept</button><button onclick="declineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.85rem;">Decline</button></div>';
+function renderCookieBanner() {
+  if (localStorage.getItem('wc26_cookies_accepted')) return;
+  var banner = document.createElement('div');
+  banner.id = 'wc26-cookie-banner';
+  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1e2d45;border-top:2px solid #f59e0b;padding:16px;z-index:9999;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:Inter,Segoe UI,sans-serif;';
+  banner.innerHTML = '<div style="font-size:0.85rem;color:#e2e8f0;max-width:600px;">&#127850; We use cookies to personalise content, save your favourites, and analyse traffic. By clicking <strong>Accept</strong> you agree to our <a href="/cookies.html" style="color:#f59e0b;text-decoration:none;">Cookie Policy</a>.</div><div style="display:flex;gap:8px;"><button onclick="acceptCookies()" style="background:#f59e0b;color:#111827;border:none;padding:8px 20px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.85rem;">Accept</button><button onclick="declineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.85rem;">Decline</button></div>';
   document.body.appendChild(banner);
 }
 
-function acceptCookies(){
-  localStorage.setItem('wc26_cookies_accepted','yes');
-  var b=document.getElementById('wc26-cookie-banner');
-  if(b) b.remove();
+function acceptCookies() {
+  localStorage.setItem('wc26_cookies_accepted', 'yes');
+  var b = document.getElementById('wc26-cookie-banner');
+  if (b) b.remove();
 }
 
-function declineCookies(){
-  localStorage.setItem('wc26_cookies_accepted','no');
-  var b=document.getElementById('wc26-cookie-banner');
-  if(b) b.remove();
+function declineCookies() {
+  localStorage.setItem('wc26_cookies_accepted', 'no');
+  var b = document.getElementById('wc26-cookie-banner');
+  if (b) b.remove();
 }
 
 // === INIT ===
-window.toggleMobileNav = function(){
-  var nav=document.getElementById('wcNavLinks');
-  if(!nav) return;
-  nav.classList.toggle('mobile-open');
-};
 function initWC26Page(activePage) {
   var nav = document.getElementById('wc-nav');
   var footer = document.getElementById('wc-footer');
   if (nav) nav.innerHTML = renderNav(activePage);
   if (footer) footer.innerHTML = renderFooter();
   renderCookieBanner();
-
-  // Add mobile nav CSS
-  var style = document.createElement('style');
- style.textContent = '#wcNavLinks{display:block;}#wcNavLinks.nav-hidden{display:none!important;}'; 
-  document.head.appendChild(style);
 }
