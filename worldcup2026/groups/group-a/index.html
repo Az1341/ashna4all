@@ -4,23 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 Group A | GoalCurrent.live</title>
-<meta name="description" content="FIFA World Cup 2026 Group A standings, fixtures and teams. Mexico, South Africa, Paraguay, Senegal.">
+<meta name="description" content="FIFA World Cup 2026 Group A — Mexico, South Africa, Paraguay, Senegal. Standings and fixtures.">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/groups/group-a/">
-<link rel="stylesheet" href="../../../css/style.css">
 <link rel="stylesheet" href="../../../css/worldcup2026.css">
 </head>
 <body>
 <div id="wc-nav"></div>
 <main class="wc-container">
-
 <div class="wc-page-header">
 <h1>🏆 Group A</h1>
 <p>Mexico · South Africa · Paraguay · Senegal</p>
 </div>
-
 <div style="padding:20px 0;">
 <div class="wc-section-header">
-<h2>Group A Standings</h2>
+<h2>Standings</h2>
 <a href="/worldcup2026/groups/">← All Groups</a>
 </div>
 <table class="wc-standings">
@@ -30,75 +27,67 @@
 <tbody id="standingsBody"></tbody>
 </table>
 </div>
-
 <div style="padding:20px 0;">
 <div class="wc-section-header">
-<h2>Group A Fixtures</h2>
+<h2>Fixtures</h2>
 </div>
 <div class="wc-matches" id="fixturesBody"></div>
 </div>
-
-<div style="padding:20px 0; background:var(--wc-card); border-radius:var(--wc-radius); padding:16px; margin-bottom:24px;">
-<h3 style="color:var(--wc-gold); margin-bottom:8px;">Qualification</h3>
-<p style="font-size:0.85rem; color:var(--wc-muted);">Top 2 teams advance to the Round of 32. The best 8 third-placed teams also advance.</p>
+<div style="background:var(--wc-card);border-radius:var(--wc-radius);padding:16px;margin-bottom:24px;">
+<h3 style="color:var(--wc-gold);margin-bottom:8px;">Qualification</h3>
+<p style="font-size:0.85rem;color:var(--wc-muted);">Top 2 teams advance to the Round of 32. The best 8 third-placed teams also advance.</p>
 </div>
-
-<div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:48px;">
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;">
 <a href="/worldcup2026/groups/" class="wc-btn wc-btn-outline">← All Groups</a>
 <a href="/worldcup2026/fixtures/" class="wc-btn wc-btn-primary">📅 All Fixtures</a>
 <a href="/worldcup2026/teams/" class="wc-btn wc-btn-outline">🌍 All Teams</a>
 </div>
-
 </main>
 <div id="wc-footer"></div>
 <script src="../../../js/worldcup-data.js"></script>
 <script src="../../../js/worldcup-shared.js"></script>
 <script>
-var GROUP_KEY = 'A';
-var GROUP_FIXTURES = [
-  { match: 1, home: 'Mexico', away: 'South Africa', date: '2026-06-11', time: '20:00', venue: 'Mexico City' },
-  { match: 2, home: 'Paraguay', away: 'Senegal', date: '2026-06-12', time: '17:00', venue: 'Dallas' },
-  { match: 3, home: 'Mexico', away: 'Paraguay', date: '2026-06-16', time: '20:00', venue: 'Mexico City' },
-  { match: 4, home: 'South Africa', away: 'Senegal', date: '2026-06-16', time: '17:00', venue: 'Atlanta' },
-  { match: 5, home: 'Mexico', away: 'Senegal', date: '2026-06-20', time: '20:00', venue: 'Mexico City' },
-  { match: 6, home: 'South Africa', away: 'Paraguay', date: '2026-06-20', time: '20:00', venue: 'Dallas' }
+var GROUP_KEY='A';
+var GROUP_FIXTURES=[
+{match:1,home:'Mexico',away:'South Africa',date:'2026-06-11',time:'20:00',venue:'Mexico City'},
+{match:2,home:'Paraguay',away:'Senegal',date:'2026-06-12',time:'17:00',venue:'Dallas'},
+{match:3,home:'Mexico',away:'Paraguay',date:'2026-06-16',time:'20:00',venue:'Mexico City'},
+{match:4,home:'South Africa',away:'Senegal',date:'2026-06-16',time:'17:00',venue:'Atlanta'},
+{match:5,home:'Mexico',away:'Senegal',date:'2026-06-20',time:'20:00',venue:'Mexico City'},
+{match:6,home:'South Africa',away:'Paraguay',date:'2026-06-20',time:'20:00',venue:'Dallas'}
 ];
-
-function renderStandings() {
-  var group = WC26.groups[GROUP_KEY];
-  var body = document.getElementById('standingsBody');
-  var html = '';
-  group.teams.forEach(function(team, i) {
-    html += '<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
-  });
-  body.innerHTML = html;
+function renderStandings(){
+var group=WC26.groups[GROUP_KEY];
+var html='';
+group.teams.forEach(function(team,i){
+html+='<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
+});
+document.getElementById('standingsBody').innerHTML=html;
 }
-
-function renderFixtures() {
-  var container = document.getElementById('fixturesBody');
-  var html = '';
-  GROUP_FIXTURES.forEach(function(f) {
-    var homeTeam = WC26.groups[GROUP_KEY].teams.find(function(t){ return t.name === f.home; });
-    var awayTeam = WC26.groups[GROUP_KEY].teams.find(function(t){ return t.name === f.away; });
-    var homeFlag = homeTeam ? homeTeam.flag : '🏳️';
-    var awayFlag = awayTeam ? awayTeam.flag : '🏳️';
-    html += '<div class="wc-match-card">';
-    html += '<div class="wc-match-meta"><span>Group A · Match '+f.match+'</span><span>📍 '+f.venue+'</span></div>';
-    html += '<div class="wc-match-teams">';
-    html += '<div class="wc-match-team"><span class="wc-match-flag">'+homeFlag+'</span><span>'+f.home+'</span></div>';
-    html += '<div><div class="wc-match-vs">VS</div><div class="wc-match-time">'+f.time+' BST</div></div>';
-    html += '<div class="wc-match-team"><span class="wc-match-flag">'+awayFlag+'</span><span>'+f.away+'</span></div>';
-    html += '</div>';
-    html += '<div class="wc-match-footer"><span>📅 '+f.date+'</span></div>';
-    html += '</div>';
-  });
-  container.innerHTML = html;
+function renderFixtures(){
+var html='';
+GROUP_FIXTURES.forEach(function(f){
+var teams=WC26.groups[GROUP_KEY].teams;
+var homeTeam=teams.find(function(t){return t.name===f.home;});
+var awayTeam=teams.find(function(t){return t.name===f.away;});
+var hf=homeTeam?homeTeam.flag:'🏳️';
+var af=awayTeam?awayTeam.flag:'🏳️';
+html+='<div class="wc-match-card">';
+html+='<div class="wc-match-meta"><span>Group A · Match '+f.match+'</span><span>📍 '+f.venue+'</span></div>';
+html+='<div class="wc-match-teams">';
+html+='<div class="wc-match-team"><span class="wc-match-flag">'+hf+'</span><span>'+f.home+'</span></div>';
+html+='<div><div class="wc-match-vs">VS</div><div class="wc-match-time">'+f.time+' BST</div></div>';
+html+='<div class="wc-match-team"><span class="wc-match-flag">'+af+'</span><span>'+f.away+'</span></div>';
+html+='</div>';
+html+='<div class="wc-match-footer"><span>📅 '+f.date+'</span></div>';
+html+='</div>';
+});
+document.getElementById('fixturesBody').innerHTML=html;
 }
-
-window.onload = function() {
-  initWC26Page('groups');
-  renderStandings();
-  renderFixtures();
+window.onload=function(){
+initWC26Page('groups');
+renderStandings();
+renderFixtures();
 };
 </script>
 </body>
