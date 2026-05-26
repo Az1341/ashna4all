@@ -5,121 +5,189 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 Teams | GoalCurrent.live</title>
 <meta name="description" content="All 48 teams at FIFA World Cup 2026 — groups, flags, confederations and FIFA rankings.">
+<meta name="author" content="Ahmad Zafarani - Ashna4All">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/teams/">
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
 <style>
 :root{
   --sb-w:240px;--sb-bg:#07111f;--sb-hover:#10213a;--sb-border:rgba(255,255,255,0.08);--sb-text:#b8c4d9;
-  --hdr-h:56px;--blue:#003fb8;--blue2:#0057e7;--darkblue:#002b80;--gold:#f59e0b;--red:#ef4444;--green:#10b981;
-  --font:Verdana,Geneva,Tahoma,sans-serif;
+  --hdr-h:56px;--gold:#f59e0b;--red:#ef4444;--green:#10b981;--blue:#2563eb;
+  --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);background-attachment:fixed;min-height:100vh;color:#0f172a;font-size:14px;display:flex;overflow-x:hidden}
 
-/* SIDEBAR */
+/* ── SIDEBAR ── */
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400}
 .sb-overlay.show{display:block}
 .gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{padding:18px 16px;border-bottom:1px solid var(--sb-border);flex-shrink:0}
-.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
+.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none;font-family:var(--font)}
 .sb-logo span{color:#3b82f6}
-.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px}
-.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:var(--sb-text);text-decoration:none;font-size:13px;font-weight:600}
+.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px;font-family:var(--font)}
+.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:var(--sb-text);text-decoration:none;font-size:13px;font-weight:600;font-family:var(--font)}
 .sb-link:hover{background:var(--sb-hover);color:white}
 .sb-comp{border-top:1px solid var(--sb-border)}
 .sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:var(--sb-text);font-size:13px;font-weight:700;cursor:pointer;text-align:left;font-family:var(--font)}
 .sb-comp-btn:hover{background:var(--sb-hover);color:white}
 .sb-badge{font-size:10px;background:rgba(59,130,246,.25);color:#60a5fa;padding:2px 7px;border-radius:5px;font-weight:800}
 .sb-badge-gold{background:rgba(251,191,36,.25);color:#fbbf24}
-.sb-sub{display:none}
-.sb-sub.open{display:block}
-.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px}
+.sb-sub{display:none}.sb-sub.open{display:block}
+.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px;font-family:var(--font)}
 .sb-sub-link:hover{background:var(--sb-hover);color:white}
 .sb-sub-link.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800}
-.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0}
+.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0;font-family:var(--font)}
 .sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
 .sb-social{display:flex;gap:8px;margin-bottom:10px}
 .sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--sb-hover);border-radius:7px;font-size:13px;color:var(--sb-text);text-decoration:none}
 
-/* MAIN */
+/* ── MAIN ── */
 .gc-main{margin-left:var(--sb-w);flex:1;min-width:0;max-width:calc(100vw - var(--sb-w));display:flex;flex-direction:column}
 
-/* HEADER */
-.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:0 16px}
+/* ── HEADER ── */
+.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#002800,#004d00,#006600);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,80,0,.45);padding:0 16px}
 .gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px}
 .gc-hdr-left{display:flex;align-items:center;gap:10px}
-.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15}
+.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15;font-family:var(--font)}
 .gc-hdr-logo span{color:#f59e0b}
-.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px}
-.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase}
-.gc-tz-pill{font-size:10px;font-weight:900;color:white;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px}
+.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px;font-family:var(--font)}
+.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase;font-family:var(--font)}
+.gc-tz-pill{font-size:10px;font-weight:900;color:white;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--font)}
 .gc-hdr-nav{display:flex;gap:4px;padding-bottom:9px;overflow-x:auto;scrollbar-width:none}
 .gc-hdr-nav::-webkit-scrollbar{display:none}
-.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0;font-family:var(--font)}
 .gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
 .gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
 .gc-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:white;padding:4px;flex-shrink:0}
 
-/* CONTENT */
+/* ── COUNTDOWN BAR ── */
+.cd-bar{background:linear-gradient(135deg,#07111f,#0b1e3d,#0f2d5a);border-bottom:2px solid rgba(245,158,11,.35);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px}
+.cd-num{font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums;font-family:var(--font)}
+.cd-lbl{font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--font)}
+.cd-sep{font-size:18px;font-weight:900;color:rgba(245,158,11,.5);margin-bottom:12px}
+.cd-units{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── CONTENT ── */
 .gc-content{flex:1;padding:16px}
 
-/* AD BAR */
-.gc-ad-bar{background:rgba(255,255,255,.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.9);padding:8px 16px;font-size:12px;text-align:center}
+/* ── HERO BOX ── */
+.hero-box{background:linear-gradient(135deg,#002200,#004400,#005500);color:white;border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:0 12px 34px rgba(0,80,0,.3);border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden}
+.hero-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);background-size:200%;animation:hb 4s linear infinite}
+@keyframes hb{0%{background-position:0%}100%{background-position:200%}}
+.hero-box h1{font-size:20px;font-weight:900;line-height:1.2;margin-bottom:6px;font-family:var(--font)}
+.hero-box p{font-size:12px;color:rgba(255,255,255,.8);font-weight:600;font-family:var(--font)}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hero-meta span{font-size:11px;background:rgba(255,255,255,.12);padding:5px 9px;border-radius:999px;font-weight:700;font-family:var(--font)}
 
-/* SUBSCRIBE */
-.gc-subscribe{background:linear-gradient(135deg,#001a4d,#003fb8);padding:14px 16px}
-.gc-subscribe-title{font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:8px}
-.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
-.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
-.gc-subscribe-row button{background:#f59e0b;color:#0f172a;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
-.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px}
-
-/* CARDS */
-.hero-box{background:linear-gradient(135deg,#002b80,#003fb8,#0057e7);color:white;border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:0 12px 34px rgba(0,63,184,.25);border:1px solid rgba(255,255,255,.16)}
-.hero-box h1{font-size:22px;line-height:1.2;margin-bottom:6px}
-.hero-box p{font-size:12px;color:rgba(255,255,255,.86);font-weight:600}
-.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.hero-meta span{font-size:11px;background:rgba(255,255,255,.12);padding:5px 9px;border-radius:999px;font-weight:800}
-
+/* ── SEARCH BOX ── */
 .search-box{position:relative;margin-bottom:14px}
-.search-box input{width:100%;padding:12px 12px 12px 38px;border-radius:14px;border:1px solid #bfdbfe;background:white;font-size:13px;outline:none;font-family:var(--font)}
-.search-box::before{content:"🔍";position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px}
+.search-box input{width:100%;padding:13px 14px 13px 42px;border-radius:14px;border:1.5px solid #bfdbfe;background:white;font-size:14px;outline:none;font-family:var(--font);color:#0f172a;box-shadow:0 2px 8px rgba(100,160,220,.1);transition:border-color .2s}
+.search-box input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.search-box::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px}
 
-.group-section{margin-bottom:20px}
-.group-title{font-size:13px;font-weight:900;color:#002b80;padding:10px 14px;background:rgba(255,255,255,.8);border-radius:12px 12px 0 0;border:1px solid #bfdbfe;border-bottom:none;display:flex;align-items:center;gap:8px}
-.group-badge{background:#003fb8;color:white;font-size:11px;font-weight:900;padding:2px 8px;border-radius:6px}
-.teams-table{width:100%;background:white;border-radius:0 0 12px 12px;border:1px solid #bfdbfe;border-collapse:collapse;overflow:hidden}
-.teams-table th{background:#0f172a;color:white;font-size:11px;font-weight:800;padding:8px 12px;text-align:left;letter-spacing:.5px}
-.teams-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;font-size:12px;color:#0f172a;vertical-align:middle}
+/* ── CONFEDERATION FILTER ── */
+.conf-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.conf-btn{padding:6px 12px;border-radius:20px;border:1.5px solid #bfdbfe;background:white;font-size:11px;font-weight:800;cursor:pointer;font-family:var(--font);color:#64748b;transition:all .18s}
+.conf-btn:hover{border-color:#3b82f6;color:#1d4ed8}
+.conf-btn.active{background:#0f172a;border-color:#0f172a;color:white}
+.conf-btn.UEFA.active{background:#1e40af;border-color:#1e40af}
+.conf-btn.CONMEBOL.active{background:#166534;border-color:#166534}
+.conf-btn.CONCACAF.active{background:#854d0e;border-color:#854d0e}
+.conf-btn.CAF.active{background:#991b1b;border-color:#991b1b}
+.conf-btn.AFC.active{background:#7e22ce;border-color:#7e22ce}
+.conf-btn.OFC.active{background:#075985;border-color:#075985}
+
+/* ── GROUP SECTION ── */
+.group-section{margin-bottom:16px}
+.group-header{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.85);backdrop-filter:blur(22px);border-radius:14px 14px 0 0;border:1px solid rgba(255,255,255,.9);border-bottom:none}
+.group-badge{background:#07111f;color:white;font-size:12px;font-weight:900;padding:4px 10px;border-radius:8px;font-family:var(--font)}
+.group-name{font-size:13px;font-weight:800;color:#0f172a;flex:1;font-family:var(--font)}
+.group-count{font-size:10px;font-weight:700;color:#64748b;background:rgba(100,116,139,.1);padding:3px 8px;border-radius:10px;font-family:var(--font)}
+
+/* ── DESKTOP TABLE ── */
+.teams-table{width:100%;background:white;border-radius:0 0 14px 14px;border:1px solid rgba(255,255,255,.9);border-collapse:collapse;overflow:hidden;box-shadow:0 4px 16px rgba(100,160,220,.08)}
+.teams-table th{background:#0f172a;color:white;font-size:10px;font-weight:800;padding:9px 14px;text-align:left;letter-spacing:.8px;text-transform:uppercase;font-family:var(--font)}
+.teams-table td{padding:11px 14px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#0f172a;vertical-align:middle;font-family:var(--font)}
 .teams-table tr:last-child td{border-bottom:none}
 .teams-table tr:hover td{background:#f8faff}
-.team-flag-img{width:28px;height:19px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.15);margin-right:8px;vertical-align:middle}
+.team-flag-img{width:30px;height:20px;object-fit:cover;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.15);margin-right:10px;vertical-align:middle;flex-shrink:0}
 .team-name-cell{display:flex;align-items:center}
-.conf-badge{font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px}
+.conf-badge{font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;font-family:var(--font)}
 .conf-UEFA{background:#dbeafe;color:#1e40af}
 .conf-CONMEBOL{background:#dcfce7;color:#166534}
 .conf-CONCACAF{background:#fef9c3;color:#854d0e}
 .conf-CAF{background:#fee2e2;color:#991b1b}
 .conf-AFC{background:#fae8ff;color:#7e22ce}
 .conf-OFC{background:#e0f2fe;color:#075985}
-.rank-badge{font-size:11px;font-weight:700;color:#64748b}
+.rank-badge{font-size:12px;font-weight:800;color:#0f172a;background:#f1f5f9;border-radius:6px;padding:3px 8px;font-family:var(--font)}
 
-/* FOOTER */
-.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7}
+/* ── MOBILE CARDS (hidden on desktop) ── */
+.team-cards-mobile{display:none;background:white;border-radius:0 0 14px 14px;border:1px solid rgba(255,255,255,.9);border-top:none;overflow:hidden;box-shadow:0 4px 16px rgba(100,160,220,.08)}
+.team-card-mobile{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #f1f5f9}
+.team-card-mobile:last-child{border-bottom:none}
+.tcm-flag{width:36px;height:24px;object-fit:cover;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.15);flex-shrink:0}
+.tcm-info{flex:1;min-width:0}
+.tcm-name{font-size:13px;font-weight:800;color:#0f172a;font-family:var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tcm-conf{font-size:10px;font-weight:700;margin-top:2px;font-family:var(--font)}
+.tcm-rank{font-size:12px;font-weight:800;color:#0f172a;background:#f1f5f9;border-radius:6px;padding:4px 8px;white-space:nowrap;font-family:var(--font);flex-shrink:0}
+
+/* ── AD BAR ── */
+.gc-ad-bar{background:rgba(255,255,255,.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.9);padding:8px 16px;font-size:12px;text-align:center;font-family:var(--font)}
+
+/* ── SUBSCRIBE ── */
+.gc-subscribe{background:linear-gradient(135deg,#004400,#006600);padding:14px 16px}
+.gc-subscribe-title{font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:8px;font-family:var(--font)}
+.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
+.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
+.gc-subscribe-row button{background:#f59e0b;color:#0f172a;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px;font-family:var(--font)}
+
+/* ── FOOTER ── */
+.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7;font-family:var(--font)}
 .gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
 .gc-footer-links a{color:#a8b2c8;text-decoration:none}
+.gc-footer-links a:hover{color:white}
 .gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px;line-height:1.8}
 
-@media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
-@media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:10px!important}.gc-hdr-logo{font-size:14px}.gc-phase-pill{display:none}}
+/* ── RESPONSIVE ── */
+@media(min-width:769px){
+  .gc-hamburger{display:none!important}
+  .sb-overlay{display:none!important}
+  .gc-sidebar{transform:translateX(0)!important}
+  .gc-main{margin-left:var(--sb-w)!important}
+  /* Desktop: show table, hide mobile cards */
+  .teams-table{display:table}
+  .team-cards-mobile{display:none!important}
+}
+@media(max-width:768px){
+  .gc-hamburger{display:block!important}
+  .gc-main{margin-left:0!important}
+  .gc-sidebar{transform:translateX(-100%)!important}
+  .gc-sidebar.open{transform:translateX(0)!important}
+  .gc-content{padding:12px!important}
+  .gc-phase-pill{display:none}
+  .cd-bar{justify-content:center}
+  .cd-bar>span:first-child{display:none}
+  /* Mobile: hide table, show cards */
+  .teams-table{display:none!important}
+  .team-cards-mobile{display:block!important}
+  /* Group header rounded on mobile since no table below */
+  .group-header{border-radius:14px 14px 0 0}
+  .hero-box h1{font-size:17px}
+  .conf-filter{gap:5px}
+  .conf-btn{font-size:10px;padding:5px 10px}
+}
 </style>
 </head>
 <body>
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 
+<!-- SIDEBAR -->
 <nav class="gc-sidebar" id="gcSidebar">
   <div class="sb-logo"><a href="/index.html">⚽ Goal<span>Current</span>.live</a></div>
   <div class="sb-section">Main Menu</div>
@@ -133,6 +201,9 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     <div class="sb-sub" id="pl-sub">
       <a href="/premier-league/index.html" class="sb-sub-link">🏠 Overview</a>
       <a href="/premier-league/table/index.html" class="sb-sub-link">📊 Table</a>
+      <a href="/premier-league/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
+      <a href="/premier-league/results/index.html" class="sb-sub-link">✅ Results</a>
+      <a href="/premier-league/news/index.html" class="sb-sub-link">📰 News</a>
     </div>
   </div>
   <div class="sb-comp">
@@ -141,6 +212,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       <a href="/worldcup2026/index.html" class="sb-sub-link">🏠 Overview</a>
       <a href="/worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
       <a href="/worldcup2026/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
+      <a href="/worldcup2026/bracket/index.html" class="sb-sub-link">🏅 Bracket</a>
+      <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
       <a href="/worldcup2026/teams/index.html" class="sb-sub-link active">👕 Teams</a>
       <a href="/worldcup2026/news/index.html" class="sb-sub-link">📰 News</a>
     </div>
@@ -167,13 +240,15 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 </nav>
 
 <div class="gc-main">
+
+  <!-- HEADER -->
   <header class="gc-header">
     <div class="gc-hdr-top">
       <div class="gc-hdr-left">
         <button class="gc-hamburger" onclick="openSidebar()">☰</button>
         <div>
           <div class="gc-hdr-logo">🏆 World Cup <span>2026</span></div>
-          <div class="gc-hdr-sub">👕 All 48 Teams · Groups · Confederations</div>
+          <div class="gc-hdr-sub">👕 All 48 Teams · 12 Groups · 6 Confederations</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:7px;flex-shrink:0">
@@ -185,60 +260,67 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       <a href="/worldcup2026/index.html" class="gc-hdr-navlink">🏠 Overview</a>
       <a href="/worldcup2026/groups/index.html" class="gc-hdr-navlink">🔢 Groups</a>
       <a href="/worldcup2026/fixtures/index.html" class="gc-hdr-navlink">📅 Fixtures</a>
+      <a href="/worldcup2026/bracket/index.html" class="gc-hdr-navlink">🏅 Bracket</a>
+      <a href="/worldcup2026/venues/index.html" class="gc-hdr-navlink">🏟️ Venues</a>
       <a href="/worldcup2026/teams/index.html" class="gc-hdr-navlink active">👕 Teams</a>
       <a href="/worldcup2026/news/index.html" class="gc-hdr-navlink">📰 News</a>
-      <a href="/premier-league/index.html" class="gc-hdr-navlink">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a>
     </nav>
   </header>
 
   <!-- COUNTDOWN BAR -->
-  <div style="background:linear-gradient(135deg,#07111f 0%,#0b1e3d 60%,#0f2d5a 100%);border-bottom:2px solid rgba(245,158,11,.35);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+  <div class="cd-bar">
     <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap" id="cdLabel">⏳ World Cup starts in</span>
-    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap" id="cdUnits">
-      <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px">
-        <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums" id="cdDays">--</span>
-        <span style="font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px">Days</span>
-      </div>
-      <span style="font-size:18px;font-weight:900;color:rgba(245,158,11,.5);line-height:1;margin-bottom:12px">:</span>
-      <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px">
-        <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums" id="cdHours">--</span>
-        <span style="font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px">Hours</span>
-      </div>
-      <span style="font-size:18px;font-weight:900;color:rgba(245,158,11,.5);line-height:1;margin-bottom:12px">:</span>
-      <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px">
-        <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums" id="cdMins">--</span>
-        <span style="font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px">Mins</span>
-      </div>
-      <span style="font-size:18px;font-weight:900;color:rgba(245,158,11,.5);line-height:1;margin-bottom:12px">:</span>
-      <div style="display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px">
-        <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums" id="cdSecs">--</span>
-        <span style="font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px">Secs</span>
-      </div>
+    <div class="cd-units">
+      <div class="cd-unit"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
     </div>
     <div style="display:flex;align-items:center;gap:8px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:6px 12px;white-space:nowrap">
-      <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1" id="cdMatchNum">104</span>
-      <span style="font-size:10px;font-weight:800;color:rgba(255,255,255,.55);line-height:1.3">matches<br>total</span>
+      <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1">48</span>
+      <span style="font-size:10px;font-weight:800;color:rgba(255,255,255,.55);line-height:1.3">nations<br>qualified</span>
     </div>
   </div>
 
   <main class="gc-content">
+
+    <!-- HERO -->
     <div class="hero-box">
-      <h1>FIFA World Cup 2026 — All Teams</h1>
-      <p>All 48 qualified nations across 12 groups · 6 confederations</p>
+      <h1>FIFA World Cup 2026 — All 48 Teams</h1>
+      <p>All qualified nations across 12 groups and 6 confederations</p>
       <div class="hero-meta">
         <span>📅 11 Jun – 19 Jul 2026</span>
         <span>🌎 USA · Mexico · Canada</span>
         <span>🏆 48 Teams · 12 Groups</span>
+        <span>⚽ 104 Matches</span>
       </div>
     </div>
 
+    <!-- SEARCH -->
     <div class="search-box">
-      <input type="search" id="teamSearch" placeholder="Search team, group or confederation..." oninput="filterTeams()">
+      <input type="search" id="teamSearch" placeholder="Search team, group or confederation..." oninput="filterTeams()" autocomplete="off">
     </div>
 
+    <!-- CONFEDERATION FILTER -->
+    <div class="conf-filter">
+      <button class="conf-btn active" data-conf="ALL" onclick="setConf('ALL',this)">🌍 All</button>
+      <button class="conf-btn UEFA" data-conf="UEFA" onclick="setConf('UEFA',this)">🇪🇺 UEFA</button>
+      <button class="conf-btn CONMEBOL" data-conf="CONMEBOL" onclick="setConf('CONMEBOL',this)">🌎 CONMEBOL</button>
+      <button class="conf-btn CONCACAF" data-conf="CONCACAF" onclick="setConf('CONCACAF',this)">🌎 CONCACAF</button>
+      <button class="conf-btn CAF" data-conf="CAF" onclick="setConf('CAF',this)">🌍 CAF</button>
+      <button class="conf-btn AFC" data-conf="AFC" onclick="setConf('AFC',this)">🌏 AFC</button>
+      <button class="conf-btn OFC" data-conf="OFC" onclick="setConf('OFC',this)">🌊 OFC</button>
+    </div>
+
+    <!-- TEAMS OUTPUT -->
     <div id="teamsOut"></div>
+
   </main>
 
+  <!-- NORDVPN AD BAR -->
   <div class="gc-ad-bar">
     🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
     <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:3px 10px;border-radius:20px;font-weight:800;text-decoration:none;margin:0 6px">Get Deal →</a>
@@ -246,8 +328,9 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
   </div>
 
+  <!-- SUBSCRIBE -->
   <div class="gc-subscribe">
-    <div class="gc-subscribe-title">📬 Get World Cup alerts &amp; news direct to your inbox</div>
+    <div class="gc-subscribe-title">📬 Get World Cup 2026 alerts &amp; news direct to your inbox</div>
     <div class="gc-subscribe-row">
       <input type="email" id="gc-email-input" placeholder="Your email address">
       <button onclick="gcSubscribe()">Subscribe →</button>
@@ -255,11 +338,15 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     <div class="gc-sub-msg" id="gc-sub-msg">✅ Thank you! You will receive World Cup updates soon.</div>
   </div>
 
+  <!-- FOOTER -->
   <footer class="gc-footer">
     <div class="gc-footer-links">
-      <a href="/about.html">About</a><a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a>
-      <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/disclaimer.html">Disclaimer</a>
+      <a href="/cookies.html">Cookies</a>
     </div>
     <div class="gc-footer-copy">
       © 2026 <strong style="color:#a8b2c8">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
@@ -268,17 +355,17 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
   </footer>
 </div>
 
-<!-- Cookie Banner -->
+<!-- COOKIE BANNER -->
 <div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content, save your favourites and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
+  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/privacy.html" style="color:#f59e0b;text-decoration:none">Privacy Policy</a></div>
   <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
+    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:var(--font)">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:var(--font)">Decline</button>
   </div>
 </div>
 
 <script>
-const GROUPS = {
+const GROUPS={
   A:{name:'Group A',teams:[{n:'Mexico',f:'mx',c:'CONCACAF',r:11},{n:'South Africa',f:'za',c:'CAF',r:60},{n:'Paraguay',f:'py',c:'CONMEBOL',r:61},{n:'Senegal',f:'sn',c:'CAF',r:41}]},
   B:{name:'Group B',teams:[{n:'USA',f:'us',c:'CONCACAF',r:13},{n:'Panama',f:'pa',c:'CONCACAF',r:43},{n:'Colombia',f:'co',c:'CONMEBOL',r:9},{n:'Ghana',f:'gh',c:'CAF',r:62}]},
   C:{name:'Group C',teams:[{n:'Canada',f:'ca',c:'CONCACAF',r:40},{n:'Honduras',f:'hn',c:'CONCACAF',r:83},{n:'Chile',f:'cl',c:'CONMEBOL',r:33},{n:'Cameroon',f:'cm',c:'CAF',r:42}]},
@@ -289,40 +376,83 @@ const GROUPS = {
   H:{name:'Group H',teams:[{n:'Spain',f:'es',c:'UEFA',r:3},{n:'South Korea',f:'kr',c:'AFC',r:22},{n:'Ecuador',f:'ec',c:'CONMEBOL',r:31},{n:'Bahrain',f:'bh',c:'AFC',r:84}]},
   I:{name:'Group I',teams:[{n:'Argentina',f:'ar',c:'CONMEBOL',r:1},{n:'Morocco',f:'ma',c:'CAF',r:14},{n:'Ukraine',f:'ua',c:'UEFA',r:24},{n:'Uzbekistan',f:'uz',c:'AFC',r:68}]},
   J:{name:'Group J',teams:[{n:'Netherlands',f:'nl',c:'UEFA',r:7},{n:'Peru',f:'pe',c:'CONMEBOL',r:38},{n:'Indonesia',f:'id',c:'AFC',r:127},{n:'DR Congo',f:'cd',c:'CAF',r:57}]},
-  K:{name:'Group K',teams:[{n:'England',f:'gb-eng',c:'UEFA',r:4},{n:'Slovakia',f:'sk',c:'UEFA',r:47},{n:'Algeria',f:'dz',c:'CAF',r:36},{n:'Trinidad & Tobago',f:'tt',c:'CONCACAF',r:95}]},
-  L:{name:'Group L',teams:[{n:'Belgium',f:'be',c:'UEFA',r:3},{n:'Venezuela',f:'ve',c:'CONMEBOL',r:55},{n:'Thailand',f:'th',c:'AFC',r:97},{n:'Egypt',f:'eg',c:'CAF',r:34}]}
+  K:{name:'Group K',teams:[{n:'England',f:'gb-eng',c:'UEFA',r:4},{n:'Slovakia',f:'sk',c:'UEFA',r:47},{n:'Algeria',f:'dz',c:'CAF',r:36},{n:'Venezuela',f:'ve',c:'CONMEBOL',r:55}]},
+  L:{name:'Group L',teams:[{n:'Belgium',f:'be',c:'UEFA',r:3},{n:'Thailand',f:'th',c:'AFC',r:97},{n:'Egypt',f:'eg',c:'CAF',r:34},{n:'New Zealand',f:'nz',c:'OFC',r:93}]}
 };
 
-function renderTeams(filter=''){
-  const out = document.getElementById('teamsOut');
-  let html = '';
-  const q = filter.toLowerCase();
-  Object.entries(GROUPS).forEach(([key,group])=>{
-    const filtered = group.teams.filter(t=>
-      !q || t.n.toLowerCase().includes(q) || group.name.toLowerCase().includes(q) || t.c.toLowerCase().includes(q)
-    );
-    if(!filtered.length) return;
-    html += `<div class="group-section">
-      <div class="group-title"><span class="group-badge">${key}</span>${group.name}</div>
-      <table class="teams-table">
-        <thead><tr><th>Team</th><th>Confederation</th><th>FIFA Rank</th></tr></thead>
-        <tbody>`;
-    filtered.forEach(t=>{
-      html += `<tr>
-        <td><div class="team-name-cell"><img src="https://flagcdn.com/w40/${t.f}.png" class="team-flag-img" alt="${t.n}"><strong>${t.n}</strong></div></td>
-        <td><span class="conf-badge conf-${t.c}">${t.c}</span></td>
-        <td><span class="rank-badge">#${t.r}</span></td>
-      </tr>`;
-    });
-    html += '</tbody></table></div>';
-  });
-  out.innerHTML = html || '<p style="color:#64748b;padding:20px;text-align:center">No teams found.</p>';
-}
+const CONF_COLORS={
+  UEFA:'conf-UEFA',CONMEBOL:'conf-CONMEBOL',CONCACAF:'conf-CONCACAF',
+  CAF:'conf-CAF',AFC:'conf-AFC',OFC:'conf-OFC'
+};
 
-function filterTeams(){
+let activeConf='ALL';
+
+function setConf(conf,btn){
+  activeConf=conf;
+  document.querySelectorAll('.conf-btn').forEach(b=>{
+    b.classList.remove('active');
+    b.className=b.className.replace(/ active/g,'');
+  });
+  btn.classList.add('active');
   renderTeams(document.getElementById('teamSearch').value);
 }
 
+function renderTeams(filter){
+  const out=document.getElementById('teamsOut');
+  let html='';
+  const q=(filter||'').toLowerCase();
+  Object.entries(GROUPS).forEach(([key,group])=>{
+    const filtered=group.teams.filter(t=>{
+      const matchSearch=!q||t.n.toLowerCase().includes(q)||group.name.toLowerCase().includes(q)||t.c.toLowerCase().includes(q);
+      const matchConf=activeConf==='ALL'||t.c===activeConf;
+      return matchSearch&&matchConf;
+    });
+    if(!filtered.length)return;
+
+    // Desktop table rows
+    const tableRows=filtered.map(t=>`
+      <tr>
+        <td><div class="team-name-cell">
+          <img src="https://flagcdn.com/w40/${t.f}.png" class="team-flag-img" alt="${t.n}" loading="lazy" onerror="this.style.display='none'">
+          <strong>${t.n}</strong>
+        </div></td>
+        <td><span class="conf-badge ${CONF_COLORS[t.c]||''}">${t.c}</span></td>
+        <td><span class="rank-badge">#${t.r}</span></td>
+      </tr>`).join('');
+
+    // Mobile card rows
+    const mobileCards=filtered.map(t=>`
+      <div class="team-card-mobile">
+        <img src="https://flagcdn.com/w40/${t.f}.png" class="tcm-flag" alt="${t.n}" loading="lazy" onerror="this.style.display='none'">
+        <div class="tcm-info">
+          <div class="tcm-name">${t.n}</div>
+          <div class="tcm-conf"><span class="conf-badge ${CONF_COLORS[t.c]||''}">${t.c}</span></div>
+        </div>
+        <span class="tcm-rank">#${t.r}</span>
+      </div>`).join('');
+
+    html+=`
+      <div class="group-section">
+        <div class="group-header">
+          <span class="group-badge">${key}</span>
+          <span class="group-name">${group.name}</span>
+          <span class="group-count">${filtered.length} team${filtered.length>1?'s':''}</span>
+        </div>
+        <table class="teams-table">
+          <thead><tr><th>Team</th><th>Confederation</th><th>FIFA Rank</th></tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+        <div class="team-cards-mobile">${mobileCards}</div>
+      </div>`;
+  });
+  out.innerHTML=html||'<p style="color:#64748b;padding:24px;text-align:center;background:rgba(255,255,255,.7);border-radius:14px;font-weight:600">No teams found matching your search.</p>';
+}
+
+function filterTeams(){renderTeams(document.getElementById('teamSearch').value);}
+
+function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden'}
+function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
+function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 function gcDeclineCookies(){localStorage.setItem('gc_ck','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 function gcSubscribe(){
@@ -340,42 +470,29 @@ function gcSubscribe(){
   document.body.appendChild(form);form.submit();document.body.removeChild(form);
   if(msg)msg.style.display='block';input.value='';
 }
-function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden'}
-function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
-function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 
 if(!localStorage.getItem('gc_ck')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-window.onload = function(){ renderTeams(); };
+window.onload=function(){renderTeams();};
 
-// Countdown
+// COUNTDOWN
 (function(){
-  var TARGET = new Date('2026-06-11T19:00:00Z');
+  var TARGET=new Date('2026-06-11T19:00:00Z');
   function pad(n){return n<10?'0'+n:''+n;}
   function tick(){
-    var now = new Date();
-    var diff = TARGET - now;
-    var lbl = document.getElementById('cdLabel');
-    var days = document.getElementById('cdDays');
-    var hrs  = document.getElementById('cdHours');
-    var mins = document.getElementById('cdMins');
-    var secs = document.getElementById('cdSecs');
-    if(!days) return;
-    if(diff > 0){
-      var d = Math.floor(diff/86400000);
-      var h = Math.floor((diff%86400000)/3600000);
-      var m = Math.floor((diff%3600000)/60000);
-      var s = Math.floor((diff%60000)/1000);
-      if(lbl) lbl.textContent = '⏳ World Cup starts in';
-      days.textContent = pad(d);
-      hrs.textContent  = pad(h);
-      mins.textContent = pad(m);
-      secs.textContent = pad(s);
+    var diff=TARGET-new Date();
+    var lbl=document.getElementById('cdLabel');
+    if(diff>0){
+      if(lbl)lbl.textContent='⏳ World Cup starts in';
+      document.getElementById('cdDays').textContent=pad(Math.floor(diff/86400000));
+      document.getElementById('cdHours').textContent=pad(Math.floor((diff%86400000)/3600000));
+      document.getElementById('cdMins').textContent=pad(Math.floor((diff%3600000)/60000));
+      document.getElementById('cdSecs').textContent=pad(Math.floor((diff%60000)/1000));
     } else {
-      if(lbl) lbl.textContent = '🏆 World Cup 2026 is LIVE!';
-      days.textContent='00'; hrs.textContent='00'; mins.textContent='00'; secs.textContent='00';
+      if(lbl)lbl.textContent='🏆 World Cup 2026 is LIVE!';
+      ['cdDays','cdHours','cdMins','cdSecs'].forEach(function(id){document.getElementById(id).textContent='00';});
     }
   }
-  tick(); setInterval(tick, 1000);
+  tick();setInterval(tick,1000);
 })();
 </script>
 </body>
