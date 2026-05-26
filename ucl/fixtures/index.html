@@ -3,47 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon | GoalCurrent.live</title>
-<meta name="description" content="This page is coming soon on GoalCurrent.live — your home for live football scores, Premier League, World Cup 2026 and UCL Final.">
+<title>UCL Fixtures 2025/26 | GoalCurrent.live</title>
+<meta name="description" content="UEFA Champions League 2025/26 fixtures — PSG vs Arsenal Final, 30 May 2026, Budapest. Semi-final results included.">
+<link rel="canonical" href="https://goalcurrent.live/ucl/fixtures/">
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-:root {
-  --sb-w: 240px;
-  --sb-bg: #1a1f2e;
-  --sb-border: rgba(255,255,255,0.08);
-  --sb-hover: rgba(255,255,255,0.07);
-  --sb-active: rgba(37,99,235,0.22);
-  --sb-text: rgba(255,255,255,0.78);
-  --sb-text-dim: rgba(255,255,255,0.38);
-  --sb-accent: #3b82f6;
-  --font: Verdana, Geneva, Tahoma, sans-serif;
-  --blue: #2563eb; --t1: #0f172a; --t2: #334155; --t3: #64748b; --t4: #94a3b8;
-  --bg1: #dbeafe; --bg2: #eff6ff; --bg3: #e0f2fe;
-  --glass: rgba(255,255,255,0.62);
-  --glass-border: rgba(255,255,255,0.82);
-  --glass-shadow: 0 4px 20px rgba(100,160,220,0.14);
-  --blur: blur(22px);
-  --r-md: 16px;
-}
+:root{--sb-w:240px;--sb-bg:#1a1f2e;--sb-border:rgba(255,255,255,0.08);--sb-hover:rgba(255,255,255,0.07);--sb-active:rgba(37,99,235,0.22);--sb-text:rgba(255,255,255,0.78);--sb-text-dim:rgba(255,255,255,0.38);--sb-accent:#3b82f6;--font:Verdana,Geneva,Tahoma,sans-serif;--blue:#2563eb;--t1:#0f172a;--t2:#334155;--t3:#64748b;--t4:#94a3b8;--bg1:#dbeafe;--bg2:#eff6ff;--bg3:#e0f2fe;--glass:rgba(255,255,255,0.62);--glass-border:rgba(255,255,255,0.82);--glass-shadow:0 4px 20px rgba(100,160,220,0.14);--blur:blur(22px);--r-md:16px;--ucl:#001e62;--ucl-gold:#ffd700}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body {
-  font-family: var(--font);
-  background: linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
-  background-attachment: fixed;
-  min-height: 100vh; display: flex; overflow-x: hidden;
-}
-
-/* ── SIDEBAR ── */
-.gc-sidebar {
-  width: var(--sb-w); flex-shrink: 0;
-  background: var(--sb-bg);
-  position: fixed; top: 0; left: 0; bottom: 0;
-  z-index: 300; overflow-y: auto;
-  -ms-overflow-style: none; scrollbar-width: none;
-  border-right: 1px solid var(--sb-border);
-  display: flex; flex-direction: column;
-}
+body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;min-height:100vh;display:flex;overflow-x:hidden}
+.gc-sidebar{width:var(--sb-w);flex-shrink:0;background:var(--sb-bg);position:fixed;top:0;left:0;bottom:0;z-index:300;overflow-y:auto;-ms-overflow-style:none;scrollbar-width:none;border-right:1px solid var(--sb-border);display:flex;flex-direction:column}
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0}
 .sb-logo img{height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));flex-shrink:0}
@@ -70,58 +39,45 @@ body {
 .sb-links.open{display:block}
 .sb-links a{display:flex;align-items:center;gap:8px;padding:7px 16px 7px 42px;font-size:12px;font-weight:500;color:var(--sb-text-dim);text-decoration:none;transition:all 0.16s;border-left:3px solid transparent}
 .sb-links a:hover{color:#fff;background:var(--sb-hover)}
+.sb-links a.active{color:var(--sb-accent);background:var(--sb-active);border-left-color:var(--sb-accent);font-weight:700}
 .sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
 .sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7}
 .sb-footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-
-/* ── PAGE ── */
-.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 100px;text-align:center}
-
-/* ── COMING SOON CONTENT ── */
-.cs-icon{font-size:72px;margin-bottom:16px;animation:cs-float 3s ease-in-out infinite}
-@keyframes cs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-.cs-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);color:var(--blue);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:14px}
-
-.cs-title{font-size:28px;font-weight:800;color:var(--t1);letter-spacing:-0.5px;margin-bottom:8px}
-.cs-title em{color:var(--blue);font-style:normal}
-.cs-sub{font-size:14px;color:var(--t3);line-height:1.7;max-width:420px;margin:0 auto 28px}
-
-/* ── QUICK LINKS ── */
-.cs-links{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:440px;width:100%;margin-bottom:28px}
-.cs-link{display:flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 16px;text-decoration:none;color:var(--t1);box-shadow:var(--glass-shadow);transition:all 0.2s;font-family:var(--font)}
-.cs-link:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(100,160,220,0.22);border-color:rgba(37,99,235,0.3)}
-.cs-link-icon{font-size:20px;flex-shrink:0}
-.cs-link-label{font-size:13px;font-weight:700;color:var(--t1)}
-.cs-link-sub{font-size:10.5px;color:var(--t4);margin-top:2px}
-.cs-link-home{grid-column:1/-1;background:linear-gradient(135deg,#2563eb,#3b82f6);border-color:transparent}
-.cs-link-home .cs-link-label,.cs-link-home .cs-link-sub{color:#fff}
-
-/* ── EMAIL SIGNUP ── */
-.cs-email-box{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:20px;max-width:420px;width:100%;box-shadow:var(--glass-shadow)}
-.cs-email-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:4px}
-.cs-email-sub{font-size:11.5px;color:var(--t3);margin-bottom:14px}
-.cs-email-row{display:flex;gap:8px}
-.cs-email-input{flex:1;padding:10px 14px;border:1.5px solid rgba(37,99,235,0.2);border-radius:10px;background:rgba(255,255,255,0.9);font-family:var(--font);font-size:12.5px;color:var(--t1);outline:none}
-.cs-email-btn{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
-
-/* ── MOBILE ── */
-.sb-hamburger{display:none;position:fixed;top:38px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
-@media(max-width:768px){
-  .gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}
-  .gc-sidebar.open{transform:translateX(0)}
-  .gc-page-wrap{margin-left:0;padding:30px 16px 100px}
-  .sb-hamburger{display:flex}
-  .cs-links{grid-template-columns:1fr}
-  .cs-link-home{grid-column:1}
-  .cs-email-row{flex-direction:column}
-}
+.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column}
+.gc-topbar{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1)}
+.gc-breadcrumb{font-size:12px;color:var(--t3)}
+.gc-breadcrumb a{color:var(--blue);text-decoration:none}
+.gc-topbar-badge{background:linear-gradient(135deg,var(--ucl),#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.gc-content{padding:24px 28px 100px;flex:1}
+.sec-head{display:flex;align-items:center;gap:10px;margin:20px 0 14px}
+.sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}
+.sec-line{flex:1;height:1px;background:rgba(100,160,220,0.2)}
+.match-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px 20px;margin-bottom:12px;box-shadow:var(--glass-shadow)}
+.match-card.final{border:2px solid var(--ucl-gold);background:linear-gradient(135deg,rgba(0,30,98,0.06),rgba(255,215,0,0.04))}
+.match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;color:var(--t3);font-weight:700;flex-wrap:wrap;gap:6px}
+.match-stage{background:rgba(0,30,98,0.1);color:var(--ucl);padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.5px}
+.match-stage.final-badge{background:var(--ucl-gold);color:var(--ucl)}
+.match-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;text-align:center;margin-bottom:14px}
+.match-team{display:flex;flex-direction:column;align-items:center;gap:6px}
+.match-flag{width:56px;height:38px;object-fit:cover;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.match-name{font-size:14px;font-weight:800;color:var(--t1)}
+.match-center{text-align:center}
+.match-vs{font-size:13px;font-weight:800;color:var(--ucl);margin-bottom:4px}
+.match-score{font-size:26px;font-weight:900;color:var(--t1);line-height:1}
+.match-time{font-size:16px;font-weight:900;color:var(--blue)}
+.match-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(100,160,220,0.12);flex-wrap:wrap;gap:8px}
+.tv-info{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t3)}
+.tv-pill{background:rgba(37,99,235,0.1);color:var(--blue);padding:3px 8px;border-radius:6px;font-weight:700;font-size:11px}
+.venue-info{font-size:11px;color:var(--t4)}
+.goals-list{font-size:10px;color:var(--t3);margin-top:6px;line-height:1.8;text-align:center}
+.yt-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,0,0,0.08);color:#dc2626;border:1px solid rgba(255,0,0,0.2);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;text-decoration:none;margin-top:8px}
+.yt-link:hover{background:rgba(255,0,0,0.15)}
+.sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
+@media(max-width:768px){.gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}.gc-sidebar.open{transform:translateX(0)}.gc-page-wrap{margin-left:0}.gc-content{padding:16px 14px 100px}.sb-hamburger{display:flex}.match-name{font-size:12px}.match-score{font-size:20px}.gc-topbar{padding:10px 14px}}
 </style>
 </head>
 <body>
-
 <button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
-
 <aside class="gc-sidebar" id="gc-sidebar">
   <a href="/" class="sb-logo">
     <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
@@ -151,24 +107,24 @@ body {
       <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
       <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
     </div>
-    <button class="sb-comp-btn open" onclick="sbToggle('sb-wc',this)">
+    <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
       <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
       <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
     </button>
-    <div class="sb-links open" id="sb-wc">
+    <div class="sb-links" id="sb-wc">
       <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
       <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
       <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
       <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
       <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
     </div>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+    <button class="sb-comp-btn open" onclick="sbToggle('sb-ucl',this)">
       <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
       <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
     </button>
-    <div class="sb-links" id="sb-ucl">
+    <div class="sb-links open" id="sb-ucl">
       <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+      <a href="/ucl/fixtures/" class="active"><span class="sb-link-icon">📅</span> Fixtures</a>
       <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
       <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
       <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
@@ -182,75 +138,206 @@ body {
 </aside>
 
 <div class="gc-page-wrap">
-
-  <div class="cs-icon">🚧</div>
-
-  <div class="cs-badge">⚙️ GoalCurrent.live — Coming Soon</div>
-
-  <div class="cs-title">This Page is <em>Coming Soon!</em></div>
-
-  <p class="cs-sub">
-    We are working hard to bring you the best live scores, fixtures, standings and news for this section.
-    Check back very soon — it will be ready before the <strong>World Cup 2026</strong> kicks off on <strong>11 June!</strong>
-  </p>
-
-  <!-- Quick Links -->
-  <div class="cs-links">
-    <a href="/" class="cs-link cs-link-home">
-      <div class="cs-link-icon">🏠</div>
-      <div><div class="cs-link-label">Go to Homepage</div><div class="cs-link-sub">Live scores · News · Fixtures</div></div>
-    </a>
-    <a href="/worldcup2026/" class="cs-link">
-      <div class="cs-link-icon">🏆</div>
-      <div><div class="cs-link-label">World Cup 2026</div><div class="cs-link-sub">Groups · Fixtures · Teams</div></div>
-    </a>
-    <a href="/ucl/" class="cs-link">
-      <div class="cs-link-icon">⭐</div>
-      <div><div class="cs-link-label">UCL Final</div><div class="cs-link-sub">PSG vs Arsenal · 30 May</div></div>
-    </a>
-    <a href="/premier-league/" class="cs-link">
-      <div class="cs-link-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-      <div><div class="cs-link-label">Premier League</div><div class="cs-link-sub">Table · Results · News</div></div>
-    </a>
+  <div class="gc-topbar">
+    <div class="gc-breadcrumb"><a href="/">GoalCurrent.live</a> › <a href="/ucl/">Champions League</a> › Fixtures</div>
+    <div class="gc-topbar-badge">⭐ UCL Final: 30 May · Budapest</div>
   </div>
+  <div class="gc-content">
 
-  <!-- Email signup -->
-  <div class="cs-email-box">
-    <div class="cs-email-title">📬 Get Notified When It Launches!</div>
-    <div class="cs-email-sub">Subscribe for free — we'll email you when this page goes live</div>
-    <div class="cs-email-row">
-      <input type="email" class="cs-email-input" id="cs-email" placeholder="Your email address">
-      <button class="cs-email-btn" onclick="csSubscribe()">Notify Me →</button>
+    <div class="sec-head"><div class="sec-title">🏆 THE FINAL</div><div class="sec-line"></div></div>
+
+    <div class="match-card final">
+      <div class="match-header">
+        <span class="match-stage final-badge">⭐ UEFA CHAMPIONS LEAGUE FINAL 2026</span>
+        <span>Saturday, 30 May 2026 · 17:00 BST</span>
+      </div>
+      <div class="match-teams">
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/fr.png" class="match-flag" alt="PSG">
+          <div class="match-name">PSG</div>
+          <div style="font-size:10px;color:var(--t4)">Paris Saint-Germain</div>
+          <div style="font-size:10px;color:var(--t3);font-weight:700">Defending Champions</div>
+        </div>
+        <div class="match-center">
+          <div class="match-vs">VS</div>
+          <div class="match-time">17:00 BST</div>
+          <div id="finalCountdown" style="font-size:11px;color:var(--ucl);font-weight:700;margin-top:6px"></div>
+        </div>
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/gb-eng.png" class="match-flag" alt="Arsenal">
+          <div class="match-name">Arsenal</div>
+          <div style="font-size:10px;color:var(--t4)">Arsenal FC</div>
+          <div style="font-size:10px;color:var(--t3);font-weight:700">First final since 2006</div>
+        </div>
+      </div>
+      <div class="match-footer">
+        <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span><span class="tv-pill">discovery+</span><span style="margin-left:4px;color:var(--t4)">🇬🇧 · CBS/Paramount+ 🇺🇸</span></div>
+        <div class="venue-info">🏟 Puskás Aréna, Budapest · 67,215</div>
+      </div>
     </div>
-    <div id="cs-msg" style="display:none;margin-top:8px;font-size:12px;color:#16a34a;font-weight:600;font-family:Verdana,sans-serif">✅ Thank you! We will notify you when this page is ready.</div>
-  </div>
 
+    <div class="sec-head" style="margin-top:28px"><div class="sec-title">📊 SEMI-FINALS — RESULTS</div><div class="sec-line"></div></div>
+
+    <!-- PSG 5-4 Bayern 1st leg -->
+    <div class="match-card">
+      <div class="match-header">
+        <span class="match-stage">SEMI-FINAL · 1st Leg</span>
+        <span>Monday, 28 April 2026 · FT</span>
+      </div>
+      <div class="match-teams">
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/fr.png" class="match-flag" alt="PSG">
+          <div class="match-name">PSG</div>
+        </div>
+        <div class="match-center">
+          <div class="match-vs">FT</div>
+          <div class="match-score">5 — 4</div>
+        </div>
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/de.png" class="match-flag" alt="Bayern">
+          <div class="match-name">Bayern Munich</div>
+        </div>
+      </div>
+      <div class="goals-list">
+        ⚽ Kvaratskhelia 24' · Joao Neves 33' · Dembélé 45+5' (pen) · Kvaratskhelia 56' · Dembélé 58'<br>
+        ⚽ Kane 17' (pen) · M.Olise 41' · Upamecano 65' (og) · L.Díaz 68'
+      </div>
+      <div style="text-align:center">
+        <a href="https://youtu.be/rzZZbrRNyuM" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
+      </div>
+      <div class="match-footer" style="margin-top:12px">
+        <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
+        <div class="venue-info">🏟 Parc des Princes, Paris</div>
+      </div>
+    </div>
+
+    <!-- Atletico 1-1 Arsenal 1st leg -->
+    <div class="match-card">
+      <div class="match-header">
+        <span class="match-stage">SEMI-FINAL · 1st Leg</span>
+        <span>Tuesday, 29 April 2026 · FT</span>
+      </div>
+      <div class="match-teams">
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/es.png" class="match-flag" alt="Atletico">
+          <div class="match-name">Atlético Madrid</div>
+        </div>
+        <div class="match-center">
+          <div class="match-vs">FT</div>
+          <div class="match-score">1 — 1</div>
+        </div>
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/gb-eng.png" class="match-flag" alt="Arsenal">
+          <div class="match-name">Arsenal</div>
+        </div>
+      </div>
+      <div class="goals-list">
+        ⚽ J.Álvarez 56' (pen)<br>
+        ⚽ V.Gyökeres 44' (pen)
+      </div>
+      <div style="text-align:center">
+        <a href="https://youtu.be/sKclQ_mr1Nc" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
+      </div>
+      <div class="match-footer" style="margin-top:12px">
+        <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
+        <div class="venue-info">🏟 Metropolitano, Madrid</div>
+      </div>
+    </div>
+
+    <!-- Arsenal 1-0 Atletico 2nd leg -->
+    <div class="match-card">
+      <div class="match-header">
+        <span class="match-stage">SEMI-FINAL · 2nd Leg</span>
+        <span>Tuesday, 5 May 2026 · FT · Arsenal win 2-1 agg</span>
+      </div>
+      <div class="match-teams">
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/gb-eng.png" class="match-flag" alt="Arsenal">
+          <div class="match-name">Arsenal</div>
+        </div>
+        <div class="match-center">
+          <div class="match-vs">FT · AGG 2-1</div>
+          <div class="match-score">1 — 0</div>
+        </div>
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/es.png" class="match-flag" alt="Atletico">
+          <div class="match-name">Atlético Madrid</div>
+        </div>
+      </div>
+      <div class="goals-list">
+        ⚽ B.Saka 45' (assist: L.Trossard)
+      </div>
+      <div style="text-align:center">
+        <a href="https://youtu.be/MxRAvj-u2pA" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
+      </div>
+      <div class="match-footer" style="margin-top:12px">
+        <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
+        <div class="venue-info">🏟 Emirates Stadium, London</div>
+      </div>
+    </div>
+
+    <!-- Bayern 1-1 PSG 2nd leg -->
+    <div class="match-card">
+      <div class="match-header">
+        <span class="match-stage">SEMI-FINAL · 2nd Leg</span>
+        <span>Wednesday, 6 May 2026 · FT · PSG win 6-5 agg</span>
+      </div>
+      <div class="match-teams">
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/de.png" class="match-flag" alt="Bayern">
+          <div class="match-name">Bayern Munich</div>
+        </div>
+        <div class="match-center">
+          <div class="match-vs">FT · AGG 5-6</div>
+          <div class="match-score">1 — 1</div>
+        </div>
+        <div class="match-team">
+          <img src="https://flagcdn.com/w80/fr.png" class="match-flag" alt="PSG">
+          <div class="match-name">PSG</div>
+        </div>
+      </div>
+      <div class="goals-list">
+        ⚽ H.Kane 90+4' (assist: A.Davies)<br>
+        ⚽ O.Dembélé 3' (assist: K.Kvaratskhelia)
+      </div>
+      <div style="text-align:center">
+        <a href="https://youtu.be/KC9hDi6UX-w" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
+      </div>
+      <div class="match-footer" style="margin-top:12px">
+        <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
+        <div class="venue-info">🏟 Allianz Arena, Munich</div>
+      </div>
+    </div>
+
+    <p style="font-size:10px;color:var(--t4);margin-top:20px;text-align:center">
+      ⭐ Scores verified from official sources · Independent fan site · <a href="/disclaimer.html" style="color:var(--t3)">Disclaimer</a>
+    </p>
+
+  </div>
 </div>
 
 <script>
 function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-
-function csSubscribe() {
-  var input = document.getElementById('cs-email');
-  var msg = document.getElementById('cs-msg');
-  if (!input.value || input.value.indexOf('@') < 0) {
-    input.style.borderColor = '#dc2626';
-    return;
+var finalUTC=new Date('2026-05-30T16:00:00Z');
+function pad(n){return n<10?'0'+n:''+n;}
+function updateFinal(){
+  var now=new Date();
+  var diff=finalUTC-now;
+  var cd=document.getElementById('finalCountdown');
+  if(!cd)return;
+  if(diff>0){
+    var d=Math.floor(diff/86400000);
+    var h=Math.floor((diff%86400000)/3600000);
+    var m=Math.floor((diff%3600000)/60000);
+    var s=Math.floor((diff%60000)/1000);
+    cd.textContent=d+'d '+pad(h)+'h '+pad(m)+'m '+pad(s)+'s to kick-off';
+  } else if(diff>-7200000){
+    cd.innerHTML='<span style="color:#dc2626;font-weight:800">🔴 LIVE NOW</span>';
+  } else {
+    cd.textContent='Full Time';
   }
-  input.style.borderColor = '#16a34a';
-  var form = document.createElement('form');
-  form.method='POST';
-  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-  form.target='_blank'; form.style.display='none';
-  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
-  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
-  var f3=document.createElement('input');f3.name='locale';f3.value='en';
-  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  msg.style.display='block';
-  input.value='';
 }
-
+updateFinal();setInterval(updateFinal,1000);
 document.addEventListener('click',function(e){
   var sb=document.getElementById('gc-sidebar');
   var hb=document.querySelector('.sb-hamburger');
