@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Group I | GoalCurrent.live</title>
+<meta name="description" content="FIFA World Cup 2026 Group I standings and fixtures.">
+<link rel="canonical" href="https://goalcurrent.live/worldcup2026/groups/group-i/">
+<link rel="stylesheet" href="../../../css/worldcup2026.css">
+<style>
+.match-card{background:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.9);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 4px 16px rgba(100,160,220,0.12);}
+.match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:0.75rem;color:#64748b;}
+.match-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;}
+.match-team{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.match-flag-img{width:56px;height:38px;object-fit:cover;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.match-name{font-size:0.9rem;font-weight:600;color:#0f172a;}
+.match-center{text-align:center;}
+.match-vs{font-size:0.85rem;font-weight:700;color:#f59e0b;}
+.match-time{font-size:1rem;font-weight:700;color:#1d4ed8;}
+.match-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid rgba(100,160,220,0.15);flex-wrap:wrap;gap:8px;}
+.tv-badge{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:#334155;}
+.tv-channel{background:rgba(29,78,216,0.1);color:#1d4ed8;padding:2px 8px;border-radius:4px;font-weight:600;}
+.match-actions{display:flex;gap:8px;align-items:center;}
+.live-dot{display:inline-flex;align-items:center;gap:5px;background:rgba(239,68,68,0.15);color:#ef4444;font-size:0.75rem;font-weight:700;padding:3px 8px;border-radius:20px;}
+.live-dot span{width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;animation:blink 1.5s infinite;}
+.fav-btn{background:none;border:none;cursor:pointer;font-size:1.3rem;}
+.stats-btn{background:#1d4ed8;color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;}
+.stats-btn:hover{background:#f59e0b;color:#111827;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:999;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:#1e2d45;border:1px solid #2d3f5e;border-radius:12px;padding:24px;max-width:400px;width:90%;}
+.modal h3{color:#f59e0b;margin-bottom:16px;}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #2d3f5e;font-size:0.85rem;color:#e2e8f0;}
+.stat-label{color:#94a3b8;text-align:center;flex:1;}
+.stat-val{min-width:40px;text-align:center;}
+.modal-close{display:block;width:100%;margin-top:16px;background:#2d3f5e;color:#e2e8f0;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.9rem;}
+@keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+</style>
+</head>
+<body>
+<div id="wc-nav"></div>
+<main class="wc-container">
+<div class="wc-page-header">
+<h1>🏆 Group I</h1>
+<p id="groupTeams"></p>
+</div>
+<div style="padding:20px 0;">
+<div class="wc-section-header"><h2>Standings</h2><a href="/worldcup2026/groups/">← All Groups</a></div>
+<table class="wc-standings"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody id="standingsBody"></tbody></table>
+</div>
+<div style="padding:20px 0;">
+<div class="wc-section-header"><h2>Fixtures</h2></div>
+<div id="fixturesBody"></div>
+</div>
+<div style="background:#1e2d45;border-radius:12px;padding:16px;margin-bottom:24px;">
+<h3 style="color:#f59e0b;margin-bottom:8px;">Qualification</h3>
+<p style="font-size:0.85rem;color:#94a3b8;">Top 2 teams advance to Round of 32. Best 8 third-placed teams also advance.</p>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;">
+<a href="/worldcup2026/groups/" class="wc-btn wc-btn-outline">← All Groups</a>
+<a href="/worldcup2026/fixtures/" class="wc-btn wc-btn-primary">📅 Fixtures</a>
+<a href="/worldcup2026/teams/" class="wc-btn wc-btn-outline">🌍 Teams</a>
+</div>
+</main>
+<div id="wc-footer"></div>
+<div class="modal-overlay" id="statsModal"><div class="modal"><h3 id="modalTitle">Match Stats</h3><div id="modalContent"></div><button class="modal-close" onclick="closeStats()">Close</button></div></div>
+<script src="../../../js/worldcup-data.js"></script>
+<script src="../../../js/worldcup-shared.js"></script>
+<script>
+var GROUP_KEY='I';
+var TV_CHANNELS={'Europe/London':{channel:'BBC / ITV',country:'🇬🇧 United Kingdom'},'America/New_York':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA'},'America/Chicago':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA'},'America/Los_Angeles':{channel:'Fox Sports / Telemundo',country:'🇺🇸 USA'},'America/Mexico_City':{channel:'Televisa / TV Azteca',country:'🇲🇽 Mexico'},'Africa/Johannesburg':{channel:'SuperSport',country:'🇿🇦 South Africa'},'Europe/Paris':{channel:'TF1 / beIN Sports',country:'🇫🇷 France'},'Europe/Berlin':{channel:'ARD / ZDF',country:'🇩🇪 Germany'},'Europe/Madrid':{channel:'TVE / Mediaset',country:'🇪🇸 Spain'},'Asia/Tokyo':{channel:'NHK / DAZN',country:'🇯🇵 Japan'},'Asia/Riyadh':{channel:'SSC Sports',country:'🇸🇦 Saudi Arabia'},'Australia/Sydney':{channel:'SBS / Optus Sport',country:'🇦🇺 Australia'}};
+function getUserTV(){var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;return TV_CHANNELS[tz]||{channel:'Check local listings',country:'🌍 Your region'};}
+function isLive(date,time){var now=new Date();var kick=new Date(date+'T'+time+':00');var end=new Date(kick.getTime()+110*60000);return now>=kick&&now<=end;}
+function getFavs(){return JSON.parse(localStorage.getItem('wc26_favs')||'[]');}
+function saveFavs(f){localStorage.setItem('wc26_favs',JSON.stringify(f));}
+function toggleFav(id){var favs=getFavs();var idx=favs.indexOf(id);if(idx>-1){favs.splice(idx,1);}else{favs.push(id);}saveFavs(favs);document.getElementById('fav-'+id).textContent=favs.indexOf(id)>-1?'⭐':'☆';}
+function getCode(name){var codes={'Mexico':'mx','South Africa':'za','Paraguay':'py','Senegal':'sn','USA':'us','Panama':'pa','Colombia':'co','Ghana':'gh','Canada':'ca','Honduras':'hn','Chile':'cl','Cameroon':'cm','Uruguay':'uy','Portugal':'pt','Tanzania':'tz','Iraq':'iq','Germany':'de','Australia':'au','Ivory Coast':'ci','Saudi Arabia':'sa','Brazil':'br','Japan':'jp','Croatia':'hr','Trinidad & Tobago':'tt','France':'fr','Nigeria':'ng','New Zealand':'nz','Costa Rica':'cr','Spain':'es','South Korea':'kr','Ecuador':'ec','Bahrain':'bh','Argentina':'ar','Morocco':'ma','Ukraine':'ua','Uzbekistan':'uz','Netherlands':'nl','Peru':'pe','Indonesia':'id','DR Congo':'cd','England':'gb-eng','Slovakia':'sk','Algeria':'dz','Belgium':'be','Venezuela':'ve','Thailand':'th','Egypt':'eg'};return codes[name]||'un';}
+function renderStandings(){var group=WC26.groups[GROUP_KEY];document.getElementById('groupTeams').textContent=group.teams.map(function(t){return t.name;}).join(' · ');var html='';group.teams.forEach(function(team,i){html+='<tr class="'+(i<2?'qualified':'')+'"><td><img src="https://flagcdn.com/w20/'+getCode(team.name)+'.png" style="width:20px;height:14px;border-radius:2px;margin-right:6px;vertical-align:middle">'+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';});document.getElementById('standingsBody').innerHTML=html;}
+function renderFixtures(){var tv=getUserTV();var group=WC26.groups[GROUP_KEY];var teams=group.teams;var html='';var matchId=100;var favs=getFavs();for(var i=0;i<teams.length;i++){for(var j=i+1;j<teams.length;j++){var f={id:matchId++,home:teams[i].name,homecode:getCode(teams[i].name),away:teams[j].name,awaycode:getCode(teams[j].name),date:'2026-06-XX',time:'20:00',venue:'TBC'};var live=isLive(f.date,f.time);var isFav=favs.indexOf(f.id)>-1;html+='<div class="match-card"><div class="match-header"><span>Group '+GROUP_KEY+' · 📍 '+f.venue+'</span>'+(live?'<span class="live-dot"><span></span>LIVE</span>':'<span>TBC</span>')+'</div><div class="match-teams"><div class="match-team"><img src="https://flagcdn.com/w80/'+f.homecode+'.png" class="match-flag-img"><div class="match-name">'+f.home+'</div></div><div class="match-center"><div class="match-vs">VS</div><div class="match-time">'+f.time+' BST</div></div><div class="match-team"><img src="https://flagcdn.com/w80/'+f.awaycode+'.png" class="match-flag-img"><div class="match-name">'+f.away+'</div></div></div><div class="match-footer"><div class="tv-badge">📺 <span class="tv-channel">'+tv.channel+'</span><span style="color:#64748b;font-size:0.75rem;margin-left:4px;">'+tv.country+'</span></div><div class="match-actions"><button class="fav-btn" id="fav-'+f.id+'" onclick="toggleFav('+f.id+')">'+(isFav?'⭐':'☆')+'</button><button class="stats-btn" onclick="showStats(\''+f.home+'\',\''+f.away+'\')">📊 Stats</button></div></div></div>';}}document.getElementById('fixturesBody').innerHTML=html;}
+function showStats(home,away){document.getElementById('modalTitle').textContent=home+' vs '+away;document.getElementById('modalContent').innerHTML='<div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Possession</span><span class="stat-val">-</span></div><div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Shots</span><span class="stat-val">-</span></div><div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Shots on Target</span><span class="stat-val">-</span></div><div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Corners</span><span class="stat-val">-</span></div><div class="stat-row"><span class="stat-val">-</span><span class="stat-label">Fouls</span><span class="stat-val">-</span></div><p style="text-align:center;margin-top:12px;font-size:0.75rem;color:#94a3b8;">Live stats available from 11 June 2026</p>';document.getElementById('statsModal').classList.add('show');}
+function closeStats(){document.getElementById('statsModal').classList.remove('show');}
+window.onload=function(){initWC26Page('groups');renderStandings();renderFixtures();};
+</script>
+</body>
+</html>
