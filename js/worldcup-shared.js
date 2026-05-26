@@ -34,7 +34,7 @@ function renderNav(activePage) {
     '<a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">&#9917; Goal<span style="color:#f59e0b">Current</span>.live</a>' +
 '<button type="button" id="hamburgerBtn" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>'+
     '</div>' +
-    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;overflow-x:auto;white-space:nowrap;">' +
+    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;overflow-x:auto;white-space:nowrap;display:none;">'+
     navLinks +
     '</nav>';
 }
