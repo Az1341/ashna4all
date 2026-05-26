@@ -1,11 +1,4 @@
-/* ============================================
-   GOALCURRENT.LIVE — World Cup 2026 Data
-   Single source of truth for all WC26 pages
-   Author: Ahmad Zafarani
-   ============================================ */
-
 const WC26 = {
-
   groups: {
     A: {
       name: "Group A",
@@ -33,10 +26,8 @@ const WC26 = {
         { name: "Chile", flag: "🇨🇱", confederation: "CONMEBOL", ranking: 24 },
         { name: "Cameroon", flag: "🇨🇲", confederation: "CAF", ranking: 40 }
       ]
-    }
-  }
-};
-D: {
+    },
+    D: {
       name: "Group D",
       teams: [
         { name: "Uruguay", flag: "🇺🇾", confederation: "CONMEBOL", ranking: 14 },
@@ -50,7 +41,7 @@ D: {
       teams: [
         { name: "Germany", flag: "🇩🇪", confederation: "UEFA", ranking: 13 },
         { name: "Australia", flag: "🇦🇺", confederation: "AFC", ranking: 23 },
-        { name: "Côte d'Ivoire", flag: "🇨🇮", confederation: "CAF", ranking: 48 },
+        { name: "Ivory Coast", flag: "🇨🇮", confederation: "CAF", ranking: 48 },
         { name: "Saudi Arabia", flag: "🇸🇦", confederation: "AFC", ranking: 56 }
       ]
     },
@@ -60,7 +51,7 @@ D: {
         { name: "Brazil", flag: "🇧🇷", confederation: "CONMEBOL", ranking: 5 },
         { name: "Japan", flag: "🇯🇵", confederation: "AFC", ranking: 15 },
         { name: "Croatia", flag: "🇭🇷", confederation: "UEFA", ranking: 10 },
-        { name: "Mexico City CF", flag: "🇲🇽", confederation: "CONCACAF", ranking: 70 }
+        { name: "Trinidad & Tobago", flag: "🇹🇹", confederation: "CONCACAF", ranking: 70 }
       ]
     },
     G: {
@@ -74,7 +65,7 @@ D: {
     },
     H: {
       name: "Group H",
-       teams: [
+      teams: [
         { name: "Spain", flag: "🇪🇸", confederation: "UEFA", ranking: 3 },
         { name: "South Korea", flag: "🇰🇷", confederation: "AFC", ranking: 22 },
         { name: "Ecuador", flag: "🇪🇨", confederation: "CONMEBOL", ranking: 42 },
@@ -94,17 +85,17 @@ D: {
       name: "Group J",
       teams: [
         { name: "Netherlands", flag: "🇳🇱", confederation: "UEFA", ranking: 7 },
-        { name: "Senegal", flag: "🇸🇳", confederation: "CAF", ranking: 20 },
         { name: "Peru", flag: "🇵🇪", confederation: "CONMEBOL", ranking: 33 },
-        { name: "Indonesia", flag: "🇮🇩", confederation: "AFC", ranking: 127 }
+        { name: "Indonesia", flag: "🇮🇩", confederation: "AFC", ranking: 127 },
+        { name: "DR Congo", flag: "🇨🇩", confederation: "CAF", ranking: 55 }
       ]
     },
     K: {
       name: "Group K",
       teams: [
         { name: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", confederation: "UEFA", ranking: 4 },
-        { name: "Senegal", flag: "🇸🇳", confederation: "CAF", ranking: 20 },
         { name: "Slovakia", flag: "🇸🇰", confederation: "UEFA", ranking: 46 },
+        { name: "Algeria", flag: "🇩🇿", confederation: "CAF", ranking: 35 },
         { name: "Trinidad & Tobago", flag: "🇹🇹", confederation: "CONCACAF", ranking: 98 }
       ]
     },
@@ -112,9 +103,9 @@ D: {
       name: "Group L",
       teams: [
         { name: "Belgium", flag: "🇧🇪", confederation: "UEFA", ranking: 3 },
-        { name: "Algeria", flag: "🇩🇿", confederation: "CAF", ranking: 35 },
         { name: "Venezuela", flag: "🇻🇪", confederation: "CONMEBOL", ranking: 55 },
-        { name: "Thailand", flag: "🇹🇭", confederation: "AFC", ranking: 113 }
+        { name: "Thailand", flag: "🇹🇭", confederation: "AFC", ranking: 113 },
+        { name: "Egypt", flag: "🇪🇬", confederation: "CAF", ranking: 36 }
       ]
     }
   }
