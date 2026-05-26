@@ -164,4 +164,36 @@ function initWC26Page(activePage) {
   const footer = document.getElementById('wc-footer');
   if (nav) nav.innerHTML = renderNav(activePage);
   if (footer) footer.innerHTML = renderFooter();
+  renderCookieBanner();
+}
+// === COOKIE CONSENT ===
+function renderCookieBanner(){
+  if(localStorage.getItem('wc26_cookies_accepted')) return;
+  var banner=document.createElement('div');
+  banner.id='wc26-cookie-banner';
+  banner.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#1e2d45;border-top:2px solid #f59e0b;padding:16px;z-index:9999;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:Inter,Segoe UI,sans-serif;';
+  banner.innerHTML=`
+    <div style="font-size:0.85rem;color:#e2e8f0;max-width:600px;">
+      🍪 We use cookies to personalise content, save your favourites, and analyse traffic. 
+      By clicking <strong>Accept</strong> you agree to our 
+      <a href="/cookies.html" style="color:#f59e0b;text-decoration:none;">Cookie Policy</a>.
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button onclick="acceptCookies()" style="background:#f59e0b;color:#111827;border:none;padding:8px 20px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.85rem;">Accept</button>
+      <button onclick="declineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.85rem;">Decline</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+}
+
+function acceptCookies(){
+  localStorage.setItem('wc26_cookies_accepted','yes');
+  var b=document.getElementById('wc26-cookie-banner');
+  if(b) b.remove();
+}
+
+function declineCookies(){
+  localStorage.setItem('wc26_cookies_accepted','no');
+  var b=document.getElementById('wc26-cookie-banner');
+  if(b) b.remove();
 }
