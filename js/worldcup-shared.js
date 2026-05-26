@@ -7,16 +7,20 @@
 // === NAVIGATION ===
 function renderNav(activePage) {
   return `
-    <nav class="wc-nav">
+    <div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;">
+      <a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">⚽ Goal<span style="color:#f59e0b">Current</span>.live</a>
+      <button onclick="toggleMobileNav()" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;display:block;">☰</button>
+    </div>
+    <nav class="wc-nav" id="wcNavLinks">
       <div class="wc-nav-inner">
-        <a href="/worldcup2026/" ${activePage === 'home' ? 'class="active"' : ''}>🏆 Overview</a>
-        <a href="/worldcup2026/fixtures/" ${activePage === 'fixtures' ? 'class="active"' : ''}>📅 Fixtures</a>
-        <a href="/worldcup2026/groups/" ${activePage === 'groups' ? 'class="active"' : ''}>👥 Groups</a>
-        <a href="/worldcup2026/teams/" ${activePage === 'teams' ? 'class="active"' : ''}>🌍 Teams</a>
-        <a href="/worldcup2026/bracket/" ${activePage === 'bracket' ? 'class="active"' : ''}>🏅 Bracket</a>
-        <a href="/worldcup2026/venues/" ${activePage === 'venues' ? 'class="active"' : ''}>🏟️ Venues</a>
-        <a href="/worldcup2026/news/" ${activePage === 'news' ? 'class="active"' : ''}>📰 News</a>
-        <a href="/worldcup2026/favourites/" ${activePage === 'favourites' ? 'class="active"' : ''}>⭐ Favourites</a>
+        <a href="/worldcup2026/" ${activePage==='home'?'class="active"':''}>🏆 Overview</a>
+        <a href="/worldcup2026/fixtures/" ${activePage==='fixtures'?'class="active"':''}>📅 Fixtures</a>
+        <a href="/worldcup2026/groups/" ${activePage==='groups'?'class="active"':''}>👥 Groups</a>
+        <a href="/worldcup2026/teams/" ${activePage==='teams'?'class="active"':''}>🌍 Teams</a>
+        <a href="/worldcup2026/bracket/" ${activePage==='bracket'?'class="active"':''}>🏅 Bracket</a>
+        <a href="/worldcup2026/venues/" ${activePage==='venues'?'class="active"':''}>🏟️ Venues</a>
+        <a href="/worldcup2026/news/" ${activePage==='news'?'class="active"':''}>📰 News</a>
+        <a href="/worldcup2026/favourites/" ${activePage==='favourites'?'class="active"':''}>⭐ Favourites</a>
       </div>
     </nav>
   `;
@@ -196,4 +200,8 @@ function declineCookies(){
   localStorage.setItem('wc26_cookies_accepted','no');
   var b=document.getElementById('wc26-cookie-banner');
   if(b) b.remove();
+}
+function toggleMobileNav(){
+  var nav=document.getElementById('wcNavLinks');
+  if(nav) nav.style.display=nav.style.display==='none'?'block':'none';
 }
