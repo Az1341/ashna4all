@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UCL Fixtures 2025/26 | GoalCurrent.live</title>
-<meta name="description" content="UEFA Champions League 2025/26 fixtures — PSG vs Arsenal Final, 30 May 2026, Budapest. Semi-final results included.">
+<meta name="description" content="UEFA Champions League 2025/26 fixtures — PSG vs Arsenal Final, 30 May 2026, Budapest. Semi-final results and highlights.">
 <link rel="canonical" href="https://goalcurrent.live/ucl/fixtures/">
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
@@ -70,8 +70,10 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 .tv-pill{background:rgba(37,99,235,0.1);color:var(--blue);padding:3px 8px;border-radius:6px;font-weight:700;font-size:11px}
 .venue-info{font-size:11px;color:var(--t4)}
 .goals-list{font-size:10px;color:var(--t3);margin-top:6px;line-height:1.8;text-align:center}
-.yt-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,0,0,0.08);color:#dc2626;border:1px solid rgba(255,0,0,0.2);padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;text-decoration:none;margin-top:8px}
-.yt-link:hover{background:rgba(255,0,0,0.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:12px;background:#000}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px}
+.video-toggle{display:flex;align-items:center;gap:6px;background:rgba(255,0,0,0.1);color:#dc2626;border:1px solid rgba(255,0,0,0.25);padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;margin-top:10px;font-family:var(--font);transition:background 0.2s}
+.video-toggle:hover{background:rgba(255,0,0,0.18)}
 .sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
 @media(max-width:768px){.gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}.gc-sidebar.open{transform:translateX(0)}.gc-page-wrap{margin-left:0}.gc-content{padding:16px 14px 100px}.sb-hamburger{display:flex}.match-name{font-size:12px}.match-score{font-size:20px}.gc-topbar{padding:10px 14px}}
 </style>
@@ -176,7 +178,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
       </div>
     </div>
 
-    <div class="sec-head" style="margin-top:28px"><div class="sec-title">📊 SEMI-FINALS — RESULTS</div><div class="sec-line"></div></div>
+    <div class="sec-head" style="margin-top:28px"><div class="sec-title">📊 SEMI-FINALS — RESULTS & HIGHLIGHTS</div><div class="sec-line"></div></div>
 
     <!-- PSG 5-4 Bayern 1st leg -->
     <div class="match-card">
@@ -202,9 +204,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
         ⚽ Kvaratskhelia 24' · Joao Neves 33' · Dembélé 45+5' (pen) · Kvaratskhelia 56' · Dembélé 58'<br>
         ⚽ Kane 17' (pen) · M.Olise 41' · Upamecano 65' (og) · L.Díaz 68'
       </div>
-      <div style="text-align:center">
-        <a href="https://youtu.be/rzZZbrRNyuM" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
-      </div>
+      <button class="video-toggle" onclick="toggleVideo('v1','rzZZbrRNyuM')">▶ Watch Highlights</button>
+      <div id="v1" class="video-wrap" style="display:none"></div>
       <div class="match-footer" style="margin-top:12px">
         <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
         <div class="venue-info">🏟 Parc des Princes, Paris</div>
@@ -235,9 +236,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
         ⚽ J.Álvarez 56' (pen)<br>
         ⚽ V.Gyökeres 44' (pen)
       </div>
-      <div style="text-align:center">
-        <a href="https://youtu.be/sKclQ_mr1Nc" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
-      </div>
+      <button class="video-toggle" onclick="toggleVideo('v2','sKclQ_mr1Nc')">▶ Watch Highlights</button>
+      <div id="v2" class="video-wrap" style="display:none"></div>
       <div class="match-footer" style="margin-top:12px">
         <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
         <div class="venue-info">🏟 Metropolitano, Madrid</div>
@@ -267,9 +267,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
       <div class="goals-list">
         ⚽ B.Saka 45' (assist: L.Trossard)
       </div>
-      <div style="text-align:center">
-        <a href="https://youtu.be/MxRAvj-u2pA" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
-      </div>
+      <button class="video-toggle" onclick="toggleVideo('v3','MxRAvj-u2pA')">▶ Watch Highlights</button>
+      <div id="v3" class="video-wrap" style="display:none"></div>
       <div class="match-footer" style="margin-top:12px">
         <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
         <div class="venue-info">🏟 Emirates Stadium, London</div>
@@ -300,9 +299,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
         ⚽ H.Kane 90+4' (assist: A.Davies)<br>
         ⚽ O.Dembélé 3' (assist: K.Kvaratskhelia)
       </div>
-      <div style="text-align:center">
-        <a href="https://youtu.be/KC9hDi6UX-w" target="_blank" rel="noopener" class="yt-link">▶ Watch Highlights</a>
-      </div>
+      <button class="video-toggle" onclick="toggleVideo('v4','KC9hDi6UX-w')">▶ Watch Highlights</button>
+      <div id="v4" class="video-wrap" style="display:none"></div>
       <div class="match-footer" style="margin-top:12px">
         <div class="tv-info">📺 <span class="tv-pill">TNT Sports</span></div>
         <div class="venue-info">🏟 Allianz Arena, Munich</div>
@@ -310,7 +308,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
     </div>
 
     <p style="font-size:10px;color:var(--t4);margin-top:20px;text-align:center">
-      ⭐ Scores verified from official sources · Independent fan site · <a href="/disclaimer.html" style="color:var(--t3)">Disclaimer</a>
+      ⭐ Scores verified from official sources · Highlights via UEFA YouTube · Independent fan site · <a href="/disclaimer.html" style="color:var(--t3)">Disclaimer</a>
     </p>
 
   </div>
@@ -318,6 +316,21 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 
 <script>
 function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
+
+function toggleVideo(divId, ytId) {
+  var wrap = document.getElementById(divId);
+  var btn = wrap.previousElementSibling;
+  if(wrap.style.display === 'none') {
+    wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0" allowfullscreen allow="autoplay"></iframe>';
+    wrap.style.display = 'block';
+    btn.textContent = '✕ Close Highlights';
+  } else {
+    wrap.innerHTML = '';
+    wrap.style.display = 'none';
+    btn.textContent = '▶ Watch Highlights';
+  }
+}
+
 var finalUTC=new Date('2026-05-30T16:00:00Z');
 function pad(n){return n<10?'0'+n:''+n;}
 function updateFinal(){
