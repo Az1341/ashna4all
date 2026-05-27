@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#f5f5f7">
+<meta name="theme-color" content="#1a1a1a">
 <title>GoalCurrent.live — UCL Final: PSG vs Arsenal | World Cup 2026</title>
-<meta name="description" content="PSG vs Arsenal UCL Final · 30 May 2026 · Budapest. World Cup 2026 · Premier League 2025/26 Champions Arsenal. GoalCurrent.live — your free football hub.">
+<meta name="description" content="PSG vs Arsenal UCL Final · 30 May 2026 · Budapest. World Cup 2026 · Arsenal Premier League Champions 2025/26.">
 <meta name="author" content="Ahmad Zafarani - Ashna4All">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://goalcurrent.live/">
@@ -54,36 +54,47 @@ window.addEventListener('load',function(){
 });
 </script>
 
-<!-- SF Pro / Apple system font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-/* ══════════════════════════════════════════════
-   RESET
-══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
 
 :root{
-  --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif;
-  --sb-w:260px;
-  --bg:#f5f5f7;
-  --bg2:#ffffff;
-  --bg3:#f2f2f7;
-  --t1:#1d1d1f;
-  --t2:#3d3d3f;
-  --t3:#6e6e73;
-  --t4:#aeaeb2;
-  --blue:#007aff;
-  --blue2:#0a84ff;
-  --green:#34c759;
-  --red:#ff3b30;
-  --gold:#f59e0b;
+  --font:'Inter',system-ui,sans-serif;
+  --display:'Bebas Neue',impact,sans-serif;
+  --sb-w:240px;
+
+  /* ESPN dark palette */
+  --bg:#0f0f0f;
+  --bg2:#1a1a1a;
+  --bg3:#242424;
+  --bg4:#2e2e2e;
+  --border:rgba(255,255,255,0.08);
+  --t1:#ffffff;
+  --t2:#d4d4d4;
+  --t3:#8a8a8a;
+  --t4:#5a5a5a;
+
+  /* Accents */
+  --red:#d00000;
+  --red2:#ff1a1a;
+  --gold:#ffb700;
+  --green:#00c853;
+  --blue:#0066cc;
+
+  /* Competition colours */
   --ucl:#001e62;
   --ucl-gold:#ffd700;
-  --wc-green:#006847;
-  --pl-purple:#38003c;
-  --r1:12px;--r2:18px;--r3:24px;
-  --shadow:0 2px 20px rgba(0,0,0,0.08);
-  --shadow2:0 8px 40px rgba(0,0,0,0.12);
+  --wc:#006847;
+  --pl:#38003c;
+
+  --r1:8px;--r2:12px;--r3:16px;
 }
 
 body{
@@ -92,630 +103,630 @@ body{
   color:var(--t1);
   min-height:100vh;
   overflow-x:hidden;
-  font-size:15px;
   -webkit-font-smoothing:antialiased;
 }
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    LAYOUT
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .gc-layout{display:flex;min-height:100vh}
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    SIDEBAR
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 .gc-sidebar{
   width:var(--sb-w);flex-shrink:0;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-right:1px solid rgba(0,0,0,0.08);
+  background:var(--bg2);
+  border-right:1px solid var(--border);
   position:fixed;top:0;left:0;bottom:0;
   z-index:300;overflow-y:auto;
   scrollbar-width:none;display:flex;flex-direction:column;
-  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition:transform 0.3s ease;
 }
 .gc-sidebar::-webkit-scrollbar{display:none}
 
 .sb-logo{
   display:flex;align-items:center;gap:10px;
-  padding:20px 18px 16px;
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:18px 16px 14px;
+  border-bottom:1px solid var(--border);
   text-decoration:none;flex-shrink:0;
+  background:var(--bg2);
 }
-.sb-logo-icon{font-size:28px}
-.sb-logo-text{font-size:17px;font-weight:700;color:var(--t1);letter-spacing:-0.3px}
-.sb-logo-text em{color:var(--blue);font-style:normal}
-.sb-logo-text span{color:var(--green);font-weight:500}
+.sb-logo-ball{font-size:26px}
+.sb-logo-text{font-family:var(--display);font-size:20px;color:var(--t1);letter-spacing:1px;line-height:1}
+.sb-logo-text em{color:var(--red);font-style:normal}
+.sb-logo-text span{color:var(--t3);font-size:14px;font-family:var(--font);font-weight:500;display:block;letter-spacing:0;margin-top:1px}
 
 .sb-section-label{
-  font-size:11px;font-weight:700;letter-spacing:0.5px;
+  font-size:10px;font-weight:800;letter-spacing:2px;
   text-transform:uppercase;color:var(--t4);
-  padding:16px 18px 6px;display:block;
+  padding:14px 16px 6px;display:block;
 }
 
 .sb-nav-link{
   display:flex;align-items:center;gap:10px;
-  padding:9px 18px;color:var(--t2);
-  text-decoration:none;font-size:14px;font-weight:500;
-  border-radius:10px;margin:1px 8px;
-  transition:background 0.15s;
+  padding:10px 16px;color:var(--t2);
+  text-decoration:none;font-size:13px;font-weight:600;
+  transition:all 0.15s;border-left:3px solid transparent;
 }
-.sb-nav-link:hover{background:rgba(0,122,255,0.08);color:var(--blue)}
-.sb-nav-link.active{background:rgba(0,122,255,0.1);color:var(--blue);font-weight:600}
-.sb-nav-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.sb-nav-link:hover{background:var(--bg3);color:var(--t1);border-left-color:var(--red)}
+.sb-nav-link.active{background:var(--bg3);color:var(--t1);border-left-color:var(--red)}
+.sb-nav-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
 
-.sb-divider{height:1px;background:rgba(0,0,0,0.06);margin:8px 18px}
+.sb-divider{height:1px;background:var(--border);margin:4px 0}
 
 .sb-comp-btn{
   display:flex;align-items:center;gap:10px;
-  width:100%;padding:9px 18px;background:none;border:none;
-  cursor:pointer;font-family:var(--font);font-size:14px;
-  font-weight:600;color:var(--t2);text-align:left;
-  border-radius:10px;margin:1px 8px;width:calc(100% - 16px);
-  transition:background 0.15s;
+  width:100%;padding:10px 16px;background:none;border:none;
+  cursor:pointer;font-family:var(--font);font-size:13px;
+  font-weight:700;color:var(--t2);text-align:left;
+  transition:all 0.15s;border-left:3px solid transparent;
 }
-.sb-comp-btn:hover{background:rgba(0,0,0,0.04)}
-.sb-comp-icon{font-size:16px;flex-shrink:0}
+.sb-comp-btn:hover{background:var(--bg3);color:var(--t1)}
+.sb-comp-icon{font-size:14px;flex-shrink:0}
 .sb-comp-name{flex:1}
-.sb-comp-badge{
-  font-size:10px;font-weight:700;padding:2px 7px;
-  border-radius:6px;flex-shrink:0;
-}
-.sb-comp-badge.ucl{background:rgba(0,30,98,0.1);color:var(--ucl)}
-.sb-comp-badge.wc{background:rgba(0,104,71,0.1);color:var(--wc-green)}
-.sb-comp-badge.pl{background:rgba(56,0,60,0.1);color:var(--pl-purple)}
-.sb-chevron{font-size:10px;color:var(--t4);transition:transform 0.2s;flex-shrink:0}
+.sb-comp-badge{font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;flex-shrink:0}
+.sb-comp-badge.ucl{background:rgba(0,30,98,0.8);color:#93c5fd;border:1px solid rgba(147,197,253,0.2)}
+.sb-comp-badge.wc{background:rgba(0,104,71,0.8);color:#6ee7b7;border:1px solid rgba(110,231,183,0.2)}
+.sb-comp-badge.pl{background:rgba(56,0,60,0.8);color:#e9b4ff;border:1px solid rgba(233,180,255,0.2)}
+.sb-chevron{font-size:9px;color:var(--t4);transition:transform 0.2s;flex-shrink:0}
 .sb-comp-btn.open .sb-chevron{transform:rotate(180deg)}
-
-.sb-links{display:none;padding:2px 0}
+.sb-links{display:none;background:rgba(0,0,0,0.2)}
 .sb-links.open{display:block}
 .sb-links a{
   display:flex;align-items:center;gap:8px;
-  padding:7px 18px 7px 46px;
-  font-size:13px;font-weight:500;color:var(--t3);
-  text-decoration:none;border-radius:8px;margin:1px 8px;
-  transition:all 0.15s;
+  padding:8px 16px 8px 42px;
+  font-size:12px;font-weight:500;color:var(--t3);
+  text-decoration:none;transition:all 0.15s;
+  border-left:3px solid transparent;
 }
-.sb-links a:hover{background:rgba(0,0,0,0.04);color:var(--t1)}
+.sb-links a:hover{color:var(--t1);background:var(--bg3);border-left-color:var(--red)}
 
 .sb-footer{
-  margin-top:auto;padding:16px 18px;
-  border-top:1px solid rgba(0,0,0,0.06);
-  font-size:11px;color:var(--t4);line-height:1.7;
+  margin-top:auto;padding:14px 16px;
+  border-top:1px solid var(--border);
+  font-size:10px;color:var(--t4);line-height:1.8;
 }
 .sb-footer a{color:var(--t4);text-decoration:none}
-.sb-footer a:hover{color:var(--blue)}
+.sb-footer a:hover{color:var(--t2)}
 
-/* ══════════════════════════════════════════════
-   MAIN WRAP
-══════════════════════════════════════════════ */
-.gc-main{
-  margin-left:var(--sb-w);flex:1;
-  min-width:0;display:flex;flex-direction:column;
+/* ═══════════════════════════════════════════════
+   MAIN
+═══════════════════════════════════════════════ */
+.gc-main{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column}
+
+/* ═══════════════════════════════════════════════
+   TOP NAV BAR
+═══════════════════════════════════════════════ */
+.gc-topbar{
+  background:var(--red);
+  height:38px;display:flex;align-items:center;
+  padding:0 20px;gap:0;
+  position:sticky;top:0;z-index:200;
+  border-bottom:2px solid rgba(0,0,0,0.3);
 }
-
-/* ══════════════════════════════════════════════
-   TICKER
-══════════════════════════════════════════════ */
-.gc-ticker{
-  background:var(--t1);
-  height:34px;display:flex;align-items:center;
-  overflow:hidden;position:sticky;top:0;z-index:200;
+.gc-topbar-brand{
+  font-family:var(--display);font-size:22px;
+  color:#fff;letter-spacing:1px;margin-right:20px;
   flex-shrink:0;
 }
-.gc-ticker-label{
-  display:flex;align-items:center;gap:6px;
-  background:var(--red);color:#fff;
-  font-size:10px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;padding:0 14px;height:100%;
-  flex-shrink:0;white-space:nowrap;
+.gc-topbar-ticker{
+  flex:1;overflow:hidden;display:flex;align-items:center;
 }
-.gc-ticker-dot{
-  width:6px;height:6px;background:#fff;border-radius:50%;
-  animation:blink 0.9s ease-in-out infinite;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-.gc-ticker-track{flex:1;overflow:hidden;display:flex;align-items:center}
-.gc-ticker-inner{
+.gc-topbar-inner{
   display:flex;align-items:center;white-space:nowrap;
-  animation:scroll 45s linear infinite;
+  animation:scroll 40s linear infinite;
 }
-.gc-ticker-inner:hover{animation-play-state:paused}
+.gc-topbar-inner:hover{animation-play-state:paused}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.gc-ticker-item{
+.gc-topbar-item{
   display:inline-flex;align-items:center;gap:8px;
-  color:rgba(255,255,255,0.85);font-size:12px;font-weight:500;
-  padding:0 32px;
+  color:rgba(255,255,255,0.9);font-size:12px;font-weight:600;
+  padding:0 28px;
 }
-.gc-ticker-tag{
-  border-radius:4px;padding:2px 7px;font-size:9px;
-  font-weight:700;letter-spacing:0.5px;color:#fff;
+.gc-topbar-tag{
+  font-size:9px;font-weight:800;letter-spacing:1px;
+  background:rgba(0,0,0,0.25);color:#fff;
+  padding:2px 6px;border-radius:3px;
   text-transform:uppercase;flex-shrink:0;
 }
-.gc-ticker-tag.ucl{background:var(--ucl)}
-.gc-ticker-tag.wc{background:var(--wc-green)}
-.gc-ticker-tag.pl{background:var(--pl-purple)}
-.gc-ticker-sep{color:rgba(255,255,255,0.2);padding:0 4px}
-.gc-ticker-close{
-  background:none;border:none;color:rgba(255,255,255,0.5);
-  font-size:14px;width:34px;height:34px;cursor:pointer;
+.gc-topbar-sep{color:rgba(255,255,255,0.3);padding:0 4px}
+.gc-topbar-close{
+  background:none;border:none;color:rgba(255,255,255,0.6);
+  font-size:14px;width:38px;height:38px;
+  cursor:pointer;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:color 0.15s;
 }
-.gc-ticker-close:hover{color:#fff}
+.gc-topbar-close:hover{color:#fff}
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    CONTENT
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 #gc-content{
-  padding:24px 24px 120px;
-  max-width:860px;
+  padding:0;
   display:block!important;
   visibility:visible!important;
   opacity:1!important;
 }
 
-/* ══════════════════════════════════════════════
-   SECTION LABEL
-══════════════════════════════════════════════ */
-.gc-section-label{
-  display:flex;align-items:center;gap:12px;
-  margin:8px 0 16px;
+/* ═══════════════════════════════════════════════
+   UCL HERO — FULL BLEED ESPN STYLE
+═══════════════════════════════════════════════ */
+.ucl-hero{
+  position:relative;
+  background:linear-gradient(135deg,#000510 0%,#001233 35%,#001e62 65%,#000d33 100%);
+  padding:0;overflow:hidden;
 }
-.gc-section-label-text{
-  font-size:11px;font-weight:700;letter-spacing:1px;
-  text-transform:uppercase;color:var(--t4);white-space:nowrap;
+/* Animated mesh overlay */
+.ucl-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 25% 50%,rgba(0,37,84,0.6) 0%,transparent 70%),
+    radial-gradient(ellipse 60% 50% at 75% 50%,rgba(120,0,0,0.3) 0%,transparent 70%);
+  pointer-events:none;
 }
-.gc-section-label-line{flex:1;height:1px;background:rgba(0,0,0,0.08)}
-
-/* ══════════════════════════════════════════════
-   UCL FINAL CARD
-══════════════════════════════════════════════ */
-.ucl-card{
-  background:linear-gradient(145deg,#001233,#001e62,#003399);
-  border-radius:var(--r3);overflow:hidden;
-  margin-bottom:16px;position:relative;
-  box-shadow:0 20px 60px rgba(0,30,98,0.35);
-}
-.ucl-card::before{
+/* Gold top bar */
+.ucl-hero::after{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,transparent,var(--ucl-gold),transparent);
-  background-size:200% 100%;animation:gold 3s linear infinite;
+  background-size:200%;animation:shimmer 3s linear infinite;
 }
-@keyframes gold{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-.ucl-top-bar{
+.ucl-hero-inner{position:relative;z-index:1;padding:20px 24px 0}
+
+/* Competition bar */
+.ucl-comp-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px 12px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:16px;
 }
-.ucl-badge{
-  background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.35);
-  border-radius:8px;padding:4px 10px;
-  font-size:10px;font-weight:700;letter-spacing:1px;
+.ucl-comp-left{display:flex;align-items:center;gap:10px}
+.ucl-comp-badge{
+  background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.4);
+  border-radius:6px;padding:4px 10px;
+  font-size:9px;font-weight:800;letter-spacing:1.5px;
   color:var(--ucl-gold);text-transform:uppercase;
 }
-.ucl-final-pill{
+.ucl-comp-name{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:rgba(255,255,255,0.45);
+}
+.ucl-final-badge{
   display:flex;align-items:center;gap:6px;
-  background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.3);
-  border-radius:999px;padding:5px 12px;
+  background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.35);
+  border-radius:999px;padding:5px 14px;
 }
-.ucl-final-pill span{font-size:10px;font-weight:700;color:var(--ucl-gold);letter-spacing:1px;text-transform:uppercase}
+.ucl-final-star{animation:pulse 1.5s ease-in-out infinite;font-size:12px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.ucl-final-text{font-size:10px;font-weight:800;color:var(--ucl-gold);letter-spacing:1.5px;text-transform:uppercase}
 
-.ucl-date-bar{
-  text-align:center;padding:8px 20px 4px;
-  font-size:11px;font-weight:600;letter-spacing:1.5px;
-  text-transform:uppercase;color:rgba(255,255,255,0.4);
+/* Match date */
+.ucl-match-date{
+  text-align:center;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,0.35);
+  margin-bottom:20px;
 }
 
-.ucl-match-row{
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;gap:8px;padding:16px 20px 12px;
+/* Teams row */
+.ucl-teams{
+  display:grid;grid-template-columns:1fr 180px 1fr;
+  align-items:center;gap:0;margin-bottom:0;
 }
-.ucl-team{display:flex;flex-direction:column;align-items:center;gap:8px}
-.ucl-team-badge{
-  width:68px;height:68px;border-radius:16px;
+.ucl-team{display:flex;flex-direction:column;align-items:center;gap:10px}
+
+/* Big club badge circles */
+.ucl-badge-circle{
+  width:90px;height:90px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:36px;
+  font-size:46px;position:relative;
+  box-shadow:0 0 0 3px rgba(255,255,255,0.08),0 0 40px rgba(0,0,0,0.5);
 }
-.ucl-team-badge.psg{
-  background:radial-gradient(circle at 30% 30%,rgba(0,37,84,0.9),rgba(0,20,50,0.95));
-  border:1.5px solid rgba(255,215,0,0.3);
-  box-shadow:0 0 24px rgba(0,37,84,0.5);
+.ucl-badge-circle.psg{
+  background:radial-gradient(circle at 35% 35%,#003399,#001a5c);
+  box-shadow:0 0 0 3px rgba(255,215,0,0.25),0 0 50px rgba(0,30,98,0.5);
 }
-.ucl-team-badge.ars{
-  background:radial-gradient(circle at 30% 30%,rgba(180,0,0,0.9),rgba(120,0,0,0.95));
-  border:1.5px solid rgba(220,38,38,0.4);
-  box-shadow:0 0 24px rgba(220,38,38,0.2);
+.ucl-badge-circle.ars{
+  background:radial-gradient(circle at 35% 35%,#cc0000,#800000);
+  box-shadow:0 0 0 3px rgba(220,38,38,0.35),0 0 50px rgba(180,0,0,0.4);
 }
-.ucl-team-name{font-size:14px;font-weight:700;color:#fff;text-align:center;letter-spacing:-0.2px}
-.ucl-team-country{font-size:11px;color:rgba(255,255,255,0.35);text-align:center}
-.ucl-vs{font-size:42px;font-weight:700;color:rgba(255,255,255,0.1);letter-spacing:-2px}
-.ucl-vs-label{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,215,0,0.4);text-transform:uppercase;text-align:center;margin-top:-4px}
+.ucl-team-name{
+  font-family:var(--display);font-size:22px;
+  color:#fff;text-align:center;letter-spacing:1px;
+}
+.ucl-team-sub{font-size:11px;color:rgba(255,255,255,0.35);text-align:center;font-weight:500}
 
-.ucl-chips{
+/* VS centre block */
+.ucl-centre{display:flex;flex-direction:column;align-items:center;gap:2px}
+.ucl-vs{
+  font-family:var(--display);font-size:56px;
+  color:rgba(255,255,255,0.07);letter-spacing:-3px;line-height:1;
+}
+.ucl-vs-sub{font-size:9px;font-weight:800;letter-spacing:2px;color:rgba(255,215,0,0.4);text-transform:uppercase}
+
+/* Info chips */
+.ucl-info-row{
   display:flex;flex-wrap:wrap;gap:6px;
-  justify-content:center;padding:0 20px 12px;
+  justify-content:center;padding:18px 0 16px;
 }
-.ucl-chip{
+.ucl-info-chip{
   display:flex;align-items:center;gap:5px;
-  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
-  border-radius:999px;padding:5px 11px;
-  font-size:11px;font-weight:500;color:rgba(255,255,255,0.65);
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;padding:5px 12px;
+  font-size:11px;font-weight:600;color:rgba(255,255,255,0.65);
 }
-.ucl-chip.gold{background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.25);color:var(--ucl-gold)}
+.ucl-info-chip.gold{background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.3);color:var(--ucl-gold)}
 
-.ucl-countdown{
-  margin:0 16px 14px;
-  background:rgba(0,0,0,0.25);border:1px solid rgba(255,215,0,0.12);
-  border-radius:16px;padding:14px 16px;text-align:center;
+/* Countdown */
+.ucl-cd-wrap{
+  background:rgba(0,0,0,0.35);border-top:1px solid rgba(255,255,255,0.06);
+  padding:16px 24px;text-align:center;
 }
-.ucl-cd-label{
-  font-size:10px;font-weight:700;letter-spacing:1.5px;
+.ucl-cd-title{
+  font-size:10px;font-weight:800;letter-spacing:2px;
   text-transform:uppercase;color:rgba(255,215,0,0.55);
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
-.ucl-cd-units{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
-.ucl-cd-unit{display:flex;flex-direction:column;align-items:center;gap:3px}
+.ucl-cd-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.ucl-cd-block{display:flex;flex-direction:column;align-items:center;gap:4px}
 .ucl-cd-num{
-  font-size:30px;font-weight:700;color:var(--ucl-gold);line-height:1;
-  background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.18);
-  border-radius:10px;padding:6px 10px;min-width:54px;text-align:center;
+  font-family:var(--display);font-size:48px;color:var(--ucl-gold);
+  line-height:1;background:rgba(255,215,0,0.06);
+  border:1px solid rgba(255,215,0,0.15);border-radius:8px;
+  padding:6px 14px;min-width:72px;text-align:center;
   font-variant-numeric:tabular-nums;
 }
-.ucl-cd-sep{font-size:22px;font-weight:700;color:rgba(255,215,0,0.25);padding-bottom:14px}
-.ucl-cd-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.ucl-cd-sep{font-family:var(--display);font-size:40px;color:rgba(255,215,0,0.2);padding-bottom:16px}
+.ucl-cd-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
 
-.ucl-tv{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 16px 12px}
-.ucl-tv-chip{
-  display:flex;align-items:center;gap:6px;padding:6px 13px;
-  border-radius:10px;font-size:11px;font-weight:700;
+/* TV row */
+.ucl-tv-row{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+  padding:12px 24px;background:rgba(0,0,0,0.2);
+  border-top:1px solid rgba(255,255,255,0.05);
 }
-.ucl-tv-chip.tnt{background:rgba(0,180,240,0.1);border:1px solid rgba(0,180,240,0.25);color:#38bdf8}
+.ucl-tv-chip{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;
+}
+.ucl-tv-chip.tnt{background:rgba(0,180,240,0.12);border:1px solid rgba(0,180,240,0.25);color:#38bdf8}
 .ucl-tv-chip.cbs{background:rgba(30,64,175,0.12);border:1px solid rgba(30,64,175,0.3);color:#93c5fd}
 
-.ucl-cta{display:flex;gap:8px;padding:0 16px 18px;flex-wrap:wrap}
-.ucl-btn{
-  flex:1;min-width:110px;display:flex;align-items:center;
-  justify-content:center;gap:6px;
-  padding:11px 16px;border-radius:12px;
-  font-family:var(--font);font-size:13px;font-weight:600;
+/* CTA row */
+.ucl-cta-row{
+  display:flex;gap:10px;padding:14px 24px 24px;flex-wrap:wrap;
+}
+.ucl-cta-btn{
+  flex:1;min-width:120px;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:13px 18px;border-radius:8px;
+  font-family:var(--font);font-size:13px;font-weight:700;
   text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;
 }
-.ucl-btn.primary{background:var(--ucl-gold);color:var(--ucl)}
-.ucl-btn.primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,215,0,0.3)}
-.ucl-btn.secondary{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.75)}
-.ucl-btn.secondary:hover{background:rgba(255,255,255,0.13);color:#fff}
+.ucl-cta-btn.primary{background:var(--ucl-gold);color:var(--ucl)}
+.ucl-cta-btn.primary:hover{background:#ffc200;transform:translateY(-1px)}
+.ucl-cta-btn.dark{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8)}
+.ucl-cta-btn.dark:hover{background:rgba(255,255,255,0.14);color:#fff}
 
-/* ══════════════════════════════════════════════
-   WORLD CUP CARD
-══════════════════════════════════════════════ */
-.wc-card{
-  background:#fff;border-radius:var(--r3);
-  overflow:hidden;margin-bottom:16px;
-  box-shadow:var(--shadow2);
-  border:1px solid rgba(0,0,0,0.06);
-  position:relative;
+/* ═══════════════════════════════════════════════
+   SECTION DIVIDER
+═══════════════════════════════════════════════ */
+.gc-divider{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;height:40px;
 }
-.wc-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,#006847,#ffffff,#ce1126);
+.gc-divider-bar{
+  width:4px;height:22px;background:var(--red);
+  border-radius:2px;margin-right:12px;flex-shrink:0;
 }
+.gc-divider-text{
+  font-family:var(--display);font-size:16px;letter-spacing:1px;
+  color:var(--t1);flex:1;
+}
+.gc-divider-sub{font-size:11px;font-weight:600;color:var(--t3)}
 
-.wc-header{
+/* ═══════════════════════════════════════════════
+   TWO COLUMN SECTION (WC + PL side by side)
+═══════════════════════════════════════════════ */
+.gc-two-col{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;border-top:1px solid var(--border);
+}
+.gc-col{border-right:1px solid var(--border);overflow:hidden}
+.gc-col:last-child{border-right:none}
+
+/* ═══════════════════════════════════════════════
+   WORLD CUP PANEL
+═══════════════════════════════════════════════ */
+.wc-panel{background:var(--bg2)}
+
+.wc-panel-header{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px 12px;
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:14px 20px;border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(0,104,71,0.2),rgba(0,104,71,0.05));
 }
-.wc-header-left{display:flex;align-items:center;gap:10px}
-.wc-badge{
-  background:#006847;color:#fff;
-  border-radius:8px;padding:4px 10px;
-  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+.wc-panel-badge{
+  background:var(--wc);color:#fff;border-radius:5px;
+  padding:3px 8px;font-size:9px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;
 }
-.wc-title{font-size:16px;font-weight:700;color:var(--t1);letter-spacing:-0.2px}
-.wc-dates{
-  background:var(--bg3);border-radius:999px;padding:4px 12px;
-  font-size:11px;font-weight:600;color:var(--t3);
-}
+.wc-panel-title{font-family:var(--display);font-size:18px;letter-spacing:1px;color:var(--t1)}
+.wc-panel-dates{font-size:10px;font-weight:700;color:var(--t3);background:var(--bg3);padding:3px 8px;border-radius:5px}
 
-.wc-hosts{
-  display:flex;justify-content:center;gap:24px;
-  padding:12px 20px 8px;flex-wrap:wrap;
+.wc-hosts-row{
+  display:flex;justify-content:space-around;
+  padding:14px 12px 10px;border-bottom:1px solid var(--border);
 }
-.wc-host{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t2)}
-.wc-host-flag{font-size:22px}
+.wc-host{display:flex;flex-direction:column;align-items:center;gap:4px}
+.wc-host-flag{font-size:28px;line-height:1}
+.wc-host-name{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.5px}
 
-.wc-stats{
+.wc-stats-row{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:rgba(0,0,0,0.06);
-  margin:10px 20px;border-radius:14px;overflow:hidden;
-  border:1px solid rgba(0,0,0,0.06);
+  gap:1px;background:var(--border);
+  border-bottom:1px solid var(--border);
 }
-.wc-stat{background:#fff;padding:12px 8px;text-align:center}
-.wc-stat-num{font-size:24px;font-weight:700;color:#006847;line-height:1}
-.wc-stat-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-top:3px}
+.wc-stat-item{
+  background:var(--bg2);padding:12px 8px;text-align:center;
+}
+.wc-stat-num{font-family:var(--display);font-size:28px;color:#4ade80;line-height:1}
+.wc-stat-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-top:2px}
 
-.wc-countdown{
-  margin:10px 20px 14px;
-  background:var(--bg3);border-radius:14px;
-  padding:14px 16px;text-align:center;
-  border:1px solid rgba(0,0,0,0.06);
-}
-.wc-cd-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);margin-bottom:10px}
-.wc-cd-units{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.wc-cd-panel{padding:14px 16px;border-bottom:1px solid var(--border);text-align:center}
+.wc-cd-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--t4);margin-bottom:10px}
+.wc-cd-units{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
 .wc-cd-unit{display:flex;flex-direction:column;align-items:center;gap:3px}
-.wc-cd-num{
-  font-size:28px;font-weight:700;color:#006847;line-height:1;
-  background:#fff;border:1px solid rgba(0,0,0,0.08);
-  border-radius:10px;padding:6px 10px;min-width:50px;text-align:center;
-  font-variant-numeric:tabular-nums;box-shadow:0 2px 8px rgba(0,0,0,0.06);
+.wc-cd-n{
+  font-family:var(--display);font-size:30px;color:#4ade80;
+  background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.15);
+  border-radius:6px;padding:4px 8px;min-width:46px;text-align:center;
+  font-variant-numeric:tabular-nums;line-height:1;
 }
-.wc-cd-sep{font-size:20px;font-weight:700;color:rgba(0,104,71,0.2);padding-bottom:14px}
-.wc-cd-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t4)}
+.wc-cd-sep2{font-family:var(--display);font-size:24px;color:rgba(74,222,128,0.2);padding-bottom:12px}
+.wc-cd-l{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t4)}
 
-.wc-cta{display:flex;gap:8px;padding:0 20px 18px;flex-wrap:wrap}
-.wc-btn{
-  flex:1;min-width:110px;display:flex;align-items:center;
-  justify-content:center;gap:6px;
-  padding:11px 16px;border-radius:12px;
-  font-family:var(--font);font-size:13px;font-weight:600;
-  text-decoration:none;transition:all 0.2s;
-}
-.wc-btn.primary{background:#006847;color:#fff}
-.wc-btn.primary:hover{background:#005538;transform:translateY(-1px)}
-.wc-btn.secondary{background:var(--bg3);color:var(--t2);border:1px solid rgba(0,0,0,0.08)}
-.wc-btn.secondary:hover{background:rgba(0,0,0,0.06);color:var(--t1)}
-
-/* ══════════════════════════════════════════════
-   PL CARD
-══════════════════════════════════════════════ */
-.pl-card{
-  background:#fff;border-radius:var(--r3);
-  overflow:hidden;margin-bottom:16px;
-  box-shadow:var(--shadow2);
-  border:1px solid rgba(0,0,0,0.06);
-  position:relative;
-}
-.pl-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:#38003c;
-}
-
-.pl-header{
+.wc-links{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.wc-link{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px 12px;
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:11px 20px;background:var(--bg2);
+  font-size:13px;font-weight:600;color:var(--t2);
+  text-decoration:none;transition:all 0.15s;
+  border-left:3px solid transparent;
 }
-.pl-badge{
-  background:#38003c;color:#fff;
-  border-radius:8px;padding:4px 10px;
-  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-}
-.pl-season{font-size:12px;font-weight:600;color:var(--t4)}
+.wc-link:hover{background:var(--bg3);color:var(--t1);border-left-color:var(--wc)}
+.wc-link-arrow{color:var(--t4);font-size:12px}
 
-.pl-champion{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 20px 12px;flex-wrap:wrap;
-  background:linear-gradient(135deg,rgba(220,38,38,0.05),rgba(180,0,0,0.03));
-  border-bottom:1px solid rgba(0,0,0,0.06);
-}
-.pl-trophy{font-size:42px;filter:drop-shadow(0 4px 8px rgba(255,200,0,0.3))}
-.pl-champion-info{}
-.pl-champion-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-.pl-champion-team{font-size:22px;font-weight:700;color:var(--t1);letter-spacing:-0.3px}
-.pl-champion-detail{font-size:12px;color:var(--t3);margin-top:3px;font-weight:500}
+/* ═══════════════════════════════════════════════
+   PREMIER LEAGUE PANEL
+═══════════════════════════════════════════════ */
+.pl-panel{background:var(--bg2)}
 
-.pl-table{margin:0 0 0;overflow:hidden}
-.pl-table-head{
-  display:grid;grid-template-columns:28px 1fr 44px 44px 50px;
-  padding:8px 20px;background:var(--bg3);
-  font-size:10px;font-weight:700;letter-spacing:1px;
+.pl-panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(56,0,60,0.3),rgba(56,0,60,0.05));
+}
+.pl-panel-badge{
+  background:var(--pl);color:#e9b4ff;border-radius:5px;
+  padding:3px 8px;font-size:9px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;
+}
+.pl-panel-title{font-family:var(--display);font-size:18px;letter-spacing:1px;color:var(--t1)}
+.pl-panel-sub{font-size:10px;font-weight:700;color:var(--t3)}
+
+/* Champion strip */
+.pl-champ-strip{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 20px;
+  background:linear-gradient(135deg,rgba(220,38,38,0.12),rgba(220,38,38,0.03));
+  border-bottom:1px solid var(--border);
+}
+.pl-champ-trophy{font-size:32px;filter:drop-shadow(0 2px 8px rgba(255,200,0,0.4))}
+.pl-champ-info{}
+.pl-champ-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.pl-champ-name{font-family:var(--display);font-size:20px;color:var(--t1);letter-spacing:0.5px}
+.pl-champ-detail{font-size:10px;color:var(--t3);margin-top:1px;font-weight:500}
+
+/* Table */
+.pl-tbl-head{
+  display:grid;grid-template-columns:24px 1fr 36px 36px 44px;
+  padding:7px 20px;background:var(--bg3);
+  font-size:9px;font-weight:800;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--t4);
-  border-bottom:1px solid rgba(0,0,0,0.06);
+  border-bottom:1px solid var(--border);
 }
-.pl-table-row{
-  display:grid;grid-template-columns:28px 1fr 44px 44px 50px;
-  padding:10px 20px;align-items:center;
-  border-bottom:1px solid rgba(0,0,0,0.05);
+.pl-tbl-row{
+  display:grid;grid-template-columns:24px 1fr 36px 36px 44px;
+  padding:9px 20px;align-items:center;
+  border-bottom:1px solid var(--border);
   transition:background 0.15s;
 }
-.pl-table-row:last-child{border-bottom:none}
-.pl-table-row:hover{background:var(--bg3)}
-.pl-table-row.champion{
-  background:linear-gradient(90deg,rgba(220,38,38,0.06),rgba(220,38,38,0.02));
+.pl-tbl-row:last-child{border-bottom:none}
+.pl-tbl-row:hover{background:var(--bg3)}
+.pl-tbl-row.champ{
+  background:linear-gradient(90deg,rgba(220,38,38,0.1),rgba(220,38,38,0.02));
   border-left:3px solid var(--gold);
 }
-.pl-pos{font-size:13px;font-weight:700;color:var(--t4)}
-.pl-pos.gold{color:var(--gold)}
-.pl-pos.silver{color:#8e8e93}
-.pl-pos.bronze{color:#a2845e}
-.pl-team-name{font-size:13px;font-weight:600;color:var(--t1);display:flex;align-items:center;gap:6px}
-.pl-champ-badge{
-  font-size:9px;background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3);
-  color:#b45309;padding:1px 6px;border-radius:6px;font-weight:700;
-}
-.pl-gd{font-size:12px;font-weight:600;color:var(--green);text-align:center}
-.pl-pts{font-size:14px;font-weight:700;color:var(--t1);text-align:right}
-.pl-pts.gold{color:var(--gold)}
-.pl-p{font-size:12px;color:var(--t4);text-align:center}
+.pl-pos-num{font-size:12px;font-weight:700;color:var(--t4)}
+.pl-pos-num.g{color:var(--gold)}
+.pl-pos-num.s{color:#8e8e93}
+.pl-pos-num.b{color:#a2845e}
+.pl-tn{font-size:12px;font-weight:600;color:var(--t1);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pl-cb{font-size:8px;background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.25);color:#b45309;padding:1px 5px;border-radius:4px;font-weight:700;white-space:nowrap}
+.pl-gd{font-size:11px;font-weight:600;color:#4ade80;text-align:center}
+.pl-gd.dim{color:var(--t3)}
+.pl-pts{font-size:13px;font-weight:800;color:var(--t1);text-align:right}
+.pl-pts.g{color:var(--gold)}
+.pl-p{font-size:11px;color:var(--t4);text-align:center}
 
-.pl-source{
-  padding:8px 20px 10px;font-size:10px;color:var(--t4);text-align:center;
-  background:var(--bg3);border-top:1px solid rgba(0,0,0,0.05);
+.pl-tbl-foot{
+  padding:8px 20px;background:var(--bg3);
+  font-size:9px;color:var(--t4);text-align:center;
+  border-top:1px solid var(--border);
 }
 
-.pl-links{display:flex;gap:8px;padding:12px 20px 18px;flex-wrap:wrap}
-.pl-link{
-  display:flex;align-items:center;gap:6px;
-  background:var(--bg3);border:1px solid rgba(0,0,0,0.08);
-  border-radius:10px;padding:8px 13px;
-  font-size:12px;font-weight:600;color:var(--t2);
+.pl-links-row{display:flex;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.pl-link-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:4px;
+  padding:10px 6px;background:var(--bg2);
+  font-size:11px;font-weight:600;color:var(--t3);
   text-decoration:none;transition:all 0.15s;
 }
-.pl-link:hover{background:rgba(0,122,255,0.08);border-color:rgba(0,122,255,0.2);color:var(--blue)}
+.pl-link-btn:hover{background:var(--bg3);color:var(--t1)}
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
+   ADSENSE
+═══════════════════════════════════════════════ */
+.gc-ad{padding:12px 24px;background:var(--bg2);border-top:1px solid var(--border)}
+
+/* ═══════════════════════════════════════════════
    NORDVPN BAR
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 #gc-nord{
   position:fixed;bottom:0;left:var(--sb-w);right:0;
   z-index:400;display:flex;align-items:center;justify-content:center;
-  gap:10px;background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-top:1px solid rgba(0,0,0,0.08);
-  padding:8px 16px;flex-wrap:nowrap;
-  box-shadow:0 -4px 20px rgba(0,0,0,0.06);
+  gap:10px;background:rgba(26,26,26,0.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:7px 16px;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.4);
 }
 .gc-nord-text{font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap}
 .gc-nord-btn{
-  background:var(--blue);color:#fff;
-  padding:6px 14px;border-radius:8px;
-  font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;
-  transition:background 0.15s;
+  background:var(--red);color:#fff;
+  padding:6px 14px;border-radius:6px;
+  font-size:12px;font-weight:700;text-decoration:none;
 }
-.gc-nord-btn:hover{background:var(--blue2)}
-.gc-nord-pass{color:var(--blue);font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+.gc-nord-pass{color:var(--blue);font-size:12px;font-weight:600;text-decoration:none}
 .gc-nord-ad{font-size:10px;color:var(--t4)}
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    COOKIE BANNER
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 #gc-cookie{
-  display:none;position:fixed;bottom:60px;
+  display:none;position:fixed;bottom:56px;
   left:calc(var(--sb-w) + 16px);right:16px;
-  z-index:9999;background:#fff;
-  border:1px solid rgba(0,0,0,0.1);
-  border-radius:18px;padding:18px 20px;
-  box-shadow:0 8px 40px rgba(0,0,0,0.15);
-  max-width:520px;font-family:var(--font);
+  z-index:9999;background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+  max-width:500px;font-family:var(--font);
 }
-.gc-cookie-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px}
-.gc-cookie-text{font-size:13px;color:var(--t3);line-height:1.5;margin-bottom:14px}
-.gc-cookie-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.gc-cookie-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.gc-cookie-text{font-size:12px;color:var(--t3);line-height:1.5;margin-bottom:12px}
+.gc-cookie-btns{display:flex;gap:8px;justify-content:flex-end}
 .gc-cookie-btn{
-  padding:9px 18px;border-radius:10px;
-  font-family:var(--font);font-size:13px;font-weight:600;
-  cursor:pointer;border:none;transition:all 0.15s;
+  padding:8px 16px;border-radius:7px;
+  font-family:var(--font);font-size:12px;font-weight:700;
+  cursor:pointer;border:none;
 }
-.gc-cookie-btn.accept{background:var(--blue);color:#fff}
-.gc-cookie-btn.accept:hover{background:var(--blue2)}
-.gc-cookie-btn.reject{background:var(--bg3);color:var(--t2)}
-.gc-cookie-btn.reject:hover{background:rgba(0,0,0,0.08)}
+.gc-cookie-btn.accept{background:var(--red);color:#fff}
+.gc-cookie-btn.reject{background:var(--bg3);color:var(--t2);border:1px solid var(--border)}
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    EMAIL POPUP
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 #gc-popup{
   display:none;position:fixed;inset:0;z-index:99999;
-  background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
   align-items:center;justify-content:center;padding:16px;
 }
 .gc-popup-inner{
-  background:#fff;border-radius:24px;padding:28px 24px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;padding:28px 24px;
   max-width:380px;width:100%;
-  box-shadow:0 24px 60px rgba(0,0,0,0.2);
+  box-shadow:0 24px 60px rgba(0,0,0,0.6);
   text-align:center;position:relative;
 }
 .gc-popup-close{
-  position:absolute;top:14px;right:14px;
+  position:absolute;top:12px;right:14px;
   background:var(--bg3);border:none;width:28px;height:28px;
-  border-radius:50%;font-size:14px;color:var(--t3);
+  border-radius:50%;font-size:13px;color:var(--t3);
   cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
-.gc-popup-icon{font-size:40px;margin-bottom:12px}
-.gc-popup-title{font-size:18px;font-weight:700;color:var(--t1);margin-bottom:6px}
-.gc-popup-text{font-size:13px;color:var(--t3);line-height:1.5;margin-bottom:14px}
-.gc-popup-perks{
-  background:var(--bg3);border-radius:12px;
-  padding:10px 14px;margin-bottom:14px;
-  font-size:12px;color:var(--t2);text-align:left;line-height:2;
-}
+.gc-popup-icon{font-size:38px;margin-bottom:10px}
+.gc-popup-title{font-size:18px;font-weight:800;color:var(--t1);margin-bottom:6px}
+.gc-popup-text{font-size:13px;color:var(--t3);line-height:1.5;margin-bottom:12px}
+.gc-popup-perks{background:var(--bg3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--t2);text-align:left;line-height:2}
 .gc-popup-input{
-  width:100%;padding:12px 14px;
-  border:1.5px solid rgba(0,0,0,0.12);border-radius:10px;
+  width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:8px;
   font-family:var(--font);font-size:13px;color:var(--t1);
-  background:#fff;outline:none;margin-bottom:8px;
-  transition:border-color 0.15s;
+  background:var(--bg3);outline:none;margin-bottom:8px;
 }
-.gc-popup-input:focus{border-color:var(--blue)}
+.gc-popup-input:focus{border-color:var(--red)}
 .gc-popup-sub{
-  width:100%;background:var(--blue);color:#fff;border:none;
-  padding:13px;border-radius:10px;
-  font-family:var(--font);font-size:14px;font-weight:700;
-  cursor:pointer;transition:background 0.15s;
+  width:100%;background:var(--red);color:#fff;border:none;
+  padding:12px;border-radius:8px;
+  font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;
 }
-.gc-popup-sub:hover{background:var(--blue2)}
-.gc-popup-success{
-  display:none;margin-top:10px;padding:10px;
-  background:rgba(52,199,89,0.1);border-radius:10px;
-  color:#1a7f37;font-size:13px;font-weight:600;
-}
-.gc-popup-skip{
-  background:none;border:none;color:var(--t4);
-  font-size:12px;cursor:pointer;margin-top:10px;
-  text-decoration:underline;
-}
+.gc-popup-success{display:none;margin-top:10px;padding:10px;background:rgba(52,199,89,0.1);border-radius:8px;color:#4ade80;font-size:13px;font-weight:600}
+.gc-popup-skip{background:none;border:none;color:var(--t4);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline}
 
-/* ══════════════════════════════════════════════
-   HAMBURGER (mobile)
-══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   HAMBURGER
+═══════════════════════════════════════════════ */
 .gc-hamburger{
-  display:none;position:fixed;top:40px;right:12px;
-  z-index:9999;background:#fff;border:1px solid rgba(0,0,0,0.1);
-  border-radius:10px;width:40px;height:40px;font-size:18px;
+  display:none;position:fixed;top:44px;right:12px;
+  z-index:9999;background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;width:40px;height:40px;font-size:18px;
   color:var(--t1);cursor:pointer;align-items:center;justify-content:center;
-  box-shadow:var(--shadow);
 }
-.sb-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.3);z-index:250;
-  backdrop-filter:blur(2px);
-}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:250}
 .sb-overlay.show{display:block}
 
-/* ══════════════════════════════════════════════
-   ADSENSE
-══════════════════════════════════════════════ */
-.gc-ad{margin:8px 0}
-
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    RESPONSIVE
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  .gc-two-col{grid-template-columns:1fr}
+  .gc-col{border-right:none;border-bottom:1px solid var(--border)}
+}
 @media(max-width:768px){
   .gc-sidebar{transform:translateX(-100%)}
-  .gc-sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,0.15)}
+  .gc-sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,0.5)}
   .gc-main{margin-left:0}
-  #gc-content{padding:16px 14px 100px}
   .gc-hamburger{display:flex}
   #gc-nord{left:0!important}
-  #gc-cookie{left:12px!important;right:12px!important;bottom:70px!important}
-  .ucl-match-row{padding:12px 14px 10px}
-  .ucl-team-badge{width:56px;height:56px;font-size:30px}
-  .ucl-cd-num{font-size:24px;min-width:46px}
-  .wc-cd-num{font-size:22px;min-width:42px}
-  .pl-table-head,.pl-table-row{padding:8px 14px}
-  .ucl-cta,.wc-cta,.pl-links{padding-left:14px;padding-right:14px}
-  .pl-champion{padding:12px 14px}
-  .pl-champion-team{font-size:18px}
+  #gc-cookie{left:12px!important;right:12px!important;bottom:60px!important}
+  .ucl-hero-inner{padding:16px 16px 0}
+  .ucl-teams{grid-template-columns:1fr 120px 1fr}
+  .ucl-badge-circle{width:70px;height:70px;font-size:36px}
+  .ucl-team-name{font-size:17px}
+  .ucl-cd-num{font-size:36px;min-width:58px;padding:5px 10px}
+  .ucl-cta-row{padding:12px 16px 20px}
+  .wc-panel-header,.pl-panel-header{padding:12px 16px}
+  .pl-tbl-head,.pl-tbl-row{padding:8px 14px}
+  .pl-champ-strip{padding:10px 14px}
+  .wc-hosts-row{padding:12px 8px 8px}
+  .gc-ad{padding:10px 16px}
+}
+@media(max-width:480px){
+  .ucl-teams{grid-template-columns:1fr 80px 1fr}
+  .ucl-badge-circle{width:56px;height:56px;font-size:28px}
+  .ucl-team-name{font-size:14px}
+  .ucl-cd-num{font-size:28px;min-width:48px}
+  .ucl-cd-sep{font-size:28px}
 }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR OVERLAY -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
-
-<!-- HAMBURGER -->
-<button class="gc-hamburger" onclick="openSidebar()" aria-label="Menu">☰</button>
+<button class="gc-hamburger" onclick="openSidebar()">☰</button>
 
 <div class="gc-layout">
 
-<!-- ════════════ SIDEBAR ════════════ -->
+<!-- ════ SIDEBAR ════ -->
 <aside class="gc-sidebar" id="gcSidebar">
   <a href="/" class="sb-logo">
-    <span class="sb-logo-icon">⚽</span>
-    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+    <span class="sb-logo-ball">⚽</span>
+    <div class="sb-logo-text">
+      GOAL<em>CURRENT</em>
+      <span>.live</span>
+    </div>
   </a>
 
   <span class="sb-section-label">Main Menu</span>
@@ -724,10 +735,8 @@ body{
   </a>
 
   <div class="sb-divider"></div>
-
   <span class="sb-section-label">Competitions</span>
 
-  <!-- UCL -->
   <button class="sb-comp-btn open" onclick="sbToggle('sb-ucl',this)">
     <span class="sb-comp-icon">⭐</span>
     <span class="sb-comp-name">Champions League</span>
@@ -742,7 +751,6 @@ body{
     <a href="/ucl/news/">📰 News</a>
   </div>
 
-  <!-- World Cup -->
   <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
     <span class="sb-comp-icon">🏆</span>
     <span class="sb-comp-name">World Cup 2026</span>
@@ -759,7 +767,6 @@ body{
     <a href="/worldcup2026/news/">📰 News</a>
   </div>
 
-  <!-- Premier League -->
   <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
     <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
     <span class="sb-comp-name">Premier League</span>
@@ -778,131 +785,129 @@ body{
   <div class="sb-footer">
     © 2026 Ashna4All · Ahmad Zafarani<br>
     Independent fan site · Not affiliated with FIFA, UEFA or PL<br><br>
-    <a href="/about.html">About</a> ·
-    <a href="/privacy.html">Privacy</a> ·
-    <a href="/terms.html">Terms</a> ·
-    <a href="/disclaimer.html">Disclaimer</a>
+    <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
   </div>
 </aside>
 
-<!-- ════════════ MAIN ════════════ -->
+<!-- ════ MAIN ════ -->
 <div class="gc-main">
 
-  <!-- TICKER -->
-  <div class="gc-ticker" id="gcTicker">
-    <div class="gc-ticker-label">
-      <div class="gc-ticker-dot"></div>
-      BREAKING
-    </div>
-    <div class="gc-ticker-track">
-      <div class="gc-ticker-inner">
-        <span class="gc-ticker-item"><span class="gc-ticker-tag ucl">UCL FINAL</span>PSG vs Arsenal · Sat 30 May · 17:00 BST · Puskás Aréna, Budapest</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag wc">WORLD CUP</span>Kicks off 11 June 2026 · USA · Mexico · Canada · 48 Teams · 104 Matches</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag pl">PREMIER LEAGUE</span>🏆 Arsenal — Champions 2025/26 · 85 pts · GD +44</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag ucl">UCL SEMI</span>PSG beat Bayern 6-5 agg · Arsenal beat Atlético 2-1 agg</span>
-        <span class="gc-ticker-sep">◆</span>
-        <!-- duplicate for seamless loop -->
-        <span class="gc-ticker-item"><span class="gc-ticker-tag ucl">UCL FINAL</span>PSG vs Arsenal · Sat 30 May · 17:00 BST · Puskás Aréna, Budapest</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag wc">WORLD CUP</span>Kicks off 11 June 2026 · USA · Mexico · Canada · 48 Teams · 104 Matches</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag pl">PREMIER LEAGUE</span>🏆 Arsenal — Champions 2025/26 · 85 pts · GD +44</span>
-        <span class="gc-ticker-sep">◆</span>
-        <span class="gc-ticker-item"><span class="gc-ticker-tag ucl">UCL SEMI</span>PSG beat Bayern 6-5 agg · Arsenal beat Atlético 2-1 agg</span>
-        <span class="gc-ticker-sep">◆</span>
+  <!-- TOP RED BAR TICKER -->
+  <div class="gc-topbar" id="gcTopbar">
+    <span class="gc-topbar-brand">GC</span>
+    <div class="gc-topbar-ticker">
+      <div class="gc-topbar-inner">
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">UCL FINAL</span> PSG vs Arsenal · Sat 30 May · 17:00 BST · Budapest</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">WORLD CUP</span> Kicks off 11 June 2026 · USA · Mexico · Canada · 48 Teams</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">PL CHAMPIONS</span> 🏆 Arsenal 2025/26 · 85 pts · GD +44</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">UCL SEMI</span> PSG 6-5 Bayern · Arsenal 2-1 Atlético (agg)</span>
+        <span class="gc-topbar-sep">◆</span>
+        <!-- duplicate -->
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">UCL FINAL</span> PSG vs Arsenal · Sat 30 May · 17:00 BST · Budapest</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">WORLD CUP</span> Kicks off 11 June 2026 · USA · Mexico · Canada · 48 Teams</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">PL CHAMPIONS</span> 🏆 Arsenal 2025/26 · 85 pts · GD +44</span>
+        <span class="gc-topbar-sep">◆</span>
+        <span class="gc-topbar-item"><span class="gc-topbar-tag">UCL SEMI</span> PSG 6-5 Bayern · Arsenal 2-1 Atlético (agg)</span>
+        <span class="gc-topbar-sep">◆</span>
       </div>
     </div>
-    <button class="gc-ticker-close" onclick="document.getElementById('gcTicker').style.display='none'">✕</button>
+    <button class="gc-topbar-close" onclick="document.getElementById('gcTopbar').style.display='none'">✕</button>
   </div>
 
   <!-- CONTENT -->
   <main id="gc-content">
 
-    <!-- UCL FINAL -->
-    <div class="gc-section-label">
-      <div class="gc-section-label-line"></div>
-      <span class="gc-section-label-text">⭐ Biggest Match in Club Football</span>
-      <div class="gc-section-label-line"></div>
-    </div>
+    <!-- UCL HERO -->
+    <div class="ucl-hero">
+      <div class="ucl-hero-inner">
 
-    <div class="ucl-card">
-      <div class="ucl-top-bar">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="ucl-badge">UEFA Champions League</span>
-          <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase">2025/26 · Grand Final</span>
+        <!-- Competition bar -->
+        <div class="ucl-comp-bar">
+          <div class="ucl-comp-left">
+            <span class="ucl-comp-badge">UEFA Champions League</span>
+            <span class="ucl-comp-name">2025/26 · Grand Final</span>
+          </div>
+          <div class="ucl-final-badge">
+            <span class="ucl-final-star">★</span>
+            <span class="ucl-final-text">The Final</span>
+          </div>
         </div>
-        <div class="ucl-final-pill">
-          <span style="font-size:13px">★</span>
-          <span>THE FINAL</span>
+
+        <div class="ucl-match-date">Saturday 30 May 2026 · Kick-Off 17:00 BST · 18:00 CET</div>
+
+        <!-- Teams -->
+        <div class="ucl-teams">
+          <div class="ucl-team">
+            <div class="ucl-badge-circle psg">🔵</div>
+            <div class="ucl-team-name">PARIS SG</div>
+            <div class="ucl-team-sub">🇫🇷 France</div>
+          </div>
+          <div class="ucl-centre">
+            <div class="ucl-vs">VS</div>
+            <div class="ucl-vs-sub">FINAL</div>
+          </div>
+          <div class="ucl-team">
+            <div class="ucl-badge-circle ars">🔴</div>
+            <div class="ucl-team-name">ARSENAL</div>
+            <div class="ucl-team-sub">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div>
+          </div>
+        </div>
+
+        <!-- Info chips -->
+        <div class="ucl-info-row">
+          <span class="ucl-info-chip gold">🏟️ Puskás Aréna, Budapest</span>
+          <span class="ucl-info-chip">📅 Saturday 30 May 2026</span>
+          <span class="ucl-info-chip">⏰ 17:00 BST</span>
+          <span class="ucl-info-chip">🇭🇺 Hungary</span>
         </div>
       </div>
 
-      <div class="ucl-date-bar">Saturday 30 May 2026 · Kick-off 17:00 BST</div>
-
-      <div class="ucl-match-row">
-        <div class="ucl-team">
-          <div class="ucl-team-badge psg">🔵</div>
-          <div class="ucl-team-name">Paris Saint-Germain</div>
-          <div class="ucl-team-country">🇫🇷 France</div>
-        </div>
-        <div>
-          <div class="ucl-vs">VS</div>
-          <div class="ucl-vs-label">Final</div>
-        </div>
-        <div class="ucl-team">
-          <div class="ucl-team-badge ars">🔴</div>
-          <div class="ucl-team-name">Arsenal</div>
-          <div class="ucl-team-country">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div>
-        </div>
-      </div>
-
-      <div class="ucl-chips">
-        <span class="ucl-chip gold">🏟️ Puskás Aréna, Budapest</span>
-        <span class="ucl-chip">📅 Saturday 30 May 2026</span>
-        <span class="ucl-chip">⏰ 17:00 BST · 18:00 CET</span>
-        <span class="ucl-chip">🇭🇺 Hungary</span>
-      </div>
-
-      <div class="ucl-countdown">
-        <div class="ucl-cd-label">⏳ Countdown to Kick-Off</div>
-        <div class="ucl-cd-units">
-          <div class="ucl-cd-unit">
+      <!-- Countdown -->
+      <div class="ucl-cd-wrap">
+        <div class="ucl-cd-title">⏳ Countdown to Kick-Off</div>
+        <div class="ucl-cd-row">
+          <div class="ucl-cd-block">
             <div class="ucl-cd-num" id="u-d">--</div>
             <div class="ucl-cd-lbl">Days</div>
           </div>
           <div class="ucl-cd-sep">:</div>
-          <div class="ucl-cd-unit">
+          <div class="ucl-cd-block">
             <div class="ucl-cd-num" id="u-h">--</div>
             <div class="ucl-cd-lbl">Hours</div>
           </div>
           <div class="ucl-cd-sep">:</div>
-          <div class="ucl-cd-unit">
+          <div class="ucl-cd-block">
             <div class="ucl-cd-num" id="u-m">--</div>
             <div class="ucl-cd-lbl">Mins</div>
           </div>
           <div class="ucl-cd-sep">:</div>
-          <div class="ucl-cd-unit">
+          <div class="ucl-cd-block">
             <div class="ucl-cd-num" id="u-s">--</div>
             <div class="ucl-cd-lbl">Secs</div>
           </div>
         </div>
       </div>
 
-      <div class="ucl-tv">
+      <!-- TV -->
+      <div class="ucl-tv-row">
         <div class="ucl-tv-chip tnt">📺 TNT Sports / discovery+ (UK)</div>
         <div class="ucl-tv-chip cbs">📺 CBS / Paramount+ (US)</div>
       </div>
 
-      <div class="ucl-cta">
-        <a href="/ucl/" class="ucl-btn primary">⭐ UCL Hub →</a>
-        <a href="/ucl/teams/" class="ucl-btn secondary">👕 Squads</a>
-        <a href="/ucl/results/" class="ucl-btn secondary">📊 Results</a>
-        <a href="/ucl/news/" class="ucl-btn secondary">📰 News</a>
+      <!-- CTA -->
+      <div class="ucl-cta-row">
+        <a href="/ucl/" class="ucl-cta-btn primary">⭐ UCL Hub →</a>
+        <a href="/ucl/teams/" class="ucl-cta-btn dark">👕 Squads</a>
+        <a href="/ucl/results/" class="ucl-cta-btn dark">📊 Semi Results</a>
+        <a href="/ucl/news/" class="ucl-cta-btn dark">📰 News</a>
       </div>
     </div>
+    <!-- END UCL HERO -->
 
     <!-- ADSENSE -->
     <div class="gc-ad">
@@ -910,132 +915,133 @@ body{
       <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
     </div>
 
-    <!-- WORLD CUP -->
-    <div class="gc-section-label">
-      <div class="gc-section-label-line"></div>
-      <span class="gc-section-label-text">🌍 Coming Next — The World's Biggest Tournament</span>
-      <div class="gc-section-label-line"></div>
+    <!-- SECTION DIVIDER: WC + PL -->
+    <div class="gc-divider">
+      <div class="gc-divider-bar"></div>
+      <span class="gc-divider-text">COMING UP &amp; SEASON REVIEW</span>
     </div>
 
-    <div class="wc-card">
-      <div class="wc-header">
-        <div class="wc-header-left">
-          <span class="wc-badge">🏆 FIFA</span>
-          <span class="wc-title">World Cup 2026</span>
-        </div>
-        <span class="wc-dates">11 Jun – 19 Jul 2026</span>
-      </div>
-      <div class="wc-hosts">
-        <div class="wc-host"><span class="wc-host-flag">🇺🇸</span> USA</div>
-        <div class="wc-host"><span class="wc-host-flag">🇲🇽</span> Mexico</div>
-        <div class="wc-host"><span class="wc-host-flag">🇨🇦</span> Canada</div>
-      </div>
-      <div class="wc-stats">
-        <div class="wc-stat"><div class="wc-stat-num">48</div><div class="wc-stat-lbl">Teams</div></div>
-        <div class="wc-stat"><div class="wc-stat-num">104</div><div class="wc-stat-lbl">Matches</div></div>
-        <div class="wc-stat"><div class="wc-stat-num">16</div><div class="wc-stat-lbl">Stadiums</div></div>
-      </div>
-      <div class="wc-countdown">
-        <div class="wc-cd-label">⏳ Starts In</div>
-        <div class="wc-cd-units">
-          <div class="wc-cd-unit">
-            <div class="wc-cd-num" id="w-d">--</div>
-            <div class="wc-cd-lbl">Days</div>
-          </div>
-          <div class="wc-cd-sep">:</div>
-          <div class="wc-cd-unit">
-            <div class="wc-cd-num" id="w-h">--</div>
-            <div class="wc-cd-lbl">Hours</div>
-          </div>
-          <div class="wc-cd-sep">:</div>
-          <div class="wc-cd-unit">
-            <div class="wc-cd-num" id="w-m">--</div>
-            <div class="wc-cd-lbl">Mins</div>
-          </div>
-          <div class="wc-cd-sep">:</div>
-          <div class="wc-cd-unit">
-            <div class="wc-cd-num" id="w-s">--</div>
-            <div class="wc-cd-lbl">Secs</div>
-          </div>
-        </div>
-      </div>
-      <div class="wc-cta">
-        <a href="/worldcup2026/" class="wc-btn primary">🌍 WC2026 Hub →</a>
-        <a href="/worldcup2026/fixtures/" class="wc-btn secondary">📅 Fixtures</a>
-        <a href="/worldcup2026/groups/" class="wc-btn secondary">🔢 Groups</a>
-        <a href="/worldcup2026/bracket/" class="wc-btn secondary">🏅 Bracket</a>
-      </div>
-    </div>
+    <!-- TWO COLUMN: WC + PL -->
+    <div class="gc-two-col">
 
-    <!-- PREMIER LEAGUE -->
-    <div class="gc-section-label">
-      <div class="gc-section-label-line"></div>
-      <span class="gc-section-label-text">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League 2025/26 — Season Complete</span>
-      <div class="gc-section-label-line"></div>
-    </div>
+      <!-- WORLD CUP -->
+      <div class="gc-col wc-panel">
+        <div class="wc-panel-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="wc-panel-badge">🏆 FIFA</span>
+            <span class="wc-panel-title">WORLD CUP 2026</span>
+          </div>
+          <span class="wc-panel-dates">11 Jun–19 Jul</span>
+        </div>
 
-    <div class="pl-card">
-      <div class="pl-header">
-        <span class="pl-badge">Premier League</span>
-        <span class="pl-season">Season 2025/26 — Final Standings</span>
-      </div>
-      <div class="pl-champion">
-        <div class="pl-trophy">🏆</div>
-        <div class="pl-champion-info">
-          <div class="pl-champion-label">🎉 Champions 2025/26</div>
-          <div class="pl-champion-team">🔴 Arsenal</div>
-          <div class="pl-champion-detail">85 pts · GD +44 · 26 Wins · First title since 2003/04</div>
+        <div class="wc-hosts-row">
+          <div class="wc-host"><div class="wc-host-flag">🇺🇸</div><div class="wc-host-name">USA</div></div>
+          <div class="wc-host"><div class="wc-host-flag">🇲🇽</div><div class="wc-host-name">Mexico</div></div>
+          <div class="wc-host"><div class="wc-host-flag">🇨🇦</div><div class="wc-host-name">Canada</div></div>
+        </div>
+
+        <div class="wc-stats-row">
+          <div class="wc-stat-item"><div class="wc-stat-num">48</div><div class="wc-stat-lbl">Teams</div></div>
+          <div class="wc-stat-item"><div class="wc-stat-num">104</div><div class="wc-stat-lbl">Matches</div></div>
+          <div class="wc-stat-item"><div class="wc-stat-num">16</div><div class="wc-stat-lbl">Stadiums</div></div>
+        </div>
+
+        <div class="wc-cd-panel">
+          <div class="wc-cd-label">⏳ Tournament Starts In</div>
+          <div class="wc-cd-units">
+            <div class="wc-cd-unit"><div class="wc-cd-n" id="w-d">--</div><div class="wc-cd-l">Days</div></div>
+            <div class="wc-cd-sep2">:</div>
+            <div class="wc-cd-unit"><div class="wc-cd-n" id="w-h">--</div><div class="wc-cd-l">Hrs</div></div>
+            <div class="wc-cd-sep2">:</div>
+            <div class="wc-cd-unit"><div class="wc-cd-n" id="w-m">--</div><div class="wc-cd-l">Min</div></div>
+            <div class="wc-cd-sep2">:</div>
+            <div class="wc-cd-unit"><div class="wc-cd-n" id="w-s">--</div><div class="wc-cd-l">Sec</div></div>
+          </div>
+        </div>
+
+        <div class="wc-links">
+          <a href="/worldcup2026/" class="wc-link">🏠 WC2026 Hub <span class="wc-link-arrow">›</span></a>
+          <a href="/worldcup2026/groups/" class="wc-link">🔢 All 12 Groups <span class="wc-link-arrow">›</span></a>
+          <a href="/worldcup2026/fixtures/" class="wc-link">📅 Full Fixtures <span class="wc-link-arrow">›</span></a>
+          <a href="/worldcup2026/bracket/" class="wc-link">🏅 Knockout Bracket <span class="wc-link-arrow">›</span></a>
+          <a href="/worldcup2026/venues/" class="wc-link">🏟️ 16 Stadiums <span class="wc-link-arrow">›</span></a>
+          <a href="/worldcup2026/teams/" class="wc-link">👕 All 48 Teams <span class="wc-link-arrow">›</span></a>
         </div>
       </div>
-      <div class="pl-table">
-        <div class="pl-table-head">
-          <span>#</span><span>Team</span><span style="text-align:center">P</span><span style="text-align:center">GD</span><span style="text-align:right">PTS</span>
+
+      <!-- PREMIER LEAGUE -->
+      <div class="gc-col pl-panel">
+        <div class="pl-panel-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="pl-panel-badge">Premier League</span>
+            <span class="pl-panel-title">2025/26</span>
+          </div>
+          <span class="pl-panel-sub">Season Complete ✅</span>
         </div>
-        <div class="pl-table-row champion">
-          <span class="pl-pos gold">1</span>
-          <span class="pl-team-name">🔴 Arsenal <span class="pl-champ-badge">CHAMPIONS 🏆</span></span>
+
+        <div class="pl-champ-strip">
+          <div class="pl-champ-trophy">🏆</div>
+          <div class="pl-champ-info">
+            <div class="pl-champ-tag">🎉 Champions 2025/26</div>
+            <div class="pl-champ-name">🔴 Arsenal</div>
+            <div class="pl-champ-detail">85 pts · GD +44 · 26W · Since 2003/04</div>
+          </div>
+        </div>
+
+        <div class="pl-tbl-head">
+          <span>#</span><span>Team</span>
+          <span style="text-align:center">P</span>
+          <span style="text-align:center">GD</span>
+          <span style="text-align:right">PTS</span>
+        </div>
+
+        <div class="pl-tbl-row champ">
+          <span class="pl-pos-num g">1</span>
+          <span class="pl-tn">🔴 Arsenal <span class="pl-cb">CHAMPS 🏆</span></span>
           <span class="pl-p">38</span>
           <span class="pl-gd">+44</span>
-          <span class="pl-pts gold">85</span>
+          <span class="pl-pts g">85</span>
         </div>
-        <div class="pl-table-row">
-          <span class="pl-pos silver">2</span>
-          <span class="pl-team-name">🔵 Manchester City</span>
+        <div class="pl-tbl-row">
+          <span class="pl-pos-num s">2</span>
+          <span class="pl-tn">🔵 Man City</span>
           <span class="pl-p">38</span>
           <span class="pl-gd">+42</span>
           <span class="pl-pts">78</span>
         </div>
-        <div class="pl-table-row">
-          <span class="pl-pos bronze">3</span>
-          <span class="pl-team-name">🔴 Manchester United</span>
+        <div class="pl-tbl-row">
+          <span class="pl-pos-num b">3</span>
+          <span class="pl-tn">🔴 Man United</span>
           <span class="pl-p">38</span>
           <span class="pl-gd">+19</span>
           <span class="pl-pts">71</span>
         </div>
-        <div class="pl-table-row">
-          <span class="pl-pos">4</span>
-          <span class="pl-team-name">🟣 Aston Villa</span>
+        <div class="pl-tbl-row">
+          <span class="pl-pos-num">4</span>
+          <span class="pl-tn">🟣 Aston Villa</span>
           <span class="pl-p">38</span>
-          <span class="pl-gd" style="color:var(--t3)">+7</span>
+          <span class="pl-gd dim">+7</span>
           <span class="pl-pts">65</span>
         </div>
-        <div class="pl-table-row">
-          <span class="pl-pos">5</span>
-          <span class="pl-team-name">🔴 Liverpool</span>
+        <div class="pl-tbl-row">
+          <span class="pl-pos-num">5</span>
+          <span class="pl-tn">🔴 Liverpool</span>
           <span class="pl-p">38</span>
-          <span class="pl-gd" style="color:var(--t3)">+10</span>
+          <span class="pl-gd dim">+10</span>
           <span class="pl-pts">60</span>
         </div>
+
+        <div class="pl-tbl-foot">Final standings · Source: Premier League Official</div>
+
+        <div class="pl-links-row">
+          <a href="/premier-league/" class="pl-link-btn">🏠 Hub</a>
+          <a href="/premier-league/table/" class="pl-link-btn">📊 Table</a>
+          <a href="/premier-league/results/" class="pl-link-btn">✅ Results</a>
+          <a href="/premier-league/news/" class="pl-link-btn">📰 News</a>
+        </div>
       </div>
-      <div class="pl-source">Final 2025/26 standings · 38 games played · Source: Premier League Official</div>
-      <div class="pl-links">
-        <a href="/premier-league/" class="pl-link">🏠 PL Hub</a>
-        <a href="/premier-league/table/" class="pl-link">📊 Full Table</a>
-        <a href="/premier-league/results/" class="pl-link">✅ Results</a>
-        <a href="/premier-league/teams/" class="pl-link">👕 Teams</a>
-        <a href="/premier-league/news/" class="pl-link">📰 News</a>
-      </div>
-    </div>
+
+    </div><!-- END TWO COL -->
 
     <!-- FINAL ADSENSE -->
     <div class="gc-ad">
@@ -1043,7 +1049,6 @@ body{
       <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
     </div>
 
-    <!-- Legal links (hidden, for SEO) -->
     <div style="display:none">
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms</a>
@@ -1054,7 +1059,7 @@ body{
 </div>
 </div>
 
-<!-- NORDVPN BAR -->
+<!-- NORDVPN -->
 <div id="gc-nord">
   <span class="gc-nord-text">🔒 NordVPN — 75% off + 3 months FREE</span>
   <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" class="gc-nord-btn">Get Deal →</a>
@@ -1062,10 +1067,10 @@ body{
   <span class="gc-nord-ad">#AD · <a href="/disclaimer.html" style="color:var(--t4);text-decoration:none">Affiliate</a></span>
 </div>
 
-<!-- COOKIE BANNER -->
+<!-- COOKIE -->
 <div id="gc-cookie">
   <div class="gc-cookie-title">🍪 We use cookies</div>
-  <div class="gc-cookie-text">GoalCurrent.live uses cookies to improve your experience, show relevant ads and analyse traffic. See our <a href="/privacy.html" style="color:var(--blue)">Privacy Policy</a>.</div>
+  <div class="gc-cookie-text">GoalCurrent.live uses cookies to improve your experience and show relevant ads. See our <a href="/privacy.html" style="color:var(--red)">Privacy Policy</a>.</div>
   <div class="gc-cookie-btns">
     <button class="gc-cookie-btn reject" onclick="cookieDecline()">Decline</button>
     <button class="gc-cookie-btn accept" onclick="cookieAccept()">Accept All ✓</button>
@@ -1078,53 +1083,39 @@ body{
     <button class="gc-popup-close" onclick="popupClose()">✕</button>
     <div class="gc-popup-icon">⚽</div>
     <div class="gc-popup-title">Never Miss a Goal!</div>
-    <div class="gc-popup-text">Get UCL Final, World Cup 2026 and Premier League alerts free!</div>
+    <div class="gc-popup-text">UCL Final · World Cup 2026 · Premier League alerts — completely free!</div>
     <div class="gc-popup-perks">
       ✅ UCL Final result alert<br>
       ✅ World Cup 2026 goal alerts<br>
       ✅ Premier League news<br>
-      ✅ 100% free — unsubscribe anytime
+      ✅ Unsubscribe anytime
     </div>
-    <input type="email" id="popupEmail" class="gc-popup-input" placeholder="Enter your email address">
+    <input type="email" id="popupEmail" class="gc-popup-input" placeholder="Your email address">
     <button class="gc-popup-sub" onclick="popupSubscribe()">⚽ Subscribe Free →</button>
     <div class="gc-popup-success" id="popupSuccess">✅ Thank you! Check your email to confirm.</div>
     <button class="gc-popup-skip" onclick="popupClose()">No thanks</button>
     <div style="font-size:10px;color:var(--t4);margin-top:8px">
-      By subscribing you agree to our <a href="/privacy.html" style="color:var(--t4)">Privacy Policy</a>. Powered by Brevo.
+      <a href="/privacy.html" style="color:var(--t4)">Privacy Policy</a> · Powered by Brevo
     </div>
   </div>
 </div>
 
 <script>
-/* ══ SIDEBAR ══ */
-function openSidebar(){
-  document.getElementById('gcSidebar').classList.add('open');
-  document.getElementById('sbOverlay').classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeSidebar(){
-  document.getElementById('gcSidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('show');
-  document.body.style.overflow='';
-}
-function sbToggle(id,btn){
-  document.getElementById(id).classList.toggle('open');
-  btn.classList.toggle('open');
-}
+/* SIDEBAR */
+function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow='';}
+function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
 
-/* ══ COUNTDOWNS ══ */
+/* COUNTDOWNS */
 (function(){
   var ucl=new Date('2026-05-30T16:00:00Z').getTime();
   var wc=new Date('2026-06-11T19:00:00Z').getTime();
   function pad(n){return n<10?'0'+n:''+n;}
   function set(ids,diff){
     if(diff<=0){ids.forEach(function(id){var el=document.getElementById(id);if(el)el.textContent='00';});return false;}
-    var d=Math.floor(diff/86400000);
-    var h=Math.floor((diff%86400000)/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    var vals=[pad(d),pad(h),pad(m),pad(s)];
-    ids.forEach(function(id,i){var el=document.getElementById(id);if(el)el.textContent=vals[i];});
+    var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    var v=[pad(d),pad(h),pad(m),pad(s)];
+    ids.forEach(function(id,i){var el=document.getElementById(id);if(el)el.textContent=v[i];});
     return true;
   }
   function tick(){
@@ -1136,14 +1127,12 @@ function sbToggle(id,btn){
   document.addEventListener('DOMContentLoaded',tick);
 })();
 
-/* ══ COOKIES ══ */
+/* COOKIES */
 function cookieAccept(){localStorage.setItem('gc_ck','yes');document.getElementById('gc-cookie').style.display='none';}
 function cookieDecline(){localStorage.setItem('gc_ck','no');document.getElementById('gc-cookie').style.display='none';}
-if(!localStorage.getItem('gc_ck')){
-  setTimeout(function(){document.getElementById('gc-cookie').style.display='block';},2000);
-}
+if(!localStorage.getItem('gc_ck')){setTimeout(function(){document.getElementById('gc-cookie').style.display='block';},2000);}
 
-/* ══ EMAIL POPUP ══ */
+/* EMAIL POPUP */
 function popupClose(){
   var el=document.getElementById('gc-popup');
   el.style.opacity='0';el.style.transition='opacity 0.3s';
@@ -1154,7 +1143,7 @@ function popupSubscribe(){
   var input=document.getElementById('popupEmail');
   var success=document.getElementById('popupSuccess');
   if(!input.value||input.value.indexOf('@')<0){input.style.borderColor='#ff3b30';return;}
-  input.style.borderColor='#34c759';
+  input.style.borderColor='#4ade80';
   var form=document.createElement('form');
   form.method='POST';
   form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
@@ -1168,20 +1157,10 @@ function popupSubscribe(){
   localStorage.setItem('gc_popup','1');
   setTimeout(function(){popupClose();},3000);
 }
-document.addEventListener('click',function(e){
-  var popup=document.getElementById('gc-popup');
-  if(e.target===popup)popupClose();
-});
-if(!localStorage.getItem('gc_popup')){
-  setTimeout(function(){
-    var el=document.getElementById('gc-popup');
-    el.style.display='flex';
-  },12000);
-}
+document.addEventListener('click',function(e){if(e.target===document.getElementById('gc-popup'))popupClose();});
+if(!localStorage.getItem('gc_popup')){setTimeout(function(){var el=document.getElementById('gc-popup');el.style.display='flex';},12000);}
 </script>
 
-<!-- Brevo -->
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-
 </body>
 </html>
