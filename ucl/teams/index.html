@@ -170,65 +170,56 @@ body{
 <button class="gc-hamburger" id="hamburger" aria-label="Menu">☰</button>
 <div class="sb-overlay" id="overlay"></div>
 
-  <aside class="gc-sidebar" id="gc-sidebar">
-    <a href="/" class="sb-logo">
-      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" onerror="this.style.display='none'">
-      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-    </a>
-    <div class="sb-section">
-      <span class="sb-section-label">Main Menu</span>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-      <a href="/premier-league/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-      <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-      <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
-    </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <span class="sb-section-label">Competitions</span>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
-        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-        <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-pl">
-        <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-        <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-        <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-wc">
-        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
-        <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
-        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-      <button class="sb-comp-btn open" onclick="sbToggle('sb-ucl',this)">
-        <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links open" id="sb-ucl">
-        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/ucl/teams/" class="active"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-    </div>
-    <div class="sb-footer">
-      © 2026 Ashna4All (A. Zafarani)<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-      <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
-    </div>
-  </aside>
+<aside class="gc-sidebar" id="sidebar">
+  <a href="/ucl/" class="sb-logo">
+    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+  </a>
+  <span class="sb-section-label">Main Menu</span>
+  <a href="/" class="sb-nav-link">🏠 Home</a>
+  <a href="/" class="sb-nav-link">🔴 Live Scores</a>
+  <a href="/" class="sb-nav-link">📅 Schedule</a>
+  <a href="/" class="sb-nav-link">🏅 Standings</a>
+
+  <span class="sb-section-label">Competitions</span>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-pl',this)">
+    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-comp-badge sb-badge-pl">PL</span>
+  </button>
+  <div class="sb-links-group" id="g-pl">
+    <a href="/premier-league/">🏠 Overview</a>
+    <a href="/premier-league/table/">📊 Table</a>
+    <a href="/premier-league/fixtures/">📅 Fixtures</a>
+    <a href="/premier-league/results/">✅ Results</a>
+    <a href="/premier-league/news/">📰 News</a>
+  </div>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-wc',this)">
+    <span>🏆 World Cup 2026</span><span class="sb-comp-badge sb-badge-wc">WC26</span>
+  </button>
+  <div class="sb-links-group" id="g-wc">
+    <a href="/worldcup2026/">🏠 Overview</a>
+    <a href="/worldcup2026/groups/">🔢 Groups</a>
+    <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
+    <a href="/worldcup2026/teams/">👕 Teams</a>
+    <a href="/worldcup2026/news/">📰 News</a>
+  </div>
+
+  <button class="sb-comp-btn" onclick="toggleGroup('g-ucl',this)">
+    <span>⭐ Champions League</span><span class="sb-comp-badge sb-badge-ucl">UCL</span>
+  </button>
+  <div class="sb-links-group open" id="g-ucl">
+    <a href="/ucl/">🏠 Overview</a>
+    <a href="/ucl/fixtures/">📅 Fixtures</a>
+    <a href="/ucl/results/">✅ Results</a>
+    <a href="/ucl/teams/" class="active">👕 Teams</a>
+    <a href="/ucl/news/">📰 News</a>
+  </div>
+
+  <div class="sb-footer">
+    © 2026 Ashna4All · Ahmad Zafarani<br>
+    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+</aside>
 
 <div class="gc-main">
 
