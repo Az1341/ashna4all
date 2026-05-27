@@ -35,10 +35,112 @@
 .stat-val{min-width:40px;text-align:center;}
 .modal-close{display:block;width:100%;margin-top:16px;background:#2d3f5e;color:#e2e8f0;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:0.9rem;}
 @keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+
+  .gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+  .gc-sidebar::-webkit-scrollbar{display:none}
+  .sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+  .sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
+  .sb-logo span{color:#3b82f6}
+  .sb-logo-text{font-size:17px;font-weight:800;color:white}
+  .sb-logo-text em{color:#3b82f6;font-style:normal}
+  .sb-logo-text span{color:#10b981}
+  .sb-logo img{height:36px;width:auto;flex-shrink:0}
+  .sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px}
+  .sb-section-label{font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px;padding:14px 16px 4px;display:block}
+  .sb-nav-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#b8c4d9;text-decoration:none;font-size:13px;font-weight:600}
+  .sb-nav-link:hover{background:#10213a;color:white}
+  .sb-nav-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+  .sb-divider{height:1px;background:rgba(255,255,255,.08)}
+  .sb-comp{border-top:1px solid rgba(255,255,255,.08)}
+  .sb-comp-btn{display:flex;align-items:center;gap:8px;width:100%;padding:11px 16px;background:none;border:none;color:#b8c4d9;font-size:13px;font-weight:700;cursor:pointer;text-align:left}
+  .sb-comp-btn:hover{background:#10213a;color:white}
+  .sb-comp-icon{font-size:14px;flex-shrink:0}
+  .sb-comp-name{flex:1}
+  .sb-comp-badge{font-size:9px;padding:2px 7px;border-radius:5px;font-weight:800}
+  .sb-comp-badge.pl{background:rgba(56,0,60,.8);color:#e9b4ff}
+  .sb-comp-badge.wc{background:rgba(0,104,71,.8);color:#6ee7b7}
+  .sb-comp-badge.ucl{background:rgba(0,30,98,.8);color:#93c5fd}
+  .sb-chevron{font-size:9px;color:rgba(184,196,217,.4);transition:transform .2s;flex-shrink:0}
+  .sb-comp-btn.open .sb-chevron{transform:rotate(180deg)}
+  .sb-links{display:none}.sb-links.open{display:block}
+  .sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
+  .sb-links a{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px}
+  .sb-links a:hover{background:#10213a;color:white}
+  .sb-links a.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800}
+  .sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0}
+  .sb-footer a{color:rgba(184,196,217,.65);text-decoration:none}
+  .sb-overlay-sidebar{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
+  .sb-overlay-sidebar.show{display:block}
+  @media(max-width:768px){
+    .gc-sidebar{transform:translateX(-100%)}
+    .gc-sidebar.open{transform:translateX(0)}
+  }
+  @media(min-width:769px){
+    .gc-sidebar{transform:translateX(0)!important}
+  }
 </style>
 </head>
-<body>
-<div id="wc-nav"></div>
+<body style="display:flex;min-height:100vh">
+<div class="sb-overlay-sidebar" id="sbOverlaySide" onclick="closeSbSide()"></div>
+  <aside class="gc-sidebar" id="gc-sidebar">
+    <a href="/" class="sb-logo">
+      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" onerror="this.style.display='none'">
+      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
+    </a>
+    <div class="sb-section">
+      <span class="sb-section-label">Main Menu</span>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
+      <a href="/premier-league/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+      <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
+      <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+      <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-section">
+      <span class="sb-section-label">Competitions</span>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-pl',this)">
+        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
+        <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-pl">
+        <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
+        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
+        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+      </div>
+      <button class="sb-comp-btn open" onclick="sbToggle('sb-wc',this)">
+        <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
+        <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links open" id="sb-wc">
+        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/worldcup2026/groups/" class="active"><span class="sb-link-icon">🔢</span> Groups</a>
+        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
+        <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
+        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
+      </div>
+      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
+        <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
+        <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
+      </button>
+      <div class="sb-links" id="sb-ucl">
+        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
+        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
+        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
+        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
+      </div>
+    </div>
+    <div class="sb-footer">
+      © 2026 Ashna4All (A. Zafarani)<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
+      <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+    </div>
+  </aside>
 <main class="wc-container">
 <div class="wc-page-header">
 <h1>🏆 Group D</h1>
@@ -64,7 +166,11 @@
 </main>
 <div id="wc-footer"></div>
 <div class="modal-overlay" id="statsModal"><div class="modal"><h3 id="modalTitle">Match Stats</h3><div id="modalContent"></div><button class="modal-close" onclick="closeStats()">Close</button></div></div>
-<script src="../../../js/worldcup-data.js"></script>
+<script src="../../../js/worldcup-data.js">
+function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
+function openSbSide(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('sbOverlaySide').classList.add('show');document.body.style.overflow='hidden';}
+function closeSbSide(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('sbOverlaySide').classList.remove('show');document.body.style.overflow='';}
+</script>
 <script src="../../../js/worldcup-shared.js"></script>
 <script>
 var GROUP_KEY='D';
