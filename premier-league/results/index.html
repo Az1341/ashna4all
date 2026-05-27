@@ -136,26 +136,27 @@
 <button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
 
 <div id="gc-app">
-  <aside class="gc-sidebar" id="gc-sidebar">
+    <aside class="gc-sidebar" id="gc-sidebar">
     <a href="/" class="sb-logo">
       <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
       <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
     </a>
     <div class="sb-section">
       <span class="sb-section-label">Main Menu</span>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏠</span> Home</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🔴</span> Live Scores</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📅</span> Schedule</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏅</span> Standings</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">⭐</span> My Teams</button>
-      <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">📰</span> Latest News</button>
+      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
+      <a href="/premier-league/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+      <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
+      <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+      <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
     </div>
     <div class="sb-divider"></div>
     <div class="sb-section">
       <span class="sb-section-label">Competitions</span>
       <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-        <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
+        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <span class="sb-comp-name">Premier League</span>
+        <span class="sb-comp-badge pl">PL</span>
+        <span class="sb-chevron">▼</span>
       </button>
       <div class="sb-links open" id="sb-pl">
         <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
@@ -166,19 +167,25 @@
         <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
       </div>
       <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-        <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-        <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
+        <span class="sb-comp-icon">🏆</span>
+        <span class="sb-comp-name">World Cup 2026</span>
+        <span class="sb-comp-badge wc">WC26</span>
+        <span class="sb-chevron">▼</span>
       </button>
       <div class="sb-links" id="sb-wc">
         <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
         <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
         <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+        <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
+        <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
         <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
         <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
       </div>
       <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-        <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
+        <span class="sb-comp-icon">⭐</span>
+        <span class="sb-comp-name">Champions League</span>
+        <span class="sb-comp-badge ucl">UCL</span>
+        <span class="sb-chevron">▼</span>
       </button>
       <div class="sb-links" id="sb-ucl">
         <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
