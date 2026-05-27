@@ -76,5 +76,6 @@ var GC = (function () {
     }
   };
 })();
-document.addEventListener('DOMContentLoaded', function() { GC.init(); });
+document.addEventListener('DOMContentLoaded', function() { if(!document.querySelector('.ucl-hero') && !document.querySelector('.wc-card')) { GC.init(); } });
 }
+
