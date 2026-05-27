@@ -1,4 +1,4 @@
-/* app.js — Navigation: Home/Live/Schedule/Groups/MyTeams */
+if(document.querySelector('.ucl-hero')){window.GC={go:function(){},draw:function(){},init:function(){},setLeague:function(){}};} else {/* app.js — Navigation: Home/Live/Schedule/Groups/MyTeams */
 var GC = (function () {
   var currentPage = 'home';
   var currentType = 'ALL';
