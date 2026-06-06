@@ -6,53 +6,157 @@
 <title>World Cup 2026 Groups | GoalCurrent.live</title>
 <meta name="description" content="FIFA World Cup 2026 all 12 groups A-L. View standings, teams and fixtures for every group.">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/groups/">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/worldcup2026.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/gc-nav.css">
+<style>
+/* Groups page specific */
+.grp-page { max-width: 960px; margin: 0 auto; padding: 16px 14px 120px; }
+
+.grp-hero {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-top: 4px solid var(--gold);
+  border-radius: var(--r-lg);
+  padding: 20px 16px; margin-bottom: 16px;
+  box-shadow: var(--glass-shadow); text-align: center;
+}
+.grp-hero h1 { font-size: clamp(18px,4vw,24px); font-weight: 700; color: var(--t1); margin-bottom: 6px; }
+.grp-hero p  { font-size: 12px; color: var(--t2); }
+
+.grp-search {
+  position: relative; margin-bottom: 16px;
+}
+.grp-search input {
+  width: 100%; padding: 13px 14px 13px 42px;
+  border-radius: var(--r-md); border: 1.5px solid var(--glass-border);
+  background: rgba(255,255,255,.85); font-size: 14px; outline: none;
+  font-family: Verdana,sans-serif; color: var(--t1);
+  box-shadow: var(--glass-shadow); transition: border-color .2s;
+}
+.grp-search input:focus { border-color: var(--blue); }
+.grp-search::before { content:"🔍"; position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:15px; }
+
+.grp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.wc-group-card {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.wc-group-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(100,160,220,.2); }
+.wc-group-card h2 {
+  font-size: 13px; font-weight: 700; color: var(--blue);
+  letter-spacing: .08em; margin-bottom: 10px;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(37,99,235,.12);
+}
+
+.wc-standings { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 12px; }
+.wc-standings th {
+  font-size: 9px; font-weight: 700; color: var(--t4);
+  text-transform: uppercase; padding: 5px 4px; text-align: center;
+  border-bottom: 1px solid rgba(37,99,235,.1);
+}
+.wc-standings th:first-child { text-align: left; }
+.wc-standings td { padding: 8px 4px; text-align: center; color: var(--t2); border-bottom: 1px solid rgba(37,99,235,.06); }
+.wc-standings td:first-child { text-align: left; font-weight: 600; color: var(--t1); }
+.wc-standings tr:last-child td { border-bottom: none; }
+.wc-standings tr.qualified td:first-child { border-left: 3px solid var(--blue); padding-left: 6px; }
+.wc-standings tr:hover td { background: rgba(37,99,235,.04); }
+
+.wc-btn-primary {
+  display: block; width: 100%;
+  background: linear-gradient(135deg,#2563eb,#3b82f6); color: #fff;
+  border: none; border-radius: var(--r-sm); padding: 10px;
+  font-family: Verdana,sans-serif; font-size: 12px; font-weight: 700;
+  text-align: center; text-decoration: none; cursor: pointer;
+  transition: opacity .2s, transform .2s;
+}
+.wc-btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+
+@media(max-width:480px){
+  .grp-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-<div id="wc-nav"></div>
-<main class="wc-container">
-<div class="wc-page-header">
-<h1>🏆 World Cup 2026 — Groups</h1>
-<p>12 Groups · 48 Teams · Top 2 from each group advance</p>
+
+<!-- SIDEBAR & HEADER injected by worldcup-shared.js -->
+<div id="gc-sidebar-root"></div>
+<div class="gc-main-wrapper">
+  <div id="gc-header-root"></div>
+
+  <div class="gc-main-content" style="max-width:960px">
+    <div class="grp-page" style="padding:0 0 120px">
+
+      <!-- HERO -->
+      <div class="grp-hero">
+        <h1>🏆 World Cup 2026 — Groups</h1>
+        <p>12 Groups · 48 Teams · Top 2 from each group advance</p>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="grp-search">
+        <input type="text" id="searchInput" placeholder="Search by team or group..." oninput="filterGroups()" autocomplete="off">
+      </div>
+
+      <!-- GROUPS GRID -->
+      <div class="grp-grid" id="groupsGrid"></div>
+
+    </div>
+  </div>
+
+  <div id="gc-nord-root"></div>
+  <div id="gc-footer-root"></div>
 </div>
-<div style="padding:20px 0;">
-<div class="wc-search-bar">
-<span class="wc-search-icon">🔍</span>
-<input type="text" id="searchInput" placeholder="Search by team or group..." oninput="filterGroups()">
-</div>
-</div>
-<div class="wc-groups-grid" id="groupsGrid"></div>
-</main>
-<div id="wc-footer"></div>
-<script src="../../js/worldcup-data.js"></script>
-<script src="../../js/worldcup-shared.js"></script>
+
+<script src="/js/worldcup-data.js"></script>
+<script src="/js/worldcup-shared.js"></script>
 <script>
 function filterGroups(){
-var query=document.getElementById('searchInput').value.toLowerCase();
-var cards=document.querySelectorAll('.wc-group-card');
-cards.forEach(function(card){
-card.style.display=card.textContent.toLowerCase().includes(query)?'block':'none';
-});
+  var query = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.wc-group-card').forEach(function(card){
+    card.style.display = card.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+  });
 }
+
 function renderGroups(){
-var grid=document.getElementById('groupsGrid');
-var html='';
-var groups=WC26.groups;
-for(var key in groups){
-var group=groups[key];
-var rows='';
-for(var i=0;i<group.teams.length;i++){
-var team=group.teams[i];
-rows+='<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
+  var grid = document.getElementById('groupsGrid');
+  var html = '';
+  var groups = WC26.groups;
+  for(var key in groups){
+    var group = groups[key];
+    var rows = '';
+    for(var i=0;i<group.teams.length;i++){
+      var team = group.teams[i];
+      rows += '<tr class="'+(i<2?'qualified':'')+'"><td>'+team.flag+' '+team.name+'</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>';
+    }
+    html += '<div class="wc-group-card">' +
+      '<h2>GROUP ' + key + '</h2>' +
+      '<table class="wc-standings">' +
+        '<thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead>' +
+        '<tbody>'+rows+'</tbody>' +
+      '</table>' +
+      '<a href="/worldcup2026/groups/group-'+key.toLowerCase()+'/" class="wc-btn-primary">View Group '+key+' →</a>' +
+    '</div>';
+  }
+  grid.innerHTML = html;
 }
-html+='<div class="wc-group-card"><h2>GROUP '+key+'</h2><table class="wc-standings"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead><tbody>'+rows+'</tbody></table><a href="/worldcup2026/groups/group-'+key.toLowerCase()+'/" class="wc-btn wc-btn-primary">View Group '+key+' →</a></div>';
-}
-grid.innerHTML=html;
-}
-window.onload=function(){
-initWC26Page('groups');
-renderGroups();
+
+window.onload = function(){
+  initWC26Page('groups', {subtitle:'World Cup 2026 · Groups A–L'});
+  renderGroups();
 };
 </script>
 </body>
