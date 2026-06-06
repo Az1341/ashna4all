@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Countdown | GoalCurrent.live</title>
+<meta name="description" content="Live countdown to FIFA World Cup 2026. 48 teams, 3 countries, 104 matches. Follow every game at GoalCurrent.live">
+<meta property="og:title" content="World Cup 2026 Countdown | GoalCurrent.live">
+<meta property="og:description" content="Days, hours, minutes and seconds until the greatest show on Earth kicks off.">
+<meta property="og:url" content="https://goalcurrent.live/countdown.html">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X84HCE5KGT');
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400&display=swap');
+
+  :root {
+    --gold: #f5c518;
+    --navy: #0d1b2e;
+    --navy-mid: #132338;
+    --navy-light: #1a2f4a;
+    --white: #ffffff;
+    --grey: #8a9bb0;
+    --accent: #e63946;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100vh; background: var(--navy); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,197,24,0.12) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(245,197,24,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* NORDVPN BAR */
+  .nord-bar {
+    position: relative; z-index: 10;
+    background: linear-gradient(90deg, #4687FF 0%, #1d3faa 100%);
+    text-align: center; padding: 9px 16px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .nord-bar a { color: #fff; text-decoration: none; }
+  .nord-bar span { opacity: 0.85; }
+  .nord-bar strong { color: #ffe066; }
+
+  /* NAV */
+  nav {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    background: rgba(13,27,46,0.95);
+    border-bottom: 1px solid rgba(245,197,24,0.15);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--gold); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 20px; list-style: none; }
+  .nav-links a { color: var(--grey); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero { position: relative; z-index: 1; text-align: center; padding: 60px 20px 40px; }
+  .tournament-label {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); background: rgba(245,197,24,0.1); border: 1px solid rgba(245,197,24,0.3);
+    border-radius: 2px; padding: 5px 14px; margin-bottom: 20px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.2rem, 12vw, 8rem); line-height: 0.9; letter-spacing: 0.02em; animation: fadeDown 0.6s 0.1s ease both; }
+  .hero h1 em { font-style: normal; color: var(--gold); display: block; }
+  .host-flags { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 18px 0; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.08em; color: var(--grey); animation: fadeDown 0.6s 0.2s ease both; }
+  .host-flags .flag { font-size: 1.4rem; }
+  .dot { color: var(--gold); }
+  .kickoff-date { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; animation: fadeDown 0.6s 0.25s ease both; }
+  .kickoff-date strong { color: var(--white); }
+
+  /* COUNTDOWN */
+  .countdown-wrap { position: relative; z-index: 1; max-width: 700px; margin: 0 auto 48px; padding: 0 20px; animation: fadeUp 0.7s 0.3s ease both; }
+  .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cd-box { background: var(--navy-mid); border: 1px solid rgba(245,197,24,0.2); border-radius: 8px; padding: 22px 8px 16px; position: relative; overflow: hidden; transition: border-color 0.3s; }
+  .cd-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.6; }
+  .cd-box:hover { border-color: rgba(245,197,24,0.5); }
+  .cd-number { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; color: var(--gold); display: block; text-shadow: 0 0 40px rgba(245,197,24,0.3); }
+  @keyframes bump { 0%{transform:scale(1)} 50%{transform:scale(1.06);color:#fff} 100%{transform:scale(1)} }
+  .cd-number.bump { animation: bump 0.15s ease; }
+  .cd-label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); margin-top: 4px; }
+  .started-banner { display: none; font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--gold); letter-spacing: 0.05em; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  /* FIRST MATCH PILL */
+  .first-match { position: relative; z-index: 1; text-align: center; margin: 0 auto 48px; max-width: 480px; padding: 0 20px; animation: fadeUp 0.7s 0.4s ease both; }
+  .match-pill { display: inline-flex; align-items: center; gap: 10px; background: rgba(230,57,70,0.12); border: 1px solid rgba(230,57,70,0.4); border-radius: 50px; padding: 10px 22px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
+  .live-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: blink 1.2s infinite; flex-shrink: 0; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  /* STATS */
+  .stats-strip { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; max-width: 700px; margin: 0 auto 48px; padding: 0 20px; animation: fadeUp 0.7s 0.45s ease both; }
+  .stat-chip { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 12px 20px; text-align: center; min-width: 110px; flex: 1; }
+  .stat-chip .s-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); line-height: 1; }
+  .stat-chip .s-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-top: 2px; }
+
+  /* GROUPS */
+  .groups-section { position: relative; z-index: 1; max-width: 720px; margin: 0 auto 48px; padding: 0 20px; animation: fadeUp 0.7s 0.5s ease both; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--white); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(245,197,24,0.2); }
+  .groups-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .group-card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 12px 14px; font-family: 'Barlow Condensed', sans-serif; transition: border-color 0.2s, transform 0.2s; text-decoration: none; display: block; }
+  .group-card:hover { border-color: rgba(245,197,24,0.35); transform: translateY(-2px); }
+  .group-card .g-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .group-card .g-teams { font-size: 0.82rem; color: var(--grey); line-height: 1.6; }
+  .group-card .g-teams strong { color: var(--white); font-weight: 600; }
+
+  /* CTA */
+  .cta-section { position: relative; z-index: 1; text-align: center; padding: 0 20px 20px; animation: fadeUp 0.7s 0.55s ease both; }
+  .cta-btn { display: inline-block; background: var(--gold); color: var(--navy); font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.1em; padding: 14px 40px; border-radius: 4px; text-decoration: none; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(245,197,24,0.25); }
+  .cta-btn:hover { background: #ffe566; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,197,24,0.4); }
+  .cta-sub { display: block; margin-top: 10px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--grey); }
+
+  /* SUBSCRIBE */
+  .subscribe-section { position: relative; z-index: 1; max-width: 420px; margin: 40px auto; padding: 0 20px; text-align: center; animation: fadeUp 0.7s 0.6s ease both; }
+  .subscribe-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.06em; margin-bottom: 12px; color: var(--grey); }
+  .sub-form { display: flex; gap: 8px; }
+  .sub-form input { flex: 1; background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.9rem; padding: 10px 14px; outline: none; transition: border-color 0.2s; }
+  .sub-form input:focus { border-color: var(--gold); }
+  .sub-form button { background: var(--gold); color: var(--navy); border: none; border-radius: 4px; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.08em; padding: 10px 18px; cursor: pointer; transition: background 0.2s; }
+  .sub-form button:hover { background: #ffe566; }
+
+  /* FOOTER */
+  footer { position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; padding: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* COOKIE */
+  #cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: var(--navy-mid); border-top: 1px solid rgba(245,197,24,0.2); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--grey); flex-wrap: wrap; }
+  #cookie-banner button { background: var(--gold); color: var(--navy); border: none; border-radius: 3px; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.08em; padding: 7px 20px; cursor: pointer; white-space: nowrap; }
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .countdown-grid { gap: 6px; }
+    .cd-box { padding: 16px 4px 12px; }
+    .groups-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-strip { gap: 6px; }
+    .stat-chip { min-width: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NordVPN Affiliate Bar -->
+<div class="nord-bar">
+  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener">
+    <span>🔒 Watch World Cup 2026 from anywhere —</span> <strong>Get NordVPN &amp; unblock every broadcaster</strong> <span>→</span>
+  </a>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="https://goalcurrent.live"><span>Goal</span>Current</a>
+  <ul class="nav-links">
+    <li><a href="https://goalcurrent.live/worldcup2026/">WC 2026</a></li>
+    <li><a href="https://goalcurrent.live/worldcup2026/fixtures/">Fixtures</a></li>
+    <li><a href="https://goalcurrent.live/worldcup2026/groups/">Groups</a></li>
+    <li><a href="https://goalcurrent.live/worldcup2026/teams/">Teams</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="tournament-label">⚽ FIFA World Cup 2026™</div>
+  <h1>THE GREATEST<em>COUNTDOWN</em></h1>
+  <div class="host-flags">
+    <span class="flag">🇺🇸</span> USA <span class="dot">·</span>
+    <span class="flag">🇨🇦</span> CANADA <span class="dot">·</span>
+    <span class="flag">🇲🇽</span> MEXICO
+  </div>
+  <div class="kickoff-date">Kick-off: <strong>11 June 2026</strong> · Mexico City · Group A: MEX vs RSA</div>
+</section>
+
+<!-- Countdown -->
+<div class="countdown-wrap">
+  <div id="started-banner" class="started-banner">🏆 THE WORLD CUP HAS STARTED!</div>
+  <div class="countdown-grid" id="countdown-grid">
+    <div class="cd-box"><span class="cd-number" id="cd-days">00</span><span class="cd-label">Days</span></div>
+    <div class="cd-box"><span class="cd-number" id="cd-hours">00</span><span class="cd-label">Hours</span></div>
+    <div class="cd-box"><span class="cd-number" id="cd-mins">00</span><span class="cd-label">Minutes</span></div>
+    <div class="cd-box"><span class="cd-number" id="cd-secs">00</span><span class="cd-label">Seconds</span></div>
+  </div>
+</div>
+
+<!-- First match pill -->
+<div class="first-match">
+  <div class="match-pill">
+    <span class="live-dot"></span>
+    🇲🇽 Mexico vs 🇿🇦 South Africa · 11 Jun 2026 · Mexico City
+  </div>
+</div>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stat-chip"><div class="s-num">48</div><div class="s-label">Teams</div></div>
+  <div class="stat-chip"><div class="s-num">104</div><div class="s-label">Matches</div></div>
+  <div class="stat-chip"><div class="s-num">16</div><div class="s-label">Venues</div></div>
+  <div class="stat-chip"><div class="s-num">3</div><div class="s-label">Countries</div></div>
+  <div class="stat-chip"><div class="s-num">12</div><div class="s-label">Groups</div></div>
+</div>
+
+<!-- Groups — all 12, correct FIFA data -->
+<div class="groups-section">
+  <div class="section-title">All 12 Groups</div>
+  <div class="groups-grid">
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-a/">
+      <div class="g-name">Group A</div>
+      <div class="g-teams"><strong>🇲🇽 Mexico</strong><br>🇿🇦 South Africa<br>🇰🇷 South Korea<br>🇨🇿 Czech Republic</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-b/">
+      <div class="g-name">Group B</div>
+      <div class="g-teams"><strong>🇨🇦 Canada</strong><br>🇧🇦 Bosnia &amp; Herz.<br>🇶🇦 Qatar<br>🇨🇭 Switzerland</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-c/">
+      <div class="g-name">Group C</div>
+      <div class="g-teams"><strong>🇧🇷 Brazil</strong><br>🇲🇦 Morocco<br>🇭🇹 Haiti<br>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-d/">
+      <div class="g-name">Group D</div>
+      <div class="g-teams"><strong>🇺🇸 USA</strong><br>🇵🇾 Paraguay<br>🇦🇺 Australia<br>🇹🇷 Turkey</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-e/">
+      <div class="g-name">Group E</div>
+      <div class="g-teams"><strong>🇩🇪 Germany</strong><br>🇨🇼 Curaçao<br>🇨🇮 Côte d'Ivoire<br>🇪🇨 Ecuador</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-f/">
+      <div class="g-name">Group F</div>
+      <div class="g-teams"><strong>🇳🇱 Netherlands</strong><br>🇯🇵 Japan<br>🇸🇪 Sweden<br>🇹🇳 Tunisia</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-g/">
+      <div class="g-name">Group G</div>
+      <div class="g-teams"><strong>🇧🇪 Belgium</strong><br>🇪🇬 Egypt<br>🇮🇷 Iran<br>🇳🇿 New Zealand</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-h/">
+      <div class="g-name">Group H</div>
+      <div class="g-teams"><strong>🇪🇸 Spain</strong><br>🇨🇻 Cape Verde<br>🇸🇦 Saudi Arabia<br>🇺🇾 Uruguay</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-i/">
+      <div class="g-name">Group I</div>
+      <div class="g-teams"><strong>🇫🇷 France</strong><br>🇸🇳 Senegal<br>🇮🇶 Iraq<br>🇳🇴 Norway</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-j/">
+      <div class="g-name">Group J</div>
+      <div class="g-teams"><strong>🇦🇷 Argentina</strong><br>🇩🇿 Algeria<br>🇦🇹 Austria<br>🇯🇴 Jordan</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-k/">
+      <div class="g-name">Group K</div>
+      <div class="g-teams"><strong>🇵🇹 Portugal</strong><br>🇨🇩 DR Congo<br>🇺🇿 Uzbekistan<br>🇨🇴 Colombia</div>
+    </a>
+
+    <a class="group-card" href="https://goalcurrent.live/worldcup2026/groups/group-l/">
+      <div class="g-name">Group L</div>
+      <div class="g-teams"><strong>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</strong><br>🇭🇷 Croatia<br>🇬🇭 Ghana<br>🇵🇦 Panama</div>
+    </a>
+
+  </div>
+  <p style="margin-top:12px; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; color:var(--grey); letter-spacing:0.05em; text-align:right;">
+    Source: FIFA.com &nbsp;·&nbsp; <a href="https://goalcurrent.live/worldcup2026/groups/" style="color:var(--gold); text-decoration:none;">Full group standings →</a>
+  </p>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <a class="cta-btn" href="https://goalcurrent.live/worldcup2026/fixtures/">📅 View Full Fixture List</a>
+  <span class="cta-sub">All 104 matches · UK times · BBC/ITV broadcaster guide</span>
+</div>
+
+<!-- Email subscribe -->
+<div class="subscribe-section">
+  <h3>Get match alerts — free</h3>
+  <div class="sub-form">
+    <input type="email" id="sub-email" placeholder="your@email.com" autocomplete="email">
+    <button onclick="handleSubscribe()">Notify Me</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2026 <a href="https://goalcurrent.live">GoalCurrent.live</a> &nbsp;·&nbsp; Data: FIFA.com &nbsp;·&nbsp;
+  <a href="https://goalcurrent.live/privacy.html">Privacy</a>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner">
+  <span>🍪 We use cookies for analytics. By continuing you agree to our <a href="https://goalcurrent.live/privacy.html" style="color:var(--gold);">cookie policy</a>.</span>
+  <button onclick="acceptCookies()">Got it</button>
+</div>
+
+<script>
+  // COUNTDOWN — target: 11 Jun 2026 19:00 UTC (Mexico City 13:00 local CDT = UTC-6)
+  const TARGET = new Date('2026-06-11T19:00:00Z');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function bump(id){
+    var el = document.getElementById(id);
+    el.classList.remove('bump');
+    void el.offsetWidth;
+    el.classList.add('bump');
+  }
+
+  var prevD=-1, prevH=-1, prevM=-1, prevS=-1;
+
+  function tick(){
+    var diff = TARGET - Date.now();
+    if(diff <= 0){
+      document.getElementById('countdown-grid').style.display='none';
+      document.getElementById('started-banner').style.display='block';
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    if(s!==prevS){ document.getElementById('cd-secs').textContent=pad(s); bump('cd-secs'); prevS=s; }
+    if(m!==prevM){ document.getElementById('cd-mins').textContent=pad(m); bump('cd-mins'); prevM=m; }
+    if(h!==prevH){ document.getElementById('cd-hours').textContent=pad(h); bump('cd-hours'); prevH=h; }
+    if(d!==prevD){ document.getElementById('cd-days').textContent=pad(d); bump('cd-days'); prevD=d; }
+  }
+  tick();
+  setInterval(tick,1000);
+
+  // COOKIE
+  function acceptCookies(){
+    localStorage.setItem('gc_cookie_ok','1');
+    document.getElementById('cookie-banner').style.display='none';
+  }
+  if(localStorage.getItem('gc_cookie_ok')){
+    document.getElementById('cookie-banner').style.display='none';
+  }
+
+  // SUBSCRIBE
+  function handleSubscribe(){
+    var email = document.getElementById('sub-email').value.trim();
+    if(!email||!email.includes('@')){ alert('Please enter a valid email address.'); return; }
+    document.getElementById('sub-email').value='';
+    alert('✅ You\'re on the list! We\'ll notify you before kick-off.');
+  }
+</script>
+
+</body>
+</html>
