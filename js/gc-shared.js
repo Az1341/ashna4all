@@ -108,6 +108,8 @@
   .gc-hamburger{display:none!important}
   .gc-main-wrapper{margin-left:240px}
   .gc-main-content{padding:20px 24px 100px}
+  /* Ensure header is never hidden behind sidebar on desktop */
+  body>.gc-hdr{margin-left:240px}
 }
 
 /* ── MOBILE ── */
