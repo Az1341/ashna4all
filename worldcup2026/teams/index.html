@@ -12,7 +12,11 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
 <link rel="stylesheet" href="/css/style.css">
 <style>
-.teams-page{max-width:900px;margin:0 auto;padding:16px 14px 120px}
+.gc-main-wrapper{display:flex;flex-direction:column;min-height:100vh}
+.gc-main-content{order:1;flex:1}
+#gc-nord-root{order:2}
+#gc-footer-root{order:3}
+.teams-page{max-width:900px;margin:0 auto;padding:16px 14px 32px}
 
 /* HERO */
 .t-hero{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-top:4px solid var(--gold);border-radius:var(--r-lg);padding:20px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
@@ -123,12 +127,75 @@
 var activeConf = 'ALL';
 var openCards = {};
 
-/* Build confederation filter from WC26.teams */
+/* Fallback teams are included so the page still renders if /js/worldcup-data.js is missing,
+   cached incorrectly, or not uploaded yet. Codes are internal only and are never displayed. */
+var WC26_FALLBACK_TEAMS = [
+  {name:'Algeria',flag:'🇩🇿',group:'J',conf:'CAF'},
+  {name:'Argentina',flag:'🇦🇷',group:'J',conf:'CONMEBOL'},
+  {name:'Australia',flag:'🇦🇺',group:'D',conf:'AFC'},
+  {name:'Austria',flag:'🇦🇹',group:'J',conf:'UEFA'},
+  {name:'Belgium',flag:'🇧🇪',group:'G',conf:'UEFA'},
+  {name:'Bosnia & Herzegovina',flag:'🇧🇦',group:'B',conf:'UEFA'},
+  {name:'Brazil',flag:'🇧🇷',group:'C',conf:'CONMEBOL'},
+  {name:'Canada',flag:'🇨🇦',group:'B',conf:'CONCACAF',host:true},
+  {name:'Cape Verde',flag:'🇨🇻',group:'H',conf:'CAF'},
+  {name:'Colombia',flag:'🇨🇴',group:'K',conf:'CONMEBOL'},
+  {name:'Curaçao',flag:'🇨🇼',group:'E',conf:'CONCACAF'},
+  {name:'Czech Republic',flag:'🇨🇿',group:'A',conf:'UEFA'},
+  {name:'DR Congo',flag:'🇨🇩',group:'K',conf:'CAF'},
+  {name:'Ecuador',flag:'🇪🇨',group:'E',conf:'CONMEBOL'},
+  {name:'Egypt',flag:'🇪🇬',group:'G',conf:'CAF'},
+  {name:'England',flag:'🏴',group:'L',conf:'UEFA'},
+  {name:'France',flag:'🇫🇷',group:'I',conf:'UEFA'},
+  {name:'Germany',flag:'🇩🇪',group:'E',conf:'UEFA'},
+  {name:'Ghana',flag:'🇬🇭',group:'L',conf:'CAF'},
+  {name:'Haiti',flag:'🇭🇹',group:'C',conf:'CONCACAF'},
+  {name:'Iran',flag:'🇮🇷',group:'G',conf:'AFC'},
+  {name:'Iraq',flag:'🇮🇶',group:'I',conf:'AFC'},
+  {name:'Ivory Coast',flag:'🇨🇮',group:'E',conf:'CAF'},
+  {name:'Japan',flag:'🇯🇵',group:'F',conf:'AFC'},
+  {name:'Jordan',flag:'🇯🇴',group:'J',conf:'AFC'},
+  {name:'Mexico',flag:'🇲🇽',group:'A',conf:'CONCACAF',host:true},
+  {name:'Morocco',flag:'🇲🇦',group:'C',conf:'CAF'},
+  {name:'Netherlands',flag:'🇳🇱',group:'F',conf:'UEFA'},
+  {name:'New Zealand',flag:'🇳🇿',group:'G',conf:'OFC'},
+  {name:'Norway',flag:'🇳🇴',group:'I',conf:'UEFA'},
+  {name:'Panama',flag:'🇵🇦',group:'L',conf:'CONCACAF'},
+  {name:'Paraguay',flag:'🇵🇾',group:'D',conf:'CONMEBOL'},
+  {name:'Portugal',flag:'🇵🇹',group:'K',conf:'UEFA'},
+  {name:'Qatar',flag:'🇶🇦',group:'B',conf:'AFC'},
+  {name:'Saudi Arabia',flag:'🇸🇦',group:'H',conf:'AFC'},
+  {name:'Scotland',flag:'🏴',group:'C',conf:'UEFA'},
+  {name:'Senegal',flag:'🇸🇳',group:'I',conf:'CAF'},
+  {name:'South Africa',flag:'🇿🇦',group:'A',conf:'CAF'},
+  {name:'South Korea',flag:'🇰🇷',group:'A',conf:'AFC'},
+  {name:'Spain',flag:'🇪🇸',group:'H',conf:'UEFA'},
+  {name:'Sweden',flag:'🇸🇪',group:'F',conf:'UEFA'},
+  {name:'Switzerland',flag:'🇨🇭',group:'B',conf:'UEFA'},
+  {name:'Tunisia',flag:'🇹🇳',group:'F',conf:'CAF'},
+  {name:'Turkey',flag:'🇹🇷',group:'D',conf:'UEFA'},
+  {name:'Uruguay',flag:'🇺🇾',group:'H',conf:'CONMEBOL'},
+  {name:'USA',flag:'🇺🇸',group:'D',conf:'CONCACAF',host:true},
+  {name:'Uzbekistan',flag:'🇺🇿',group:'K',conf:'AFC'}
+];
+
+function getTeams(){
+  var externalTeams = (window.WC26 && Array.isArray(window.WC26.teams)) ? window.WC26.teams : [];
+  var teams = externalTeams.length ? externalTeams : WC26_FALLBACK_TEAMS;
+  return teams.slice().sort(function(a,b){ return a.name.localeCompare(b.name); });
+}
+
+function getSquadData(){
+  return window.WC26_TEAMS || {};
+}
+
+/* Build confederation filter from teams */
 function buildFilter(){
   var confs = {};
-  WC26.teams.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
+  var teams = getTeams();
+  teams.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
   var icons = {UEFA:'🔵',CAF:'🟢',AFC:'🟠',CONCACAF:'🔴',CONMEBOL:'🟡',OFC:'⚪'};
-  var html = '<button class="t-conf-btn active" onclick="setConf(\'ALL\',this)">🌍 All (48)</button>';
+  var html = '<button class="t-conf-btn active" onclick="setConf(\'ALL\',this)">🌍 All ('+teams.length+')</button>';
   Object.keys(confs).sort().forEach(function(c){
     html += '<button class="t-conf-btn" onclick="setConf(\''+c+'\',this)">'+(icons[c]||'🌍')+' '+c+' ('+confs[c]+')</button>';
   });
@@ -145,88 +212,88 @@ function setConf(conf, btn){
 function renderTeams(){
   var query = (document.getElementById('teamSearch').value||'').toLowerCase();
   var out = document.getElementById('teamsOut');
+  var squadLookup = getSquadData();
 
-  /* Group teams by group letter */
-  var groups = {};
-  WC26.teams.forEach(function(team){
-    if(activeConf !== 'ALL' && team.conf !== activeConf) return;
-    if(query){
-      var squadData = WC26_TEAMS && WC26_TEAMS[team.name];
-      var nameMatch = team.name.toLowerCase().includes(query);
-      var playerMatch = false;
-      if(squadData && squadData.squad){
-        playerMatch = squadData.squad.some(function(p){ return p.name.toLowerCase().includes(query); });
-      }
-      if(!nameMatch && !playerMatch) return;
+  var teams = getTeams().filter(function(team){
+    if(activeConf !== 'ALL' && team.conf !== activeConf) return false;
+    if(!query) return true;
+
+    var squadData = squadLookup[team.name];
+    var nameMatch = team.name.toLowerCase().includes(query);
+    var playerMatch = false;
+    if(squadData && squadData.squad){
+      playerMatch = squadData.squad.some(function(p){ return p.name.toLowerCase().includes(query); });
     }
-    var g = team.group || 'X';
-    if(!groups[g]) groups[g] = [];
-    groups[g].push(team);
+    return nameMatch || playerMatch;
   });
 
-  if(Object.keys(groups).length === 0){
-    out.innerHTML = '<div class="t-no-results">No teams found matching "'+query+'"</div>';
+  if(teams.length === 0){
+    out.innerHTML = '<div class="t-no-results">No teams found matching "'+escapeHtml(query)+'"</div>';
     return;
   }
 
-  var html = '';
-  /* Sort groups A-L */
-  var sortedGroups = Object.keys(groups).sort();
-  if(activeConf !== 'ALL'){
-    /* When filtering by conf, show all together */
-    html += '<div class="t-group-hdr"><span class="t-group-badge">'+activeConf+'</span></div>';
-    html += '<div class="t-grid">';
-    sortedGroups.forEach(function(g){
-      groups[g].forEach(function(team){ html += teamCard(team); });
-    });
-    html += '</div>';
-  } else {
-    sortedGroups.forEach(function(g){
-      html += '<div class="t-group-hdr"><span class="t-group-badge">Group '+g+'</span></div>';
-      html += '<div class="t-grid">';
-      groups[g].forEach(function(team){ html += teamCard(team); });
-      html += '</div>';
-    });
-  }
+  var html = '<div class="t-group-hdr"><span class="t-group-badge">'+
+    (activeConf === 'ALL' ? 'All teams — alphabetical order' : activeConf + ' teams — alphabetical order')+
+    '</span></div>';
+
+  html += '<div class="t-grid">';
+  teams.forEach(function(team){ html += teamCard(team); });
+  html += '</div>';
 
   out.innerHTML = html;
 }
 
+function slugify(value){
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+
+function escapeHtml(value){
+  return String(value == null ? '' : value).replace(/[&<>"']/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+
+function jsString(value){
+  return String(value).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+}
+
 function teamCard(team){
-  var squadData = WC26_TEAMS && WC26_TEAMS[team.name];
+  var squadLookup = getSquadData();
+  var squadData = squadLookup[team.name];
   var hasSquad = squadData && squadData.squad && squadData.squad.length > 0;
   var coach = squadData ? squadData.coach : '';
   var isOpen = openCards[team.name];
+  var safeName = escapeHtml(team.name);
+  var teamId = slugify(team.name);
 
   var squadHtml = '';
   if(hasSquad){
-    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+team.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'">';
-    if(coach) squadHtml += '<div class="t-coach">👔 Coach: '+coach+'</div>';
+    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+teamId+'">';
+    if(coach) squadHtml += '<div class="t-coach">👔 Coach: '+escapeHtml(coach)+'</div>';
     squadHtml += '<div class="t-squad-grid">';
     squadData.squad.forEach(function(p){
       squadHtml += '<div class="t-player'+(p.injured?' injured':'')+'">'+
-        '<span class="t-num">'+p.n+'</span>'+
-        '<span class="t-player-name">'+p.name+'</span>'+
+        '<span class="t-num">'+escapeHtml(p.n)+'</span>'+
+        '<span class="t-player-name">'+escapeHtml(p.name)+'</span>'+
         (p.captain ? '<span class="t-captain">C</span>' : '')+
         (p.injured ? '<span class="t-injured-badge">OUT</span>' : '')+
-        '<span class="t-pos">'+p.pos+'</span>'+
+        '<span class="t-pos">'+escapeHtml(p.pos)+'</span>'+
       '</div>';
     });
     squadHtml += '</div></div>';
   }
 
-  return '<div class="t-card'+(team.host?' host':'')+'" id="card-'+team.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'">'+
+  return '<div class="t-card'+(team.host?' host':'')+'" id="card-'+teamId+'">'+
     (team.host ? '<span class="t-host-icon">🏠</span>' : '')+
-    '<span class="t-flag">'+team.flag+'</span>'+
-    '<div class="t-name">'+team.name+'</div>'+
+    '<span class="t-flag" aria-hidden="true">'+escapeHtml(team.flag || '')+'</span>'+
+    '<div class="t-name">'+safeName+'</div>'+
     '<div class="t-meta">'+
-      '<span class="t-badge">Group '+team.group+'</span>'+
-      '<span class="t-badge">'+team.conf+'</span>'+
+      '<span class="t-badge">Group '+escapeHtml(team.group)+'</span>'+
+      '<span class="t-badge">'+escapeHtml(team.conf)+'</span>'+
       (team.host ? '<span class="t-badge host">Host 🏠</span>' : '')+
     '</div>'+
     (hasSquad ?
-      '<button class="t-expand-btn" onclick="toggleSquad(\''+team.name+'\')">'+(isOpen ? '▲ Hide Squad' : '▼ View Squad')+'</button>'+
-      squadHtml
+      '<button class="t-expand-btn" onclick="toggleSquad(\''+jsString(team.name)+'\')">'+(isOpen ? '▲ Hide Squad' : '▼ View Squad')+'</button>'+squadHtml
     : '')+
   '</div>';
 }
@@ -234,15 +301,17 @@ function teamCard(team){
 function toggleSquad(teamName){
   openCards[teamName] = !openCards[teamName];
   renderTeams();
-  /* Scroll to card */
+
   setTimeout(function(){
-    var el = document.getElementById(teamName.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
+    var el = document.getElementById('card-'+slugify(teamName));
     if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
   }, 100);
 }
 
 window.onload = function(){
-  initWC26Page('teams', {subtitle:'World Cup 2026 · All 48 Teams'});
+  if(typeof initWC26Page === 'function'){
+    initWC26Page('teams', {subtitle:'World Cup 2026 · All 48 Teams'});
+  }
   buildFilter();
   renderTeams();
 };
