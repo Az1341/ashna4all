@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Teams | GoalCurrent.live</title>
+<meta name="description" content="All 48 FIFA World Cup 2026 teams — groups, flags, confederations and squads.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://goalcurrent.live/worldcup2026/teams/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.teams-page{max-width:900px;margin:0 auto;padding:16px 14px 120px}
+
+/* HERO */
+.t-hero{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-top:4px solid var(--gold);border-radius:var(--r-lg);padding:20px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
+.t-hero h1{font-size:clamp(18px,4vw,24px);font-weight:700;color:var(--t1);margin-bottom:6px}
+.t-hero p{font-size:12px;color:var(--t2);line-height:1.5}
+.t-hero-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.t-hero-meta span{font-size:11px;font-weight:700;color:var(--t2);background:rgba(37,99,235,.07);border:1px solid var(--glass-border);padding:4px 10px;border-radius:999px}
+
+/* SEARCH + FILTER */
+.t-controls{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.t-search{position:relative;flex:1;min-width:200px}
+.t-search input{width:100%;padding:11px 12px 11px 38px;border-radius:var(--r-md);border:1.5px solid var(--glass-border);background:rgba(255,255,255,.85);font-size:13px;outline:none;font-family:Verdana,sans-serif;color:var(--t1);transition:border-color .2s}
+.t-search input:focus{border-color:var(--blue)}
+.t-search::before{content:"🔍";position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px}
+
+/* CONF FILTER */
+.t-conf-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.t-conf-btn{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid var(--glass-border);background:rgba(255,255,255,.72);color:var(--t2);cursor:pointer;font-family:Verdana,sans-serif;transition:all .2s}
+.t-conf-btn:hover{border-color:var(--blue);color:var(--blue)}
+.t-conf-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* GROUP SECTION */
+.t-group-hdr{display:flex;align-items:center;gap:10px;margin:20px 0 10px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
+.t-group-hdr::after{content:'';flex:1;height:1px;background:rgba(37,99,235,.15)}
+.t-group-badge{background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+
+/* TEAM GRID */
+.t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+
+/* TEAM CARD */
+.t-card{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px 14px;box-shadow:var(--glass-shadow);cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
+.t-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(100,160,220,.2)}
+.t-card.host{border-top:3px solid var(--gold)}
+.t-flag{font-size:36px;line-height:1;margin-bottom:8px;display:block;text-align:center}
+.t-name{font-size:12px;font-weight:700;color:var(--t1);text-align:center;line-height:1.3;margin-bottom:6px}
+.t-meta{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.t-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;background:rgba(37,99,235,.08);color:var(--blue);border:1px solid rgba(37,99,235,.15)}
+.t-badge.host{background:rgba(217,119,6,.1);color:#92400e;border-color:rgba(217,119,6,.2)}
+.t-host-icon{position:absolute;top:8px;right:8px;font-size:14px}
+
+/* SQUAD PANEL */
+.t-squad{display:none;margin-top:10px;border-top:1px solid rgba(37,99,235,.1);padding-top:10px}
+.t-squad.open{display:block}
+.t-coach{font-size:11px;color:var(--t3);margin-bottom:8px;font-weight:700}
+.t-squad-grid{display:flex;flex-direction:column;gap:4px}
+.t-player{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;background:rgba(255,255,255,.65);border:1px solid var(--glass-border);font-size:11px}
+.t-player.injured{opacity:.6;text-decoration:line-through}
+.t-num{font-size:10px;font-weight:800;color:#fff;background:var(--blue);border-radius:4px;min-width:20px;text-align:center;padding:1px 4px;flex-shrink:0}
+.t-player-name{flex:1;font-weight:600;color:var(--t1)}
+.t-pos{font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase}
+.t-captain{font-size:9px;background:var(--gold);color:var(--t1);border-radius:3px;padding:1px 4px;font-weight:900}
+.t-injured-badge{font-size:9px;background:#fee2e2;color:#dc2626;border-radius:3px;padding:1px 4px;font-weight:700}
+.t-expand-btn{width:100%;margin-top:8px;background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.15);border-radius:8px;padding:6px;font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;font-family:Verdana,sans-serif;transition:background .2s}
+.t-expand-btn:hover{background:rgba(37,99,235,.14)}
+
+/* NO RESULTS */
+.t-no-results{text-align:center;padding:32px;color:var(--t3);font-size:13px;background:var(--glass);border-radius:var(--r-md);border:1px solid var(--glass-border)}
+
+@media(max-width:480px){
+  .t-grid{grid-template-columns:repeat(2,1fr)}
+  .t-controls{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div id="gc-sidebar-root"></div>
+<div class="gc-main-wrapper">
+  <div id="gc-header-root"></div>
+
+  <div class="gc-main-content" style="max-width:900px">
+    <div class="teams-page">
+
+      <div class="t-hero">
+        <h1>👕 FIFA World Cup 2026 — All 48 Teams</h1>
+        <p>All qualified nations across 12 groups and 6 confederations</p>
+        <div class="t-hero-meta">
+          <span>📅 11 Jun – 19 Jul 2026</span>
+          <span>🇺🇸 USA · 🇲🇽 Mexico · 🇨🇦 Canada</span>
+          <span>👕 48 Teams · 12 Groups</span>
+          <span>⚽ 104 Matches</span>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="t-controls">
+        <div class="t-search">
+          <input type="text" id="teamSearch" placeholder="Search teams or players..." oninput="renderTeams()" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- CONF FILTER -->
+      <div class="t-conf-filter" id="confFilter"></div>
+
+      <!-- TEAMS OUTPUT -->
+      <div id="teamsOut"></div>
+
+    </div>
+  </div>
+
+  <div id="gc-nord-root"></div>
+  <div id="gc-footer-root"></div>
+</div>
+
+<script src="/js/worldcup-data.js"></script>
+<script src="/js/worldcup-teams.js"></script>
+<script src="/js/gc-shared.js"></script>
+<script>
+var activeConf = 'ALL';
+var openCards = {};
+
+/* Build confederation filter from WC26.teams */
+function buildFilter(){
+  var confs = {};
+  WC26.teams.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
+  var icons = {UEFA:'🔵',CAF:'🟢',AFC:'🟠',CONCACAF:'🔴',CONMEBOL:'🟡',OFC:'⚪'};
+  var html = '<button class="t-conf-btn active" onclick="setConf(\'ALL\',this)">🌍 All (48)</button>';
+  Object.keys(confs).sort().forEach(function(c){
+    html += '<button class="t-conf-btn" onclick="setConf(\''+c+'\',this)">'+(icons[c]||'🌍')+' '+c+' ('+confs[c]+')</button>';
+  });
+  document.getElementById('confFilter').innerHTML = html;
+}
+
+function setConf(conf, btn){
+  activeConf = conf;
+  document.querySelectorAll('.t-conf-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderTeams();
+}
+
+function renderTeams(){
+  var query = (document.getElementById('teamSearch').value||'').toLowerCase();
+  var out = document.getElementById('teamsOut');
+
+  /* Group teams by group letter */
+  var groups = {};
+  WC26.teams.forEach(function(team){
+    if(activeConf !== 'ALL' && team.conf !== activeConf) return;
+    if(query){
+      var squadData = WC26_TEAMS && WC26_TEAMS[team.name];
+      var nameMatch = team.name.toLowerCase().includes(query);
+      var playerMatch = false;
+      if(squadData && squadData.squad){
+        playerMatch = squadData.squad.some(function(p){ return p.name.toLowerCase().includes(query); });
+      }
+      if(!nameMatch && !playerMatch) return;
+    }
+    var g = team.group || 'X';
+    if(!groups[g]) groups[g] = [];
+    groups[g].push(team);
+  });
+
+  if(Object.keys(groups).length === 0){
+    out.innerHTML = '<div class="t-no-results">No teams found matching "'+query+'"</div>';
+    return;
+  }
+
+  var html = '';
+  /* Sort groups A-L */
+  var sortedGroups = Object.keys(groups).sort();
+  if(activeConf !== 'ALL'){
+    /* When filtering by conf, show all together */
+    html += '<div class="t-group-hdr"><span class="t-group-badge">'+activeConf+'</span></div>';
+    html += '<div class="t-grid">';
+    sortedGroups.forEach(function(g){
+      groups[g].forEach(function(team){ html += teamCard(team); });
+    });
+    html += '</div>';
+  } else {
+    sortedGroups.forEach(function(g){
+      html += '<div class="t-group-hdr"><span class="t-group-badge">Group '+g+'</span></div>';
+      html += '<div class="t-grid">';
+      groups[g].forEach(function(team){ html += teamCard(team); });
+      html += '</div>';
+    });
+  }
+
+  out.innerHTML = html;
+}
+
+function teamCard(team){
+  var squadData = WC26_TEAMS && WC26_TEAMS[team.name];
+  var hasSquad = squadData && squadData.squad && squadData.squad.length > 0;
+  var coach = squadData ? squadData.coach : '';
+  var isOpen = openCards[team.name];
+
+  var squadHtml = '';
+  if(hasSquad){
+    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+team.code+'">';
+    if(coach) squadHtml += '<div class="t-coach">👔 Coach: '+coach+'</div>';
+    squadHtml += '<div class="t-squad-grid">';
+    squadData.squad.forEach(function(p){
+      squadHtml += '<div class="t-player'+(p.injured?' injured':'')+'">'+
+        '<span class="t-num">'+p.n+'</span>'+
+        '<span class="t-player-name">'+p.name+'</span>'+
+        (p.captain ? '<span class="t-captain">C</span>' : '')+
+        (p.injured ? '<span class="t-injured-badge">OUT</span>' : '')+
+        '<span class="t-pos">'+p.pos+'</span>'+
+      '</div>';
+    });
+    squadHtml += '</div></div>';
+  }
+
+  return '<div class="t-card'+(team.host?' host':'')+'" id="card-'+team.code+'">'+
+    (team.host ? '<span class="t-host-icon">🏠</span>' : '')+
+    '<span class="t-flag">'+team.flag+'</span>'+
+    '<div class="t-code">'+team.code+'</div>'+
+    '<div class="t-name">'+team.name+'</div>'+
+    '<div class="t-meta">'+
+      '<span class="t-badge">Group '+team.group+'</span>'+
+      '<span class="t-badge">'+team.conf+'</span>'+
+      (team.host ? '<span class="t-badge host">Host 🏠</span>' : '')+
+    '</div>'+
+    (hasSquad ?
+      '<button class="t-expand-btn" onclick="toggleSquad(\''+team.name+'\',\''+team.code+'\')">'+(isOpen ? '▲ Hide Squad' : '▼ View Squad')+'</button>'+
+      squadHtml
+    : '')+
+  '</div>';
+}
+
+function toggleSquad(teamName, code){
+  openCards[teamName] = !openCards[teamName];
+  renderTeams();
+  /* Scroll to card */
+  setTimeout(function(){
+    var el = document.getElementById('card-'+code);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }, 100);
+}
+
+window.onload = function(){
+  initWC26Page('teams', {subtitle:'World Cup 2026 · All 48 Teams'});
+  buildFilter();
+  renderTeams();
+};
+</script>
+</body>
+</html>
