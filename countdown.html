@@ -307,62 +307,7 @@
       <!-- GROUPS — source: FIFA.com -->
       <div class="cd-groups">
         <div class="cd-section-title">All 12 Groups</div>
-        <div class="cd-groups-grid">
-
-          <a class="cd-gcard" href="/worldcup2026/groups/group-a/">
-            <div class="cd-gname">Group A</div>
-            <div class="cd-gteams"><strong>🇲🇽 Mexico</strong><br>🇿🇦 South Africa<br>🇰🇷 South Korea<br>🇨🇿 Czech Republic</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-b/">
-            <div class="cd-gname">Group B</div>
-            <div class="cd-gteams"><strong>🇨🇦 Canada</strong><br>🇧🇦 Bosnia &amp; Herz.<br>🇶🇦 Qatar<br>🇨🇭 Switzerland</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-c/">
-            <div class="cd-gname">Group C</div>
-            <div class="cd-gteams"><strong>🇧🇷 Brazil</strong><br>🇲🇦 Morocco<br>🇭🇹 Haiti<br>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-d/">
-            <div class="cd-gname">Group D</div>
-            <div class="cd-gteams"><strong>🇺🇸 USA</strong><br>🇵🇾 Paraguay<br>🇦🇺 Australia<br>🇹🇷 Turkey</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-e/">
-            <div class="cd-gname">Group E</div>
-            <div class="cd-gteams"><strong>🇩🇪 Germany</strong><br>🇨🇼 Curaçao<br>🇨🇮 Côte d'Ivoire<br>🇪🇨 Ecuador</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-f/">
-            <div class="cd-gname">Group F</div>
-            <div class="cd-gteams"><strong>🇳🇱 Netherlands</strong><br>🇯🇵 Japan<br>🇸🇪 Sweden<br>🇹🇳 Tunisia</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-g/">
-            <div class="cd-gname">Group G</div>
-            <div class="cd-gteams"><strong>🇧🇪 Belgium</strong><br>🇪🇬 Egypt<br>🇮🇷 Iran<br>🇳🇿 New Zealand</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-h/">
-            <div class="cd-gname">Group H</div>
-            <div class="cd-gteams"><strong>🇪🇸 Spain</strong><br>🇨🇻 Cape Verde<br>🇸🇦 Saudi Arabia<br>🇺🇾 Uruguay</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-i/">
-            <div class="cd-gname">Group I</div>
-            <div class="cd-gteams"><strong>🇫🇷 France</strong><br>🇸🇳 Senegal<br>🇮🇶 Iraq<br>🇳🇴 Norway</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-j/">
-            <div class="cd-gname">Group J</div>
-            <div class="cd-gteams"><strong>🇦🇷 Argentina</strong><br>🇩🇿 Algeria<br>🇦🇹 Austria<br>🇯🇴 Jordan</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-k/">
-            <div class="cd-gname">Group K</div>
-            <div class="cd-gteams"><strong>🇵🇹 Portugal</strong><br>🇨🇩 DR Congo<br>🇺🇿 Uzbekistan<br>🇨🇴 Colombia</div>
-          </a>
-          <a class="cd-gcard" href="/worldcup2026/groups/group-l/">
-            <div class="cd-gname">Group L</div>
-            <div class="cd-gteams"><strong>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</strong><br>🇭🇷 Croatia<br>🇬🇭 Ghana<br>🇵🇦 Panama</div>
-          </a>
-
-        </div>
-        <div class="cd-groups-more">
-          Source: FIFA.com &nbsp;·&nbsp; <a href="/worldcup2026/groups/">Full standings →</a>
-        </div>
-      </div>
+        <div class="cd-groups-grid" id="cdGroupsGrid"></div>
 
       <!-- CTA -->
       <div class="cd-cta">
@@ -386,10 +331,11 @@
 </div><!-- /#gc-app -->
 
 <script src="/js/worldcup-data.js"></script>
-<script src="/js/gc-shared.js"></script>
+<script src="/js/worldcup-shared.js"></script>
 <script>
   window.onload = function(){
-    if(typeof initWC26Page === 'function') initWC26Page('countdown');
+    if(typeof initWC26Page === 'function') renderCdGroups();
+    initWC26Page('countdown');
   };
 
   // COUNTDOWN — 11 Jun 2026 19:00 UTC (Mexico City 13:00 CDT)
