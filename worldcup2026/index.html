@@ -19,8 +19,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);background-attachment:fixed;min-height:100vh;color:#0f172a;font-size:14px;display:flex;overflow-x:hidden}
-
-/* ── SIDEBAR ── */
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400}
 .sb-overlay.show{display:block}
 .gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
@@ -44,11 +42,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 .sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
 .sb-social{display:flex;gap:8px;margin-bottom:10px}
 .sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--sb-hover);border-radius:7px;font-size:13px;color:var(--sb-text);text-decoration:none}
-
-/* ── MAIN ── */
 .gc-main{margin-left:var(--sb-w);flex:1;min-width:0;max-width:calc(100vw - var(--sb-w));display:flex;flex-direction:column}
-
-/* ── HEADER ── */
 .gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#002800,#004d00,#006600);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,80,0,.45);padding:0 16px}
 .gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px}
 .gc-hdr-left{display:flex;align-items:center;gap:10px}
@@ -63,19 +57,13 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 .gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
 .gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
 .gc-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:white;padding:4px;flex-shrink:0}
-
-/* ── CONTENT ── */
 .gc-content{flex:1;padding:16px;max-width:860px}
-
-/* ── COUNTDOWN BAR ── */
 .cd-bar{background:linear-gradient(135deg,#07111f,#0b1e3d,#0f2d5a);border-bottom:2px solid rgba(245,158,11,.35);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px}
 .cd-num{font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums;font-family:var(--font)}
 .cd-lbl{font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--font)}
 .cd-sep{font-size:18px;font-weight:900;color:rgba(245,158,11,.5);margin-bottom:12px}
 .cd-units{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-
-/* ── HERO CARD ── */
 .hero-card{background:linear-gradient(135deg,#002200,#004400,#005500);border-radius:18px;padding:22px 20px;margin-bottom:14px;border:1px solid rgba(245,158,11,.25);box-shadow:0 12px 40px rgba(0,80,0,.3);position:relative;overflow:hidden}
 .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);background-size:200% 100%;animation:hb 4s linear infinite}
 @keyframes hb{0%{background-position:0%}100%{background-position:200%}}
@@ -89,8 +77,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 .hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 8px;text-align:center}
 .hero-stat-num{font-size:22px;font-weight:900;color:#f59e0b;line-height:1;font-family:var(--font)}
 .hero-stat-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.7px;margin-top:3px;font-family:var(--font)}
-
-/* ── NAV CARDS GRID ── */
 .nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
 .nav-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;text-decoration:none;color:#0f172a;transition:all .2s;display:flex;flex-direction:column;gap:6px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
 .nav-card:hover{background:rgba(255,255,255,.95);transform:translateY(-2px);box-shadow:0 8px 28px rgba(100,160,220,.18)}
@@ -100,84 +86,49 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 .nav-card-arrow{font-size:11px;color:#3b82f6;font-weight:800;margin-top:2px;font-family:var(--font)}
 .nav-card.featured{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,63,184,.08),rgba(0,87,231,.05));border-color:rgba(0,87,231,.2)}
 .nav-card.featured .nav-card-icon{font-size:36px;flex-shrink:0}
-
-/* ── QUICK FACTS ── */
 .facts-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
 .facts-title{font-size:12px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-family:var(--font)}
 .facts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .fact-row{display:flex;align-items:flex-start;gap:8px;padding:9px 10px;background:rgba(255,255,255,.6);border-radius:10px;border:1px solid rgba(255,255,255,.85)}
 .fact-icon{font-size:16px;flex-shrink:0}
-.fact-body{}
 .fact-label{font-size:9px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;font-family:var(--font)}
 .fact-value{font-size:12px;font-weight:700;color:#0f172a;margin-top:1px;font-family:var(--font)}
-
-/* ── PHASE TIMELINE ── */
 .timeline-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
 .timeline-title{font-size:12px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-family:var(--font)}
-.phase-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;margin-bottom:6px;border:1px solid transparent;transition:.2s}
+.phase-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;margin-bottom:6px;border:1px solid transparent}
 .phase-item:last-child{margin-bottom:0}
 .phase-dot-big{width:12px;height:12px;border-radius:50%;flex-shrink:0}
 .phase-dates{font-size:11px;font-weight:700;color:#64748b;min-width:120px;flex-shrink:0;font-family:var(--font)}
 .phase-name{font-size:13px;font-weight:800;color:#0f172a;flex:1;font-family:var(--font)}
 .phase-count{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;font-family:var(--font)}
-
-/* ── DEFENDING CHAMP ── */
 .champ-card{background:linear-gradient(135deg,rgba(0,63,184,.08),rgba(0,100,220,.05));backdrop-filter:blur(22px);border:1px solid rgba(0,87,231,.2);border-radius:16px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 16px rgba(0,63,184,.1)}
 .champ-trophy{font-size:48px;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(245,158,11,.4))}
-.champ-info{}
 .champ-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;font-family:var(--font)}
 .champ-team{font-size:22px;font-weight:900;color:#0f172a;line-height:1.1;font-family:var(--font)}
 .champ-detail{font-size:11px;color:#64748b;margin-top:4px;font-weight:600;font-family:var(--font)}
-
-/* ── AD BAR ── */
 .gc-ad-bar{background:rgba(255,255,255,.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.9);padding:8px 16px;font-size:12px;text-align:center;font-family:var(--font)}
-
-/* ── SUBSCRIBE ── */
 .gc-subscribe{background:linear-gradient(135deg,#004400,#006600);padding:14px 16px}
 .gc-subscribe-title{font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:8px;font-family:var(--font)}
 .gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
 .gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
 .gc-subscribe-row button{background:#f59e0b;color:#0f172a;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
 .gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px;font-family:var(--font)}
-
-/* ── FOOTER ── */
 .gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7;font-family:var(--font)}
 .gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
 .gc-footer-links a{color:#a8b2c8;text-decoration:none}
 .gc-footer-links a:hover{color:white}
 .gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px;line-height:1.8}
-
-/* ── COOKIE BANNER ── */
-#gc-cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-
-/* ── RESPONSIVE ── */
-@media(min-width:769px){
-  .gc-hamburger{display:none!important}
-  .sb-overlay{display:none!important}
-  .gc-sidebar{transform:translateX(0)!important}
-  .gc-main{margin-left:var(--sb-w)!important}
-}
+@media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
 @media(max-width:768px){
-  .gc-hamburger{display:block!important}
-  .gc-main{margin-left:0!important}
-  .gc-sidebar{transform:translateX(-100%)!important}
-  .gc-sidebar.open{transform:translateX(0)!important}
-  .gc-content{padding:12px!important}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .hero-title{font-size:20px}
-  .nav-grid{grid-template-columns:repeat(2,1fr)}
-  .nav-card.featured{flex-direction:column;gap:8px}
-  .facts-grid{grid-template-columns:1fr}
-  .cd-bar{justify-content:center}
-  .cd-bar>span:first-child{display:none}
-  .champ-card{flex-wrap:wrap}
-  .gc-phase-pill{display:none}
-  .phase-dates{min-width:90px;font-size:10px}
+  .gc-hamburger{display:block!important}.gc-main{margin-left:0!important}
+  .gc-sidebar{transform:translateX(-100%)!important}.gc-sidebar.open{transform:translateX(0)!important}
+  .gc-content{padding:12px!important}.hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-title{font-size:20px}.nav-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-card.featured{flex-direction:column;gap:8px}.facts-grid{grid-template-columns:1fr}
+  .cd-bar{justify-content:center}.cd-bar>span:first-child{display:none}
+  .champ-card{flex-wrap:wrap}.gc-phase-pill{display:none}.phase-dates{min-width:90px;font-size:10px}
 }
-@media(max-width:380px){
-  .nav-grid{grid-template-columns:1fr}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-}
+@media(max-width:380px){.nav-grid{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -212,6 +163,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
       <a href="/worldcup2026/teams/index.html" class="sb-sub-link">👕 Teams</a>
       <a href="/worldcup2026/news/index.html" class="sb-sub-link">📰 News</a>
+      <a href="/countdown.html" class="sb-sub-link">⏱ Countdown</a>
     </div>
   </div>
   <div class="sb-comp">
@@ -236,8 +188,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 </nav>
 
 <div class="gc-main">
-
-  <!-- HEADER -->
   <header class="gc-header">
     <div class="gc-hdr-top">
       <div class="gc-hdr-left">
@@ -260,10 +210,10 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       <a href="/worldcup2026/venues/index.html" class="gc-hdr-navlink">🏟️ Venues</a>
       <a href="/worldcup2026/teams/index.html" class="gc-hdr-navlink">👕 Teams</a>
       <a href="/worldcup2026/news/index.html" class="gc-hdr-navlink">📰 News</a>
+      <a href="/countdown.html" class="gc-hdr-navlink">⏱ Countdown</a>
     </nav>
   </header>
 
-  <!-- COUNTDOWN BAR -->
   <div class="cd-bar">
     <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap" id="cdLabel">⏳ World Cup starts in</span>
     <div class="cd-units">
@@ -282,8 +232,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
   </div>
 
   <main class="gc-content">
-
-    <!-- HERO -->
     <div class="hero-card">
       <div class="hero-title">FIFA World Cup <span>2026</span></div>
       <div class="hero-sub">The world's biggest football tournament returns — 48 nations, 3 host countries, 1 champion</div>
@@ -300,17 +248,15 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       </div>
     </div>
 
-    <!-- DEFENDING CHAMPION -->
     <div class="champ-card">
       <div class="champ-trophy">🏆</div>
-      <div class="champ-info">
+      <div>
         <div class="champ-label">🥇 Defending Champions — Qatar 2022</div>
         <div class="champ-team">🇦🇷 Argentina</div>
         <div class="champ-detail">Beat France 4–2 on penalties · Lionel Messi's crowning moment</div>
       </div>
     </div>
 
-    <!-- NAVIGATION CARDS -->
     <div class="nav-grid">
       <a href="/worldcup2026/fixtures/index.html" class="nav-card featured">
         <div class="nav-card-icon">📅</div>
@@ -344,15 +290,14 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
         <div class="nav-card-desc">All stadiums across USA, Mexico and Canada</div>
         <div class="nav-card-arrow">View venues →</div>
       </a>
-      <a href="/worldcup2026/news/index.html" class="nav-card">
-        <div class="nav-card-icon">📰</div>
-        <div class="nav-card-title">News & Updates</div>
-        <div class="nav-card-desc">Latest World Cup news, team updates and previews</div>
-        <div class="nav-card-arrow">Read news →</div>
+      <a href="/countdown.html" class="nav-card">
+        <div class="nav-card-icon">⏱</div>
+        <div class="nav-card-title">Countdown</div>
+        <div class="nav-card-desc">Live countdown to the opening match — Mexico vs South Africa</div>
+        <div class="nav-card-arrow">View countdown →</div>
       </a>
     </div>
 
-    <!-- PHASE TIMELINE -->
     <div class="timeline-card">
       <div class="timeline-title">🗓️ Tournament Phases</div>
       <div class="phase-item" style="background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2)">
@@ -393,22 +338,19 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
       </div>
     </div>
 
-    <!-- QUICK FACTS -->
     <div class="facts-card">
       <div class="facts-title">📋 Quick Facts</div>
       <div class="facts-grid">
-        <div class="fact-row"><div class="fact-icon">📅</div><div class="fact-body"><div class="fact-label">Dates</div><div class="fact-value">11 June – 19 July 2026</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🏟️</div><div class="fact-body"><div class="fact-label">Final Venue</div><div class="fact-value">MetLife Stadium, New Jersey</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🌎</div><div class="fact-body"><div class="fact-label">Host Countries</div><div class="fact-value">USA · Mexico · Canada</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🏆</div><div class="fact-body"><div class="fact-label">Defending Champions</div><div class="fact-value">🇦🇷 Argentina</div></div></div>
-        <div class="fact-row"><div class="fact-icon">⚽</div><div class="fact-body"><div class="fact-label">Format</div><div class="fact-value">48 teams · 12 groups of 4</div></div></div>
-        <div class="fact-row"><div class="fact-icon">📺</div><div class="fact-body"><div class="fact-label">Broadcast (UK)</div><div class="fact-value">ITV · BBC</div></div></div>
+        <div class="fact-row"><div class="fact-icon">📅</div><div><div class="fact-label">Dates</div><div class="fact-value">11 June – 19 July 2026</div></div></div>
+        <div class="fact-row"><div class="fact-icon">🏟️</div><div><div class="fact-label">Final Venue</div><div class="fact-value">MetLife Stadium, New Jersey</div></div></div>
+        <div class="fact-row"><div class="fact-icon">🌎</div><div><div class="fact-label">Host Countries</div><div class="fact-value">USA · Mexico · Canada</div></div></div>
+        <div class="fact-row"><div class="fact-icon">🏆</div><div><div class="fact-label">Defending Champions</div><div class="fact-value">🇦🇷 Argentina</div></div></div>
+        <div class="fact-row"><div class="fact-icon">⚽</div><div><div class="fact-label">Format</div><div class="fact-value">48 teams · 12 groups of 4</div></div></div>
+        <div class="fact-row"><div class="fact-icon">📺</div><div><div class="fact-label">Broadcast (UK)</div><div class="fact-value">ITV · BBC</div></div></div>
       </div>
     </div>
-
   </main>
 
-  <!-- NORDVPN AD BAR -->
   <div class="gc-ad-bar">
     🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
     <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:3px 10px;border-radius:20px;font-weight:800;text-decoration:none;margin:0 6px">Get Deal →</a>
@@ -416,7 +358,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
   </div>
 
-  <!-- SUBSCRIBE -->
   <div class="gc-subscribe">
     <div class="gc-subscribe-title">📬 Get World Cup 2026 alerts &amp; news direct to your inbox</div>
     <div class="gc-subscribe-row">
@@ -426,7 +367,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     <div class="gc-sub-msg" id="gc-sub-msg">✅ Thank you! You will receive World Cup updates soon.</div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="gc-footer">
     <div class="gc-footer-links">
       <a href="/about.html">About</a>
@@ -443,12 +383,11 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
   </footer>
 </div>
 
-<!-- COOKIE BANNER -->
 <div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
   <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/privacy.html" style="color:#f59e0b;text-decoration:none">Privacy Policy</a></div>
   <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:var(--font)">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:var(--font)">Decline</button>
+    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
   </div>
 </div>
 
@@ -474,8 +413,6 @@ function gcSubscribe(){
   if(msg)msg.style.display='block';input.value='';
 }
 if(!localStorage.getItem('gc_ck')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-
-// COUNTDOWN
 (function(){
   var TARGET=new Date('2026-06-11T19:00:00Z');
   function pad(n){return n<10?'0'+n:''+n;}
