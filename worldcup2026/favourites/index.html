@@ -4,119 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Favourite Teams — World Cup 2026 | GoalCurrent.live</title>
-<meta name="description" content="Save your favourite World Cup 2026 teams and follow their journey through the tournament.">
+<meta name="description" content="Save your favourite World Cup 2026 teams and follow their journey. All 48 officially qualified nations.">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/favourites/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
 <link rel="stylesheet" href="/css/style.css">
 <style>
-.fav-page { max-width: 700px; margin: 0 auto; padding: 16px 14px 120px; }
+.fav-page{max-width:700px;margin:0 auto;padding:16px 14px 120px}
 
-.fav-hero {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-top: 4px solid var(--gold);
-  border-radius: var(--r-lg);
-  padding: 20px 16px; margin-bottom: 16px;
-  box-shadow: var(--glass-shadow); text-align: center;
-}
-.fav-hero h1 { font-size: clamp(18px,4vw,22px); font-weight: 700; color: var(--t1); margin-bottom: 6px; }
-.fav-hero p  { font-size: 12px; color: var(--t2); line-height: 1.6; }
+.fav-hero{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-top:4px solid var(--gold);border-radius:var(--r-lg);padding:20px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
+.fav-hero h1{font-size:clamp(18px,4vw,22px);font-weight:700;color:var(--t1);margin-bottom:6px}
+.fav-hero p{font-size:12px;color:var(--t2);line-height:1.6}
+.fav-hero-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.fav-hero-meta span{font-size:11px;font-weight:700;color:var(--t2);background:rgba(37,99,235,.07);border:1px solid var(--glass-border);padding:4px 10px;border-radius:999px}
 
-/* SEARCH */
-.fav-search { position: relative; margin-bottom: 16px; }
-.fav-search input {
-  width: 100%; padding: 13px 14px 13px 42px;
-  border-radius: var(--r-md); border: 1.5px solid var(--glass-border);
-  background: rgba(255,255,255,.85); font-size: 14px; outline: none;
-  font-family: Verdana,sans-serif; color: var(--t1);
-  box-shadow: var(--glass-shadow); transition: border-color .2s;
-}
-.fav-search input:focus { border-color: var(--blue); }
-.fav-search::before { content:"🔍"; position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:15px; }
+.fav-search{position:relative;margin-bottom:12px}
+.fav-search input{width:100%;padding:13px 14px 13px 42px;border-radius:var(--r-md);border:1.5px solid var(--glass-border);background:rgba(255,255,255,.85);font-size:14px;outline:none;font-family:Verdana,sans-serif;color:var(--t1);box-shadow:var(--glass-shadow);transition:border-color .2s}
+.fav-search input:focus{border-color:var(--blue)}
+.fav-search::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px}
 
-/* SECTION */
-.fav-section-hdr {
-  display: flex; align-items: center; gap: 10px;
-  margin: 16px 0 10px;
-  font-size: 10px; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--t4);
-}
-.fav-section-hdr::after { content:''; flex:1; height:1px; background:rgba(37,99,235,.15); }
+.conf-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.conf-btn{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid var(--glass-border);background:rgba(255,255,255,.72);color:var(--t2);cursor:pointer;font-family:Verdana,sans-serif;transition:all .2s}
+.conf-btn:hover{border-color:var(--blue);color:var(--blue)}
+.conf-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
-/* EMPTY STATE */
-.fav-empty {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 32px 16px; margin-bottom: 16px;
-  box-shadow: var(--glass-shadow); text-align: center;
-}
-.fav-empty-icon { font-size: 48px; margin-bottom: 12px; }
-.fav-empty-title { font-size: 15px; font-weight: 700; color: var(--t1); margin-bottom: 8px; }
-.fav-empty-sub { font-size: 12px; color: var(--t3); line-height: 1.7; }
+.fav-section-hdr{display:flex;align-items:center;gap:10px;margin:16px 0 10px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
+.fav-section-hdr::after{content:'';flex:1;height:1px;background:rgba(37,99,235,.15)}
 
-/* TEAM CARD */
-.fav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; margin-bottom: 16px; }
-.team-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 14px 12px; box-shadow: var(--glass-shadow);
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; gap: 6px; cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-  position: relative;
-}
-.team-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(100,160,220,.2); }
-.team-card.is-fav { border-color: var(--gold); background: rgba(255,255,255,.88); }
-.team-flag { font-size: 32px; line-height: 1; }
-.team-name { font-size: 12px; font-weight: 700; color: var(--t1); }
-.team-group { font-size: 10px; color: var(--t3); }
-.team-conf { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(37,99,235,.08); color: var(--blue); border: 1px solid rgba(37,99,235,.15); }
-.fav-star {
-  position: absolute; top: 8px; right: 8px;
-  font-size: 16px; opacity: .3; transition: opacity .2s, transform .2s;
-}
-.team-card.is-fav .fav-star { opacity: 1; transform: scale(1.2); }
+.fav-empty{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:28px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
+.fav-empty-icon{font-size:40px;margin-bottom:10px}
+.fav-empty-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.fav-empty-sub{font-size:12px;color:var(--t3);line-height:1.6}
 
-/* MY FAVS SECTION */
-.my-fav-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.my-fav-item {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-left: 4px solid var(--gold);
-  border-radius: var(--r-md);
-  padding: 12px 14px; box-shadow: var(--glass-shadow);
-  display: flex; align-items: center; gap: 12px;
-}
-.my-fav-flag { font-size: 28px; }
-.my-fav-info { flex: 1; }
-.my-fav-name { font-size: 14px; font-weight: 700; color: var(--t1); }
-.my-fav-sub { font-size: 11px; color: var(--t3); }
-.my-fav-remove {
-  background: none; border: 1px solid rgba(220,38,38,.2);
-  color: #dc2626; padding: 4px 10px; border-radius: 6px;
-  font-size: 11px; cursor: pointer; font-family: Verdana,sans-serif;
-  transition: background .2s;
-}
-.my-fav-remove:hover { background: #fee2e2; }
+.my-fav-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.my-fav-item{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-left:4px solid var(--gold);border-radius:var(--r-md);padding:12px 14px;box-shadow:var(--glass-shadow);display:flex;align-items:center;gap:12px}
+.my-fav-flag{font-size:26px}
+.my-fav-info{flex:1}
+.my-fav-name{font-size:14px;font-weight:700;color:var(--t1)}
+.my-fav-sub{font-size:11px;color:var(--t3)}
+.my-fav-remove{background:none;border:1px solid rgba(220,38,38,.2);color:#dc2626;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif;transition:background .2s;white-space:nowrap}
+.my-fav-remove:hover{background:#fee2e2}
 
-/* CONF FILTER */
-.conf-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-.conf-btn {
-  font-size: 11px; font-weight: 700; padding: 5px 12px;
-  border-radius: 999px; border: 1.5px solid var(--glass-border);
-  background: rgba(255,255,255,.72); color: var(--t2);
-  cursor: pointer; font-family: Verdana,sans-serif; transition: all .2s;
+.fav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.team-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 10px;box-shadow:var(--glass-shadow);display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
+.team-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(100,160,220,.2)}
+.team-card.is-fav{border-color:var(--gold);border-width:2px;background:rgba(255,255,255,.9)}
+.team-flag{font-size:30px;line-height:1}
+.team-name{font-size:11px;font-weight:700;color:var(--t1);line-height:1.3}
+.team-conf-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;background:rgba(37,99,235,.08);color:var(--blue);border:1px solid rgba(37,99,235,.15)}
+.fav-star{position:absolute;top:6px;right:7px;font-size:14px;opacity:.2;transition:opacity .2s,transform .2s}
+.team-card.is-fav .fav-star{opacity:1;transform:scale(1.15)}
+
+@media(max-width:480px){
+  .fav-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 }
-.conf-btn:hover { border-color: var(--blue); color: var(--blue); }
-.conf-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
 </style>
 </head>
 <body>
@@ -128,10 +70,14 @@
   <div class="gc-main-content">
     <div class="fav-page">
 
-      <!-- HERO -->
       <div class="fav-hero">
         <h1>⭐ My Favourite Teams</h1>
-        <p>Pick your teams to follow their World Cup 2026 journey. Your favourites are saved to your device.</p>
+        <p>Save your teams and follow their World Cup 2026 journey. Stored on your device — no account needed.</p>
+        <div class="fav-hero-meta">
+          <span>🌍 48 Qualified Nations</span>
+          <span>🏆 FIFA World Cup 2026</span>
+          <span>💾 Saved locally</span>
+        </div>
       </div>
 
       <!-- MY FAVOURITES -->
@@ -140,21 +86,20 @@
 
       <!-- SEARCH -->
       <div class="fav-search">
-        <input type="text" id="teamSearch" placeholder="Search teams..." oninput="renderAllTeams()" autocomplete="off">
+        <input type="text" id="teamSearch" placeholder="Search all 48 teams..." oninput="renderAllTeams()" autocomplete="off">
       </div>
 
       <!-- CONFEDERATION FILTER -->
-      <div class="conf-filter" id="confFilter">
-        <button class="conf-btn active" onclick="setConf('ALL',this)">🌍 All (48)</button>
-        <button class="conf-btn" onclick="setConf('UEFA',this)">🔵 UEFA</button>
-        <button class="conf-btn" onclick="setConf('CONMEBOL',this)">🟡 CONMEBOL</button>
-        <button class="conf-btn" onclick="setConf('CONCACAF',this)">🔴 CONCACAF</button>
-        <button class="conf-btn" onclick="setConf('CAF',this)">🟢 CAF</button>
-        <button class="conf-btn" onclick="setConf('AFC',this)">🟠 AFC</button>
-        <button class="conf-btn" onclick="setConf('OFC',this)">⚪ OFC</button>
+      <div class="conf-filter">
+        <button class="conf-btn active" onclick="setConf('ALL',this)">🌍 All</button>
+        <button class="conf-btn" onclick="setConf('UEFA',this)">🔵 UEFA (16)</button>
+        <button class="conf-btn" onclick="setConf('CAF',this)">🟢 CAF (10)</button>
+        <button class="conf-btn" onclick="setConf('AFC',this)">🟠 AFC (9)</button>
+        <button class="conf-btn" onclick="setConf('CONCACAF',this)">🔴 CONCACAF (6)</button>
+        <button class="conf-btn" onclick="setConf('CONMEBOL',this)">🟡 CONMEBOL (6)</button>
+        <button class="conf-btn" onclick="setConf('OFC',this)">⚪ OFC (1)</button>
       </div>
 
-      <!-- ALL TEAMS GRID -->
       <div class="fav-section-hdr">👕 All 48 Teams — tap to add/remove</div>
       <div class="fav-grid" id="allTeamsGrid"></div>
 
@@ -165,9 +110,67 @@
   <div id="gc-footer-root"></div>
 </div>
 
-<script src="/js/worldcup-data.js"></script>
 <script src="/js/gc-shared.js"></script>
 <script>
+/* ── OFFICIAL FIFA WORLD CUP 2026 — 48 QUALIFIED TEAMS ── */
+/* Source: FIFA.com — verified June 2026 */
+var WC2026_TEAMS = [
+  /* UEFA — 16 */
+  {name:'Austria',             flag:'🇦🇹', conf:'UEFA'},
+  {name:'Belgium',             flag:'🇧🇪', conf:'UEFA'},
+  {name:'Bosnia & Herzegovina',flag:'🇧🇦', conf:'UEFA'},
+  {name:'Croatia',             flag:'🇭🇷', conf:'UEFA'},
+  {name:'Czech Republic',             flag:'🇨🇿', conf:'UEFA'},
+  {name:'England',             flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', conf:'UEFA'},
+  {name:'France',              flag:'🇫🇷', conf:'UEFA'},
+  {name:'Germany',             flag:'🇩🇪', conf:'UEFA'},
+  {name:'Netherlands',         flag:'🇳🇱', conf:'UEFA'},
+  {name:'Norway',              flag:'🇳🇴', conf:'UEFA'},
+  {name:'Portugal',            flag:'🇵🇹', conf:'UEFA'},
+  {name:'Scotland',            flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', conf:'UEFA'},
+  {name:'Spain',               flag:'🇪🇸', conf:'UEFA'},
+  {name:'Sweden',              flag:'🇸🇪', conf:'UEFA'},
+  {name:'Switzerland',         flag:'🇨🇭', conf:'UEFA'},
+  {name:'Turkey',             flag:'🇹🇷', conf:'UEFA'},
+  /* CAF — 10 */
+  {name:'Algeria',             flag:'🇩🇿', conf:'CAF'},
+  {name:'Cape Verde',          flag:'🇨🇻', conf:'CAF'},
+  {name:'DR Congo',            flag:'🇨🇩', conf:'CAF'},
+  {name:'Egypt',               flag:'🇪🇬', conf:'CAF'},
+  {name:'Ghana',               flag:'🇬🇭', conf:'CAF'},
+  {name:'Ivory Coast',         flag:'🇨🇮', conf:'CAF'},
+  {name:'Morocco',             flag:'🇲🇦', conf:'CAF'},
+  {name:'Senegal',             flag:'🇸🇳', conf:'CAF'},
+  {name:'South Africa',        flag:'🇿🇦', conf:'CAF'},
+  {name:'Tunisia',             flag:'🇹🇳', conf:'CAF'},
+  /* AFC — 9 */
+  {name:'Australia',           flag:'🇦🇺', conf:'AFC'},
+  {name:'Iraq',                flag:'🇮🇶', conf:'AFC'},
+  {name:'Iran',                flag:'🇮🇷', conf:'AFC'},
+  {name:'Japan',               flag:'🇯🇵', conf:'AFC'},
+  {name:'Jordan',              flag:'🇯🇴', conf:'AFC'},
+  {name:'Qatar',               flag:'🇶🇦', conf:'AFC'},
+  {name:'Saudi Arabia',        flag:'🇸🇦', conf:'AFC'},
+  {name:'South Korea',         flag:'🇰🇷', conf:'AFC'},
+  {name:'Uzbekistan',          flag:'🇺🇿', conf:'AFC'},
+  /* CONCACAF — 6 (inc. 3 hosts) */
+  {name:'Canada',              flag:'🇨🇦', conf:'CONCACAF', host:true},
+  {name:'Mexico',              flag:'🇲🇽', conf:'CONCACAF', host:true},
+  {name:'USA',                 flag:'🇺🇸', conf:'CONCACAF', host:true},
+  {name:'Curaçao',             flag:'🇨🇼', conf:'CONCACAF'},
+  {name:'Haiti',               flag:'🇭🇹', conf:'CONCACAF'},
+  {name:'Panama',              flag:'🇵🇦', conf:'CONCACAF'},
+  /* CONMEBOL — 6 */
+  {name:'Argentina',           flag:'🇦🇷', conf:'CONMEBOL'},
+  {name:'Brazil',              flag:'🇧🇷', conf:'CONMEBOL'},
+  {name:'Colombia',            flag:'🇨🇴', conf:'CONMEBOL'},
+  {name:'Ecuador',             flag:'🇪🇨', conf:'CONMEBOL'},
+  {name:'Paraguay',            flag:'🇵🇾', conf:'CONMEBOL'},
+  {name:'Uruguay',             flag:'🇺🇾', conf:'CONMEBOL'},
+  /* OFC — 1 */
+  {name:'New Zealand',         flag:'🇳🇿', conf:'OFC'},
+];
+
 var activeConf = 'ALL';
 
 function setConf(conf, btn){
@@ -180,10 +183,10 @@ function setConf(conf, btn){
 function getFavs(){ return JSON.parse(localStorage.getItem('wc26_favourites')||'[]'); }
 function saveFavs(f){ localStorage.setItem('wc26_favourites', JSON.stringify(f)); }
 
-function toggleFav(teamName){
+function toggleFav(name){
   var favs = getFavs();
-  var idx = favs.indexOf(teamName);
-  if(idx > -1) favs.splice(idx,1); else favs.push(teamName);
+  var idx = favs.indexOf(name);
+  if(idx > -1) favs.splice(idx,1); else favs.push(name);
   saveFavs(favs);
   renderMyFavs();
   renderAllTeams();
@@ -192,19 +195,19 @@ function toggleFav(teamName){
 function renderMyFavs(){
   var favs = getFavs();
   var el = document.getElementById('myFavsList');
-  if(favs.length === 0){
-    el.innerHTML = '<div class="fav-empty"><div class="fav-empty-icon">⭐</div><div class="fav-empty-title">No favourites yet</div><div class="fav-empty-sub">Tap any team below to add them to your favourites.</div></div>';
+  if(!favs.length){
+    el.innerHTML = '<div class="fav-empty"><div class="fav-empty-icon">⭐</div><div class="fav-empty-title">No favourites yet</div><div class="fav-empty-sub">Tap any team below to save them to your favourites.</div></div>';
     return;
   }
   var html = '<div class="my-fav-list">';
   favs.forEach(function(name){
-    var team = findTeam(name);
+    var team = WC2026_TEAMS.find(function(t){ return t.name === name; });
     if(!team) return;
     html += '<div class="my-fav-item">'+
       '<div class="my-fav-flag">'+team.flag+'</div>'+
       '<div class="my-fav-info">'+
-        '<div class="my-fav-name">'+team.name+'</div>'+
-        '<div class="my-fav-sub">Group '+team.group+' · '+team.confederation+'</div>'+
+        '<div class="my-fav-name">'+(team.host?'🏠 ':'')+team.name+'</div>'+
+        '<div class="my-fav-sub">'+team.conf+(team.host?' · Host Nation':'')+'</div>'+
       '</div>'+
       '<button class="my-fav-remove" onclick="toggleFav(\''+name.replace(/'/g,"\\'")+'\')" >✕ Remove</button>'+
     '</div>';
@@ -213,44 +216,27 @@ function renderMyFavs(){
   el.innerHTML = html;
 }
 
-function findTeam(name){
-  for(var key in WC26.groups){
-    var group = WC26.groups[key];
-    for(var i=0;i<group.teams.length;i++){
-      if(group.teams[i].name === name){
-        return {flag: group.teams[i].flag, name: group.teams[i].name, confederation: group.teams[i].confederation||'', group: key};
-      }
-    }
-  }
-  return null;
-}
-
 function renderAllTeams(){
   var query = (document.getElementById('teamSearch').value||'').toLowerCase();
   var favs = getFavs();
   var html = '';
   var count = 0;
 
-  for(var key in WC26.groups){
-    var group = WC26.groups[key];
-    group.teams.forEach(function(team){
-      var conf = team.confederation||'';
-      if(activeConf !== 'ALL' && conf !== activeConf) return;
-      if(query && !team.name.toLowerCase().includes(query) && !key.toLowerCase().includes(query)) return;
-      var isFav = favs.includes(team.name);
-      html += '<div class="team-card'+(isFav?' is-fav':'')+'" onclick="toggleFav(\''+team.name.replace(/'/g,"\\'")+'\')" title="'+(isFav?'Remove from':'Add to')+' favourites">'+
-        '<span class="fav-star">⭐</span>'+
-        '<div class="team-flag">'+team.flag+'</div>'+
-        '<div class="team-name">'+team.name+'</div>'+
-        '<div class="team-group">Group '+key+'</div>'+
-        (conf ? '<div class="team-conf">'+conf+'</div>' : '')+
-      '</div>';
-      count++;
-    });
-  }
+  WC2026_TEAMS.forEach(function(team){
+    if(activeConf !== 'ALL' && team.conf !== activeConf) return;
+    if(query && !team.name.toLowerCase().includes(query)) return;
+    var isFav = favs.includes(team.name);
+    html += '<div class="team-card'+(isFav?' is-fav':'')+'" onclick="toggleFav(\''+team.name.replace(/'/g,"\\'")+'\')" title="'+(isFav?'Remove from':'Add to')+' favourites">'+
+      '<span class="fav-star">⭐</span>'+
+      '<div class="team-flag">'+team.flag+'</div>'+
+      '<div class="team-name">'+(team.host?'🏠 ':'')+team.name+'</div>'+
+      '<div class="team-conf-badge">'+team.conf+'</div>'+
+    '</div>';
+    count++;
+  });
 
-  if(count === 0){
-    html = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--t3);font-size:13px">No teams found for "'+query+'"</div>';
+  if(!count){
+    html = '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--t3);font-size:13px">No teams found matching "'+query+'"</div>';
   }
 
   document.getElementById('allTeamsGrid').innerHTML = html;
