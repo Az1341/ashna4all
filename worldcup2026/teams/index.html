@@ -83,12 +83,13 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .t-card{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.95);border-radius:16px;padding:16px 12px 12px;text-align:center;position:relative;box-shadow:0 4px 14px rgba(37,99,235,.08);transition:.2s;}
 .t-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.15);border-color:rgba(37,99,235,.25)}
 .t-card.host{border-top:3px solid #f59e0b}
-.t-host-icon{position:absolute;top:7px;right:9px;font-size:13px}
 /* FLAG — large emoji, no fallback text shown */
-.t-flag{font-size:42px;line-height:1;display:block;margin-bottom:6px;
-  font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji","Twemoji Mozilla",sans-serif;}
-/* FULL NAME — this is the main text, always readable */
-.t-name{font-size:12px;font-weight:800;color:#0f172a;line-height:1.35;margin-bottom:7px}
+.t-name{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:7px;text-align:center;}
+/* Flag emoji — fixed size, cross-platform emoji font */
+.t-flag{font-size:28px;line-height:1;flex-shrink:0;
+  font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji","EmojiOne Color",sans-serif;}
+/* Full country name — bold and clearly readable */
+.t-fullname{font-size:13px;font-weight:900;color:#0f172a;line-height:1.3;}
 /* META BADGES */
 .t-meta{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
 .t-badge{font-size:9px;font-weight:800;padding:2px 7px;border-radius:999px;background:rgba(37,99,235,.07);color:#2563eb;border:1px solid rgba(37,99,235,.14);}
@@ -362,6 +363,59 @@ function renderTeams(){
   out.innerHTML = html;
 }
 
+
+/* ── HARDCODED FLAG MAP — verified emoji, never uses team.flag or team.code ── */
+var TEAM_FLAGS = {
+  'Algeria':              '🇩🇿',
+  'Argentina':            '🇦🇷',
+  'Australia':            '🇦🇺',
+  'Austria':              '🇦🇹',
+  'Belgium':              '🇧🇪',
+  'Bosnia & Herzegovina': '🇧🇦',
+  'Brazil':               '🇧🇷',
+  'Canada':               '🇨🇦',
+  'Cape Verde':           '🇨🇻',
+  'Colombia':             '🇨🇴',
+  'Croatia':              '🇭🇷',
+  'Curaçao':              '🇨🇼',
+  'Czech Republic':       '🇨🇿',
+  'DR Congo':             '🇨🇩',
+  'Ecuador':              '🇪🇨',
+  'Egypt':                '🇪🇬',
+  'England':              '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  'France':               '🇫🇷',
+  'Germany':              '🇩🇪',
+  'Ghana':                '🇬🇭',
+  'Haiti':                '🇭🇹',
+  'Iran':                 '🇮🇷',
+  'Iraq':                 '🇮🇶',
+  'Ivory Coast':          '🇨🇮',
+  'Japan':                '🇯🇵',
+  'Jordan':               '🇯🇴',
+  'Mexico':               '🇲🇽',
+  'Morocco':              '🇲🇦',
+  'Netherlands':          '🇳🇱',
+  'New Zealand':          '🇳🇿',
+  'Norway':               '🇳🇴',
+  'Panama':               '🇵🇦',
+  'Paraguay':             '🇵🇾',
+  'Portugal':             '🇵🇹',
+  'Qatar':                '🇶🇦',
+  'Saudi Arabia':         '🇸🇦',
+  'Scotland':             '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+  'Senegal':              '🇸🇳',
+  'South Africa':         '🇿🇦',
+  'South Korea':          '🇰🇷',
+  'Spain':                '🇪🇸',
+  'Sweden':               '🇸🇪',
+  'Switzerland':          '🇨🇭',
+  'Tunisia':              '🇹🇳',
+  'Turkey':               '🇹🇷',
+  'Uruguay':              '🇺🇾',
+  'USA':                  '🇺🇸',
+  'Uzbekistan':           '🇺🇿'
+};
+
 /* ── TEAM CARD ──────────────────────────────────────────────
    DISPLAYS: flag emoji · full English name · group · confederation
    NEVER DISPLAYS: team.code, ISO codes, FIFA codes, abbreviations
@@ -393,11 +447,11 @@ function teamCard(team){
 
   return (
     '<div class="t-card'+(team.host?' host':'')+'" id="'+cardId+'">'+
-      (team.host ? '<span class="t-host-icon">🏠</span>' : '')+
-      /* FLAG — emoji only, cross-platform font stack */
-      '<span class="t-flag">'+team.flag+'</span>'+
-      /* FULL ENGLISH NAME — primary display text */
-      '<div class="t-name">'+(team.host?'🏠 ':'')+team.name+'</div>'+
+      /* FLAG from hardcoded map — never uses team.flag or team.code */
+      '<div class="t-name">'+
+        '<span class="t-flag">'+(TEAM_FLAGS[team.name]||'🏳️')+'</span>'+
+        '<span class="t-fullname">'+team.name+(team.host?' 🏠':'')+'</span>'+
+      '</div>'+
       /* BADGES: group + confederation only */
       '<div class="t-meta">'+
         '<span class="t-badge">Group '+team.group+'</span>'+
