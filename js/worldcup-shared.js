@@ -22,6 +22,7 @@ function renderNav(activePage) {
     ['bracket', '/worldcup2026/bracket/', '&#127949; Bracket'],
     ['venues', '/worldcup2026/venues/', '&#127967; Venues'],
     ['news', '/worldcup2026/news/', '&#128240; News'],
+    ['countdown', '/countdown.html', '&#9201; Countdown'],
     ['favourites', '/worldcup2026/favourites/', '&#11088; Favourites']
   ];
 
@@ -32,9 +33,9 @@ function renderNav(activePage) {
 
   return '<div style="background:#0a1628;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2d3f5e;">' +
     '<a href="/" style="font-size:1.1rem;font-weight:700;color:white;text-decoration:none;">&#9917; Goal<span style="color:#f59e0b">Current</span>.live</a>' +
-'<button type="button" id="hamburgerBtn" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>'+
+    '<button type="button" id="hamburgerBtn" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:4px 8px;">&#9776;</button>' +
     '</div>' +
-    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;overflow-x:auto;white-space:nowrap;display:none;">'+
+    '<nav id="wcNavLinks" style="background:#111827;border-bottom:1px solid #2d3f5e;overflow-x:auto;white-space:nowrap;display:none;">' +
     navLinks +
     '</nav>';
 }
@@ -165,7 +166,7 @@ function initWC26Page(activePage) {
   var btn = document.getElementById('hamburgerBtn');
   if (btn) {
     btn.addEventListener('click', function(e) {
-  e.preventDefault();
+      e.preventDefault();
       var nav = document.getElementById('wcNavLinks');
       if (!nav) return;
       if (nav.style.display === 'none') {
