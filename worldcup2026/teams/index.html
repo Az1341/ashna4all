@@ -200,7 +200,7 @@ function teamCard(team){
 
   var squadHtml = '';
   if(hasSquad){
-    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+team.code+'">';
+    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+team.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'">';
     if(coach) squadHtml += '<div class="t-coach">👔 Coach: '+coach+'</div>';
     squadHtml += '<div class="t-squad-grid">';
     squadData.squad.forEach(function(p){
@@ -215,10 +215,9 @@ function teamCard(team){
     squadHtml += '</div></div>';
   }
 
-  return '<div class="t-card'+(team.host?' host':'')+'" id="card-'+team.code+'">'+
+  return '<div class="t-card'+(team.host?' host':'')+'" id="card-'+team.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'">'+
     (team.host ? '<span class="t-host-icon">🏠</span>' : '')+
     '<span class="t-flag">'+team.flag+'</span>'+
-    '<div class="t-code">'+team.code+'</div>'+
     '<div class="t-name">'+team.name+'</div>'+
     '<div class="t-meta">'+
       '<span class="t-badge">Group '+team.group+'</span>'+
@@ -226,18 +225,18 @@ function teamCard(team){
       (team.host ? '<span class="t-badge host">Host 🏠</span>' : '')+
     '</div>'+
     (hasSquad ?
-      '<button class="t-expand-btn" onclick="toggleSquad(\''+team.name+'\',\''+team.code+'\')">'+(isOpen ? '▲ Hide Squad' : '▼ View Squad')+'</button>'+
+      '<button class="t-expand-btn" onclick="toggleSquad(\''+team.name+'\')">'+(isOpen ? '▲ Hide Squad' : '▼ View Squad')+'</button>'+
       squadHtml
     : '')+
   '</div>';
 }
 
-function toggleSquad(teamName, code){
+function toggleSquad(teamName){
   openCards[teamName] = !openCards[teamName];
   renderTeams();
   /* Scroll to card */
   setTimeout(function(){
-    var el = document.getElementById('card-'+code);
+    var el = document.getElementById(teamName.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
     if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
   }, 100);
 }
