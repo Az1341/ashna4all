@@ -11,124 +11,250 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-:root{
-  --sb-w:240px;--sb-bg:#07111f;--sb-hover:#10213a;--sb-border:rgba(255,255,255,0.08);--sb-text:#b8c4d9;
-  --hdr-h:56px;--gold:#f59e0b;--red:#ef4444;--green:#10b981;--blue:#2563eb;
-  --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif;
+/* ── MOBILE-FIRST, NO DARK COLOURS ── */
+.wc-page { max-width: 700px; margin: 0 auto; padding: 16px 14px 120px; }
+
+/* HERO */
+.wc-hero {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-top: 4px solid var(--gold);
+  border-radius: var(--r-lg);
+  padding: 20px 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--glass-shadow);
+  text-align: center;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);background-attachment:fixed;min-height:100vh;color:#0f172a;font-size:14px;display:flex;overflow-x:hidden}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400}
+.wc-hero-title {
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 700; color: var(--t1); line-height: 1.2; margin-bottom: 6px;
+}
+.wc-hero-title span { color: var(--blue); }
+.wc-hero-sub { font-size: 13px; color: var(--t2); line-height: 1.6; margin-bottom: 14px; }
+.wc-flags {
+  display: flex; justify-content: center; align-items: center;
+  gap: 16px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.wc-flag-item { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--t2); }
+.wc-flag-item span { font-size: 26px; }
+.wc-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.wc-stat {
+  background: rgba(37,99,235,0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-sm); padding: 12px 6px; text-align: center;
+}
+.wc-stat-num { display: block; font-size: clamp(18px, 4vw, 24px); font-weight: 700; color: var(--blue); line-height: 1; }
+.wc-stat-lbl { display: block; font-size: 9px; font-weight: 700; color: var(--t4); text-transform: uppercase; letter-spacing: .07em; margin-top: 4px; }
+
+/* COUNTDOWN */
+.wc-cd {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--blue);
+  border-radius: var(--r-md);
+  padding: 16px; margin-bottom: 14px;
+  box-shadow: var(--glass-shadow); text-align: center;
+}
+.wc-cd-label { font-size: 11px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; display: block; }
+.wc-cd-units { display: flex; justify-content: center; align-items: center; gap: 8px; }
+.wc-cd-unit {
+  flex: 1; max-width: 80px;
+  background: rgba(37,99,235,0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-sm); padding: 12px 6px; text-align: center;
+}
+.wc-cd-num { display: block; font-size: clamp(24px, 6vw, 36px); font-weight: 700; color: var(--blue); line-height: 1; font-variant-numeric: tabular-nums; }
+.wc-cd-lbl { display: block; font-size: 9px; font-weight: 700; color: var(--t4); text-transform: uppercase; letter-spacing: .08em; margin-top: 5px; }
+.wc-cd-sep { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: var(--blue); opacity: .35; margin-bottom: 16px; }
+
+/* DEFENDING CHAMP */
+.wc-champ {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 16px; margin-bottom: 14px;
+  box-shadow: var(--glass-shadow);
+  display: flex; align-items: center; gap: 14px;
+}
+.wc-champ-trophy { font-size: 44px; flex-shrink: 0; }
+.wc-champ-label { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+.wc-champ-name { font-size: 20px; font-weight: 700; color: var(--t1); }
+.wc-champ-detail { font-size: 11px; color: var(--t3); margin-top: 3px; line-height: 1.4; }
+
+/* NAV CARDS */
+.wc-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+.wc-nav-card {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 16px 14px;
+  text-decoration: none; color: var(--t1);
+  display: flex; flex-direction: column; gap: 6px;
+  box-shadow: var(--glass-shadow); transition: all .2s;
+}
+.wc-nav-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(100,160,220,.22); border-color: rgba(37,99,235,.3); }
+.wc-nav-card.featured {
+  grid-column: 1 / -1;
+  flex-direction: row; align-items: center; gap: 14px;
+  border-top: 3px solid var(--blue);
+}
+.wc-nav-icon { font-size: 28px; line-height: 1; }
+.wc-nav-title { font-size: 14px; font-weight: 700; color: var(--t1); }
+.wc-nav-desc { font-size: 11px; color: var(--t3); line-height: 1.5; }
+.wc-nav-arrow { font-size: 11px; color: var(--blue); font-weight: 700; margin-top: 2px; }
+
+/* PHASE TIMELINE */
+.wc-section {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 16px; margin-bottom: 14px;
+  box-shadow: var(--glass-shadow);
+}
+.wc-section-title { font-size: 13px; font-weight: 700; color: var(--t1); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+.wc-phase {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 12px; border-radius: var(--r-sm);
+  margin-bottom: 6px; border: 1px solid transparent;
+}
+.wc-phase:last-child { margin-bottom: 0; }
+.wc-phase-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.wc-phase-dates { font-size: 11px; font-weight: 700; color: var(--t3); min-width: 100px; flex-shrink: 0; }
+.wc-phase-name { font-size: 13px; font-weight: 700; color: var(--t1); flex: 1; }
+.wc-phase-count { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+
+/* QUICK FACTS */
+.wc-facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wc-fact {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 10px; background: rgba(255,255,255,0.6);
+  border: 1px solid var(--glass-border); border-radius: var(--r-sm);
+}
+.wc-fact-icon { font-size: 16px; flex-shrink: 0; }
+.wc-fact-label { font-size: 9px; font-weight: 700; color: var(--t4); text-transform: uppercase; letter-spacing: .07em; }
+.wc-fact-value { font-size: 12px; font-weight: 700; color: var(--t1); margin-top: 2px; line-height: 1.3; }
+
+/* SUBSCRIBE */
+.wc-subscribe {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--blue);
+  border-radius: var(--r-md);
+  padding: 16px; margin-bottom: 14px;
+  box-shadow: var(--glass-shadow);
+}
+.wc-subscribe h3 { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 10px; }
+.wc-sub-row { display: flex; gap: 8px; }
+.wc-sub-row input {
+  flex: 1; padding: 11px 12px;
+  border-radius: var(--r-sm); border: 1.5px solid var(--glass-border);
+  background: rgba(255,255,255,.85); font-family: Verdana,sans-serif;
+  font-size: 13px; color: var(--t1); outline: none;
+}
+.wc-sub-row input:focus { border-color: var(--blue); }
+.wc-sub-row button {
+  background: linear-gradient(135deg,#2563eb,#3b82f6); color: #fff;
+  border: none; border-radius: var(--r-sm); padding: 11px 16px;
+  font-family: Verdana,sans-serif; font-size: 13px; font-weight: 700;
+  cursor: pointer; white-space: nowrap;
+}
+.wc-sub-msg { display: none; font-size: 11px; color: var(--green); font-weight: 700; margin-top: 8px; }
+
+/* NORDVPN */
+.wc-nord {
+  background: var(--glass);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  padding: 12px 16px; margin-bottom: 14px;
+  box-shadow: var(--glass-shadow);
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap; text-align: center; font-size: 13px; color: var(--t2);
+}
+.wc-nord a.deal { background: var(--blue); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; }
+.wc-nord a.pass { color: var(--blue); font-size: 12px; font-weight: 700; text-decoration: none; }
+.wc-nord .ad { font-size: 10px; color: var(--t4); }
+
+/* FOOTER */
+.wc-footer { text-align: center; padding: 16px 0; font-size: 11px; color: var(--t4); }
+.wc-footer a { color: var(--blue); text-decoration: none; margin: 0 4px; }
+
+/* SIDEBAR & RESPONSIVE (reuse site pattern) */
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
 .sb-overlay.show{display:block}
-.gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+.gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
 .gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{padding:18px 16px;border-bottom:1px solid var(--sb-border);flex-shrink:0}
-.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none;font-family:var(--font)}
+.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
 .sb-logo span{color:#3b82f6}
-.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px;font-family:var(--font)}
-.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:var(--sb-text);text-decoration:none;font-size:13px;font-weight:600;font-family:var(--font)}
-.sb-link:hover{background:var(--sb-hover);color:white}
-.sb-comp{border-top:1px solid var(--sb-border)}
-.sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:var(--sb-text);font-size:13px;font-weight:700;cursor:pointer;text-align:left;font-family:var(--font)}
-.sb-comp-btn:hover{background:var(--sb-hover);color:white}
+.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px}
+.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#b8c4d9;text-decoration:none;font-size:13px;font-weight:600}
+.sb-link:hover{background:#10213a;color:white}
+.sb-comp{border-top:1px solid rgba(255,255,255,.08)}
+.sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:#b8c4d9;font-size:13px;font-weight:700;cursor:pointer;text-align:left}
+.sb-comp-btn:hover{background:#10213a;color:white}
 .sb-badge{font-size:10px;background:rgba(59,130,246,.25);color:#60a5fa;padding:2px 7px;border-radius:5px;font-weight:800}
 .sb-badge-gold{background:rgba(251,191,36,.25);color:#fbbf24}
 .sb-sub{display:none}.sb-sub.open{display:block}
-.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px;font-family:var(--font)}
-.sb-sub-link:hover{background:var(--sb-hover);color:white}
+.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px}
+.sb-sub-link:hover{background:#10213a;color:white}
 .sb-sub-link.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800}
-.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0;font-family:var(--font)}
+.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0}
 .sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
 .sb-social{display:flex;gap:8px;margin-bottom:10px}
-.sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--sb-hover);border-radius:7px;font-size:13px;color:var(--sb-text);text-decoration:none}
-.gc-main{margin-left:var(--sb-w);flex:1;min-width:0;max-width:calc(100vw - var(--sb-w));display:flex;flex-direction:column}
-.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#002800,#004d00,#006600);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,80,0,.45);padding:0 16px}
+.sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:#10213a;border-radius:7px;font-size:13px;color:#b8c4d9;text-decoration:none}
+
+.gc-main{margin-left:240px;flex:1;min-width:0;display:flex;flex-direction:column}
+
+/* HEADER */
+.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:0 16px}
 .gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px}
 .gc-hdr-left{display:flex;align-items:center;gap:10px}
-.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15;font-family:var(--font)}
+.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15}
 .gc-hdr-logo span{color:#f59e0b}
-.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px;font-family:var(--font)}
-.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase;font-family:var(--font)}
-.gc-tz-pill{font-size:10px;font-weight:900;color:white;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--font)}
+.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px}
+.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase}
+.gc-tz-pill{font-size:10px;font-weight:900;color:white;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px}
 .gc-hdr-nav{display:flex;gap:4px;padding-bottom:9px;overflow-x:auto;scrollbar-width:none}
 .gc-hdr-nav::-webkit-scrollbar{display:none}
-.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0;font-family:var(--font)}
+.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0}
 .gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
 .gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
 .gc-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:white;padding:4px;flex-shrink:0}
-.gc-content{flex:1;padding:16px;max-width:860px}
-.cd-bar{background:linear-gradient(135deg,#07111f,#0b1e3d,#0f2d5a);border-bottom:2px solid rgba(245,158,11,.35);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.cd-unit{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px;min-width:52px}
-.cd-num{font-size:20px;font-weight:900;color:#f59e0b;line-height:1;font-variant-numeric:tabular-nums;font-family:var(--font)}
-.cd-lbl{font-size:8px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--font)}
-.cd-sep{font-size:18px;font-weight:900;color:rgba(245,158,11,.5);margin-bottom:12px}
-.cd-units{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.hero-card{background:linear-gradient(135deg,#002200,#004400,#005500);border-radius:18px;padding:22px 20px;margin-bottom:14px;border:1px solid rgba(245,158,11,.25);box-shadow:0 12px 40px rgba(0,80,0,.3);position:relative;overflow:hidden}
-.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);background-size:200% 100%;animation:hb 4s linear infinite}
-@keyframes hb{0%{background-position:0%}100%{background-position:200%}}
-.hero-title{font-size:24px;font-weight:900;color:white;line-height:1.15;margin-bottom:6px;font-family:var(--font)}
-.hero-title span{color:#f59e0b}
-.hero-sub{font-size:13px;color:rgba(255,255,255,.75);font-weight:600;margin-bottom:14px;font-family:var(--font)}
-.hero-flags{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
-.hero-flag-item{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:rgba(255,255,255,.8);font-family:var(--font)}
-.hero-flag-item span{font-size:24px}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 8px;text-align:center}
-.hero-stat-num{font-size:22px;font-weight:900;color:#f59e0b;line-height:1;font-family:var(--font)}
-.hero-stat-lbl{font-size:9px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.7px;margin-top:3px;font-family:var(--font)}
-.nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
-.nav-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;text-decoration:none;color:#0f172a;transition:all .2s;display:flex;flex-direction:column;gap:6px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
-.nav-card:hover{background:rgba(255,255,255,.95);transform:translateY(-2px);box-shadow:0 8px 28px rgba(100,160,220,.18)}
-.nav-card-icon{font-size:28px;line-height:1}
-.nav-card-title{font-size:14px;font-weight:800;color:#0f172a;font-family:var(--font)}
-.nav-card-desc{font-size:11px;color:#64748b;font-weight:600;line-height:1.4;font-family:var(--font)}
-.nav-card-arrow{font-size:11px;color:#3b82f6;font-weight:800;margin-top:2px;font-family:var(--font)}
-.nav-card.featured{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(0,63,184,.08),rgba(0,87,231,.05));border-color:rgba(0,87,231,.2)}
-.nav-card.featured .nav-card-icon{font-size:36px;flex-shrink:0}
-.facts-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
-.facts-title{font-size:12px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-family:var(--font)}
-.facts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.fact-row{display:flex;align-items:flex-start;gap:8px;padding:9px 10px;background:rgba(255,255,255,.6);border-radius:10px;border:1px solid rgba(255,255,255,.85)}
-.fact-icon{font-size:16px;flex-shrink:0}
-.fact-label{font-size:9px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;font-family:var(--font)}
-.fact-value{font-size:12px;font-weight:700;color:#0f172a;margin-top:1px;font-family:var(--font)}
-.timeline-card{background:rgba(255,255,255,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(100,160,220,.1)}
-.timeline-title{font-size:12px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;font-family:var(--font)}
-.phase-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;margin-bottom:6px;border:1px solid transparent}
-.phase-item:last-child{margin-bottom:0}
-.phase-dot-big{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.phase-dates{font-size:11px;font-weight:700;color:#64748b;min-width:120px;flex-shrink:0;font-family:var(--font)}
-.phase-name{font-size:13px;font-weight:800;color:#0f172a;flex:1;font-family:var(--font)}
-.phase-count{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;font-family:var(--font)}
-.champ-card{background:linear-gradient(135deg,rgba(0,63,184,.08),rgba(0,100,220,.05));backdrop-filter:blur(22px);border:1px solid rgba(0,87,231,.2);border-radius:16px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 16px rgba(0,63,184,.1)}
-.champ-trophy{font-size:48px;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(245,158,11,.4))}
-.champ-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;font-family:var(--font)}
-.champ-team{font-size:22px;font-weight:900;color:#0f172a;line-height:1.1;font-family:var(--font)}
-.champ-detail{font-size:11px;color:#64748b;margin-top:4px;font-weight:600;font-family:var(--font)}
-.gc-ad-bar{background:rgba(255,255,255,.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,.9);padding:8px 16px;font-size:12px;text-align:center;font-family:var(--font)}
-.gc-subscribe{background:linear-gradient(135deg,#004400,#006600);padding:14px 16px}
-.gc-subscribe-title{font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:8px;font-family:var(--font)}
-.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
-.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
-.gc-subscribe-row button{background:#f59e0b;color:#0f172a;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
-.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px;font-family:var(--font)}
-.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7;font-family:var(--font)}
-.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
-.gc-footer-links a{color:#a8b2c8;text-decoration:none}
-.gc-footer-links a:hover{color:white}
-.gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px;line-height:1.8}
-@media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
-@media(max-width:768px){
-  .gc-hamburger{display:block!important}.gc-main{margin-left:0!important}
-  .gc-sidebar{transform:translateX(-100%)!important}.gc-sidebar.open{transform:translateX(0)!important}
-  .gc-content{padding:12px!important}.hero-stats{grid-template-columns:repeat(2,1fr)}
-  .hero-title{font-size:20px}.nav-grid{grid-template-columns:repeat(2,1fr)}
-  .nav-card.featured{flex-direction:column;gap:8px}.facts-grid{grid-template-columns:1fr}
-  .cd-bar{justify-content:center}.cd-bar>span:first-child{display:none}
-  .champ-card{flex-wrap:wrap}.gc-phase-pill{display:none}.phase-dates{min-width:90px;font-size:10px}
+
+@media(min-width:769px){
+  .gc-hamburger{display:none!important}
+  .sb-overlay{display:none!important}
+  .gc-sidebar{transform:translateX(0)!important}
+  .gc-main{margin-left:240px!important}
 }
-@media(max-width:380px){.nav-grid{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .gc-hamburger{display:block!important}
+  .gc-main{margin-left:0!important}
+  .gc-sidebar{transform:translateX(-100%)!important}
+  .gc-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 24px rgba(0,0,0,.3)!important}
+  .gc-phase-pill{display:none}
+  .wc-stats{grid-template-columns:repeat(2,1fr)}
+  .wc-nav-grid{grid-template-columns:1fr}
+  .wc-nav-card.featured{flex-direction:column}
+  .wc-facts-grid{grid-template-columns:1fr}
+  .wc-phase-dates{min-width:80px;font-size:10px}
+  .wc-champ{flex-wrap:wrap}
+  .wc-sub-row{flex-direction:column}
+  .wc-sub-row button{width:100%}
+}
 </style>
 </head>
 <body>
@@ -188,13 +314,14 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 </nav>
 
 <div class="gc-main">
+  <!-- HEADER -->
   <header class="gc-header">
     <div class="gc-hdr-top">
       <div class="gc-hdr-left">
         <button class="gc-hamburger" onclick="openSidebar()">☰</button>
         <div>
           <div class="gc-hdr-logo">🏆 World Cup <span>2026</span></div>
-          <div class="gc-hdr-sub">📍 USA · Mexico · Canada · 48 Teams · 104 Matches</div>
+          <div class="gc-hdr-sub">USA · Mexico · Canada · 48 Teams · 104 Matches</div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:7px;flex-shrink:0">
@@ -214,180 +341,186 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
     </nav>
   </header>
 
-  <div class="cd-bar">
-    <span style="font-size:11px;font-weight:800;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap" id="cdLabel">⏳ World Cup starts in</span>
-    <div class="cd-units">
-      <div class="cd-unit"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:6px 12px;white-space:nowrap">
-      <span style="font-size:20px;font-weight:900;color:#f59e0b;line-height:1">104</span>
-      <span style="font-size:10px;font-weight:800;color:rgba(255,255,255,.55);line-height:1.3">matches<br>total</span>
-    </div>
-  </div>
+  <main>
+    <div class="wc-page">
 
-  <main class="gc-content">
-    <div class="hero-card">
-      <div class="hero-title">FIFA World Cup <span>2026</span></div>
-      <div class="hero-sub">The world's biggest football tournament returns — 48 nations, 3 host countries, 1 champion</div>
-      <div class="hero-flags">
-        <div class="hero-flag-item"><span>🇺🇸</span> United States</div>
-        <div class="hero-flag-item"><span>🇲🇽</span> Mexico</div>
-        <div class="hero-flag-item"><span>🇨🇦</span> Canada</div>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-num">48</div><div class="hero-stat-lbl">Teams</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">104</div><div class="hero-stat-lbl">Matches</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">16</div><div class="hero-stat-lbl">Stadiums</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">12</div><div class="hero-stat-lbl">Groups</div></div>
-      </div>
-    </div>
-
-    <div class="champ-card">
-      <div class="champ-trophy">🏆</div>
-      <div>
-        <div class="champ-label">🥇 Defending Champions — Qatar 2022</div>
-        <div class="champ-team">🇦🇷 Argentina</div>
-        <div class="champ-detail">Beat France 4–2 on penalties · Lionel Messi's crowning moment</div>
-      </div>
-    </div>
-
-    <div class="nav-grid">
-      <a href="/worldcup2026/fixtures/index.html" class="nav-card featured">
-        <div class="nav-card-icon">📅</div>
-        <div>
-          <div class="nav-card-title">Fixtures & Live Scores</div>
-          <div class="nav-card-desc">All 104 matches with live calendar, scores and results updated in real time</div>
-          <div class="nav-card-arrow">View all fixtures →</div>
+      <!-- HERO -->
+      <div class="wc-hero">
+        <div class="wc-hero-title">FIFA World Cup <span>2026</span></div>
+        <div class="wc-hero-sub">The world's biggest football tournament — 48 nations, 3 host countries, 1 champion</div>
+        <div class="wc-flags">
+          <div class="wc-flag-item"><span>🇺🇸</span> United States</div>
+          <div class="wc-flag-item"><span>🇲🇽</span> Mexico</div>
+          <div class="wc-flag-item"><span>🇨🇦</span> Canada</div>
         </div>
-      </a>
-      <a href="/worldcup2026/groups/index.html" class="nav-card">
-        <div class="nav-card-icon">🔢</div>
-        <div class="nav-card-title">Groups A–L</div>
-        <div class="nav-card-desc">All 12 groups with standings, fixtures and results</div>
-        <div class="nav-card-arrow">View groups →</div>
-      </a>
-      <a href="/worldcup2026/teams/index.html" class="nav-card">
-        <div class="nav-card-icon">👕</div>
-        <div class="nav-card-title">All 48 Teams</div>
-        <div class="nav-card-desc">Every nation, confederation and FIFA ranking</div>
-        <div class="nav-card-arrow">View teams →</div>
-      </a>
-      <a href="/worldcup2026/bracket/index.html" class="nav-card">
-        <div class="nav-card-icon">🏅</div>
-        <div class="nav-card-title">Knockout Bracket</div>
-        <div class="nav-card-desc">Full bracket from Round of 32 to the Final</div>
-        <div class="nav-card-arrow">View bracket →</div>
-      </a>
-      <a href="/worldcup2026/venues/index.html" class="nav-card">
-        <div class="nav-card-icon">🏟️</div>
-        <div class="nav-card-title">16 Venues</div>
-        <div class="nav-card-desc">All stadiums across USA, Mexico and Canada</div>
-        <div class="nav-card-arrow">View venues →</div>
-      </a>
-      <a href="/countdown.html" class="nav-card">
-        <div class="nav-card-icon">⏱</div>
-        <div class="nav-card-title">Countdown</div>
-        <div class="nav-card-desc">Live countdown to the opening match — Mexico vs South Africa</div>
-        <div class="nav-card-arrow">View countdown →</div>
-      </a>
-    </div>
+        <div class="wc-stats">
+          <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
+          <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
+          <div class="wc-stat"><span class="wc-stat-num">16</span><span class="wc-stat-lbl">Stadiums</span></div>
+          <div class="wc-stat"><span class="wc-stat-num">12</span><span class="wc-stat-lbl">Groups</span></div>
+        </div>
+      </div>
 
-    <div class="timeline-card">
-      <div class="timeline-title">🗓️ Tournament Phases</div>
-      <div class="phase-item" style="background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2)">
-        <div class="phase-dot-big" style="background:#10b981"></div>
-        <div class="phase-dates">11–27 June</div>
-        <div class="phase-name">Group Stage</div>
-        <span class="phase-count" style="background:rgba(16,185,129,.12);color:#059669">72 matches</span>
+      <!-- COUNTDOWN -->
+      <div class="wc-cd">
+        <span class="wc-cd-label" id="cdLabel">⏳ World Cup starts in</span>
+        <div class="wc-cd-units">
+          <div class="wc-cd-unit"><span class="wc-cd-num" id="cdD">--</span><span class="wc-cd-lbl">Days</span></div>
+          <span class="wc-cd-sep">:</span>
+          <div class="wc-cd-unit"><span class="wc-cd-num" id="cdH">--</span><span class="wc-cd-lbl">Hours</span></div>
+          <span class="wc-cd-sep">:</span>
+          <div class="wc-cd-unit"><span class="wc-cd-num" id="cdM">--</span><span class="wc-cd-lbl">Mins</span></div>
+          <span class="wc-cd-sep">:</span>
+          <div class="wc-cd-unit"><span class="wc-cd-num" id="cdS">--</span><span class="wc-cd-lbl">Secs</span></div>
+        </div>
       </div>
-      <div class="phase-item" style="background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.2)">
-        <div class="phase-dot-big" style="background:#3b82f6"></div>
-        <div class="phase-dates">30 Jun–3 Jul</div>
-        <div class="phase-name">Round of 32</div>
-        <span class="phase-count" style="background:rgba(59,130,246,.12);color:#2563eb">16 matches</span>
-      </div>
-      <div class="phase-item" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.2)">
-        <div class="phase-dot-big" style="background:#8b5cf6"></div>
-        <div class="phase-dates">6–9 July</div>
-        <div class="phase-name">Round of 16</div>
-        <span class="phase-count" style="background:rgba(139,92,246,.12);color:#7c3aed">8 matches</span>
-      </div>
-      <div class="phase-item" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2)">
-        <div class="phase-dot-big" style="background:#f59e0b"></div>
-        <div class="phase-dates">11–12 July</div>
-        <div class="phase-name">Quarter-Finals</div>
-        <span class="phase-count" style="background:rgba(245,158,11,.12);color:#d97706">4 matches</span>
-      </div>
-      <div class="phase-item" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2)">
-        <div class="phase-dot-big" style="background:#ef4444"></div>
-        <div class="phase-dates">15–16 July</div>
-        <div class="phase-name">Semi-Finals</div>
-        <span class="phase-count" style="background:rgba(239,68,68,.12);color:#dc2626">2 matches</span>
-      </div>
-      <div class="phase-item" style="background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.35)">
-        <div class="phase-dot-big" style="background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,.5)"></div>
-        <div class="phase-dates">19 July</div>
-        <div class="phase-name" style="font-weight:900">🏆 THE FINAL</div>
-        <span class="phase-count" style="background:rgba(251,191,36,.18);color:#b45309">MetLife NJ</span>
-      </div>
-    </div>
 
-    <div class="facts-card">
-      <div class="facts-title">📋 Quick Facts</div>
-      <div class="facts-grid">
-        <div class="fact-row"><div class="fact-icon">📅</div><div><div class="fact-label">Dates</div><div class="fact-value">11 June – 19 July 2026</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🏟️</div><div><div class="fact-label">Final Venue</div><div class="fact-value">MetLife Stadium, New Jersey</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🌎</div><div><div class="fact-label">Host Countries</div><div class="fact-value">USA · Mexico · Canada</div></div></div>
-        <div class="fact-row"><div class="fact-icon">🏆</div><div><div class="fact-label">Defending Champions</div><div class="fact-value">🇦🇷 Argentina</div></div></div>
-        <div class="fact-row"><div class="fact-icon">⚽</div><div><div class="fact-label">Format</div><div class="fact-value">48 teams · 12 groups of 4</div></div></div>
-        <div class="fact-row"><div class="fact-icon">📺</div><div><div class="fact-label">Broadcast (UK)</div><div class="fact-value">ITV · BBC</div></div></div>
+      <!-- DEFENDING CHAMP -->
+      <div class="wc-champ">
+        <div class="wc-champ-trophy">🏆</div>
+        <div>
+          <div class="wc-champ-label">🥇 Defending Champions — Qatar 2022</div>
+          <div class="wc-champ-name">🇦🇷 Argentina</div>
+          <div class="wc-champ-detail">Beat France 4–2 on penalties · Lionel Messi's crowning moment</div>
+        </div>
       </div>
+
+      <!-- NAV CARDS -->
+      <div class="wc-nav-grid">
+        <a href="/worldcup2026/fixtures/index.html" class="wc-nav-card featured">
+          <div class="wc-nav-icon">📅</div>
+          <div>
+            <div class="wc-nav-title">Fixtures &amp; Live Scores</div>
+            <div class="wc-nav-desc">All 104 matches with live calendar, scores and results updated in real time</div>
+            <div class="wc-nav-arrow">View all fixtures →</div>
+          </div>
+        </a>
+        <a href="/worldcup2026/groups/index.html" class="wc-nav-card">
+          <div class="wc-nav-icon">🔢</div>
+          <div class="wc-nav-title">Groups A–L</div>
+          <div class="wc-nav-desc">All 12 groups with standings, fixtures and results</div>
+          <div class="wc-nav-arrow">View groups →</div>
+        </a>
+        <a href="/worldcup2026/teams/index.html" class="wc-nav-card">
+          <div class="wc-nav-icon">👕</div>
+          <div class="wc-nav-title">All 48 Teams</div>
+          <div class="wc-nav-desc">Every nation, confederation and FIFA ranking</div>
+          <div class="wc-nav-arrow">View teams →</div>
+        </a>
+        <a href="/worldcup2026/bracket/index.html" class="wc-nav-card">
+          <div class="wc-nav-icon">🏅</div>
+          <div class="wc-nav-title">Knockout Bracket</div>
+          <div class="wc-nav-desc">Full bracket from Round of 32 to the Final</div>
+          <div class="wc-nav-arrow">View bracket →</div>
+        </a>
+        <a href="/worldcup2026/venues/index.html" class="wc-nav-card">
+          <div class="wc-nav-icon">🏟️</div>
+          <div class="wc-nav-title">16 Venues</div>
+          <div class="wc-nav-desc">All stadiums across USA, Mexico and Canada</div>
+          <div class="wc-nav-arrow">View venues →</div>
+        </a>
+        <a href="/countdown.html" class="wc-nav-card">
+          <div class="wc-nav-icon">⏱</div>
+          <div class="wc-nav-title">Countdown</div>
+          <div class="wc-nav-desc">Live countdown to the opening match — Mexico vs South Africa</div>
+          <div class="wc-nav-arrow">View countdown →</div>
+        </a>
+      </div>
+
+      <!-- TOURNAMENT PHASES -->
+      <div class="wc-section">
+        <div class="wc-section-title">🗓️ Tournament Phases</div>
+        <div class="wc-phase" style="background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.2)">
+          <div class="wc-phase-dot" style="background:#10b981"></div>
+          <div class="wc-phase-dates">11–27 June</div>
+          <div class="wc-phase-name">Group Stage</div>
+          <span class="wc-phase-count" style="background:rgba(16,185,129,.12);color:#059669">72 matches</span>
+        </div>
+        <div class="wc-phase" style="background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.2)">
+          <div class="wc-phase-dot" style="background:#3b82f6"></div>
+          <div class="wc-phase-dates">30 Jun–3 Jul</div>
+          <div class="wc-phase-name">Round of 32</div>
+          <span class="wc-phase-count" style="background:rgba(59,130,246,.12);color:#2563eb">16 matches</span>
+        </div>
+        <div class="wc-phase" style="background:rgba(139,92,246,.07);border-color:rgba(139,92,246,.2)">
+          <div class="wc-phase-dot" style="background:#8b5cf6"></div>
+          <div class="wc-phase-dates">6–9 July</div>
+          <div class="wc-phase-name">Round of 16</div>
+          <span class="wc-phase-count" style="background:rgba(139,92,246,.12);color:#7c3aed">8 matches</span>
+        </div>
+        <div class="wc-phase" style="background:rgba(217,119,6,.07);border-color:rgba(217,119,6,.2)">
+          <div class="wc-phase-dot" style="background:#d97706"></div>
+          <div class="wc-phase-dates">11–12 July</div>
+          <div class="wc-phase-name">Quarter-Finals</div>
+          <span class="wc-phase-count" style="background:rgba(217,119,6,.12);color:#d97706">4 matches</span>
+        </div>
+        <div class="wc-phase" style="background:rgba(220,38,38,.07);border-color:rgba(220,38,38,.2)">
+          <div class="wc-phase-dot" style="background:#dc2626"></div>
+          <div class="wc-phase-dates">15–16 July</div>
+          <div class="wc-phase-name">Semi-Finals</div>
+          <span class="wc-phase-count" style="background:rgba(220,38,38,.12);color:#dc2626">2 matches</span>
+        </div>
+        <div class="wc-phase" style="background:rgba(217,119,6,.1);border-color:rgba(217,119,6,.35)">
+          <div class="wc-phase-dot" style="background:var(--gold);box-shadow:0 0 8px rgba(217,119,6,.4)"></div>
+          <div class="wc-phase-dates">19 July</div>
+          <div class="wc-phase-name" style="font-weight:900">🏆 THE FINAL</div>
+          <span class="wc-phase-count" style="background:rgba(217,119,6,.15);color:#b45309">MetLife NJ</span>
+        </div>
+      </div>
+
+      <!-- QUICK FACTS -->
+      <div class="wc-section">
+        <div class="wc-section-title">📋 Quick Facts</div>
+        <div class="wc-facts-grid">
+          <div class="wc-fact"><div class="wc-fact-icon">📅</div><div><div class="wc-fact-label">Dates</div><div class="wc-fact-value">11 June – 19 July 2026</div></div></div>
+          <div class="wc-fact"><div class="wc-fact-icon">🏟️</div><div><div class="wc-fact-label">Final Venue</div><div class="wc-fact-value">MetLife Stadium, New Jersey</div></div></div>
+          <div class="wc-fact"><div class="wc-fact-icon">🌎</div><div><div class="wc-fact-label">Host Countries</div><div class="wc-fact-value">USA · Mexico · Canada</div></div></div>
+          <div class="wc-fact"><div class="wc-fact-icon">🏆</div><div><div class="wc-fact-label">Defending Champions</div><div class="wc-fact-value">🇦🇷 Argentina</div></div></div>
+          <div class="wc-fact"><div class="wc-fact-icon">⚽</div><div><div class="wc-fact-label">Format</div><div class="wc-fact-value">48 teams · 12 groups of 4</div></div></div>
+          <div class="wc-fact"><div class="wc-fact-icon">📺</div><div><div class="wc-fact-label">Broadcast (UK)</div><div class="wc-fact-value">ITV · BBC</div></div></div>
+        </div>
+      </div>
+
+      <!-- NORDVPN -->
+      <div class="wc-nord">
+        🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
+        <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" class="deal">Get Deal →</a>
+        <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" class="pass">NordPass</a>
+        <span class="ad">#AD · <a href="/disclaimer.html" style="color:var(--t4)">Affiliate</a></span>
+      </div>
+
+      <!-- SUBSCRIBE -->
+      <div class="wc-subscribe">
+        <h3>📬 Get World Cup 2026 alerts &amp; news</h3>
+        <div class="wc-sub-row">
+          <input type="email" id="subEmail" placeholder="Your email address">
+          <button onclick="doSubscribe()">Subscribe →</button>
+        </div>
+        <div class="wc-sub-msg" id="subMsg">✅ You're subscribed!</div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="wc-footer">
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/cookies.html">Cookies</a><br><br>
+        © 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
+        Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+      </div>
+
     </div>
   </main>
-
-  <div class="gc-ad-bar">
-    🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
-    <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:3px 10px;border-radius:20px;font-weight:800;text-decoration:none;margin:0 6px">Get Deal →</a>
-    <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#2563eb;font-weight:800;text-decoration:none">NordPass</a>
-    <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
-  </div>
-
-  <div class="gc-subscribe">
-    <div class="gc-subscribe-title">📬 Get World Cup 2026 alerts &amp; news direct to your inbox</div>
-    <div class="gc-subscribe-row">
-      <input type="email" id="gc-email-input" placeholder="Your email address">
-      <button onclick="gcSubscribe()">Subscribe →</button>
-    </div>
-    <div class="gc-sub-msg" id="gc-sub-msg">✅ Thank you! You will receive World Cup updates soon.</div>
-  </div>
-
-  <footer class="gc-footer">
-    <div class="gc-footer-links">
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/disclaimer.html">Disclaimer</a>
-      <a href="/cookies.html">Cookies</a>
-    </div>
-    <div class="gc-footer-copy">
-      © 2026 <strong style="color:#a8b2c8">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
-    </div>
-  </footer>
 </div>
 
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/privacy.html" style="color:#f59e0b;text-decoration:none">Privacy Policy</a></div>
+<!-- COOKIE BANNER -->
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid var(--blue);padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:Verdana,sans-serif">
+  <div style="font-size:11px;color:var(--t2);line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/privacy.html" style="color:var(--blue);text-decoration:none">Privacy Policy</a></div>
   <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
+    <button onclick="gcAcceptCookies()" style="background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:var(--t3);border:1px solid var(--glass-border);padding:8px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
   </div>
 </div>
 
@@ -397,37 +530,38 @@ function closeSidebar(){document.getElementById('gcSidebar').classList.remove('o
 function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 function gcDeclineCookies(){localStorage.setItem('gc_ck','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcSubscribe(){
-  var input=document.getElementById('gc-email-input');
-  var msg=document.getElementById('gc-sub-msg');
-  if(!input||!input.value||input.value.indexOf('@')<0){if(input)input.style.outline='2px solid #dc2626';return;}
-  input.style.outline='2px solid #16a34a';
-  var form=document.createElement('form');form.method='POST';
+if(!localStorage.getItem('gc_ck')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
+
+function doSubscribe(){
+  var input=document.getElementById('subEmail');
+  var msg=document.getElementById('subMsg');
+  if(!input.value||input.value.indexOf('@')<0){input.style.borderColor='#dc2626';return;}
+  input.style.borderColor='#16a34a';
+  var form=document.createElement('form');form.method='POST';form.target='_blank';form.style.display='none';
   form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-  form.target='_blank';form.style.display='none';
   var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
   var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
   var f3=document.createElement('input');f3.name='locale';f3.value='en';
   form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
   document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  if(msg)msg.style.display='block';input.value='';
+  msg.style.display='block';input.value='';
 }
-if(!localStorage.getItem('gc_ck')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
+
 (function(){
-  var TARGET=new Date('2026-06-11T19:00:00Z');
+  var T=new Date('2026-06-11T19:00:00Z');
   function pad(n){return n<10?'0'+n:''+n;}
   function tick(){
-    var diff=TARGET-new Date();
+    var diff=T-new Date();
     var lbl=document.getElementById('cdLabel');
     if(diff>0){
       if(lbl)lbl.textContent='⏳ World Cup starts in';
-      document.getElementById('cdDays').textContent=pad(Math.floor(diff/86400000));
-      document.getElementById('cdHours').textContent=pad(Math.floor((diff%86400000)/3600000));
-      document.getElementById('cdMins').textContent=pad(Math.floor((diff%3600000)/60000));
-      document.getElementById('cdSecs').textContent=pad(Math.floor((diff%60000)/1000));
-    } else {
+      document.getElementById('cdD').textContent=pad(Math.floor(diff/86400000));
+      document.getElementById('cdH').textContent=pad(Math.floor((diff%86400000)/3600000));
+      document.getElementById('cdM').textContent=pad(Math.floor((diff%3600000)/60000));
+      document.getElementById('cdS').textContent=pad(Math.floor((diff%60000)/1000));
+    }else{
       if(lbl)lbl.textContent='🏆 World Cup 2026 is LIVE!';
-      ['cdDays','cdHours','cdMins','cdSecs'].forEach(function(id){document.getElementById(id).textContent='00';});
+      ['cdD','cdH','cdM','cdS'].forEach(function(id){document.getElementById(id).textContent='00';});
     }
   }
   tick();setInterval(tick,1000);
