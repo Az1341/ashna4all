@@ -12,31 +12,25 @@
 <link rel="stylesheet" href="/css/style.css">
 <style>
 .fav-page{max-width:700px;margin:0 auto;padding:16px 14px 120px}
-
 .fav-hero{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-top:4px solid var(--gold);border-radius:var(--r-lg);padding:20px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
 .fav-hero h1{font-size:clamp(18px,4vw,22px);font-weight:700;color:var(--t1);margin-bottom:6px}
 .fav-hero p{font-size:12px;color:var(--t2);line-height:1.6}
 .fav-hero-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
 .fav-hero-meta span{font-size:11px;font-weight:700;color:var(--t2);background:rgba(37,99,235,.07);border:1px solid var(--glass-border);padding:4px 10px;border-radius:999px}
-
 .fav-search{position:relative;margin-bottom:12px}
 .fav-search input{width:100%;padding:13px 14px 13px 42px;border-radius:var(--r-md);border:1.5px solid var(--glass-border);background:rgba(255,255,255,.85);font-size:14px;outline:none;font-family:Verdana,sans-serif;color:var(--t1);box-shadow:var(--glass-shadow);transition:border-color .2s}
 .fav-search input:focus{border-color:var(--blue)}
 .fav-search::before{content:"🔍";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px}
-
 .conf-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .conf-btn{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;border:1.5px solid var(--glass-border);background:rgba(255,255,255,.72);color:var(--t2);cursor:pointer;font-family:Verdana,sans-serif;transition:all .2s}
 .conf-btn:hover{border-color:var(--blue);color:var(--blue)}
 .conf-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-
 .fav-section-hdr{display:flex;align-items:center;gap:10px;margin:16px 0 10px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
 .fav-section-hdr::after{content:'';flex:1;height:1px;background:rgba(37,99,235,.15)}
-
 .fav-empty{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:28px 16px;margin-bottom:16px;box-shadow:var(--glass-shadow);text-align:center}
 .fav-empty-icon{font-size:40px;margin-bottom:10px}
 .fav-empty-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:6px}
 .fav-empty-sub{font-size:12px;color:var(--t3);line-height:1.6}
-
 .my-fav-list{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
 .my-fav-item{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-left:4px solid var(--gold);border-radius:var(--r-md);padding:12px 14px;box-shadow:var(--glass-shadow);display:flex;align-items:center;gap:12px}
 .my-fav-flag{font-size:26px}
@@ -45,28 +39,23 @@
 .my-fav-sub{font-size:11px;color:var(--t3)}
 .my-fav-remove{background:none;border:1px solid rgba(220,38,38,.2);color:#dc2626;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif;transition:background .2s;white-space:nowrap}
 .my-fav-remove:hover{background:#fee2e2}
-
 .fav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
 .team-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px 10px;box-shadow:var(--glass-shadow);display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
 .team-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(100,160,220,.2)}
 .team-card.is-fav{border-color:var(--gold);border-width:2px;background:rgba(255,255,255,.9)}
 .team-flag{font-size:30px;line-height:1}
-.team-name{font-size:11px;font-weight:700;color:var(--t1);line-height:1.3}
+.team-code{font-size:11px;font-weight:800;color:var(--blue)}
+.team-name{font-size:10px;font-weight:600;color:var(--t2);line-height:1.3}
 .team-conf-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;background:rgba(37,99,235,.08);color:var(--blue);border:1px solid rgba(37,99,235,.15)}
 .fav-star{position:absolute;top:6px;right:7px;font-size:14px;opacity:.2;transition:opacity .2s,transform .2s}
 .team-card.is-fav .fav-star{opacity:1;transform:scale(1.15)}
-
-@media(max-width:480px){
-  .fav-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
-}
+@media(max-width:480px){.fav-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
 </style>
 </head>
 <body>
-
 <div id="gc-sidebar-root"></div>
 <div class="gc-main-wrapper">
   <div id="gc-header-root"></div>
-
   <div class="gc-main-content">
     <div class="fav-page">
 
@@ -74,104 +63,52 @@
         <h1>⭐ My Favourite Teams</h1>
         <p>Save your teams and follow their World Cup 2026 journey. Stored on your device — no account needed.</p>
         <div class="fav-hero-meta">
-          <span>🌍 48 Qualified Nations</span>
+          <span id="teamCountBadge">🌍 48 Qualified Nations</span>
           <span>🏆 FIFA World Cup 2026</span>
           <span>💾 Saved locally</span>
         </div>
       </div>
 
-      <!-- MY FAVOURITES -->
       <div class="fav-section-hdr">⭐ My Favourites</div>
       <div id="myFavsList"></div>
 
-      <!-- SEARCH -->
       <div class="fav-search">
         <input type="text" id="teamSearch" placeholder="Search all 48 teams..." oninput="renderAllTeams()" autocomplete="off">
       </div>
 
-      <!-- CONFEDERATION FILTER -->
-      <div class="conf-filter">
-        <button class="conf-btn active" onclick="setConf('ALL',this)">🌍 All</button>
-        <button class="conf-btn" onclick="setConf('UEFA',this)">🔵 UEFA (16)</button>
-        <button class="conf-btn" onclick="setConf('CAF',this)">🟢 CAF (10)</button>
-        <button class="conf-btn" onclick="setConf('AFC',this)">🟠 AFC (9)</button>
-        <button class="conf-btn" onclick="setConf('CONCACAF',this)">🔴 CONCACAF (6)</button>
-        <button class="conf-btn" onclick="setConf('CONMEBOL',this)">🟡 CONMEBOL (6)</button>
-        <button class="conf-btn" onclick="setConf('OFC',this)">⚪ OFC (1)</button>
-      </div>
+      <div class="conf-filter" id="confFilter"></div>
 
-      <div class="fav-section-hdr">👕 All 48 Teams — tap to add/remove</div>
+      <div class="fav-section-hdr">👕 All Teams — tap to add/remove</div>
       <div class="fav-grid" id="allTeamsGrid"></div>
 
     </div>
   </div>
-
   <div id="gc-nord-root"></div>
   <div id="gc-footer-root"></div>
 </div>
 
+<!-- Single source of truth: worldcup-data.js -->
+<script src="/js/worldcup-data.js"></script>
 <script src="/js/gc-shared.js"></script>
 <script>
-/* ── OFFICIAL FIFA WORLD CUP 2026 — 48 QUALIFIED TEAMS ── */
-/* Source: FIFA.com — verified June 2026 */
-var WC2026_TEAMS = [
-  /* UEFA — 16 */
-  {name:'Austria',             flag:'🇦🇹', conf:'UEFA'},
-  {name:'Belgium',             flag:'🇧🇪', conf:'UEFA'},
-  {name:'Bosnia & Herzegovina',flag:'🇧🇦', conf:'UEFA'},
-  {name:'Croatia',             flag:'🇭🇷', conf:'UEFA'},
-  {name:'Czech Republic',             flag:'🇨🇿', conf:'UEFA'},
-  {name:'England',             flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', conf:'UEFA'},
-  {name:'France',              flag:'🇫🇷', conf:'UEFA'},
-  {name:'Germany',             flag:'🇩🇪', conf:'UEFA'},
-  {name:'Netherlands',         flag:'🇳🇱', conf:'UEFA'},
-  {name:'Norway',              flag:'🇳🇴', conf:'UEFA'},
-  {name:'Portugal',            flag:'🇵🇹', conf:'UEFA'},
-  {name:'Scotland',            flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', conf:'UEFA'},
-  {name:'Spain',               flag:'🇪🇸', conf:'UEFA'},
-  {name:'Sweden',              flag:'🇸🇪', conf:'UEFA'},
-  {name:'Switzerland',         flag:'🇨🇭', conf:'UEFA'},
-  {name:'Turkey',             flag:'🇹🇷', conf:'UEFA'},
-  /* CAF — 10 */
-  {name:'Algeria',             flag:'🇩🇿', conf:'CAF'},
-  {name:'Cape Verde',          flag:'🇨🇻', conf:'CAF'},
-  {name:'DR Congo',            flag:'🇨🇩', conf:'CAF'},
-  {name:'Egypt',               flag:'🇪🇬', conf:'CAF'},
-  {name:'Ghana',               flag:'🇬🇭', conf:'CAF'},
-  {name:'Ivory Coast',         flag:'🇨🇮', conf:'CAF'},
-  {name:'Morocco',             flag:'🇲🇦', conf:'CAF'},
-  {name:'Senegal',             flag:'🇸🇳', conf:'CAF'},
-  {name:'South Africa',        flag:'🇿🇦', conf:'CAF'},
-  {name:'Tunisia',             flag:'🇹🇳', conf:'CAF'},
-  /* AFC — 9 */
-  {name:'Australia',           flag:'🇦🇺', conf:'AFC'},
-  {name:'Iraq',                flag:'🇮🇶', conf:'AFC'},
-  {name:'Iran',                flag:'🇮🇷', conf:'AFC'},
-  {name:'Japan',               flag:'🇯🇵', conf:'AFC'},
-  {name:'Jordan',              flag:'🇯🇴', conf:'AFC'},
-  {name:'Qatar',               flag:'🇶🇦', conf:'AFC'},
-  {name:'Saudi Arabia',        flag:'🇸🇦', conf:'AFC'},
-  {name:'South Korea',         flag:'🇰🇷', conf:'AFC'},
-  {name:'Uzbekistan',          flag:'🇺🇿', conf:'AFC'},
-  /* CONCACAF — 6 (inc. 3 hosts) */
-  {name:'Canada',              flag:'🇨🇦', conf:'CONCACAF', host:true},
-  {name:'Mexico',              flag:'🇲🇽', conf:'CONCACAF', host:true},
-  {name:'USA',                 flag:'🇺🇸', conf:'CONCACAF', host:true},
-  {name:'Curaçao',             flag:'🇨🇼', conf:'CONCACAF'},
-  {name:'Haiti',               flag:'🇭🇹', conf:'CONCACAF'},
-  {name:'Panama',              flag:'🇵🇦', conf:'CONCACAF'},
-  /* CONMEBOL — 6 */
-  {name:'Argentina',           flag:'🇦🇷', conf:'CONMEBOL'},
-  {name:'Brazil',              flag:'🇧🇷', conf:'CONMEBOL'},
-  {name:'Colombia',            flag:'🇨🇴', conf:'CONMEBOL'},
-  {name:'Ecuador',             flag:'🇪🇨', conf:'CONMEBOL'},
-  {name:'Paraguay',            flag:'🇵🇾', conf:'CONMEBOL'},
-  {name:'Uruguay',             flag:'🇺🇾', conf:'CONMEBOL'},
-  /* OFC — 1 */
-  {name:'New Zealand',         flag:'🇳🇿', conf:'OFC'},
-];
+/* All team data comes from WC26.teams in worldcup-data.js — no hardcoding */
 
 var activeConf = 'ALL';
+
+/* Build confederation list dynamically from WC26.teams */
+function buildConfFilter(){
+  var confs = {};
+  WC26.teams.forEach(function(t){
+    confs[t.conf] = (confs[t.conf]||0) + 1;
+  });
+  var icons = {UEFA:'🔵',CAF:'🟢',AFC:'🟠',CONCACAF:'🔴',CONMEBOL:'🟡',OFC:'⚪'};
+  var html = '<button class="conf-btn active" onclick="setConf(\'ALL\',this)">🌍 All ('+WC26.teams.length+')</button>';
+  Object.keys(confs).forEach(function(c){
+    html += '<button class="conf-btn" onclick="setConf(\''+c+'\',this)">'+(icons[c]||'🌍')+' '+c+' ('+confs[c]+')</button>';
+  });
+  document.getElementById('confFilter').innerHTML = html;
+  document.getElementById('teamCountBadge').textContent = '🌍 '+WC26.teams.length+' Qualified Nations';
+}
 
 function setConf(conf, btn){
   activeConf = conf;
@@ -196,18 +133,18 @@ function renderMyFavs(){
   var favs = getFavs();
   var el = document.getElementById('myFavsList');
   if(!favs.length){
-    el.innerHTML = '<div class="fav-empty"><div class="fav-empty-icon">⭐</div><div class="fav-empty-title">No favourites yet</div><div class="fav-empty-sub">Tap any team below to save them to your favourites.</div></div>';
+    el.innerHTML='<div class="fav-empty"><div class="fav-empty-icon">⭐</div><div class="fav-empty-title">No favourites yet</div><div class="fav-empty-sub">Tap any team below to save them to your favourites.</div></div>';
     return;
   }
   var html = '<div class="my-fav-list">';
   favs.forEach(function(name){
-    var team = WC2026_TEAMS.find(function(t){ return t.name === name; });
+    var team = WC26.teams.find(function(t){ return t.name===name; });
     if(!team) return;
     html += '<div class="my-fav-item">'+
       '<div class="my-fav-flag">'+team.flag+'</div>'+
       '<div class="my-fav-info">'+
-        '<div class="my-fav-name">'+(team.host?'🏠 ':'')+team.name+'</div>'+
-        '<div class="my-fav-sub">'+team.conf+(team.host?' · Host Nation':'')+'</div>'+
+        '<div class="my-fav-name">'+(team.host?'🏠 ':'')+team.name+' <span style="color:var(--blue);font-size:11px">('+team.code+')</span></div>'+
+        '<div class="my-fav-sub">Group '+team.group+' · '+team.conf+(team.host?' · Host Nation':'')+'</div>'+
       '</div>'+
       '<button class="my-fav-remove" onclick="toggleFav(\''+name.replace(/'/g,"\\'")+'\')" >✕ Remove</button>'+
     '</div>';
@@ -222,13 +159,15 @@ function renderAllTeams(){
   var html = '';
   var count = 0;
 
-  WC2026_TEAMS.forEach(function(team){
+  /* Use WC26.teams — single source of truth */
+  WC26.teams.forEach(function(team){
     if(activeConf !== 'ALL' && team.conf !== activeConf) return;
-    if(query && !team.name.toLowerCase().includes(query)) return;
+    if(query && !team.name.toLowerCase().includes(query) && !(team.code||'').toLowerCase().includes(query)) return;
     var isFav = favs.includes(team.name);
     html += '<div class="team-card'+(isFav?' is-fav':'')+'" onclick="toggleFav(\''+team.name.replace(/'/g,"\\'")+'\')" title="'+(isFav?'Remove from':'Add to')+' favourites">'+
       '<span class="fav-star">⭐</span>'+
       '<div class="team-flag">'+team.flag+'</div>'+
+      '<div class="team-code">'+(team.code||'')+'</div>'+
       '<div class="team-name">'+(team.host?'🏠 ':'')+team.name+'</div>'+
       '<div class="team-conf-badge">'+team.conf+'</div>'+
     '</div>';
@@ -236,14 +175,14 @@ function renderAllTeams(){
   });
 
   if(!count){
-    html = '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--t3);font-size:13px">No teams found matching "'+query+'"</div>';
+    html='<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--t3);font-size:13px">No teams found matching "'+query+'"</div>';
   }
-
   document.getElementById('allTeamsGrid').innerHTML = html;
 }
 
 window.onload = function(){
   initWC26Page('favourites', {subtitle:'World Cup 2026 · My Favourites'});
+  buildConfFilter();
   renderMyFavs();
   renderAllTeams();
 };
