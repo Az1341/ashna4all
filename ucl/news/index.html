@@ -3,20 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UCL News 2025/26 | GoalCurrent.live</title>
-<meta name="description" content="UEFA Champions League 2025/26 news — PSG vs Arsenal Final preview, team news, injury updates and latest stories.">
+<title>UCL News 2025/26 — PSG Back-to-Back Champions | GoalCurrent.live</title>
+<meta name="description" content="UEFA Champions League 2025/26 news — PSG beat Arsenal 4-3 on penalties to retain the UCL title. Post-match reaction, analysis and highlights.">
 <link rel="canonical" href="https://goalcurrent.live/ucl/news/">
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-:root{--sb-w:240px;--sb-bg:#1a1f2e;--sb-border:rgba(255,255,255,0.08);--sb-hover:rgba(255,255,255,0.07);--sb-active:rgba(37,99,235,0.22);--sb-text:rgba(255,255,255,0.78);--sb-text-dim:rgba(255,255,255,0.38);--sb-accent:#3b82f6;--font:Verdana,Geneva,Tahoma,sans-serif;--blue:#2563eb;--t1:#0f172a;--t2:#334155;--t3:#64748b;--t4:#94a3b8;--bg1:#dbeafe;--bg2:#eff6ff;--bg3:#e0f2fe;--glass:rgba(255,255,255,0.62);--glass-border:rgba(255,255,255,0.82);--glass-shadow:0 4px 20px rgba(100,160,220,0.14);--blur:blur(22px);--r-md:16px;--ucl:#001e62;--ucl-gold:#ffd700}
+:root{
+  --sb-w:240px;--sb-bg:#1a1f2e;--sb-border:rgba(255,255,255,0.08);
+  --sb-hover:rgba(255,255,255,0.07);--sb-active:rgba(37,99,235,0.22);
+  --sb-text:rgba(255,255,255,0.78);--sb-text-dim:rgba(255,255,255,0.38);
+  --sb-accent:#3b82f6;--font:Verdana,Geneva,Tahoma,sans-serif;
+  --blue:#2563eb;--t1:#0f172a;--t2:#334155;--t3:#64748b;--t4:#94a3b8;
+  --bg1:#dbeafe;--bg2:#eff6ff;--bg3:#e0f2fe;
+  --glass:rgba(255,255,255,0.62);--glass-border:rgba(255,255,255,0.82);
+  --glass-shadow:0 4px 20px rgba(100,160,220,0.14);--blur:blur(22px);--r-md:16px;
+  --ucl:#001e62;--ucl-gold:#ffd700;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;min-height:100vh;display:flex;overflow-x:hidden;max-width:100vw}
-.gc-sidebar{width:var(--sb-w);flex-shrink:0;background:var(--sb-bg);position:fixed;top:0;left:0;bottom:0;z-index:300;overflow-y:auto;-ms-overflow-style:none;scrollbar-width:none;border-right:1px solid var(--sb-border);display:flex;flex-direction:column}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;color:var(--t1);min-height:100vh;display:flex;overflow-x:hidden}
+
+/* SIDEBAR */
+.gc-sidebar{width:var(--sb-w);flex-shrink:0;background:var(--sb-bg);position:fixed;top:0;left:0;bottom:0;z-index:300;overflow-y:auto;scrollbar-width:none;border-right:1px solid var(--sb-border);display:flex;flex-direction:column}
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0}
-.sb-logo img{height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4));flex-shrink:0}
-.sb-logo-text{font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.3px;line-height:1.1}
+.sb-logo img{height:40px;width:auto;flex-shrink:0}
+.sb-logo-text{font-size:16px;font-weight:700;color:#fff;line-height:1.1}
 .sb-logo-text em{color:#60a5fa;font-style:normal}
 .sb-logo-text span{color:#34d399;font-weight:400}
 .sb-section{padding:10px 0 4px}
@@ -43,52 +56,88 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 .sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
 .sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7}
 .sb-footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;max-width:calc(100vw - var(--sb-w));display:flex;flex-direction:column;overflow-x:hidden}
+
+/* PAGE */
+.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column}
 .gc-topbar{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1)}
 .gc-breadcrumb{font-size:12px;color:var(--t3)}
 .gc-breadcrumb a{color:var(--blue);text-decoration:none}
-.gc-topbar-badge{background:linear-gradient(135deg,var(--ucl),#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
-.gc-content{padding:24px 28px 100px;flex:1;overflow-x:hidden;max-width:100%}
+.gc-topbar-badge{background:linear-gradient(135deg,#006400,#009900);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.gc-content{padding:24px 28px 40px;flex:1}
 .sec-head{display:flex;align-items:center;gap:10px;margin:20px 0 14px}
 .sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}
 .sec-line{flex:1;height:1px;background:rgba(100,160,220,0.2)}
 
-/* Hero news card */
-.news-hero{background:linear-gradient(135deg,#001e62,#0033aa);border-radius:var(--r-md);padding:22px;margin-bottom:16px;color:#fff;box-shadow:0 8px 28px rgba(0,30,98,0.3)}
-.news-hero-badge{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--ucl-gold);margin-bottom:10px}
-.news-hero-title{font-size:18px;font-weight:900;line-height:1.3;margin-bottom:8px}
-.news-hero-sub{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:14px}
-.news-hero-meta{font-size:10px;color:rgba(255,255,255,0.45)}
+/* RESULT BANNER */
+.result-banner{background:linear-gradient(135deg,#001e62,#0033aa,#001e62);border-radius:var(--r-md);padding:20px;margin-bottom:20px;color:#fff;border:1px solid rgba(255,215,0,.2);box-shadow:0 8px 32px rgba(0,0,46,.3);text-align:center;position:relative;overflow:hidden}
+.result-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#ffd700,transparent)}
+.result-banner-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,215,0,.7);margin-bottom:8px}
+.result-banner-score{font-size:42px;font-weight:900;color:#ffd700;letter-spacing:4px;line-height:1;margin-bottom:4px}
+.result-banner-sub{font-size:11px;font-weight:700;color:rgba(255,215,0,.6);letter-spacing:1px;margin-bottom:10px}
+.result-banner-teams{font-size:14px;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:12px}
+.result-banner-pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.result-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:4px 10px;border-radius:999px;font-size:11px;color:#fff}
+.result-pill.gold{background:rgba(255,215,0,.15);border-color:rgba(255,215,0,.3);color:#ffd700}
 
-/* Source cards */
-.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.source-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px;box-shadow:var(--glass-shadow);text-decoration:none;color:var(--t1);transition:all 0.2s;display:flex;flex-direction:column;gap:8px}
-.source-card:hover{box-shadow:0 8px 24px rgba(100,160,220,0.22);transform:translateY(-2px)}
-.source-top{display:flex;align-items:center;gap:10px}
-.source-icon{font-size:24px;flex-shrink:0}
-.source-name{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
-.source-title{font-size:12px;font-weight:700;color:var(--t1);line-height:1.4}
-.source-sub{font-size:10px;color:var(--t4);line-height:1.5}
-.source-arrow{font-size:10px;font-weight:800;color:var(--blue);margin-top:auto}
+/* NEWS CARDS */
+.news-hero{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:20px;margin-bottom:14px;box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
+.news-hero::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#001e62,#0033aa)}
+.news-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:#001e62;padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:10px}
+.news-tag.psg{background:#001e62}
+.news-tag.arsenal{background:#dc2626}
+.news-tag.analysis{background:#7c3aed}
+.news-tag.reaction{background:#059669}
+.news-date{font-size:10px;color:var(--t4);margin-bottom:6px}
+.news-title{font-size:15px;font-weight:800;color:var(--t1);margin-bottom:8px;line-height:1.4}
+.news-body{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}
+.news-source{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--blue);text-decoration:none;background:rgba(37,99,235,.08);padding:5px 12px;border-radius:8px;transition:background .15s}
+.news-source:hover{background:rgba(37,99,235,.15)}
 
-/* Topic pills */
-.topic-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.topic-pill{background:rgba(0,30,98,0.08);border:1px solid rgba(0,30,98,0.15);color:var(--ucl);padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;text-decoration:none;transition:all 0.2s}
-.topic-pill:hover{background:rgba(0,30,98,0.15)}
+/* NEWS GRID */
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.news-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;box-shadow:var(--glass-shadow)}
+.news-card-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.news-card-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.4}
+.news-card-desc{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px}
+.news-card-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--blue);text-decoration:none}
+.news-card-link:hover{text-decoration:underline}
 
-/* Key facts */
-.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.fact-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px;box-shadow:var(--glass-shadow);text-align:center}
-.fact-val{font-size:22px;font-weight:900;color:var(--ucl);line-height:1}
-.fact-lbl{font-size:10px;color:var(--t4);margin-top:4px;line-height:1.4}
+/* KEY FACTS */
+.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.fact-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:14px;text-align:center;box-shadow:var(--glass-shadow)}
+.fact-val{font-size:26px;font-weight:800;color:var(--blue);line-height:1;margin-bottom:4px}
+.fact-lbl{font-size:10px;color:var(--t3);line-height:1.4}
 
-.sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.3)}
-@media(max-width:768px){.gc-sidebar{transform:translateX(-100%);transition:transform 0.28s ease}.gc-sidebar.open{transform:translateX(0)}.gc-page-wrap{margin-left:0;max-width:100vw}.gc-content{padding:16px 14px 100px}.sb-hamburger{display:flex}.source-grid{grid-template-columns:1fr}.facts-grid{grid-template-columns:repeat(3,1fr)}.gc-topbar{padding:10px 14px}.news-hero-title{font-size:15px}}
-.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center;}
+/* AD + FOOTER */
+.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center}
+.gc-subscribe{background:linear-gradient(135deg,#001a4d,#003fb8);padding:14px 16px}
+.gc-subscribe-title{font-size:12px;font-weight:800;color:#ffd700;margin-bottom:8px}
+.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
+.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
+.gc-subscribe-row button{background:#ffd700;color:#001e62;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap}
+.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px}
+.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7}
+.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.gc-footer-links a{color:#a8b2c8;text-decoration:none}
+.gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px}
+.sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+
+@media(max-width:768px){
+  .gc-sidebar{transform:translateX(-100%);transition:transform .28s ease}
+  .gc-sidebar.open{transform:translateX(0)}
+  .gc-page-wrap{margin-left:0}
+  .gc-content{padding:16px 14px 40px}
+  .sb-hamburger{display:flex}
+  .gc-topbar{padding:10px 14px}
+  .news-grid{grid-template-columns:1fr}
+  .facts-grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 <body>
+
 <button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
 <aside class="gc-sidebar" id="gc-sidebar">
   <a href="/" class="sb-logo">
     <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
@@ -97,11 +146,10 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
   <div class="sb-section">
     <span class="sb-section-label">Main Menu</span>
     <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Schedule</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">⭐</span> My Teams</a>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+    <a href="/premier-league/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
+    <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
+    <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
+    <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
   </div>
   <div class="sb-divider"></div>
   <div class="sb-section">
@@ -126,6 +174,8 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
       <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
       <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
       <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
+      <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
+      <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
       <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
       <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
     </div>
@@ -151,108 +201,111 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 <div class="gc-page-wrap">
   <div class="gc-topbar">
     <div class="gc-breadcrumb"><a href="/">GoalCurrent.live</a> › <a href="/ucl/">Champions League</a> › News</div>
-    <div class="gc-topbar-badge">📰 UCL Final News</div>
+    <div class="gc-topbar-badge">🏆 PSG Champions 2025/26</div>
   </div>
+
   <div class="gc-content">
 
-    <!-- HERO -->
-    <div class="news-hero">
-      <div class="news-hero-badge">⭐ UCL FINAL 2026 · PREVIEW</div>
-      <div class="news-hero-title">PSG vs Arsenal — Can the Gunners end 20 years of hurt in Budapest?</div>
-      <div class="news-hero-sub">
-        Paris Saint-Germain arrive as defending champions, aiming to become only the second club to retain the Champions League trophy since Real Madrid in 2016-18. Arsenal, Premier League champions for the fourth time, return to the biggest stage in European football for the first time since 2006, when Thierry Henry led them to the final against Barcelona.
+    <!-- RESULT BANNER -->
+    <div class="result-banner">
+      <div class="result-banner-label">⭐ UEFA Champions League Final 2026 — Full Time</div>
+      <div class="result-banner-teams">🔵 Paris Saint-Germain vs Arsenal 🔴</div>
+      <div class="result-banner-score">1 – 1</div>
+      <div class="result-banner-sub">AET · PSG WIN 4–3 ON PENALTIES 🏆</div>
+      <div class="result-banner-pills">
+        <span class="result-pill gold">🏆 Back-to-Back Champions</span>
+        <span class="result-pill">📅 30 May 2026</span>
+        <span class="result-pill">🏟 Budapest</span>
+        <span class="result-pill">⚽ Havertz 6' · Dembélé 65' (pen)</span>
       </div>
-      <div class="news-hero-meta">📅 30 May 2026 · 🏟 Puskás Aréna, Budapest · 🕔 17:00 BST</div>
     </div>
 
     <!-- KEY FACTS -->
-    <div class="sec-head"><div class="sec-title">📊 KEY FACTS</div><div class="sec-line"></div></div>
+    <div class="sec-head"><div class="sec-title">📊 Final Key Facts</div><div class="sec-line"></div></div>
     <div class="facts-grid">
-      <div class="fact-card"><div class="fact-val">20</div><div class="fact-lbl">Years since Arsenal's last UCL Final (2006)</div></div>
-      <div class="fact-card"><div class="fact-val">6-5</div><div class="fact-lbl">PSG beat Bayern Munich on aggregate in the semis</div></div>
-      <div class="fact-card"><div class="fact-val">2-1</div><div class="fact-lbl">Arsenal beat Atlético Madrid on aggregate</div></div>
-      <div class="fact-card"><div class="fact-val">8/8</div><div class="fact-lbl">Arsenal won every UCL league phase game this season</div></div>
-      <div class="fact-card"><div class="fact-val">2025</div><div class="fact-lbl">PSG's last UCL title — beat Inter Milan in the final</div></div>
-      <div class="fact-card"><div class="fact-val">67,215</div><div class="fact-lbl">Capacity of Puskás Aréna, Budapest</div></div>
+      <div class="fact-card"><div class="fact-val">4–3</div><div class="fact-lbl">PSG win on penalties</div></div>
+      <div class="fact-card"><div class="fact-val">61,035</div><div class="fact-lbl">Attendance, Budapest</div></div>
+      <div class="fact-card"><div class="fact-val">2nd</div><div class="fact-lbl">PSG back-to-back UCL</div></div>
+      <div class="fact-card"><div class="fact-val">6'</div><div class="fact-lbl">Havertz goal — Arsenal lead</div></div>
+      <div class="fact-card"><div class="fact-val">65'</div><div class="fact-lbl">Dembélé pen — PSG level</div></div>
+      <div class="fact-card"><div class="fact-val">120'</div><div class="fact-lbl">Minutes of drama before pens</div></div>
+    </div>
+
+    <!-- HERO NEWS STORY -->
+    <div class="sec-head"><div class="sec-title">📰 Post-Match News & Reaction</div><div class="sec-line"></div></div>
+
+    <div class="news-hero">
+      <span class="news-tag psg">🏆 PSG · Champions</span>
+      <div class="news-date">📅 30 May 2026 · Budapest</div>
+      <div class="news-title">PSG retain Champions League — Back-to-Back glory in Budapest penalty drama</div>
+      <div class="news-body">Paris Saint-Germain became only the second club to retain the UEFA Champions League title since Real Madrid in 2016–17, beating Arsenal 4–3 on penalties after a tense 1–1 draw after extra time at the Puskás Aréna. Kai Havertz gave Arsenal a dream start after just six minutes, but Ousmane Dembélé's penalty on 65 minutes levelled the tie. Despite 120 minutes of intense football, neither side could find a winner — until the shootout, where Gabriel's penalty sailed over the bar to hand PSG the trophy. Vitinha was named Man of the Match.</div>
+      <a href="https://www.espn.com/soccer/story/_/id/48920735/uefa-champions-league-paris-saint-germain-arsenal-penalties-analysis-reaction" target="_blank" rel="noopener" class="news-source">Read full report on ESPN ↗</a>
+    </div>
+
+    <div class="news-hero">
+      <span class="news-tag arsenal">🔴 Arsenal · Reaction</span>
+      <div class="news-date">📅 30 May 2026 · Post-Match</div>
+      <div class="news-title">Arsenal heartbreak — Defeat on penalties ends incredible European journey</div>
+      <div class="news-body">Arsenal's remarkable 15-game unbeaten Champions League campaign ended in the cruellest way — penalties. Having gone 20 years without reaching a UCL Final, Mikel Arteta's side gave everything. They led through Havertz, defended brilliantly for long periods, and David Raya even saved Nuno Mendes' penalty to keep the shootout alive. But Eze and Gabriel both missed, and PSG retained the trophy. Sky Sports described it as "progress but a missed opportunity" for Arsenal. Declan Rice said after the final: "Defeat won't define us."</div>
+      <a href="https://www.skysports.com/football/news/11670/13549508/arsenal-lose-champions-league-final-to-psg-progress-but-was-this-a-missed-opportunity-for-mikel-arteta-in-budapest" target="_blank" rel="noopener" class="news-source">Read on Sky Sports ↗</a>
+    </div>
+
+    <!-- NEWS GRID -->
+    <div class="news-grid">
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#7c3aed">🔍 Analysis</span>
+        <div class="news-card-title">How PSG's tactical dominance eventually wore Arsenal down</div>
+        <div class="news-card-desc">PSG had 76% possession in the first half yet Arsenal had the best chances. ESPN's analysis breaks down how Joao Neves was the unsung hero — described as "still running somewhere in the streets of Budapest."</div>
+        <a href="https://www.espn.com/soccer/story/_/id/48920735/uefa-champions-league-paris-saint-germain-arsenal-penalties-analysis-reaction" target="_blank" rel="noopener" class="news-card-link">Read on ESPN ↗</a>
+      </div>
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#dc2626">📺 Highlights</span>
+        <div class="news-card-title">Watch: PSG vs Arsenal — Full UCL Final highlights</div>
+        <div class="news-card-desc">Relive all the drama — Havertz's opener, Dembélé's equaliser, Raya's penalty save and Gabriel's heartbreaking miss. Extended highlights from CBS Sports Golazo.</div>
+        <a href="https://www.youtube.com/watch?v=M1qSTe9b1KU" target="_blank" rel="noopener" class="news-card-link">▶ Watch on YouTube ↗</a>
+      </div>
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#059669">💬 Reaction</span>
+        <div class="news-card-title">Referee controversy — Nasri blasts official for second-half decisions</div>
+        <div class="news-card-desc">Former France international Samir Nasri alleged that referee Daniel Siebert systematically whistled against Arsenal in the second half, claiming they were "punished" for time-wasting in the first half.</div>
+        <a href="https://www.goal.com/en/lists/samir-nasri-blasts-referee-over-arsenal-champions-league-final-decisions/bltc7caa4e9ebe67a4f" target="_blank" rel="noopener" class="news-card-link">Read on Goal.com ↗</a>
+      </div>
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#001e62">🔵 PSG</span>
+        <div class="news-card-title">PSG to face Aston Villa in 2026 UEFA Super Cup</div>
+        <div class="news-card-desc">As UCL winners, PSG earn the right to play against Aston Villa — winners of the 2025/26 UEFA Europa League — in the 2026 UEFA Super Cup.</div>
+        <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener" class="news-card-link">Read on UEFA.com ↗</a>
+      </div>
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#b45309">🌍 World Cup</span>
+        <div class="news-card-title">PSG stars head to World Cup 2026 — starts 11 June</div>
+        <div class="news-card-desc">Several PSG and Arsenal players will now turn their attention to the FIFA World Cup 2026, starting 11 June in USA, Mexico and Canada. 48 teams, 104 matches.</div>
+        <a href="/worldcup2026/" class="news-card-link">World Cup 2026 Hub →</a>
+      </div>
+      <div class="news-card">
+        <span class="news-card-tag" style="color:#dc2626">🔴 Arsenal</span>
+        <div class="news-card-title">Arsenal PL trophy parade — celebrating a historic double run</div>
+        <div class="news-card-desc">Despite the UCL heartbreak, Arsenal celebrated their Premier League title with a trophy parade. They became PL champions for the first time since 2003/04, finishing on 85 points.</div>
+        <a href="https://www.arsenal.com/news/watch-full-match-replay-our-ucl-final" target="_blank" rel="noopener" class="news-card-link">Read on Arsenal.com ↗</a>
+      </div>
     </div>
 
     <!-- BROWSE TOPICS -->
-    <div class="sec-head"><div class="sec-title">🔍 BROWSE TOPICS</div><div class="sec-line"></div></div>
-    <div class="topic-row">
-      <a href="https://www.skysports.com/champions-league" target="_blank" rel="noopener" class="topic-pill">⭐ UCL Final Preview</a>
-      <a href="https://www.skysports.com/arsenal" target="_blank" rel="noopener" class="topic-pill">🔴 Arsenal News</a>
-      <a href="https://www.skysports.com/champions-league" target="_blank" rel="noopener" class="topic-pill">🔵 PSG News</a>
-      <a href="https://www.skysports.com/football/champions-league" target="_blank" rel="noopener" class="topic-pill">📺 Sky Sports UCL</a>
-      <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener" class="topic-pill">🏆 Official UEFA</a>
-      <a href="https://www.youtube.com/@uefachampionsleague" target="_blank" rel="noopener" class="topic-pill">▶ UCL YouTube</a>
+    <div class="sec-head"><div class="sec-title">🔍 Browse More</div><div class="sec-line"></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+      <a href="https://www.skysports.com/champions-league" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">⭐ Sky Sports UCL</a>
+      <a href="https://www.bbc.co.uk/sport/football/champions-league" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">📺 BBC Sport UCL</a>
+      <a href="https://www.arsenal.com/news" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">🔴 Arsenal Official</a>
+      <a href="https://www.psg.fr/en/news" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">🔵 PSG Official</a>
+      <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">⭐ UEFA Official</a>
+      <a href="https://www.youtube.com/@uefachampionsleague" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--glass-border);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none">▶ UCL YouTube</a>
     </div>
 
-    <!-- NEWS SOURCES -->
-    <div class="sec-head"><div class="sec-title">📰 LATEST FROM TOP SOURCES</div><div class="sec-line"></div></div>
-    <div class="source-grid">
-
-      <a href="https://www.skysports.com/champions-league" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">📺</span><span class="source-name">Sky Sports</span></div>
-        <div class="source-title">PSG vs Arsenal: UCL Final preview, team news & how to watch</div>
-        <div class="source-sub">Full match preview, expected lineups and broadcast details from Sky Sports</div>
-        <div class="source-arrow">Read on Sky Sports ↗</div>
-      </a>
-
-      <a href="https://www.skysports.com/football/champions-league" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">🔵</span><span class="source-name">Sky Sports</span></div>
-        <div class="source-title">Champions League Final 2026 — Everything you need to know</div>
-        <div class="source-sub">Odds, predictions, injury news and analysis ahead of Budapest</div>
-        <div class="source-arrow">Read on Sky Sports ↗</div>
-      </a>
-
-      <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">⭐</span><span class="source-name">UEFA Official</span></div>
-        <div class="source-title">Official UCL Final news, stats and match centre</div>
-        <div class="source-sub">Official lineups, press conferences and match stats from UEFA</div>
-        <div class="source-arrow">Read on UEFA.com ↗</div>
-      </a>
-
-      <a href="https://www.theguardian.com/football/championsleague" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">🟡</span><span class="source-name">The Guardian</span></div>
-        <div class="source-title">UCL Final 2026 — analysis, tactical breakdown & predictions</div>
-        <div class="source-sub">In-depth tactical analysis of PSG vs Arsenal from expert writers</div>
-        <div class="source-arrow">Read on The Guardian ↗</div>
-      </a>
-
-      <a href="https://www.arsenal.com/news" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">🔴</span><span class="source-name">Arsenal Official</span></div>
-        <div class="source-title">Arsenal FC official news & squad updates ahead of the Final</div>
-        <div class="source-sub">Official injury news, Arteta press conference and squad latest</div>
-        <div class="source-arrow">Read on Arsenal.com ↗</div>
-      </a>
-
-      <a href="https://www.psg.fr/en/news" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">🔵</span><span class="source-name">PSG Official</span></div>
-        <div class="source-title">PSG official news & squad updates ahead of the Final</div>
-        <div class="source-sub">Official injury news, Luis Enrique press conference and squad latest</div>
-        <div class="source-arrow">Read on PSG.fr ↗</div>
-      </a>
-
-      <a href="https://www.youtube.com/results?search_query=PSG+Arsenal+UCL+Final+2026+preview" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">▶️</span><span class="source-name">YouTube</span></div>
-        <div class="source-title">PSG vs Arsenal — Final preview videos & pundit predictions</div>
-        <div class="source-sub">Watch preview shows, pundit debates and press conferences</div>
-        <div class="source-arrow">Search on YouTube ↗</div>
-      </a>
-
-      <a href="https://www.espn.co.uk/football/story/_/id/48702097" target="_blank" rel="noopener" class="source-card">
-        <div class="source-top"><span class="source-icon">🟠</span><span class="source-name">ESPN</span></div>
-        <div class="source-title">Champions League Final predictions, odds & analysis</div>
-        <div class="source-sub">Expert predictions, xG analysis and betting odds breakdown</div>
-        <div class="source-arrow">Read on ESPN ↗</div>
-      </a>
-
-    </div>
-
-    <p style="font-size:10px;color:var(--t4);margin-top:16px;text-align:center;line-height:1.7">
-      📰 GoalCurrent.live links to official external sources for news.<br>
-      We are not affiliated with Sky Sports, UEFA, Arsenal or PSG. · <a href="/disclaimer.html" style="color:var(--t3)">Disclaimer</a>
+    <p style="font-size:10px;color:var(--t4);text-align:center">
+      📰 GoalCurrent.live links to official external sources for news. Not affiliated with Sky Sports, BBC, UEFA, Arsenal or PSG. · <a href="/disclaimer.html" style="color:var(--t4)">Disclaimer</a>
     </p>
+
+  </div>
 
   <div class="gc-ad-bar">
     🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
@@ -260,42 +313,43 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
     <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#2563eb;font-weight:800;text-decoration:none">NordPass</a>
     <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
   </div>
-  <div style="background:linear-gradient(135deg,#001e62,#0033aa);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <div>
-      <div style="font-size:13px;font-weight:800;color:#ffd700;margin-bottom:3px">📬 Get match alerts &amp; news direct to your inbox</div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.6)">Free · No spam · Unsubscribe anytime</div>
+
+  <div class="gc-subscribe">
+    <div class="gc-subscribe-title">📬 Get World Cup 2026 alerts &amp; news direct to your inbox</div>
+    <div class="gc-subscribe-row">
+      <input type="email" id="gc-email-input" placeholder="Your email address">
+      <button onclick="gcSubscribe()">Subscribe →</button>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" id="gc-email-input" placeholder="Your email address" style="padding:9px 14px;border-radius:8px;border:none;font-size:12px;min-width:200px;outline:none">
-      <button onclick="gcSubscribe()" style="background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:Verdana,sans-serif">Subscribe →</button>
+    <div class="gc-sub-msg" id="gc-sub-msg">✅ Thank you! You will receive World Cup updates soon.</div>
+  </div>
+
+  <footer class="gc-footer">
+    <div class="gc-footer-links">
+      <a href="/about.html">About</a><a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a>
+      <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
     </div>
-    <div id="gc-sub-msg" style="display:none;font-size:12px;color:#34d399;font-weight:700;width:100%">✅ Thank you! We will notify you when new content is ready.</div>
-  </div>
-  </div>
+    <div class="gc-footer-copy">
+      © 2026 <strong style="color:#a8b2c8">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+    </div>
+  </footer>
 </div>
 
 <div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content, save your favourites and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
-    <div style="display:flex;gap:8px">
-      <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
-      <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
-    </div>
+  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
+  <div style="display:flex;gap:8px">
+    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
   </div>
+</div>
 
 <script>
-
 function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('click',function(e){
-  var sb=document.getElementById('gc-sidebar');
-  var hb=document.querySelector('.sb-hamburger');
-  if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
-});
-
-function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_ck','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
+function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');document.getElementById('gc-cookie-banner').style.display='none';}
+function gcDeclineCookies(){localStorage.setItem('gc_ck','no');document.getElementById('gc-cookie-banner').style.display='none';}
 function gcSubscribe(){
-  var input=document.getElementById('gc-email-input');
-  var msg=document.getElementById('gc-sub-msg');
+  var input=document.getElementById('gc-email-input');var msg=document.getElementById('gc-sub-msg');
   if(!input||!input.value||input.value.indexOf('@')<0){if(input)input.style.outline='2px solid #dc2626';return;}
   input.style.outline='2px solid #16a34a';
   var form=document.createElement('form');form.method='POST';
@@ -308,8 +362,12 @@ function gcSubscribe(){
   document.body.appendChild(form);form.submit();document.body.removeChild(form);
   if(msg)msg.style.display='block';input.value='';
 }
-if(!localStorage.getItem('gc_ck')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-
+if(!localStorage.getItem('gc_ck')){setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex';},1500);}
+document.addEventListener('click',function(e){
+  var sb=document.getElementById('gc-sidebar');
+  var hb=document.querySelector('.sb-hamburger');
+  if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
+});
 </script>
 </body>
 </html>
