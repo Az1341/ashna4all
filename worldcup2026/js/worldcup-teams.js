@@ -1,1 +1,0 @@
-<script src="../../js/worldcup-teams.js"></script>
