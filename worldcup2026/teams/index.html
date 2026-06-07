@@ -219,6 +219,17 @@ body{
 .gc-footer-links a{color:var(--blue);text-decoration:none}
 .gc-footer-copy{color:#94a3b8;font-size:10px;line-height:1.8}
 
+/* ── FAVOURITE STAR ── */
+.fav-btn{
+  position:absolute;top:12px;right:14px;
+  background:none;border:none;cursor:pointer;
+  font-size:22px;line-height:1;padding:2px;
+  transition:transform .15s;color:#d1d5db;
+}
+.fav-btn:hover{transform:scale(1.2)}
+.fav-btn.active{color:#f59e0b}
+.team-card{position:relative}  /* ensure absolute positioning works */
+
 /* ── RESPONSIVE ── */
 @media(min-width:769px){
   .gc-hamburger{display:none!important}
@@ -532,8 +543,16 @@ function teamCard(t){
     squadHtml += '</div></div>';
   }
 
+  var fav     = isFav(t.name);
+  var safeName = t.name.replace(/'/g, "\\'");
+
   return (
-    '<div class="team-card'+(t.host?' host':'')+'">'+
+    '<div class="team-card'+(t.host?' host':'')+(fav?' fav-active':'')+'">'+
+      '<button class="fav-btn'+(fav?' active':'')+'" '+
+        'onclick="toggleFav(\''+safeName+'\', event)" '+
+        'title="'+(fav?'Remove from favourites':'Add to favourites')+'">'+
+        (fav?'★':'☆')+
+      '</button>'+
       '<div class="team-card-body">'+
         '<div class="team-flag-col">'+flag+'</div>'+
         '<div class="team-info-col">'+
@@ -563,6 +582,20 @@ function toggleSquad(name){
     var el = document.getElementById('sq-'+name.toLowerCase().replace(/[^a-z0-9]/g,'-'));
     if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
   }, 60);
+}
+
+/* ── FAVOURITES — uses same localStorage key as favourites page ── */
+function getFavs(){ return JSON.parse(localStorage.getItem('wc26_favourites')||'[]'); }
+function saveFavs(f){ localStorage.setItem('wc26_favourites', JSON.stringify(f)); }
+function isFav(name){ return getFavs().indexOf(name) !== -1; }
+function toggleFav(name, event){
+  event.stopPropagation(); /* don't trigger squad toggle */
+  var favs = getFavs();
+  var idx  = favs.indexOf(name);
+  if(idx === -1){ favs.push(name); }
+  else { favs.splice(idx, 1); }
+  saveFavs(favs);
+  renderTeams(); /* re-render so star updates */
 }
 
 /* ── INIT ── */
