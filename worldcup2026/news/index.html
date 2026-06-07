@@ -4,668 +4,1123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 News — Squads, Injuries, Previews | GoalCurrent.live</title>
-<meta name="description" content="Latest FIFA World Cup 2026 news — all 48 squads confirmed, injury tracker, England squad, Group A opener Mexico vs South Africa on 11 June.">
+<meta name="description" content="Latest FIFA World Cup 2026 news — squad announcements, injury updates, match previews and tournament news.">
 <meta name="robots" content="index, follow">
-<meta name="author" content="Ahmad Zafarani - Ashna4All">
-<link rel="canonical" href="https://goalcurrent.live/worldcup2026/news/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="canonical" href="https://www.goalcurrent.live/worldcup2026/news/">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date()); gtag('config', 'G-X84HCE5KGT');
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
 <style>
-.news-page { max-width: 700px; margin: 0 auto; padding: 16px 14px 120px; }
+/* ═══════════════════════════════════════════════
+   GOALCURRENT.LIVE — MASTER TEMPLATE v1.0
+   NEVER change body background or sidebar colours
+   ═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* COUNTDOWN BANNER */
-.cd-banner {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-top: 3px solid var(--blue);
-  border-radius: var(--r-lg);
-  padding: 18px 16px; margin-bottom: 14px;
-  box-shadow: var(--glass-shadow); text-align: center;
-  position: relative; overflow: hidden;
-}
-.cd-banner::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);
-  background-size: 200%; animation: wcb 5s linear infinite;
-}
-@keyframes wcb { 0%{background-position:0%} 100%{background-position:200%} }
-.cd-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--t3); margin-bottom: 8px; }
-.cd-title { font-size: 16px; font-weight: 900; color: var(--t1); margin-bottom: 4px; }
-.cd-sub { font-size: 11px; color: var(--t3); margin-bottom: 14px; }
-.cd-units { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-.cd-unit { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.cd-num {
-  font-size: 26px; font-weight: 800; color: var(--blue);
-  background: rgba(37,99,235,.07); border: 1px solid var(--glass-border);
-  border-radius: var(--r-sm); padding: 5px 10px; min-width: 48px;
-  text-align: center; font-variant-numeric: tabular-nums; line-height: 1;
-}
-.cd-sep { font-size: 20px; font-weight: 800; color: var(--blue); opacity: .3; padding-bottom: 14px; }
-.cd-lbl { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--t4); }
-.cd-hosts { display: flex; justify-content: center; gap: 16px; }
-.cd-host { font-size: 12px; font-weight: 700; color: var(--t2); display: flex; align-items: center; gap: 5px; }
-
-/* OPENER CARD */
-.opener-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 16px; margin-bottom: 14px;
-  box-shadow: var(--glass-shadow);
-}
-.opener-label { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
-.opener-match { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.opener-team { text-align: center; flex: 1; }
-.opener-flag { font-size: 32px; display: block; margin-bottom: 5px; }
-.opener-name { font-size: 14px; font-weight: 800; color: var(--t1); }
-.opener-sub { font-size: 10px; color: var(--t3); margin-top: 2px; }
-.opener-vs-col { text-align: center; flex-shrink: 0; }
-.opener-day { font-size: 18px; font-weight: 900; color: var(--blue); }
-.opener-vs { font-size: 11px; color: var(--t4); font-weight: 700; margin-top: 2px; }
-.opener-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.chip {
-  font-size: 10px; font-weight: 600;
-  background: rgba(37,99,235,.06); border: 1px solid var(--glass-border);
-  border-radius: 999px; padding: 4px 10px; color: var(--t2);
+:root {
+  --body-bg: linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #e0f2fe 100%);
+  --sidebar-bg: linear-gradient(180deg, #07111f, #0b1628);
+  --header-bg: linear-gradient(135deg, #001a4d 0%, #002b80 50%, #003fb8 100%);
+  --gold: #f59e0b;
+  --blue: #2563eb;
+  --card-bg: rgba(255,255,255,0.82);
+  --sidebar-w: 260px;
+  --header-h: 56px;
+  --subnav-h: 48px;
+  --font-main: 'Barlow', sans-serif;
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --text-dark: #0f172a;
+  --text-mid: #334155;
+  --text-light: #64748b;
 }
 
-/* SECTION HEADER */
-.sec-hdr { display: flex; align-items: center; gap: 10px; margin: 20px 0 12px; }
-.sec-hdr-title { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--t4); white-space: nowrap; }
-.sec-hdr-line { flex: 1; height: 1px; background: var(--glass-border); }
-
-/* FEATURED ARTICLE */
-.featured-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-left: 4px solid var(--green);
-  border-radius: var(--r-md);
-  padding: 16px; margin-bottom: 12px;
-  box-shadow: var(--glass-shadow);
-  display: flex; align-items: flex-start; gap: 14px;
-  text-decoration: none; color: var(--t1);
-  transition: all .2s;
-}
-.featured-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(100,160,220,.22); border-color: rgba(16,185,129,.4); }
-.featured-card .icon { font-size: 32px; flex-shrink: 0; }
-.featured-card .fbody { flex: 1; }
-.featured-tag {
-  display: inline-block; background: rgba(16,185,129,.12);
-  color: var(--green); font-size: 9px; font-weight: 800;
-  letter-spacing: 1px; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 5px; margin-bottom: 8px;
-}
-.featured-card h2 { font-size: 15px; font-weight: 800; color: var(--t1); margin-bottom: 6px; line-height: 1.35; }
-.featured-card p { font-size: 12px; color: var(--t2); line-height: 1.65; margin-bottom: 10px; }
-.featured-card .read-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--green); color: #fff;
-  font-size: 12px; font-weight: 700;
-  padding: 7px 14px; border-radius: var(--r-sm);
+html, body {
+  height: 100%;
+  font-family: var(--font-main);
+  background: var(--body-bg);
+  background-attachment: fixed;
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
-/* NEWS CARD */
-.news-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 16px; margin-bottom: 10px;
-  box-shadow: var(--glass-shadow);
-  position: relative; overflow: hidden;
-  transition: all .2s;
+/* ─── SIDEBAR OVERLAY ─── */
+#gc-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.news-card:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(100,160,220,.18); }
-.news-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
-.news-card.wc::before { background: #006847; }
-.news-card.injury::before { background: #dc2626; }
-.news-card.host::before { background: #f59e0b; }
-.news-card.tv::before { background: var(--blue); }
-.news-card.arg::before { background: #74b9e7; }
-.news-card.grey::before { background: #94a3b8; }
-.news-tag {
-  font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
-  color: #fff; padding: 2px 8px; border-radius: 5px;
-  display: inline-block; margin-bottom: 8px;
+#gc-sidebar-overlay.active {
+  display: block;
+  opacity: 1;
 }
-.news-tag.wc { background: #006847; }
-.news-tag.injury { background: #dc2626; }
-.news-tag.host { background: #f59e0b; color: #0f172a; }
-.news-tag.tv { background: var(--blue); }
-.news-tag.arg { background: #1d4e8f; }
-.news-tag.grey { background: #64748b; }
-.news-date { font-size: 10px; color: var(--t4); margin-bottom: 5px; }
-.news-title { font-size: 14px; font-weight: 800; color: var(--t1); margin-bottom: 8px; line-height: 1.4; }
-.news-body { font-size: 12px; color: var(--t2); line-height: 1.7; margin-bottom: 10px; }
-.news-key { font-size: 11px; color: var(--t3); margin-bottom: 10px; }
-.news-source {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; font-weight: 700; color: var(--blue);
-  background: rgba(37,99,235,.07); padding: 5px 12px; border-radius: var(--r-sm);
-  text-decoration: none; transition: background .2s;
-}
-.news-source:hover { background: rgba(37,99,235,.15); }
 
-/* INJURY GRID */
-.injury-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
-.injury-card {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-sm); padding: 12px 14px;
-  box-shadow: var(--glass-shadow);
-  display: flex; align-items: flex-start; gap: 10px;
+/* ─── SIDEBAR ─── */
+#gc-sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--sidebar-bg);
+  z-index: 1000;
+  transform: translateX(calc(-1 * var(--sidebar-w)));
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.4);
 }
-.injury-flag { font-size: 22px; flex-shrink: 0; line-height: 1; }
-.injury-info { flex: 1; }
-.injury-name { font-size: 12px; font-weight: 800; color: var(--t1); }
-.injury-club { font-size: 10px; color: var(--t4); margin-bottom: 4px; }
-.injury-detail { font-size: 11px; color: var(--t2); line-height: 1.5; }
-.injury-status { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
-.injury-status.out { background: #fee2e2; color: #b91c1c; }
-.injury-status.playing { background: #dcfce7; color: #15803d; }
+#gc-sidebar.open {
+  transform: translateX(0);
+}
 
-/* SOURCES */
-.sources-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.source-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 700; color: var(--blue);
-  background: rgba(37,99,235,.07); border: 1px solid var(--glass-border);
-  padding: 7px 14px; border-radius: var(--r-sm);
-  text-decoration: none; transition: background .2s;
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  min-height: 56px;
 }
-.source-link:hover { background: rgba(37,99,235,.14); }
+/* ─── SIDEBAR LOGO / BRANDING ─── */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+}
+.sidebar-logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: transparent;
+}
+.sidebar-logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.sidebar-logo-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.sidebar-logo-name em {
+  font-style: normal;
+  color: var(--gold);
+}
+.sidebar-logo-domain {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
 
-/* SUBSCRIBE */
-.news-subscribe {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-top: 3px solid var(--blue);
-  border-radius: var(--r-md);
-  padding: 16px; margin-top: 8px;
-  box-shadow: var(--glass-shadow);
+.sidebar-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: color 0.2s, background 0.2s;
 }
-.news-subscribe h3 { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 10px; }
-.sub-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.sub-row input {
-  flex: 1; min-width: 0; padding: 10px 12px;
-  border-radius: var(--r-sm); border: 1.5px solid var(--glass-border);
-  background: rgba(255,255,255,.85);
-  font-family: Verdana,sans-serif; font-size: 13px; color: var(--t1); outline: none;
-}
-.sub-row input:focus { border-color: var(--blue); }
-.sub-row button {
-  background: linear-gradient(135deg,#2563eb,#3b82f6); color: #fff;
-  border: none; border-radius: var(--r-sm); padding: 10px 16px;
-  font-family: Verdana,sans-serif; font-size: 13px; font-weight: 700; cursor: pointer;
-}
-.sub-msg { display: none; font-size: 11px; color: var(--green); font-weight: 700; margin-top: 8px; }
+.sidebar-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
 
-/* NORDVPN */
-.wc-nord {
-  background: var(--glass);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-md);
-  padding: 12px 16px; margin-bottom: 14px;
-  box-shadow: var(--glass-shadow);
+.sidebar-section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  padding: 18px 16px 6px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  border-left-color: var(--gold);
+}
+.sidebar-nav a.active {
+  background: rgba(37,99,235,0.2);
+  color: #fff;
+  border-left-color: var(--blue);
+}
+.sidebar-nav a .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+
+.sidebar-footer-social {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  gap: 10px;
+}
+.sidebar-footer-social a {
   display: flex; align-items: center; justify-content: center;
-  gap: 10px; flex-wrap: wrap; text-align: center; font-size: 13px; color: var(--t2);
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
 }
-.wc-nord a.deal { background: var(--blue); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; }
-.wc-nord a.pass { color: var(--blue); font-size: 12px; font-weight: 700; text-decoration: none; }
-.wc-nord .ad { font-size: 10px; color: var(--t4); }
+.sidebar-footer-social a:hover { background: rgba(255,255,255,0.18); color: #fff; }
 
-/* DISCLAIMER */
-.disclaimer { font-size: 10px; color: var(--t4); text-align: center; margin: 12px 0; line-height: 1.6; }
-.disclaimer a { color: var(--t4); }
-
-/* FOOTER */
-.wc-footer { text-align: center; padding: 16px 0; font-size: 11px; color: var(--t4); }
-.wc-footer a { color: var(--blue); text-decoration: none; margin: 0 4px; }
-
-/* SIDEBAR — exact copy from wc2026/index.html */
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
-.sb-overlay.show{display:block}
-.gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
-.gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
-.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
-.sb-logo span{color:#3b82f6}
-.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px}
-.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#b8c4d9;text-decoration:none;font-size:13px;font-weight:600}
-.sb-link:hover{background:#10213a;color:white}
-.sb-comp{border-top:1px solid rgba(255,255,255,.08)}
-.sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:#b8c4d9;font-size:13px;font-weight:700;cursor:pointer;text-align:left}
-.sb-comp-btn:hover{background:#10213a;color:white}
-.sb-badge{font-size:10px;background:rgba(59,130,246,.25);color:#60a5fa;padding:2px 7px;border-radius:5px;font-weight:800}
-.sb-badge-gold{background:rgba(251,191,36,.25);color:#fbbf24}
-.sb-sub{display:none}.sb-sub.open{display:block}
-.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px}
-.sb-sub-link:hover{background:#10213a;color:white}
-.sb-sub-link.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800}
-.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0}
-.sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
-.sb-social{display:flex;gap:8px;margin-bottom:10px}
-.sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:#10213a;border-radius:7px;font-size:13px;color:#b8c4d9;text-decoration:none}
-.gc-main{margin-left:240px;flex:1;min-width:0;display:flex;flex-direction:column}
-.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:0 16px}
-.gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px}
-.gc-hdr-left{display:flex;align-items:center;gap:10px}
-.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15}
-.gc-hdr-logo span{color:#f59e0b}
-.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px}
-.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase}
-.gc-hdr-nav{display:flex;gap:4px;padding-bottom:9px;overflow-x:auto;scrollbar-width:none}
-.gc-hdr-nav::-webkit-scrollbar{display:none}
-.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0}
-.gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
-.gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
-.gc-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:white;padding:4px;flex-shrink:0}
-
-@media(min-width:769px){
-  .gc-hamburger{display:none!important}
-  .sb-overlay{display:none!important}
-  .gc-sidebar{transform:translateX(0)!important}
-  .gc-main{margin-left:240px!important}
+/* ─── HAMBURGER BUTTON (always top-left) ─── */
+#gc-hamburger {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 800;
+  background: rgba(0,26,77,0.92);
+  border: none;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: background 0.2s;
 }
-@media(max-width:768px){
-  .gc-hamburger{display:block!important}
-  .gc-main{margin-left:0!important}
-  .gc-sidebar{transform:translateX(-100%)!important}
-  .gc-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 24px rgba(0,0,0,.3)!important}
-  .gc-phase-pill{display:none}
-  .injury-grid{grid-template-columns:1fr}
-  .opener-match{flex-direction:column;gap:8px}
-  .sub-row button{width:100%}
-  .featured-card{flex-direction:column}
+#gc-hamburger:hover { background: var(--blue); }
+#gc-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
 }
+#gc-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#gc-hamburger.open span:nth-child(2) { opacity: 0; }
+#gc-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── PAGE WRAPPER ─── */
+#gc-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Content always takes full width — sidebar overlays */
+}
+
+/* ─── SITE BRAND IN HEADER ─── */
+.gc-site-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+.gc-site-brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  overflow: hidden;
+  background: transparent;
+}
+.gc-site-brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.gc-site-brand-text {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.gc-site-brand-text span { color: var(--gold); }
+.gc-site-brand-text small {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.gc-header-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+/* Hide site brand on very small screens to save space */
+@media (max-width: 480px) {
+  .gc-site-brand { display: none; }
+  .gc-header-divider { display: none; }
+}
+
+/* ─── SECTION HEADER (WC2026 blue) ─── */
+.gc-section-header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 700;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.gc-header-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px 10px 62px; /* 62px left = hamburger space */
+  min-height: var(--header-h);
+}
+.gc-header-logo { font-size: 1.4rem; }
+.gc-header-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+.gc-header-title span { color: var(--gold); }
+.gc-header-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 1px;
+}
+.gc-header-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── SUB-NAV (section tabs, WC2026 only) ─── */
+.gc-subnav {
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.gc-subnav::-webkit-scrollbar { display: none; }
+.gc-subnav-inner {
+  display: flex;
+  gap: 0;
+  padding: 0 16px 0 62px;
+  min-height: var(--subnav-h);
+  align-items: stretch;
+  width: max-content;
+  min-width: 100%;
+}
+.gc-subnav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.gc-subnav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.gc-subnav a.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  background: rgba(245,158,11,0.08);
+}
+
+/* ─── MAIN CONTENT ─── */
+.gc-main {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── AD SLOT (top of content) ─── */
+.gc-ad-slot {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gc-ad-slot-mid { margin-top: 24px; margin-bottom: 24px; }
+
+/* ─── PAGE TITLE AREA ─── */
+.gc-page-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.gc-page-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: 0.01em;
+}
+.gc-page-title span { color: var(--blue); }
+.gc-page-count {
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ─── GROUP SECTION ─── */
+.gc-group-section { margin-bottom: 36px; }
+.gc-group-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--blue);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gc-group-label a {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.gc-group-label a:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ─── TEAM CARDS GRID ─── */
+.gc-teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+/* ─── TEAM CARD ─── */
+.gc-team-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.gc-team-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,99,235,0.12);
+}
+
+.gc-team-flag {
+  width: 80px;
+  height: 54px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.gc-team-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gc-flag-fallback {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.gc-team-info { flex: 1; min-width: 0; }
+.gc-team-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gc-team-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.gc-team-conf {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  background: var(--blue);
+  padding: 2px 7px;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+}
+.gc-team-host {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  background: var(--gold);
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+/* Squad button */
+.gc-squad-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: var(--text-mid);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-main);
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.gc-squad-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(37,99,235,0.04); }
+
+/* Star favourite button */
+.gc-star-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #cbd5e1;
+  transition: color 0.2s, transform 0.2s;
+  padding: 4px;
+  line-height: 1;
+}
+.gc-star-btn:hover { transform: scale(1.2); }
+.gc-star-btn.starred { color: var(--gold); }
+
+/* Squad expand panel */
+.gc-squad-panel {
+  display: none;
+  grid-column: 1 / -1;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(37,99,235,0.15);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: -4px;
+}
+.gc-squad-panel.open { display: block; }
+.gc-squad-panel h4 {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.gc-squad-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 4px 12px;
+}
+.gc-squad-player {
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.gc-squad-player span {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  float: right;
+}
+
+/* ─── NORDVPN AFFILIATE BAR ─── */
+.gc-vpn-bar {
+  background: rgba(255,255,255,0.92);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-mid);
+}
+.gc-vpn-bar a {
+  color: #4687ff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.gc-vpn-bar a:hover { text-decoration: underline; }
+.gc-vpn-bar strong { color: var(--text-dark); }
+
+/* ─── GLOBAL FOOTER ─── */
+.gc-footer {
+  background: #07111f;
+  color: rgba(255,255,255,0.55);
+  padding: 2rem 1.5rem 1.5rem;
+  font-size: 0.78rem;
+  text-align: center;
+}
+.gc-footer-inner { max-width: 900px; margin: 0 auto; }
+.gc-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 1.4rem;
+  margin-bottom: 12px;
+}
+.gc-footer-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.gc-footer-links a:hover { color: var(--gold); }
+.gc-footer-copy {
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  margin: 4px 0;
+}
+.gc-footer-disclaimer, .gc-footer-affiliate {
+  color: rgba(255,255,255,0.4);
+  margin: 3px 0;
+  font-size: 0.72rem;
+}
+
+/* ─── COOKIE BANNER ─── */
+#gc-cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #0f172a;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 1100;
+  font-size: 0.8rem;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+#gc-cookie-banner.show { transform: translateY(0); }
+#gc-cookie-banner p { flex: 1; min-width: 220px; line-height: 1.5; }
+#gc-cookie-banner a { color: var(--gold); }
+.gc-cookie-btn {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-main);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.gc-cookie-btn:hover { background: #1d4ed8; }
+.gc-cookie-btn.secondary {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+}
+.gc-cookie-btn.secondary:hover { background: rgba(255,255,255,0.18); }
+
+/* ─── SUBSCRIPTION POPUP ─── */
+#gc-sub-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#gc-sub-overlay.show { display: flex; }
+.gc-sub-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  animation: subBoxIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes subBoxIn {
+  from { transform: scale(0.85) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+.gc-sub-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: none; border: none;
+  font-size: 1.4rem; cursor: pointer;
+  color: #94a3b8; line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.gc-sub-close:hover { color: #0f172a; }
+.gc-sub-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+.gc-sub-box p {
+  color: var(--text-mid);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.gc-sub-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gc-sub-form input[type="email"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.gc-sub-form input[type="email"]:focus { border-color: var(--blue); }
+.gc-sub-submit {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gc-sub-submit:hover { background: #1d4ed8; }
+.gc-sub-note {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .gc-header-top { padding: 10px 12px 10px 58px; }
+  .gc-subnav-inner { padding-left: 58px; }
+  .gc-main { padding: 16px 12px; }
+  .gc-teams-grid { grid-template-columns: 1fr; }
+  .gc-page-title { font-size: 1.4rem; }
+  .gc-sub-box { padding: 28px 20px 22px; }
+}
+@media (max-width: 400px) {
+  .gc-team-flag { width: 60px; height: 40px; }
+}
+
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px;}
+.news-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.news-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,99,235,.12);}
+.news-card-img{width:100%;height:160px;object-fit:cover;background:linear-gradient(135deg,#dbeafe,#003fb8);}
+.news-card-body{padding:16px;}
+.news-card-tag{display:inline-block;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:10px;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase;}
+.news-card-title{font-family:var(--font-heading);font-size:1rem;font-weight:800;color:var(--text-dark);line-height:1.3;margin-bottom:6px;}
+.news-card-meta{font-size:.72rem;color:var(--text-light);}
+.news-card-excerpt{font-size:.8rem;color:var(--text-mid);line-height:1.5;margin-top:6px;}
+.news-featured{background:linear-gradient(135deg,#001a4d,#003fb8);border-radius:16px;padding:24px;color:#fff;margin-bottom:24px;}
+.news-featured-tag{display:inline-block;background:var(--gold);color:#fff;font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:10px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;}
+.news-featured-title{font-family:var(--font-heading);font-size:1.4rem;font-weight:800;line-height:1.2;margin-bottom:8px;}
+.news-featured-meta{font-size:.75rem;color:rgba(255,255,255,.6);}
+.news-featured-excerpt{font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.5;margin-top:8px;}
+
 </style>
 </head>
 <body>
-<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 
-<!-- SIDEBAR -->
-<nav class="gc-sidebar" id="gcSidebar">
-  <div class="sb-logo"><a href="/index.html">⚽ Goal<span>Current</span>.live</a></div>
-  <div class="sb-section">Main Menu</div>
-  <a href="/index.html" class="sb-link">🏠 Home</a>
-  <a href="/premier-league/index.html" class="sb-link">🔴 Live Scores</a>
-  <a href="/premier-league/fixtures/index.html" class="sb-link">📋 Fixtures</a>
-  <a href="/premier-league/table/index.html" class="sb-link">🏅 Standings</a>
-  <div class="sb-section">Competitions</div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('pl-sub')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-badge">PL</span></button>
-    <div class="sb-sub" id="pl-sub">
-      <a href="/premier-league/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/premier-league/table/index.html" class="sb-sub-link">📊 Table</a>
-      <a href="/premier-league/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/premier-league/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/premier-league/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
+<!-- ═══ HAMBURGER (always visible, fixed top-left) ═══ -->
+<button id="gc-hamburger" aria-label="Open navigation menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- ═══ SIDEBAR OVERLAY ═══ -->
+<div id="gc-sidebar-overlay"></div>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="gc-sidebar" aria-label="Main navigation">
+  <div class="sidebar-header">
+    <a href="/" class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="/logo.svg" alt="GoalCurrent.live logo" width="36" height="36"
+             onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
+      </div>
+      <div class="sidebar-logo-text">
+        <span class="sidebar-logo-name">Goal<em>Current</em></span>
+        <span class="sidebar-logo-domain">.live</span>
+      </div>
+    </a>
+    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close menu">✕</button>
   </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('wc-sub')" style="color:white"><span>🏆 World Cup 2026</span><span class="sb-badge sb-badge-gold">WC26</span></button>
-    <div class="sb-sub open" id="wc-sub">
-      <a href="/worldcup2026/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
-      <a href="/worldcup2026/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/worldcup2026/bracket/index.html" class="sb-sub-link">🏅 Bracket</a>
-      <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
-      <a href="/worldcup2026/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/worldcup2026/news/index.html" class="sb-sub-link active">📰 News</a>
-      <a href="/countdown.html" class="sb-sub-link">⏱ Countdown</a>
-    </div>
+
+  <div class="sidebar-section-label">Main Menu</div>
+  <div class="sidebar-nav">
+    <a href="/"><span class="nav-icon">🏠</span> Home</a>
+    <a href="/worldcup2026/" class="active"><span class="nav-icon">🌍</span> World Cup 2026</a>
+    <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
+    <a href="/champions-league/"><span class="nav-icon">⭐</span> Champions League</a>
+    <a href="/news/"><span class="nav-icon">📰</span> News</a>
   </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('ucl-sub')"><span>⭐ Champions League</span><span class="sb-badge">UCL</span></button>
-    <div class="sb-sub" id="ucl-sub">
-      <a href="/ucl/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/ucl/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/ucl/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/ucl/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/ucl/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
+
+  <div class="sidebar-section-label">World Cup 2026</div>
+  <div class="sidebar-nav">
+    <a href="/worldcup2026/"><span class="nav-icon">📋</span> Overview</a>
+    <a href="/worldcup2026/groups/"><span class="nav-icon">🔢</span> Groups</a>
+    <a href="/worldcup2026/fixtures/"><span class="nav-icon">📅</span> Fixtures</a>
+    <a href="/worldcup2026/standings/"><span class="nav-icon">📊</span> Standings</a>
+    <a href="/worldcup2026/bracket/"><span class="nav-icon">🏆</span> Bracket</a>
+    <a href="/worldcup2026/venues/"><span class="nav-icon">🏟️</span> Venues</a>
+    <a href="/worldcup2026/teams/"><span class="nav-icon">👕</span> Teams</a>
+    <a href="/worldcup2026/news/" class="active"><span class="nav-icon">📰</span> WC News</a>
+    <a href="/worldcup2026/countdown/"><span class="nav-icon">⏳</span> Countdown</a>
+    <a href="/worldcup2026/favourites/"><span class="nav-icon">⭐</span> Favourites</a>
   </div>
-  <div class="sb-foot">
-    <div class="sb-social">
-      <a href="https://twitter.com/GoalCurrentlive" target="_blank" rel="noopener">𝕏</a>
-      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" rel="noopener">🎵</a>
-      <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
-    </div>
-    © 2026 <strong style="color:#a8b2c8">Ashna4All</strong><br>Ahmad Zafarani<br>
-    <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a>
+
+  <div class="sidebar-section-label">Competitions</div>
+  <div class="sidebar-nav">
+    <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
+    <a href="/champions-league/"><span class="nav-icon">🥇</span> Champions League</a>
+  </div>
+
+  <div class="sidebar-footer-social">
+    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" title="Twitter/X">𝕏</a>
+    <a href="#" title="TikTok">♪</a>
+    <a href="#" title="YouTube">▶</a>
   </div>
 </nav>
 
-<div class="gc-main">
-  <!-- HEADER -->
-  <header class="gc-header">
-    <div class="gc-hdr-top">
-      <div class="gc-hdr-left">
-        <button class="gc-hamburger" onclick="openSidebar()">☰</button>
-        <div>
-          <div class="gc-hdr-logo">🏆 World Cup <span>2026</span></div>
-          <div class="gc-hdr-sub">News &amp; Updates · GoalCurrent.live</div>
+<!-- ═══ PAGE WRAPPER ═══ -->
+<div id="gc-page">
+
+  <!-- ── SECTION HEADER (WC2026) ── -->
+  <header class="gc-section-header">
+    <div class="gc-header-top">
+      <!-- Site branding (visible when sidebar is closed) -->
+      <div class="gc-site-brand">
+        <div class="gc-site-brand-icon">
+          <img src="/logo.svg" alt="GoalCurrent.live" width="30" height="30"
+               onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
         </div>
+        <div class="gc-site-brand-text">Goal<span>Current</span><small>.live</small></div>
       </div>
-      <span class="gc-phase-pill">11 Jun – 19 Jul</span>
+      <!-- Divider -->
+      <div class="gc-header-divider"></div>
+      <div class="gc-header-logo">🏆</div>
+      <div>
+        <div class="gc-header-title">World Cup <span>2026</span></div>
+        <div class="gc-header-sub">News · Previews · Updates</div>
+      </div>
+      <div class="gc-header-badge">News</div>
     </div>
-    <nav class="gc-hdr-nav">
-      <a href="/worldcup2026/index.html" class="gc-hdr-navlink">🏠 Overview</a>
-      <a href="/worldcup2026/groups/index.html" class="gc-hdr-navlink">🔢 Groups</a>
-      <a href="/worldcup2026/fixtures/index.html" class="gc-hdr-navlink">📅 Fixtures</a>
-      <a href="/worldcup2026/bracket/index.html" class="gc-hdr-navlink">🏅 Bracket</a>
-      <a href="/worldcup2026/venues/index.html" class="gc-hdr-navlink">🏟️ Venues</a>
-      <a href="/worldcup2026/teams/index.html" class="gc-hdr-navlink">👕 Teams</a>
-      <a href="/worldcup2026/news/index.html" class="gc-hdr-navlink active">📰 News</a>
-      <a href="/countdown.html" class="gc-hdr-navlink">⏱ Countdown</a>
+
+    <!-- SUB-NAV: WC2026 sections only — NO Premier League tab -->
+    <nav class="gc-subnav" aria-label="World Cup 2026 sections">
+      <div class="gc-subnav-inner">
+        <a href="/worldcup2026/">📋 Overview</a>
+        <a href="/worldcup2026/groups/">🔢 Groups</a>
+        <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
+        <a href="/worldcup2026/standings/">📊 Standings</a>
+        <a href="/worldcup2026/bracket/">🏆 Bracket</a>
+        <a href="/worldcup2026/venues/">🏟️ Venues</a>
+        <a href="/worldcup2026/teams/">👕 Teams</a>
+        <a href="/worldcup2026/news/" class="active">📰 News</a>
+        <a href="/worldcup2026/countdown/">⏳ Countdown</a>
+        <a href="/worldcup2026/favourites/">⭐ Favourites</a>
+        <!-- ✅ Premier League REMOVED from WC top nav — it lives in the sidebar only -->
+      </div>
     </nav>
   </header>
 
-  <main>
-    <div class="news-page">
+  <!-- ── MAIN CONTENT ── -->
+  <main class="gc-main">
+    <div class="gc-ad-slot" id="gc-ad-top"><span>Advertisement</span></div>
 
-      <!-- COUNTDOWN -->
-      <div class="cd-banner">
-        <div class="cd-label">⏳ World Cup 2026 Kicks Off In</div>
-        <div class="cd-title">🏆 FIFA World Cup 2026</div>
-        <div class="cd-sub">Mexico vs South Africa · Group A Opener · Estadio Azteca, Mexico City</div>
-        <div class="cd-units">
-          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Days</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Hrs</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Sec</div></div>
-        </div>
-        <div class="cd-hosts">
-          <div class="cd-host">🇺🇸 USA</div>
-          <div class="cd-host">🇲🇽 Mexico</div>
-          <div class="cd-host">🇨🇦 Canada</div>
-        </div>
-      </div>
-
-      <!-- OPENER -->
-      <div class="opener-card">
-        <div class="opener-label">⚽ Tournament Opener — First Kick of WC2026</div>
-        <div class="opener-match">
-          <div class="opener-team">
-            <span class="opener-flag">🇲🇽</span>
-            <div class="opener-name">Mexico</div>
-            <div class="opener-sub">Host Nation · Group A</div>
-          </div>
-          <div class="opener-vs-col">
-            <div class="opener-day">11 JUN</div>
-            <div class="opener-vs">vs</div>
-          </div>
-          <div class="opener-team">
-            <span class="opener-flag">🇿🇦</span>
-            <div class="opener-name">South Africa</div>
-            <div class="opener-sub">Africa · Group A</div>
-          </div>
-        </div>
-        <div class="opener-chips">
-          <span class="chip">📅 Thursday 11 June 2026</span>
-          <span class="chip">⏰ 21:00 local · 03:00 BST (12 Jun)</span>
-          <span class="chip">🏟️ Estadio Azteca, Mexico City</span>
-          <span class="chip">📺 ITV · BBC (UK)</span>
-        </div>
-      </div>
-
-      <!-- FEATURED ARTICLE -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">⭐ Featured Article</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-      <a href="/worldcup2026/news/wc2026-squads-confirmed.html" class="featured-card">
-        <div class="icon">📋</div>
-        <div class="fbody">
-          <span class="featured-tag">New Article</span>
-          <h2>1,248 Players. 48 Nations. One Trophy — The World Cup Is Finally Here</h2>
-          <p>All 48 squads are confirmed. Messi and Ronaldo go again for a record sixth time. Four nations debut. 891 players are about to live their dream.</p>
-          <span class="read-btn">Read Article →</span>
-        </div>
-      </a>
-
-      <!-- SQUADS -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">📋 All 48 Squads Confirmed</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🌍 FIFA Official</span>
-        <div class="news-date">2 June 2026</div>
-        <div class="news-title">All 48 World Cup squads officially confirmed by FIFA</div>
-        <div class="news-body">All 48 nations submitted their final 26-player squads to FIFA by 1 June. Each team names up to 26 players including three goalkeepers. Players can still be replaced due to serious injury no later than 24 hours before their team's first match. Over 1,248 players are heading to North America — the most in World Cup history.</div>
-        <a href="https://www.espn.com/soccer/story/_/id/48757621/2026-world-cup-squad-lists-players-announced-all-48-teams" target="_blank" rel="noopener" class="news-source">Full squad lists on ESPN ↗</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag" style="background:#cf0e35">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        <div class="news-title">England — 26-Man Squad · Group L</div>
-        <div class="news-body"><strong>Group L · Croatia · Ghana · Panama · Manager: Thomas Tuchel</strong><br><br>Harry Kane leads England as captain. Notable absentees include Phil Foden and Cole Palmer (both below-par seasons). Ivan Toney earns a surprise recall. Eberechi Eze and Noni Madueke included. England open vs Croatia on 17 June in Dallas (21:00 BST).</div>
-        <div class="news-key">Key players: Kane · Pickford · Bellingham · Saka · Toney ✅ · Eze ✅ · Foden ❌ · Palmer ❌</div>
-        <a href="https://www.skysports.com/football/news/11095/13543070/world-cup-2026-squad-lists-england-scotland-brazil-usa-spain-france-germany-netherlands-argentina-portugal-and-more" target="_blank" rel="noopener" class="news-source">Full England squad on Sky Sports ↗</a>
-      </div>
-
-      <!-- INJURIES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">🚑 Injury Tracker — Stars Missing WC2026</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-      <div class="injury-grid">
-        <div class="injury-card">
-          <div class="injury-flag">🇧🇷</div>
-          <div class="injury-info">
-            <div class="injury-name">Rodrygo</div>
-            <div class="injury-club">Real Madrid · Brazil</div>
-            <div class="injury-detail">ACL + meniscus tear, March 2026. Out until end of 2026.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇧🇷</div>
-          <div class="injury-info">
-            <div class="injury-name">Éder Militão</div>
-            <div class="injury-club">Real Madrid · Brazil</div>
-            <div class="injury-detail">Hamstring surgery. Missing World Cup.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇧🇷</div>
-          <div class="injury-info">
-            <div class="injury-name">Estêvão</div>
-            <div class="injury-club">Chelsea · Brazil</div>
-            <div class="injury-detail">Severe hamstring injury. Missing World Cup.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇫🇷</div>
-          <div class="injury-info">
-            <div class="injury-name">Hugo Ekitike</div>
-            <div class="injury-club">Liverpool · France</div>
-            <div class="injury-detail">Ruptured Achilles, April 2026. Out 6+ months.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇳🇱</div>
-          <div class="injury-info">
-            <div class="injury-name">Xavi Simons</div>
-            <div class="injury-club">Tottenham · Netherlands</div>
-            <div class="injury-detail">ACL injury vs Wolves, April 2026.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇩🇪</div>
-          <div class="injury-info">
-            <div class="injury-name">Serge Gnabry</div>
-            <div class="injury-club">Bayern Munich · Germany</div>
-            <div class="injury-detail">Adductor injury, April 2026. Missing WC.</div>
-          </div>
-          <span class="injury-status out">❌ OUT</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇫🇷</div>
-          <div class="injury-info">
-            <div class="injury-name">Kylian Mbappé</div>
-            <div class="injury-club">Real Madrid · France</div>
-            <div class="injury-detail">Hamstring scare — now fully recovered.</div>
-          </div>
-          <span class="injury-status playing">✅ PLAYING</span>
-        </div>
-        <div class="injury-card">
-          <div class="injury-flag">🇪🇸</div>
-          <div class="injury-info">
-            <div class="injury-name">Lamine Yamal</div>
-            <div class="injury-club">Barcelona · Spain</div>
-            <div class="injury-detail">Injury scare — now fit and confirmed.</div>
-          </div>
-          <span class="injury-status playing">✅ PLAYING</span>
-        </div>
-      </div>
-
-      <!-- MORE STORIES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">📰 More Stories</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🌍 FIFA Rule Change</span>
-        <div class="news-title">All 26 players at centre circle for national anthems</div>
-        <div class="news-body">FIFA announced all matchday squad players — not just the starting eleven — will gather at the centre circle for national anthems. Every player gets that symbolic moment of pride.</div>
-        <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="news-source">Read on FIFA.com ↗</a>
-      </div>
-
-      <div class="news-card injury">
-        <span class="news-tag injury">🇧🇷 Brazil</span>
-        <div class="news-title">Brazil turn to 34-year-old Neymar after Rodrygo &amp; Estêvão injuries</div>
-        <div class="news-body">With both Rodrygo and Estêvão ruled out, Brazil recalled veteran Neymar for attacking width. Brazil open vs Morocco on 13 June in East Rutherford, New Jersey.</div>
-        <a href="https://www.espn.com/soccer/story/_/id/48572979/2026-fifa-world-cup-injuries-tracker-which-stars-miss-latest-info" target="_blank" rel="noopener" class="news-source">Read on ESPN ↗</a>
-      </div>
-
-      <div class="news-card grey">
-        <span class="news-tag grey">🇮🇹 Italy Missing</span>
-        <div class="news-title">Italy absent for the third consecutive World Cup</div>
-        <div class="news-body">Four-time world champions Italy failed to qualify for the third World Cup in a row, losing a play-off final on penalties. Stars such as Donnarumma and Tonali will be watching from home.</div>
-        <a href="https://www.aljazeera.com/sports/2026/5/23/world-cup-2026-which-star-players-will-miss-the-tournament" target="_blank" rel="noopener" class="news-source">Read on Al Jazeera ↗</a>
-      </div>
-
-      <div class="news-card host">
-        <span class="news-tag host">🇲🇽 Host Nation</span>
-        <div class="news-title">Mexico vs South Africa kicks off the biggest World Cup ever</div>
-        <div class="news-body">The first 48-team World Cup begins at the legendary Estadio Azteca on 11 June. Mexico are one of three host nations alongside USA and Canada. 104 matches across 39 days in 16 stadiums.</div>
-        <a href="/worldcup2026/fixtures/index.html" class="news-source">See full fixtures →</a>
-      </div>
-
-      <div class="news-card arg">
-        <span class="news-tag arg">🇦🇷 Argentina</span>
-        <div class="news-title">Messi leads defending champions Argentina in Group J</div>
-        <div class="news-body">Lionel Messi captains Argentina in Group J alongside Algeria, Austria and Jordan. The reigning world champions open against Algeria. Messi is confirmed fully fit and in the squad.</div>
-        <a href="/worldcup2026/groups/index.html" class="news-source">See Group J →</a>
-      </div>
-
-      <div class="news-card tv">
-        <span class="news-tag tv">📺 TV Coverage</span>
-        <div class="news-title">BBC &amp; ITV to broadcast every World Cup match free in the UK</div>
-        <div class="news-body">Every one of the 104 World Cup 2026 matches will be available free-to-air in the UK on BBC and ITV. Full broadcast schedule on the fixtures page.</div>
-        <a href="/worldcup2026/fixtures/index.html" class="news-source">See TV guide →</a>
-      </div>
-
-      <!-- SOURCES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">🔍 Verified External Sources</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-      <div class="sources-grid">
-        <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="source-link">⭐ FIFA Official</a>
-        <a href="https://www.bbc.co.uk/sport/football/world-cup" target="_blank" rel="noopener" class="source-link">📺 BBC Sport</a>
-        <a href="https://www.skysports.com/football/world-cup" target="_blank" rel="noopener" class="source-link">🔵 Sky Sports</a>
-        <a href="https://www.espn.co.uk/football/world-cup" target="_blank" rel="noopener" class="source-link">🟠 ESPN</a>
-        <a href="https://www.youtube.com/@FIFAWorldCup" target="_blank" rel="noopener" class="source-link">▶ FIFA YouTube</a>
-        <a href="https://www.theguardian.com/football/world-cup-2026" target="_blank" rel="noopener" class="source-link">🟡 The Guardian</a>
-      </div>
-      <div class="disclaimer">📰 GoalCurrent.live links to official external sources. Not affiliated with FIFA, UEFA or the Premier League. · <a href="/disclaimer.html">Disclaimer</a></div>
-
-      <!-- NORDVPN -->
-      <div class="wc-nord">
-        🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
-        <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" class="deal">Get Deal →</a>
-        <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" class="pass">NordPass</a>
-        <span class="ad">#AD · <a href="/disclaimer.html" style="color:var(--t4)">Affiliate</a></span>
-      </div>
-
-      <!-- SUBSCRIBE -->
-      <div class="news-subscribe">
-        <h3>📬 Get World Cup 2026 live alerts straight to your inbox</h3>
-        <div class="sub-row">
-          <input type="email" id="subEmail" placeholder="Your email address">
-          <button onclick="doSubscribe()">Subscribe →</button>
-        </div>
-        <div class="sub-msg" id="subMsg">✅ You're subscribed! Check your email to confirm.</div>
-      </div>
-
-      <!-- FOOTER -->
-      <div class="wc-footer">
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/disclaimer.html">Disclaimer</a><br><br>
-        © 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live<br>
-        Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
-      </div>
-
+    <!-- Featured -->
+    <div class="news-featured">
+      <span class="news-featured-tag">🔴 BREAKING</span>
+      <div class="news-featured-title">World Cup 2026 Kicks Off 11 June — All 48 Squads Confirmed</div>
+      <div class="news-featured-meta">📅 7 June 2026 · GoalCurrent.live</div>
+      <div class="news-featured-excerpt">The FIFA World Cup 2026 begins in just four days. Mexico host South Africa in the opening match at Estadio Azteca — 20:00 BST. All 48 nations have submitted their official 26-man squads.</div>
     </div>
+
+    <div class="gc-page-title-bar" style="margin-bottom:16px">
+      <h2 class="gc-page-title" style="font-size:1.3rem">Latest <span>News</span></h2>
+    </div>
+
+    <div class="news-grid"><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">SQUADS</span>
+        <div class="news-card-title">All 48 World Cup 2026 Squads Confirmed by FIFA</div>
+        <div class="news-card-meta">📅 7 June 2026</div>
+        <div class="news-card-excerpt">All 48 nations have now officially submitted their final 26-man squads to FIFA ahead of the tournament opening on 11 June.</div>
+      </div>
+    </div><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">PREVIEW</span>
+        <div class="news-card-title">Group A Preview: Mexico Set for Home Advantage</div>
+        <div class="news-card-meta">📅 6 June 2026</div>
+        <div class="news-card-excerpt">Mexico open the tournament at Estadio Azteca against South Africa. Can the hosts capitalise on their first-ever home World Cup appearance?</div>
+      </div>
+    </div><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">PREVIEW</span>
+        <div class="news-card-title">England in Group L: Three Lions Eye Strong Start</div>
+        <div class="news-card-meta">📅 6 June 2026</div>
+        <div class="news-card-excerpt">Gareth Southgate's England face Panama, Croatia and Ghana in what looks like a manageable group — but nothing is ever straightforward.</div>
+      </div>
+    </div><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">NEWS</span>
+        <div class="news-card-title">Messi Confirmed Fit for Argentina's Group J Opener</div>
+        <div class="news-card-meta">📅 5 June 2026</div>
+        <div class="news-card-excerpt">Inter Miami star Lionel Messi has been passed fit after a minor knock and will captain Argentina against Jordan on 17 June.</div>
+      </div>
+    </div><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">VENUE</span>
+        <div class="news-card-title">MetLife Stadium: Inside the World Cup Final Venue</div>
+        <div class="news-card-meta">📅 5 June 2026</div>
+        <div class="news-card-excerpt">The iconic stadium in New Jersey will host the FIFA World Cup 2026 Final on 19 July — capacity 82,500 and surrounded by the New York skyline.</div>
+      </div>
+    </div><div class="news-card">
+      <div class="news-card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem">⚽</div>
+      <div class="news-card-body">
+        <span class="news-card-tag">PREVIEW</span>
+        <div class="news-card-title">Brazil's Golden Generation Ready to End 24-Year Wait</div>
+        <div class="news-card-meta">📅 4 June 2026</div>
+        <div class="news-card-excerpt">With Vinicius Jr., Rodrygo and Raphinha in peak form, Brazil arrive as one of the favourites to finally lift the trophy again.</div>
+      </div>
+    </div></div>
+
+    <div class="gc-ad-slot gc-ad-slot-mid"><span>Advertisement</span></div>
   </main>
+  <!-- ── NORDVPN AFFILIATE BAR (ONE, above footer) ── -->
+  <div class="gc-vpn-bar">
+    🔒 <strong>Watching the World Cup abroad?</strong>
+    Use <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347" target="_blank" rel="noopener sponsored">NordVPN</a>
+    to access your favourite streams from anywhere. <em>Affiliate link — we may earn a commission.</em>
+  </div>
+
+  <!-- ── GLOBAL FOOTER (ONE, never duplicated) ── -->
+  <footer class="gc-footer">
+    <div class="gc-footer-inner">
+      <nav class="gc-footer-links">
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/disclaimer/">Disclaimer</a>
+        <a href="/cookies/">Cookies</a>
+      </nav>
+      <p class="gc-footer-copy">© 2026 <strong>Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live</p>
+      <p class="gc-footer-disclaimer">Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</p>
+      <p class="gc-footer-affiliate">This site contains affiliate links. We may earn a commission at no extra cost to you.</p>
+    </div>
+  </footer>
+
+</div><!-- /#gc-page -->
+
+<!-- ═══ COOKIE BANNER (ONE, session-persistent) ═══ -->
+<div id="gc-cookie-banner" role="alert">
+  <p>
+    We use cookies to improve your experience and show personalised content.
+    See our <a href="/cookies/">Cookie Policy</a> for details.
+  </p>
+  <button class="gc-cookie-btn secondary" onclick="gcCookieDecline()">Decline</button>
+  <button class="gc-cookie-btn" onclick="gcCookieAccept()">Accept All</button>
+</div>
+
+<!-- ═══ SUBSCRIPTION POPUP (ONE, session-once) ═══ -->
+<div id="gc-sub-overlay" role="dialog" aria-modal="true" aria-label="Newsletter signup">
+  <div class="gc-sub-box">
+    <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close">✕</button>
+    <h3>⚽ Stay Ahead of the Game</h3>
+    <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
+    <div class="gc-sub-form">
+      <input type="email" id="gc-sub-email" placeholder="Your email address" autocomplete="email">
+      <button class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free</button>
+    </div>
+    <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
+  </div>
 </div>
 
 <script>
-function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden'}
-function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
-function toggleSub(id){document.getElementById(id).classList.toggle('open')}
-
+var sidebar=document.getElementById('gc-sidebar');
+var overlay=document.getElementById('gc-sidebar-overlay');
+var hamburger=document.getElementById('gc-hamburger');
+function gcOpenSidebar(){sidebar.classList.add('open');overlay.classList.add('active');hamburger.classList.add('open');document.body.style.overflow='hidden';}
+function gcCloseSidebar(){sidebar.classList.remove('open');overlay.classList.remove('active');hamburger.classList.remove('open');document.body.style.overflow='';}
+hamburger.addEventListener('click',function(){sidebar.classList.contains('open')?gcCloseSidebar():gcOpenSidebar();});
+document.getElementById('gc-sidebar-close').addEventListener('click',gcCloseSidebar);
+document.getElementById('gc-sidebar-overlay').addEventListener('click',gcCloseSidebar);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
+(function(){if(localStorage.getItem('gc_cookie_choice'))return;setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.classList.add('show');},1200);})();
+function gcCookieAccept(){localStorage.setItem('gc_cookie_choice','accepted');document.getElementById('gc-cookie-banner').classList.remove('show');}
+function gcCookieDecline(){localStorage.setItem('gc_cookie_choice','declined');document.getElementById('gc-cookie-banner').classList.remove('show');}
 (function(){
-  var T=new Date('2026-06-11T19:00:00Z');
-  function pad(n){return n<10?'0'+n:''+n;}
-  function tick(){
-    var diff=T-new Date();
-    if(diff>0){
-      document.getElementById('cdD').textContent=pad(Math.floor(diff/86400000));
-      document.getElementById('cdH').textContent=pad(Math.floor((diff%86400000)/3600000));
-      document.getElementById('cdM').textContent=pad(Math.floor((diff%3600000)/60000));
-      document.getElementById('cdS').textContent=pad(Math.floor((diff%60000)/1000));
-    }else{
-      ['cdD','cdH','cdM','cdS'].forEach(function(id){document.getElementById(id).textContent='00';});
+  if(sessionStorage.getItem('gc_sub_shown'))return;
+  var shown=false;
+  function show(){if(shown)return;shown=true;sessionStorage.setItem('gc_sub_shown','1');var el=document.getElementById('gc-sub-overlay');if(el)el.classList.add('show');}
+  setTimeout(show,10000);
+  window.addEventListener('scroll',function(){if(window.scrollY/(document.body.scrollHeight-window.innerHeight)>=0.5)show();},{passive:true});
+})();
+function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');}
+function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}document.querySelector('.gc-sub-box').innerHTML='<div style="padding:20px"><h3 style="color:var(--blue)">You are in!</h3></div>';setTimeout(gcSubClose,2500);}
+(function(){
+  var MATCHES=[
+    {id:1,h:'Mexico',a:'South Africa',utc:'2026-06-11T19:00:00Z'},
+    {id:2,h:'South Korea',a:'Czech Republic',utc:'2026-06-12T02:00:00Z'},
+    {id:3,h:'Canada',a:'Bosnia & Herz.',utc:'2026-06-12T19:00:00Z'},
+    {id:4,h:'USA',a:'Paraguay',utc:'2026-06-13T01:00:00Z'},
+    {id:5,h:'Australia',a:'Turkey',utc:'2026-06-13T04:00:00Z'},
+    {id:6,h:'Qatar',a:'Switzerland',utc:'2026-06-13T19:00:00Z'},
+    {id:7,h:'Brazil',a:'Haiti',utc:'2026-06-13T19:00:00Z'},
+    {id:8,h:'Morocco',a:'Scotland',utc:'2026-06-13T16:00:00Z'}
+  ];
+  var now=new Date();
+  var preStart=new Date('2026-06-10T00:00:00Z');
+  var tourneyStart=new Date('2026-06-11T19:00:00Z');
+  var el=document.getElementById('gc-wc-popup');
+  var titleEl=document.getElementById('gc-wc-popup-title');
+  var bodyEl=document.getElementById('gc-wc-popup-body');
+  if(!el||!titleEl||!bodyEl)return;
+  function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
+  if(now>=preStart&&now<tourneyStart&&!sessionStorage.getItem('gc_wc_pre')){
+    sessionStorage.setItem('gc_wc_pre','1');
+    titleEl.textContent='World Cup 2026 Starts Tomorrow!';
+    bodyEl.innerHTML='<p style="margin:8px 0">The FIFA World Cup kicks off <strong>11 June 2026</strong>.</p><p style="margin:4px 0">First match: <strong>Mexico vs South Africa</strong> 20:00 BST</p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
+    setTimeout(function(){el.classList.add('show');},2000);
+    return;
+  }
+  if(now>=tourneyStart){
+    var shown=localStorage.getItem('gc_wc_match_popup');
+    var next=MATCHES.find(function(m){var k=new Date(m.utc);return String(m.id)!==shown&&now<k&&(k-now)<10800000;});
+    if(next){
+      localStorage.setItem('gc_wc_match_popup',String(next.id));
+      titleEl.textContent='Match Starting Soon!';
+      bodyEl.innerHTML='<p style="margin:8px 0;font-size:1rem;font-weight:800">'+next.h+' vs '+next.a+'</p><p style="color:var(--text-mid);font-size:.82rem">Kicks off <strong>'+bst(next.utc)+'</strong></p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
+      setTimeout(function(){el.classList.add('show');},3000);
     }
   }
-  tick();setInterval(tick,1000);
 })();
-
-function doSubscribe(){
-  var input=document.getElementById('subEmail');
-  var msg=document.getElementById('subMsg');
-  if(!input.value||input.value.indexOf('@')<0){input.style.borderColor='#dc2626';return;}
-  input.style.borderColor='#16a34a';
-  var form=document.createElement('form');form.method='POST';form.target='_blank';form.style.display='none';
-  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
-  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
-  var f3=document.createElement('input');f3.name='locale';f3.value='en';
-  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  msg.style.display='block';input.value='';
-}
+function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remove('show');}
 </script>
+<!-- WC POPUP -->
+<div id="gc-wc-popup" style="position:fixed;bottom:20px;right:20px;z-index:1300;max-width:300px;width:calc(100vw - 40px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.22);padding:20px 20px 18px;border-top:4px solid var(--blue);transform:translateY(30px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s">
+  <button onclick="gcWcPopupClose()" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:#94a3b8;line-height:1">&#x2715;</button>
+  <div id="gc-wc-popup-title" style="font-family:var(--font-heading);font-size:.95rem;font-weight:800;color:var(--blue);margin-bottom:6px"></div>
+  <div id="gc-wc-popup-body" style="font-size:.82rem;color:var(--text-mid);line-height:1.5"></div>
+</div>
+<style>#gc-wc-popup.show{transform:translateY(0);opacity:1;pointer-events:auto;}</style>
+
 </body>
 </html>
