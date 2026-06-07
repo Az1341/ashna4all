@@ -1,1619 +1,486 @@
-/* ============================================================
-   GOALCURRENT.LIVE — World Cup 2026 Teams Data
-   Source: Official FIFA Squad Lists PDF
-   https://fdp.fifa.org/assetspublic/ce281/pdf/SquadLists-English.pdf
-   Version 1 | Saturday, 6 June 2026 | 00:16 UTC
-   All 48 teams × 26 players — verified from official FIFA PDF
-   ============================================================ */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Teams | GoalCurrent.live</title>
+<meta name="description" content="All 48 FIFA World Cup 2026 teams — flags, full names, groups, confederations and squads.">
+<link rel="canonical" href="https://goalcurrent.live/worldcup2026/teams/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
+<link rel="stylesheet" href="/css/style.css">
+<style>
+:root{--sb-w:240px;--sb-hover:#10213a;--sb-border:rgba(255,255,255,.08);--sb-text:#b8c4d9;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 50%,#e0f2fe 100%);background-attachment:fixed;min-height:100vh;color:#0f172a;font-size:14px;}
+/* SIDEBAR */
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
+.sb-overlay.show{display:block}
+.gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease;}
+.gc-sidebar::-webkit-scrollbar{display:none}
+.sb-logo{padding:18px 16px;border-bottom:1px solid var(--sb-border);flex-shrink:0}
+.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
+.sb-logo span{color:#3b82f6}
+.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px;}
+.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:var(--sb-text);text-decoration:none;font-size:13px;font-weight:600;}
+.sb-link:hover{background:var(--sb-hover);color:white}
+.sb-comp{border-top:1px solid var(--sb-border)}
+.sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:var(--sb-text);font-size:13px;font-weight:700;cursor:pointer;text-align:left;font-family:Verdana,Geneva,Tahoma,sans-serif;}
+.sb-comp-btn:hover{background:var(--sb-hover);color:white}
+.sb-badge{font-size:10px;background:rgba(59,130,246,.25);color:#60a5fa;padding:2px 7px;border-radius:5px;font-weight:800;}
+.sb-badge-gold{background:rgba(251,191,36,.25);color:#fbbf24}
+.sb-badge-ucl{background:rgba(255,215,0,.2);color:#ffd700}
+.sb-badge-pl{background:rgba(56,0,60,.5);color:#e9b4ff}
+.sb-sub{display:none}.sb-sub.open{display:block}
+.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px;}
+.sb-sub-link:hover{background:var(--sb-hover);color:white}
+.sb-sub-link.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800;}
+.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0;}
+.sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
+.sb-social{display:flex;gap:8px;margin-bottom:10px}
+.sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--sb-hover);border-radius:7px;font-size:13px;color:var(--sb-text);text-decoration:none;}
+/* MAIN */
+.gc-main{margin-left:var(--sb-w);min-height:100vh;display:flex;flex-direction:column}
+.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#001a4d 0%,#002b80 50%,#003fb8 100%);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:0 16px;}
+.gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px;}
+.gc-hdr-left{display:flex;align-items:center;gap:10px;min-width:0}
+.gc-hamburger{display:flex!important;align-items:center;justify-content:center;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);border-radius:8px;font-size:18px;cursor:pointer;color:white;padding:6px 9px;flex-shrink:0;line-height:1;font-family:Verdana,sans-serif;transition:background .2s;}
+.gc-hamburger:hover{background:rgba(255,255,255,.24)}
+.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15;}
+.gc-hdr-logo span{color:#f59e0b}
+.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px;}
+.gc-hdr-right{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;}
+.gc-hdr-nav{display:flex;gap:4px;padding-bottom:9px;overflow-x:auto;scrollbar-width:none;}
+.gc-hdr-nav::-webkit-scrollbar{display:none}
+.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;transition:.15s;flex-shrink:0;}
+.gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
+.gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
+.gc-content{flex:1;padding:16px;max-width:960px;margin:0 auto;width:100%}
+/* PAGE CONTENT */
+.hero-box{background:linear-gradient(135deg,#002b80,#003fb8 55%,#0057e7);color:white;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 12px 34px rgba(0,63,184,.25);border:1px solid rgba(255,255,255,.16);}
+.hero-box h1{font-size:clamp(18px,4vw,22px);margin-bottom:6px}
+.hero-box p{font-size:12px;color:rgba(255,255,255,.86);font-weight:600}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hero-meta span{font-size:11px;background:rgba(255,255,255,.12);padding:5px 10px;border-radius:999px;font-weight:800}
+/* SEARCH */
+.search-wrap{position:relative;margin-bottom:12px}
+.search-wrap::before{content:"🔍";position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
+.t-search{width:100%;padding:11px 12px 11px 38px;border-radius:12px;border:1.5px solid rgba(37,99,235,.2);background:rgba(255,255,255,.9);font-size:13px;outline:none;font-family:Verdana,sans-serif;color:#0f172a;box-shadow:0 2px 8px rgba(37,99,235,.06);}
+.t-search:focus{border-color:#2563eb}
+/* CONF FILTER */
+.conf-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.cf-btn{font-size:11px;font-weight:800;padding:6px 13px;border-radius:999px;border:1.5px solid #bfdbfe;background:white;color:#334155;cursor:pointer;font-family:Verdana,sans-serif;transition:.15s;}
+.cf-btn:hover,.cf-btn.active{background:#2563eb;border-color:#2563eb;color:white}
+/* GROUP HEADER */
+.group-hdr{font-size:11px;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:1.2px;padding:6px 0 10px;border-bottom:2px solid rgba(37,99,235,.12);margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.group-hdr:first-child{margin-top:0}
+.group-badge{background:#2563eb;color:white;font-size:10px;font-weight:900;padding:3px 10px;border-radius:6px;}
+/* TEAM GRID */
+.t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:8px}
+/* TEAM CARD */
+.t-card{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.95);border-radius:16px;padding:16px 12px 12px;text-align:center;position:relative;box-shadow:0 4px 14px rgba(37,99,235,.08);transition:.2s;}
+.t-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.15);border-color:rgba(37,99,235,.25)}
+.t-card.host{border-top:3px solid #f59e0b}
+/* FLAG — large emoji, no fallback text shown */
+.t-name{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:7px;text-align:center;}
+/* Flag emoji — fixed size, cross-platform emoji font */
+.t-flag{font-size:28px;line-height:1;flex-shrink:0;
+  font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji","EmojiOne Color",sans-serif;}
+/* Full country name — bold and clearly readable */
+.t-fullname{font-size:13px;font-weight:900;color:#0f172a;line-height:1.3;}
+/* META BADGES */
+.t-meta{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
+.t-badge{font-size:9px;font-weight:800;padding:2px 7px;border-radius:999px;background:rgba(37,99,235,.07);color:#2563eb;border:1px solid rgba(37,99,235,.14);}
+.t-badge.host-badge{background:rgba(245,158,11,.1);color:#92400e;border-color:rgba(245,158,11,.2)}
+/* SQUAD */
+.t-expand-btn{width:100%;margin-top:4px;background:rgba(37,99,235,.07);border:1px solid rgba(37,99,235,.15);border-radius:8px;padding:5px;font-size:10px;font-weight:800;color:#2563eb;cursor:pointer;font-family:Verdana,sans-serif;transition:background .2s;}
+.t-expand-btn:hover{background:rgba(37,99,235,.14)}
+.t-squad{display:none;margin-top:8px;border-top:1px solid rgba(37,99,235,.1);padding-top:8px;text-align:left}
+.t-squad.open{display:block}
+.t-coach{font-size:10px;color:#64748b;margin-bottom:6px;font-weight:700}
+.t-squad-grid{display:flex;flex-direction:column;gap:3px}
+.t-player{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:6px;background:rgba(255,255,255,.7);border:1px solid rgba(37,99,235,.07);font-size:10px;}
+.t-player.injured{opacity:.55;text-decoration:line-through}
+.t-num{font-size:9px;font-weight:900;color:white;background:#2563eb;border-radius:3px;min-width:18px;text-align:center;padding:1px 3px;flex-shrink:0}
+.t-pname{flex:1;font-weight:700;color:#0f172a}
+.t-pos{font-size:8px;font-weight:800;color:#94a3b8;text-transform:uppercase}
+.t-captain{font-size:8px;background:#f59e0b;color:#0f172a;border-radius:3px;padding:1px 3px;font-weight:900}
+.t-injured-badge{font-size:8px;background:#fee2e2;color:#dc2626;border-radius:3px;padding:1px 3px;font-weight:800}
+.t-no-results{text-align:center;padding:40px;color:#94a3b8;font-size:13px;background:rgba(255,255,255,.7);border-radius:16px;border:1px solid rgba(37,99,235,.08)}
+/* AD + FOOTER */
+.gc-ad-bar{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(0,0,0,.08);padding:8px 16px;font-size:12px;text-align:center;color:#334155;}
+.gc-footer{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);color:#64748b;padding:20px 16px;font-size:11px;line-height:1.7}
+.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.gc-footer-links a{color:#2563eb;text-decoration:none}
+.gc-footer-copy{color:#94a3b8;font-size:10px;line-height:1.8}
+/* RESPONSIVE */
+@media(min-width:769px){.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
+@media(max-width:768px){.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important;box-shadow:4px 0 24px rgba(0,0,0,.3)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:10px!important}.gc-phase-pill{display:none}.t-grid{grid-template-columns:repeat(2,1fr)}.gc-hdr-logo{font-size:14px}}
+</style>
+</head>
+<body>
 
-var WC26_TEAMS = {
+<!-- OVERLAY -->
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 
-  /* ── GROUP A ── */
+<!-- SIDEBAR -->
+<nav class="gc-sidebar" id="gcSidebar">
+  <div class="sb-logo"><a href="/">⚽ Goal<span>Current</span>.live</a></div>
+  <div class="sb-section">Main Menu</div>
+  <a href="/" class="sb-link">🏠 Home</a>
+  <a href="/premier-league/index.html" class="sb-link">🔴 Live Scores</a>
+  <a href="/premier-league/fixtures/index.html" class="sb-link">📋 Fixtures</a>
+  <a href="/premier-league/table/index.html" class="sb-link">🏅 Standings</a>
+  <a href="/worldcup2026/news/index.html" class="sb-link">📰 Latest News</a>
+  <div class="sb-section">Competitions</div>
+  <div class="sb-comp">
+    <button class="sb-comp-btn" onclick="toggleSub('pl-sub')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-badge sb-badge-pl">PL</span></button>
+    <div class="sb-sub" id="pl-sub">
+      <a href="/premier-league/index.html" class="sb-sub-link">🏠 Overview</a>
+      <a href="/premier-league/table/index.html" class="sb-sub-link">📊 Table</a>
+      <a href="/premier-league/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
+      <a href="/premier-league/results/index.html" class="sb-sub-link">✅ Results</a>
+      <a href="/premier-league/teams/index.html" class="sb-sub-link">👕 Teams</a>
+      <a href="/premier-league/news/index.html" class="sb-sub-link">📰 News</a>
+    </div>
+  </div>
+  <div class="sb-comp">
+    <button class="sb-comp-btn" onclick="toggleSub('wc-sub')" style="color:white"><span>🏆 World Cup 2026</span><span class="sb-badge sb-badge-gold">WC26</span></button>
+    <div class="sb-sub open" id="wc-sub">
+      <a href="/worldcup2026/index.html" class="sb-sub-link">🏠 Overview</a>
+      <a href="/worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
+      <a href="/worldcup2026/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
+      <a href="/worldcup2026/standings/index.html" class="sb-sub-link">📊 Standings</a>
+      <a href="/worldcup2026/bracket/index.html" class="sb-sub-link">🏅 Bracket</a>
+      <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
+      <a href="/worldcup2026/teams/index.html" class="sb-sub-link active">👕 Teams</a>
+      <a href="/worldcup2026/news/index.html" class="sb-sub-link">📰 News</a>
+      <a href="/countdown.html" class="sb-sub-link">⏱ Countdown</a>
+      <a href="/worldcup2026/favourites/index.html" class="sb-sub-link">⭐ Favourites</a>
+    </div>
+  </div>
+  <div class="sb-comp">
+    <button class="sb-comp-btn" onclick="toggleSub('ucl-sub')"><span>⭐ Champions League</span><span class="sb-badge sb-badge-ucl">UCL</span></button>
+    <div class="sb-sub" id="ucl-sub">
+      <a href="/ucl/index.html" class="sb-sub-link">🏠 Overview</a>
+      <a href="/ucl/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
+      <a href="/ucl/results/index.html" class="sb-sub-link">✅ Results</a>
+      <a href="/ucl/teams/index.html" class="sb-sub-link">👕 Teams</a>
+      <a href="/ucl/news/index.html" class="sb-sub-link">📰 News</a>
+    </div>
+  </div>
+  <div class="sb-foot">
+    <div class="sb-social">
+      <a href="https://twitter.com/GoalCurrentlive" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" rel="noopener">🎵</a>
+      <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
+    </div>
+    © 2026 <strong style="color:#a8b2c8">Ashna4All</strong><br>Ahmad Zafarani<br>
+    <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/cookies.html">Cookies</a> · <a href="/contact.html">Contact</a>
+  </div>
+</nav>
 
-  'Mexico': {
-    flag:'🇲🇽', code:'MEX', conf:'CONCACAF', group:'A', host:true,
-    coach:'Javier Aguirre',
-    squad:[
-      {n:1,  name:'Raúl Rangel',        pos:'GK', club:'Guadalajara'},
-      {n:13, name:'Carlos Acevedo',      pos:'GK', club:'Santos Laguna'},
-      {n:23, name:'Guillermo Ochoa',     pos:'GK', club:'AEL Limassol'},
-      {n:2,  name:'Jorge Sánchez',       pos:'DEF', club:'PAOK'},
-      {n:3,  name:'César Montes',        pos:'DEF', club:'Lokomotiv Moscow'},
-      {n:4,  name:'Edson Álvarez',       pos:'DEF', club:'Fenerbahçe'},
-      {n:5,  name:'Johan Vásquez',       pos:'DEF', club:'Genoa'},
-      {n:15, name:'Israel Reyes',        pos:'DEF', club:'América'},
-      {n:19, name:'Mateo Chávez',        pos:'DEF', club:'AZ Alkmaar'},
-      {n:23, name:'Jesús Gallardo',      pos:'DEF', club:'Toluca'},
-      {n:6,  name:'Érik Lira',           pos:'MID', club:'Cruz Azul'},
-      {n:7,  name:'Luis Romo',           pos:'MID', club:'Guadalajara'},
-      {n:8,  name:'Álvaro Fidalgo',      pos:'MID', club:'Real Betis'},
-      {n:14, name:'Orbelín Pineda',      pos:'MID', club:'AEK Athens'},
-      {n:17, name:'Obed Vargas',         pos:'MID', club:'Atlético Madrid'},
-      {n:18, name:'Gilberto Mora',       pos:'MID', club:'Tijuana'},
-      {n:20, name:'Brian Gutiérrez',     pos:'MID', club:'Guadalajara'},
-      {n:24, name:'Luis Chávez',         pos:'MID', club:'Dynamo Moscow'},
-      {n:9,  name:'Raúl Jiménez',        pos:'FWD', club:'Fulham'},
-      {n:10, name:'Alexis Vega',         pos:'FWD', club:'Toluca'},
-      {n:11, name:'Santiago Giménez',    pos:'FWD', club:'AC Milan'},
-      {n:16, name:'Armando González',    pos:'FWD', club:'Guadalajara'},
-      {n:21, name:'César Huerta',        pos:'FWD', club:'Anderlecht'},
-      {n:22, name:'Julián Quiñones',     pos:'FWD', club:'Al Qadsiah'},
-      {n:25, name:'Guillermo Martínez',  pos:'FWD', club:'UNAM'},
-      {n:26, name:'Roberto Alvarado',    pos:'FWD', club:'Guadalajara'},
-    ]
-  },
+<!-- MAIN -->
+<div class="gc-main">
 
-  'South Africa': {
-    flag:'🇿🇦', code:'RSA', conf:'CAF', group:'A',
-    coach:'Hugo Broos',
-    squad:[
-      {n:1,  name:'Ronwen Williams',     pos:'GK', club:'Mamelodi Sundowns'},
-      {n:16, name:'Sipho Chaine',        pos:'GK', club:'Orlando Pirates'},
-      {n:22, name:'Ricardo Goss',        pos:'GK', club:'Siwelele FC'},
-      {n:2,  name:'Thabang Matuludi',    pos:'DEF', club:'Polokwane City'},
-      {n:3,  name:'Aubrey Modiba',       pos:'DEF', club:'Mamelodi Sundowns'},
-      {n:4,  name:'Nkosinathi Sibisi',   pos:'DEF', club:'Orlando Pirates'},
-      {n:5,  name:'Khuliso Mudau',       pos:'DEF', club:'Mamelodi Sundowns'},
-      {n:6,  name:'Khulumani Ndamane',   pos:'DEF', club:'Mamelodi Sundowns'},
-      {n:14, name:'Samukele Kabini',     pos:'DEF', club:'Molde FK'},
-      {n:20, name:'Mbekezeli Mbokazi',   pos:'DEF', club:'Chicago Fire'},
-      {n:21, name:'Ime Okon',            pos:'DEF', club:'Hannover 96'},
-      {n:23, name:'Olwethu Makhanya',    pos:'DEF', club:'Philadelphia Union'},
-      {n:26, name:'Bradley Cross',       pos:'DEF', club:'Kaizer Chiefs'},
-      {n:8,  name:'Teboho Mokoena',      pos:'MID', club:'Mamelodi Sundowns'},
-      {n:11, name:'Thalente Mbatha',     pos:'MID', club:'Orlando Pirates'},
-      {n:13, name:'Sphephelo Sithole',   pos:'MID', club:'CD Tondela'},
-      {n:24, name:'Jayden Adams',        pos:'MID', club:'Mamelodi Sundowns'},
-      {n:25, name:'Themba Zwane',        pos:'MID', club:'Mamelodi Sundowns'},
-      {n:7,  name:'Oswin Appollis',      pos:'FWD', club:'Orlando Pirates'},
-      {n:9,  name:'Lyle Foster',         pos:'FWD', club:'Burnley'},
-      {n:10, name:'Relebohile Mofokeng', pos:'FWD', club:'Orlando Pirates'},
-      {n:12, name:'Iqraam Rayners',      pos:'FWD', club:'Mamelodi Sundowns'},
-      {n:15, name:'Tshepang Moremi',     pos:'FWD', club:'Orlando Pirates'},
-      {n:17, name:'Evidence Makgopa',    pos:'FWD', club:'Orlando Pirates'},
-      {n:18, name:'Thapelo Maseko',      pos:'FWD', club:'AEL Limassol'},
-      {n:19, name:'Kamogelo Sebelebele', pos:'FWD', club:'Orlando Pirates'},
-    ]
-  },
+  <!-- HEADER -->
+  <header class="gc-header">
+    <div class="gc-hdr-top">
+      <div class="gc-hdr-left">
+        <button class="gc-hamburger" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+        <div>
+          <div class="gc-hdr-logo">🏆 World Cup <span>2026</span></div>
+          <div class="gc-hdr-sub">👕 All 48 Teams</div>
+        </div>
+      </div>
+      <div class="gc-hdr-right"><span class="gc-phase-pill">Group Stage</span></div>
+    </div>
+    <nav class="gc-hdr-nav">
+      <a href="/worldcup2026/index.html"            class="gc-hdr-navlink">🏠 Overview</a>
+      <a href="/worldcup2026/groups/index.html"     class="gc-hdr-navlink">🔢 Groups</a>
+      <a href="/worldcup2026/fixtures/index.html"   class="gc-hdr-navlink">📅 Fixtures</a>
+      <a href="/worldcup2026/standings/index.html"  class="gc-hdr-navlink">📊 Standings</a>
+      <a href="/worldcup2026/bracket/index.html"    class="gc-hdr-navlink">🏅 Bracket</a>
+      <a href="/worldcup2026/venues/index.html"     class="gc-hdr-navlink">🏟️ Venues</a>
+      <a href="/worldcup2026/teams/index.html"      class="gc-hdr-navlink active">👕 Teams</a>
+      <a href="/worldcup2026/news/index.html"       class="gc-hdr-navlink">📰 News</a>
+      <a href="/countdown.html"                     class="gc-hdr-navlink">⏱ Countdown</a>
+      <a href="/worldcup2026/favourites/index.html" class="gc-hdr-navlink">⭐ Favourites</a>
+      <a href="/premier-league/index.html"          class="gc-hdr-navlink">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a>
+    </nav>
+  </header>
 
-  'South Korea': {
-    flag:'🇰🇷', code:'KOR', conf:'AFC', group:'A',
-    coach:'Myung Bo Hong',
-    squad:[
-      {n:1,  name:'Kim Seunggyu',        pos:'GK', club:'FC Tokyo'},
-      {n:21, name:'Song Bumkeun',        pos:'GK', club:'Jeonbuk Motors'},
-      {n:31, name:'Jo Hyeonwoo',         pos:'GK', club:'Ulsan HD'},
-      {n:2,  name:'Lee Hanbeom',         pos:'DEF', club:'FC Midtjylland'},
-      {n:3,  name:'Kim Min-jae',         pos:'DEF', club:'Bayern Munich'},
-      {n:4,  name:'Kim Taehyeon',        pos:'DEF', club:'Kashima Antlers'},
-      {n:13, name:'Lee Taeseok',         pos:'DEF', club:'FK Austria Wien'},
-      {n:15, name:'Cho Wije',            pos:'DEF', club:'Jeonbuk Motors'},
-      {n:19, name:'Kim Moonhwan',        pos:'DEF', club:'Daejeon Citizen'},
-      {n:22, name:'Park Jinseob',        pos:'DEF', club:'Zhejiang FC'},
-      {n:23, name:'Seol Youngwoo',       pos:'DEF', club:'Crvena Zvezda'},
-      {n:24, name:'Jens Castrop',        pos:'DEF', club:'Borussia M\'gladbach'},
-      {n:5,  name:'Hwang Inbeom',        pos:'MID', club:'Feyenoord'},
-      {n:8,  name:'Paik Seungho',        pos:'MID', club:'Birmingham City'},
-      {n:10, name:'Lee Jaesung',         pos:'MID', club:'Mainz 05'},
-      {n:16, name:'Bae Junho',           pos:'MID', club:'Stoke City'},
-      {n:18, name:'Lee Kangin',          pos:'MID', club:'Paris Saint-Germain'},
-      {n:20, name:'Yang Hyunjun',        pos:'MID', club:'Celtic'},
-      {n:25, name:'Kim Jingyu',          pos:'MID', club:'Jeonbuk Motors'},
-      {n:26, name:'Eom Jisung',          pos:'MID', club:'Swansea City'},
-      {n:27, name:'Lee Donggyeong',      pos:'MID', club:'Ulsan HD'},
-      {n:7,  name:'Son Heung-min',       pos:'FWD', club:'LAFC', captain:true},
-      {n:9,  name:'Cho Guesung',         pos:'FWD', club:'FC Midtjylland'},
-      {n:11, name:'Hwang Hee-chan',      pos:'FWD', club:'Wolves'},
-      {n:14, name:'Oh Hyeongyu',         pos:'FWD', club:'Beşiktaş'},
-      {n:17, name:'Lee Gihyuk',          pos:'MID', club:'Gangwon FC'},
-    ]
-  },
+  <!-- PAGE CONTENT — directly after header, no gap -->
+  <main class="gc-content">
 
-  'Czech Republic': {
-    flag:'🇨🇿', code:'CZE', conf:'UEFA', group:'A',
-    coach:'Miroslav Koubek',
-    squad:[
-      {n:1,  name:'Matěj Kovář',         pos:'GK', club:'PSV Eindhoven'},
-      {n:16, name:'Jindřich Staněk',     pos:'GK', club:'Slavia Praha'},
-      {n:23, name:'Lukáš Horníček',      pos:'GK', club:'SC Braga'},
-      {n:2,  name:'Vladimír Coufal',     pos:'DEF', club:'TSG Hoffenheim'},
-      {n:3,  name:'David Jurásek',       pos:'DEF', club:'Slavia Praha'},
-      {n:4,  name:'Tomáš Holeš',         pos:'DEF', club:'Slavia Praha'},
-      {n:5,  name:'Robin Hranáč',        pos:'DEF', club:'TSG Hoffenheim'},
-      {n:6,  name:'David Zima',          pos:'DEF', club:'Slavia Praha'},
-      {n:15, name:'Ladislav Krejčí',     pos:'DEF', club:'Wolves'},
-      {n:21, name:'Štěpán Chaloupek',    pos:'DEF', club:'Slavia Praha'},
-      {n:22, name:'Jaroslav Zelený',     pos:'DEF', club:'Sparta Praha'},
-      {n:24, name:'David Douděra',       pos:'DEF', club:'Slavia Praha'},
-      {n:8,  name:'Vladimír Darida',     pos:'MID', club:'FC Hradec Králové'},
-      {n:11, name:'Lukáš Červ',          pos:'MID', club:'Viktoria Plzeň'},
-      {n:14, name:'Lukáš Provod',        pos:'MID', club:'Slavia Praha'},
-      {n:17, name:'Michal Sadílek',      pos:'MID', club:'Slavia Praha'},
-      {n:25, name:'Alexandr Sojka',      pos:'MID', club:'Viktoria Plzeň'},
-      {n:26, name:'Hugo Sochůrek',       pos:'MID', club:'Sparta Praha'},
-      {n:7,  name:'Adam Hložek',         pos:'FWD', club:'TSG Hoffenheim'},
-      {n:9,  name:'Jan Kuchta',          pos:'FWD', club:'Sparta Praha'},
-      {n:10, name:'Patrik Schick',       pos:'FWD', club:'Bayer Leverkusen'},
-      {n:12, name:'Mojmír Chytil',       pos:'FWD', club:'Slavia Praha'},
-      {n:13, name:'Pavel Šulc',          pos:'FWD', club:'Olympique Lyonnais'},
-      {n:18, name:'Tomáš Chorý',         pos:'FWD', club:'Slavia Praha'},
-      {n:19, name:'Denis Višinský',      pos:'FWD', club:'Viktoria Plzeň'},
-      {n:20, name:'Tomáš Souček',        pos:'MID', club:'West Ham'},
-    ]
-  },
+    <div class="hero-box">
+      <h1>👕 FIFA World Cup 2026 — All 48 Teams</h1>
+      <p>All qualified nations · 12 groups · 6 confederations · Alphabetical order</p>
+      <div class="hero-meta">
+        <span>📅 11 Jun – 19 Jul 2026</span>
+        <span>🇺🇸 USA · 🇲🇽 Mexico · 🇨🇦 Canada</span>
+        <span>👕 48 Teams · 12 Groups</span>
+      </div>
+    </div>
 
-  /* ── GROUP B ── */
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <input class="t-search" id="teamSearch" type="text"
+             placeholder="Search teams or players..." oninput="renderTeams()" autocomplete="off">
+    </div>
 
-  'Canada': {
-    flag:'🇨🇦', code:'CAN', conf:'CONCACAF', group:'B', host:true,
-    coach:'Jesse Marsch',
-    squad:[
-      {n:1,  name:'Dayne St. Clair',     pos:'GK', club:'Inter Miami'},
-      {n:16, name:'Maxime Crépeau',      pos:'GK', club:'Orlando City'},
-      {n:18, name:'Owen Goodman',        pos:'GK', club:'Barnsley'},
-      {n:2,  name:'Alistair Johnston',   pos:'DEF', club:'Celtic'},
-      {n:3,  name:'Alphonso Davies',     pos:'DEF', club:'Bayern Munich'},
-      {n:4,  name:'Ale Jones',           pos:'DEF', club:'Middlesbrough'},
-      {n:5,  name:'Joel Waterman',       pos:'DEF', club:'Chicago Fire'},
-      {n:12, name:'Derek Cornelius',     pos:'DEF', club:'Rangers FC'},
-      {n:14, name:'Moïse Bombito',       pos:'DEF', club:'OGC Nice'},
-      {n:22, name:'Richie Laryea',       pos:'DEF', club:'Toronto FC'},
-      {n:23, name:'Niko Sigur',          pos:'DEF', club:'HNK Hajduk Split'},
-      {n:25, name:'Luc de Fougerolles',  pos:'DEF', club:'FCV Dender EH'},
-      {n:6,  name:'Stephen Eustáquio',   pos:'MID', club:'LAFC'},
-      {n:7,  name:'Mathieu Choinière',   pos:'MID', club:'LAFC'},
-      {n:8,  name:'Ismael Koné',         pos:'MID', club:'US Sassuolo'},
-      {n:10, name:'Liam Millar',         pos:'MID', club:'Hull City'},
-      {n:11, name:'Jacob Shaffelburg',   pos:'MID', club:'LAFC'},
-      {n:15, name:'Jonathan Osorio',     pos:'MID', club:'Toronto FC'},
-      {n:24, name:'Nathan Saliba',       pos:'MID', club:'RSC Anderlecht'},
-      {n:26, name:'Marcelo Flores',      pos:'MID', club:'Tigres UANL'},
-      {n:9,  name:'Cyle Larin',          pos:'FWD', club:'Southampton'},
-      {n:13, name:'Jonathan David',      pos:'FWD', club:'Juventus'},
-      {n:17, name:'Tajon Buchanan',      pos:'FWD', club:'Villarreal'},
-      {n:19, name:'Ali Ahmed',           pos:'FWD', club:'Norwich City'},
-      {n:20, name:'Tani Oluwaseyi',      pos:'FWD', club:'Villarreal'},
-      {n:21, name:'Promise David',       pos:'FWD', club:'Union Saint-Gilloise'},
-    ]
-  },
+    <!-- CONFEDERATION FILTER -->
+    <div class="conf-filter" id="confFilter"></div>
 
-  'Bosnia & Herzegovina': {
-    flag:'🇧🇦', code:'BIH', conf:'UEFA', group:'B',
-    coach:'Sergej Barbarez',
-    squad:[
-      {n:1,  name:'Nikola Vasilj',       pos:'GK', club:'FC St. Pauli'},
-      {n:22, name:'Martin Zlomislić',    pos:'GK', club:'HNK Rijeka'},
-      {n:23, name:'Mladen Jurkas',       pos:'GK', club:'FK Borac Banja Luka'},
-      {n:2,  name:'Amar Dedić',          pos:'DEF', club:'SL Benfica'},
-      {n:3,  name:'Sead Kolašinac',      pos:'DEF', club:'Atalanta'},
-      {n:4,  name:'Nikola Katić',        pos:'DEF', club:'FC Schalke 04'},
-      {n:5,  name:'Tarik Muharemović',   pos:'DEF', club:'US Sassuolo'},
-      {n:6,  name:'Dennis Hadžikadunić', pos:'DEF', club:'UC Sampdoria'},
-      {n:15, name:'Nihad Mujakić',       pos:'DEF', club:'Gaziantep FK'},
-      {n:18, name:'Stjepan Radeljić',    pos:'DEF', club:'HNK Rijeka'},
-      {n:24, name:'Nidal Čelik',         pos:'DEF', club:'RC Lens'},
-      {n:7,  name:'Benjamin Tahirović',  pos:'MID', club:'Brøndby IF'},
-      {n:8,  name:'Armin Gigović',       pos:'MID', club:'BSC Young Boys'},
-      {n:10, name:'Ivan Šunjić',         pos:'MID', club:'Pafos FC'},
-      {n:11, name:'Amir Hadžiahmetović', pos:'MID', club:'Hull City'},
-      {n:13, name:'Ivan Bašić',          pos:'MID', club:'FC Astana'},
-      {n:14, name:'Dženis Burnić',       pos:'MID', club:'Karlsruher SC'},
-      {n:17, name:'Amar Memić',          pos:'MID', club:'Viktoria Plzeň'},
-      {n:26, name:'Ermin Mahmić',        pos:'MID', club:'FC Slovan Liberec'},
-      {n:9,  name:'Edin Džeko',          pos:'FWD', club:'FC Schalke 04'},
-      {n:12, name:'Ermedin Demirović',   pos:'FWD', club:'VfB Stuttgart'},
-      {n:16, name:'Samed Baždar',        pos:'FWD', club:'Jagiellonia Białystok'},
-      {n:19, name:'Haris Tabaković',     pos:'FWD', club:'Borussia M\'gladbach'},
-      {n:20, name:'Kerim Alajbegović',   pos:'FWD', club:'FC Red Bull Salzburg'},
-      {n:21, name:'Esmir Bajraktarević', pos:'FWD', club:'PSV Eindhoven'},
-      {n:25, name:'Jovo Lukić',          pos:'FWD', club:'Universitatea Cluj'},
-    ]
-  },
+    <!-- TEAMS OUTPUT -->
+    <div id="teamsOut"></div>
 
-  'Qatar': {
-    flag:'🇶🇦', code:'QAT', conf:'AFC', group:'B',
-    coach:'Julen Lopetegui',
-    squad:[
-      {n:1,  name:'Meshaal Barsham',     pos:'GK', club:'Al Sadd'},
-      {n:21, name:'Salah Zakaria',       pos:'GK', club:'Al Duhail'},
-      {n:22, name:'Mahmoud Abunada',     pos:'GK', club:'Al Rayyan'},
-      {n:2,  name:'Pedro Miguel',        pos:'DEF', club:'Al Sadd'},
-      {n:3,  name:'Lucas Mendes',        pos:'DEF', club:'Al Wakrah'},
-      {n:4,  name:'Boualem Khoukhi',     pos:'DEF', club:'Al Sadd'},
-      {n:5,  name:'Jassem Gaber',        pos:'DEF', club:'Al Rayyan'},
-      {n:13, name:'Ayoub Aloui',         pos:'DEF', club:'Al Gharafa'},
-      {n:14, name:'Homam Ahmed',         pos:'DEF', club:'Cultural Leonesa'},
-      {n:16, name:'Issa Laye Gueye',     pos:'DEF', club:'Al Arabi'},
-      {n:18, name:'Sultan Albrake',      pos:'DEF', club:'Al Duhail'},
-      {n:25, name:'Alhashmi Alhussein',  pos:'DEF', club:'Al Arabi'},
-      {n:6,  name:'Abdulaziz Hatem',     pos:'MID', club:'Al Rayyan'},
-      {n:11, name:'Karim Boudiaf',       pos:'MID', club:'Al Duhail'},
-      {n:12, name:'Assim Madibo',        pos:'MID', club:'Al Wakrah'},
-      {n:17, name:'Ahmed Alganehi',      pos:'MID', club:'Al Gharafa'},
-      {n:20, name:'Ahmed Fathy',         pos:'MID', club:'Al Arabi'},
-      {n:7,  name:'Ahmed Alaaeldin',     pos:'FWD', club:'Al Rayyan'},
-      {n:8,  name:'Akram Afif',          pos:'FWD', club:'Al Sadd'},
-      {n:9,  name:'Almoez Ali',          pos:'FWD', club:'Al Duhail'},
-      {n:10, name:'Hassan Alhaydos',     pos:'FWD', club:'Al Sadd'},
-      {n:15, name:'Edmilson Junior',     pos:'FWD', club:'Al Duhail'},
-      {n:19, name:'Mohammed Muntari',    pos:'FWD', club:'Al Gharafa'},
-      {n:23, name:'Yusuf Abdurisag',     pos:'FWD', club:'Al Wakrah'},
-      {n:24, name:'Tahsin Jamshid',      pos:'FWD', club:'Al Duhail'},
-      {n:26, name:'Mohamed Manai',       pos:'FWD', club:'Al Shamal'},
-    ]
-  },
+  </main>
 
-  'Switzerland': {
-    flag:'🇨🇭', code:'SUI', conf:'UEFA', group:'B',
-    coach:'Murat Yakin',
-    squad:[
-      {n:1,  name:'Gregor Kobel',        pos:'GK', club:'Borussia Dortmund'},
-      {n:12, name:'Yvon Mvogo',          pos:'GK', club:'FC Lorient'},
-      {n:21, name:'Marvin Keller',       pos:'GK', club:'BSC Young Boys'},
-      {n:2,  name:'Silvan Widmer',       pos:'DEF', club:'Mainz 05'},
-      {n:3,  name:'Ricardo Rodriguez',   pos:'DEF', club:'Real Betis'},
-      {n:4,  name:'Nico Elvedi',         pos:'DEF', club:'Borussia M\'gladbach'},
-      {n:5,  name:'Manuel Akanji',       pos:'DEF', club:'Inter Milan'},
-      {n:13, name:'Eray Cömert',         pos:'DEF', club:'Valencia CF'},
-      {n:20, name:'Miro Muheim',         pos:'DEF', club:'Hamburger SV'},
-      {n:22, name:'Aurèle Amenda',       pos:'DEF', club:'Eintracht Frankfurt'},
-      {n:24, name:'Luca Jaquez',         pos:'DEF', club:'VfB Stuttgart'},
-      {n:6,  name:'Denis Zakaria',       pos:'MID', club:'AS Monaco'},
-      {n:8,  name:'Remo Freuler',        pos:'MID', club:'Bologna FC'},
-      {n:10, name:'Granit Xhaka',        pos:'MID', club:'Sunderland'},
-      {n:14, name:'Ardon Jashari',       pos:'MID', club:'AC Milan'},
-      {n:15, name:'Djibril Sow',         pos:'MID', club:'Sevilla FC'},
-      {n:16, name:'Fabian Rieder',       pos:'MID', club:'FC Augsburg'},
-      {n:18, name:'Michel Aebischer',    pos:'MID', club:'Pisa SC'},
-      {n:19, name:'Johan Manzambi',      pos:'MID', club:'SC Freiburg'},
-      {n:7,  name:'Breel Embolo',        pos:'FWD', club:'Stade Rennais'},
-      {n:9,  name:'Ruben Vargas',        pos:'FWD', club:'Sevilla FC'},
-      {n:11, name:'Dan Ndoye',           pos:'FWD', club:'Nottingham Forest'},
-      {n:17, name:'Christian Fassnacht', pos:'FWD', club:'BSC Young Boys'},
-      {n:23, name:'Noah Okafor',         pos:'FWD', club:'Leeds United'},
-      {n:25, name:'Zeki Amdouni',        pos:'FWD', club:'Burnley'},
-      {n:26, name:'Cédric Itten',        pos:'FWD', club:'Fortuna Düsseldorf'},
-    ]
-  },
+  <!-- AD BAR -->
+  <div class="gc-ad-bar">
+    🔒 <strong>NordVPN</strong> — 75% off + 3 months FREE
+    <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#2563eb;color:white;padding:3px 10px;border-radius:20px;font-weight:800;text-decoration:none;margin:0 6px">Get Deal →</a>
+    <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:#2563eb;font-weight:800;text-decoration:none">NordPass</a>
+    <span style="color:#94a3b8;font-size:10px">#AD · <a href="/disclaimer.html" style="color:#94a3b8">Affiliate link</a></span>
+  </div>
 
-  /* ── GROUP C ── */
+  <!-- FOOTER -->
+  <footer class="gc-footer">
+    <div class="gc-footer-links">
+      <a href="/about.html">About</a><a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a>
+      <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
+    </div>
+    <div class="gc-footer-copy">
+      © 2026 <strong style="color:#64748b">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League<br>
+      Schedule source: FIFA.com · Data: football-data.org
+    </div>
+  </footer>
 
-  'Brazil': {
-    flag:'🇧🇷', code:'BRA', conf:'CONMEBOL', group:'C',
-    coach:'Carlo Ancelotti',
-    squad:[
-      {n:1,  name:'Alisson',             pos:'GK', club:'Liverpool'},
-      {n:12, name:'Weverton',            pos:'GK', club:'Grêmio'},
-      {n:23, name:'Ederson',             pos:'GK', club:'Fenerbahçe'},
-      {n:2,  name:'Wesley',              pos:'DEF', club:'AS Roma'},
-      {n:3,  name:'Gabriel Magalhães',   pos:'DEF', club:'Arsenal'},
-      {n:4,  name:'Marquinhos',          pos:'DEF', club:'PSG', captain:true},
-      {n:6,  name:'Alex Sandro',         pos:'DEF', club:'Flamengo'},
-      {n:13, name:'Danilo',              pos:'DEF', club:'Flamengo'},
-      {n:14, name:'Bremer',              pos:'DEF', club:'Juventus'},
-      {n:15, name:'Léo Pereira',         pos:'DEF', club:'Flamengo'},
-      {n:16, name:'Douglas Santos',      pos:'DEF', club:'Zenit'},
-      {n:24, name:'Roger Ibañez',        pos:'DEF', club:'Al Ahli'},
-      {n:5,  name:'Casemiro',            pos:'MID', club:'Manchester United'},
-      {n:8,  name:'Bruno Guimarães',     pos:'MID', club:'Newcastle'},
-      {n:17, name:'Fabinho',             pos:'MID', club:'Al Ittihad'},
-      {n:18, name:'Danilo Santos',       pos:'MID', club:'Botafogo'},
-      {n:20, name:'Lucas Paquetá',       pos:'MID', club:'Flamengo'},
-      {n:7,  name:'Vinicius Jr.',        pos:'FWD', club:'Real Madrid'},
-      {n:9,  name:'Matheus Cunha',       pos:'FWD', club:'Manchester United'},
-      {n:10, name:'Neymar Jr',           pos:'FWD', club:'Santos'},
-      {n:11, name:'Raphinha',            pos:'FWD', club:'Barcelona'},
-      {n:19, name:'Luiz Henrique',       pos:'FWD', club:'Zenit'},
-      {n:21, name:'Endrick',             pos:'FWD', club:'Olympique Lyonnais'},
-      {n:22, name:'Gabriel Martinelli',  pos:'FWD', club:'Arsenal'},
-      {n:25, name:'Igor Thiago',         pos:'FWD', club:'Brentford'},
-      {n:26, name:'Rayan',               pos:'FWD', club:'Bournemouth'},
-    ]
-  },
+</div><!-- /gc-main -->
 
-  'Morocco': {
-    flag:'🇲🇦', code:'MAR', conf:'CAF', group:'C',
-    coach:'Mohamed Ouahbi',
-    squad:[
-      {n:1,  name:'Yassine Bounou',      pos:'GK', club:'Al Hilal'},
-      {n:12, name:'Munir El Kajoui',     pos:'GK', club:'RS Berkane'},
-      {n:22, name:'Ahmed Reda Tagnaouti',pos:'GK', club:'ASFAR'},
-      {n:2,  name:'Achraf Hakimi',       pos:'DEF', club:'PSG'},
-      {n:3,  name:'Nayef Aguerd',        pos:'DEF', club:'Olympique Marseille'},
-      {n:4,  name:'Noussair Mazraoui',   pos:'DEF', club:'Manchester United'},
-      {n:5,  name:'Zakaria El Ouahdi',   pos:'DEF', club:'KRC Genk'},
-      {n:13, name:'Issa Diop',           pos:'DEF', club:'Fulham'},
-      {n:14, name:'Chadi Riad',          pos:'DEF', club:'Crystal Palace'},
-      {n:18, name:'Youssef Belammari',   pos:'DEF', club:'Al Ahly'},
-      {n:19, name:'Redouane Halhal',     pos:'DEF', club:'KV Mechelen'},
-      {n:25, name:'Anass Salah Eddine',  pos:'DEF', club:'PSV Eindhoven'},
-      {n:6,  name:'Sofyan Amrabat',      pos:'MID', club:'Real Betis'},
-      {n:7,  name:'Ayyoub Bouaddi',      pos:'MID', club:'Lille OSC'},
-      {n:8,  name:'Azzedine Ounahi',     pos:'MID', club:'Girona FC'},
-      {n:10, name:'Ismael Saibari',      pos:'MID', club:'PSV Eindhoven'},
-      {n:15, name:'Chemsdine Talbi',     pos:'MID', club:'Sunderland'},
-      {n:16, name:'Bilal El Khannouss',  pos:'MID', club:'VfB Stuttgart'},
-      {n:21, name:'Samir El Mourabet',   pos:'MID', club:'RC Strasbourg'},
-      {n:24, name:'Gessime Yassine',     pos:'MID', club:'RC Strasbourg'},
-      {n:9,  name:'Brahim Díaz',         pos:'FWD', club:'Real Madrid'},
-      {n:11, name:'Abde Ezzalzouli',     pos:'FWD', club:'Real Betis'},
-      {n:17, name:'Ayoub El Kaabi',      pos:'FWD', club:'Olympiacos'},
-      {n:20, name:'Souane Rahimi',       pos:'FWD', club:'Al Ain'},
-      {n:23, name:'Ayoube Amaimouni',    pos:'FWD', club:'Eintracht Frankfurt'},
-      {n:26, name:'Neil El Aynaoui',     pos:'MID', club:'AS Roma'},
-    ]
-  },
+<!-- COOKIE BANNER -->
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:Verdana,sans-serif">
+  <div style="font-size:11px;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb;text-decoration:none">Cookie Policy</a></div>
+  <div style="display:flex;gap:8px">
+    <button onclick="gcAccept()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:Verdana,sans-serif">Accept ✓</button>
+    <button onclick="gcDecline()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Verdana,sans-serif">Decline</button>
+  </div>
+</div>
 
-  'Haiti': {
-    flag:'🇭🇹', code:'HAI', conf:'CONCACAF', group:'C',
-    coach:'Sébastien Migné',
-    squad:[
-      {n:1,  name:'Johny Placide',       pos:'GK', club:'SC Bastia'},
-      {n:12, name:'Alexandre Pierre',    pos:'GK', club:'FC Sochaux'},
-      {n:23, name:'Josue Duverger',      pos:'GK', club:'FC Cosmos Koblenz'},
-      {n:2,  name:'Carlens Arcus',       pos:'DEF', club:'Angers SCO'},
-      {n:3,  name:'Ricardo Ade',         pos:'DEF', club:'LDU Quito'},
-      {n:4,  name:'Martin Experience',   pos:'DEF', club:'AS Nancy'},
-      {n:5,  name:'Hannes Delcroix',     pos:'DEF', club:'FC Lugano'},
-      {n:13, name:'Markhus Lacroix',     pos:'DEF', club:'Colorado Springs'},
-      {n:20, name:'Keeto Thermoncy',     pos:'DEF', club:'BSC Young Boys'},
-      {n:22, name:'Jean-Kévin Duverne',  pos:'DEF', club:'KAA Gent'},
-      {n:24, name:'Wilguens Paugain',    pos:'DEF', club:'SV Zulte Waregem'},
-      {n:6,  name:'Carl Sainte',         pos:'MID', club:'El Paso Locomotive'},
-      {n:10, name:'Jean-Ricner Bellegarde', pos:'MID', club:'Wolves'},
-      {n:14, name:'Leverton Pierre',     pos:'MID', club:'FC Vizela'},
-      {n:17, name:'Danley Jean Jacques', pos:'MID', club:'Philadelphia Union'},
-      {n:21, name:'Dominique Simon',     pos:'MID', club:'FC Tatran Prešov'},
-      {n:25, name:'Woodensky Pierre',    pos:'MID', club:'Violette AC'},
-      {n:7,  name:'Duckens Nazon',       pos:'FWD', club:'Esteghlal Tehran'},
-      {n:9,  name:'Lenny Joseph',        pos:'FWD', club:'Ferencvárosi TC'},
-      {n:11, name:'Derrick Etienne Jr.', pos:'FWD', club:'Toronto FC'},
-      {n:15, name:'Ruben Providence',    pos:'FWD', club:'Almere City'},
-      {n:16, name:'Louicius Deedson',    pos:'FWD', club:'FC Dallas'},
-      {n:18, name:'Wilson Isidor',       pos:'FWD', club:'Sunderland'},
-      {n:19, name:'Yassin Fortune',      pos:'FWD', club:'FC Vizela'},
-      {n:26, name:'Frantzdy Pierrot',    pos:'FWD', club:'Çaykur Rizespor'},
-      {n:27, name:'Josue Casimir',       pos:'FWD', club:'AJ Auxerre'},
-    ]
-  },
+<!-- DATA SCRIPTS -->
+<script src="/js/worldcup-data.js"></script>
+<script src="/js/worldcup-teams.js"></script>
+<script>
 
-  'Scotland': {
-    flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', code:'SCO', conf:'UEFA', group:'C',
-    coach:'Steve Clarke',
-    squad:[
-      {n:1,  name:'Angus Gunn',          pos:'GK', club:'Nottingham Forest'},
-      {n:12, name:'Liam Kelly',          pos:'GK', club:'Rangers FC'},
-      {n:21, name:'Craig Gordon',        pos:'GK', club:'Heart of Midlothian'},
-      {n:2,  name:'Aaron Hickey',        pos:'DEF', club:'Brentford'},
-      {n:3,  name:'Andy Robertson',      pos:'DEF', club:'Liverpool', captain:true},
-      {n:5,  name:'Grant Hanley',        pos:'DEF', club:'Hibernian'},
-      {n:6,  name:'Kieran Tierney',      pos:'DEF', club:'Celtic'},
-      {n:13, name:'Jack Hendry',         pos:'DEF', club:'Al Ettifaq'},
-      {n:15, name:'John Souttar',        pos:'DEF', club:'Rangers FC'},
-      {n:16, name:'Dominic Hyam',        pos:'DEF', club:'Wrexham'},
-      {n:22, name:'Nathan Patterson',    pos:'DEF', club:'Everton'},
-      {n:24, name:'Anthony Ralston',     pos:'DEF', club:'Celtic'},
-      {n:26, name:'Scott McKenna',       pos:'DEF', club:'GNK Dinamo Zagreb'},
-      {n:4,  name:'Scott McTominay',     pos:'MID', club:'SSC Napoli'},
-      {n:7,  name:'John McGinn',         pos:'MID', club:'Aston Villa'},
-      {n:11, name:'Ryan Christie',       pos:'MID', club:'Bournemouth'},
-      {n:14, name:'Lewis Ferguson',      pos:'MID', club:'Bologna FC'},
-      {n:17, name:'Kenny McLean',        pos:'MID', club:'Norwich City'},
-      {n:18, name:'Tyler Fletcher',      pos:'MID', club:'Manchester United'},
-      {n:9,  name:'Lyndon Dykes',        pos:'FWD', club:'Charlton Athletic'},
-      {n:10, name:'Che Adams',           pos:'FWD', club:'Torino FC'},
-      {n:19, name:'Ben Gannon-Doak',     pos:'FWD', club:'Bournemouth'},
-      {n:20, name:'Ross Stewart',        pos:'FWD', club:'Southampton'},
-      {n:23, name:'George Hirst',        pos:'FWD', club:'Ipswich Town'},
-      {n:25, name:'Lawrence Shankland',  pos:'FWD', club:'Heart of Midlothian'},
-      {n:27, name:'Findlay Curtis',      pos:'FWD', club:'Kilmarnock'},
-    ]
-  },
+/* ── SIDEBAR ── */
+function toggleSidebar(){var s=document.getElementById('gcSidebar'),o=document.getElementById('sbOverlay'),op=s.classList.toggle('open');o.classList.toggle('show',op);document.body.style.overflow=op?'hidden':'';}
+function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow='';}
+function toggleSub(id){document.getElementById(id).classList.toggle('open')}
+function gcAccept(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').style.display='none';}
+function gcDecline(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').style.display='none';}
+if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex';},1500);}
 
-  /* ── GROUP D ── */
+var activeConf = 'ALL';
+var openCards  = {};
 
-  'USA': {
-    flag:'🇺🇸', code:'USA', conf:'CONCACAF', group:'D', host:true,
-    coach:'Mauricio Pochettino',
-    squad:[
-      {n:1,  name:'Matt Turner',         pos:'GK', club:'New England Revolution'},
-      {n:24, name:'Matt Freese',         pos:'GK', club:'New York City FC'},
-      {n:25, name:'Chris Brady',         pos:'GK', club:'Chicago Fire'},
-      {n:2,  name:'Sergino Dest',        pos:'DEF', club:'PSV Eindhoven'},
-      {n:3,  name:'Antonee Robinson',    pos:'DEF', club:'Fulham'},
-      {n:4,  name:'Chris Richards',      pos:'DEF', club:'Crystal Palace'},
-      {n:5,  name:'Auston Trusty',       pos:'DEF', club:'Celtic'},
-      {n:12, name:'Miles Robinson',      pos:'DEF', club:'FC Cincinnati'},
-      {n:13, name:'Tim Ream',            pos:'DEF', club:'Charlotte FC'},
-      {n:16, name:'Alex Freeman',        pos:'DEF', club:'Villarreal'},
-      {n:18, name:'Max Arfsten',         pos:'DEF', club:'Columbus Crew'},
-      {n:22, name:'Mark McKenzie',       pos:'DEF', club:'Toulouse FC'},
-      {n:23, name:'Joe Scally',          pos:'DEF', club:'Borussia M\'gladbach'},
-      {n:6,  name:'Tyler Adams',         pos:'MID', club:'Bournemouth'},
-      {n:7,  name:'Giovanni Reyna',      pos:'MID', club:'Borussia M\'gladbach'},
-      {n:8,  name:'Weston McKennie',     pos:'MID', club:'Juventus'},
-      {n:14, name:'Sebastian Berhalter', pos:'MID', club:'Vancouver Whitecaps'},
-      {n:15, name:'Cristian Roldan',     pos:'MID', club:'Seattle Sounders'},
-      {n:17, name:'Malik Tillman',       pos:'MID', club:'Bayer Leverkusen'},
-      {n:10, name:'Christian Pulisic',   pos:'FWD', club:'AC Milan', captain:true},
-      {n:9,  name:'Ricardo Pepi',        pos:'FWD', club:'PSV Eindhoven'},
-      {n:11, name:'Brenden Aaronson',    pos:'FWD', club:'Leeds United'},
-      {n:19, name:'Haji Wright',         pos:'FWD', club:'Coventry City'},
-      {n:20, name:'Folarin Balogun',     pos:'FWD', club:'AS Monaco'},
-      {n:21, name:'Timothy Weah',        pos:'FWD', club:'Olympique Marseille'},
-      {n:26, name:'Alex Zendejas',       pos:'FWD', club:'Club América'},
-    ]
-  },
+/* Build confederation filter */
+function buildFilter(){
+  var confs = {};
+  WC26.teams.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
+  var icons = {UEFA:'🔵',CAF:'🟢',AFC:'🟠',CONCACAF:'🔴',CONMEBOL:'🟡',OFC:'⚪'};
+  var html = '<button class="cf-btn active" onclick="setConf(\'ALL\',this)">🌍 All (48)</button>';
+  Object.keys(confs).sort().forEach(function(c){
+    html += '<button class="cf-btn" onclick="setConf(\''+c+'\',this)">'+(icons[c]||'🌍')+' '+c+' ('+confs[c]+')</button>';
+  });
+  document.getElementById('confFilter').innerHTML = html;
+}
 
-  'Paraguay': {
-    flag:'🇵🇾', code:'PAR', conf:'CONMEBOL', group:'D',
-    coach:'Gustavo Alfaro',
-    squad:[
-      {n:1,  name:'Gatito Fernández',    pos:'GK', club:'Cerro Porteño'},
-      {n:12, name:'Orlando Gill',        pos:'GK', club:'San Lorenzo'},
-      {n:22, name:'Gastón Olveira',      pos:'GK', club:'Club Olimpia'},
-      {n:2,  name:'Gustavo Velázquez',   pos:'DEF', club:'Cerro Porteño'},
-      {n:3,  name:'Fabián Balbuena',     pos:'DEF', club:'Grêmio'},
-      {n:4,  name:'Omar Alderete',       pos:'DEF', club:'Sunderland'},
-      {n:5,  name:'Júnior Alonso',       pos:'DEF', club:'Atlético Mineiro'},
-      {n:6,  name:'Gustavo Gómez',       pos:'DEF', club:'SE Palmeiras'},
-      {n:13, name:'Jose Cáceres',        pos:'DEF', club:'Dynamo Moscow'},
-      {n:20, name:'José Canalé',         pos:'DEF', club:'CA Lanús'},
-      {n:26, name:'Alexandro Maidana',   pos:'DEF', club:'CA Talleres'},
-      {n:8,  name:'Diego Gómez',         pos:'MID', club:'Brighton & Hove Albion'},
-      {n:10, name:'Miguel Almirón',      pos:'MID', club:'Atlanta United'},
-      {n:11, name:'Ramón Sosa',          pos:'MID', club:'SE Palmeiras'},
-      {n:14, name:'Andrés Cubas',        pos:'MID', club:'Vancouver Whitecaps'},
-      {n:15, name:'Mauricio',            pos:'MID', club:'SE Palmeiras'},
-      {n:16, name:'Damián Bobadilla',    pos:'MID', club:'São Paulo FC'},
-      {n:17, name:'Braian Ojeda',        pos:'MID', club:'Orlando City'},
-      {n:23, name:'Matias Galarza',      pos:'MID', club:'Atlanta United'},
-      {n:24, name:'Gustavo Caballero',   pos:'MID', club:'Portsmouth FC'},
-      {n:7,  name:'Antonio Sanabria',    pos:'FWD', club:'US Cremonese'},
-      {n:9,  name:'Alejandro Romero',    pos:'FWD', club:'Al Ain'},
-      {n:18, name:'Alex Arce',           pos:'FWD', club:'CS Independiente Rivadavia'},
-      {n:19, name:'Julio Enciso',        pos:'FWD', club:'RC Strasbourg'},
-      {n:21, name:'Gabriel Avalos',      pos:'FWD', club:'CA Independiente'},
-      {n:25, name:'Isidro Pitta',        pos:'FWD', club:'Red Bull Bragantino'},
-    ]
-  },
+function setConf(conf, btn){
+  activeConf = conf;
+  document.querySelectorAll('.cf-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderTeams();
+}
 
-  'Australia': {
-    flag:'🇦🇺', code:'AUS', conf:'AFC', group:'D',
-    coach:'Tony Popovic',
-    squad:[
-      {n:1,  name:'Mathew Ryan',         pos:'GK', club:'Levante UD'},
-      {n:12, name:'Paul Izzo',           pos:'GK', club:'Randers FC'},
-      {n:18, name:'Patrick Beach',       pos:'GK', club:'Melbourne City'},
-      {n:2,  name:'Milos Degenek',       pos:'DEF', club:'APOEL FC'},
-      {n:3,  name:'Aziz Behich',         pos:'DEF', club:'Melbourne City'},
-      {n:4,  name:'Harry Souttar',       pos:'DEF', club:'Leicester City'},
-      {n:5,  name:'Cameron Burgess',     pos:'DEF', club:'Swansea City'},
-      {n:6,  name:'Jason Geria',         pos:'DEF', club:'Albirex Niigata'},
-      {n:13, name:'Kai Trewin',          pos:'DEF', club:'New York City FC'},
-      {n:15, name:'Alessandro Circati',  pos:'DEF', club:'Parma'},
-      {n:16, name:'Jacob Italiano',      pos:'DEF', club:'Grazer AK'},
-      {n:21, name:'Jordan Bos',          pos:'DEF', club:'Feyenoord'},
-      {n:25, name:'Lucas Herrington',    pos:'DEF', club:'Colorado Rapids'},
-      {n:7,  name:'Connor Metcalfe',     pos:'MID', club:'FC St. Pauli'},
-      {n:8,  name:'Jackson Irvine',      pos:'MID', club:'FC St. Pauli'},
-      {n:11, name:'Aiden O\'Neill',      pos:'MID', club:'New York City FC'},
-      {n:14, name:'Cameron Devlin',      pos:'MID', club:'Heart of Midlothian'},
-      {n:22, name:'Paul Okon-Engstler',  pos:'MID', club:'Sydney FC'},
-      {n:9,  name:'Mathew Leckie',       pos:'FWD', club:'Melbourne City'},
-      {n:10, name:'Ajdin Hrustic',       pos:'FWD', club:'SC Heracles Almelo'},
-      {n:17, name:'Nestory Irankunda',   pos:'FWD', club:'Watford FC'},
-      {n:19, name:'Awer Mabil',          pos:'FWD', club:'CD Castellón'},
-      {n:20, name:'Cristian Volpato',    pos:'FWD', club:'US Sassuolo'},
-      {n:23, name:'Nishan Velupillay',   pos:'FWD', club:'Melbourne Victory'},
-      {n:24, name:'Mohamed Toure',       pos:'FWD', club:'Norwich City'},
-      {n:26, name:'Tete Yengi',          pos:'FWD', club:'FC Machida Zelvia'},
-    ]
-  },
+/* slug helper — used for DOM ids only, never displayed */
+function slug(name){ return name.toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
 
-  'Turkey': {
-    flag:'🇹🇷', code:'TUR', conf:'UEFA', group:'D',
-    coach:'Vincenzo Montella',
-    squad:[
-      {n:1,  name:'Mert Günok',          pos:'GK', club:'Fenerbahçe'},
-      {n:12, name:'Altay Bayındır',      pos:'GK', club:'Manchester United'},
-      {n:23, name:'Uğurcan Çakır',       pos:'GK', club:'Galatasaray'},
-      {n:2,  name:'Zeki Çelik',          pos:'DEF', club:'AS Roma'},
-      {n:3,  name:'Ferdi Kadıoğlu',      pos:'DEF', club:'Brighton & Hove Albion'},
-      {n:4,  name:'Merih Demiral',       pos:'DEF', club:'Al Ahli'},
-      {n:5,  name:'Çağlar Söyüncü',      pos:'DEF', club:'Fenerbahçe'},
-      {n:13, name:'Eren Elmalı',         pos:'DEF', club:'Galatasaray'},
-      {n:14, name:'Abdülkerim Bardakçı', pos:'DEF', club:'Galatasaray'},
-      {n:15, name:'Ozan Kabak',          pos:'DEF', club:'TSG Hoffenheim'},
-      {n:18, name:'Mert Müldür',         pos:'DEF', club:'Fenerbahçe'},
-      {n:22, name:'Samet Akaydın',       pos:'DEF', club:'Çaykur Rizespor'},
-      {n:6,  name:'Hakan Çalhanoğlu',    pos:'MID', club:'Inter Milan'},
-      {n:8,  name:'Salih Özcan',         pos:'MID', club:'Borussia Dortmund'},
-      {n:10, name:'Orkun Kökçü',         pos:'MID', club:'Beşiktaş'},
-      {n:16, name:'İsmail Yüksek',       pos:'MID', club:'Fenerbahçe'},
-      {n:17, name:'İrfan Kahveci',       pos:'MID', club:'Kasımpaşa'},
-      {n:21, name:'Kaan Ayhan',          pos:'MID', club:'Galatasaray'},
-      {n:7,  name:'Kerem Aktürkoğlu',    pos:'FWD', club:'Fenerbahçe'},
-      {n:9,  name:'Arda Güler',          pos:'FWD', club:'Real Madrid'},
-      {n:11, name:'Kenan Yıldız',        pos:'FWD', club:'Juventus'},
-      {n:19, name:'Yunus Akgün',         pos:'FWD', club:'Galatasaray'},
-      {n:20, name:'Barış Alper Yılmaz',  pos:'FWD', club:'Galatasaray'},
-      {n:24, name:'Deniz Gül',           pos:'FWD', club:'FC Porto'},
-      {n:25, name:'Oğuz Aydın',         pos:'FWD', club:'Fenerbahçe'},
-      {n:26, name:'Can Uzun',            pos:'FWD', club:'Eintracht Frankfurt'},
-    ]
-  },
+function renderTeams(){
+  var query = (document.getElementById('teamSearch').value||'').toLowerCase().trim();
+  var out   = document.getElementById('teamsOut');
 
-  /* ── GROUP E ── */
+  /* Filter teams */
+  var filtered = WC26.teams.filter(function(team){
+    if(activeConf !== 'ALL' && team.conf !== activeConf) return false;
+    if(query){
+      var nameMatch = team.name.toLowerCase().includes(query);
+      var playerMatch = false;
+      var sd = typeof WC26_TEAMS !== 'undefined' && WC26_TEAMS[team.name];
+      if(sd && sd.squad) playerMatch = sd.squad.some(function(p){ return p.name.toLowerCase().includes(query); });
+      if(!nameMatch && !playerMatch) return false;
+    }
+    return true;
+  });
 
-  'Germany': {
-    flag:'🇩🇪', code:'GER', conf:'UEFA', group:'E',
-    coach:'Julian Nagelsmann',
-    squad:[
-      {n:1,  name:'Manuel Neuer',        pos:'GK', club:'Bayern Munich'},
-      {n:12, name:'Oliver Baumann',      pos:'GK', club:'TSG Hoffenheim'},
-      {n:21, name:'Alexander Nübel',     pos:'GK', club:'VfB Stuttgart'},
-      {n:2,  name:'Joshua Kimmich',      pos:'DEF', club:'Bayern Munich'},
-      {n:3,  name:'David Raum',          pos:'DEF', club:'RB Leipzig'},
-      {n:4,  name:'Jonathan Tah',        pos:'DEF', club:'Bayern Munich'},
-      {n:5,  name:'Waldemar Anton',      pos:'DEF', club:'Borussia Dortmund'},
-      {n:13, name:'Antonio Rüdiger',     pos:'DEF', club:'Real Madrid'},
-      {n:15, name:'Nico Schlotterbeck',  pos:'DEF', club:'Borussia Dortmund'},
-      {n:18, name:'Nathaniel Brown',     pos:'DEF', club:'Eintracht Frankfurt'},
-      {n:24, name:'Malick Thiaw',        pos:'DEF', club:'Newcastle United'},
-      {n:6,  name:'Aleksandar Pavlović', pos:'MID', club:'Bayern Munich'},
-      {n:8,  name:'Leon Goretzka',       pos:'MID', club:'Bayern Munich'},
-      {n:9,  name:'Jamie Leweling',      pos:'MID', club:'VfB Stuttgart'},
-      {n:10, name:'Jamal Musiala',       pos:'MID', club:'Bayern Munich'},
-      {n:14, name:'Florian Wirtz',       pos:'MID', club:'Liverpool'},
-      {n:16, name:'Angelo Stiller',      pos:'MID', club:'VfB Stuttgart'},
-      {n:17, name:'Leroy Sané',          pos:'MID', club:'Galatasaray'},
-      {n:19, name:'Pascal Groß',         pos:'MID', club:'Brighton & Hove Albion'},
-      {n:20, name:'Nadiem Amiri',        pos:'MID', club:'Mainz 05'},
-      {n:22, name:'Felix Nmecha',        pos:'MID', club:'Borussia Dortmund'},
-      {n:25, name:'Lennart Karl',        pos:'MID', club:'Bayern Munich'},
-      {n:7,  name:'Kai Havertz',         pos:'FWD', club:'Arsenal'},
-      {n:11, name:'Nick Woltemade',      pos:'FWD', club:'Newcastle United'},
-      {n:23, name:'Maximilian Beier',    pos:'FWD', club:'Borussia Dortmund'},
-      {n:26, name:'Deniz Undav',         pos:'FWD', club:'VfB Stuttgart'},
-    ]
-  },
-
-  'Ivory Coast': {
-    flag:'🇨🇮', code:'CIV', conf:'CAF', group:'E',
-    coach:'Emerse Faé',
-    squad:[
-      {n:1,  name:'Yahia Fofana',        pos:'GK', club:'Çaykur Rizespor'},
-      {n:16, name:'Mohamed Koné',        pos:'GK', club:'Sporting Charleroi'},
-      {n:23, name:'Alban Lafont',        pos:'GK', club:'Panathinaikos'},
-      {n:2,  name:'Wilfried Singo',      pos:'DEF', club:'Galatasaray'},
-      {n:3,  name:'Ghislain Konan',      pos:'DEF', club:'Gil Vicente'},
-      {n:5,  name:'Odilon Kossounou',    pos:'DEF', club:'Atalanta'},
-      {n:13, name:'Christopher Operi',   pos:'DEF', club:'Başakşehir'},
-      {n:17, name:'Guela Doué',          pos:'DEF', club:'RC Strasbourg'},
-      {n:20, name:'Emmanuel Agbadou',    pos:'DEF', club:'Beşiktaş'},
-      {n:21, name:'Evan Ndicka',         pos:'DEF', club:'AS Roma'},
-      {n:4,  name:'Jean Michael Seri',   pos:'MID', club:'NK Maribor'},
-      {n:6,  name:'Seko Fofana',         pos:'MID', club:'FC Porto'},
-      {n:8,  name:'Franck Kessié',       pos:'MID', club:'Al Ahli'},
-      {n:18, name:'Ibrahim Sangaré',     pos:'MID', club:'Nottingham Forest'},
-      {n:19, name:'Ousmane Diomandé',    pos:'DEF', club:'Sporting CP'},
-      {n:25, name:'Parfait Guiagon',     pos:'MID', club:'Sporting Charleroi'},
-      {n:26, name:'Christ Oulai',        pos:'MID', club:'Trabzonspor'},
-      {n:7,  name:'Simon Adingra',       pos:'FWD', club:'AS Monaco'},
-      {n:9,  name:'Ange-Yoan Bonny',     pos:'FWD', club:'Inter Milan'},
-      {n:10, name:'Amad Diallo',         pos:'FWD', club:'Manchester United'},
-      {n:11, name:'Elye Wahi',           pos:'FWD', club:'OGC Nice'},
-      {n:14, name:'Oumar Diakité',       pos:'FWD', club:'Cercle Brugge'},
-      {n:15, name:'Nicolas Pépé',        pos:'FWD', club:'Villarreal'},
-      {n:22, name:'Evann Guessand',      pos:'FWD', club:'Crystal Palace'},
-      {n:24, name:'Bazoumana Touré',     pos:'FWD', club:'TSG Hoffenheim'},
-      {n:12, name:'Yan Diomandé',        pos:'FWD', club:'RB Leipzig'},
-    ]
-  },
-
-  'Curaçao': {
-    flag:'🇨🇼', code:'CUW', conf:'CONCACAF', group:'E',
-    coach:'Dick Advocaat',
-    squad:[
-      {n:1,  name:'Eloy Room',           pos:'GK', club:'Miami FC'},
-      {n:25, name:'Tyrick Bodak',        pos:'GK', club:'SC Telstar'},
-      {n:26, name:'Trevor Doornbusch',   pos:'GK', club:'VVV Venlo'},
-      {n:2,  name:'Shurandy Sambo',      pos:'DEF', club:'Sparta Rotterdam'},
-      {n:3,  name:'Riechedly Bazoer',    pos:'DEF', club:'Konyaspor'},
-      {n:4,  name:'Juriën Gaari',        pos:'DEF', club:'Abha Club'},
-      {n:5,  name:'Sherel Floranus',     pos:'DEF', club:'PEC Zwolle'},
-      {n:13, name:'Joshua Brenet',       pos:'DEF', club:'Kayserispor'},
-      {n:14, name:'Armando Obispo',      pos:'DEF', club:'PSV Eindhoven'},
-      {n:18, name:'Roshon Van Eijma',    pos:'DEF', club:'RKC Waalwijk'},
-      {n:24, name:'Deveron Fonville',    pos:'DEF', club:'NEC Nijmegen'},
-      {n:6,  name:'Godfried Roemeratoe', pos:'MID', club:'RKC Waalwijk'},
-      {n:7,  name:'Juninho Bacuna',      pos:'MID', club:'FC Volendam'},
-      {n:10, name:'Leandro Bacuna',      pos:'MID', club:'Iğdır FK'},
-      {n:15, name:'Ar\'jany Martha',     pos:'MID', club:'Rotherham United'},
-      {n:21, name:'Tahith Chong',        pos:'MID', club:'Sheffield United'},
-      {n:22, name:'Kevin Felida',        pos:'MID', club:'FC Den Bosch'},
-      {n:8,  name:'Livano Comenencia',   pos:'MID', club:'FC Zürich'},
-      {n:9,  name:'Jürgen Locadia',      pos:'FWD', club:'Miami FC'},
-      {n:11, name:'Brandley Kuwas',      pos:'FWD', club:'FC Volendam'},
-      {n:12, name:'Kenji Gorre',         pos:'FWD', club:'Maccabi Haifa'},
-      {n:16, name:'Tyrese Noslin',       pos:'FWD', club:'SC Telstar'},
-      {n:17, name:'Sontje Hansen',       pos:'FWD', club:'Middlesbrough'},
-      {n:19, name:'Gervane Kastaneer',   pos:'FWD', club:'Terengganu FC'},
-      {n:20, name:'Jearl Margaritha',    pos:'FWD', club:'SK Beveren'},
-      {n:23, name:'Jeremy Antonisse',    pos:'FWD', club:'AE Kisia FC'},
-    ]
-  },
-
-  'Ecuador': {
-    flag:'🇪🇨', code:'ECU', conf:'CONMEBOL', group:'E',
-    coach:'Sebastián Beccacece',
-    squad:[
-      {n:1,  name:'Hernán Galíndez',     pos:'GK', club:'CA Huracán'},
-      {n:12, name:'Moisés Ramírez',      pos:'GK', club:'AE Kisia FC'},
-      {n:22, name:'Gonzalo Valle',       pos:'GK', club:'LDU Quito'},
-      {n:2,  name:'Ángelo Preciado',     pos:'DEF', club:'Atlético Mineiro'},
-      {n:3,  name:'Pervis Estupiñán',    pos:'DEF', club:'AC Milan'},
-      {n:4,  name:'Félix Torres',        pos:'DEF', club:'SC Internacional'},
-      {n:5,  name:'Willian Pacho',       pos:'DEF', club:'PSG'},
-      {n:6,  name:'Piero Hincapié',      pos:'DEF', club:'Arsenal'},
-      {n:14, name:'Joel Ordóñez',        pos:'DEF', club:'Club Brugge'},
-      {n:20, name:'Jackson Porozo',      pos:'DEF', club:'Club Tijuana'},
-      {n:26, name:'Yaimar Medina',       pos:'DEF', club:'KRC Genk'},
-      {n:7,  name:'Jordy Alcívar',       pos:'MID', club:'Independiente Del Valle'},
-      {n:8,  name:'Anthony Valencia',    pos:'MID', club:'Royal Antwerp'},
-      {n:10, name:'Kendry Páez',         pos:'MID', club:'CA River Plate'},
-      {n:13, name:'Alan Minda',          pos:'MID', club:'Atlético Mineiro'},
-      {n:15, name:'Pedro Vite',          pos:'MID', club:'Pumas UNAM'},
-      {n:16, name:'Denil Castillo',      pos:'MID', club:'FC Midtjylland'},
-      {n:21, name:'Alan Franco',         pos:'MID', club:'Atlético Mineiro'},
-      {n:23, name:'Moisés Caicedo',      pos:'MID', club:'Chelsea'},
-      {n:9,  name:'Enner Valencia',      pos:'FWD', club:'CF Pachuca'},
-      {n:11, name:'Kevin Rodríguez',     pos:'FWD', club:'Union Saint-Gilloise'},
-      {n:17, name:'Jordy Caicedo',       pos:'FWD', club:'CA Huracán'},
-      {n:18, name:'John Yeboah',         pos:'FWD', club:'Venezia FC'},
-      {n:19, name:'Gonzalo Plata',       pos:'FWD', club:'Flamengo'},
-      {n:24, name:'Nilson Angulo',       pos:'FWD', club:'Sunderland'},
-      {n:25, name:'Jeremy Arévalo',      pos:'FWD', club:'VfB Stuttgart'},
-    ]
-  },
-
-  /* ── GROUP F ── */
-
-  'Netherlands': {
-    flag:'🇳🇱', code:'NED', conf:'UEFA', group:'F',
-    coach:'Ronald Koeman',
-    squad:[
-      {n:1,  name:'Bart Verbruggen',     pos:'GK', club:'Brighton & Hove Albion'},
-      {n:13, name:'Robin Roefs',         pos:'GK', club:'Sunderland'},
-      {n:23, name:'Mark Flekken',        pos:'GK', club:'Bayer Leverkusen'},
-      {n:2,  name:'Denzel Dumfries',     pos:'DEF', club:'Inter Milan'},
-      {n:3,  name:'Jurriën Timber',      pos:'DEF', club:'Arsenal'},
-      {n:4,  name:'Virgil van Dijk',     pos:'DEF', club:'Liverpool', captain:true},
-      {n:5,  name:'Nathan Aké',          pos:'DEF', club:'Manchester City'},
-      {n:6,  name:'Jan-Paul van Hecke',  pos:'DEF', club:'Brighton & Hove Albion'},
-      {n:15, name:'Micky van de Ven',    pos:'DEF', club:'Tottenham'},
-      {n:22, name:'Mats Wieffer',        pos:'DEF', club:'Brighton & Hove Albion'},
-      {n:25, name:'Jorrel Hato',         pos:'DEF', club:'Chelsea'},
-      {n:7,  name:'Tijjani Reijnders',   pos:'MID', club:'Manchester City'},
-      {n:8,  name:'Marten de Roon',      pos:'MID', club:'Atalanta'},
-      {n:14, name:'Teun Koopmeiners',    pos:'MID', club:'Juventus'},
-      {n:16, name:'Guus Til',            pos:'MID', club:'PSV Eindhoven'},
-      {n:20, name:'Ryan Gravenberch',    pos:'MID', club:'Liverpool'},
-      {n:21, name:'Frenkie de Jong',     pos:'MID', club:'Barcelona'},
-      {n:26, name:'Quinten Timber',      pos:'MID', club:'Olympique Marseille'},
-      {n:9,  name:'Wout Weghorst',       pos:'FWD', club:'AFC Ajax'},
-      {n:10, name:'Memphis Depay',       pos:'FWD', club:'SC Corinthians'},
-      {n:11, name:'Cody Gakpo',          pos:'FWD', club:'Liverpool'},
-      {n:17, name:'Noa Lang',            pos:'FWD', club:'Galatasaray'},
-      {n:18, name:'Donyell Malen',       pos:'FWD', club:'AS Roma'},
-      {n:19, name:'Brian Brobbey',       pos:'FWD', club:'Sunderland'},
-      {n:24, name:'Crysencio Summerville',pos:'FWD', club:'West Ham'},
-      {n:12, name:'Justin Kluivert',     pos:'MID', club:'Bournemouth'},
-    ]
-  },
-
-  'Japan': {
-    flag:'🇯🇵', code:'JPN', conf:'AFC', group:'F',
-    coach:'Hajime Moriyasu',
-    squad:[
-      {n:1,  name:'Zion Suzuki',         pos:'GK', club:'Parma'},
-      {n:12, name:'Keisuke Osako',       pos:'GK', club:'Sanfrecce Hiroshima'},
-      {n:23, name:'Tomoki Hayakawa',     pos:'GK', club:'Kashima Antlers'},
-      {n:2,  name:'Yukinari Sugawara',   pos:'DEF', club:'SV Werder Bremen'},
-      {n:3,  name:'Yuto Nagatomo',       pos:'DEF', club:'FC Tokyo'},
-      {n:4,  name:'Kou Itakura',         pos:'DEF', club:'AFC Ajax'},
-      {n:5,  name:'Shogo Taniguchi',     pos:'DEF', club:'Sint-Truiden VV'},
-      {n:15, name:'Tsuyoshi Watanabe',   pos:'DEF', club:'Feyenoord'},
-      {n:20, name:'Ayumu Seko',          pos:'DEF', club:'Le Havre'},
-      {n:21, name:'Hiroki Ito',          pos:'DEF', club:'Bayern Munich'},
-      {n:22, name:'Takehiro Tomiyasu',   pos:'DEF', club:'AFC Ajax'},
-      {n:25, name:'Junnosuke Suzuki',    pos:'DEF', club:'FC København'},
-      {n:6,  name:'Wataru Endo',         pos:'MID', club:'Liverpool'},
-      {n:7,  name:'Takefusa Kubo',       pos:'MID', club:'Real Sociedad'},
-      {n:8,  name:'Ao Tanaka',           pos:'MID', club:'Leeds United'},
-      {n:10, name:'Ritsu Doan',          pos:'MID', club:'Eintracht Frankfurt'},
-      {n:11, name:'Daizen Maeda',        pos:'MID', club:'Celtic'},
-      {n:13, name:'Keito Nakamura',      pos:'MID', club:'Stade Reims'},
-      {n:14, name:'Junya Ito',           pos:'MID', club:'KRC Genk'},
-      {n:17, name:'Yuito Suzuki',        pos:'MID', club:'SC Freiburg'},
-      {n:24, name:'Kaishu Sano',         pos:'MID', club:'Mainz 05'},
-      {n:15, name:'Daichi Kamada',       pos:'MID', club:'Crystal Palace'},
-      {n:9,  name:'Keisuke Goto',        pos:'FWD', club:'Sint-Truiden VV'},
-      {n:18, name:'Ayase Ueda',          pos:'FWD', club:'Feyenoord'},
-      {n:19, name:'Koki Ogawa',          pos:'FWD', club:'NEC Nijmegen'},
-      {n:26, name:'Kento Shiogai',       pos:'FWD', club:'VfL Wolfsburg'},
-    ]
-  },
-
-  'Sweden': {
-    flag:'🇸🇪', code:'SWE', conf:'UEFA', group:'F',
-    coach:'Graham Potter',
-    squad:[
-      {n:1,  name:'Jacob Widell Zetterström', pos:'GK', club:'Derby County'},
-      {n:12, name:'Viktor Johansson',    pos:'GK', club:'Stoke City'},
-      {n:23, name:'Kristoffer Nordfeldt',pos:'GK', club:'AIK Stockholm'},
-      {n:2,  name:'Daniel Svensson',     pos:'DEF', club:'Borussia Dortmund'},
-      {n:3,  name:'Hjalmar Ekdal',       pos:'DEF', club:'Burnley'},
-      {n:4,  name:'Victor Lindelöf',     pos:'DEF', club:'Aston Villa'},
-      {n:5,  name:'Isak Hien',           pos:'DEF', club:'Atalanta'},
-      {n:6,  name:'Carl Starfelt',       pos:'DEF', club:'RC Celta Vigo'},
-      {n:14, name:'Gustaf Lagerbielke',  pos:'DEF', club:'SC Braga'},
-      {n:15, name:'Herman Johansson',    pos:'DEF', club:'FC Dallas'},
-      {n:20, name:'Eric Smith',          pos:'DEF', club:'FC St. Pauli'},
-      {n:21, name:'Alexander Bernhardsson', pos:'DEF', club:'Holstein Kiel'},
-      {n:24, name:'Gabriel Gudmundsson', pos:'DEF', club:'Leeds United'},
-      {n:25, name:'Elliot Stroud',       pos:'DEF', club:'Mjällby AIF'},
-      {n:7,  name:'Lucas Bergvall',      pos:'MID', club:'Tottenham'},
-      {n:8,  name:'Mattias Svanberg',    pos:'MID', club:'VfL Wolfsburg'},
-      {n:10, name:'Jesper Karlström',    pos:'MID', club:'Udinese'},
-      {n:13, name:'Ken Sema',            pos:'MID', club:'Pafos FC'},
-      {n:18, name:'Yasin Ayari',         pos:'MID', club:'Brighton & Hove Albion'},
-      {n:22, name:'Besfort Zeneli',      pos:'MID', club:'Union Saint-Gilloise'},
-      {n:9,  name:'Viktor Gyökeres',     pos:'FWD', club:'Arsenal'},
-      {n:11, name:'Alexander Isak',      pos:'FWD', club:'Liverpool'},
-      {n:16, name:'Anthony Elanga',      pos:'FWD', club:'Newcastle United'},
-      {n:17, name:'Benjamin Nygren',     pos:'MID', club:'Celtic'},
-      {n:19, name:'Gustaf Nilsson',      pos:'FWD', club:'Club Brugge'},
-      {n:26, name:'Taha Ali',            pos:'FWD', club:'Malmö FF'},
-    ]
-  },
-
-  'Tunisia': {
-    flag:'🇹🇳', code:'TUN', conf:'CAF', group:'F',
-    coach:'Sabri Lamouchi',
-    squad:[
-      {n:1,  name:'Aymen Dahmen',        pos:'GK', club:'CS Sfaxien'},
-      {n:16, name:'Mouhib Chamakh',      pos:'GK', club:'Club Africain'},
-      {n:22, name:'Sabri Ben Hessen',    pos:'GK', club:'Étoile Du Sahel'},
-      {n:2,  name:'Dylan Bronn',         pos:'DEF', club:'Servette FC'},
-      {n:3,  name:'Montassar Talbi',     pos:'DEF', club:'FC Lorient'},
-      {n:4,  name:'Ali Abdi',            pos:'DEF', club:'OGC Nice'},
-      {n:5,  name:'Yassine Meriah',      pos:'DEF', club:'Servette FC'},
-      {n:13, name:'Mortadha Ben Ouanes', pos:'DEF', club:'Kasımpaşa'},
-      {n:15, name:'Mohamed Amine Ben Hmida', pos:'DEF', club:'Espérance De Tunisie'},
-      {n:19, name:'Yan Valery',          pos:'DEF', club:'BSC Young Boys'},
-      {n:20, name:'Omar Rekik',          pos:'DEF', club:'NK Maribor'},
-      {n:23, name:'Moutaz Neffati',      pos:'DEF', club:'IFK Norrköping'},
-      {n:24, name:'Adam Arous',          pos:'DEF', club:'Kasımpaşa'},
-      {n:25, name:'Raed Chikhaoui',      pos:'DEF', club:'US Monastir'},
-      {n:6,  name:'Ellyes Skhiri',       pos:'MID', club:'Eintracht Frankfurt'},
-      {n:8,  name:'Rani Khedira',        pos:'MID', club:'1. FC Union Berlin'},
-      {n:10, name:'Hannibal Mejbri',     pos:'MID', club:'Burnley'},
-      {n:14, name:'Khalil Ayari',        pos:'MID', club:'PSG'},
-      {n:17, name:'Mohamed Belhadj Mahmoud', pos:'MID', club:'FC Lugano'},
-      {n:21, name:'Anis Ben Slimane',    pos:'MID', club:'Norwich City'},
-      {n:26, name:'Sebastian Tounekti',  pos:'MID', club:'Celtic'},
-      {n:7,  name:'Elias Achouri',       pos:'FWD', club:'FC København'},
-      {n:9,  name:'Hazem Mastouri',      pos:'FWD', club:'FC Dynamo Makhachkala'},
-      {n:11, name:'Ismael Gharbi',       pos:'MID', club:'FC Augsburg'},
-      {n:18, name:'Elias Saad',          pos:'FWD', club:'Hannover 96'},
-      {n:12, name:'Rayan Elloumi',       pos:'FWD', club:'Vancouver Whitecaps'},
-    ]
-  },
-
-  /* ── GROUP G ── */
-
-  'Belgium': {
-    flag:'🇧🇪', code:'BEL', conf:'UEFA', group:'G',
-    coach:'Rudi Garcia',
-    squad:[
-      {n:1,  name:'Thibaut Courtois',    pos:'GK', club:'Real Madrid'},
-      {n:12, name:'Senne Lammens',       pos:'GK', club:'Manchester United'},
-      {n:13, name:'Mike Penders',        pos:'GK', club:'RC Strasbourg'},
-      {n:2,  name:'Thomas Meunier',      pos:'DEF', club:'Lille OSC'},
-      {n:3,  name:'Maxim De Cuyper',     pos:'DEF', club:'Brighton & Hove Albion'},
-      {n:4,  name:'Zeno Debast',         pos:'DEF', club:'Sporting CP'},
-      {n:5,  name:'Brandon Mechele',     pos:'DEF', club:'Club Brugge'},
-      {n:6,  name:'Arthur Theate',       pos:'DEF', club:'Eintracht Frankfurt'},
-      {n:15, name:'Timothy Castagne',    pos:'DEF', club:'Fulham'},
-      {n:16, name:'Koni De Winter',      pos:'DEF', club:'AC Milan'},
-      {n:18, name:'Joaquin Seys',        pos:'DEF', club:'Club Brugge'},
-      {n:25, name:'Nathan Ngoy',         pos:'DEF', club:'Lille OSC'},
-      {n:7,  name:'Kevin De Bruyne',     pos:'MID', club:'SSC Napoli'},
-      {n:8,  name:'Axel Witsel',         pos:'MID', club:'Girona FC'},
-      {n:10, name:'Youri Tielemans',     pos:'MID', club:'Aston Villa'},
-      {n:14, name:'Dodi Lukebakio',      pos:'MID', club:'SL Benfica'},
-      {n:17, name:'Charles De Ketelaere',pos:'MID', club:'Atalanta'},
-      {n:19, name:'Diego Moreira',       pos:'MID', club:'RC Strasbourg'},
-      {n:20, name:'Hans Vanaken',        pos:'MID', club:'Club Brugge'},
-      {n:22, name:'Alexis Saelemaekers', pos:'MID', club:'AC Milan'},
-      {n:23, name:'Nicolas Raskin',      pos:'MID', club:'Rangers FC'},
-      {n:24, name:'Amadou Onana',        pos:'MID', club:'Aston Villa'},
-      {n:9,  name:'Romelu Lukaku',       pos:'FWD', club:'SSC Napoli'},
-      {n:11, name:'Leandro Trossard',    pos:'FWD', club:'Arsenal'},
-      {n:21, name:'Jeremy Doku',         pos:'FWD', club:'Manchester City'},
-      {n:26, name:'Matias Fernandez-Pardo', pos:'FWD', club:'Lille OSC'},
-    ]
-  },
-
-  'Egypt': {
-    flag:'🇪🇬', code:'EGY', conf:'CAF', group:'G',
-    coach:'Hossam Hassan',
-    squad:[
-      {n:1,  name:'Mohamed Elshenawy',   pos:'GK', club:'Al Ahly'},
-      {n:16, name:'Mahdy Soliman',       pos:'GK', club:'Zamalek'},
-      {n:23, name:'Mostafa Shoubir',     pos:'GK', club:'Al Ahly'},
-      {n:26, name:'Mohamed Alaa',        pos:'GK', club:'El Gouna FC'},
-      {n:2,  name:'Yasser Ibrahim',      pos:'DEF', club:'Al Ahly'},
-      {n:3,  name:'Mohamed Hany',        pos:'DEF', club:'Al Ahly'},
-      {n:4,  name:'Hossam Abdelmaguid', pos:'DEF', club:'Zamalek'},
-      {n:5,  name:'Ramy Rabia',          pos:'DEF', club:'Al Ain'},
-      {n:6,  name:'Mohamed Abdelmoneim', pos:'DEF', club:'OGC Nice'},
-      {n:13, name:'Ahmed Fatouh',        pos:'DEF', club:'Zamalek'},
-      {n:15, name:'Karim Hafez',         pos:'DEF', club:'Pyramids FC'},
-      {n:24, name:'Tarek Alaa',          pos:'DEF', club:'ZED FC'},
-      {n:7,  name:'Trezeguet',           pos:'FWD', club:'Al Ahly'},
-      {n:8,  name:'Emam Ashour',         pos:'MID', club:'Al Ahly'},
-      {n:10, name:'Mohamed Salah',       pos:'FWD', club:'Liverpool', captain:true},
-      {n:11, name:'Hamza Abdelkarim',    pos:'FWD', club:'Barcelona'},
-      {n:14, name:'Hamdy Fathy',         pos:'MID', club:'Al Wakrah'},
-      {n:17, name:'Mohanad Lashin',      pos:'MID', club:'Pyramids FC'},
-      {n:18, name:'Nabil Donga',         pos:'MID', club:'Al Najmah'},
-      {n:19, name:'Marawan Attia',       pos:'MID', club:'Al Ahly'},
-      {n:20, name:'Mahmoud Saber',       pos:'MID', club:'ZED FC'},
-      {n:21, name:'Mostafa Zico',        pos:'MID', club:'Pyramids FC'},
-      {n:9,  name:'Omar Marmoush',       pos:'FWD', club:'Manchester City'},
-      {n:12, name:'Haissem Hassan',      pos:'FWD', club:'Real Oviedo'},
-      {n:22, name:'Ibrahim Adel',        pos:'FWD', club:'FC Nordsjælland'},
-      {n:25, name:'Zizo',                pos:'FWD', club:'Al Ahly'},
-    ]
-  },
-
-  'Iran': {
-    flag:'🇮🇷', code:'IRN', conf:'AFC', group:'G',
-    coach:'Ardeshir Ghalehnoy',
-    squad:[
-      {n:1,  name:'Alireza Beiranvand',  pos:'GK', club:'Tractor Sazi Tabriz'},
-      {n:12, name:'Payam Niazmand',      pos:'GK', club:'Persepolis FC'},
-      {n:22, name:'Hossein Hosseini',    pos:'GK', club:'Sepahan SC'},
-      {n:2,  name:'Ehsan Hajisafi',      pos:'DEF', club:'Sepahan SC'},
-      {n:3,  name:'Milad Mohammadi',     pos:'DEF', club:'Persepolis FC'},
-      {n:4,  name:'Shoja Khalilzadeh',   pos:'DEF', club:'Tractor Sazi Tabriz'},
-      {n:5,  name:'Saleh Hardani',       pos:'DEF', club:'Esteghlal Tehran'},
-      {n:13, name:'Hossein Kanani',      pos:'DEF', club:'Persepolis FC'},
-      {n:17, name:'Arya Yousefi',        pos:'DEF', club:'Sepahan SC'},
-      {n:19, name:'Ali Nemati',          pos:'DEF', club:'Foolad Khuzestan'},
-      {n:23, name:'Ramin Rezaeian',      pos:'DEF', club:'Foolad Khuzestan'},
-      {n:25, name:'Danial Iri',          pos:'DEF', club:'Malavan Anzali'},
-      {n:6,  name:'Saeid Ezatolahi',     pos:'MID', club:'Shabab Al Ahli'},
-      {n:7,  name:'Alireza Jahanbakhsh', pos:'MID', club:'FCV Dender EH'},
-      {n:8,  name:'Mohammad Mohebbi',    pos:'MID', club:'FC Rostov'},
-      {n:14, name:'Saman Ghoddos',       pos:'MID', club:'Al Ittihad Kalba'},
-      {n:15, name:'Roozbeh Cheshmi',     pos:'MID', club:'Esteghlal Tehran'},
-      {n:16, name:'Mehdi Torabi',        pos:'MID', club:'Tractor Sazi Tabriz'},
-      {n:21, name:'Mohammad Ghorbani',   pos:'MID', club:'Al Wahda'},
-      {n:26, name:'Amirmohammad Razaghinia', pos:'MID', club:'Esteghlal Tehran'},
-      {n:9,  name:'Mehdi Taremi',        pos:'FWD', club:'Olympiacos'},
-      {n:10, name:'Mehdi Ghayedi',       pos:'FWD', club:'Al Nasr'},
-      {n:11, name:'Ali Alipour',         pos:'FWD', club:'Persepolis FC'},
-      {n:18, name:'Amirhossein Hosseinzadeh', pos:'FWD', club:'Tractor Sazi Tabriz'},
-      {n:20, name:'Shahriyar Moghanloo', pos:'FWD', club:'Al Ittihad Kalba'},
-      {n:24, name:'Dennis Dargahi',      pos:'FWD', club:'Standard Liège'},
-    ]
-  },
-
-  'New Zealand': {
-    flag:'🇳🇿', code:'NZL', conf:'OFC', group:'G',
-    coach:'Darren Bazeley',
-    squad:[
-      {n:1,  name:'Max Crocombe',        pos:'GK', club:'Millwall FC'},
-      {n:12, name:'Alex Paulsen',        pos:'GK', club:'Lechia Gdańsk'},
-      {n:22, name:'Michael Woud',        pos:'GK', club:'Auckland FC'},
-      {n:2,  name:'Liberato Cacace',     pos:'DEF', club:'Wrexham AFC'},
-      {n:3,  name:'Tim Payne',           pos:'DEF', club:'Wellington Phoenix'},
-      {n:4,  name:'Michael Boxall',      pos:'DEF', club:'Minnesota United'},
-      {n:5,  name:'Nando Pijnaker',      pos:'DEF', club:'Auckland FC'},
-      {n:13, name:'Francis De Vries',    pos:'DEF', club:'Auckland FC'},
-      {n:15, name:'Tyler Bindon',        pos:'DEF', club:'Sheffield United'},
-      {n:16, name:'Finn Surman',         pos:'DEF', club:'Portland Timbers'},
-      {n:24, name:'Callan Elliot',       pos:'DEF', club:'Auckland FC'},
-      {n:26, name:'Tommy Smith',         pos:'DEF', club:'Braintree Town'},
-      {n:6,  name:'Joe Bell',            pos:'MID', club:'Viking Stavanger'},
-      {n:7,  name:'Sarpreet Singh',      pos:'MID', club:'Wellington Phoenix'},
-      {n:8,  name:'Matthew Garbett',     pos:'MID', club:'Peterborough United'},
-      {n:10, name:'Marko Stamenic',      pos:'MID', club:'Swansea City'},
-      {n:11, name:'Elijah Just',         pos:'MID', club:'Motherwell FC'},
-      {n:14, name:'Alex Rufer',          pos:'MID', club:'Wellington Phoenix'},
-      {n:19, name:'Ben Old',             pos:'MID', club:'AS Saint-Etienne'},
-      {n:20, name:'Callum McCowatt',     pos:'MID', club:'Silkeborg IF'},
-      {n:23, name:'Ryan Thomas',         pos:'MID', club:'PEC Zwolle'},
-      {n:25, name:'Lachlan Bayliss',     pos:'MID', club:'Newcastle Jets'},
-      {n:9,  name:'Chris Wood',          pos:'FWD', club:'Nottingham Forest'},
-      {n:17, name:'Kosta Barbarouses',   pos:'FWD', club:'WS Wanderers'},
-      {n:18, name:'Ben Waine',           pos:'FWD', club:'Port Vale'},
-      {n:21, name:'Jesse Randall',       pos:'FWD', club:'Auckland FC'},
-    ]
-  },
-
-  /* ── GROUP H ── */
-
-  'Spain': {
-    flag:'🇪🇸', code:'ESP', conf:'UEFA', group:'H',
-    coach:'Luis de la Fuente',
-    squad:[
-      {n:1,  name:'David Raya',          pos:'GK', club:'Arsenal'},
-      {n:13, name:'Joan Garcia',         pos:'GK', club:'Barcelona'},
-      {n:23, name:'Unai Simón',          pos:'GK', club:'Athletic Club'},
-      {n:2,  name:'Pedro Porro',         pos:'DEF', club:'Tottenham'},
-      {n:3,  name:'Alejandro Grimaldo',  pos:'DEF', club:'Bayer Leverkusen'},
-      {n:4,  name:'Pau Cubarsí',         pos:'DEF', club:'Barcelona'},
-      {n:5,  name:'Aymeric Laporte',     pos:'DEF', club:'Athletic Club'},
-      {n:6,  name:'Marcos Llorente',     pos:'DEF', club:'Atlético Madrid'},
-      {n:11, name:'Eric García',         pos:'DEF', club:'Barcelona'},
-      {n:12, name:'Marc Pubill',         pos:'DEF', club:'Atlético Madrid'},
-      {n:24, name:'Marc Cucurella',      pos:'DEF', club:'Chelsea'},
-      {n:7,  name:'Ferran Torres',       pos:'FWD', club:'Barcelona'},
-      {n:8,  name:'Fabián Ruiz',         pos:'MID', club:'PSG'},
-      {n:9,  name:'Gavi',                pos:'MID', club:'Barcelona'},
-      {n:10, name:'Dani Olmo',           pos:'FWD', club:'Barcelona'},
-      {n:14, name:'Mikel Merino',        pos:'MID', club:'Arsenal'},
-      {n:15, name:'Alex Baena',          pos:'MID', club:'Atlético Madrid'},
-      {n:16, name:'Rodri',               pos:'MID', club:'Manchester City'},
-      {n:17, name:'Nico Williams',       pos:'FWD', club:'Athletic Club'},
-      {n:18, name:'Martín Zubimendi',    pos:'MID', club:'Arsenal'},
-      {n:19, name:'Lamine Yamal',        pos:'FWD', club:'Barcelona'},
-      {n:20, name:'Pedri',               pos:'MID', club:'Barcelona'},
-      {n:21, name:'Mikel Oyarzabal',     pos:'FWD', club:'Real Sociedad'},
-      {n:22, name:'Yeremy Pino',         pos:'FWD', club:'Crystal Palace'},
-      {n:25, name:'Víctor Muñoz',        pos:'FWD', club:'CA Osasuna'},
-      {n:26, name:'Borja Iglesias',      pos:'FWD', club:'RC Celta Vigo'},
-    ]
-  },
-
-  'Cape Verde': {
-    flag:'🇨🇻', code:'CPV', conf:'CAF', group:'H',
-    coach:'Pedro Leitão Brito (Bubista)',
-    squad:[
-      {n:1,  name:'Vozinha',             pos:'GK', club:'GD Chaves'},
-      {n:12, name:'Márcio Rosa',         pos:'GK', club:'PFC Montana'},
-      {n:23, name:'CJ Dos Santos',       pos:'GK', club:'San Diego FC'},
-      {n:2,  name:'Stopira',             pos:'DEF', club:'SCU Torreense'},
-      {n:3,  name:'Logan Costa',         pos:'DEF', club:'Villarreal'},
-      {n:4,  name:'Pico Lopes',          pos:'DEF', club:'Shamrock Rovers'},
-      {n:5,  name:'Diney Borges',        pos:'DEF', club:'Al Bataeh Club'},
-      {n:13, name:'Sidny Lopes Cabral',  pos:'DEF', club:'SL Benfica'},
-      {n:14, name:'Steven Moreira',      pos:'DEF', club:'Columbus Crew'},
-      {n:22, name:'Wagner Pina',         pos:'DEF', club:'Trabzonspor'},
-      {n:24, name:'Kelvin Pires',        pos:'DEF', club:'SJK'},
-      {n:6,  name:'Kevin Pina',          pos:'MID', club:'FC Krasnodar'},
-      {n:7,  name:'Jovane Cabral',       pos:'MID', club:'CF Estrela Da Amadora'},
-      {n:8,  name:'João Paulo',          pos:'MID', club:'FC FCSB'},
-      {n:10, name:'Jamiro Monteiro',     pos:'MID', club:'PEC Zwolle'},
-      {n:11, name:'Garry Rodrigues',     pos:'MID', club:'Apollon Limassol'},
-      {n:15, name:'Deroy Duarte',        pos:'MID', club:'PFC Ludogorets Razgrad'},
-      {n:16, name:'Laros Duarte',        pos:'MID', club:'Puskás Akadémia FC'},
-      {n:17, name:'Yannick Semedo',      pos:'MID', club:'SC Farense'},
-      {n:18, name:'Willy Semedo',        pos:'MID', club:'AC Omonia'},
-      {n:19, name:'Telmo Arcanjo',       pos:'MID', club:'Vitória SC'},
-      {n:21, name:'Nuno Da Costa',       pos:'MID', club:'Başakşehir FK'},
-      {n:25, name:'Hélio Varela',        pos:'MID', club:'Maccabi Tel-Aviv'},
-      {n:9,  name:'Gilson Benchimol',    pos:'FWD', club:'FC Akron Tolyatti'},
-      {n:20, name:'Dailon Livramento',   pos:'FWD', club:'Casa Pia AC'},
-      {n:26, name:'Ryan Mendes',         pos:'FWD', club:'Iğdır FK'},
-    ]
-  },
-
-  'Saudi Arabia': {
-    flag:'🇸🇦', code:'KSA', conf:'AFC', group:'H',
-    coach:'Georgios Donis',
-    squad:[
-      {n:1,  name:'Mohammed Alowais',    pos:'GK', club:'Al Ula Saudi FC'},
-      {n:22, name:'Nawaf Alaqidi',       pos:'GK', club:'Al Nassr'},
-      {n:23, name:'Ahmed Alkassar',      pos:'GK', club:'Al Qadsiah'},
-      {n:2,  name:'Saud Abdulhamid',     pos:'DEF', club:'RC Lens'},
-      {n:3,  name:'Ali Lajami',          pos:'DEF', club:'Al Hilal'},
-      {n:4,  name:'Abdulelah Alamri',    pos:'DEF', club:'Al Nassr'},
-      {n:5,  name:'Hassan Altambakti',   pos:'DEF', club:'Al Hilal'},
-      {n:12, name:'Ali Majrashi',        pos:'DEF', club:'Al Ahli'},
-      {n:13, name:'Nawaf Bu Washl',      pos:'DEF', club:'Al Nassr'},
-      {n:14, name:'Hassan Kadish',       pos:'DEF', club:'Al Ittihad'},
-      {n:24, name:'Moteb Alharbi',       pos:'DEF', club:'Al Hilal'},
-      {n:25, name:'Jehad Thikri',        pos:'DEF', club:'Al Qadsiah'},
-      {n:26, name:'Mohammed Abu Alshamat',pos:'DEF', club:'Al Qadsiah'},
-      {n:6,  name:'Nasser Aldawsari',    pos:'MID', club:'Al Hilal'},
-      {n:7,  name:'Musab Aljuwayr',      pos:'MID', club:'Al Qadsiah'},
-      {n:15, name:'Abdullah Alkhaibari', pos:'MID', club:'Al Nassr'},
-      {n:16, name:'Mohamed Kanno',       pos:'MID', club:'Al Hilal'},
-      {n:17, name:'Ala Alhajji',         pos:'MID', club:'Neom SC'},
-      {n:18, name:'Ziyad Aljohani',      pos:'MID', club:'Al Ahli'},
-      {n:8,  name:'Aiman Yahya',         pos:'FWD', club:'Al Nassr'},
-      {n:9,  name:'Feras Albrikan',      pos:'FWD', club:'Al Ahli'},
-      {n:10, name:'Salem Aldawsari',     pos:'FWD', club:'Al Hilal'},
-      {n:11, name:'Saleh Alshehri',      pos:'FWD', club:'Al Ittihad'},
-      {n:19, name:'Khalid Alghannam',    pos:'FWD', club:'Al Ettifaq'},
-      {n:20, name:'Abdullah Alhamddan',  pos:'FWD', club:'Al Nassr'},
-      {n:21, name:'Sultan Mandash',      pos:'FWD', club:'Al Hilal'},
-    ]
-  },
-
-  'Uruguay': {
-    flag:'🇺🇾', code:'URU', conf:'CONMEBOL', group:'H',
-    coach:'Marcelo Bielsa',
-    squad:[
-      {n:1,  name:'Sergio Rochet',       pos:'GK', club:'SC Internacional'},
-      {n:12, name:'Santiago Mele',       pos:'GK', club:'CF Monterrey'},
-      {n:23, name:'Fernando Muslera',    pos:'GK', club:'Estudiantes LP'},
-      {n:2,  name:'Guillermo Varela',    pos:'DEF', club:'Flamengo'},
-      {n:3,  name:'Mathías Olivera',     pos:'DEF', club:'SSC Napoli'},
-      {n:4,  name:'Ronald Araújo',       pos:'DEF', club:'Barcelona'},
-      {n:5,  name:'Sebastián Cáceres',   pos:'DEF', club:'Club América'},
-      {n:6,  name:'José María Giménez',  pos:'DEF', club:'Atlético Madrid'},
-      {n:13, name:'Matías Viña',         pos:'DEF', club:'CA River Plate'},
-      {n:17, name:'Santiago Bueno',      pos:'DEF', club:'Wolves'},
-      {n:7,  name:'Federico Valverde',   pos:'MID', club:'Real Madrid'},
-      {n:8,  name:'Rodrigo Bentancur',   pos:'MID', club:'Tottenham'},
-      {n:10, name:'Giorgian de Arrascaeta', pos:'MID', club:'Flamengo'},
-      {n:11, name:'Agustín Canobbio',    pos:'MID', club:'Fluminense'},
-      {n:14, name:'Nicolás de la Cruz',  pos:'MID', club:'Flamengo'},
-      {n:15, name:'Maxi Araújo',         pos:'MID', club:'Sporting CP'},
-      {n:16, name:'Emiliano Martínez',   pos:'MID', club:'SE Palmeiras'},
-      {n:18, name:'Rodrigo Zalazar',     pos:'MID', club:'SC Braga'},
-      {n:20, name:'Joaquin Piquerez',    pos:'MID', club:'SE Palmeiras'},
-      {n:21, name:'Manuel Ugarte',       pos:'MID', club:'Manchester United'},
-      {n:22, name:'Juan Manuel Sanabria',pos:'MID', club:'Real Salt Lake'},
-      {n:25, name:'Juan Sanabria',       pos:'MID', club:'Real Salt Lake'},
-      {n:9,  name:'Darwin Núñez',        pos:'FWD', club:'Al Hilal'},
-      {n:19, name:'Rodrigo Aguirre',     pos:'FWD', club:'Tigres UANL'},
-      {n:24, name:'Brian Rodriguez',     pos:'FWD', club:'Club América'},
-      {n:26, name:'Facundo Pellistri',   pos:'FWD', club:'Panathinaikos'},
-    ]
-  },
-
-  /* ── GROUP I ── */
-
-  'France': {
-    flag:'🇫🇷', code:'FRA', conf:'UEFA', group:'I',
-    coach:'Didier Deschamps',
-    squad:[
-      {n:1,  name:'Brice Samba',         pos:'GK', club:'Stade Rennais'},
-      {n:16, name:'Mike Maignan',        pos:'GK', club:'AC Milan'},
-      {n:23, name:'Robin Risser',        pos:'GK', club:'RC Lens'},
-      {n:2,  name:'Malo Gusto',          pos:'DEF', club:'Chelsea'},
-      {n:3,  name:'Lucas Digne',         pos:'DEF', club:'Aston Villa'},
-      {n:4,  name:'Dayot Upamecano',     pos:'DEF', club:'Bayern Munich'},
-      {n:5,  name:'Jules Koundé',        pos:'DEF', club:'Barcelona'},
-      {n:15, name:'Ibrahima Konaté',     pos:'DEF', club:'Liverpool'},
-      {n:17, name:'William Saliba',      pos:'DEF', club:'Arsenal'},
-      {n:19, name:'Théo Hernandez',      pos:'DEF', club:'Al Hilal'},
-      {n:21, name:'Lucas Hernandez',     pos:'DEF', club:'PSG'},
-      {n:26, name:'Maxence Lacroix',     pos:'DEF', club:'Crystal Palace'},
-      {n:6,  name:'Manu Koné',           pos:'MID', club:'AS Roma'},
-      {n:8,  name:'Aurélien Tchouaméni', pos:'MID', club:'Real Madrid'},
-      {n:13, name:'N\'Golo Kanté',       pos:'MID', club:'Fenerbahçe'},
-      {n:14, name:'Adrien Rabiot',       pos:'MID', club:'AC Milan'},
-      {n:18, name:'Warren Zaïre-Emery',  pos:'MID', club:'PSG'},
-      {n:24, name:'Rayan Cherki',        pos:'MID', club:'Manchester City'},
-      {n:25, name:'Maghnes Akliouche',   pos:'MID', club:'AS Monaco'},
-      {n:7,  name:'Ousmane Dembélé',     pos:'FWD', club:'PSG'},
-      {n:9,  name:'Marcus Thuram',       pos:'FWD', club:'Inter Milan'},
-      {n:10, name:'Kylian Mbappé',       pos:'FWD', club:'Real Madrid', captain:true},
-      {n:11, name:'Michael Olise',       pos:'FWD', club:'Bayern Munich'},
-      {n:12, name:'Bradley Barcola',     pos:'FWD', club:'PSG'},
-      {n:20, name:'Désiré Doué',         pos:'FWD', club:'PSG'},
-      {n:22, name:'Jean-Philippe Mateta',pos:'FWD', club:'Crystal Palace'},
-    ]
-  },
-
-  'Senegal': {
-    flag:'🇸🇳', code:'SEN', conf:'CAF', group:'I',
-    coach:'Pape Bouna Thiaw',
-    squad:[
-      {n:1,  name:'Yehvann Diouf',       pos:'GK', club:'OGC Nice'},
-      {n:16, name:'Edouard Mendy',       pos:'GK', club:'Al Ahli'},
-      {n:23, name:'Mory Diaw',           pos:'GK', club:'Le Havre'},
-      {n:2,  name:'Ismail Jakobs',       pos:'DEF', club:'Galatasaray'},
-      {n:3,  name:'Kalidou Koulibaly',   pos:'DEF', club:'Al Hilal'},
-      {n:4,  name:'Mamadou Sarr',        pos:'DEF', club:'Chelsea'},
-      {n:5,  name:'Abdoulaye Seck',      pos:'DEF', club:'Maccabi Haifa'},
-      {n:6,  name:'Moussa Niakhaté',     pos:'DEF', club:'Olympique Lyonnais'},
-      {n:14, name:'Krépin Diatta',       pos:'DEF', club:'AS Monaco'},
-      {n:19, name:'Antoine Mendy',       pos:'DEF', club:'OGC Nice'},
-      {n:25, name:'El Hadji Malick Diouf',pos:'DEF', club:'West Ham'},
-      {n:7,  name:'Idrissa Gana Guéye',  pos:'MID', club:'Everton'},
-      {n:8,  name:'Lamine Camara',       pos:'MID', club:'AS Monaco'},
-      {n:10, name:'Pathé Ciss',          pos:'MID', club:'Rayo Vallecano'},
-      {n:17, name:'Pape Matar Sarr',     pos:'MID', club:'Tottenham'},
-      {n:21, name:'Habib Diarra',        pos:'MID', club:'Sunderland'},
-      {n:22, name:'Bara Ndiaye',         pos:'MID', club:'Bayern Munich'},
-      {n:24, name:'Pape Gueye',          pos:'MID', club:'Villarreal'},
-      {n:9,  name:'Sadio Mané',          pos:'FWD', club:'Al Nassr', captain:true},
-      {n:11, name:'Nicolas Jackson',     pos:'FWD', club:'Bayern Munich'},
-      {n:12, name:'Cherif Ndiaye',       pos:'FWD', club:'Samsunspor'},
-      {n:13, name:'Iliman Ndiaye',       pos:'FWD', club:'Everton'},
-      {n:15, name:'Assane Diao',         pos:'FWD', club:'Como'},
-      {n:18, name:'Bamba Dieng',         pos:'FWD', club:'FC Lorient'},
-      {n:20, name:'Ismaila Sarr',        pos:'FWD', club:'Crystal Palace'},
-      {n:26, name:'Ibrahim Mbaye',       pos:'FWD', club:'PSG'},
-    ]
-  },
-
-  'Iraq': {
-    flag:'🇮🇶', code:'IRQ', conf:'AFC', group:'I',
-    coach:'Graham Arnold',
-    squad:[
-      {n:1,  name:'Fahad Talib',         pos:'GK', club:'Al Talaba'},
-      {n:12, name:'Jalal Hassan',        pos:'GK', club:'Al Zawra\'a'},
-      {n:22, name:'Ahmed Basil',         pos:'GK', club:'Al Shorta'},
-      {n:2,  name:'Rebin Ghareeb',       pos:'DEF', club:'Port FC'},
-      {n:3,  name:'Hussein Ali',         pos:'DEF', club:'Pogoń Szczecin'},
-      {n:4,  name:'Zaid Tahseen',        pos:'DEF', club:'Pakhtakor Tashkent'},
-      {n:5,  name:'Akam Hashim',         pos:'DEF', club:'Al Zawra\'a'},
-      {n:6,  name:'Munaf Younus',        pos:'DEF', club:'Al Shorta'},
-      {n:15, name:'Ahmed Yahya',         pos:'DEF', club:'Al Shorta'},
-      {n:23, name:'Merchas Doski',       pos:'DEF', club:'Viktoria Plzeň'},
-      {n:25, name:'Mustafa Saadoon',     pos:'DEF', club:'Al Shorta'},
-      {n:26, name:'Frans Putros',        pos:'DEF', club:'Persib Bandung'},
-      {n:7,  name:'Youssef Amyn',        pos:'MID', club:'AEK Larnaca'},
-      {n:8,  name:'Ibrahim Bayesh',      pos:'MID', club:'Al Dhafra'},
-      {n:14, name:'Zidane Iqbal',        pos:'MID', club:'FC Utrecht'},
-      {n:16, name:'Amir Alammari',       pos:'MID', club:'KS Cracovia'},
-      {n:19, name:'Kevin Yakob',         pos:'MID', club:'Aarhus GF'},
-      {n:20, name:'Aimar Sher',          pos:'MID', club:'Sarpsborg 08'},
-      {n:24, name:'Zaid Ismael',         pos:'MID', club:'Al Talaba'},
-      {n:9,  name:'Ali Al-Hamadi',       pos:'FWD', club:'Luton Town'},
-      {n:10, name:'Mohanad Ali',         pos:'FWD', club:'Dibba FC'},
-      {n:11, name:'Ahmed Qasim',         pos:'FWD', club:'Nashville SC'},
-      {n:13, name:'Ali Yousif',          pos:'FWD', club:'Al Talaba'},
-      {n:17, name:'Ali Jasim',           pos:'FWD', club:'Al Najmah'},
-      {n:18, name:'Aymen Hussein',       pos:'FWD', club:'Al Karma'},
-      {n:21, name:'Marko Farji',         pos:'FWD', club:'Venezia FC'},
-    ]
-  },
-
-  'Norway': {
-    flag:'🇳🇴', code:'NOR', conf:'UEFA', group:'I',
-    coach:'Ståle Solbakken',
-    squad:[
-      {n:1,  name:'Ørjan Nyland',        pos:'GK', club:'Sevilla FC'},
-      {n:13, name:'Sander Tangvik',      pos:'GK', club:'Hamburger SV'},
-      {n:14, name:'Egil Selvik',         pos:'GK', club:'Watford FC'},
-      {n:2,  name:'Julian Ryerson',      pos:'DEF', club:'Borussia Dortmund'},
-      {n:3,  name:'Fredrik Bjørkan',     pos:'DEF', club:'FK Bodø/Glimt'},
-      {n:4,  name:'Leo Østigård',        pos:'DEF', club:'Genoa CFC'},
-      {n:5,  name:'Kristoffer Ajer',     pos:'DEF', club:'Brentford'},
-      {n:6,  name:'David Møller Wolfe',  pos:'DEF', club:'Wolves'},
-      {n:15, name:'Marcus Holmgren Pedersen', pos:'DEF', club:'Torino FC'},
-      {n:16, name:'Torbjørn Heggem',     pos:'DEF', club:'Bologna FC'},
-      {n:24, name:'Sondre Langås',       pos:'DEF', club:'Derby County'},
-      {n:25, name:'Henrik Falchener',    pos:'DEF', club:'Viking Stavanger'},
-      {n:7,  name:'Patrick Berg',        pos:'MID', club:'FK Bodø/Glimt'},
-      {n:8,  name:'Sander Berge',        pos:'MID', club:'Fulham'},
-      {n:10, name:'Martin Ødegaard',     pos:'MID', club:'Arsenal', captain:true},
-      {n:12, name:'Morten Thorsby',      pos:'MID', club:'US Cremonese'},
-      {n:14, name:'Fredrik Aursnes',     pos:'MID', club:'SL Benfica'},
-      {n:18, name:'Kristian Thorstvedt', pos:'MID', club:'US Sassuolo'},
-      {n:19, name:'Thelo Aasgaard',      pos:'MID', club:'Rangers FC'},
-      {n:21, name:'Andreas Schjelderup', pos:'MID', club:'SL Benfica'},
-      {n:22, name:'Oscar Bobb',          pos:'MID', club:'Fulham'},
-      {n:23, name:'Jens Petter Hauge',   pos:'MID', club:'FK Bodø/Glimt'},
-      {n:9,  name:'Erling Haaland',      pos:'FWD', club:'Manchester City'},
-      {n:11, name:'Alexander Sørloth',   pos:'FWD', club:'Atlético Madrid'},
-      {n:17, name:'Jørgen Strand Larsen',pos:'FWD', club:'Crystal Palace'},
-      {n:20, name:'Antonio Nusa',        pos:'FWD', club:'RB Leipzig'},
-    ]
-  },
-
-  /* ── GROUP J ── */
-
-  'Argentina': {
-    flag:'🇦🇷', code:'ARG', conf:'CONMEBOL', group:'J',
-    coach:'Lionel Scaloni',
-    squad:[
-      {n:1,  name:'Juan Musso',          pos:'GK', club:'Atlético Madrid'},
-      {n:12, name:'Gerónimo Rulli',      pos:'GK', club:'Olympique Marseille'},
-      {n:23, name:'Emiliano Martínez',   pos:'GK', club:'Aston Villa'},
-      {n:2,  name:'Nahuel Molina',       pos:'DEF', club:'Atlético Madrid'},
-      {n:3,  name:'Nicolás Tagliafico',  pos:'DEF', club:'Olympique Lyonnais'},
-      {n:4,  name:'Gonzalo Montiel',     pos:'DEF', club:'CA River Plate'},
-      {n:5,  name:'Lisandro Martínez',   pos:'DEF', club:'Manchester United'},
-      {n:6,  name:'Cristian Romero',     pos:'DEF', club:'Tottenham'},
-      {n:19, name:'Nicolás Otamendi',    pos:'DEF', club:'SL Benfica'},
-      {n:24, name:'Facundo Medina',      pos:'DEF', club:'Olympique Marseille'},
-      {n:26, name:'Leonardo Balerdi',    pos:'DEF', club:'Olympique Marseille'},
-      {n:5,  name:'Leandro Paredes',     pos:'MID', club:'CA Boca Juniors'},
-      {n:7,  name:'Rodrigo De Paul',     pos:'MID', club:'Inter Miami'},
-      {n:11, name:'Giovani Lo Celso',    pos:'MID', club:'Real Betis'},
-      {n:14, name:'Exequiel Palacios',   pos:'MID', club:'Bayer Leverkusen'},
-      {n:16, name:'Valentín Barco',      pos:'MID', club:'RC Strasbourg'},
-      {n:20, name:'Alexis Mac Allister', pos:'MID', club:'Liverpool'},
-      {n:24, name:'Enzo Fernández',      pos:'MID', club:'Chelsea'},
-      {n:10, name:'Lionel Messi',        pos:'FWD', club:'Inter Miami', captain:true},
-      {n:9,  name:'Julián Álvarez',      pos:'FWD', club:'Atlético Madrid'},
-      {n:15, name:'Nico González',       pos:'MID', club:'Atlético Madrid'},
-      {n:17, name:'Thiago Almada',       pos:'FWD', club:'Atlético Madrid'},
-      {n:18, name:'Giuliano Simeone',    pos:'FWD', club:'Atlético Madrid'},
-      {n:21, name:'Lautaro Martínez',    pos:'FWD', club:'Inter Milan'},
-      {n:22, name:'Nico Paz',            pos:'FWD', club:'Como'},
-      {n:23, name:'Jose Manuel Lopez',   pos:'FWD', club:'SE Palmeiras'},
-    ]
-  },
-
-  'Algeria': {
-    flag:'🇩🇿', code:'ALG', conf:'CAF', group:'J',
-    coach:'Vladimir Petković',
-    squad:[
-      {n:1,  name:'Melvin Mastil',       pos:'GK', club:'FC Stade Nyonnais'},
-      {n:16, name:'Oussama Benbot',      pos:'GK', club:'USM Alger'},
-      {n:23, name:'Luca Zidane',         pos:'GK', club:'Granada CF'},
-      {n:2,  name:'Aissa Mandi',         pos:'DEF', club:'Lille OSC'},
-      {n:3,  name:'Ramy Bensebaini',     pos:'DEF', club:'Borussia Dortmund'},
-      {n:4,  name:'Achraf Abada',        pos:'DEF', club:'USM Alger'},
-      {n:5,  name:'Zineddine Belaïd',    pos:'DEF', club:'JS Kabylie'},
-      {n:12, name:'Jaouen Hadjam',       pos:'DEF', club:'BSC Young Boys'},
-      {n:14, name:'Rayan Aït-Nouri',     pos:'DEF', club:'Manchester City'},
-      {n:17, name:'Rak Belghali',        pos:'DEF', club:'Hellas Verona'},
-      {n:21, name:'Mohamed Amine Tougai',pos:'DEF', club:'Espérance De Tunisie'},
-      {n:26, name:'Samir Chergui',       pos:'DEF', club:'Paris FC'},
-      {n:6,  name:'Ramiz Zerrouki',      pos:'MID', club:'FC Twente'},
-      {n:8,  name:'Houssem Aouar',       pos:'MID', club:'Al Ittihad'},
-      {n:10, name:'Fares Chaibi',        pos:'MID', club:'Eintracht Frankfurt'},
-      {n:13, name:'Hicham Boudaoui',     pos:'MID', club:'OGC Nice'},
-      {n:19, name:'Nabil Bentaleb',      pos:'MID', club:'Lille OSC'},
-      {n:24, name:'Yassine Titraoui',    pos:'MID', club:'Sporting Charleroi'},
-      {n:22, name:'Ibrahim Maza',        pos:'MID', club:'Bayer Leverkusen'},
-      {n:7,  name:'Riyad Mahrez',        pos:'FWD', club:'Al Ahli'},
-      {n:9,  name:'Amine Gouiri',        pos:'FWD', club:'Olympique Marseille'},
-      {n:11, name:'Anis Hadj Moussa',    pos:'FWD', club:'Feyenoord Rotterdam'},
-      {n:15, name:'Nadhir Benbouali',    pos:'FWD', club:'Györi ETO FC'},
-      {n:18, name:'Mohamed Amoura',      pos:'FWD', club:'VfL Wolfsburg'},
-      {n:20, name:'Adil Boulbina',       pos:'FWD', club:'Al Duhail'},
-      {n:25, name:'Fares Ghedjemis',     pos:'FWD', club:'Frosinone'},
-    ]
-  },
-
-  'Austria': {
-    flag:'🇦🇹', code:'AUT', conf:'UEFA', group:'J',
-    coach:'Ralf Rangnick',
-    squad:[
-      {n:1,  name:'Alexander Schlager',  pos:'GK', club:'FC Red Bull Salzburg'},
-      {n:12, name:'Florian Wiegele',     pos:'GK', club:'FC Viktoria Plzeň'},
-      {n:13, name:'Patrick Pentz',       pos:'GK', club:'Brøndby IF'},
-      {n:2,  name:'Stefan Posch',        pos:'DEF', club:'Mainz 05'},
-      {n:3,  name:'Philipp Lienhart',    pos:'DEF', club:'SC Freiburg'},
-      {n:4,  name:'Kevin Danso',         pos:'DEF', club:'Tottenham'},
-      {n:5,  name:'David Alaba',         pos:'DEF', club:'Real Madrid'},
-      {n:6,  name:'Phillip Mwene',       pos:'DEF', club:'Mainz 05'},
-      {n:14, name:'Marco Friedl',        pos:'DEF', club:'SV Werder Bremen'},
-      {n:22, name:'David Affengruber',   pos:'DEF', club:'Elche CF'},
-      {n:25, name:'Michael Svoboda',     pos:'DEF', club:'Venezia FC'},
-      {n:7,  name:'Marko Arnautović',    pos:'FWD', club:'FK Crvena Zvezda'},
-      {n:8,  name:'Xaver Schlager',      pos:'MID', club:'RB Leipzig'},
-      {n:9,  name:'Marcel Sabitzer',     pos:'MID', club:'Borussia Dortmund'},
-      {n:10, name:'Florian Grillitsch',  pos:'MID', club:'SC Braga'},
-      {n:11, name:'Michael Gregoritsch', pos:'FWD', club:'FC Augsburg'},
-      {n:14, name:'Saša Kalajdžić',      pos:'FWD', club:'LASK Linz'},
-      {n:15, name:'Nicolas Seiwald',     pos:'MID', club:'RB Leipzig'},
-      {n:16, name:'Carney Chukwuemeka', pos:'MID', club:'Borussia Dortmund'},
-      {n:17, name:'Romano Schmid',       pos:'MID', club:'SV Werder Bremen'},
-      {n:18, name:'Christoph Baumgartner',pos:'MID', club:'RB Leipzig'},
-      {n:19, name:'Konrad Laimer',       pos:'MID', club:'Bayern Munich'},
-      {n:20, name:'Patrick Wimmer',      pos:'FWD', club:'VfL Wolfsburg'},
-      {n:21, name:'Alexander Prass',     pos:'MID', club:'TSG Hoffenheim'},
-      {n:23, name:'Paul Wanner',         pos:'MID', club:'PSV Eindhoven'},
-      {n:26, name:'Alessandro Schöpf',   pos:'MID', club:'Wolfsberger AC'},
-    ]
-  },
-
-  'Jordan': {
-    flag:'🇯🇴', code:'JOR', conf:'AFC', group:'J',
-    coach:'Jamal Sellami',
-    squad:[
-      {n:1,  name:'Yazeed Abulaila',     pos:'GK', club:'Al Hussein SC'},
-      {n:12, name:'Nour Baniateyah',     pos:'GK', club:'Al Faisaly'},
-      {n:22, name:'Abdallah Alfakhori',  pos:'GK', club:'Al Wahdat'},
-      {n:2,  name:'Mohammad Abuhasheesh',pos:'DEF', club:'Al Karma'},
-      {n:3,  name:'Abdallah Nasib',      pos:'DEF', club:'Al Zawra\'a'},
-      {n:4,  name:'Husam Abudahab',      pos:'DEF', club:'Al Faisaly'},
-      {n:5,  name:'Yazan Alarab',        pos:'DEF', club:'FC Seoul'},
-      {n:13, name:'Mohammad Abualnadi',  pos:'DEF', club:'Selangor FC'},
-      {n:16, name:'Saleem Obaid',        pos:'DEF', club:'Al Hussein'},
-      {n:19, name:'Saed Alrosan',        pos:'DEF', club:'Al Hussein'},
-      {n:23, name:'Ehsan Haddad',        pos:'DEF', club:'Al Hussein'},
-      {n:26, name:'Anas Badawi',         pos:'DEF', club:'Al Faisaly'},
-      {n:6,  name:'Amer Jamous',         pos:'MID', club:'Al Zawra\'a'},
-      {n:8,  name:'Noor Alrawabdeh',     pos:'MID', club:'Selangor FC'},
-      {n:14, name:'Rajaei Ayed',         pos:'MID', club:'Al Hussein'},
-      {n:15, name:'Ibrahim Sadeh',       pos:'MID', club:'Al Karma'},
-      {n:20, name:'Mohannad Abutaha',    pos:'MID', club:'Al-Quwa Al-Jawiya'},
-      {n:21, name:'Nizar Alrashdan',     pos:'MID', club:'Qatar SC'},
-      {n:24, name:'Mohammad Aldaoud',    pos:'MID', club:'Al Wahdat'},
-      {n:7,  name:'Mohammad Abuzraiq',   pos:'FWD', club:'Raja Casablanca'},
-      {n:9,  name:'Ali Olwan',           pos:'FWD', club:'Al Sailiya'},
-      {n:10, name:'Mousa Altamari',      pos:'FWD', club:'Stade Rennais'},
-      {n:11, name:'Odeh Fakhoury',       pos:'FWD', club:'Pyramids FC'},
-      {n:17, name:'Mahmoud Almardi',     pos:'FWD', club:'Al Hussein'},
-      {n:18, name:'Ibrahim Sabra',       pos:'FWD', club:'NK Lokomotiva Zagreb'},
-      {n:25, name:'Ali Azaizeh',         pos:'FWD', club:'Al Shabab'},
-    ]
-  },
-
-  /* ── GROUP K ── */
-
-  'Portugal': {
-    flag:'🇵🇹', code:'POR', conf:'UEFA', group:'K',
-    coach:'Roberto Martínez',
-    squad:[
-      {n:1,  name:'Diogo Costa',         pos:'GK', club:'FC Porto'},
-      {n:12, name:'José Sá',             pos:'GK', club:'Wolves'},
-      {n:22, name:'Rui Silva',           pos:'GK', club:'Sporting CP'},
-      {n:2,  name:'Diogo Dalot',         pos:'DEF', club:'Manchester United'},
-      {n:3,  name:'Nuno Mendes',         pos:'DEF', club:'PSG'},
-      {n:4,  name:'Rúben Dias',          pos:'DEF', club:'Manchester City'},
-      {n:5,  name:'Tomás Araújo',        pos:'DEF', club:'SL Benfica'},
-      {n:6,  name:'Nélson Semedo',       pos:'DEF', club:'Fenerbahçe'},
-      {n:13, name:'Renato Veiga',        pos:'DEF', club:'Villarreal'},
-      {n:14, name:'Gonçalo Inácio',      pos:'DEF', club:'Sporting CP'},
-      {n:20, name:'João Cancelo',        pos:'DEF', club:'Barcelona'},
-      {n:24, name:'Samu Costa',          pos:'DEF', club:'RCD Mallorca'},
-      {n:7,  name:'Cristiano Ronaldo',   pos:'FWD', club:'Al Nassr', captain:true},
-      {n:8,  name:'Bruno Fernandes',     pos:'MID', club:'Manchester United'},
-      {n:9,  name:'Gonçalo Ramos',       pos:'FWD', club:'PSG'},
-      {n:10, name:'Bernardo Silva',      pos:'MID', club:'Manchester City'},
-      {n:11, name:'João Félix',          pos:'FWD', club:'Al Nassr'},
-      {n:15, name:'Matheus Nunes',       pos:'MID', club:'Manchester City'},
-      {n:16, name:'Rúben Neves',         pos:'MID', club:'Al Hilal'},
-      {n:17, name:'Francisco Trincão',   pos:'FWD', club:'Sporting CP'},
-      {n:18, name:'Rafael Leão',         pos:'FWD', club:'AC Milan'},
-      {n:19, name:'Pedro Neto',          pos:'FWD', club:'Chelsea'},
-      {n:21, name:'João Neves',          pos:'MID', club:'PSG'},
-      {n:23, name:'Vitinha',             pos:'MID', club:'PSG'},
-      {n:25, name:'Gonçalo Guedes',      pos:'FWD', club:'Real Sociedad'},
-      {n:26, name:'Francisco Conceição', pos:'FWD', club:'Juventus'},
-    ]
-  },
-
-  'DR Congo': {
-    flag:'🇨🇩', code:'COD', conf:'CAF', group:'K',
-    coach:'Sébastien Desabre',
-    squad:[
-      {n:1,  name:'Lionel Mpasi',        pos:'GK', club:'Le Havre'},
-      {n:16, name:'Timothy Fayulu',      pos:'GK', club:'FC Noah'},
-      {n:21, name:'Matthieu Epolo',      pos:'GK', club:'Standard Liège'},
-      {n:2,  name:'Aaron Wan-Bissaka',   pos:'DEF', club:'West Ham'},
-      {n:3,  name:'Arthur Masuaku',      pos:'DEF', club:'RC Lens'},
-      {n:4,  name:'Chancel Mbemba',      pos:'DEF', club:'Lille OSC'},
-      {n:5,  name:'Axel Tuanzebe',       pos:'DEF', club:'Burnley'},
-      {n:6,  name:'Steve Kapuadi',       pos:'DEF', club:'Widzew Łódź'},
-      {n:12, name:'Joris Kayembe',       pos:'DEF', club:'KRC Genk'},
-      {n:13, name:'Dylan Batubinsika',   pos:'DEF', club:'AEL FC'},
-      {n:24, name:'Gédéon Kalulu',       pos:'DEF', club:'Aris Limassol'},
-      {n:6,  name:'Ngal\'ayel Mukau',    pos:'MID', club:'Lille OSC'},
-      {n:7,  name:'Nathanaël Mbuku',     pos:'MID', club:'Montpellier HSC'},
-      {n:8,  name:'Samuel Moutoussamy',  pos:'MID', club:'Atromitos FC'},
-      {n:10, name:'Theo Bongonda',       pos:'MID', club:'FC Spartak Moscow'},
-      {n:14, name:'Noah Sadiki',         pos:'MID', club:'Sunderland'},
-      {n:15, name:'Aaron Tshibola',      pos:'MID', club:'Kilmarnock'},
-      {n:18, name:'Charles Pickel',      pos:'MID', club:'RCD Espanyol'},
-      {n:25, name:'Edo Kayembe',         pos:'MID', club:'Watford'},
-      {n:9,  name:'Cédric Bakambu',      pos:'FWD', club:'Real Betis'},
-      {n:11, name:'Gaël Kakuta',         pos:'FWD', club:'AEL FC'},
-      {n:17, name:'Yoane Wissa',         pos:'FWD', club:'Newcastle United'},
-      {n:19, name:'Fiston Mayele',       pos:'FWD', club:'Pyramids FC'},
-      {n:20, name:'Meschack Elia',       pos:'FWD', club:'Alanyaspor'},
-      {n:22, name:'Simon Banza',         pos:'FWD', club:'Al Jazira'},
-      {n:23, name:'Brian Cipenga',       pos:'FWD', club:'CD Castellón'},
-    ]
-  },
-
-  'Uzbekistan': {
-    flag:'🇺🇿', code:'UZB', conf:'AFC', group:'K',
-    coach:'Fabio Cannavaro',
-    squad:[
-      {n:1,  name:'Utkir Yusupov',       pos:'GK', club:'PFC Navbahor Namangan'},
-      {n:12, name:'Abduvohid Nematov',   pos:'GK', club:'Nasaf Qarshi FC'},
-      {n:16, name:'Botirali Ergashev',   pos:'GK', club:'FK Neftchi Farg\'ona'},
-      {n:2,  name:'Abdukodir Khusanov',  pos:'DEF', club:'Manchester City'},
-      {n:3,  name:'Farrukh Sayfiev',     pos:'DEF', club:'FK Neftchi Farg\'ona'},
-      {n:4,  name:'Rustam Ashurmatov',   pos:'DEF', club:'Esteghlal Tehran'},
-      {n:5,  name:'Khojiakbar Alijonov', pos:'DEF', club:'Pakhtakor Tashkent'},
-      {n:13, name:'Sherzod Nasrullaev',  pos:'DEF', club:'Pakhtakor Tashkent'},
-      {n:15, name:'Umar Eshmurodov',     pos:'DEF', club:'Nasaf Qarshi FC'},
-      {n:18, name:'Abdulla Abdullaev',   pos:'DEF', club:'Dibba FC'},
-      {n:24, name:'Behruzjon Karimov',   pos:'DEF', club:'Surkhon FK'},
-      {n:25, name:'Avazbek Ulmasaliyev', pos:'DEF', club:'OKMK FK'},
-      {n:26, name:'Jakhongir Urozov',    pos:'DEF', club:'FK Dinamo Samarkand'},
-      {n:6,  name:'Akmal Mozgovoy',      pos:'MID', club:'Pakhtakor Tashkent'},
-      {n:7,  name:'Otabek Shukurov',     pos:'MID', club:'Baniyas Club'},
-      {n:8,  name:'Jamshid Iskanderov',  pos:'MID', club:'FK Neftchi Farg\'ona'},
-      {n:9,  name:'Odiljon Xamrobekov',  pos:'MID', club:'Tractor Sazi Tabriz'},
-      {n:10, name:'Jaloliddin Masharipov',pos:'MID', club:'Esteghlal Tehran'},
-      {n:11, name:'Oston Urunov',        pos:'MID', club:'Persepolis FC'},
-      {n:17, name:'Dostonbek Khamdamov', pos:'MID', club:'Pakhtakor Tashkent'},
-      {n:19, name:'Azizjon Ganiev',      pos:'MID', club:'Al Bataeh Club'},
-      {n:22, name:'Sherzod Esanov',      pos:'MID', club:'FK Buxoro'},
-      {n:23, name:'Abbosbek Fayzullaev', pos:'FWD', club:'Başakşehir FK'},
-      {n:14, name:'Eldor Shomurodov',    pos:'FWD', club:'Başakşehir FK'},
-      {n:20, name:'Azizbek Amonov',      pos:'FWD', club:'FK Dinamo Samarkand'},
-      {n:21, name:'Igor Sergeev',        pos:'FWD', club:'Persepolis FC'},
-    ]
-  },
-
-  'Colombia': {
-    flag:'🇨🇴', code:'COL', conf:'CONMEBOL', group:'K',
-    coach:'Néstor Lorenzo',
-    squad:[
-      {n:1,  name:'David Ospina',        pos:'GK', club:'Atlético Nacional'},
-      {n:12, name:'Camilo Vargas',       pos:'GK', club:'Atlas FC'},
-      {n:24, name:'Álvaro Montero',      pos:'GK', club:'CA Vélez Sarsfield'},
-      {n:2,  name:'Daniel Muñoz',        pos:'DEF', club:'Crystal Palace'},
-      {n:3,  name:'Johan Mojica',        pos:'DEF', club:'RCD Mallorca'},
-      {n:4,  name:'Santiago Arias',      pos:'DEF', club:'CA Independiente'},
-      {n:5,  name:'Davinson Sánchez',    pos:'DEF', club:'Galatasaray'},
-      {n:6,  name:'Jhon Lucumí',         pos:'DEF', club:'Bologna FC'},
-      {n:13, name:'Yerry Mina',          pos:'DEF', club:'Cagliari'},
-      {n:17, name:'Deiver Machado',      pos:'DEF', club:'FC Nantes'},
-      {n:18, name:'Willer Ditta',        pos:'DEF', club:'CF Cruz Azul'},
-      {n:22, name:'Gustavo Puerta',      pos:'DEF', club:'Racing Santander'},
-      {n:7,  name:'Luis Díaz',           pos:'FWD', club:'Bayern Munich'},
-      {n:8,  name:'Richard Ríos',        pos:'MID', club:'SL Benfica'},
-      {n:10, name:'James Rodríguez',     pos:'MID', club:'Minnesota United'},
-      {n:11, name:'Jhon Córdoba',        pos:'FWD', club:'FC Krasnodar'},
-      {n:14, name:'Kevin Castaño',       pos:'MID', club:'CA River Plate'},
-      {n:15, name:'Jefferson Lerma',     pos:'MID', club:'Crystal Palace'},
-      {n:16, name:'Juan Portilla',       pos:'MID', club:'Athletico Paranaense'},
-      {n:19, name:'Cucho Hernández',     pos:'FWD', club:'Real Betis'},
-      {n:20, name:'Jhon Arias',          pos:'MID', club:'SE Palmeiras'},
-      {n:21, name:'Jaminton Campaz',     pos:'FWD', club:'CA Rosario Central'},
-      {n:23, name:'Luis Suárez',         pos:'FWD', club:'Sporting CP'},
-      {n:25, name:'Luis Suárez',         pos:'FWD', club:'Sporting CP'},
-      {n:9,  name:'Jorge Carrascal',     pos:'MID', club:'Flamengo'},
-      {n:26, name:'Andrés Gómez',        pos:'FWD', club:'CR Vasco Da Gama'},
-    ]
-  },
-
-  /* ── GROUP L ── */
-
-  'England': {
-    flag:'🏴\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}', code:'ENG', conf:'UEFA', group:'L',
-    coach:'Thomas Tuchel',
-    squad:[
-      {n:1,  name:'Jordan Pickford',     pos:'GK', club:'Everton'},
-      {n:13, name:'Dean Henderson',      pos:'GK', club:'Crystal Palace'},
-      {n:23, name:'James Trafford',      pos:'GK', club:'Manchester City'},
-      {n:2,  name:'Tino Livramento',     pos:'DEF', club:'Newcastle United'},
-      {n:3,  name:'Dan Burn',            pos:'DEF', club:'Newcastle United'},
-      {n:4,  name:'Ezri Konsa',          pos:'DEF', club:'Aston Villa'},
-      {n:5,  name:'John Stones',         pos:'DEF', club:'Manchester City'},
-      {n:6,  name:'Marc Guéhi',          pos:'DEF', club:'Manchester City'},
-      {n:15, name:'Nico O\'Reilly',      pos:'DEF', club:'Manchester City'},
-      {n:22, name:'Djed Spence',         pos:'DEF', club:'Tottenham'},
-      {n:24, name:'Reece James',         pos:'DEF', club:'Chelsea'},
-      {n:26, name:'Jarell Quansah',      pos:'DEF', club:'Bayer Leverkusen'},
-      {n:4,  name:'Declan Rice',         pos:'MID', club:'Arsenal'},
-      {n:8,  name:'Elliot Anderson',     pos:'MID', club:'Nottingham Forest'},
-      {n:10, name:'Jude Bellingham',     pos:'MID', club:'Real Madrid'},
-      {n:14, name:'Jordan Henderson',    pos:'MID', club:'Brentford'},
-      {n:16, name:'Kobbie Mainoo',       pos:'MID', club:'Manchester United'},
-      {n:17, name:'Morgan Rogers',       pos:'MID', club:'Aston Villa'},
-      {n:21, name:'Eberechi Eze',        pos:'MID', club:'Arsenal'},
-      {n:7,  name:'Bukayo Saka',         pos:'FWD', club:'Arsenal'},
-      {n:9,  name:'Harry Kane',          pos:'FWD', club:'Bayern Munich', captain:true},
-      {n:11, name:'Marcus Rashford',     pos:'FWD', club:'Barcelona'},
-      {n:18, name:'Anthony Gordon',      pos:'FWD', club:'Newcastle United'},
-      {n:19, name:'Ollie Watkins',       pos:'FWD', club:'Aston Villa'},
-      {n:20, name:'Noni Madueke',        pos:'FWD', club:'Arsenal'},
-      {n:22, name:'Ivan Toney',          pos:'FWD', club:'Al Ahli'},
-    ]
-  },
-
-  'Croatia': {
-    flag:'🇭🇷', code:'CRO', conf:'UEFA', group:'L',
-    coach:'Zlatko Dalić',
-    squad:[
-      {n:1,  name:'Dominik Livaković',   pos:'GK', club:'GNK Dinamo Zagreb'},
-      {n:12, name:'Ivor Pandur',         pos:'GK', club:'Hull City'},
-      {n:23, name:'Dominik Kotarski',    pos:'GK', club:'FC København'},
-      {n:2,  name:'Josip Stanišić',      pos:'DEF', club:'Bayern Munich'},
-      {n:3,  name:'Joško Gvardiol',      pos:'DEF', club:'Manchester City'},
-      {n:4,  name:'Duje Ćaleta-Car',     pos:'DEF', club:'Real Sociedad'},
-      {n:5,  name:'Josip Šutalo',        pos:'DEF', club:'AFC Ajax'},
-      {n:6,  name:'Kristijan Jakić',     pos:'DEF', club:'FC Augsburg'},
-      {n:13, name:'Marin Pongračić',     pos:'DEF', club:'ACF Fiorentina'},
-      {n:19, name:'Martin Erlić',        pos:'DEF', club:'FC Midtjylland'},
-      {n:22, name:'Luka Vušković',       pos:'DEF', club:'Hamburger SV'},
-      {n:7,  name:'Mario Pašalić',       pos:'MID', club:'Atalanta'},
-      {n:8,  name:'Mateo Kovačić',       pos:'MID', club:'Manchester City'},
-      {n:9,  name:'Andrej Kramarić',     pos:'FWD', club:'TSG Hoffenheim'},
-      {n:10, name:'Luka Modrić',         pos:'MID', club:'AC Milan', captain:true},
-      {n:14, name:'Nikola Moro',         pos:'MID', club:'Bologna FC'},
-      {n:15, name:'Toni Fruk',           pos:'MID', club:'HNK Rijeka'},
-      {n:16, name:'Martin Baturina',     pos:'MID', club:'Como'},
-      {n:17, name:'Nikola Vlašić',       pos:'MID', club:'Torino FC'},
-      {n:18, name:'Luka Sučić',          pos:'MID', club:'Real Sociedad'},
-      {n:20, name:'Petar Sučić',         pos:'MID', club:'Inter Milan'},
-      {n:11, name:'Ivan Perišić',        pos:'FWD', club:'PSV Eindhoven'},
-      {n:21, name:'Ante Budimir',        pos:'FWD', club:'CA Osasuna'},
-      {n:24, name:'Igor Matanović',      pos:'FWD', club:'SC Freiburg'},
-      {n:25, name:'Marco Pašalić',       pos:'FWD', club:'Orlando City'},
-      {n:26, name:'Petar Musa',          pos:'FWD', club:'FC Dallas'},
-    ]
-  },
-
-  'Ghana': {
-    flag:'🇬🇭', code:'GHA', conf:'CAF', group:'L',
-    coach:'Carlos Queiroz',
-    squad:[
-      {n:1,  name:'Lawrence Zigi',       pos:'GK', club:'FC St. Gallen'},
-      {n:12, name:'Joseph Anang',        pos:'GK', club:'St Patrick\'s Athletic'},
-      {n:16, name:'Benjamin Asare',      pos:'GK', club:'Hearts of Oak'},
-      {n:2,  name:'Alidu Seidu',         pos:'DEF', club:'Stade Rennais'},
-      {n:3,  name:'Gideon Mensah',       pos:'DEF', club:'AJ Auxerre'},
-      {n:4,  name:'Abdul Mumin',         pos:'DEF', club:'Rayo Vallecano'},
-      {n:5,  name:'Baba Rahman',         pos:'DEF', club:'PAOK Saloniki'},
-      {n:6,  name:'Jonas Adjetey',       pos:'DEF', club:'VfL Wolfsburg'},
-      {n:13, name:'Jerome Opoku',        pos:'DEF', club:'Başakşehir'},
-      {n:14, name:'Derrick Luckassen',   pos:'DEF', club:'Pafos FC'},
-      {n:21, name:'Kojo Peprah Oppong',  pos:'DEF', club:'OGC Nice'},
-      {n:26, name:'Marvin Senaya',       pos:'DEF', club:'AJ Auxerre'},
-      {n:7,  name:'Thomas Partey',       pos:'MID', club:'Villarreal'},
-      {n:8,  name:'Kwasi Sibo',          pos:'MID', club:'Real Oviedo'},
-      {n:11, name:'Antoine Semenyo',     pos:'MID', club:'Manchester City'},
-      {n:15, name:'Elisha Owusu',        pos:'MID', club:'AJ Auxerre'},
-      {n:20, name:'Augustine Boakye',    pos:'MID', club:'AS Saint-Etienne'},
-      {n:23, name:'Caleb Yirenkyi',      pos:'MID', club:'FC Nordsjælland'},
-      {n:9,  name:'Jordan Ayew',         pos:'FWD', club:'Leicester City'},
-      {n:10, name:'Inaki Williams',      pos:'FWD', club:'Athletic Club'},
-      {n:17, name:'Abdul Fatawu Issahaku',pos:'FWD', club:'Leicester City'},
-      {n:18, name:'Brandon Thomas-Asante',pos:'FWD', club:'Coventry City'},
-      {n:19, name:'Kamaldeen Sulemana',  pos:'FWD', club:'Atalanta'},
-      {n:22, name:'Ernest Nuamah',       pos:'FWD', club:'Olympique Lyonnais'},
-      {n:24, name:'Christopher Bonsu Baah',pos:'FWD', club:'Al Qadsiah'},
-      {n:25, name:'Prince Adu',          pos:'FWD', club:'FC Viktoria Plzeň'},
-    ]
-  },
-
-  'Panama': {
-    flag:'🇵🇦', code:'PAN', conf:'CONCACAF', group:'L',
-    coach:'Thomas Christiansen',
-    squad:[
-      {n:1,  name:'Luis Mejía',          pos:'GK', club:'Club Nacional'},
-      {n:12, name:'César Samudio',       pos:'GK', club:'CD Marathón'},
-      {n:22, name:'Orlando Mosquera',    pos:'GK', club:'Al Fayha'},
-      {n:2,  name:'César Blackman',      pos:'DEF', club:'ŠK Slovan Bratislava'},
-      {n:3,  name:'Jose Córdoba',        pos:'DEF', club:'Norwich City'},
-      {n:4,  name:'Fidel Escobar',       pos:'DEF', club:'Deportivo Saprissa'},
-      {n:5,  name:'Edgardo Fariña',      pos:'DEF', club:'FC Pari Nizhny Novgorod'},
-      {n:6,  name:'Eric Davis',          pos:'DEF', club:'CD Plaza Amador'},
-      {n:13, name:'Jiovany Ramos',       pos:'DEF', club:'Puerto Cabello CF'},
-      {n:14, name:'Carlos Harvey',       pos:'DEF', club:'Minnesota United'},
-      {n:16, name:'Andres Andrade',      pos:'DEF', club:'LASK Linz'},
-      {n:23, name:'Amir Murillo',        pos:'DEF', club:'Beşiktaş'},
-      {n:25, name:'Roderick Miller',     pos:'DEF', club:'Turan Tovuz'},
-      {n:26, name:'Jorge Gutierrez',     pos:'DEF', club:'Deportivo La Guaira'},
-      {n:7,  name:'Cristian Martínez',   pos:'MID', club:'Hapoel Kiryat Shmona'},
-      {n:8,  name:'Adalberto Carrasquilla',pos:'MID', club:'Pumas UNAM'},
-      {n:10, name:'Ismael Díaz',         pos:'MID', club:'Club León'},
-      {n:11, name:'Edgar Bárcenas',      pos:'MID', club:'Mazatlán FC'},
-      {n:15, name:'José Luis Rodríguez', pos:'MID', club:'FC Juárez'},
-      {n:19, name:'Aníbal Godoy',        pos:'MID', club:'San Diego FC'},
-      {n:20, name:'Alberto Quintero',    pos:'MID', club:'CD Plaza Amador'},
-      {n:21, name:'César Yanis',         pos:'MID', club:'CD Cobresal'},
-      {n:9,  name:'Tomas Rodriguez',     pos:'FWD', club:'Deportivo Saprissa'},
-      {n:17, name:'José Fajardo',        pos:'FWD', club:'CD Universidad Católica'},
-      {n:18, name:'Cecilio Waterman',    pos:'FWD', club:'CD Universidad de Concepción'},
-      {n:24, name:'Azarias Londoño',     pos:'FWD', club:'CD Universidad Católica'},
-    ]
+  if(!filtered.length){
+    out.innerHTML = '<div class="t-no-results">No teams found matching "'+query+'"</div>';
+    return;
   }
 
+  /* Sort alphabetically by full English name */
+  filtered.sort(function(a,b){ return a.name.localeCompare(b.name); });
+
+  var html = '';
+
+  if(activeConf !== 'ALL' || query){
+    /* Flat alphabetical list when filtering */
+    html += '<div class="t-grid">';
+    filtered.forEach(function(team){ html += teamCard(team); });
+    html += '</div>';
+  } else {
+    /* Group by group letter A–L */
+    var groups = {};
+    filtered.forEach(function(team){
+      var g = team.group || 'X';
+      if(!groups[g]) groups[g] = [];
+      groups[g].push(team);
+    });
+    Object.keys(groups).sort().forEach(function(g){
+      html += '<div class="group-hdr"><span class="group-badge">Group '+g+'</span></div>';
+      html += '<div class="t-grid">';
+      /* Within each group — also alphabetical */
+      groups[g].sort(function(a,b){ return a.name.localeCompare(b.name); });
+      groups[g].forEach(function(team){ html += teamCard(team); });
+      html += '</div>';
+    });
+  }
+
+  out.innerHTML = html;
+}
+
+
+/* ── HARDCODED FLAG MAP — verified emoji, never uses team.flag or team.code ── */
+var TEAM_FLAGS = {
+  'Algeria':              '🇩🇿',
+  'Argentina':            '🇦🇷',
+  'Australia':            '🇦🇺',
+  'Austria':              '🇦🇹',
+  'Belgium':              '🇧🇪',
+  'Bosnia & Herzegovina': '🇧🇦',
+  'Brazil':               '🇧🇷',
+  'Canada':               '🇨🇦',
+  'Cape Verde':           '🇨🇻',
+  'Colombia':             '🇨🇴',
+  'Croatia':              '🇭🇷',
+  'Curaçao':              '🇨🇼',
+  'Czech Republic':       '🇨🇿',
+  'DR Congo':             '🇨🇩',
+  'Ecuador':              '🇪🇨',
+  'Egypt':                '🇪🇬',
+  'England':              '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  'France':               '🇫🇷',
+  'Germany':              '🇩🇪',
+  'Ghana':                '🇬🇭',
+  'Haiti':                '🇭🇹',
+  'Iran':                 '🇮🇷',
+  'Iraq':                 '🇮🇶',
+  'Ivory Coast':          '🇨🇮',
+  'Japan':                '🇯🇵',
+  'Jordan':               '🇯🇴',
+  'Mexico':               '🇲🇽',
+  'Morocco':              '🇲🇦',
+  'Netherlands':          '🇳🇱',
+  'New Zealand':          '🇳🇿',
+  'Norway':               '🇳🇴',
+  'Panama':               '🇵🇦',
+  'Paraguay':             '🇵🇾',
+  'Portugal':             '🇵🇹',
+  'Qatar':                '🇶🇦',
+  'Saudi Arabia':         '🇸🇦',
+  'Scotland':             '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+  'Senegal':              '🇸🇳',
+  'South Africa':         '🇿🇦',
+  'South Korea':          '🇰🇷',
+  'Spain':                '🇪🇸',
+  'Sweden':               '🇸🇪',
+  'Switzerland':          '🇨🇭',
+  'Tunisia':              '🇹🇳',
+  'Turkey':               '🇹🇷',
+  'Uruguay':              '🇺🇾',
+  'USA':                  '🇺🇸',
+  'Uzbekistan':           '🇺🇿'
 };
+
+/* ── TEAM CARD ──────────────────────────────────────────────
+   DISPLAYS: flag emoji · full English name · group · confederation
+   NEVER DISPLAYS: team.code, ISO codes, FIFA codes, abbreviations
+   ─────────────────────────────────────────────────────────── */
+function teamCard(team){
+  var sd       = typeof WC26_TEAMS !== 'undefined' && WC26_TEAMS[team.name];
+  var hasSquad = sd && sd.squad && sd.squad.length > 0;
+  var coach    = sd ? (sd.coach || '') : '';
+  var isOpen   = openCards[team.name];
+  var cardId   = slug(team.name); /* DOM id uses name slug — never the code */
+
+  var squadHtml = '';
+  if(hasSquad){
+    squadHtml = '<div class="t-squad'+(isOpen?' open':'')+'" id="squad-'+cardId+'">';
+    if(coach) squadHtml += '<div class="t-coach">👔 Coach: '+coach+'</div>';
+    squadHtml += '<div class="t-squad-grid">';
+    sd.squad.forEach(function(p){
+      squadHtml +=
+        '<div class="t-player'+(p.injured?' injured':'')+'">'+
+          '<span class="t-num">'+p.n+'</span>'+
+          '<span class="t-pname">'+p.name+'</span>'+
+          (p.captain ? '<span class="t-captain">C</span>' : '')+
+          (p.injured ? '<span class="t-injured-badge">OUT</span>' : '')+
+          '<span class="t-pos">'+p.pos+'</span>'+
+        '</div>';
+    });
+    squadHtml += '</div></div>';
+  }
+
+  return (
+    '<div class="t-card'+(team.host?' host':'')+'" id="'+cardId+'">'+
+      /* FLAG from hardcoded map — never uses team.flag or team.code */
+      '<div class="t-name">'+
+        '<span class="t-flag">'+(TEAM_FLAGS[team.name]||'🏳️')+'</span>'+
+        '<span class="t-fullname">'+team.name+(team.host?' 🏠':'')+'</span>'+
+      '</div>'+
+      /* BADGES: group + confederation only */
+      '<div class="t-meta">'+
+        '<span class="t-badge">Group '+team.group+'</span>'+
+        '<span class="t-badge">'+team.conf+'</span>'+
+        (team.host ? '<span class="t-badge host-badge">Host</span>' : '')+
+      '</div>'+
+      (hasSquad ?
+        '<button class="t-expand-btn" onclick="toggleSquad(\''+team.name.replace(/'/g,"\\'")+'\')">'+(isOpen?'▲ Hide Squad':'▼ View Squad')+'</button>'+
+        squadHtml
+      : '')+
+    '</div>'
+  );
+}
+
+function toggleSquad(teamName){
+  openCards[teamName] = !openCards[teamName];
+  renderTeams();
+  setTimeout(function(){
+    var el = document.getElementById(slug(teamName));
+    if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }, 80);
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function(){
+  buildFilter();
+  renderTeams();
+});
+
+</script>
+</body>
+</html>
