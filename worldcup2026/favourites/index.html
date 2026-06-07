@@ -1083,27 +1083,72 @@ function renderFavs(){
   var favs=getFavs();
   document.getElementById('gc-fav-count').textContent=favs.length;
   var out=document.getElementById('gc-favs-panel');
+  if(!out) return;
   if(favs.length===0){
-    out.innerHTML='<div class="gc-fav-empty"><div class="gc-fav-empty-icon">⭐</div><h3>No favourite teams yet</h3><p>Go to the Teams page and tap the star ★ on any team to save it here.</p><a href="/worldcup2026/teams/" style="display:inline-block;padding:10px 22px;background:var(--blue);color:#fff;border-radius:10px;text-decoration:none;font-family:var(--font-heading);font-weight:700;font-size:.88rem">👕 Browse All Teams</a></div>';
+    out.innerHTML='<div class="gc-fav-empty"><div class="gc-fav-empty-icon">⭐</div><h3>No favourite teams yet</h3><p>Go to the Teams page and tap the star on any team to save it here.</p><a href="/worldcup2026/teams/" style="display:inline-block;padding:10px 22px;background:var(--blue);color:#fff;border-radius:10px;text-decoration:none;font-family:var(--font-heading);font-weight:700;font-size:.88rem">Browse All Teams</a></div>';
     return;
   }
-  var html='<div class="gc-fav-grid">';
+  var grid=document.createElement('div');
+  grid.className='gc-fav-grid';
   favs.forEach(function(name){
     var t=AT.find(function(x){return x.n===name;})||{g:'?',c:'?'};
-    html+='<div class="gc-fav-card"><div class="gc-fav-flag">'+fi(name,72,48)+'</div><div><div class="gc-fav-name">'+name+'</div><div class="gc-fav-meta">Group '+t.g+' · '+t.c+(t.h?' · 🏠 Host':'')+'</div></div><button class="gc-fav-remove" onclick="toggleFav(''+name.replace(/'/g,"\'")+'')">✕</button></div>';
+    var card=document.createElement('div');
+    card.className='gc-fav-card';
+    var inner=document.createElement('div');
+    inner.innerHTML='<div class="gc-fav-flag">'+fi(name,72,48)+'</div>'
+      +'<div><div class="gc-fav-name">'+name+'</div>'
+      +'<div class="gc-fav-meta">Group '+t.g+' · '+t.c+(t.h?' · Host':'')+'</div></div>';
+    var btn=document.createElement('button');
+    btn.className='gc-fav-remove';
+    btn.textContent='✕';
+    btn.setAttribute('data-name', name);
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      toggleFav(this.getAttribute('data-name'));
+    });
+    card.appendChild(inner);
+    card.appendChild(btn);
+    grid.appendChild(card);
   });
-  html+='</div>';
-  out.innerHTML=html;
+  out.innerHTML='';
+  out.appendChild(grid);
 }
 function renderAll2(){
-  var favs=getFavs();var html='';var cg='';
+  var favs=getFavs();
+  var container=document.getElementById('gc-all-panel');
+  if(!container) return;
+  container.innerHTML='';
+  var cg='';
   AT.forEach(function(t){
-    if(t.g!==cg){cg=t.g;html+='<div class="gc-grp-divider">Group '+cg+'</div>';}
+    if(t.g!==cg){
+      cg=t.g;
+      var div=document.createElement('div');
+      div.className='gc-grp-divider';
+      div.textContent='Group '+cg;
+      container.appendChild(div);
+    }
     var s=favs.indexOf(t.n)>-1;
-    html+='<div class="gc-all-card'+(s?' starred':'')+'" onclick="toggleFav(''+t.n.replace(/'/g,"\'")+'')">'+fi(t.n,60,40)+'<div class="gc-all-card-name">'+t.n+'</div><span class="gc-all-star">★</span></div>';
+    var card=document.createElement('div');
+    card.className='gc-all-card'+(s?' starred':'');
+    var img=document.createElement('div');
+    img.innerHTML=fi(t.n,60,40);
+    var nm=document.createElement('div');
+    nm.className='gc-all-card-name';
+    nm.textContent=t.n;
+    var star=document.createElement('span');
+    star.className='gc-all-star';
+    star.textContent='★';
+    card.appendChild(img);
+    card.appendChild(nm);
+    card.appendChild(star);
+    card.setAttribute('data-name', t.n);
+    card.addEventListener('click', function(){
+      toggleFav(this.getAttribute('data-name'));
+    });
+    container.appendChild(card);
   });
-  document.getElementById('gc-all-panel').innerHTML=html;
 }
+
 function showFavTab(tab){
   document.getElementById('tab-favs').classList.toggle('active',tab==='favs');
   document.getElementById('tab-all').classList.toggle('active',tab==='all');
