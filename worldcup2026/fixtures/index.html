@@ -144,7 +144,7 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .badge-ft{background:rgba(100,116,139,.12);color:#64748b}
 .match-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .team{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
-.team-flag{font-size:26px;line-height:1}
+.team-flag{width:48px;height:32px;border-radius:3px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#e2e8f0;flex-shrink:0}
 .team-name{font-size:11px;font-weight:900;color:#0f172a;line-height:1.2}
 .score-mid{min-width:84px;text-align:center}
 .score-num{font-size:24px;font-weight:900;color:#0f172a}
@@ -244,7 +244,7 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
   .summary-row{grid-template-columns:repeat(2,1fr)}
   .filter-grid{grid-template-columns:1fr}
   .cal-day{min-width:42px}
-  .team-flag{font-size:22px!important}
+  .team-flag{width:40px!important;height:27px!important}
   .score-num{font-size:22px!important}
   .hero-box h1{font-size:20px}
   .tv-switcher{flex-wrap:wrap}
@@ -506,8 +506,33 @@ const API_KEY=localStorage.getItem('fd_key')||'';
 const API_BASE='https://api.football-data.org/v4';
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DOWS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const FLAGS={'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Korea Republic':'🇰🇷','Czech Republic':'🇨🇿','Czechia':'🇨🇿','Canada':'🇨🇦','Bosnia & Herz.':'🇧🇦','Bosnia and Herzegovina':'🇧🇦','Qatar':'🇶🇦','Switzerland':'🇨🇭','Brazil':'🇧🇷','Morocco':'🇲🇦','Haiti':'🇭🇹','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','United States':'🇺🇸','USA':'🇺🇸','Paraguay':'🇵🇾','Australia':'🇦🇺','Turkey':'🇹🇷','Türkiye':'🇹🇷','Germany':'🇩🇪','Curaçao':'🇨🇼','Curacao':'🇨🇼','Ivory Coast':'🇨🇮',"Côte d'Ivoire":'🇨🇮','Ecuador':'🇪🇨','Netherlands':'🇳🇱','Japan':'🇯🇵','Sweden':'🇸🇪','Tunisia':'🇹🇳','Belgium':'🇧🇪','Egypt':'🇪🇬','Iran':'🇮🇷','IR Iran':'🇮🇷','New Zealand':'🇳🇿','Spain':'🇪🇸','Cape Verde':'🇨🇻','Cabo Verde':'🇨🇻','Saudi Arabia':'🇸🇦','Uruguay':'🇺🇾','France':'🇫🇷','Senegal':'🇸🇳','Iraq':'🇮🇶','Norway':'🇳🇴','Argentina':'🇦🇷','Algeria':'🇩🇿','Austria':'🇦🇹','Jordan':'🇯🇴','Portugal':'🇵🇹','DR Congo':'🇨🇩','Congo DR':'🇨🇩','Uzbekistan':'🇺🇿','Colombia':'🇨🇴','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Croatia':'🇭🇷','Ghana':'🇬🇭','Panama':'🇵🇦','R32 Winner':'⚽','QF':'⚽','SF':'⚽','TBD':'⚽','1st Group A':'⚽','1st Group B':'⚽','1st Group C':'⚽','1st Group D':'⚽','1st Group E':'⚽','1st Group F':'⚽','1st Group G':'⚽','1st Group H':'⚽','1st Group I':'⚽','1st Group J':'⚽','1st Group K':'⚽','1st Group L':'⚽','2nd Group A':'⚽','2nd Group B':'⚽','2nd Group C':'⚽','2nd Group D':'⚽','2nd Group E':'⚽','2nd Group F':'⚽','2nd Group G':'⚽','2nd Group H':'⚽','2nd Group I':'⚽','2nd Group J':'⚽','2nd Group K':'⚽','2nd Group L':'⚽','3rd Group':'⚽'};
-const flag=n=>FLAGS[n]||'⚽';
+/* FLAG IMAGES — flagcdn.com ISO codes. NEVER use emoji for flags */
+const FLAGS={
+  'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr',
+  'Czech Republic':'cz','Czechia':'cz','Canada':'ca',
+  'Bosnia & Herz.':'ba','Bosnia and Herzegovina':'ba','Bosnia & Herzegovina':'ba',
+  'Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht',
+  'Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py',
+  'Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de',
+  'Curaçao':'cw','Curacao':'cw','Ivory Coast':'ci',"Côte d'Ivoire":'ci',
+  'Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn',
+  'Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz',
+  'Spain':'es','Cape Verde':'cv','Cabo Verde':'cv','Saudi Arabia':'sa',
+  'Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no',
+  'Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo',
+  'Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz',
+  'Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa'
+};
+/* Returns an <img> flag for known teams, football emoji for TBD/placeholders */
+const flag=n=>{
+  const code=FLAGS[n];
+  if(!code){return'<span style="font-size:20px">⚽</span>';}
+  return'<img src="https://flagcdn.com/w80/'+code+'.png" '
+        +'srcset="https://flagcdn.com/w160/'+code+'.png 2x" '
+        +'alt="'+n+'" width="48" height="32" '
+        +'style="object-fit:cover;border-radius:3px;display:block" '
+        +'loading="lazy" onerror="this.style.display='none'">';
+};
 const TV_BROADCASTERS={'GB':{flag:'🇬🇧',name:'United Kingdom',channels:['BBC','ITV']},'US':{flag:'🇺🇸',name:'United States',channels:['Fox','FS1','Telemundo','Peacock']},'CA':{flag:'🇨🇦',name:'Canada',channels:['CTV','TSN','RDS','Noovo']},'AU':{flag:'🇦🇺',name:'Australia',channels:['SBS','SBS On Demand']},'DE':{flag:'🇩🇪',name:'Germany',channels:['ARD','ZDF','MagentaTV']},'FR':{flag:'🇫🇷',name:'France',channels:['TF1','M6','beIN Sports']},'ES':{flag:'🇪🇸',name:'Spain',channels:['RTVE','TVE La 1','Mediaset']},'IT':{flag:'🇮🇹',name:'Italy',channels:['RAI','Mediaset','Sky Sport']},'PT':{flag:'🇵🇹',name:'Portugal',channels:['RTP','Sport TV']},'NL':{flag:'🇳🇱',name:'Netherlands',channels:['NOS','Ziggo Sport']},'BE':{flag:'🇧🇪',name:'Belgium',channels:['RTBF','VRT','Eleven Sports']},'AR':{flag:'🇦🇷',name:'Argentina',channels:['TyC Sports','TV Pública','DSports']},'BR':{flag:'🇧🇷',name:'Brazil',channels:['TV Globo','SporTV','Cazé TV']},'MX':{flag:'🇲🇽',name:'Mexico',channels:['Televisa','TV Azteca','Sky México']},'JP':{flag:'🇯🇵',name:'Japan',channels:['NHK','TV Asahi','ABEMA']},'KR':{flag:'🇰🇷',name:'South Korea',channels:['KBS','MBC','SBS','SPOTV']},'SA':{flag:'🇸🇦',name:'Saudi Arabia',channels:['beIN Sports','Saudi Sports']},'AE':{flag:'🇦🇪',name:'UAE',channels:['beIN Sports']},'QA':{flag:'🇶🇦',name:'Qatar',channels:['beIN Sports']},'EG':{flag:'🇪🇬',name:'Egypt',channels:['beIN Sports','Al Ahly TV']},'MA':{flag:'🇲🇦',name:'Morocco',channels:['2M','SNRT','beIN Sports']},'NG':{flag:'🇳🇬',name:'Nigeria',channels:['NTA','SuperSport','DSTV']},'ZA':{flag:'🇿🇦',name:'South Africa',channels:['SuperSport','SABC','DSTV']},'GH':{flag:'🇬🇭',name:'Ghana',channels:['GTV Sports','SuperSport']},'IR':{flag:'🇮🇷',name:'Iran',channels:['IRIB TV3','Varzesh TV']},'IN':{flag:'🇮🇳',name:'India',channels:['Sports18','JioCinema','Sony Ten']},'PK':{flag:'🇵🇰',name:'Pakistan',channels:['PTV Sports','ARY Sports']},'TR':{flag:'🇹🇷',name:'Turkey',channels:['TRT Spor','TRT 1','beIN Sports']},'PL':{flag:'🇵🇱',name:'Poland',channels:['TVP Sport','Polsat Sport']},'NO':{flag:'🇳🇴',name:'Norway',channels:['TV 2','TV 2 Play']},'SE':{flag:'🇸🇪',name:'Sweden',channels:['SVT','TV4','Viaplay']},'DK':{flag:'🇩🇰',name:'Denmark',channels:['DR','TV 2','Viaplay']},'CH':{flag:'🇨🇭',name:'Switzerland',channels:['SRF','RTS','RSI']},'AT':{flag:'🇦🇹',name:'Austria',channels:['ORF','ServusTV']},'NZ':{flag:'🇳🇿',name:'New Zealand',channels:['Sky Sport NZ','TVNZ']}};
 function detectCountry(){const saved=localStorage.getItem('gc_country');if(saved)return saved;const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;const map={'Europe/London':'GB','America/New_York':'US','America/Los_Angeles':'US','America/Chicago':'US','America/Denver':'US','America/Toronto':'CA','America/Vancouver':'CA','Australia/Sydney':'AU','Australia/Melbourne':'AU','Europe/Berlin':'DE','Europe/Paris':'FR','Europe/Madrid':'ES','Europe/Rome':'IT','Europe/Lisbon':'PT','Europe/Amsterdam':'NL','Europe/Brussels':'BE','America/Argentina/Buenos_Aires':'AR','America/Sao_Paulo':'BR','America/Mexico_City':'MX','Asia/Tokyo':'JP','Asia/Seoul':'KR','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA','Africa/Cairo':'EG','Africa/Casablanca':'MA','Africa/Lagos':'NG','Africa/Johannesburg':'ZA','Asia/Tehran':'IR','Asia/Kolkata':'IN','Asia/Karachi':'PK','Europe/Istanbul':'TR','Europe/Warsaw':'PL','Europe/Oslo':'NO','Europe/Stockholm':'SE','Europe/Copenhagen':'DK','Europe/Zurich':'CH','Europe/Vienna':'AT','Pacific/Auckland':'NZ'};return map[tz]||'GB';}
 let USER_COUNTRY=detectCountry();
