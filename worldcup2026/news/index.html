@@ -5,386 +5,688 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 News — Squads, Injuries, Previews | GoalCurrent.live</title>
 <meta name="description" content="Latest FIFA World Cup 2026 news — all 48 squads confirmed, injury tracker, England squad, Group A opener Mexico vs South Africa on 11 June.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://goalcurrent.live/worldcup2026/news/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+<link rel="icon" href="/favicon.ico">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
-<link rel="stylesheet" href="/css/style.css">
 <style>
-.news-page{max-width:860px;margin:0 auto;padding:16px 14px 120px}
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:#0f1623;
+  color:#e2e8f0;
+  line-height:1.6;
+  font-size:14px;
+}
+a{color:inherit;text-decoration:none;}
 
-/* COUNTDOWN BANNER */
-.cd-banner{background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);border-radius:var(--r-lg);padding:20px;margin-bottom:16px;color:#fff;border:1px solid rgba(245,158,11,.25);text-align:center;position:relative;overflow:hidden}
-.cd-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);background-size:200%;animation:wcb 5s linear infinite}
+/* ── NORDVPN BAR ── */
+.nord-bar{
+  background:linear-gradient(90deg,#003087,#0053c8);
+  color:#fff;
+  text-align:center;
+  padding:9px 16px;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.nord-bar a{color:#7dd3fc;font-weight:700;}
+.nord-bar .ad-label{opacity:.45;font-size:10px;}
+
+/* ── HEADER ── */
+header{
+  background:#0b1220;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:0 16px;
+  position:sticky;
+  top:0;
+  z-index:200;
+}
+.header-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  height:52px;
+  gap:8px;
+}
+.logo{
+  font-weight:800;
+  font-size:17px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-shrink:0;
+}
+.logo span{color:#22c55e;}
+nav{display:flex;align-items:center;gap:2px;margin-left:auto;flex-wrap:wrap;}
+nav a{
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+  font-weight:600;
+  padding:5px 9px;
+  border-radius:6px;
+  transition:all .2s;
+  white-space:nowrap;
+}
+nav a:hover,nav a.active{color:#fff;background:rgba(255,255,255,.07);}
+nav a.active{color:#22c55e;}
+
+/* ── PAGE WRAPPER ── */
+.page{max-width:900px;margin:0 auto;padding:20px 14px 100px;}
+
+/* ── PAGE TITLE ── */
+.page-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.page-title h1{font-size:20px;font-weight:800;color:#fff;}
+.page-title .badge{
+  background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.25);
+  color:#22c55e;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:3px 10px;
+  border-radius:20px;
+}
+
+/* ── COUNTDOWN BANNER ── */
+.cd-banner{
+  background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);
+  border-radius:14px;
+  padding:20px 16px;
+  margin-bottom:16px;
+  color:#fff;
+  border:1px solid rgba(245,158,11,.2);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cd-banner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#006847,#f59e0b,#ce1126,#f59e0b,#006847);
+  background-size:200%;animation:wcb 5s linear infinite;
+}
 @keyframes wcb{0%{background-position:0%}100%{background-position:200%}}
-.cd-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(245,158,11,.8);margin-bottom:8px}
-.cd-title{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
-.cd-sub{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:14px}
-.cd-units{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.cd-unit{display:flex;flex-direction:column;align-items:center;gap:4px}
-.cd-num{font-size:28px;font-weight:800;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:5px 10px;min-width:50px;text-align:center;font-variant-numeric:tabular-nums;line-height:1}
-.cd-sep{font-size:22px;font-weight:800;color:rgba(74,222,128,.2);padding-bottom:14px}
-.cd-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.cd-hosts{display:flex;justify-content:center;gap:20px}
-.cd-host{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px}
+.cd-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(245,158,11,.8);margin-bottom:8px;}
+.cd-title{font-size:17px;font-weight:900;margin-bottom:4px;}
+.cd-sub{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:14px;}
+.cd-units{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.cd-unit{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.cd-num{
+  font-size:28px;font-weight:800;color:#4ade80;
+  background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.15);
+  border-radius:8px;padding:5px 10px;min-width:50px;text-align:center;
+  font-variant-numeric:tabular-nums;line-height:1;
+}
+.cd-sep{font-size:22px;font-weight:800;color:rgba(74,222,128,.25);padding-bottom:14px;}
+.cd-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.cd-hosts{display:flex;justify-content:center;gap:20px;}
+.cd-host{font-size:12px;font-weight:700;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:5px;}
 
-/* OPENING MATCH */
-.opener-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;margin-bottom:16px;box-shadow:var(--glass-shadow)}
-.opener-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
-.opener-match{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.opener-team{text-align:center;flex:1}
-.opener-flag{font-size:32px;display:block;margin-bottom:4px}
-.opener-name{font-size:14px;font-weight:800;color:var(--t1)}
-.opener-sub{font-size:10px;color:var(--t3)}
-.opener-date{text-align:center;flex-shrink:0}
-.opener-day{font-size:18px;font-weight:900;color:var(--blue)}
-.opener-vs{font-size:11px;color:var(--t4);font-weight:700}
-.opener-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.opener-chip{font-size:10px;font-weight:700;background:rgba(37,99,235,.07);border:1px solid var(--glass-border);border-radius:999px;padding:4px 10px;color:var(--t2)}
+/* ── OPENER CARD ── */
+.opener-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:16px;
+}
+.opener-label{
+  font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:#22c55e;margin-bottom:12px;
+}
+.opener-match{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.opener-team{text-align:center;flex:1;}
+.opener-flag{font-size:34px;display:block;margin-bottom:5px;}
+.opener-name{font-size:14px;font-weight:800;color:#fff;}
+.opener-sub{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
+.opener-vs-col{text-align:center;flex-shrink:0;}
+.opener-day{font-size:20px;font-weight:900;color:#60a5fa;}
+.opener-vs{font-size:11px;color:rgba(255,255,255,.3);font-weight:700;margin-top:2px;}
+.opener-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.chip{
+  font-size:10px;font-weight:600;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;padding:4px 10px;color:rgba(255,255,255,.6);
+}
 
-/* SECTION HEADER */
-.sec-hdr{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
-.sec-hdr-title{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}
-.sec-hdr-line{flex:1;height:1px;background:rgba(100,160,220,.2)}
+/* ── SECTION HEADER ── */
+.sec-hdr{display:flex;align-items:center;gap:10px;margin:22px 0 12px;}
+.sec-hdr-title{
+  font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);white-space:nowrap;
+}
+.sec-hdr-line{flex:1;height:1px;background:rgba(100,160,220,.15);}
 
-/* NEWS CARD */
-.news-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;margin-bottom:12px;box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
-.news-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
-.news-card.wc::before{background:#006847}
-.news-card.injury::before{background:#dc2626}
-.news-card.host::before{background:#f59e0b}
-.news-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:2px 8px;border-radius:5px;display:inline-block;margin-bottom:8px}
-.news-tag.wc{background:#006847}
-.news-tag.injury{background:#dc2626}
-.news-tag.host{background:#f59e0b;color:#0f172a}
-.news-tag.pl{background:#38003c}
-.news-date{font-size:10px;color:var(--t4);margin-bottom:6px}
-.news-title{font-size:15px;font-weight:800;color:var(--t1);margin-bottom:8px;line-height:1.4}
-.news-body{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}
-.news-source{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--blue);text-decoration:none;background:rgba(37,99,235,.08);padding:5px 12px;border-radius:8px}
-.news-source:hover{background:rgba(37,99,235,.15)}
-.news-flag{font-size:20px;margin-right:4px}
-.news-key{font-size:11px;color:var(--t3);margin-top:6px}
+/* ── FEATURED ARTICLE CARD ── */
+.featured-card{
+  background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.03));
+  border:1px solid rgba(34,197,94,.2);
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:14px;
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.featured-card:hover{border-color:rgba(34,197,94,.4);}
+.featured-card::before{
+  content:'';position:absolute;top:0;left:0;width:4px;height:100%;
+  background:#22c55e;border-radius:4px 0 0 4px;
+}
+.featured-card .icon{font-size:36px;flex-shrink:0;}
+.featured-card .body{flex:1;}
+.featured-card .ftag{
+  display:inline-block;
+  background:#22c55e;color:#0f1623;
+  font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;margin-bottom:8px;
+}
+.featured-card h2{font-size:16px;font-weight:800;color:#fff;margin-bottom:6px;line-height:1.35;}
+.featured-card p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:12px;}
+.featured-card .read-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#22c55e;color:#0f1623;
+  font-size:12px;font-weight:700;
+  padding:8px 16px;border-radius:8px;
+  transition:opacity .2s;
+}
+.featured-card .read-btn:hover{opacity:.85;}
 
-/* INJURY CARD */
-.injury-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:8px;box-shadow:var(--glass-shadow);display:flex;align-items:flex-start;gap:12px}
-.injury-flag{font-size:24px;flex-shrink:0}
-.injury-info{flex:1}
-.injury-name{font-size:13px;font-weight:800;color:var(--t1)}
-.injury-club{font-size:11px;color:var(--t3);margin-bottom:4px}
-.injury-detail{font-size:11px;color:var(--t2);line-height:1.5}
-.injury-status{font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
-.injury-status.out{background:#fee2e2;color:#dc2626}
-.injury-status.playing{background:#dcfce7;color:#16a34a}
+/* ── NEWS CARD ── */
+.news-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:10px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .2s,background .2s;
+}
+.news-card:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.06);}
+.news-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;}
+.news-card.wc::before{background:#006847;}
+.news-card.injury::before{background:#dc2626;}
+.news-card.host::before{background:#f59e0b;}
+.news-card.tv::before{background:#2563eb;}
+.news-card.arg::before{background:#74b9e7;}
+.news-card.grey::before{background:#64748b;}
+.news-tag{
+  font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:#fff;padding:2px 8px;border-radius:5px;display:inline-block;margin-bottom:8px;
+}
+.news-tag.wc{background:#006847;}
+.news-tag.injury{background:#dc2626;}
+.news-tag.host{background:#f59e0b;color:#0f1623;}
+.news-tag.tv{background:#2563eb;}
+.news-tag.arg{background:#1d4e8f;}
+.news-tag.grey{background:#475569;}
+.news-date{font-size:10px;color:rgba(255,255,255,.3);margin-bottom:5px;}
+.news-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.4;}
+.news-body{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:12px;}
+.news-key{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;margin-bottom:10px;}
+.news-source{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:700;color:#60a5fa;
+  background:rgba(37,99,235,.1);padding:5px 12px;border-radius:8px;
+  transition:background .2s;
+}
+.news-source:hover{background:rgba(37,99,235,.2);}
 
-/* SOURCES */
-.sources-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.source-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;background:rgba(37,99,235,.07);border:1px solid var(--glass-border);padding:7px 14px;border-radius:8px}
-.source-link:hover{background:rgba(37,99,235,.14)}
+/* ── INJURY TRACKER ── */
+.injury-list{display:flex;flex-direction:column;gap:8px;margin-bottom:4px;}
+.injury-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:12px 14px;
+  display:flex;align-items:flex-start;gap:12px;
+}
+.injury-flag{font-size:24px;flex-shrink:0;line-height:1;}
+.injury-info{flex:1;}
+.injury-name{font-size:13px;font-weight:800;color:#fff;}
+.injury-club{font-size:10px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.injury-detail{font-size:11px;color:rgba(255,255,255,.5);line-height:1.55;}
+.injury-status{
+  font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;
+  white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.injury-status.out{background:#fee2e2;color:#b91c1c;}
+.injury-status.playing{background:#dcfce7;color:#15803d;}
 
-/* SUBSCRIBE */
-.news-subscribe{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-top:3px solid var(--blue);border-radius:var(--r-md);padding:16px;margin-top:20px;box-shadow:var(--glass-shadow)}
-.news-subscribe h3{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:10px}
-.sub-row{display:flex;gap:8px;flex-wrap:wrap}
-.sub-row input{flex:1;min-width:0;padding:10px 12px;border-radius:var(--r-sm);border:1.5px solid var(--glass-border);background:rgba(255,255,255,.85);font-family:Verdana,sans-serif;font-size:13px;color:var(--t1);outline:none}
-.sub-row input:focus{border-color:var(--blue)}
-.sub-row button{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:var(--r-sm);padding:10px 16px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer;width:100%}
-.sub-msg{display:none;font-size:11px;color:var(--green);font-weight:700;margin-top:8px}
+/* ── TWO COLUMN LAYOUT FOR INJURIES ── */
+.injury-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:4px;
+}
+@media(max-width:600px){.injury-grid{grid-template-columns:1fr;}}
 
-@media(max-width:768px){
-  .opener-match{flex-direction:column;gap:8px}
-  .sub-row button{width:100%}
+/* ── SOURCES ── */
+.sources-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.source-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:#60a5fa;
+  background:rgba(37,99,235,.07);
+  border:1px solid rgba(255,255,255,.08);
+  padding:7px 14px;border-radius:8px;
+  transition:background .2s;
+}
+.source-link:hover{background:rgba(37,99,235,.15);}
+
+/* ── SUBSCRIBE ── */
+.subscribe-box{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-top:2px solid #2563eb;
+  border-radius:12px;padding:18px;margin-top:24px;
+}
+.subscribe-box h3{font-size:13px;font-weight:700;color:#fff;margin-bottom:12px;}
+.sub-row{display:flex;gap:8px;flex-wrap:wrap;}
+.sub-row input{
+  flex:1;min-width:180px;padding:10px 12px;border-radius:8px;
+  border:1.5px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  font-family:'Segoe UI',sans-serif;font-size:13px;color:#fff;outline:none;
+}
+.sub-row input::placeholder{color:rgba(255,255,255,.3);}
+.sub-row input:focus{border-color:#2563eb;}
+.sub-row button{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:#fff;border:none;border-radius:8px;
+  padding:10px 18px;font-family:'Segoe UI',sans-serif;
+  font-size:13px;font-weight:700;cursor:pointer;
+  transition:opacity .2s;
+}
+.sub-row button:hover{opacity:.85;}
+.sub-msg{display:none;font-size:11px;color:#22c55e;font-weight:700;margin-top:8px;}
+
+/* ── DISCLAIMER ── */
+.disclaimer{
+  font-size:10px;color:rgba(255,255,255,.25);
+  text-align:center;margin:16px 0;line-height:1.6;
+}
+.disclaimer a{color:rgba(255,255,255,.25);}
+
+/* ── FOOTER ── */
+footer{
+  background:#0b1220;
+  border-top:1px solid rgba(255,255,255,.06);
+  color:rgba(255,255,255,.3);
+  text-align:center;
+  padding:20px 16px;
+  font-size:11px;
+  line-height:1.8;
+}
+footer a{color:rgba(255,255,255,.3);margin:0 5px;}
+footer a:hover{color:rgba(255,255,255,.6);}
+
+@media(max-width:500px){
+  .opener-match{flex-direction:column;gap:10px;}
+  .featured-card{flex-direction:column;}
+  .featured-card .icon{font-size:28px;}
 }
 </style>
 </head>
 <body>
 
-<div id="gc-sidebar-root"></div>
-<div class="gc-main-wrapper">
-  <div id="gc-header-root"></div>
+<!-- NORDVPN BAR -->
+<div class="nord-bar">
+  🔒 Watch every World Cup 2026 match from anywhere —
+  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored">NordVPN 75% off + 3 months free →</a>
+  &nbsp;|&nbsp;
+  <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored">NordPass</a>
+  <span class="ad-label">#AD · Affiliate</span>
+</div>
 
-  <div class="gc-main-content" style="max-width:860px">
-    <div class="news-page">
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span>⚽</span> GoalCurrent<span>.live</span></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/worldcup2026/">WC2026</a>
+      <a href="/worldcup2026/news/" class="active">News</a>
+      <a href="/worldcup2026/fixtures/">Fixtures</a>
+      <a href="/worldcup2026/groups/">Groups</a>
+      <a href="/worldcup2026/teams/">Teams</a>
+      <a href="/premier-league/">Premier League</a>
+    </nav>
+  </div>
+</header>
 
-      <!-- COUNTDOWN BANNER -->
-      <div class="cd-banner">
-        <div class="cd-label">⏳ World Cup 2026 Kicks Off In</div>
-        <div class="cd-title">🏆 FIFA World Cup 2026</div>
-        <div class="cd-sub">Mexico vs South Africa · Group A · Opener · Estadio Azteca, Mexico City</div>
-        <div class="cd-units">
-          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Days</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Hrs</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Sec</div></div>
-        </div>
-        <div class="cd-hosts">
-          <div class="cd-host">🇺🇸 USA</div>
-          <div class="cd-host">🇲🇽 Mexico</div>
-          <div class="cd-host">🇨🇦 Canada</div>
-        </div>
-      </div>
+<div class="page">
 
-      <!-- OPENING MATCH -->
-      <div class="opener-card">
-        <div class="opener-label">⚽ Tournament Opener</div>
-        <div class="opener-match">
-          <div class="opener-team">
-            <span class="opener-flag">🇲🇽</span>
-            <div class="opener-name">Mexico</div>
-            <div class="opener-sub">Host Nation · Group A</div>
-          </div>
-          <div class="opener-date">
-            <div class="opener-day">11 JUN</div>
-            <div class="opener-vs">vs</div>
-          </div>
-          <div class="opener-team">
-            <span class="opener-flag">🇿🇦</span>
-            <div class="opener-name">South Africa</div>
-            <div class="opener-sub">Africa · Group A</div>
-          </div>
-        </div>
-        <div class="opener-meta">
-          <span class="opener-chip">📅 Thursday 11 June 2026</span>
-          <span class="opener-chip">⏰ 21:00 local · 03:00 BST (12 Jun)</span>
-          <span class="opener-chip">🏟️ Estadio Azteca, Mexico City</span>
-          <span class="opener-chip">📺 ITV · BBC (UK)</span>
-        </div>
-      </div>
+  <!-- PAGE TITLE -->
+  <div class="page-title">
+    <h1>🌍 World Cup 2026 News</h1>
+    <span class="badge">Live Updates</span>
+  </div>
 
-      <!-- SQUADS -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">📋 All 48 Squads Confirmed</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🌍 FIFA Official</span>
-        <div class="news-date">2 June 2026</div>
-        <div class="news-title">All 48 World Cup squads officially confirmed by FIFA</div>
-        <div class="news-body">All 48 nations submitted their final 26-player squads to FIFA by 1 June, with official confirmation on 2 June. Each team can name up to 26 players including three goalkeepers. Players can still be replaced from the provisional squad in the event of serious injury or illness, no later than 24 hours before their team's first match. Over 1,000 players are heading to North America — the most in World Cup history due to the expanded 48-team format.</div>
-        <a href="https://www.espn.com/soccer/story/_/id/48757621/2026-world-cup-squad-lists-players-announced-all-48-teams" target="_blank" rel="noopener" class="news-source">Full squad lists on ESPN ↗</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
-        <div class="news-title">England — 26-man Squad</div>
-        <div class="news-body">
-          <strong>Group L · Croatia · Ghana · Panama · Manager: Thomas Tuchel</strong><br><br>
-          England captain <strong>Harry Kane</strong> leads the squad. Big absentees include <strong>Phil Foden</strong> and <strong>Cole Palmer</strong> (both below-par seasons). <strong>Ivan Toney</strong> earns a surprise recall. <strong>Eberechi Eze</strong> and <strong>Noni Madueke</strong> included. <strong>Tino Livramento</strong> selected despite recent thigh injury. England open vs Croatia on 17 June in Dallas (21:00 BST).
-        </div>
-        <div class="news-key">Key players: Kane · Pickford · Bellingham · Saka · Foden ❌ · Palmer ❌ · Toney ✅ · Eze ✅</div>
-        <br>
-        <a href="https://www.skysports.com/football/news/11095/13543070/world-cup-2026-squad-lists-england-scotland-brazil-usa-spain-france-germany-netherlands-argentina-portugal-and-more" target="_blank" rel="noopener" class="news-source">Full England squad on Sky Sports ↗</a>
-      </div>
-
-      <!-- INJURIES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">🚑 Injury Tracker — Stars Missing WC 2026</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇧🇷</div>
-        <div class="injury-info">
-          <div class="injury-name">Rodrygo — Brazil</div>
-          <div class="injury-club">Real Madrid</div>
-          <div class="injury-detail">ACL + meniscus tear (right knee) vs Getafe, March 2026 · Out until end of 2026</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇧🇷</div>
-        <div class="injury-info">
-          <div class="injury-name">Éder Militão — Brazil</div>
-          <div class="injury-club">Real Madrid</div>
-          <div class="injury-detail">Hamstring injury required surgery · Missing World Cup</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇧🇷</div>
-        <div class="injury-info">
-          <div class="injury-name">Estêvão — Brazil</div>
-          <div class="injury-club">Chelsea</div>
-          <div class="injury-detail">Severe hamstring injury · Missing World Cup</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇫🇷</div>
-        <div class="injury-info">
-          <div class="injury-name">Hugo Ekitike — France</div>
-          <div class="injury-club">Liverpool</div>
-          <div class="injury-detail">Ruptured Achilles tendon, April 2026 · Out 6+ months</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇳🇱</div>
-        <div class="injury-info">
-          <div class="injury-name">Xavi Simons — Netherlands</div>
-          <div class="injury-club">Tottenham</div>
-          <div class="injury-detail">ACL injury playing vs Wolves, April 2026</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇩🇪</div>
-        <div class="injury-info">
-          <div class="injury-name">Serge Gnabry — Germany</div>
-          <div class="injury-club">Bayern Munich</div>
-          <div class="injury-detail">Adductor injury in training, April 2026 · Missing WC</div>
-        </div>
-        <span class="injury-status out">❌ OUT</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇫🇷</div>
-        <div class="injury-info">
-          <div class="injury-name">Kylian Mbappé — France</div>
-          <div class="injury-club">Real Madrid</div>
-          <div class="injury-detail">Hamstring injury scare — now recovered · IN SQUAD ✅</div>
-        </div>
-        <span class="injury-status playing">✅ PLAYING</span>
-      </div>
-
-      <div class="injury-card">
-        <div class="injury-flag">🇪🇸</div>
-        <div class="injury-info">
-          <div class="injury-name">Lamine Yamal — Spain</div>
-          <div class="injury-club">Barcelona</div>
-          <div class="injury-detail">Season-ending club injury scare — now fit for WC · IN SQUAD ✅</div>
-        </div>
-        <span class="injury-status playing">✅ PLAYING</span>
-      </div>
-
-      <!-- MORE STORIES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">📰 More Stories</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🌍 FIFA Rule Change</span>
-        <div class="news-title">All 26 players at centre circle for national anthems</div>
-        <div class="news-body">FIFA announced all players in the matchday squad will gather at the centre circle for national anthems — not just the starting XI. Every player experiences that symbolic moment of pride representing their country.</div>
-        <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="news-source">Read on FIFA.com ↗</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag injury">🇧🇷 Brazil</span>
-        <div class="news-title">Brazil turn to 34-year-old Neymar after Rodrygo &amp; Estêvão injuries</div>
-        <div class="news-body">With both Rodrygo and Estêvão ruled out, Brazil recalled veteran Neymar to provide wing options. Brazil open vs Morocco on 13 June in East Rutherford, New Jersey.</div>
-        <a href="https://www.espn.com/soccer/story/_/id/48572979/2026-fifa-world-cup-injuries-tracker-which-stars-miss-latest-info" target="_blank" rel="noopener" class="news-source">Read on ESPN ↗</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag" style="background:#64748b">🇮🇹 Italy missing</span>
-        <div class="news-title">Italy absent for third straight World Cup</div>
-        <div class="news-body">Four-time champions Italy failed to qualify for the third consecutive World Cup after a play-off final defeat on penalties. Stars like Donnarumma and Sandro Tonali will not be in North America.</div>
-        <a href="https://www.aljazeera.com/sports/2026/5/23/world-cup-2026-which-star-players-will-miss-the-tournament" target="_blank" rel="noopener" class="news-source">Read on Al Jazeera ↗</a>
-      </div>
-
-      <div class="news-card host">
-        <span class="news-tag host">🇲🇽 Host Nation</span>
-        <div class="news-title">Mexico vs South Africa kicks off the biggest World Cup ever</div>
-        <div class="news-body">The first World Cup with 48 teams starts at the iconic Estadio Azteca in Mexico City on 11 June. Mexico are one of three host nations alongside USA and Canada. 104 matches over 39 days.</div>
-        <a href="/worldcup2026/fixtures/index.html" class="news-source">See full fixtures →</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag wc">🇦🇷 Argentina</span>
-        <div class="news-title">Messi leads Argentina — defending champions in Group J</div>
-        <div class="news-body">Lionel Messi leads Argentina in Group J alongside Algeria, Austria and Jordan. The defending champions open vs Algeria. Messi had an injury scare but is confirmed fit and in the squad.</div>
-        <a href="/worldcup2026/groups/index.html" class="news-source">See Group J →</a>
-      </div>
-
-      <div class="news-card wc">
-        <span class="news-tag" style="background:#2563eb">📺 TV Coverage</span>
-        <div class="news-title">BBC &amp; ITV to show every World Cup match free in UK</div>
-        <div class="news-body">Every one of the 104 World Cup 2026 matches will be available to watch free-to-air in the UK on BBC and ITV. Full broadcast schedule available on the fixtures page.</div>
-        <a href="/worldcup2026/fixtures/index.html" class="news-source">See TV guide →</a>
-      </div>
-
-      <!-- EXTERNAL SOURCES -->
-      <div class="sec-hdr">
-        <div class="sec-hdr-title">🔍 External Sources</div>
-        <div class="sec-hdr-line"></div>
-      </div>
-      <div class="sources-grid">
-        <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="source-link">⭐ FIFA Official</a>
-        <a href="https://www.bbc.co.uk/sport/football/world-cup" target="_blank" rel="noopener" class="source-link">📺 BBC Sport</a>
-        <a href="https://www.skysports.com/football/world-cup" target="_blank" rel="noopener" class="source-link">🔵 Sky Sports</a>
-        <a href="https://www.espn.co.uk/football/world-cup" target="_blank" rel="noopener" class="source-link">🟠 ESPN</a>
-        <a href="https://www.youtube.com/@FIFAWorldCup" target="_blank" rel="noopener" class="source-link">▶ FIFA YouTube</a>
-        <a href="https://www.theguardian.com/football/world-cup-2026" target="_blank" rel="noopener" class="source-link">🟡 The Guardian</a>
-      </div>
-      <p style="font-size:10px;color:var(--t4);text-align:center;margin-bottom:20px">📰 GoalCurrent.live links to official external sources. Not affiliated with FIFA. · <a href="/disclaimer.html" style="color:var(--t4)">Disclaimer</a></p>
-
-      <!-- SUBSCRIBE -->
-      <div class="news-subscribe">
-        <h3>📬 Get World Cup 2026 live alerts to your inbox</h3>
-        <div class="sub-row">
-          <input type="email" id="subEmail" placeholder="Your email address">
-          <button onclick="doSubscribe()">Subscribe →</button>
-        </div>
-        <div class="sub-msg" id="subMsg">✅ Thank you! You will receive World Cup updates soon.</div>
-      </div>
-
+  <!-- COUNTDOWN BANNER -->
+  <div class="cd-banner">
+    <div class="cd-label">⏳ World Cup 2026 Kicks Off In</div>
+    <div class="cd-title">🏆 FIFA World Cup 2026</div>
+    <div class="cd-sub">Mexico vs South Africa · Group A Opener · Estadio Azteca, Mexico City</div>
+    <div class="cd-units">
+      <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Hrs</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Sec</div></div>
+    </div>
+    <div class="cd-hosts">
+      <div class="cd-host">🇺🇸 USA</div>
+      <div class="cd-host">🇲🇽 Mexico</div>
+      <div class="cd-host">🇨🇦 Canada</div>
     </div>
   </div>
 
-  <div id="gc-nord-root"></div>
-  <div id="gc-footer-root"></div>
-</div>
+  <!-- OPENING MATCH CARD -->
+  <div class="opener-card">
+    <div class="opener-label">⚽ Tournament Opener — First Kick of WC2026</div>
+    <div class="opener-match">
+      <div class="opener-team">
+        <span class="opener-flag">🇲🇽</span>
+        <div class="opener-name">Mexico</div>
+        <div class="opener-sub">Host Nation · Group A</div>
+      </div>
+      <div class="opener-vs-col">
+        <div class="opener-day">11 JUN</div>
+        <div class="opener-vs">vs</div>
+      </div>
+      <div class="opener-team">
+        <span class="opener-flag">🇿🇦</span>
+        <div class="opener-name">South Africa</div>
+        <div class="opener-sub">Africa · Group A</div>
+      </div>
+    </div>
+    <div class="opener-chips">
+      <span class="chip">📅 Thursday 11 June 2026</span>
+      <span class="chip">⏰ 21:00 local · 03:00 BST (12 Jun)</span>
+      <span class="chip">🏟️ Estadio Azteca, Mexico City</span>
+      <span class="chip">📺 ITV · BBC (UK)</span>
+    </div>
+  </div>
 
-<script src="/js/worldcup-data.js"></script>
-<script src="/js/gc-shared.js"></script>
+  <!-- FEATURED ARTICLE -->
+  <div class="sec-hdr">
+    <div class="sec-hdr-title">⭐ Featured Article</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+
+  <a href="/worldcup2026/news/wc2026-squads-confirmed.html" class="featured-card">
+    <div class="icon">📋</div>
+    <div class="body">
+      <span class="ftag">New Article</span>
+      <h2>1,248 Players. 48 Nations. One Trophy — The World Cup Is Finally Here</h2>
+      <p>All 48 squads are confirmed. Messi and Ronaldo go again for a record sixth time. Four nations debut. 891 players are about to live their dream. Here is everything you need to know before kick-off on Thursday.</p>
+      <span class="read-btn">Read Article →</span>
+    </div>
+  </a>
+
+  <!-- ALL 48 SQUADS -->
+  <div class="sec-hdr">
+    <div class="sec-hdr-title">📋 All 48 Squads Confirmed</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+
+  <div class="news-card wc">
+    <span class="news-tag wc">🌍 FIFA Official</span>
+    <div class="news-date">2 June 2026</div>
+    <div class="news-title">All 48 World Cup squads officially confirmed by FIFA</div>
+    <div class="news-body">All 48 nations submitted their final 26-player squads to FIFA by 1 June, with official confirmation on 2 June. Each team names up to 26 players including three goalkeepers. Players can still be replaced due to serious injury or illness, no later than 24 hours before their team's first match. Over 1,248 players are heading to North America — the most in World Cup history.</div>
+    <a href="https://www.espn.com/soccer/story/_/id/48757621/2026-world-cup-squad-lists-players-announced-all-48-teams" target="_blank" rel="noopener" class="news-source">Full squad lists on ESPN ↗</a>
+  </div>
+
+  <div class="news-card wc">
+    <span class="news-tag" style="background:#cf0e35">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span>
+    <div class="news-title">England — 26-Man Squad · Group L</div>
+    <div class="news-body">
+      <strong>Group L · Croatia · Ghana · Panama · Manager: Thomas Tuchel</strong><br><br>
+      Harry Kane leads England as captain. Notable absentees include Phil Foden and Cole Palmer, both of whom had below-par club seasons. Ivan Toney earns a surprise recall. Eberechi Eze and Noni Madueke are included, as is Tino Livramento despite a recent thigh injury. England open against Croatia on 17 June in Dallas (21:00 BST).
+    </div>
+    <div class="news-key">Key players: Kane · Pickford · Bellingham · Saka · Toney ✅ · Eze ✅ · Foden ❌ · Palmer ❌</div>
+    <a href="https://www.skysports.com/football/news/11095/13543070/world-cup-2026-squad-lists-england-scotland-brazil-usa-spain-france-germany-netherlands-argentina-portugal-and-more" target="_blank" rel="noopener" class="news-source">Full England squad on Sky Sports ↗</a>
+  </div>
+
+  <!-- INJURY TRACKER -->
+  <div class="sec-hdr">
+    <div class="sec-hdr-title">🚑 Injury Tracker — Stars Missing WC2026</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+
+  <div class="injury-grid">
+
+    <div class="injury-card">
+      <div class="injury-flag">🇧🇷</div>
+      <div class="injury-info">
+        <div class="injury-name">Rodrygo</div>
+        <div class="injury-club">Real Madrid · Brazil</div>
+        <div class="injury-detail">ACL + meniscus tear (right knee) vs Getafe, March 2026. Out until end of 2026.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇧🇷</div>
+      <div class="injury-info">
+        <div class="injury-name">Éder Militão</div>
+        <div class="injury-club">Real Madrid · Brazil</div>
+        <div class="injury-detail">Hamstring surgery required. Missing the World Cup.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇧🇷</div>
+      <div class="injury-info">
+        <div class="injury-name">Estêvão</div>
+        <div class="injury-club">Chelsea · Brazil</div>
+        <div class="injury-detail">Severe hamstring injury. Missing the World Cup.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇫🇷</div>
+      <div class="injury-info">
+        <div class="injury-name">Hugo Ekitike</div>
+        <div class="injury-club">Liverpool · France</div>
+        <div class="injury-detail">Ruptured Achilles tendon, April 2026. Out 6+ months.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇳🇱</div>
+      <div class="injury-info">
+        <div class="injury-name">Xavi Simons</div>
+        <div class="injury-club">Tottenham · Netherlands</div>
+        <div class="injury-detail">ACL injury vs Wolves, April 2026. Season ended.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇩🇪</div>
+      <div class="injury-info">
+        <div class="injury-name">Serge Gnabry</div>
+        <div class="injury-club">Bayern Munich · Germany</div>
+        <div class="injury-detail">Adductor injury in training, April 2026. Missing WC.</div>
+      </div>
+      <span class="injury-status out">❌ OUT</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇫🇷</div>
+      <div class="injury-info">
+        <div class="injury-name">Kylian Mbappé</div>
+        <div class="injury-club">Real Madrid · France</div>
+        <div class="injury-detail">Hamstring scare — now fully recovered and confirmed in squad.</div>
+      </div>
+      <span class="injury-status playing">✅ PLAYING</span>
+    </div>
+
+    <div class="injury-card">
+      <div class="injury-flag">🇪🇸</div>
+      <div class="injury-info">
+        <div class="injury-name">Lamine Yamal</div>
+        <div class="injury-club">Barcelona · Spain</div>
+        <div class="injury-detail">Season-ending scare — now fit and confirmed for World Cup.</div>
+      </div>
+      <span class="injury-status playing">✅ PLAYING</span>
+    </div>
+
+  </div>
+
+  <!-- MORE STORIES -->
+  <div class="sec-hdr">
+    <div class="sec-hdr-title">📰 More Stories</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+
+  <div class="news-card wc">
+    <span class="news-tag wc">🌍 FIFA Rule Change</span>
+    <div class="news-title">All 26 players at centre circle for national anthems</div>
+    <div class="news-body">FIFA have announced that all players in the matchday squad — not just the starting eleven — will gather at the centre circle for national anthems. Every squad member gets that moment of representing their country on the world stage.</div>
+    <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="news-source">Read on FIFA.com ↗</a>
+  </div>
+
+  <div class="news-card injury">
+    <span class="news-tag injury">🇧🇷 Brazil</span>
+    <div class="news-title">Brazil turn to 34-year-old Neymar after Rodrygo &amp; Estêvão injuries</div>
+    <div class="news-body">With both Rodrygo and Estêvão ruled out through injury, Brazil have recalled veteran forward Neymar to provide attacking width. Brazil open their campaign against Morocco on 13 June in East Rutherford, New Jersey.</div>
+    <a href="https://www.espn.com/soccer/story/_/id/48572979/2026-fifa-world-cup-injuries-tracker-which-stars-miss-latest-info" target="_blank" rel="noopener" class="news-source">Read on ESPN ↗</a>
+  </div>
+
+  <div class="news-card grey">
+    <span class="news-tag grey">🇮🇹 Italy Missing</span>
+    <div class="news-title">Italy absent for the third consecutive World Cup</div>
+    <div class="news-body">Four-time world champions Italy have failed to qualify for the third World Cup in a row, losing a play-off final on penalties. Stars such as Donnarumma and Sandro Tonali will be watching from home while the tournament takes place in North America.</div>
+    <a href="https://www.aljazeera.com/sports/2026/5/23/world-cup-2026-which-star-players-will-miss-the-tournament" target="_blank" rel="noopener" class="news-source">Read on Al Jazeera ↗</a>
+  </div>
+
+  <div class="news-card host">
+    <span class="news-tag host">🇲🇽 Host Nation</span>
+    <div class="news-title">Mexico vs South Africa kicks off the biggest World Cup ever</div>
+    <div class="news-body">The first 48-team World Cup begins at the legendary Estadio Azteca in Mexico City on 11 June. Mexico are one of three host nations alongside the USA and Canada. 104 matches across 39 days in 16 stadiums.</div>
+    <a href="/worldcup2026/fixtures/" class="news-source">See full fixtures →</a>
+  </div>
+
+  <div class="news-card arg">
+    <span class="news-tag arg">🇦🇷 Argentina</span>
+    <div class="news-title">Messi leads defending champions Argentina in Group J</div>
+    <div class="news-body">Lionel Messi captains Argentina in Group J alongside Algeria, Austria and Jordan. The reigning world champions open against Algeria. Messi had an injury scare in the build-up but is confirmed fully fit and in the squad.</div>
+    <a href="/worldcup2026/groups/" class="news-source">See Group J →</a>
+  </div>
+
+  <div class="news-card tv">
+    <span class="news-tag tv">📺 TV Coverage</span>
+    <div class="news-title">BBC &amp; ITV to broadcast every World Cup match free in the UK</div>
+    <div class="news-body">Every one of the 104 World Cup 2026 matches will be available to watch free-to-air in the UK on BBC and ITV. GoalCurrent.live has the full UK TV broadcast schedule on the fixtures page.</div>
+    <a href="/worldcup2026/fixtures/" class="news-source">See TV guide →</a>
+  </div>
+
+  <!-- EXTERNAL SOURCES -->
+  <div class="sec-hdr">
+    <div class="sec-hdr-title">🔍 Verified External Sources</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+  <div class="sources-grid">
+    <a href="https://www.fifa.com/en/tournaments/mens/worldcup" target="_blank" rel="noopener" class="source-link">⭐ FIFA Official</a>
+    <a href="https://www.bbc.co.uk/sport/football/world-cup" target="_blank" rel="noopener" class="source-link">📺 BBC Sport</a>
+    <a href="https://www.skysports.com/football/world-cup" target="_blank" rel="noopener" class="source-link">🔵 Sky Sports</a>
+    <a href="https://www.espn.co.uk/football/world-cup" target="_blank" rel="noopener" class="source-link">🟠 ESPN</a>
+    <a href="https://www.youtube.com/@FIFAWorldCup" target="_blank" rel="noopener" class="source-link">▶ FIFA YouTube</a>
+    <a href="https://www.theguardian.com/football/world-cup-2026" target="_blank" rel="noopener" class="source-link">🟡 The Guardian</a>
+  </div>
+
+  <div class="disclaimer">
+    📰 GoalCurrent.live links to official external sources. Not affiliated with FIFA, UEFA or the Premier League. ·
+    <a href="/disclaimer.html">Disclaimer</a>
+  </div>
+
+  <!-- SUBSCRIBE -->
+  <div class="subscribe-box">
+    <h3>📬 Get World Cup 2026 live alerts straight to your inbox</h3>
+    <div class="sub-row">
+      <input type="email" id="subEmail" placeholder="Your email address">
+      <button onclick="doSubscribe()">Subscribe Free →</button>
+    </div>
+    <div class="sub-msg" id="subMsg">✅ Thank you! You will receive World Cup updates soon.</div>
+  </div>
+
+</div><!-- end .page -->
+
+<footer>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms</a> ·
+    <a href="/disclaimer.html">Disclaimer</a>
+  </p>
+  <p style="margin-top:6px;">© 2026 Ashna4All · Ahmad Zafarani · GoalCurrent.live · Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</p>
+</footer>
+
 <script>
-window.onload = function(){
-  initWC26Page('news', {subtitle:'World Cup 2026 · News & Updates'});
-};
-
 /* COUNTDOWN */
 (function(){
-  var T=new Date('2026-06-11T19:00:00Z');
+  var T = new Date('2026-06-11T19:00:00Z'); // 21:00 Mexico City local = UTC-6 = 03:00 BST
   function pad(n){return n<10?'0'+n:''+n;}
   function tick(){
-    var diff=T-new Date();
-    if(diff>0){
-      document.getElementById('cdD').textContent=pad(Math.floor(diff/86400000));
-      document.getElementById('cdH').textContent=pad(Math.floor((diff%86400000)/3600000));
-      document.getElementById('cdM').textContent=pad(Math.floor((diff%3600000)/60000));
-      document.getElementById('cdS').textContent=pad(Math.floor((diff%60000)/1000));
-    }else{
+    var diff = T - new Date();
+    if(diff > 0){
+      document.getElementById('cdD').textContent = pad(Math.floor(diff/86400000));
+      document.getElementById('cdH').textContent = pad(Math.floor((diff%86400000)/3600000));
+      document.getElementById('cdM').textContent = pad(Math.floor((diff%3600000)/60000));
+      document.getElementById('cdS').textContent = pad(Math.floor((diff%60000)/1000));
+    } else {
       ['cdD','cdH','cdM','cdS'].forEach(function(id){document.getElementById(id).textContent='00';});
     }
   }
-  tick();setInterval(tick,1000);
+  tick(); setInterval(tick, 1000);
 })();
 
+/* SUBSCRIBE */
 function doSubscribe(){
-  var input=document.getElementById('subEmail');
-  var msg=document.getElementById('subMsg');
-  if(!input.value||input.value.indexOf('@')<0){input.style.borderColor='#dc2626';return;}
-  input.style.borderColor='#16a34a';
-  var form=document.createElement('form');form.method='POST';form.target='_blank';form.style.display='none';
-  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+  var input = document.getElementById('subEmail');
+  var msg = document.getElementById('subMsg');
+  if(!input.value || input.value.indexOf('@') < 0){
+    input.style.borderColor = '#dc2626'; return;
+  }
+  input.style.borderColor = '#22c55e';
+  var form = document.createElement('form');
+  form.method = 'POST'; form.target = '_blank'; form.style.display = 'none';
+  form.action = 'https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
   var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
   var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
   var f3=document.createElement('input');f3.name='locale';f3.value='en';
   form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  msg.style.display='block';input.value='';
+  document.body.appendChild(form); form.submit(); document.body.removeChild(form);
+  msg.style.display = 'block'; input.value = '';
 }
 </script>
+
 </body>
 </html>
