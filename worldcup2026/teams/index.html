@@ -286,13 +286,23 @@ function gcAccept(){localStorage.setItem('gc_cookies','yes');document.getElement
 function gcDecline(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').style.display='none';}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex';},1500);}
 
+/* ── GC_TEAMS: Group A only (proof-of-concept)
+   WC26.teams does not exist — WC26.groups does.
+   After Group A confirmed live, B-L will be added here. ── */
+var GC_TEAMS = [
+  {name:'Czech Republic', group:'A', conf:'UEFA',     host:false},
+  {name:'Mexico',         group:'A', conf:'CONCACAF', host:true},
+  {name:'South Africa',   group:'A', conf:'CAF',      host:false},
+  {name:'South Korea',    group:'A', conf:'AFC',       host:false},
+];
+
 var activeConf = 'ALL';
 var openCards  = {};
 
 /* Build confederation filter */
 function buildFilter(){
   var confs = {};
-  WC26.teams.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
+  GC_TEAMS.forEach(function(t){ confs[t.conf] = (confs[t.conf]||0)+1; });
   var icons = {UEFA:'🔵',CAF:'🟢',AFC:'🟠',CONCACAF:'🔴',CONMEBOL:'🟡',OFC:'⚪'};
   var html = '<button class="cf-btn active" onclick="setConf(\'ALL\',this)">🌍 All (48)</button>';
   Object.keys(confs).sort().forEach(function(c){
@@ -316,7 +326,7 @@ function renderTeams(){
   var out   = document.getElementById('teamsOut');
 
   /* Filter teams */
-  var filtered = WC26.teams.filter(function(team){
+  var filtered = GC_TEAMS.filter(function(team){
     if(activeConf !== 'ALL' && team.conf !== activeConf) return false;
     if(query){
       var nameMatch = team.name.toLowerCase().includes(query);
