@@ -1,23 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Group A | GoalCurrent.live</title>
+<meta name="description" content="FIFA World Cup 2026 Group A standings, fixtures and team news.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://goalcurrent.live/worldcup2026/groups/group-a/">
+<link rel="stylesheet" href="/css/worldcup2026.css">
+<style>
+.match-card{background:var(--wc-card);border:1px solid var(--wc-border);border-radius:var(--wc-radius);padding:16px;margin-bottom:12px;}
+.match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:.75rem;color:var(--wc-muted);}
+.match-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;}
+.match-team{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.match-flag-img{width:48px;height:32px;object-fit:cover;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.match-name{font-size:.9rem;font-weight:600;color:var(--wc-white);}
+.match-center{text-align:center;}
+.match-vs{font-size:.85rem;font-weight:700;color:var(--wc-gold);}
+.match-time{font-size:1rem;font-weight:700;color:var(--wc-blue);}
+.match-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--wc-border);flex-wrap:wrap;gap:8px;}
+.tv-badge{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--wc-text);}
+.tv-badge span{background:rgba(29,78,216,.2);color:#60a5fa;padding:2px 8px;border-radius:4px;font-weight:600;}
+.match-actions{display:flex;gap:8px;align-items:center;}
+.live-dot{display:inline-flex;align-items:center;gap:5px;background:rgba(239,68,68,.15);color:#ef4444;font-size:.75rem;font-weight:700;padding:3px 8px;border-radius:20px;}
+.live-dot span{width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;animation:blink 1.5s infinite;}
+.fav-btn{background:none;border:none;cursor:pointer;font-size:1.3rem;transition:transform .2s;}
+.fav-btn:hover{transform:scale(1.2);}
+.stats-btn{background:var(--wc-blue);color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;}
+.stats-btn:hover{background:var(--wc-gold);color:var(--wc-dark);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--wc-card);border:1px solid var(--wc-border);border-radius:var(--wc-radius);padding:24px;max-width:400px;width:90%;}
+.modal h3{color:var(--wc-gold);margin-bottom:16px;}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--wc-border);font-size:.85rem;}
+.stat-label{color:var(--wc-muted);text-align:center;flex:1;}
+.stat-val{min-width:40px;text-align:center;color:var(--wc-white);}
+.modal-close{display:block;width:100%;margin-top:16px;background:var(--wc-border);color:var(--wc-text);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.9rem;}
+@keyframes blink{0%{opacity:1;}50%{opacity:.3;}100%{opacity:1;}}
+</style>
+</head>
+<body>
 
-🏆 Group A
-Loading…
-Standings
-← All Groups
-Team
-P
-W
-D
-L
-GF
-GA
-GD
-Pts
+<!--
+  SCRIPT ORDER — DO NOT CHANGE
+  1. worldcup-data.js  — defines window.WC26 synchronously (absolute path)
+  2. gc-shared.js      — injects nav/header/footer (absolute path)
+  3. Inline script     — reads WC26 and renders page inside DOMContentLoaded
+-->
+<script src="/js/worldcup-data.js"></script>
+<script src="/js/gc-shared.js"></script>
 
-Fixtures
+<div id="wc-nav"></div>
 
-Qualification
-Top 2 teams advance to Round of 32. Best 8 third-placed teams also advance.
-← All Groups
-📅 Fixtures
-🌍 Teams
+<main class="wc-container">
+  <div class="wc-page-header">
+    <h1>&#127942; Group A</h1>
+    <p id="groupSubtitle">Loading&#8230;</p>
+  </div>
 
+  <div style="padding:20px 0">
+    <div class="wc-section-header">
+      <h2>Standings</h2>
+      <a href="/worldcup2026/groups/">&#8592; All Groups</a>
+    </div>
+    <table class="wc-standings">
+      <thead>
+        <tr>
+          <th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th>
+          <th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+        </tr>
+      </thead>
+      <tbody id="standingsBody"></tbody>
+    </table>
+  </div>
+
+  <div style="padding:20px 0">
+    <div class="wc-section-header"><h2>Fixtures</h2></div>
+    <div id="fixturesBody"></div>
+  </div>
+
+  <div style="background:var(--wc-card);border-radius:var(--wc-radius);padding:16px;margin-bottom:24px">
+    <h3 style="color:var(--wc-gold);margin-bottom:8px">Qualification</h3>
+    <p style="font-size:.85rem;color:var(--wc-muted)">
+      Top 2 teams advance to Round of 32. Best 8 third-placed teams also advance.
+    </p>
+  </div>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px">
+    <a href="/worldcup2026/groups/" class="wc-btn wc-btn-outline">&#8592; All Groups</a>
+    <a href="/worldcup2026/fixtures/" class="wc-btn wc-btn-primary">&#128197; Fixtures</a>
+    <a href="/worldcup2026/teams/" class="wc-btn wc-btn-outline">&#127758; Teams</a>
+  </div>
+</main>
+
+<div id="wc-footer"></div>
+
+<div class="modal-overlay" id="statsModal">
+  <div class="modal">
+    <h3 id="modalTitle">Match Stats</h3>
+    <div id="modalContent"></div>
+    <button class="modal-close"
+      onclick="document.getElementById('statsModal').classList.remove('show')">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var GROUP_KEY = 'A';
+
+  function renderGroupPage() {
+
+    /* Guard 1 */
+    if (!window.WC26) {
+      console.error('WC26 data not loaded. Check /js/worldcup-data.js path.');
+      document.getElementById('standingsBody').innerHTML =
+        '<tr><td colspan="9" style="color:#ef4444;padding:16px;text-align:center">' +
+        'Error: worldcup-data.js failed to load.</td></tr>';
+      document.getElementById('fixturesBody').innerHTML =
+        '<p style="color:#ef4444;padding:16px">Error: worldcup-data.js failed to load.</p>';
+      return;
+    }
+
+    /* Guard 2 */
+    if (!window.WC26.groups[GROUP_KEY]) {
+      console.error('Group A missing from WC26.groups.');
+      document.getElementById('standingsBody').innerHTML =
+        '<tr><td colspan="9" style="color:#ef4444;padding:16px;text-align:center">' +
+        'Error: Group A not found in data.</td></tr>';
+      return;
+    }
+
+    var teams    = window.WC26.groups[GROUP_KEY];
+    var fixtures = window.WC26.fixtures.filter(function (f) {
+      return f.group === GROUP_KEY;
+    });
+    var standing = window.WC26.standings[GROUP_KEY];
+    var tv       = window.WC26.getUserTV();
+
+    /* Subtitle */
+    document.getElementById('groupSubtitle').textContent = teams.join(' \xb7 ');
+
+    /* ── STANDINGS ── */
+    var sHtml = '';
+    teams.forEach(function (team, i) {
+      var s    = standing[team];
+      var code = window.WC26.flags[team] || 'un';
+      sHtml +=
+        '<tr class="' + (i < 2 ? 'qualified' : '') + '">' +
+        '<td><img src="https://flagcdn.com/w20/' + code + '.png" alt="' + team + '" ' +
+        'style="width:20px;height:14px;border-radius:2px;margin-right:6px;vertical-align:middle">' +
+        team + '</td>' +
+        '<td>' + s.p  + '</td>' +
+        '<td>' + s.w  + '</td>' +
+        '<td>' + s.d  + '</td>' +
+        '<td>' + s.l  + '</td>' +
+        '<td>' + s.gf + '</td>' +
+        '<td>' + s.ga + '</td>' +
+        '<td>' + s.gd + '</td>' +
+        '<td><strong>' + s.pts + '</strong></td>' +
+        '</tr>';
+    });
+    document.getElementById('standingsBody').innerHTML = sHtml;
+
+    /* ── FIXTURES ── */
+    var favs = JSON.parse(localStorage.getItem('wc26_favs') || '[]');
+
+    window.toggleFav = function (id) {
+      var f   = JSON.parse(localStorage.getItem('wc26_favs') || '[]');
+      var idx = f.indexOf(id);
+      if (idx > -1) { f.splice(idx, 1); } else { f.push(id); }
+      localStorage.setItem('wc26_favs', JSON.stringify(f));
+      var btn = document.getElementById('fav-' + id);
+      if (btn) btn.textContent = f.indexOf(id) > -1 ? '\u2b50' : '\u2606';
+    };
+
+    window.showStats = function (home, away) {
+      document.getElementById('modalTitle').textContent = home + ' vs ' + away;
+      document.getElementById('modalContent').innerHTML =
+        '<div class="stat-row"><span class="stat-val">-</span>' +
+        '<span class="stat-label">Possession</span><span class="stat-val">-</span></div>' +
+        '<div class="stat-row"><span class="stat-val">-</span>' +
+        '<span class="stat-label">Shots</span><span class="stat-val">-</span></div>' +
+        '<div class="stat-row"><span class="stat-val">-</span>' +
+        '<span class="stat-label">Shots on Target</span><span class="stat-val">-</span></div>' +
+        '<div class="stat-row"><span class="stat-val">-</span>' +
+        '<span class="stat-label">Corners</span><span class="stat-val">-</span></div>' +
+        '<div class="stat-row"><span class="stat-val">-</span>' +
+        '<span class="stat-label">Fouls</span><span class="stat-val">-</span></div>' +
+        '<p style="text-align:center;margin-top:12px;font-size:.75rem;color:var(--wc-muted)">' +
+        'Live stats available from 11 June 2026</p>';
+      document.getElementById('statsModal').classList.add('show');
+    };
+
+    var fHtml = '';
+    fixtures.forEach(function (f, idx) {
+      var live  = window.WC26.isLive(f.date, f.bst);
+      var isFav = favs.indexOf(f.id) > -1;
+      var hCode = window.WC26.flags[f.home] || 'un';
+      var aCode = window.WC26.flags[f.away] || 'un';
+      var hSafe = f.home.replace(/'/g, '\\\'');
+      var aSafe = f.away.replace(/'/g, '\\\'');
+
+      fHtml +=
+        '<div class="match-card">' +
+          '<div class="match-header">' +
+            '<span>Group A &middot; Match ' + (idx + 1) +
+            ' &middot; &#128205; ' + f.venue + '</span>' +
+            (live
+              ? '<span class="live-dot"><span></span>LIVE</span>'
+              : '<span>' + f.date + '</span>') +
+          '</div>' +
+          '<div class="match-teams">' +
+            '<div class="match-team">' +
+              '<img src="https://flagcdn.com/w80/' + hCode + '.png" ' +
+              'class="match-flag-img" alt="' + f.home + '">' +
+              '<div class="match-name">' + f.home + '</div>' +
+            '</div>' +
+            '<div class="match-center">' +
+              '<div class="match-vs">VS</div>' +
+              '<div class="match-time">' + f.bst + ' BST</div>' +
+            '</div>' +
+            '<div class="match-team">' +
+              '<img src="https://flagcdn.com/w80/' + aCode + '.png" ' +
+              'class="match-flag-img" alt="' + f.away + '">' +
+              '<div class="match-name">' + f.away + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="match-footer">' +
+            '<div class="tv-badge">&#128250; ' +
+              '<span>' + tv.channel + '</span>' +
+              '<span style="color:var(--wc-muted);font-size:.75rem">' + tv.country + '</span>' +
+            '</div>' +
+            '<div class="match-actions">' +
+              '<button class="fav-btn" id="fav-' + f.id + '" ' +
+              'onclick="toggleFav(' + f.id + ')">' +
+              (isFav ? '\u2b50' : '\u2606') + '</button>' +
+              '<button class="stats-btn" ' +
+              'onclick="showStats(\'' + hSafe + '\',\'' + aSafe + '\')">' +
+              '&#128202; Stats</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    });
+    document.getElementById('fixturesBody').innerHTML = fHtml;
+
+    /* Highlight active nav tab */
+    if (typeof initWC26Page === 'function') {
+      initWC26Page('groups');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    renderGroupPage();
+  });
+
+}());
+</script>
+
+</body>
+</html>
