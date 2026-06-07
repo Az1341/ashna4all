@@ -255,6 +255,11 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
   .wc-unit-num{font-size:16px}
   .wc-matches-left-num{font-size:16px}
 }
+
+.wc-live-now{display:none;align-items:center;gap:8px;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;animation:livePulse 2s infinite;}
+.wc-live-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:livePulse 1s infinite;}
+@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
 </style>
 </head>
 <body>
@@ -356,7 +361,7 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 
   <!-- COUNTDOWN BAR — light glass theme -->
   <div class="wc-countdown-bar" id="wcCountdownBar">
-    <span class="wc-countdown-label" id="cdLabel">⏳ World Cup starts in</span>
+    <span class="wc-countdown-label" id="cdLabel">⏳ World Cup 2026</span>
     <div class="wc-countdown-units" id="cdUnits">
       <div class="wc-unit"><div class="wc-unit-num" id="cdDays">--</div><div class="wc-unit-lbl">Days</div></div>
       <div class="wc-sep">:</div>
@@ -527,11 +532,13 @@ const FLAGS={
 const flag=n=>{
   const code=FLAGS[n];
   if(!code){return'<span style="font-size:20px">⚽</span>';}
-  return'<img src="https://flagcdn.com/w80/'+code+'.png" '
-        +'srcset="https://flagcdn.com/w160/'+code+'.png 2x" '
-        +'alt="'+n+'" width="48" height="32" '
-        +'style="object-fit:cover;border-radius:3px;display:block" '
-        +'loading="lazy" onerror="this.style.display='none'">';
+  const img=new Image();
+  return'<img src="https://flagcdn.com/w80/'+code+'.png"'
+       +' srcset="https://flagcdn.com/w160/'+code+'.png 2x"'
+       +' alt="'+n+'"'
+       +' width="48" height="32"'
+       +' style="object-fit:cover;border-radius:3px;display:block"'
+       +' loading="lazy">';
 };
 const TV_BROADCASTERS={'GB':{flag:'🇬🇧',name:'United Kingdom',channels:['BBC','ITV']},'US':{flag:'🇺🇸',name:'United States',channels:['Fox','FS1','Telemundo','Peacock']},'CA':{flag:'🇨🇦',name:'Canada',channels:['CTV','TSN','RDS','Noovo']},'AU':{flag:'🇦🇺',name:'Australia',channels:['SBS','SBS On Demand']},'DE':{flag:'🇩🇪',name:'Germany',channels:['ARD','ZDF','MagentaTV']},'FR':{flag:'🇫🇷',name:'France',channels:['TF1','M6','beIN Sports']},'ES':{flag:'🇪🇸',name:'Spain',channels:['RTVE','TVE La 1','Mediaset']},'IT':{flag:'🇮🇹',name:'Italy',channels:['RAI','Mediaset','Sky Sport']},'PT':{flag:'🇵🇹',name:'Portugal',channels:['RTP','Sport TV']},'NL':{flag:'🇳🇱',name:'Netherlands',channels:['NOS','Ziggo Sport']},'BE':{flag:'🇧🇪',name:'Belgium',channels:['RTBF','VRT','Eleven Sports']},'AR':{flag:'🇦🇷',name:'Argentina',channels:['TyC Sports','TV Pública','DSports']},'BR':{flag:'🇧🇷',name:'Brazil',channels:['TV Globo','SporTV','Cazé TV']},'MX':{flag:'🇲🇽',name:'Mexico',channels:['Televisa','TV Azteca','Sky México']},'JP':{flag:'🇯🇵',name:'Japan',channels:['NHK','TV Asahi','ABEMA']},'KR':{flag:'🇰🇷',name:'South Korea',channels:['KBS','MBC','SBS','SPOTV']},'SA':{flag:'🇸🇦',name:'Saudi Arabia',channels:['beIN Sports','Saudi Sports']},'AE':{flag:'🇦🇪',name:'UAE',channels:['beIN Sports']},'QA':{flag:'🇶🇦',name:'Qatar',channels:['beIN Sports']},'EG':{flag:'🇪🇬',name:'Egypt',channels:['beIN Sports','Al Ahly TV']},'MA':{flag:'🇲🇦',name:'Morocco',channels:['2M','SNRT','beIN Sports']},'NG':{flag:'🇳🇬',name:'Nigeria',channels:['NTA','SuperSport','DSTV']},'ZA':{flag:'🇿🇦',name:'South Africa',channels:['SuperSport','SABC','DSTV']},'GH':{flag:'🇬🇭',name:'Ghana',channels:['GTV Sports','SuperSport']},'IR':{flag:'🇮🇷',name:'Iran',channels:['IRIB TV3','Varzesh TV']},'IN':{flag:'🇮🇳',name:'India',channels:['Sports18','JioCinema','Sony Ten']},'PK':{flag:'🇵🇰',name:'Pakistan',channels:['PTV Sports','ARY Sports']},'TR':{flag:'🇹🇷',name:'Turkey',channels:['TRT Spor','TRT 1','beIN Sports']},'PL':{flag:'🇵🇱',name:'Poland',channels:['TVP Sport','Polsat Sport']},'NO':{flag:'🇳🇴',name:'Norway',channels:['TV 2','TV 2 Play']},'SE':{flag:'🇸🇪',name:'Sweden',channels:['SVT','TV4','Viaplay']},'DK':{flag:'🇩🇰',name:'Denmark',channels:['DR','TV 2','Viaplay']},'CH':{flag:'🇨🇭',name:'Switzerland',channels:['SRF','RTS','RSI']},'AT':{flag:'🇦🇹',name:'Austria',channels:['ORF','ServusTV']},'NZ':{flag:'🇳🇿',name:'New Zealand',channels:['Sky Sport NZ','TVNZ']}};
 function detectCountry(){const saved=localStorage.getItem('gc_country');if(saved)return saved;const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;const map={'Europe/London':'GB','America/New_York':'US','America/Los_Angeles':'US','America/Chicago':'US','America/Denver':'US','America/Toronto':'CA','America/Vancouver':'CA','Australia/Sydney':'AU','Australia/Melbourne':'AU','Europe/Berlin':'DE','Europe/Paris':'FR','Europe/Madrid':'ES','Europe/Rome':'IT','Europe/Lisbon':'PT','Europe/Amsterdam':'NL','Europe/Brussels':'BE','America/Argentina/Buenos_Aires':'AR','America/Sao_Paulo':'BR','America/Mexico_City':'MX','Asia/Tokyo':'JP','Asia/Seoul':'KR','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA','Africa/Cairo':'EG','Africa/Casablanca':'MA','Africa/Lagos':'NG','Africa/Johannesburg':'ZA','Asia/Tehran':'IR','Asia/Kolkata':'IN','Asia/Karachi':'PK','Europe/Istanbul':'TR','Europe/Warsaw':'PL','Europe/Oslo':'NO','Europe/Stockholm':'SE','Europe/Copenhagen':'DK','Europe/Zurich':'CH','Europe/Vienna':'AT','Pacific/Auckland':'NZ'};return map[tz]||'GB';}
@@ -557,10 +564,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('searchInput').addEventListener('input',applyFilters);
   updateTVPreview();updateFavouriteCount();
   const today=toDS(new Date());
-  selDate=SCHEDULE[today]?today:'2026-06-11';
+  // Auto-select: today if it has matches, else next upcoming match day, else first match day
+  const allDates=Object.keys(SCHEDULE).sort();
+  const futureDates=allDates.filter(d=>d>=today);
+  selDate=SCHEDULE[today]?today:(futureDates.length?futureDates[0]:allDates[0]);
   curMonth=new Date(selDate+'T12:00:00').getMonth();
   curYear=2026;
-  renderCal();showDay(selDate);
+  renderCal();
+  // Small delay ensures calendar renders before showDay highlights
+  setTimeout(()=>showDay(selDate),50);
   if(API_KEY)loadLiveData();
   if(API_KEY&&'Notification'in window&&Notification.permission==='granted')startLiveEventPolling();
 });
@@ -637,7 +649,7 @@ function toggleDay(){document.getElementById('dayBlock')?.classList.toggle('expa
     if(!elLabel||!elDays)return;
     if(nowDate<TOURNEY_START){
       const diff=TOURNEY_START-nowDate;const d=Math.floor(diff/86400000);const h=Math.floor((diff%86400000)/3600000);const m=Math.floor((diff%3600000)/60000);const s=Math.floor((diff%60000)/1000);
-      elLabel.textContent='⏳ World Cup starts in';elDays.textContent=pad(d);elHours.textContent=pad(h);elMins.textContent=pad(m);elSecs.textContent=pad(s);
+      elLabel.textContent='⏳ Next kick-off in';elDays.textContent=pad(d);elHours.textContent=pad(h);elMins.textContent=pad(m);elSecs.textContent=pad(s);
       if(elUnits)elUnits.style.display='flex';if(elNum)elNum.textContent=TOTAL_MATCHES;if(elTxt)elTxt.innerHTML='matches<br>total';if(elBox)elBox.className='wc-matches-left';
     }else if(nowDate>=TOURNEY_START&&nowDate<TOURNEY_END){
       const played=getMatchesPlayed(nowDate);const left=TOTAL_MATCHES-played;const nextMatch=MATCH_TIMES.find(m=>m.utc>nowDate);
