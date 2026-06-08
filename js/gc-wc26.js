@@ -17,10 +17,10 @@ function renderTeams(){const el=$('#teamsGrid'); if(!el)return; let q=($('#teamS
 function matchStatus(dt){const now=new Date(); const d=new Date(dt); const end=new Date(d.getTime()+115*60000); if(now<d)return 'Upcoming'; if(now>=d&&now<=end)return 'LIVE'; return 'Full-time';}
 function fmt(dt){return new Date(dt).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
 function matchId(m){return slug(m[2]+'-'+m[3]+'-'+m[0].slice(0,10))}
-function matchCard(m){let st=matchStatus(m[0]); return `<article class="card match-card" onclick="openMatch('${matchId(m)}')"><div><strong>${fmt(m[0])}</strong><br><span class="muted">Group ${m[1]} · ${m[4]}</span></div><div><strong>${flagImg(m[2])} ${m[2]} vs ${flagImg(m[3])} ${m[3]}</strong><br><b>${m[5]}</b></div><div class="status ${st=='LIVE'?'live':''}">${st}</div><button class="fav" data-fav="matches:${matchId(m)}" onclick="event.stopPropagation();toggleFav('matches','${matchId(m)}')">☆</button></article>`}
+function matchCard(m){let st=matchStatus(m[0]); return `<article class="card match-card" onclick="openMatch('${matchId(m)}')"><div><strong>${fmt(m[0])}</strong><br><span class="muted">Group ${m[1]} · ${m[4]}</span></div><div class="fixture-teams"><span class="fixture-team">${flagImg(m[2])}<strong>${m[2]}</strong></span><span class="vs">vs</span><span class="fixture-team">${flagImg(m[3])}<strong>${m[3]}</strong></span><br><b>${m[5]}</b></div><div class="status ${st=='LIVE'?'live':''}">${st}</div><button class="fav" data-fav="matches:${matchId(m)}" onclick="event.stopPropagation();toggleFav('matches','${matchId(m)}')">☆</button></article>`}
 function flagFor(name){for(const t of WC26.teams) if(t.name==name)return t.flag; return '🏳️'}
 function flagCodeFor(name,code){const map={'England':'gb-eng','Scotland':'gb-sct','USA':'us','Côte d’Ivoire':'ci','DR Congo':'cd'}; if(map[name])return map[name]; if(code)return String(code).toLowerCase(); const t=WC26.teams.find(x=>x.name==name); if(t){return flagCodeFor(t.name,t.code)} return 'un';}
-function flagImg(name,code,emoji){const fallback=emoji||flagFor(name); return `<span class="flag-wrap" title="${name}"><span class="flag-emoji-fallback">${fallback}</span></span>`}
+function flagImg(name,code,emoji){const fallback=emoji||flagFor(name); return `<span class="flag-wrap" title="${name}"><span class="flag-emoji-fallback">${fallback}</span></span>`}"><span class="flag-emoji-fallback">${fallback}</span></span>`}
 function renderFixtures(){const el=$('#fixturesList'); if(!el)return; let q=($('#fixtureSearch')?.value||'').toLowerCase(), g=$('#fixtureGroup')?.value||'', day=$('#fixtureDate')?.value||''; let ms=WC26.fixtures.filter(m=>(!q||(m[2]+' '+m[3]+' '+m[4]+' '+m[5]).toLowerCase().includes(q))&&(!g||m[1]==g)&&(!day||m[0].slice(0,10)==day)); el.innerHTML=ms.map(matchCard).join('')||'<div class="empty">No fixtures match this search/date.</div>'; updateFavButtons();}
 function renderStandings(){const el=$('#standings'); if(!el)return; el.innerHTML=Object.entries(WC26.groups).map(([g,teams])=>`<section class="card"><h3>Group ${g} <a class="badge" href="/worldcup2026/groups/group-${g.toLowerCase()}/">View Group →</a></h3><table class="stand-table"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead><tbody>${teams.map(t=>`<tr><td>${flagImg(t[1],t[2],t[0])} <strong>${t[1]}</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>`).join('')}</tbody></table></section>`).join('')}
 function renderBracket(){const el=$('#bracket'); if(!el)return; const rounds=[['Round of 32',16],['Round of 16',8],['Quarter-finals',4],['Semi-finals / Final',3]]; el.innerHTML=rounds.map(([r,n])=>`<div class="bracket-col"><h3>${r}</h3>${Array.from({length:n},(_,i)=>`<article class="card bracket-match" onclick="openBracket('${r}','${i+1}')"><strong>Match ${i+1}</strong><br><span class="muted">TBD vs TBD</span><br><span class="badge">Clickable details</span></article>`).join('')}</div>`).join('')}
@@ -120,8 +120,7 @@ function initCookieBanner(){
   banner.className='cookie-banner';
   banner.innerHTML='<p><strong>Cookies notice:</strong> GoalCurrent.live uses essential cookies and local storage for favourites, alerts, analytics and affiliate disclosure preferences.</p><button class="cookie-accept" type="button">Accept</button><button class="cookie-reject" type="button">Reject non-essential</button>';
   document.body.appendChild(banner);
-  const choice=localStorage.getItem('gcCookieChoice');
-  if(!choice) banner.classList.add('show');
+  banner.classList.add('show');
   banner.querySelector('.cookie-accept').onclick=()=>{banner.classList.remove('show');};
   banner.querySelector('.cookie-reject').onclick=()=>{banner.classList.remove('show');};
 }
@@ -132,7 +131,7 @@ function initSubscribePopup(){
   pop.className='subscribe-popup';
   pop.innerHTML='<div class="subscribe-card"><h2>Get World Cup updates</h2><p>Subscribe for fixtures, live-score alerts, team news and breaking World Cup updates from GoalCurrent.live.</p><form id="gcSubscribeForm"><input type="email" required placeholder="Enter your email address" aria-label="Email address"><button class="subscribe-submit" type="submit">Subscribe</button></form><div class="subscribe-actions"><button class="subscribe-close" type="button">Not now</button></div><div class="subscribe-note">Free World Cup updates. You can unsubscribe anytime.</div></div>';
   document.body.appendChild(pop);
-  if(!localStorage.getItem('gcSubscribed') && !sessionStorage.getItem('gcSubscribeClosed')) setTimeout(()=>pop.classList.add('show'),900);
+  setTimeout(()=>pop.classList.add('show'),900);
   pop.querySelector('.subscribe-close').onclick=()=>{pop.classList.remove('show');};
   pop.addEventListener('click',e=>{if(e.target===pop){pop.classList.remove('show');}});
   pop.querySelector('#gcSubscribeForm').addEventListener('submit',e=>{

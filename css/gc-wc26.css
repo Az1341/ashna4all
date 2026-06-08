@@ -118,3 +118,22 @@ body,button,input,select,textarea,a,span,div,p,h1,h2,h3,h4,h5,h6,li,td,th{
 .flag-wrap{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:48px!important;height:36px!important;margin-right:12px!important;vertical-align:middle!important;flex:0 0 48px!important;background:#fff;border:1px solid #d7e9ff;border-radius:10px;box-shadow:0 2px 8px rgba(6,37,91,.10)}
 .flag-img{display:none!important}.flag-emoji-fallback{display:inline-block!important;font-size:30px!important;line-height:1!important}.team-row{display:flex!important;align-items:center!important;gap:10px!important}.team-row strong{font-size:18px!important;font-weight:800!important}.team-code{display:none!important}.team-card .team-flag-large .flag-wrap{width:80px!important;height:62px!important;flex-basis:80px!important;margin:0 0 12px 0!important}.team-card .team-flag-large .flag-emoji-fallback{font-size:52px!important}.stand-table .flag-wrap,.match-card .flag-wrap{width:38px!important;height:28px!important;flex-basis:38px!important;margin-right:8px!important}.stand-table .flag-emoji-fallback,.match-card .flag-emoji-fallback{font-size:24px!important}.tabs-mini button.active{background:#0b56d8!important;color:white!important;border-color:#0b56d8!important}.side h3{margin-top:18px}.side a{display:block}.side a.home-main{font-weight:1000;color:#fff;background:#10284a;border-radius:12px}.subscribe-note{color:#52677f!important}.hero .card{min-height:110px!important}.hero .card:empty{display:none!important}.ad{display:flex!important;align-items:center!important;justify-content:center!important}.nordvpn-banner{position:relative;z-index:50}.cookie-banner.show{display:flex}.site-logo{object-fit:contain!important;background:transparent!important}
 @media(max-width:700px){.flag-wrap{width:42px!important;height:31px!important;flex-basis:42px!important}.flag-emoji-fallback{font-size:26px!important}.side{width:330px!important;max-width:88vw!important}.side a{font-size:17px!important}.brand-name{font-size:22px!important}}
+
+
+/* Sidebar + flags final hotfix 20260608-sidebarflags */
+.side{overflow-y:auto!important;padding-bottom:34px!important}
+.side-badge{float:right;background:#b8860b;color:#fff;border-radius:999px;padding:2px 7px;font-size:10px;letter-spacing:0}
+.side-badge-pl{background:#7e22ce}
+.side-badge-ucl{background:#d97706}
+.flag-wrap{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:52px!important;height:38px!important;min-width:52px!important;margin-right:12px!important;background:#fff!important;border:1px solid #bedcff!important;border-radius:10px!important;box-shadow:0 3px 10px rgba(5,30,78,.12)!important}
+.flag-emoji-fallback{display:inline-block!important;font-size:31px!important;line-height:1!important}
+.fixture-teams{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:wrap!important}
+.fixture-team{display:inline-flex!important;align-items:center!important;gap:0!important}
+.fixture-team strong{font-size:19px!important}
+.vs{font-weight:900;color:#5a708f;margin:0 2px}
+.team-row .flag-wrap{width:54px!important;height:39px!important;min-width:54px!important}
+.team-card .team-flag-large .flag-wrap{width:92px!important;height:66px!important;min-width:92px!important}
+.team-card .team-flag-large .flag-emoji-fallback{font-size:56px!important}
+.match-card .flag-wrap,.stand-table .flag-wrap{width:48px!important;height:34px!important;min-width:48px!important;margin-right:9px!important}
+.match-card .flag-emoji-fallback,.stand-table .flag-emoji-fallback{font-size:28px!important}
+@media(max-width:700px){.side{width:350px!important;max-width:90vw!important}.flag-wrap{width:46px!important;height:34px!important;min-width:46px!important}.flag-emoji-fallback{font-size:28px!important}.match-card .flag-wrap{width:44px!important;height:32px!important;min-width:44px!important}}
