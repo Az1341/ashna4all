@@ -143,3 +143,124 @@ function initSubscribePopup(){
     pop.querySelector('.subscribe-close').onclick=()=>pop.classList.remove('show');
   });
 }
+/* === CHATGPT FIX: remove two-letter initials and force clean flags === */
+(function () {
+  const TEAM_FLAGS = {
+    "Algeria": "🇩🇿",
+    "Argentina": "🇦🇷",
+    "Australia": "🇦🇺",
+    "Austria": "🇦🇹",
+    "Belgium": "🇧🇪",
+    "Bosnia & Herzegovina": "🇧🇦",
+    "Bosnia and Herzegovina": "🇧🇦",
+    "Brazil": "🇧🇷",
+    "Canada": "🇨🇦",
+    "Cape Verde": "🇨🇻",
+    "Colombia": "🇨🇴",
+    "Croatia": "🇭🇷",
+    "Curaçao": "🇨🇼",
+    "Curacao": "🇨🇼",
+    "Czech Republic": "🇨🇿",
+    "DR Congo": "🇨🇩",
+    "Ecuador": "🇪🇨",
+    "Egypt": "🇪🇬",
+    "England": "🏴",
+    "France": "🇫🇷",
+    "Germany": "🇩🇪",
+    "Ghana": "🇬🇭",
+    "Haiti": "🇭🇹",
+    "Iran": "🇮🇷",
+    "Iraq": "🇮🇶",
+    "Ivory Coast": "🇨🇮",
+    "Côte d'Ivoire": "🇨🇮",
+    "Japan": "🇯🇵",
+    "Jordan": "🇯🇴",
+    "Mexico": "🇲🇽",
+    "Morocco": "🇲🇦",
+    "Netherlands": "🇳🇱",
+    "New Zealand": "🇳🇿",
+    "Norway": "🇳🇴",
+    "Panama": "🇵🇦",
+    "Paraguay": "🇵🇾",
+    "Portugal": "🇵🇹",
+    "Qatar": "🇶🇦",
+    "Saudi Arabia": "🇸🇦",
+    "Scotland": "🏴",
+    "Senegal": "🇸🇳",
+    "South Africa": "🇿🇦",
+    "South Korea": "🇰🇷",
+    "Spain": "🇪🇸",
+    "Sweden": "🇸🇪",
+    "Switzerland": "🇨🇭",
+    "Tunisia": "🇹🇳",
+    "Turkey": "🇹🇷",
+    "USA": "🇺🇸",
+    "United States": "🇺🇸",
+    "Uruguay": "🇺🇾",
+    "Uzbekistan": "🇺🇿"
+  };
+
+  function removeTwoLetterInitials(root) {
+    const targets = root.querySelectorAll(
+      ".team-card span, .team-card div, .team-row span, .team-row div, .match-card span, .match-card div, .fixture-card span, .fixture-card div"
+    );
+
+    targets.forEach((el) => {
+      const text = el.textContent.trim();
+
+      if (/^[A-Z]{2}$/.test(text)) {
+        el.style.display = "none";
+        el.setAttribute("aria-hidden", "true");
+      }
+    });
+  }
+
+  function addMissingEmojiFlags(root) {
+    const containers = root.querySelectorAll(
+      ".team-card, .team-row, .match-card, .fixture-card"
+    );
+
+    containers.forEach((box) => {
+      if (
+        box.querySelector(".gc-clean-flag") ||
+        box.querySelector("img") ||
+        box.querySelector(".flag-wrap") ||
+        box.querySelector(".flag")
+      ) {
+        return;
+      }
+
+      const text = box.textContent;
+      const team = Object.keys(TEAM_FLAGS).find((name) => text.includes(name));
+
+      if (!team) return;
+
+      const flag = document.createElement("span");
+      flag.className = "gc-clean-flag";
+      flag.textContent = TEAM_FLAGS[team];
+      flag.style.fontSize = "28px";
+      flag.style.marginRight = "10px";
+      flag.style.lineHeight = "1";
+
+      const nameEl =
+        [...box.querySelectorAll("strong, .team-name, .wc-team-name")].find((el) =>
+          el.textContent.includes(team)
+        ) || box.firstElementChild;
+
+      if (nameEl) {
+        nameEl.prepend(flag);
+      }
+    });
+  }
+
+  function cleanWorldCupUI() {
+    removeTwoLetterInitials(document);
+    addMissingEmojiFlags(document);
+  }
+
+  document.addEventListener("DOMContentLoaded", cleanWorldCupUI);
+  window.addEventListener("load", cleanWorldCupUI);
+
+  setTimeout(cleanWorldCupUI, 300);
+  setTimeout(cleanWorldCupUI, 1000);
+})();

@@ -137,3 +137,121 @@ body,button,input,select,textarea,a,span,div,p,h1,h2,h3,h4,h5,h6,li,td,th{
 .match-card .flag-wrap,.stand-table .flag-wrap{width:48px!important;height:34px!important;min-width:48px!important;margin-right:9px!important}
 .match-card .flag-emoji-fallback,.stand-table .flag-emoji-fallback{font-size:28px!important}
 @media(max-width:700px){.side{width:350px!important;max-width:90vw!important}.flag-wrap{width:46px!important;height:34px!important;min-width:46px!important}.flag-emoji-fallback{font-size:28px!important}.match-card .flag-wrap{width:44px!important;height:32px!important;min-width:44px!important}}
+/* === CHATGPT FIX: remove country initials, smaller flags, Apple font === */
+
+body,
+button,
+input,
+select,
+textarea,
+a,
+span,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide two-letter country initials like MX, ZA, CZ, KR */
+.team-code,
+.country-code,
+.iso-code,
+.flag-code,
+.code-badge,
+.team-initials,
+.team-abbr,
+.t-code,
+.gc-code,
+[data-team-code] {
+  display: none !important;
+}
+
+/* Hide generated two-letter badge boxes inside team cards/rows */
+.team-card span,
+.team-card div,
+.team-row span,
+.team-row div,
+.match-card span,
+.match-card div,
+.fixture-card span,
+.fixture-card div {
+  letter-spacing: normal;
+}
+
+/* Smaller clean flags */
+.team-card img,
+.team-row img,
+.match-card img,
+.fixture-card img {
+  max-width: 62px !important;
+  max-height: 42px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+}
+
+/* Team cards */
+.team-card .flag,
+.team-card .flag-emoji-fallback,
+.team-card .team-flag,
+.team-card .wc-team-flag {
+  font-size: 34px !important;
+  line-height: 1 !important;
+}
+
+/* Group rows / standings / fixtures */
+.team-row .flag,
+.team-row .flag-emoji-fallback,
+.match-card .flag,
+.match-card .flag-emoji-fallback,
+.fixture-card .flag,
+.fixture-card .flag-emoji-fallback,
+.stand-table .flag,
+.stand-table .flag-emoji-fallback {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+/* Flag box size */
+.flag-wrap {
+  width: 42px !important;
+  height: 30px !important;
+  min-width: 42px !important;
+  flex-basis: 42px !important;
+  margin-right: 10px !important;
+  border-radius: 7px !important;
+}
+
+.flag-img {
+  width: 42px !important;
+  height: 28px !important;
+  object-fit: cover !important;
+  border-radius: 6px !important;
+}
+
+/* Better Apple-style team cards */
+.team-card,
+.team-row,
+.match-card,
+.fixture-card {
+  font-weight: 500;
+}
+
+.team-name,
+.team-card strong,
+.team-row strong,
+.match-card strong,
+.fixture-card strong {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
