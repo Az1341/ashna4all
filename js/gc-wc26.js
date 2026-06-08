@@ -30,7 +30,35 @@ function openTeam(name){let t=WC26.teams.find(x=>x.name==name); modal(`${t.flag}
 function openVenue(name){let v=WC26.venues.find(x=>x[1]==name); modal(`${v[0]} ${v[1]}`, `<p><b>City:</b> ${v[2]}</p><p><b>Country:</b> ${v[3]}</p><p><b>Capacity:</b> ${v[4]}</p><p><b>Role:</b> ${v[5]}</p><p><b>Scheduled matches:</b> ${v[6]}</p><p>This popup is designed for stadium background, hosted matches and venue-specific fixtures.</p>`)}
 function openBracket(r,n){modal(`${r} — Match ${n}`, `<p><b>Status:</b> Awaiting group-stage qualification.</p><p><b>Teams:</b> TBD vs TBD</p><p><b>Match page:</b> this placeholder remains clickable now and can be populated automatically after group standings are confirmed.</p>`)}
 function openNews(i){modal('News item', `<p>News details, related fixtures and source links will open here. Latest headlines update on the news page when the feed is available.</p>` )}
-function initCountdown(){const el=$('#countdown'); if(!el)return; const target=new Date('2026-06-11T20:00:00+01:00'); function tick(){let diff=target-new Date(); if(diff<=0){el.innerHTML='<strong>World Cup 2026 has started.</strong>';return} let d=Math.floor(diff/864e5), h=Math.floor(diff%864e5/36e5), m=Math.floor(diff%36e5/6e4), s=Math.floor(diff%6e4/1000); el.innerHTML=`<div class="grid grid-4"><div class="card"><h3>${d}</h3>Days</div><div class="card"><h3>${h}</h3>Hours</div><div class="card"><h3>${m}</h3>Minutes</div><div class="card"><h3>${s}</h3>Seconds</div></div>`} tick(); setInterval(tick,1000)}
+function initCountdown(){
+  const el=$('#countdown'); if(!el)return;
+  const target=new Date('2026-06-11T20:00:00+01:00');
+  const matchTitle='Mexico vs South Africa';
+  const matchMeta='Opening match · 11 June 2026 · 20:00 BST · Estadio Azteca';
+  function pad(n){return String(n).padStart(2,'0')}
+  function tick(){
+    let diff=target-new Date();
+    if(diff<=0){
+      el.innerHTML=`<div class="countdown-live"><div class="pulse-dot"></div><div><h3>World Cup 2026 has started</h3><p>${matchTitle} coverage is now live when match data is available.</p></div></div>`;
+      return;
+    }
+    let d=Math.floor(diff/864e5), h=Math.floor(diff%864e5/36e5), m=Math.floor(diff%36e5/6e4), s=Math.floor(diff%6e4/1000);
+    el.innerHTML=`
+      <div class="countdown-clock" aria-label="Countdown to ${matchTitle}">
+        <div class="countdown-match">
+          <span class="kicker">Next match countdown</span>
+          <h3>${matchTitle}</h3>
+          <p>${matchMeta}</p>
+        </div>
+        <div class="time-ring"><b>${d}</b><span>Days</span></div>
+        <div class="time-ring"><b>${pad(h)}</b><span>Hours</span></div>
+        <div class="time-ring"><b>${pad(m)}</b><span>Minutes</span></div>
+        <div class="time-ring"><b>${pad(s)}</b><span>Seconds</span></div>
+      </div>`;
+  }
+  tick();
+  setInterval(tick,1000);
+}
 
 function renderApiStatus(msg, cls){const el=$('#liveApiStatus'); if(el){el.className='live-status '+(cls||''); el.innerHTML=msg;}}
 function apiMatchRow(m){
