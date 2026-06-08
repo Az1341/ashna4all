@@ -1,13 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalCurrent.live — FIFA World Cup 2026</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoalCurrent.live — FIFA World Cup 2026</title>
+  <meta name="description" content="GoalCurrent.live World Cup 2026 live coverage, fixtures, groups, teams, standings and countdown." />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #eef5ff;
+      color: #0b1b35;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .sidebar {
+      width: 235px;
+      background: #071323;
+      color: #fff;
+      min-height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      overflow-y: auto;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand {
+      height: 108px;
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      font-size: 18px;
+      font-weight: 900;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand span { color: #58a6ff; }
+
+    .menu-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #7f91aa;
+      padding: 18px 14px 8px;
+      font-weight: 800;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #cfe4ff;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: #142843;
+      color: #fff;
+    }
+
+    .badge {
+      margin-left: auto;
+      font-size: 10px;
+      background: #f59e0b;
+      color: #111827;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-weight: 900;
+    }
+
+    .main {
+      margin-left: 235px;
+      width: calc(100% - 235px);
+    }
+
+    .topbar {
+      height: 136px;
+      background: linear-gradient(180deg, #05358f, #0646bd);
+      color: #fff;
+      border-bottom: 3px solid #f59e0b;
+      padding: 12px 20px;
+    }
+
+    .top-brand {
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .top-brand span { color: #ffcc33; }
+
+    .subtitle {
+      font-size: 11px;
+      opacity: .85;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tab {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .tab.active {
+      background: #f59e0b;
+      color: #111827;
+    }
+
+    .hero {
+      margin: 0 16px 22px;
+      background: linear-gradient(135deg, #073caa, #0067ff);
+      color: #fff;
+      border-radius: 0 0 20px 20px;
+      padding: 28px 20px 20px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.15);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(0,0,0,.22);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .timebox {
+      min-width: 75px;
+      text-align: center;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      padding: 8px 10px;
+    }
+
+    .num {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .label {
+      margin-top: 5px;
+      font-size: 10px;
+      opacity: .85;
+      font-weight: 900;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 9px;
+      text-align: center;
+      padding: 12px;
+      font-weight: 900;
+    }
+
+    .stat strong {
+      color: #ffb300;
+      display: block;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      padding: 12px 20px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .hero-link.main-link {
+      background: #f59e0b;
+      color: #111827;
+    }
+
+    .content {
+      padding: 0 16px 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 900;
+      margin: 18px 0 12px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff2d55, #ff7a00);
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(0,50,120,.08);
+      margin-bottom: 18px;
+    }
+
+    .card-head {
+      background: #082d77;
+      color: #fff;
+      padding: 13px 16px;
+      font-size: 13px;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .updated {
+      font-size: 10px;
+      color: #a8c4ee;
+      font-weight: 700;
+    }
+
+    .match-row {
+      display: grid;
+      grid-template-columns: 88px 1fr 120px;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #e6eef8;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .match-row:last-child { border-bottom: none; }
+
+    .status {
+      display: inline-block;
+      text-align: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .status.upcoming { background: #e9f3ff; color: #0759c9; }
+    .status.live { background: #ffe8e8; color: #d40000; }
+    .status.finished { background: #e8f9ec; color: #087d2d; }
+
+    .teams {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .versus {
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .meta {
+      color: #64748b;
+      font-size: 11px;
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 30px;
+      background: #071323;
+      color: #9fb5d1;
+      padding: 24px 18px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      body { display: block; }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .topbar {
+        height: auto;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .countdown {
+        gap: 8px;
+      }
+
+      .timebox {
+        min-width: 60px;
+      }
+
+      .num {
+        font-size: 28px;
+      }
+
+      .match-row {
+        grid-template-columns: 1fr;
+      }
+
+      .meta {
+        text-align: left;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<h1>GoalCurrent.live World Cup 2026 Homepage Template</h1>
-<p>This downloadable file was generated from the corrected homepage example.</p>
-<p>Replace this file's contents with the full HTML code provided in chat if needed.</p>
+
+  <aside class="sidebar">
+    <div class="brand">⚽ Goal<span>Current</span>.live</div>
+
+    <div class="menu-title">MAIN MENU</div>
+    <a class="nav-item active" href="/">🏠 Home</a>
+    <a class="nav-item" href="/live/">🔴 Live Scores</a>
+    <a class="nav-item" href="/worldcup2026/fixtures/">🗓️ Fixtures</a>
+    <a class="nav-item" href="/worldcup2026/standings/">🏅 Standings</a>
+    <a class="nav-item" href="/news/">📰 Latest News</a>
+
+    <div class="menu-title">COMPETITIONS</div>
+    <a class="nav-item" href="/premier-league/">🏴 Premier League <span class="badge">PL</span></a>
+    <a class="nav-item active" href="/worldcup2026/">🏆 World Cup 2026 <span class="badge">WC26</span></a>
+    <a class="nav-item" href="/worldcup2026/groups/">🔢 Groups</a>
+    <a class="nav-item" href="/worldcup2026/teams/">👕 Teams</a>
+    <a class="nav-item" href="/worldcup2026/fixtures/">📅 Fixtures</a>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="top-brand">⚽ Goal<span>Current</span>.live</div>
+      <div class="subtitle">🏆 World Cup 2026 Starts 11 June — Live Coverage</div>
+
+      <nav class="tabs">
+        <a class="tab active" href="/">🏠 Home</a>
+        <a class="tab" href="/worldcup2026/">🏆 World Cup</a>
+        <a class="tab" href="/worldcup2026/fixtures/">🗓 Fixtures</a>
+        <a class="tab" href="/worldcup2026/groups/">🔢 Groups</a>
+        <a class="tab" href="/worldcup2026/teams/">👕 Teams</a>
+        <a class="tab" href="/worldcup2026/standings/">📊 Standings</a>
+        <a class="tab" href="/worldcup2026/countdown/">⏱ Countdown</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="countdown" id="countdown">
+        <div class="timebox"><div class="num" id="days">00</div><div class="label">DAYS</div></div>
+        <div class="timebox"><div class="num" id="hours">00</div><div class="label">HRS</div></div>
+        <div class="timebox"><div class="num" id="minutes">00</div><div class="label">MIN</div></div>
+        <div class="timebox"><div class="num" id="seconds">00</div><div class="label">SEC</div></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>48</strong>TEAMS</div>
+        <div class="stat"><strong>104</strong>MATCHES</div>
+        <div class="stat"><strong>16</strong>STADIUMS</div>
+        <div class="stat"><strong>3</strong>NATIONS</div>
+        <div class="stat"><strong>32</strong>DAYS</div>
+      </div>
+
+      <div class="hero-links">
+        <a class="hero-link main-link" href="/worldcup2026/">🌍 WC2026 Hub →</a>
+        <a class="hero-link" href="/worldcup2026/fixtures/">🗓 Fixtures</a>
+        <a class="hero-link" href="/worldcup2026/groups/">🔢 Groups</a>
+        <a class="hero-link" href="/worldcup2026/teams/">👕 Teams</a>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-title">Live Match Centre</div>
+
+      <div class="card">
+        <div class="card-head">
+          <span id="matchCardTitle">TODAY'S MATCHES — WORLD CUP 2026</span>
+          <span class="updated" id="updatedTime">Updated now</span>
+        </div>
+
+        <div id="matches"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © 2026 GoalCurrent.live — FIFA World Cup 2026 live scores, fixtures, teams, groups and standings.
+    </footer>
+  </main>
+
+  <script>
+    const WORLD_CUP_START = new Date("2026-06-11T20:00:00+01:00");
+
+    const fixtures = [
+      {
+        home: "Mexico",
+        away: "South Africa",
+        group: "A",
+        venue: "Mexico City",
+        tv: "ITV",
+        kickoff: "2026-06-11T20:00:00+01:00"
+      }
+    ];
+
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = WORLD_CUP_START - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      document.getElementById("days").textContent = pad(days);
+      document.getElementById("hours").textContent = pad(hours);
+      document.getElementById("minutes").textContent = pad(minutes);
+      document.getElementById("seconds").textContent = pad(seconds);
+    }
+
+    function getMatchStatus(kickoffISO) {
+      const now = new Date();
+      const kickoff = new Date(kickoffISO);
+      const fullTime = new Date(kickoff.getTime() + 120 * 60000);
+
+      if (now < kickoff) {
+        return { text: "UPCOMING", className: "upcoming" };
+      }
+
+      if (now >= kickoff && now < fullTime) {
+        return { text: "LIVE", className: "live" };
+      }
+
+      return { text: "FT", className: "finished" };
+    }
+
+    function formatKickoff(kickoffISO) {
+      const date = new Date(kickoffISO);
+      return date.toLocaleString("en-GB", {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function renderMatches() {
+      const box = document.getElementById("matches");
+      box.innerHTML = "";
+
+      fixtures.forEach(match => {
+        const status = getMatchStatus(match.kickoff);
+
+        const row = document.createElement("div");
+        row.className = "match-row";
+
+        row.innerHTML = `
+          <div><span class="status ${status.className}">${status.text}</span></div>
+          <div class="teams">
+            <strong>${match.home}</strong>
+            <span class="versus">vs</span>
+            <strong>${match.away}</strong>
+          </div>
+          <div class="meta">
+            ${formatKickoff(match.kickoff)}<br>
+            Grp ${match.group} · ${match.tv}
+          </div>
+        `;
+
+        box.appendChild(row);
+      });
+    }
+
+    function updateClockText() {
+      const now = new Date();
+      document.getElementById("updatedTime").textContent =
+        "BST · Updated " + now.toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+    }
+
+    updateCountdown();
+    renderMatches();
+    updateClockText();
+
+    setInterval(updateCountdown, 1000);
+    setInterval(() => {
+      renderMatches();
+      updateClockText();
+    }, 30000);
+  </script>
+
 </body>
 </html>
