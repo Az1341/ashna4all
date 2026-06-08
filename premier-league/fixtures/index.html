@@ -118,6 +118,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 @media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
 @media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:12px!important}}
 </style>
+<link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
 </head>
 <body>
 
@@ -338,5 +339,6 @@ function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');document.getEleme
 function gcDeclineCookies(){localStorage.setItem('gc_ck','no');document.getElementById('gc-cookie-banner').style.display='none'}
 if(!localStorage.getItem('gc_ck')){setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex'},1500)}
 </script>
+<script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 </body>
 </html>
