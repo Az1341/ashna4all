@@ -8,10 +8,10 @@
   function flagFor(name){return FLAGS[name]||'';}
   function makeFlag(name,big){var f=flagFor(name);return f?'<span class="gc-safe-flag '+(big?'gc-safe-flag-lg':'')+'" aria-hidden="true">'+f+'</span>':'';}
   function normalName(text){var t=String(text||'').replace(/\s+/g,' ').trim(); if(!t)return null; t=t.replace(/^[\u{1F1E6}-\u{1F1FF}\u{1F3F4}\u2600-\u27BF]+\s*/u,'').trim(); var m=t.match(/^([A-Z]{2,3})\s+(.+)$/); if(m && CODES[m[1]]) t=m[2].trim(); if(FLAGS[t]) return t; return null;}
-  function alreadyFlagged(el){return !el||el.querySelector('.gc-safe-flag,.flag,img[src*="flagcdn"],img[alt][src*="flags"]');}
+  function alreadyFlagged(el){if(!el)return true;if(el.querySelector('.gc-safe-flag,.flag,img[src*="flagcdn"],img[alt][src*="flags"]'))return true;var p=el.parentElement;return !!(p&&p.querySelector('img[src*="flagcdn"],img[alt][src*="flags"]'));}
   function enhanceElement(el,big){if(!el||alreadyFlagged(el))return; var name=normalName(el.textContent); if(!name)return; el.innerHTML='<span class="gc-safe-teamline">'+makeFlag(name,big)+'<span>'+esc(name)+'</span></span>';}
   function enhanceFlags(){
-    var selectors=['.team-row','.gc-team-row','.wc-match-team span','.gc-match-name','.gc-tbl-name','.gc-team-name','.team-name','.gc-fav-name','.gc-all-card-name','.gc-bracket-name','.fixture-teams strong'];
+    var selectors=['.team-row','.gc-team-row','.wc-match-team span','.gc-match-name','.gc-tbl-name','.gc-fav-name','.gc-all-card-name','.gc-bracket-name','.fixture-teams strong'];
     document.querySelectorAll(selectors.join(',')).forEach(function(el){enhanceElement(el, el.classList.contains('team-name')||el.classList.contains('gc-team-name'));});
     document.querySelectorAll('td,li,a,span,div').forEach(function(el){
       if(el.children.length>0 || alreadyFlagged(el)) return;
