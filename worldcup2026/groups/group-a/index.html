@@ -1185,12 +1185,12 @@ html, body {
   <footer class="gc-footer">
     <div class="gc-footer-inner">
       <nav class="gc-footer-links">
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/terms/">Terms</a>
-        <a href="/disclaimer/">Disclaimer</a>
-        <a href="/cookies/">Cookies</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/cookies.html">Cookies</a>
       </nav>
       <p class="gc-footer-copy">© 2026 <strong>Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live</p>
       <p class="gc-footer-disclaimer">Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</p>
@@ -1204,7 +1204,7 @@ html, body {
 <div id="gc-cookie-banner" role="alert">
   <p>
     We use cookies to improve your experience and show personalised content.
-    See our <a href="/cookies/">Cookie Policy</a> for details.
+    See our <a href="/cookies.html">Cookie Policy</a> for details.
   </p>
   <button class="gc-cookie-btn secondary" onclick="gcCookieDecline()">Decline</button>
   <button class="gc-cookie-btn" onclick="gcCookieAccept()">Accept All</button>
@@ -1216,10 +1216,18 @@ html, body {
     <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close">✕</button>
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
-    <div class="gc-sub-form">
-      <input type="email" id="gc-sub-email" placeholder="Your email address" autocomplete="email">
-      <button class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free</button>
-    </div>
+    <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ=="
+          method="POST"
+          data-type="subscription"
+          target="_blank"
+          onsubmit="setTimeout(function(){document.getElementById('gc-sub-thanks').style.display='block';},500);gcSubClose();">
+      <div class="gc-sub-form">
+        <input type="email" name="EMAIL" id="gc-sub-email" placeholder="Your email address" autocomplete="email" required>
+        <input type="hidden" name="locale" value="en">
+        <input type="text" name="email_address_check" value="" style="display:none">
+        <button type="submit" class="gc-sub-submit">Subscribe Free ✉️</button>
+      </div>
+    </form>
     <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
   </div>
 </div>
