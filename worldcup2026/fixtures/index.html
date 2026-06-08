@@ -261,7 +261,6 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 @keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.6;}}
 
 </style>
-<link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
 </head>
 <body>
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
@@ -347,7 +346,6 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
       <a href="/worldcup2026/news/index.html"      class="gc-hdr-navlink">📰 News</a>
       <a href="/countdown.html"                    class="gc-hdr-navlink">⏱ Countdown</a>
       <a href="/worldcup2026/favourites/index.html"class="gc-hdr-navlink">⭐ Favourites</a>
-      <a href="/premier-league/index.html"         class="gc-hdr-navlink">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a>
     </nav>
   </header>
 
@@ -533,7 +531,6 @@ const FLAGS={
 const flag=n=>{
   const code=FLAGS[n];
   if(!code){return'<span style="font-size:20px">⚽</span>';}
-  const img=new Image();
   return'<img src="https://flagcdn.com/w80/'+code+'.png"'
        +' srcset="https://flagcdn.com/w160/'+code+'.png 2x"'
        +' alt="'+n+'"'
@@ -595,7 +592,7 @@ function renderCal(){
 }
 function prevMonth(){if(curMonth===5&&curYear===2026)return;curMonth--;if(curMonth<0){curMonth=11;curYear--}renderCal()}
 function nextMonth(){if(curMonth===6&&curYear===2026)return;curMonth++;if(curMonth>11){curMonth=0;curYear++}renderCal()}
-async function loadLiveData(){try{const data=await fetch(`${API_BASE}/competitions/WC/matches`,{headers:{'X-Auth-Token':API_KEY}}).then(r=>r.json());if(data&&data.matches){data.matches.forEach(m=>{const ds=m.utcDate.split('T')[0];if(!liveDB[ds])liveDB[ds]=[];liveDB[ds].push(m);});}renderCal();showDay(selDate);if(Notification.permission==='granted')startLiveEventPolling();}catch(e){console.warn('Live data unavailable:',e)}}
+async function loadLiveData(){try{const data=await fetch(`${API_BASE}/competitions/WC/matches`,{headers:{'X-Auth-Token':API_KEY}}).then(r=>r.json());if(data&&data.matches){data.matches.forEach(m=>{const ds=m.utcDate.split('T')[0];if(!liveDB[ds])liveDB[ds]=[];liveDB[ds].push(m);});}renderCal();if(Notification.permission==='granted')startLiveEventPolling();}catch(e){console.warn('Live data unavailable:',e)}}
 function getAllMatches(){const arr=[];Object.entries(SCHEDULE).forEach(([date,matches])=>{matches.forEach(m=>arr.push({...m,date}));});return arr;}
 function applyFilters(){const search=document.getElementById('searchInput').value.trim();const group=document.getElementById('groupFilter').value;const stage=document.getElementById('stageFilter').value;const fav=document.getElementById('favFilter').value;if(search||group||stage||fav){showFilteredResults(search,group,stage,fav);}else{showDay(selDate);}}
 function showFilteredResults(search,group,stage,fav){const out=document.getElementById('fixturesOut');const q=search.toLowerCase();let matches=getAllMatches();matches=matches.filter(m=>{const tv=getTVInfo();const haystack=[m.h,m.a,m.v,m.g,m.s,m.uk,(tv.channels||[]).join(' ')].join(' ').toLowerCase();const matchSearch=!q||haystack.includes(q);const matchGroup=!group||m.g===group;const matchStage=!stage||m.s.includes(stage);const matchFav=fav!=='fav'||favourites.includes(m.n);return matchSearch&&matchGroup&&matchStage&&matchFav;});if(!matches.length){out.innerHTML='<div class="no-results">No matches found.</div>';return;}out.innerHTML=`<div class="day-block expanded"><div class="day-header"><div class="day-header-left"><div class="day-date-badge"><div class="day-date-num">${matches.length}</div><div class="day-date-mon">FOUND</div></div><div><div class="day-name">Search Results</div><div class="day-meta">Filtered World Cup 2026 fixtures</div></div></div></div><div class="day-content"><div class="day-matches">${matches.map(m=>matchCard(m,m.date)).join('')}</div></div></div>`;}
@@ -664,6 +661,5 @@ function toggleDay(){document.getElementById('dayBlock')?.classList.toggle('expa
   tick();setInterval(tick,1000);
 })();
 </script>
-<script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 </body>
 </html>
