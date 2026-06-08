@@ -106,8 +106,8 @@ html, body {
   min-width: 0;
 }
 .sidebar-logo-icon {
-  width: 38px;
-  height: 38px;
+  width: 55px;
+  height: 55px;
   border-radius: 9px;
   display: flex;
   align-items: center;
@@ -130,7 +130,7 @@ html, body {
 }
 .sidebar-logo-name {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.52rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: 0.01em;
@@ -262,8 +262,8 @@ html, body {
   flex-shrink: 0;
 }
 .gc-site-brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 46px;
+  height: 46px;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -280,7 +280,7 @@ html, body {
 }
 .gc-site-brand-text {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: 0.01em;
@@ -814,6 +814,13 @@ html, body {
   .gc-team-flag { width: 60px; height: 40px; }
 }
 </style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="All 48 World Cup 2026 Teams — Squads & Groups | GoalCurrent.live">
+<meta property="og:description" content="Browse all 48 World Cup 2026 teams across 12 groups. View full squads, confederations and host nations.">
+<meta property="og:url" content="https://www.goalcurrent.live/worldcup2026/teams/">
+<meta property="og:image" content="https://www.goalcurrent.live/logo.svg">
+<meta property="og:site_name" content="GoalCurrent.live">
+<meta name="twitter:card" content="summary">
 </head>
 <body>
 
@@ -846,8 +853,8 @@ html, body {
     <a href="/"><span class="nav-icon">🏠</span> Home</a>
     <a href="/worldcup2026/" class="active"><span class="nav-icon">🌍</span> World Cup 2026</a>
     <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
-    <a href="/champions-league/"><span class="nav-icon">⭐</span> Champions League</a>
-    <a href="/news/"><span class="nav-icon">📰</span> News</a>
+    <a href="/ucl/"><span class="nav-icon">⭐</span> Champions League</a>
+    <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> News</a>
   </div>
 
   <div class="sidebar-section-label">World Cup 2026</div>
@@ -860,14 +867,14 @@ html, body {
     <a href="/worldcup2026/venues/"><span class="nav-icon">🏟️</span> Venues</a>
     <a href="/worldcup2026/teams/" class="active"><span class="nav-icon">👕</span> Teams</a>
     <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> WC News</a>
-    <a href="/worldcup2026/countdown/"><span class="nav-icon">⏳</span> Countdown</a>
+    <a href="/countdown.html"><span class="nav-icon">⏳</span> Countdown</a>
     <a href="/worldcup2026/favourites/"><span class="nav-icon">⭐</span> Favourites</a>
   </div>
 
   <div class="sidebar-section-label">Competitions</div>
   <div class="sidebar-nav">
     <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
-    <a href="/champions-league/"><span class="nav-icon">🥇</span> Champions League</a>
+    <a href="/ucl/"><span class="nav-icon">🥇</span> Champions League</a>
   </div>
 
   <div class="sidebar-footer-social">
@@ -912,7 +919,7 @@ html, body {
         <a href="/worldcup2026/venues/">🏟️ Venues</a>
         <a href="/worldcup2026/teams/" class="active">👕 Teams</a>
         <a href="/worldcup2026/news/">📰 News</a>
-        <a href="/worldcup2026/countdown/">⏳ Countdown</a>
+        <a href="/countdown.html">⏳ Countdown</a>
         <a href="/worldcup2026/favourites/">⭐ Favourites</a>
         <!-- ✅ Premier League REMOVED from WC top nav — it lives in the sidebar only -->
       </div>
@@ -956,12 +963,12 @@ html, body {
   <footer class="gc-footer">
     <div class="gc-footer-inner">
       <nav class="gc-footer-links">
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/terms/">Terms</a>
-        <a href="/disclaimer/">Disclaimer</a>
-        <a href="/cookies/">Cookies</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/cookies.html">Cookies</a>
       </nav>
       <p class="gc-footer-copy">© 2026 <strong>Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live</p>
       <p class="gc-footer-disclaimer">Independent fan site · Not affiliated with FIFA, UEFA or the Premier League</p>
@@ -975,7 +982,7 @@ html, body {
 <div id="gc-cookie-banner" role="alert">
   <p>
     We use cookies to improve your experience and show personalised content.
-    See our <a href="/cookies/">Cookie Policy</a> for details.
+    See our <a href="/cookies.html">Cookie Policy</a> for details.
   </p>
   <button class="gc-cookie-btn secondary" onclick="gcCookieDecline()">Decline</button>
   <button class="gc-cookie-btn" onclick="gcCookieAccept()">Accept All</button>
@@ -988,8 +995,12 @@ html, body {
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
     <div class="gc-sub-form">
-      <input type="email" id="gc-sub-email" placeholder="Your email address" autocomplete="email">
-      <button class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free</button>
+      <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==" method="POST" data-type="subscription" target="_blank" onsubmit="setTimeout(gcSubClose,800)" style="display:contents">
+      <input type="hidden" name="locale" value="en">
+      <input type="text" name="email_address_check" value="" style="display:none" tabindex="-1">
+      <input type="email" name="EMAIL" id="gc-sub-email" placeholder="Your email address" autocomplete="email" required>
+      <button type="submit" class="gc-sub-submit">Subscribe Free ✉️</button>
+      </form>
     </div>
     <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
   </div>
@@ -1322,18 +1333,18 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') gcCloseSi
 
 /* ── COOKIE BANNER (localStorage-persistent, not session) ── */
 (function(){
-  if(localStorage.getItem('gc_cookie_choice')) return;
+  if(localStorage.getItem('gc_cookies')) return;
   setTimeout(function(){
     var banner = document.getElementById('gc-cookie-banner');
     if(banner) banner.classList.add('show');
   }, 1200);
 })();
 function gcCookieAccept(){
-  localStorage.setItem('gc_cookie_choice','accepted');
+  localStorage.setItem('gc_cookies','accepted');
   document.getElementById('gc-cookie-banner').classList.remove('show');
 }
 function gcCookieDecline(){
-  localStorage.setItem('gc_cookie_choice','declined');
+  localStorage.setItem('gc_cookies','declined');
   document.getElementById('gc-cookie-banner').classList.remove('show');
 }
 
