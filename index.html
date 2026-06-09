@@ -1204,6 +1204,9 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
     }
   };
 
+  /* ── MATCH DETAIL CACHE ── */
+  var MATCH_DETAIL = {};  /* matchId → {minute, yellowCards, redCards, goals} */
+
   function pad(n){ return String(n).padStart(2,'0'); }
 
   function toBSTDate(d){
@@ -1227,12 +1230,194 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
 
   function getStatus(m){
     if(m.done) return {text:'FT', cls:'finished'};
+    if(m.liveStatus === 'PAUSED') return {text:'HT', cls:'live'};
     var now=new Date(), ko=new Date(m.ko);
     var ft=new Date(ko.getTime()+110*60000);
     if(now<ko)            return {text:'UPCOMING', cls:'upcoming'};
     if(now>=ko && now<ft) return {text:'LIVE',     cls:'live'};
     return                       {text:'FT',       cls:'finished'};
   }
+
+  function buildCardEvents(m){
+    /* Build yellow/red card + goal indicators */
+    var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
+    if(!det) return '';
+    var parts = [];
+
+    /* Goals */
+    if(det.goals && det.goals.length){
+      var goals = det.goals.map(function(g){
+        return '<span style="font-size:11px;color:#16a34a">⚽ '+g.scorer+' '+g.minute+'</span>';
+      }).join(' · ');
+      if(goals) parts.push(goals);
+    }
+    /* Yellow cards */
+    if(det.yellowCards && det.yellowCards.length){
+      var yc = det.yellowCards.map(function(c){
+        return '<span style="font-size:11px;color:#ca8a04">🟨 '+c.player+' '+c.minute+'</span>';
+      }).join(' · ');
+      if(yc) parts.push(yc);
+    }
+    /* Red cards */
+    if(det.redCards && det.redCards.length){
+      var rc = det.redCards.map(function(c){
+        return '<span style="font-size:11px;color:#dc2626">🟥 '+c.player+' '+c.minute+'</span>';
+      }).join(' · ');
+      if(rc) parts.push(rc);
+    }
+    if(!parts.length) return '';
+    return '<div style="padding:4px 8px 6px;font-size:11px;line-height:1.8;border-top:1px solid rgba(0,0,0,.06)">'+parts.join('<br>')+'</div>';
+  }
+
+  function buildMinuteDisplay(m){
+    var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
+    var s = getStatus(m);
+    if(s.text === 'HT') return 'HT';
+    if(s.text === 'FT') return 'FT';
+    if(s.text === 'LIVE'){
+      var min = det && det.minute ? det.minute+"'" : '●';
+      return min;
+    }
+    return fmtKO(m.ko);
+  }
+
+  var rows = function(matches){
+    return matches.map(function(m){
+      var s   = getStatus(m);
+      var min = buildMinuteDisplay(m);
+      var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
+
+      /* Red card indicator on team name */
+      var hRC = det && det.redCards ? det.redCards.filter(function(c){return c.team==='home';}).length : 0;
+      var aRC = det && det.redCards ? det.redCards.filter(function(c){return c.team==='away';}).length : 0;
+      var hName = m.h + (hRC ? ' <span style="font-size:10px">🟥'.repeat(hRC)+'</span>' : '');
+      var aName = m.a + (aRC ? ' <span style="font-size:10px">🟥'.repeat(aRC)+'</span>' : '');
+
+      var mid = (m.score || s.text==='HT' || s.text==='FT')
+        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'
+            + (m.score || '? – ?')
+          +'</div>'
+        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
+
+      /* Status pill with live minute */
+      var pillText = (s.text==='LIVE') ? 'LIVE ' + min : s.text;
+      var pillEl = '<span class="gc-status-pill '+s.cls+'">'+pillText+'</span>';
+
+      return '<div class="gc-match-row" style="display:block;padding:0">'
+        +'<div style="display:flex;align-items:center;padding:6px 8px;gap:8px">'
+        +'<div>'+pillEl+'</div>'
+        +'<div class="gc-match-teams">'
+          +'<strong>'+hName+'</strong>'+mid+'<strong>'+aName+'</strong>'
+        +'</div>'
+        +'<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'
+        +'</div>'
+        + buildCardEvents(m)
+        +'</div>';
+    }).join('');
+  };
+
+  /* ── LIVE DATA FETCH (football-data.org) ── */
+  var FD_KEY = '';
+
+  function getFDKey(){
+    if(!FD_KEY) FD_KEY = localStorage.getItem('fd_key') || '';
+    return FD_KEY;
+  }
+
+  function fetchMatchDetail(matchId){
+    var key = getFDKey();
+    if(!key || !matchId) return;
+    fetch('https://api.football-data.org/v4/matches/'+matchId, {
+      headers:{'X-Auth-Token':key}
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(!data || !data.id) return;
+      var bookings = data.bookings || [];
+      var goals    = data.goals    || [];
+      MATCH_DETAIL[matchId] = {
+        minute: data.minute || null,
+        goals: goals.map(function(g){
+          return {
+            scorer: g.scorer ? g.scorer.name : '?',
+            minute: g.minute ? g.minute+"'" : '',
+            team:   g.team && g.team.id === data.homeTeam.id ? 'home' : 'away'
+          };
+        }),
+        yellowCards: bookings.filter(function(b){ return b.card==='YELLOW_CARD'; }).map(function(b){
+          return {player: b.player ? b.player.name : '?', minute: b.minute+"'",
+                  team: b.team && b.team.id === data.homeTeam.id ? 'home' : 'away'};
+        }),
+        redCards: bookings.filter(function(b){ return b.card==='RED_CARD'||b.card==='YELLOW_RED_CARD'; }).map(function(b){
+          return {player: b.player ? b.player.name : '?', minute: b.minute+"'",
+                  team: b.team && b.team.id === data.homeTeam.id ? 'home' : 'away'};
+        }),
+      };
+      render();
+    })
+    .catch(function(){});
+  }
+
+  function fetchLiveScores(){
+    var key = getFDKey();
+    if(!key){ fetchLiveScoresFallback(); return; }
+
+    var today = toBSTDate(new Date());
+    fetch('https://api.football-data.org/v4/matches?dateFrom='+today+'&dateTo='+today, {
+      headers:{'X-Auth-Token':key}
+    })
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){
+      if(!data.matches) return;
+      data.matches.forEach(function(match){
+        var hName = (match.homeTeam||{}).name || '';
+        var aName = (match.awayTeam||{}).name  || '';
+        var hScore = match.score && match.score.fullTime ? match.score.fullTime.home : null;
+        var aScore = match.score && match.score.fullTime ? match.score.fullTime.away : null;
+        var htHome = match.score && match.score.halfTime ? match.score.halfTime.home : null;
+        var htAway = match.score && match.score.halfTime ? match.score.halfTime.away : null;
+        var status = match.status || '';
+        var min    = match.minute || null;
+
+        /* Update matching FRIENDLY_DATA entry */
+        Object.keys(FRIENDLY_DATA).forEach(function(date){
+          FRIENDLY_DATA[date].matches.forEach(function(m){
+            var mh = m.h.toLowerCase(), ma = m.a.toLowerCase();
+            var dh = hName.toLowerCase(), da = aName.toLowerCase();
+            if((dh.indexOf(mh)!==-1||mh.indexOf(dh)!==-1) &&
+               (da.indexOf(ma)!==-1||ma.indexOf(da)!==-1)){
+              /* Score */
+              if(status==='IN_PLAY'||status==='PAUSED'){
+                if(htHome!==null && status==='PAUSED'){
+                  m.score = htHome+'-'+htAway;
+                  m.liveStatus = 'PAUSED';
+                } else if(hScore!==null){
+                  m.score = hScore+'-'+aScore;
+                  m.liveStatus = 'IN_PLAY';
+                }
+              } else if(status==='FINISHED'){
+                m.score = (hScore||0)+'-'+(aScore||0);
+                m.done  = true;
+              }
+              m.matchId = match.id;
+              /* Fetch full match detail for cards */
+              if((status==='IN_PLAY'||status==='PAUSED') && match.id){
+                fetchMatchDetail(match.id);
+              }
+            }
+          });
+        });
+      });
+      render();
+    })
+    .catch(function(){ fetchLiveScoresFallback(); });
+  }
+
+  /* Fallback: no external proxy available — show status based on kick-off time */
+  function fetchLiveScoresFallback(){ /* fd_key required for live scores */ }
+
+  fetchLiveScores();
+  setInterval(fetchLiveScores, 60000);
 
   function render(){
     var wrapper = document.getElementById('gc-friendly-wrapper');
@@ -1248,20 +1433,6 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
     var data = FRIENDLY_DATA[today] || FRIENDLY_DATA[tomorrow];
     if(!data){ wrapper.innerHTML=''; return; }
 
-    var rows = data.matches.map(function(m){
-      var s   = getStatus(m);
-      var mid = m.score
-        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'+m.score+'</div>'
-        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
-      return '<div class="gc-match-row">'+
-        '<div><span class="gc-status-pill '+s.cls+'">'+s.text+'</span></div>'+
-        '<div class="gc-match-teams">'+
-          '<strong>'+m.h+'</strong>'+mid+'<strong>'+m.a+'</strong>'+
-        '</div>'+
-        '<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'+
-        '</div>';
-    }).join('');
-
     var updated = pad(now.getHours())+':'+pad(now.getMinutes());
 
     wrapper.innerHTML =
@@ -1274,105 +1445,11 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
           '<span>🌍 INTERNATIONAL FRIENDLIES</span>'+
           '<span style="font-size:.68rem;opacity:.75">BST · Updated '+updated+'</span>'+
         '</div>'+
-        '<div>'+rows+'</div>'+
+        '<div>'+rows(data.matches)+'</div>'+
         '<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" '+
            'target="_blank" rel="noopener">Full results on ESPN →</a>'+
       '</div>';
   }
-
-
-  /* ── LIVE SCORE FETCH ── */
-  /* Primary:  football-data.org (fd_key from localStorage) */
-  /* Fallback: TheSportsDB via corsproxy.io (free, no key)  */
-  var LIVE_SCORES_CACHE = {};
-
-  function applyScores(matches){
-    /* matches = [{home, away, homeScore, awayScore, finished}] */
-    matches.forEach(function(m){
-      var key = m.home.toLowerCase()+'|'+m.away.toLowerCase();
-      if(m.homeScore !== null && m.homeScore !== undefined){
-        LIVE_SCORES_CACHE[key] = {
-          score: m.homeScore+'-'+m.awayScore,
-          done:  m.finished
-        };
-      }
-    });
-    /* Update FRIENDLY_DATA */
-    Object.keys(FRIENDLY_DATA).forEach(function(date){
-      FRIENDLY_DATA[date].matches.forEach(function(m){
-        var k1 = m.h.toLowerCase()+'|'+m.a.toLowerCase();
-        var k2 = m.a.toLowerCase()+'|'+m.h.toLowerCase();
-        var hit = LIVE_SCORES_CACHE[k1] || LIVE_SCORES_CACHE[k2];
-        if(hit){
-          if(LIVE_SCORES_CACHE[k2] && !LIVE_SCORES_CACHE[k1]){
-            m.score = hit.score.split('-').reverse().join('-');
-          } else {
-            m.score = hit.score;
-          }
-          m.done = hit.done;
-        }
-      });
-    });
-    render();
-  }
-
-  function fetchFromFDO(today){
-    var key = localStorage.getItem('fd_key');
-    if(!key) return Promise.reject('no key');
-    return fetch(
-      'https://api.football-data.org/v4/matches?dateFrom='+today+'&dateTo='+today,
-      {headers:{'X-Auth-Token':key}}
-    )
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(data){
-      if(!data.matches || !data.matches.length) throw new Error('empty');
-      return data.matches.map(function(m){
-        return {
-          home: m.homeTeam ? m.homeTeam.name : '',
-          away: m.awayTeam ? m.awayTeam.name : '',
-          homeScore: m.score && m.score.fullTime ? m.score.fullTime.home : null,
-          awayScore: m.score && m.score.fullTime ? m.score.fullTime.away : null,
-          finished: m.status === 'FINISHED'
-        };
-      });
-    });
-  }
-
-  function fetchFromTSDB(today){
-    var proxy = 'https://corsproxy.io/?';
-    var url   = 'https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d='+today+'&s=Soccer';
-    return fetch(proxy + encodeURIComponent(url))
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(data){
-      if(!data || !data.events) throw new Error('empty');
-      return data.events.map(function(ev){
-        var hs = ev.intHomeScore;
-        var as = ev.intAwayScore;
-        var st = (ev.strStatus||'').toLowerCase();
-        return {
-          home: (ev.strHomeTeam||'').trim(),
-          away: (ev.strAwayTeam||'').trim(),
-          homeScore: hs !== null && hs !== '' ? parseInt(hs) : null,
-          awayScore: as !== null && as !== '' ? parseInt(as) : null,
-          finished: st==='ft'||st==='match finished'||st==='aet'
-        };
-      });
-    });
-  }
-
-  function fetchLiveScores(){
-    var today = toBSTDate(new Date());
-    fetchFromFDO(today)
-      .then(applyScores)
-      .catch(function(){
-        fetchFromTSDB(today)
-          .then(applyScores)
-          .catch(function(){ /* both failed — keep hardcoded */ });
-      });
-  }
-
-  fetchLiveScores();
-  setInterval(fetchLiveScores, 60000);
 
   render();
   setInterval(render, 60000);
