@@ -446,8 +446,9 @@ function buildCard(f){
   } else {
     var localKo = bstToLocal(f.d,f.t);
     var today   = todayBST();
-    var label   = f.d===today ? 'Today '+f.t+' BST' : 'Tomorrow '+f.t+' BST';
-    pill='<span class="status-pill sp-soon">'+label+'</span>';
+    var koDate = new Date(f.d+'T12:00:00Z');
+    var dayName = koDate.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    pill='<span class="status-pill sp-soon">'+dayName+' &middot; '+f.t+' BST</span>';
   }
 
   // Centre: score or kickoff time
@@ -519,7 +520,7 @@ function renderPreTournament(){
       byDate[f.d].push(f);
     }
   });
-  var dates=Object.keys(byDate).sort().slice(0,5); // show first 5 days
+  var dates=Object.keys(byDate).sort().slice(0,1); // show ONLY next match day
 
   var html='';
 
@@ -554,6 +555,9 @@ function renderPreTournament(){
   if(dates.length===0){
     html+='<div class="empty-state"><div class="empty-icon">📅</div><h3>No upcoming fixtures</h3><p>Check back soon.</p></div>';
   }
+  html+='<div style="text-align:center;padding:12px 0 4px">'
+      +'<a href="/worldcup2026/fixtures/" style="font-size:15px;font-weight:600;color:#2563eb;text-decoration:none">View all 104 World Cup fixtures →</a>'
+      +'</div>';
   html+='</div>';
 
   document.getElementById('page-root').innerHTML=html;
