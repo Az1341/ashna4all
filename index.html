@@ -1325,11 +1325,8 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
   }
 
   function fetchMatchDetail(matchId){
-    var key = getFDKey();
-    if(!key || !matchId) return;
-    fetch('https://api.football-data.org/v4/matches/'+matchId, {
-      headers:{'X-Auth-Token':key}
-    })
+    if(!matchId) return;
+    fetch('/api/scores?id='+matchId)
     .then(function(r){ return r.json(); })
     .then(function(data){
       if(!data || !data.id) return;
@@ -1359,13 +1356,8 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
   }
 
   function fetchLiveScores(){
-    var key = getFDKey();
-    if(!key){ fetchLiveScoresFallback(); return; }
-
     var today = toBSTDate(new Date());
-    fetch('https://api.football-data.org/v4/matches?dateFrom='+today+'&dateTo='+today, {
-      headers:{'X-Auth-Token':key}
-    })
+    fetch('/api/scores?date='+today)
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
     .then(function(data){
       if(!data.matches) return;
