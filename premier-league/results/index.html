@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#1a1f2e">
@@ -131,6 +134,16 @@
     @media(min-width:769px) { .sb-hamburger { display:none; } }
   </style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Premier League Results 2025/26 | GoalCurrent.live">
+  <meta property="og:description" content="Premier League 2025/26 match results — all scores, scorers and match reports.">
+  <meta property="og:url"         content="https://www.goalcurrent.live/premier-league/results/">
+  <meta property="og:image"       content="https://www.goalcurrent.live/logo.svg">
+  <meta property="og:site_name"   content="GoalCurrent.live">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Premier League Results 2025/26 | GoalCurrent.live">
+  <meta name="twitter:description" content="Premier League 2025/26 match results — all scores, scorers and match reports.">
+  <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
 </head>
 <body>
 
@@ -406,5 +419,34 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
+
+<!-- COOKIE BANNER -->
+<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
+  <div style="font-size:11px;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb;text-decoration:none">Cookie Policy</a></div>
+  <div style="display:flex;gap:8px">
+    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">Accept ✓</button>
+    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
+  </div>
+</div>
+<script>
+function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
+function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
+if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
+</script>
+
+  <footer style="background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);color:#64748b;padding:18px;font-size:.78rem;line-height:1.7">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+      <a href="/about.html" style="color:#2563eb">About</a>
+      <a href="/contact.html" style="color:#2563eb">Contact</a>
+      <a href="/privacy.html" style="color:#2563eb">Privacy Policy</a>
+      <a href="/terms.html" style="color:#2563eb">Terms</a>
+      <a href="/disclaimer.html" style="color:#2563eb">Disclaimer</a>
+      <a href="/cookies.html" style="color:#2563eb">Cookies</a>
+    </div>
+    <div style="color:#94a3b8;font-size:.72rem;line-height:1.8">
+      © 2026 <strong style="color:#64748b">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+    </div>
+  </footer>
 </body>
 </html>

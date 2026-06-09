@@ -1,0 +1,126 @@
+CHANGELOG - GoalCurrent.live Pre-Launch Package
+Generated: 2026-06-09
+============================================================
+
+MODIFIED FILES (20):
+
+
+worldcup2026/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (3x): /worldcup2026/countdown/ → /countdown.html
+
+worldcup2026/fixtures/index.html:
+  + Added OG + Twitter card meta tags
+  + Removed /index.html from PL links (2x)
+  + Removed /index.html from WC links (2x)
+
+worldcup2026/groups/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+worldcup2026/standings/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+worldcup2026/bracket/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+worldcup2026/venues/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+worldcup2026/news/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+countdown.html:
+  + Added OG + Twitter card meta tags
+
+worldcup2026/favourites/index.html:
+  + Added OG + Twitter card meta tags
+  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
+
+premier-league/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added cookie consent banner
+  + Added footer (was missing)
+
+premier-league/table/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added cookie consent banner
+  + Added SEO h1 tag (visually hidden)
+  + Added footer (was missing)
+
+premier-league/fixtures/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+
+premier-league/results/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added cookie consent banner
+  + Added footer (was missing)
+
+premier-league/teams/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added cookie consent banner
+  + Added footer (was missing)
+
+premier-league/news/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+
+ucl/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+
+ucl/fixtures/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added SEO h1 tag (visually hidden)
+
+ucl/results/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added SEO h1 tag (visually hidden)
+
+ucl/teams/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+  + Added SEO h1 tag (visually hidden)
+
+ucl/news/index.html:
+  + Added OG + Twitter card meta tags
+  + Added Google Analytics G-X84HCE5KGT
+
+
+NEW FILES ADDED:
+
+sitemap.xml - Complete rebuild (28 pages, was 9)
+live/index.html - New dedicated live scores page
+
+UNCHANGED FILES (already perfect):
+index.html (homepage) - 95% audit score
+worldcup2026/teams/index.html - 100% audit score
+
+ISSUES FIXED:
+1. OG tags missing on 20 pages - FIXED
+2. Twitter card missing on 20 pages - FIXED  
+3. Google Analytics missing on 11 PL+UCL pages - FIXED
+4. Cookie banner missing on 7 pages - FIXED
+5. Countdown link wrong on 8 pages - FIXED
+6. Old /index.html links in fixtures - FIXED
+7. Footer missing on 4 PL pages - FIXED
+8. H1 tags missing on 9 pages - FIXED
+9. Sitemap missing all WC pages - FIXED
+10. /live/ page 404 - FIXED
+
+NOT FIXED (intentional):
+- AdSense placement - requires manual positioning decision
+- Schema.org - requires careful verification, risk of Google penalty
+- Match 104 - verify on FIFA.com if 3rd place playoff exists
+- Sticky mobile bottom nav - feature addition, Week 1 task
