@@ -1178,273 +1178,117 @@ setInterval(tickCountdown, 1000);
 setInterval(function() { renderMatches(); updateClock(); }, 30000);
 
 (function(){
-  /* International Friendlies — WC-related teams only
-     Sources: BBC Sport & TNT Sports, verified 9 June 2026
-     9 Jun: Spain, Congo DR (both WC teams)
-     10 Jun: Saudi Arabia, Senegal, Argentina, Iraq, Venezuela, Portugal, Nigeria, England
-     Hides automatically from 11 June when World Cup starts */
-
   var FRIENDLY_DATA = {
     '2026-06-09': {
-      label: 'Friendly — Tue 9 June 2026',
+      label: 'Friendly - Tue 9 June 2026',
       matches: [
-        {h:'Peru',     a:'Spain',     ko:'2026-06-09T10:00Z', score:'1-3', done:true,  note:'ESP in WC Group H'},
-        {h:'Congo DR', a:'Chile',     ko:'2026-06-09T16:00Z',                           note:'COD in WC Group K'},
+        {h:'Peru',     a:'Spain',     ko:'2026-06-09T10:00Z', score:'1-3', done:true},
+        {h:'Congo DR', a:'Chile',     ko:'2026-06-09T16:00Z'},
       ]
     },
     '2026-06-10': {
-      label: 'Friendly — Wed 10 June 2026',
+      label: 'Friendly - Wed 10 June 2026',
       matches: [
-        {h:'Saudi Arabia', a:'Senegal',    ko:'2026-06-09T23:00Z', note:'Both in WC'},
-        {h:'Argentina',    a:'Iceland',    ko:'2026-06-10T01:00Z', note:'ARG in WC Group J'},
-        {h:'Iraq',         a:'Venezuela',  ko:'2026-06-10T01:00Z', note:'IRQ in WC Group I'},
-        {h:'Portugal',     a:'Nigeria',    ko:'2026-06-10T19:45Z', note:'POR in WC Group K'},
-        {h:'England',      a:'Costa Rica', ko:'2026-06-10T20:00Z', note:'ENG in WC Group L'},
+        {h:'Saudi Arabia', a:'Senegal',    ko:'2026-06-09T23:00Z'},
+        {h:'Argentina',    a:'Iceland',    ko:'2026-06-10T01:00Z'},
+        {h:'Iraq',         a:'Venezuela',  ko:'2026-06-10T01:00Z'},
+        {h:'Portugal',     a:'Nigeria',    ko:'2026-06-10T19:45Z'},
+        {h:'England',      a:'Costa Rica', ko:'2026-06-10T20:00Z'},
       ]
     }
   };
 
-  /* ── MATCH DETAIL CACHE ── */
-  var MATCH_DETAIL = {};  /* matchId → {minute, yellowCards, redCards, goals} */
-
+  var API_UNAVAILABLE = false;
   function pad(n){ return String(n).padStart(2,'0'); }
-
-  function toBSTDate(d){
-    var bst = new Date(d.getTime() + 60*60*1000);
-    return bst.getUTCFullYear()+'-'+pad(bst.getUTCMonth()+1)+'-'+pad(bst.getUTCDate());
-  }
-
-  function fmtKO(iso){
-    var d = new Date(iso);
-    var bst = new Date(d.getTime() + 3600000);
-    return pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';
-  }
-
-  function fmtDate(iso){
-    var d = new Date(iso);
-    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var bst = new Date(d.getTime()+3600000);
-    return days[bst.getUTCDay()]+' '+bst.getUTCDate()+' '+months[bst.getUTCMonth()];
-  }
-
+  function toBSTDate(d){var bst=new Date(d.getTime()+3600000);return bst.getUTCFullYear()+'-'+pad(bst.getUTCMonth()+1)+'-'+pad(bst.getUTCDate());}
+  function fmtKO(iso){var bst=new Date(new Date(iso).getTime()+3600000);return pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';}
+  function fmtDate(iso){var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var bst=new Date(new Date(iso).getTime()+3600000);return days[bst.getUTCDay()]+' '+bst.getUTCDate()+' '+months[bst.getUTCMonth()];}
   function getStatus(m){
-    if(m.done) return {text:'FT', cls:'finished'};
-    if(m.liveStatus === 'PAUSED') return {text:'HT', cls:'live'};
-    var now=new Date(), ko=new Date(m.ko);
-    var ft=new Date(ko.getTime()+110*60000);
-    if(now<ko)            return {text:'UPCOMING', cls:'upcoming'};
-    if(now>=ko && now<ft) return {text:'LIVE',     cls:'live'};
-    return                       {text:'FT',       cls:'finished'};
-  }
-
-  function buildCardEvents(m){
-    /* Build yellow/red card + goal indicators */
-    var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
-    if(!det) return '';
-    var parts = [];
-
-    /* Goals */
-    if(det.goals && det.goals.length){
-      var goals = det.goals.map(function(g){
-        return '<span style="font-size:11px;color:#16a34a">⚽ '+g.scorer+' '+g.minute+'</span>';
-      }).join(' · ');
-      if(goals) parts.push(goals);
-    }
-    /* Yellow cards */
-    if(det.yellowCards && det.yellowCards.length){
-      var yc = det.yellowCards.map(function(c){
-        return '<span style="font-size:11px;color:#ca8a04">🟨 '+c.player+' '+c.minute+'</span>';
-      }).join(' · ');
-      if(yc) parts.push(yc);
-    }
-    /* Red cards */
-    if(det.redCards && det.redCards.length){
-      var rc = det.redCards.map(function(c){
-        return '<span style="font-size:11px;color:#dc2626">🟥 '+c.player+' '+c.minute+'</span>';
-      }).join(' · ');
-      if(rc) parts.push(rc);
-    }
-    if(!parts.length) return '';
-    return '<div style="padding:4px 8px 6px;font-size:11px;line-height:1.8;border-top:1px solid rgba(0,0,0,.06)">'+parts.join('<br>')+'</div>';
-  }
-
-  function buildMinuteDisplay(m){
-    var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
-    var s = getStatus(m);
-    if(s.text === 'HT') return 'HT';
-    if(s.text === 'FT') return 'FT';
-    if(s.text === 'LIVE'){
-      var min = det && det.minute ? det.minute+"'" : '●';
-      return min;
-    }
-    return fmtKO(m.ko);
-  }
-
-  var rows = function(matches){
-    return matches.map(function(m){
-      var s   = getStatus(m);
-      var min = buildMinuteDisplay(m);
-      var det = m.matchId ? MATCH_DETAIL[m.matchId] : null;
-
-      /* Red card indicator on team name */
-      var hRC = det && det.redCards ? det.redCards.filter(function(c){return c.team==='home';}).length : 0;
-      var aRC = det && det.redCards ? det.redCards.filter(function(c){return c.team==='away';}).length : 0;
-      var hName = m.h + (hRC ? ' <span style="font-size:10px">🟥'.repeat(hRC)+'</span>' : '');
-      var aName = m.a + (aRC ? ' <span style="font-size:10px">🟥'.repeat(aRC)+'</span>' : '');
-
-      var mid = (m.score || s.text==='HT' || s.text==='FT')
-        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'
-            + (m.score || '? – ?')
-          +'</div>'
-        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
-
-      /* Status pill with live minute */
-      var pillText = (s.text==='LIVE') ? 'LIVE ' + min : s.text;
-      var pillEl = '<span class="gc-status-pill '+s.cls+'">'+pillText+'</span>';
-
-      return '<div class="gc-match-row" style="display:block;padding:0">'
-        +'<div style="display:flex;align-items:center;padding:6px 8px;gap:8px">'
-        +'<div>'+pillEl+'</div>'
-        +'<div class="gc-match-teams">'
-          +'<strong>'+hName+'</strong>'+mid+'<strong>'+aName+'</strong>'
-        +'</div>'
-        +'<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'
-        +'</div>'
-        + buildCardEvents(m)
-        +'</div>';
-    }).join('');
-  };
-
-  /* ── LIVE DATA FETCH (football-data.org) ── */
-  var FD_KEY = '';
-
-  function getFDKey(){
-    if(!FD_KEY) FD_KEY = localStorage.getItem('fd_key') || '';
-    return FD_KEY;
-  }
-
-  function fetchMatchDetail(matchId){
-    if(!matchId) return;
-    fetch('/api/scores?id='+matchId)
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if(!data || !data.id) return;
-      var bookings = data.bookings || [];
-      var goals    = data.goals    || [];
-      MATCH_DETAIL[matchId] = {
-        minute: data.minute || null,
-        goals: goals.map(function(g){
-          return {
-            scorer: g.scorer ? g.scorer.name : '?',
-            minute: g.minute ? g.minute+"'" : '',
-            team:   g.team && g.team.id === data.homeTeam.id ? 'home' : 'away'
-          };
-        }),
-        yellowCards: bookings.filter(function(b){ return b.card==='YELLOW_CARD'; }).map(function(b){
-          return {player: b.player ? b.player.name : '?', minute: b.minute+"'",
-                  team: b.team && b.team.id === data.homeTeam.id ? 'home' : 'away'};
-        }),
-        redCards: bookings.filter(function(b){ return b.card==='RED_CARD'||b.card==='YELLOW_RED_CARD'; }).map(function(b){
-          return {player: b.player ? b.player.name : '?', minute: b.minute+"'",
-                  team: b.team && b.team.id === data.homeTeam.id ? 'home' : 'away'};
-        }),
-      };
-      render();
-    })
-    .catch(function(){});
+    if(m.done) return {text:'FT',cls:'finished'};
+    if(m.liveStatus==='PAUSED') return {text:'HT',cls:'live'};
+    var now=new Date(),ko=new Date(m.ko),ft=new Date(ko.getTime()+110*60000);
+    if(now<ko) return {text:'UPCOMING',cls:'upcoming'};
+    if(now>=ko&&now<ft) return {text:'LIVE',cls:'live'};
+    return {text:'FT',cls:'finished'};
   }
 
   function fetchLiveScores(){
-    var today = toBSTDate(new Date());
+    var today=toBSTDate(new Date());
     fetch('/api/scores?date='+today)
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(r){if(!r.ok)throw new Error('fail');return r.json();})
     .then(function(data){
-      if(!data.matches) return;
-      data.matches.forEach(function(match){
-        var hName = (match.homeTeam||{}).name || '';
-        var aName = (match.awayTeam||{}).name  || '';
-        var hScore = match.score && match.score.fullTime ? match.score.fullTime.home : null;
-        var aScore = match.score && match.score.fullTime ? match.score.fullTime.away : null;
-        var htHome = match.score && match.score.halfTime ? match.score.halfTime.home : null;
-        var htAway = match.score && match.score.halfTime ? match.score.halfTime.away : null;
-        var status = match.status || '';
-        var min    = match.minute || null;
-
-        /* Update matching FRIENDLY_DATA entry */
+      if(data.error){API_UNAVAILABLE=true;render();return;}
+      API_UNAVAILABLE=false;
+      (data.matches||[]).forEach(function(m){
+        var hName=((m.homeTeam||{}).name||'').toLowerCase();
+        var aName=((m.awayTeam||{}).name||'').toLowerCase();
+        var hs=m.score&&m.score.fullTime?m.score.fullTime.home:null;
+        var as_=m.score&&m.score.fullTime?m.score.fullTime.away:null;
+        var ht_h=m.score&&m.score.halfTime?m.score.halfTime.home:null;
+        var ht_a=m.score&&m.score.halfTime?m.score.halfTime.away:null;
+        var status=m.status||'';
         Object.keys(FRIENDLY_DATA).forEach(function(date){
-          FRIENDLY_DATA[date].matches.forEach(function(m){
-            var mh = m.h.toLowerCase(), ma = m.a.toLowerCase();
-            var dh = hName.toLowerCase(), da = aName.toLowerCase();
-            if((dh.indexOf(mh)!==-1||mh.indexOf(dh)!==-1) &&
-               (da.indexOf(ma)!==-1||ma.indexOf(da)!==-1)){
-              /* Score */
-              if(status==='IN_PLAY'||status==='PAUSED'){
-                if(htHome!==null && status==='PAUSED'){
-                  m.score = htHome+'-'+htAway;
-                  m.liveStatus = 'PAUSED';
-                } else if(hScore!==null){
-                  m.score = hScore+'-'+aScore;
-                  m.liveStatus = 'IN_PLAY';
-                }
-              } else if(status==='FINISHED'){
-                m.score = (hScore||0)+'-'+(aScore||0);
-                m.done  = true;
-              }
-              m.matchId = match.id;
-              /* Fetch full match detail for cards */
-              if((status==='IN_PLAY'||status==='PAUSED') && match.id){
-                fetchMatchDetail(match.id);
-              }
+          FRIENDLY_DATA[date].matches.forEach(function(fx){
+            var mh=fx.h.toLowerCase(),ma=fx.a.toLowerCase();
+            if((hName.indexOf(mh)!==-1||mh.indexOf(hName)!==-1)&&(aName.indexOf(ma)!==-1||ma.indexOf(aName)!==-1)){
+              if(status==='IN_PLAY'){fx.score=hs+'-'+as_;fx.liveStatus='IN_PLAY';}
+              else if(status==='PAUSED'){fx.score=(ht_h||0)+'-'+(ht_a||0);fx.liveStatus='PAUSED';}
+              else if(status==='FINISHED'){fx.score=(hs||0)+'-'+(as_||0);fx.done=true;}
             }
           });
         });
       });
       render();
     })
-    .catch(function(){ fetchLiveScoresFallback(); });
+    .catch(function(){API_UNAVAILABLE=true;render();});
   }
 
-  /* Fallback: no external proxy available — show status based on kick-off time */
-  function fetchLiveScoresFallback(){ /* fd_key required for live scores */ }
-
   fetchLiveScores();
-  setInterval(fetchLiveScores, 60000);
+  setInterval(fetchLiveScores,60000);
 
   function render(){
-    var wrapper = document.getElementById('gc-friendly-wrapper');
+    var wrapper=document.getElementById('gc-friendly-wrapper');
     if(!wrapper) return;
+    var now=new Date(),today=toBSTDate(now),tmrw=toBSTDate(new Date(now.getTime()+86400000));
+    if(today>='2026-06-11'){wrapper.innerHTML='';return;}
+    var data=FRIENDLY_DATA[today]||FRIENDLY_DATA[tmrw];
+    if(!data){wrapper.innerHTML='';return;}
 
-    var now      = new Date();
-    var today    = toBSTDate(now);
-    var tomorrow = toBSTDate(new Date(now.getTime()+86400000));
+    var banner=API_UNAVAILABLE
+      ? '<div style="font-size:.78rem;color:#92400e;background:#fef3c7;border-radius:6px;padding:8px 12px;margin-bottom:8px">Live scores are temporarily unavailable. World Cup fixtures remain available below.</div>'
+      : '';
 
-    /* Hide from 11 June — WC takes over */
-    if(today >= '2026-06-11'){ wrapper.innerHTML=''; return; }
+    var updated=pad(now.getHours())+':'+pad(now.getMinutes());
+    var rows=data.matches.map(function(m){
+      var s=getStatus(m);
+      var mid=m.score
+        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'+m.score+'</div>'
+        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
+      return '<div class="gc-match-row">'+
+        '<div><span class="gc-status-pill '+s.cls+'">'+s.text+'</span></div>'+
+        '<div class="gc-match-teams"><strong>'+m.h+'</strong>'+mid+'<strong>'+m.a+'</strong></div>'+
+        '<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'+
+        '</div>';
+    }).join('');
 
-    var data = FRIENDLY_DATA[today] || FRIENDLY_DATA[tomorrow];
-    if(!data){ wrapper.innerHTML=''; return; }
-
-    var updated = pad(now.getHours())+':'+pad(now.getMinutes());
-
-    wrapper.innerHTML =
+    wrapper.innerHTML=
       '<div class="gc-section-label" style="margin-top:0;margin-bottom:12px">'+
         '<span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>'+
-        '⚽ '+data.label+' · WC Nations'+
+        'Pre-tournament Friendlies - WC Nations'+
       '</div>'+
       '<div class="gc-friendly-card">'+
         '<div class="gc-friendly-head">'+
-          '<span>🌍 INTERNATIONAL FRIENDLIES</span>'+
-          '<span style="font-size:.68rem;opacity:.75">BST · Updated '+updated+'</span>'+
+          '<span>INTERNATIONAL FRIENDLIES</span>'+
+          '<span style="font-size:.68rem;opacity:.75">BST - Updated '+updated+'</span>'+
         '</div>'+
-        '<div>'+rows(data.matches)+'</div>'+
-        '<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" '+
-           'target="_blank" rel="noopener">Full results on ESPN →</a>'+
+        banner+
+        '<div>'+rows+'</div>'+
+        '<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" target="_blank" rel="noopener">Full results on ESPN</a>'+
       '</div>';
   }
 
   render();
-  setInterval(render, 60000);
+  setInterval(render,60000);
 })();
 
 </script>
