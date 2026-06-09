@@ -635,7 +635,22 @@ a { text-decoration: none; color: inherit; }
   .gc-hero-nav { gap: 6px; }
   .gc-hero-btn { padding: 8px 12px; font-size: .78rem; }
 }
-  </style>
+  
+/* ── Opening ceremony cards ── */
+.oc-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08);}
+.oc-head{color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.85rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+.oc-body{padding:14px;}
+.oc-meta{font-size:.72rem;color:var(--text-light);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+.oc-headliner{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.oc-headliner-info h4{font-family:var(--font-head);font-size:.95rem;font-weight:800;color:var(--text-dark);margin-bottom:2px;}
+.oc-headliner-info p{font-size:.72rem;color:var(--text-light);}
+.oc-others{font-size:.75rem;color:var(--text-mid);line-height:1.7;background:#f8faff;border-radius:8px;padding:8px 10px;border:1px solid #e2e8f0;}
+.oc-others strong{color:var(--text-dark);display:block;margin-bottom:2px;}
+
+.gc-friendly-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08);}
+.gc-friendly-head{background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.82rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+
+</style>
 </head>
 <body>
 
@@ -666,7 +681,7 @@ a { text-decoration: none; color: inherit; }
   <div class="sidebar-section-label">Main Menu</div>
   <div class="sidebar-nav">
     <a href="/" class="active"><span class="nav-icon">🏠</span> Home</a>
-    <a href="/premier-league/"><span class="nav-icon">🔴</span> Live Scores</a>
+    <a href="/worldcup2026/fixtures/"><span class="nav-icon">🔴</span> Live Scores</a>
     <a href="/worldcup2026/fixtures/"><span class="nav-icon">📅</span> Today Fixtures</a>
     <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> Latest News</a>
   </div>
@@ -754,7 +769,10 @@ a { text-decoration: none; color: inherit; }
 
   <!-- MATCH CENTRE -->
   <div class="gc-content">
-    <div class="gc-section-label" id="gc-section-label">
+        <!-- ── INTERNATIONAL FRIENDLIES ── -->
+    <div id="gc-friendly-wrapper"></div>
+
+<div class="gc-section-label" id="gc-section-label">
       <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>
       Live Match Centre
     </div>
@@ -767,6 +785,80 @@ a { text-decoration: none; color: inherit; }
       <div id="gc-matches"></div>
       <a class="gc-match-link" href="/worldcup2026/fixtures/">View all 104 fixtures →</a>
     </div>
+
+    <!-- ── OPENING CEREMONIES ── -->
+    <div class="gc-section-label" style="margin-top:22px">
+      🎤 World Cup 2026 Opening Ceremonies
+    </div>
+
+    <!-- MEXICO -->
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#006847,#ce1126)">
+        <span>🇲🇽 Mexico — Estadio Azteca, Mexico City</span>
+        <span style="font-size:.68rem;opacity:.8">Thu 11 Jun · 18:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before Mexico vs South Africa · Group A · 20:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2023-11-16_Gala_de_los_Latin_Grammy%2C_03_%28cropped%2902.jpg" alt="Shakira" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Shakira<br>Latin Grammy 2023</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Untold_2024_-Burna_Boy_%2853927293424%29.jpg/800px-Untold_2024_-Burna_Boy_%2853927293424%29.jpg" alt="Burna Boy" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Burna Boy<br>Untold 2024</div></div>
+          <div class="oc-headliner-info">
+            <h4>Shakira &amp; Burna Boy</h4>
+            <p>Performing official tournament song <em>Dai Dai</em></p>
+          </div>
+        </div>
+        <div class="oc-others">
+          <strong>Also performing:</strong>
+          Alejandro Fernández · Belinda · Danny Ocean · J Balvin · Lila Downs · Los Ángeles Azules · Maná · Tyla
+        </div>
+      </div>
+    </div>
+
+    <!-- CANADA -->
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#d80621,#1a1a1a)">
+        <span>🇨🇦 Canada — BMO Field, Toronto</span>
+        <span style="font-size:.68rem;opacity:.8">Fri 12 Jun · 18:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before Canada vs Bosnia &amp; Herzegovina · Group B · 20:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Michael_Buble_by_Gage_Skidmore_%28cropped%29.jpg" alt="Michael Bublé" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Photo: Gage Skidmore / CC BY-SA 3.0</div></div>
+          <div class="oc-headliner-info">
+            <h4>Michael Bublé</h4>
+            <p>Canadian icon headlining the Toronto ceremony</p>
+          </div>
+        </div>
+        <div class="oc-others">
+          <strong>Also performing:</strong>
+          Alessia Cara · Alanis Morissette · Elyanna · Vegedream · Jessie Reyez · Nora Fatehi · Sanjoy · William Prince
+        </div>
+      </div>
+    </div>
+
+    <!-- USA -->
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#002868,#bf0a30)">
+        <span>🇺🇸 USA — SoFi Stadium, Los Angeles</span>
+        <span style="font-size:.68rem;opacity:.8">Sat 13 Jun · 00:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before USA vs Paraguay · Group D · 02:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Katy_Perry_gig_Nottingham_2011_MMB_27.jpg/800px-Katy_Perry_gig_Nottingham_2011_MMB_27.jpg" alt="Katy Perry" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Photo: M. Buckland / CC BY 2.0</div></div>
+          <div class="oc-headliner-info">
+            <h4>Katy Perry &amp; Future</h4>
+            <p>Headlining at SoFi Stadium, Los Angeles</p>
+          </div>
+        </div>
+        <div class="oc-others">
+          <strong>Also performing:</strong>
+          Tyla · Lisa (Blackpink) · Rema · Anitta
+        </div>
+        <div style="font-size:.65rem;color:#94a3b8;margin-top:8px">Source: The Independent, 8 June 2026</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- NORDVPN BAR -->
@@ -1083,6 +1175,114 @@ renderMatches();
 updateClock();
 setInterval(tickCountdown, 1000);
 setInterval(function() { renderMatches(); updateClock(); }, 30000);
+
+(function(){
+  /* International Friendlies — WC-related teams only
+     Sources: BBC Sport & TNT Sports, verified 9 June 2026
+     9 Jun: Spain, Congo DR (both WC teams)
+     10 Jun: Saudi Arabia, Senegal, Argentina, Iraq, Venezuela, Portugal, Nigeria, England
+     Hides automatically from 11 June when World Cup starts */
+
+  var FRIENDLY_DATA = {
+    '2026-06-09': {
+      label: 'Friendly — Tue 9 June 2026',
+      matches: [
+        {h:'Peru',     a:'Spain',     ko:'2026-06-09T10:00Z', score:'1-3', done:true,  note:'ESP in WC Group H'},
+        {h:'Congo DR', a:'Chile',     ko:'2026-06-09T16:00Z',                           note:'COD in WC Group K'},
+      ]
+    },
+    '2026-06-10': {
+      label: 'Friendly — Wed 10 June 2026',
+      matches: [
+        {h:'Saudi Arabia', a:'Senegal',    ko:'2026-06-09T23:00Z', note:'Both in WC'},
+        {h:'Argentina',    a:'Iceland',    ko:'2026-06-10T01:00Z', note:'ARG in WC Group J'},
+        {h:'Iraq',         a:'Venezuela',  ko:'2026-06-10T01:00Z', note:'IRQ in WC Group I'},
+        {h:'Portugal',     a:'Nigeria',    ko:'2026-06-10T19:45Z', note:'POR in WC Group K'},
+        {h:'England',      a:'Costa Rica', ko:'2026-06-10T20:00Z', note:'ENG in WC Group L'},
+      ]
+    }
+  };
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function toBSTDate(d){
+    var bst = new Date(d.getTime() + 60*60*1000);
+    return bst.getUTCFullYear()+'-'+pad(bst.getUTCMonth()+1)+'-'+pad(bst.getUTCDate());
+  }
+
+  function fmtKO(iso){
+    var d = new Date(iso);
+    var bst = new Date(d.getTime() + 3600000);
+    return pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';
+  }
+
+  function fmtDate(iso){
+    var d = new Date(iso);
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var bst = new Date(d.getTime()+3600000);
+    return days[bst.getUTCDay()]+' '+bst.getUTCDate()+' '+months[bst.getUTCMonth()];
+  }
+
+  function getStatus(m){
+    if(m.done) return {text:'FT', cls:'finished'};
+    var now=new Date(), ko=new Date(m.ko);
+    var ft=new Date(ko.getTime()+110*60000);
+    if(now<ko)            return {text:'UPCOMING', cls:'upcoming'};
+    if(now>=ko && now<ft) return {text:'LIVE',     cls:'live'};
+    return                       {text:'FT',       cls:'finished'};
+  }
+
+  function render(){
+    var wrapper = document.getElementById('gc-friendly-wrapper');
+    if(!wrapper) return;
+
+    var now      = new Date();
+    var today    = toBSTDate(now);
+    var tomorrow = toBSTDate(new Date(now.getTime()+86400000));
+
+    /* Hide from 11 June — WC takes over */
+    if(today >= '2026-06-11'){ wrapper.innerHTML=''; return; }
+
+    var data = FRIENDLY_DATA[today] || FRIENDLY_DATA[tomorrow];
+    if(!data){ wrapper.innerHTML=''; return; }
+
+    var rows = data.matches.map(function(m){
+      var s   = getStatus(m);
+      var mid = m.score
+        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'+m.score+'</div>'
+        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
+      return '<div class="gc-match-row">'+
+        '<div><span class="gc-status-pill '+s.cls+'">'+s.text+'</span></div>'+
+        '<div class="gc-match-teams">'+
+          '<strong>'+m.h+'</strong>'+mid+'<strong>'+m.a+'</strong>'+
+        '</div>'+
+        '<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'+
+        '</div>';
+    }).join('');
+
+    var updated = pad(now.getHours())+':'+pad(now.getMinutes());
+
+    wrapper.innerHTML =
+      '<div class="gc-section-label" style="margin-top:0;margin-bottom:12px">'+
+        '<span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>'+
+        '⚽ '+data.label+' · WC Nations'+
+      '</div>'+
+      '<div class="gc-friendly-card">'+
+        '<div class="gc-friendly-head">'+
+          '<span>🌍 INTERNATIONAL FRIENDLIES</span>'+
+          '<span style="font-size:.68rem;opacity:.75">BST · Updated '+updated+'</span>'+
+        '</div>'+
+        '<div>'+rows+'</div>'+
+        '<a class="gc-match-link" href="https://www.bbc.co.uk/sport/football/international-friendlies" '+
+           'target="_blank" rel="noopener">Full results on BBC Sport →</a>'+
+      '</div>';
+  }
+
+  render();
+  setInterval(render, 60000);
+})();
+
 </script>
 
 </body>
