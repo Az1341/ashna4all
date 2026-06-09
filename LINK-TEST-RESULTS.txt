@@ -1,0 +1,58 @@
+LINK TEST RESULTS — Navigation Rollback+Repair
+Generated: 2026-06-09
+============================================================
+
+PAGES TESTED: 22
+CHECKS PER PAGE: 13
+TOTAL CHECKS: 286
+PASSED: 286
+FAILED: 0
+PASS RATE: 100%
+
+CHECKS PERFORMED:
+  1.  Home link present (href="/" or onclick → /)
+  2.  Live Scores text present in page
+  3.  Live Scores link → /live/
+  4.  World Cup link → /worldcup2026/
+  5.  Premier League link → /premier-league/
+  6.  Champions League link → /ucl/
+  7.  Close X button present (gc-sidebar-close or sb-close)
+  8.  No broken /champions-league/ link
+  9.  No /index.html in any href
+  10. X Twitter correct case (goalcurrentlive not GoalCurrentlive)
+  11. TikTok link present (tiktok.com)
+  12. Instagram link present (instagram.com)
+  13. JavaScript syntax valid (node --check)
+
+RESULTS PER PAGE:
+  PASS  homepage: 13/13 checks
+  PASS  pl-fixtures: 13/13 checks
+  PASS  pl-home: 13/13 checks
+  PASS  pl-news: 13/13 checks
+  PASS  pl-results: 13/13 checks
+  PASS  pl-table: 13/13 checks
+  PASS  pl-teams: 13/13 checks
+  PASS  ucl-fixtures: 13/13 checks
+  PASS  ucl-home: 13/13 checks
+  PASS  ucl-news: 13/13 checks
+  PASS  ucl-results: 13/13 checks
+  PASS  ucl-teams: 13/13 checks
+  PASS  wc-bracket: 13/13 checks
+  PASS  wc-countdown: 13/13 checks
+  PASS  wc-favourites: 13/13 checks
+  PASS  wc-fixtures: 13/13 checks
+  PASS  wc-groups: 13/13 checks
+  PASS  wc-news: 13/13 checks
+  PASS  wc-overview: 13/13 checks
+  PASS  wc-standings: 13/13 checks
+  PASS  wc-teams: 13/13 checks
+  PASS  wc-venues: 13/13 checks
+
+REMAINING KNOWN ISSUES (pre-existing, not caused by this package):
+  - wc-fixtures sidebar has 5 different templates — X closes correctly
+    but gcSidebar (camelCase) is a different JS handler to gc-sidebar
+  - PL pages: Standings/Schedule were pointing to / in the original
+    (fixed for pl-home; remaining PL pages use table/fixtures links
+    in their own competition section)
+  - Social links were never present on PL/UCL pages in the original
+    (now added via inline social block)

@@ -1,0 +1,86 @@
+NAVIGATION ROLLBACK REPORT — GoalCurrent.live
+Generated: 2026-06-09
+============================================================
+
+WHAT WENT WRONG (Previous Package)
+  My first navigation package replaced the original expandable
+  accordion sidebar with a simplified 7-item flat sidebar on
+  all 22 pages. This removed all competition sub-navigation
+  (PL sub-pages, WC sub-pages, UCL sub-pages) that users
+  depended on.
+
+  Root cause: I misidentified the sidebar structure. The
+  WC pages used <nav id="gc-sidebar">, the PL/UCL pages
+  used <aside class="gc-sidebar" id="gc-sidebar">, and the
+  fixture pages used <div id="gcSidebar">. My replacement
+  code only matched one pattern, incorrectly rebuilding
+  all sidebars with a stripped-down version.
+
+FILES RESPONSIBLE FOR DAMAGE
+  All 22 HTML pages — the nav package modified every page.
+
+ROLLBACK STRATEGY
+  1. Restored all 22 pages from original pre-change cache
+  2. Applied ONLY minimum surgical fixes on top of originals
+  3. Did NOT rewrite or restructure any sidebar
+  4. Did NOT touch page content
+
+============================================================
+MINIMUM FIXES APPLIED (on top of original restored files)
+
+FIX 1 — Live Scores link corrected (was wrong on most pages):
+  homepage:     /worldcup2026/fixtures/ → /live/
+  wc-fixtures:  /premier-league/ → /live/
+  pl-home:      / → /live/ (onclick pattern)
+  pl-table:     /premier-league/ → /live/
+  pl-fixtures:  /premier-league/ → /live/
+  pl-results:   /premier-league/ → /live/
+  pl-teams:     /premier-league/ → /live/
+  pl-news:      /premier-league/ → /live/
+  ucl-home:     /premier-league/ → /live/
+  ucl-fixtures: /premier-league/ → /live/
+  ucl-results:  /premier-league/ → /live/
+  ucl-teams:    / → /live/
+  ucl-news:     /premier-league/ → /live/
+  wc-overview + 8 other WC pages: Added missing Live Scores link → /live/
+
+FIX 2 — X Twitter wrong case fixed:
+  wc-fixtures:  GoalCurrentlive → goalcurrentlive (2x)
+  pl-fixtures:  GoalCurrentlive → goalcurrentlive (1x)
+
+FIX 3 — /index.html removed from hrefs (wc-fixtures sidebar):
+  19 occurrences across wc-fixtures sidebar links
+
+FIX 4 — Sidebar close X button added where missing:
+  pl-home, pl-table, pl-results, pl-teams, pl-news
+  ucl-home, ucl-fixtures, ucl-results, ucl-teams, ucl-news
+  pl-fixtures, wc-fixtures (gcSidebar template)
+
+FIX 5 — Sidebar close JS added where missing:
+  Same pages as Fix 4
+
+FIX 6 — TikTok and Instagram social links added where missing:
+  All PL pages and UCL pages (original never had these)
+  WC pages: TikTok fixed from placeholder # to real URL
+
+FIX 7 — Standings + Schedule links fixed on pl-home:
+  Standings: / → /worldcup2026/standings/
+  Schedule:  / → /worldcup2026/fixtures/
+
+FIX 8 — Live Scores link added to WC sub-pages:
+  wc-overview, wc-groups, wc-standings, wc-bracket,
+  wc-venues, wc-news, wc-countdown, wc-favourites, wc-teams
+  (These pages never had a Live Scores link at all)
+
+============================================================
+WHAT WAS NOT CHANGED
+  - Page content
+  - Sidebar structure (preserved original accordion/expandable style)
+  - Competition sub-navigation links
+  - Any CSS styling
+  - Header navigation
+  - Footer links
+  - WC fixture schedule data
+  - Any JS not related to sidebar
+
+============================================================

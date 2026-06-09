@@ -1,116 +1,129 @@
-CHANGELOG — Navigation Fix Package
+CHANGELOG — Navigation Rollback+Repair Package
 Generated: 2026-06-09
-Version: nav-fix-v1.0
+Package: GOALCURRENT-NAVIGATION-ROLLBACK-REPAIR.zip
 ============================================================
 
-FILES MODIFIED: 22 (all HTML pages)
+APPROACH: Restore originals + minimum surgical fixes only
 
+MODIFIED FILES (22):
 
-index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  index.html:
+    + FIX 1: Live Scores href /worldcup2026/fixtures/ → /live/
 
-premier-league/fixtures/index.html:
-  + Replaced old dropdown sidebar with new overlay sidebar
-  + Added sidebar CSS
-  + Added sidebar open/close JS
+  premier-league/fixtures/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + FIX 2: Twitter case (1x)
+    + Added close X button to gcSidebar
 
-premier-league/index.html:
-  + Replaced aside sidebar block
+  premier-league/index.html:
+    + FIX 1: Live Scores href / → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Fixed Standings and Schedule links from / to correct destinations
+    + Added social links to sidebar
 
-premier-league/news/index.html:
-  + Replaced aside sidebar block
+  premier-league/news/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-premier-league/results/index.html:
-  + Replaced aside sidebar block
+  premier-league/results/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-premier-league/table/index.html:
-  + Replaced aside sidebar block
+  premier-league/table/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-premier-league/teams/index.html:
-  + Replaced aside sidebar block
+  premier-league/teams/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-ucl/fixtures/index.html:
-  + Replaced aside sidebar block
+  ucl/fixtures/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-ucl/index.html:
-  + Replaced aside sidebar block
+  ucl/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-ucl/news/index.html:
-  + Replaced aside sidebar block
+  ucl/news/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-ucl/results/index.html:
-  + Replaced aside sidebar block
+  ucl/results/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + Added X close button to sidebar
+    + Added sidebar close JS
+    + Added social links to sidebar
 
-ucl/teams/index.html:
-  + Replaced aside sidebar block
+  ucl/teams/index.html:
+    + FIX 1: Live Scores href / → /live/
+    + Added close X button
+    + Added social links
 
-worldcup2026/bracket/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/bracket/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-countdown.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  countdown.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/favourites/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/favourites/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/fixtures/index.html:
-  + Replaced old dropdown sidebar with new overlay sidebar
-  + Added sidebar CSS
-  + Added sidebar open/close JS
-  + Fixed links: /worldcup2026/fixtures/index.html → /worldcup2026/fixtures/ (1x); /worldcup2026/groups/index.html → /worldcup2026/groups/ (1x); /worldcup2026/teams/index.html → /worldcup2026/teams/ (1x); /worldcup2026/news/index.html → /worldcup2026/news/ (1x); /worldcup2026/bracket/index.html → /worldcup2026/bracket/ (1x); /worldcup2026/venues/index.html → /worldcup2026/venues/ (1x); /worldcup2026/favourites/index.html → /worldcup2026/favourites/ (1x)
+  worldcup2026/fixtures/index.html:
+    + FIX 1: Live Scores href /premier-league/ → /live/
+    + FIX 2: Twitter case (2x)
+    + FIX 3: Removed /index.html: /worldcup2026/fixtures/index.html(2x), /worldcup2026/groups/index.html(2x), /worldcup2026/teams/index.html(2x), /worldcup2026/news/index.html(3x), /worldcup2026/bracket/index.html(2x)
+    + Added close X button to gcSidebar
 
-worldcup2026/groups/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/groups/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/news/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/news/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/standings/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/standings/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/teams/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/teams/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-worldcup2026/venues/index.html:
-  + Updated sidebar nav links
-  + Added/updated mobile sidebar CSS
+  worldcup2026/venues/index.html:
+    + Added gcCloseSidebar to X button
+    + Fixed TikTok # → real URL
 
-============================================================
-SUMMARY OF ALL CHANGES
+UNCHANGED (original restored, no fixes needed) (0):
 
-Navigation system:
-  - Standardised to single sidebar template across all 22 pages
-  - All pages now use <nav id="gc-sidebar"> overlay sidebar
-  - Old <aside class="gc-sidebar"> blocks replaced on PL + UCL pages
-  - Old dropdown (sb-comp-btn) sidebar replaced on wc-fixtures + PL + UCL
-  - Hamburger button added to all pages that were missing it
-  - Sidebar close X button functional on all pages
-  - Click overlay to close sidebar — works on all pages
-  - Escape key closes sidebar — works on all pages
-  - Mobile: sidebar slides in/out smoothly on all pages
-
-Link fixes:
-  - Live Scores → /live/ (was /premier-league/ or / on some pages)
-  - Today Fixtures → /worldcup2026/fixtures/
-  - Latest News → /worldcup2026/news/
-  - Countdown → /countdown.html (was /worldcup2026/countdown/)
-  - Champions League → /ucl/ (was /champions-league/ on some pages)
-  - Removed /index.html suffix from all internal hrefs
-  - Active page highlighted correctly per section
-
-Social links (fixed on all 22 pages):
-  - X: https://twitter.com/goalcurrentlive
-  - TikTok: https://tiktok.com/@goalcurrent
-  - Instagram: https://instagram.com/goalcurrentlive
+NOT INCLUDED IN THIS PACKAGE (separate scope):
+  - OG/Twitter meta tags
+  - Google Analytics
+  - Sitemap
+  - Cookie banners
+  - Schema.org
+  - AdSense
+  - /live/ page (separate file, add manually)
