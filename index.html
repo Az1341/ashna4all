@@ -588,10 +588,10 @@ a { text-decoration: none; color: inherit; }
 }
 #gc-sub-overlay.show { display: flex; }
 .gc-sub-box {
-  max-width: 480px; width: 100%;
+  max-width: 560px; width: 100%;
   background: #fff;
   border-radius: 20px;
-  padding: 28px 24px;
+  padding: 24px 20px 16px;
   position: relative;
   box-shadow: 0 24px 80px rgba(0,0,0,.3);
 }
@@ -605,21 +605,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 1.4rem; font-weight: 800; margin-bottom: 6px;
 }
 .gc-sub-box p { font-size: .85rem; color: var(--text-mid); margin-bottom: 16px; }
-.gc-sub-form { display: flex; gap: 8px; }
-.gc-sub-form input {
-  flex: 1; height: 44px;
-  border: 1px solid #93c5fd; border-radius: 999px;
-  padding: 0 14px; font-size: .88rem;
-  font-family: var(--font-main); outline: none;
-}
-.gc-sub-form button {
-  height: 44px; padding: 0 18px;
-  background: var(--blue); color: #fff;
-  border: none; border-radius: 999px;
-  font-size: .88rem; font-weight: 700; cursor: pointer;
-  font-family: var(--font-main);
-  white-space: nowrap;
-}
+/* gc-sub-form: handled by Brevo iframe */
 .gc-sub-note { font-size: .7rem; color: var(--text-light); margin-top: 10px; }
 
 /* ── RESPONSIVE ── */
@@ -836,17 +822,17 @@ a { text-decoration: none; color: inherit; }
     <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close">✕</button>
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
-    <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ=="
-          method="POST" data-type="subscription" target="_blank"
-          onsubmit="setTimeout(gcSubClose,800)">
-      <input type="hidden" name="locale" value="en">
-      <input type="text" name="email_address_check" value="" style="display:none" tabindex="-1">
-      <div class="gc-sub-form">
-        <input type="email" name="EMAIL" placeholder="Your email address" autocomplete="email" required>
-        <button type="submit">Subscribe Free ✉️</button>
-      </div>
-    </form>
-    <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+      <input type="email" id="gc-sub-email-input"
+             placeholder="Your email address"
+             autocomplete="email"
+             style="flex:1;min-width:0;height:44px;border:1px solid #93c5fd;border-radius:999px;padding:0 14px;font-size:.88rem;font-family:inherit;outline:none">
+      <button onclick="gcSubSubmit()"
+              style="height:44px;padding:0 18px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit">
+        Subscribe Free ✉️
+      </button>
+    </div>
+    <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo · You will receive a confirmation email</p>
   </div>
 </div>
 
@@ -1061,6 +1047,28 @@ if (!localStorage.getItem('gc_cookies')) {
 }
 
 /* ── Subscription popup ── */
+function gcSubSubmit(){
+  var email = document.getElementById('gc-sub-email-input');
+  if(!email || !email.value || !email.value.includes('@')){
+    email.style.borderColor='#ef4444';
+    email.focus();
+    return;
+  }
+  // Open Brevo form in new tab with email pre-filled
+  var url = 'https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
+  window.open(url, '_blank', 'noopener');
+  // Show thank-you message locally
+  var box = document.querySelector('.gc-sub-box');
+  if(box){
+    box.innerHTML = '<div style="text-align:center;padding:20px">'
+      + '<div style="font-size:2.5rem;margin-bottom:10px">✉️</div>'
+      + '<h3 style="font-family:inherit;margin-bottom:8px">Almost there!</h3>'
+      + '<p style="color:#64748b;font-size:.85rem">Complete your sign-up in the tab that just opened. Check your inbox for a confirmation email.</p>'
+      + '<button onclick="gcSubClose()" style="margin-top:16px;padding:10px 24px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer">Close</button>'
+      + '</div>';
+  }
+  sessionStorage.setItem('gc_sub_closed','1');
+}
 function gcSubClose() {
   document.getElementById('gc-sub-overlay').classList.remove('show');
   sessionStorage.setItem('gc_sub_closed','1');
