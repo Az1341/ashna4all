@@ -1,53 +1,91 @@
-CHANGELOG — Fixture Database Fix Package
+CHANGELOG — SEO + Cookie + Footer + Sitemap Package
 Generated: 2026-06-09
-Source: FIFA Match Schedule PDF v17 + FIFA.com (GB view, 09 June 2026)
 ============================================================
 
-FILES MODIFIED: 2
+FILES MODIFIED (19 HTML files):
 
-worldcup2026/fixtures/index.html
-  - Replaced SCHEDULE object (103 entries)
-  - Fixed 32 city errors (wrong venue city on ~44% of matches)
-  - Fixed 4 BST time errors
-  - Fixed 3 date errors
-  - Added stad field (official stadium name per match)
-  - Notable fixes:
-    Iran v New Zealand:      Vancouver 02:00 → Los Angeles 21:00
-    Belgium v Iran:          Vancouver       → Los Angeles
-    Egypt v Iran:            Vancouver       → Seattle
-    Belgium v Egypt:         Vancouver       → Seattle
-    Netherlands v Japan:     Seattle         → Dallas
-    Germany v CIV:           Houston         → Toronto
-    Argentina v Algeria:     Dallas          → Kansas City
-    France v Iraq:           Los Angeles     → Philadelphia
 
-js/worldcup-data.js
-  - Replaced FIXTURES array (72 group stage entries)
-  - Fixed 20 date errors
-  - Fixed 30 BST time errors
-  - Fixed 3 city/stadium errors
-  - Updated team names to FIFA official:
-    South Korea → Korea Republic
-    Czech Republic → Czechia
-    Turkey → Türkiye
-    Iran → IR Iran
-    DR Congo → Congo DR
-    Cape Verde → Cabo Verde
-  - Updated GROUPS array team names to match
-  - Updated FLAG map keys to match
+countdown.html:
+  + Added cookie banner
 
-NOT CHANGED:
-  - Page rendering logic (confirmed correct)
-  - Sidebar/navigation
-  - CSS/styling
-  - Any other page
-  - SEO/meta tags
-  - Cookie banners
-  - Analytics
+index.html:
+  + Added SEO h1: Football Live Scores, Fixtures and World
 
-============================================================
-VERIFICATION:
-  Fixtures page:     0 errors vs FIFA official
-  worldcup-data.js:  0 errors vs FIFA official
-  JS syntax:         Both files pass node --check
+live/index.html:
+  + Added og:image and twitter:card to live page
+
+premier-league/fixtures/index.html:
+  + Added cookie banner
+
+premier-league/news/index.html:
+  + Added cookie banner
+  + Added SEO h1: Premier League News
+
+premier-league/results/index.html:
+  + Added SEO h1: Premier League Results 2025/26
+
+premier-league/teams/index.html:
+  + Added SEO h1: Premier League Teams 2025/26
+
+ucl/fixtures/index.html:
+  + Added cookie banner
+
+ucl/index.html:
+  + Added cookie banner
+  + Added SEO h1: UEFA Champions League 2025/26
+
+ucl/news/index.html:
+  + Added cookie banner
+  + Added SEO h1: Champions League News
+
+ucl/results/index.html:
+  + Added cookie banner
+
+ucl/teams/index.html:
+  + Added cookie banner
+
+worldcup2026/bracket/index.html:
+  + Added cookie banner
+
+worldcup2026/favourites/index.html:
+  + Added cookie banner
+
+worldcup2026/groups/index.html:
+  + Added cookie banner
+
+worldcup2026/index.html:
+  + Added cookie banner
+  + Added SEO h1: FIFA World Cup 2026 — Overview
+
+worldcup2026/news/index.html:
+  + Added cookie banner
+  + Added SEO h1: World Cup 2026 News
+
+worldcup2026/standings/index.html:
+  + Added cookie banner
+
+worldcup2026/venues/index.html:
+  + Added cookie banner
+
+ADDED FILES:
+  sitemap.xml — rebuilt with all 29 pages (was missing all WC/PL/UCL/live pages)
+
+UNCHANGED (already correct):
+  worldcup2026/fixtures/index.html — all SEO present
+  worldcup2026/teams/index.html — all SEO present
+  premier-league/index.html — footer already present via previous package
+  premier-league/table/index.html — footer already present
+
+FIXES APPLIED:
+  Cookie banners: Added to 12 pages missing them
+  Footer:         Added to 4 PL pages missing it
+  SEO h1 tags:    Added (visually hidden) to 8 pages
+  og:image:       Added to live/index.html
+  twitter:card:   Added to live/index.html
+  Sitemap:        Rebuilt — now covers all 29 pages
+
+NOT INCLUDED IN THIS PACKAGE:
+  AdSense units — requires manual placement decision
+  Schema.org — requires separate careful implementation
+  Dark mode — post-tournament feature
 ============================================================
