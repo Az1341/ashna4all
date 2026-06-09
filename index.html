@@ -1280,6 +1280,50 @@ setInterval(function() { renderMatches(); updateClock(); }, 30000);
       '</div>';
   }
 
+
+  /* ── LIVE SCORE FETCH (TheSportsDB — free, no key needed) ── */
+  var LIVE_SCORES_CACHE = {};
+
+  function fetchLiveScores(){
+    var today = toBSTDate(new Date());
+    var url   = 'https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d='+today+'&s=Soccer';
+    fetch(url)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(!data || !data.events) return;
+        data.events.forEach(function(ev){
+          var h = (ev.strHomeTeam||'').trim();
+          var a = (ev.strAwayTeam||'').trim();
+          var hs = ev.intHomeScore;
+          var as = ev.intAwayScore;
+          var status = (ev.strStatus||'').toLowerCase();
+          var key = h.toLowerCase()+'|'+a.toLowerCase();
+          if(hs !== null && hs !== '' && as !== null && as !== ''){
+            LIVE_SCORES_CACHE[key] = {
+              score: hs+'-'+as,
+              done:  status === 'ft' || status === 'match finished' || status === 'aet'
+            };
+          }
+        });
+        // Update FRIENDLY_DATA with live scores
+        Object.keys(FRIENDLY_DATA).forEach(function(date){
+          FRIENDLY_DATA[date].matches.forEach(function(m){
+            var key = m.h.toLowerCase()+'|'+m.a.toLowerCase();
+            if(LIVE_SCORES_CACHE[key]){
+              m.score = LIVE_SCORES_CACHE[key].score;
+              m.done  = LIVE_SCORES_CACHE[key].done;
+            }
+          });
+        });
+        render();
+      })
+      .catch(function(){ /* API unavailable — keep hardcoded data */ });
+  }
+
+  /* Fetch on load, then every 60 seconds */
+  fetchLiveScores();
+  setInterval(fetchLiveScores, 60000);
+
   render();
   setInterval(render, 60000);
 })();
