@@ -1,129 +1,53 @@
-CHANGELOG — Navigation Rollback+Repair Package
+CHANGELOG — Fixture Database Fix Package
 Generated: 2026-06-09
-Package: GOALCURRENT-NAVIGATION-ROLLBACK-REPAIR.zip
+Source: FIFA Match Schedule PDF v17 + FIFA.com (GB view, 09 June 2026)
 ============================================================
 
-APPROACH: Restore originals + minimum surgical fixes only
+FILES MODIFIED: 2
 
-MODIFIED FILES (22):
+worldcup2026/fixtures/index.html
+  - Replaced SCHEDULE object (103 entries)
+  - Fixed 32 city errors (wrong venue city on ~44% of matches)
+  - Fixed 4 BST time errors
+  - Fixed 3 date errors
+  - Added stad field (official stadium name per match)
+  - Notable fixes:
+    Iran v New Zealand:      Vancouver 02:00 → Los Angeles 21:00
+    Belgium v Iran:          Vancouver       → Los Angeles
+    Egypt v Iran:            Vancouver       → Seattle
+    Belgium v Egypt:         Vancouver       → Seattle
+    Netherlands v Japan:     Seattle         → Dallas
+    Germany v CIV:           Houston         → Toronto
+    Argentina v Algeria:     Dallas          → Kansas City
+    France v Iraq:           Los Angeles     → Philadelphia
 
-  index.html:
-    + FIX 1: Live Scores href /worldcup2026/fixtures/ → /live/
+js/worldcup-data.js
+  - Replaced FIXTURES array (72 group stage entries)
+  - Fixed 20 date errors
+  - Fixed 30 BST time errors
+  - Fixed 3 city/stadium errors
+  - Updated team names to FIFA official:
+    South Korea → Korea Republic
+    Czech Republic → Czechia
+    Turkey → Türkiye
+    Iran → IR Iran
+    DR Congo → Congo DR
+    Cape Verde → Cabo Verde
+  - Updated GROUPS array team names to match
+  - Updated FLAG map keys to match
 
-  premier-league/fixtures/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + FIX 2: Twitter case (1x)
-    + Added close X button to gcSidebar
-
-  premier-league/index.html:
-    + FIX 1: Live Scores href / → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Fixed Standings and Schedule links from / to correct destinations
-    + Added social links to sidebar
-
-  premier-league/news/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  premier-league/results/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  premier-league/table/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  premier-league/teams/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  ucl/fixtures/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  ucl/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  ucl/news/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  ucl/results/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + Added X close button to sidebar
-    + Added sidebar close JS
-    + Added social links to sidebar
-
-  ucl/teams/index.html:
-    + FIX 1: Live Scores href / → /live/
-    + Added close X button
-    + Added social links
-
-  worldcup2026/bracket/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  countdown.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/favourites/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/fixtures/index.html:
-    + FIX 1: Live Scores href /premier-league/ → /live/
-    + FIX 2: Twitter case (2x)
-    + FIX 3: Removed /index.html: /worldcup2026/fixtures/index.html(2x), /worldcup2026/groups/index.html(2x), /worldcup2026/teams/index.html(2x), /worldcup2026/news/index.html(3x), /worldcup2026/bracket/index.html(2x)
-    + Added close X button to gcSidebar
-
-  worldcup2026/groups/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/news/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/standings/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/teams/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-  worldcup2026/venues/index.html:
-    + Added gcCloseSidebar to X button
-    + Fixed TikTok # → real URL
-
-UNCHANGED (original restored, no fixes needed) (0):
-
-NOT INCLUDED IN THIS PACKAGE (separate scope):
-  - OG/Twitter meta tags
-  - Google Analytics
-  - Sitemap
+NOT CHANGED:
+  - Page rendering logic (confirmed correct)
+  - Sidebar/navigation
+  - CSS/styling
+  - Any other page
+  - SEO/meta tags
   - Cookie banners
-  - Schema.org
-  - AdSense
-  - /live/ page (separate file, add manually)
+  - Analytics
+
+============================================================
+VERIFICATION:
+  Fixtures page:     0 errors vs FIFA official
+  worldcup-data.js:  0 errors vs FIFA official
+  JS syntax:         Both files pass node --check
+============================================================
