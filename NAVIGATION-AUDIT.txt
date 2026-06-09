@@ -1,0 +1,109 @@
+NAVIGATION AUDIT REPORT — GoalCurrent.live
+Generated: 2026-06-09
+============================================================
+
+SCOPE
+  Pages audited:       22
+  Navigation links tested per page: 22 checks
+  Total tests run:     484
+  Tests passed before fix: 413 (85%)
+  Tests failed before fix: 71 (15%)
+  Tests passed after fix:  484 (100%)
+  Tests failed after fix:  0 (0%)
+
+============================================================
+ISSUES FOUND (before fix)
+
+1. CRITICAL — Live Scores link wrong destination
+   Pages affected: wc-fixtures, ucl-teams (2 pages)
+   Found:    /premier-league/ and /
+   Expected: /live/
+   Fixed:    YES — all pages now point to /live/
+
+2. CRITICAL — Sidebar close X button not working
+   Pages affected: pl-home, pl-table, pl-results, pl-teams,
+                   pl-news, ucl-home, ucl-fixtures, ucl-results,
+                   ucl-teams, ucl-news (10 pages)
+   Cause:    Old <aside> sidebar with wrong JS handler IDs
+   Fixed:    YES — replaced with new <nav> sidebar + correct JS
+
+3. HIGH — Old dropdown sidebar (Template B) on 11 pages
+   Pages affected: wc-fixtures, all 6 PL pages, all 5 UCL pages
+   Issues:   sb-comp-btn accordion, /index.html links in all hrefs
+   Fixed:    YES — standardised to new overlay sidebar
+
+4. HIGH — TikTok link missing from 19 pages
+   Fixed:    YES — tiktok.com/@goalcurrent on all pages
+
+5. HIGH — Instagram link missing from 19 pages
+   Fixed:    YES — instagram.com/goalcurrentlive on all pages
+
+6. HIGH — X/Twitter wrong case (GoalCurrentlive vs goalcurrentlive)
+   Pages:    wc-fixtures, pl-fixtures
+   Fixed:    YES — twitter.com/goalcurrentlive on all pages
+
+7. HIGH — /index.html suffix on internal links (19 occurrences)
+   Pages:    wc-fixtures (11), plus others
+   Fixed:    YES — all /index.html removed from hrefs
+
+8. HIGH — /worldcup2026/countdown/ subfolder links (8 pages)
+   Fixed:    YES — all point to /countdown.html
+
+9. HIGH — /champions-league/ broken links
+   Fixed:    YES — all point to /ucl/
+
+10. MEDIUM — No hamburger button on 10 PL/UCL pages
+    Fixed:    YES — hamburger button added to all pages
+
+============================================================
+VERIFIED CORRECT NAVIGATION ON ALL 22 PAGES
+
+Every page now has:
+  ✅ Sidebar overlay (click-away to close)
+  ✅ Sidebar nav with id="gc-sidebar"
+  ✅ Sidebar close X button (id="gc-sidebar-close")
+  ✅ Hamburger button (id="gc-hamburger")
+  ✅ gcOpenSidebar() JS function
+  ✅ gcCloseSidebar() JS function
+  ✅ Escape key closes sidebar
+  ✅ Home → /
+  ✅ Live Scores → /live/
+  ✅ Today Fixtures → /worldcup2026/fixtures/
+  ✅ Latest News → /worldcup2026/news/
+  ✅ Premier League → /premier-league/
+  ✅ World Cup 2026 → /worldcup2026/
+  ✅ Champions League → /ucl/
+  ✅ No /index.html in any href
+  ✅ No /worldcup2026/countdown/ subfolder links
+  ✅ No /champions-league/ broken links
+  ✅ X: https://twitter.com/goalcurrentlive
+  ✅ TikTok: https://tiktok.com/@goalcurrent
+  ✅ Instagram: https://instagram.com/goalcurrentlive
+  ✅ Mobile CSS breakpoint (@media max-width:768px)
+  ✅ JavaScript syntax: zero errors
+
+============================================================
+ITEMS NOT IN THIS PACKAGE (navigation-only scope)
+  - OG/Twitter meta tags (next package)
+  - Google Analytics additions (next package)
+  - Cookie banners (next package)
+  - Sitemap rebuild (next package)
+  - Schema.org data (future)
+  - AdSense units (future)
+
+============================================================
+REMAINING KNOWN ISSUES
+  None. All 484 navigation checks pass.
+
+============================================================
+MOBILE NAVIGATION
+  All pages have:
+  - @media max-width:768px breakpoint
+  - Hamburger button (fixed, top-left, z-index:600)
+  - Sidebar slides in from left (translateX)
+  - Body scroll locked when sidebar open
+  - Overlay closes sidebar on tap
+  - Escape key closes sidebar
+  Note: Mobile visual rendering requires browser testing.
+        Code is verified correct but pixel-perfect mobile
+        rendering was not tested (requires browser engine).

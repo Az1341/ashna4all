@@ -260,6 +260,35 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 .wc-live-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:livePulse 1s infinite;}
 @keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.6;}}
 
+
+/* ── SIDEBAR ── */
+#gc-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
+#gc-sidebar-overlay.open{display:block}
+#gc-sidebar{width:260px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+#gc-sidebar::-webkit-scrollbar{display:none}
+.sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.sidebar-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.sidebar-logo-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent;flex-shrink:0;overflow:hidden;font-size:1.2rem}
+.sidebar-logo-icon img{width:100%;height:100%;object-fit:contain}
+.sidebar-logo-text{display:flex;flex-direction:column}
+.sidebar-logo-name{font-size:1.3rem;font-weight:800;color:#fff;line-height:1}
+.sidebar-logo-name em{color:#2563eb;font-style:normal}
+.sidebar-logo-domain{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:1px}
+.sidebar-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px}
+.sidebar-close:hover{color:#fff;background:rgba(255,255,255,.1)}
+.sidebar-section-label{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:16px 16px 6px}
+.sidebar-nav{display:flex;flex-direction:column}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:.88rem;font-weight:600;color:rgba(184,196,217,.85);transition:background .15s,color .15s;text-decoration:none}
+.sidebar-nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+.sidebar-nav a.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:#fff;font-weight:700}
+.sb-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.sidebar-footer-social{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0}
+.sidebar-footer-social a{width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;transition:background .15s;text-decoration:none}
+.sidebar-footer-social a:hover{background:rgba(255,255,255,.15);color:#fff}
+#gc-hamburger{display:none;position:fixed;top:14px;left:14px;z-index:600;background:rgba(0,27,77,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:10px;width:40px;height:40px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;border:none}
+#gc-hamburger span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main,main.gc-main,.gc-main{margin-left:260px!important}}
+@media(max-width:768px){#gc-hamburger{display:flex!important}#gc-sidebar{transform:translateX(-100%);box-shadow:4px 0 24px rgba(0,0,0,.3)}#gc-sidebar.open{transform:translateX(0)}#gc-main,main.gc-main,.gc-main{margin-left:0!important}}
 </style>
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="World Cup 2026 Fixtures & Schedule | GoalCurrent.live">
@@ -273,64 +302,45 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
 </head>
 <body>
-<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<!-- ═══ HAMBURGER ═══ -->
+<button id="gc-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+<!-- ═══ SIDEBAR OVERLAY ═══ -->
+<div id="gc-sidebar-overlay"></div>
 
-<!-- SIDEBAR — consistent with all pages -->
-<nav class="gc-sidebar" id="gcSidebar">
-  <div class="sb-logo"><a href="/">⚽ Goal<span>Current</span>.live</a></div>
-  <div class="sb-section">Main Menu</div>
-  <a href="/" class="sb-link">🏠 Home</a>
-  <a href="/premier-league/" class="sb-link">🔴 Live Scores</a>
-  <a href="/premier-league/fixtures/index.html" class="sb-link">📋 Fixtures</a>
-  <a href="/premier-league/table/index.html" class="sb-link">🏅 Standings</a>
-  <a href="/worldcup2026/news/index.html" class="sb-link">📰 Latest News</a>
-  <div class="sb-section">Competitions</div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('pl-sub')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-badge sb-badge-pl">PL</span></button>
-    <div class="sb-sub" id="pl-sub">
-      <a href="/premier-league/" class="sb-sub-link">🏠 Overview</a>
-      <a href="/premier-league/table/index.html" class="sb-sub-link">📊 Table</a>
-      <a href="/premier-league/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/premier-league/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/premier-league/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/premier-league/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="gc-sidebar" aria-label="Main navigation">
+  <div class="sidebar-header">
+    <a href="/" class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="/logo.svg" alt="GoalCurrent.live" width="36" height="36"
+             onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
+      </div>
+      <div class="sidebar-logo-text">
+        <span class="sidebar-logo-name">Goal<em>Current</em></span>
+        <span class="sidebar-logo-domain">.live</span>
+      </div>
+    </a>
+    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close sidebar">✕</button>
   </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('wc-sub')" style="color:white"><span>🏆 World Cup 2026</span><span class="sb-badge sb-badge-gold">WC26</span></button>
-    <div class="sb-sub open" id="wc-sub">
-      <a href="/worldcup2026/" class="sb-sub-link">🏠 Overview</a>
-      <a href="/worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
-      <a href="/worldcup2026/fixtures/index.html" class="sb-sub-link active">📅 Fixtures</a>
-      <a href="/worldcup2026/bracket/index.html" class="sb-sub-link">🏅 Bracket</a>
-      <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
-      <a href="/worldcup2026/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/worldcup2026/news/index.html" class="sb-sub-link">📰 News</a>
-      <a href="/countdown.html" class="sb-sub-link">⏱ Countdown</a>
-      <a href="/worldcup2026/favourites/index.html" class="sb-sub-link">⭐ Favourites</a>
-    </div>
+  <div class="sidebar-section-label">Main Menu</div>
+  <div class="sidebar-nav">
+    <a href="/"><span class="sb-icon">🏠</span> Home</a>
+    <a href="/live/"><span class="sb-icon">🔴</span> Live Scores</a>
+    <a href="/worldcup2026/fixtures/"><span class="sb-icon">📅</span> Today Fixtures</a>
+    <a href="/worldcup2026/news/"><span class="sb-icon">📰</span> Latest News</a>
   </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('ucl-sub')"><span>⭐ Champions League</span><span class="sb-badge sb-badge-ucl">UCL</span></button>
-    <div class="sb-sub" id="ucl-sub">
-      <a href="/ucl/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/ucl/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/ucl/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/ucl/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/ucl/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
+  <div class="sidebar-section-label">Competitions</div>
+  <div class="sidebar-nav">
+    <a href="/premier-league/"><span class="sb-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
+    <a href="/worldcup2026/" class="active"><span class="sb-icon">🏆</span> World Cup 2026</a>
+    <a href="/ucl/"><span class="sb-icon">⭐</span> Champions League</a>
   </div>
-  <div class="sb-foot">
-    <div class="sb-social">
-      <a href="https://twitter.com/GoalCurrentlive" target="_blank" rel="noopener">𝕏</a>
-      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" rel="noopener">🎵</a>
-      <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
-    </div>
-    © 2026 <strong style="color:#a8b2c8">Ashna4All</strong><br>Ahmad Zafarani<br>
-    <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/cookies.html">Cookies</a> · <a href="/contact.html">Contact</a>
+  <div class="sidebar-footer-social">
+    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
+    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
   </div>
 </nav>
-
 <div class="gc-main">
   <header class="gc-header">
     <div class="gc-hdr-top">
@@ -348,14 +358,14 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
     </div>
     <nav class="gc-hdr-nav">
       <a href="/worldcup2026/"           class="gc-hdr-navlink">🏠 Overview</a>
-      <a href="/worldcup2026/groups/index.html"    class="gc-hdr-navlink">🔢 Groups</a>
-      <a href="/worldcup2026/fixtures/index.html"  class="gc-hdr-navlink active">📅 Fixtures</a>
-      <a href="/worldcup2026/bracket/index.html"   class="gc-hdr-navlink">🏅 Bracket</a>
-      <a href="/worldcup2026/venues/index.html"    class="gc-hdr-navlink">🏟️ Venues</a>
-      <a href="/worldcup2026/teams/index.html"     class="gc-hdr-navlink">👕 Teams</a>
-      <a href="/worldcup2026/news/index.html"      class="gc-hdr-navlink">📰 News</a>
+      <a href="/worldcup2026/groups/"    class="gc-hdr-navlink">🔢 Groups</a>
+      <a href="/worldcup2026/fixtures/"  class="gc-hdr-navlink active">📅 Fixtures</a>
+      <a href="/worldcup2026/bracket/"   class="gc-hdr-navlink">🏅 Bracket</a>
+      <a href="/worldcup2026/venues/"    class="gc-hdr-navlink">🏟️ Venues</a>
+      <a href="/worldcup2026/teams/"     class="gc-hdr-navlink">👕 Teams</a>
+      <a href="/worldcup2026/news/"      class="gc-hdr-navlink">📰 News</a>
       <a href="/countdown.html"                    class="gc-hdr-navlink">⏱ Countdown</a>
-      <a href="/worldcup2026/favourites/index.html"class="gc-hdr-navlink">⭐ Favourites</a>
+      <a href="/worldcup2026/favourites/"class="gc-hdr-navlink">⭐ Favourites</a>
     </nav>
   </header>
 
@@ -487,8 +497,8 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
       <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
     </div>
     <div class="gc-footer-social">
-      <a href="https://twitter.com/GoalCurrentlive" target="_blank" rel="noopener">𝕏</a>
-      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" rel="noopener">🎵</a>
+      <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener">🎵</a>
       <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
     </div>
     <div class="gc-footer-copy">
@@ -670,6 +680,17 @@ function toggleDay(){document.getElementById('dayBlock')?.classList.toggle('expa
   }
   tick();setInterval(tick,1000);
 })();
+</script>
+<script>
+function gcOpenSidebar(){var s=document.getElementById('gc-sidebar'),o=document.getElementById('gc-sidebar-overlay');if(s)s.classList.add('open');if(o)o.classList.add('open');document.body.style.overflow='hidden';}
+function gcCloseSidebar(){var s=document.getElementById('gc-sidebar'),o=document.getElementById('gc-sidebar-overlay');if(s)s.classList.remove('open');if(o)o.classList.remove('open');document.body.style.overflow='';}
+var _hb=document.getElementById('gc-hamburger');
+var _sc=document.getElementById('gc-sidebar-close');
+var _so=document.getElementById('gc-sidebar-overlay');
+if(_hb)_hb.addEventListener('click',gcOpenSidebar);
+if(_sc)_sc.addEventListener('click',gcCloseSidebar);
+if(_so)_so.addEventListener('click',gcCloseSidebar);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
 </script>
 </body>
 </html>

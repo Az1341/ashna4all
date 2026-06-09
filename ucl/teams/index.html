@@ -22,13 +22,7 @@ body{
 }
 
 /* ── SIDEBAR ── */
-.gc-sidebar{
-  width:240px;background:#1a1f2e;
-  position:fixed;top:0;left:0;bottom:0;
-  z-index:300;overflow-y:auto;
-  display:flex;flex-direction:column;
-  scrollbar-width:none;
-}
+
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none;display:block}
 .sb-logo-text{font-size:16px;font-weight:700;color:#fff}
@@ -158,7 +152,7 @@ body{
 @media(max-width:768px){
   .gc-hamburger{display:flex;align-items:center;justify-content:center}
   .gc-main{margin-left:0}
-  .gc-sidebar{transform:translateX(-100%);transition:transform .3s}
+  
   .gc-sidebar.open{transform:translateX(0);z-index:500}
   .sb-overlay.show{display:block}
   .final-matchup{gap:12px}
@@ -166,6 +160,35 @@ body{
   .final-team-name{font-size:14px}
   .gc-content{padding:12px}
 }
+
+/* ── SIDEBAR ── */
+#gc-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
+#gc-sidebar-overlay.open{display:block}
+#gc-sidebar{width:260px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+#gc-sidebar::-webkit-scrollbar{display:none}
+.sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.sidebar-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.sidebar-logo-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent;flex-shrink:0;overflow:hidden;font-size:1.2rem}
+.sidebar-logo-icon img{width:100%;height:100%;object-fit:contain}
+.sidebar-logo-text{display:flex;flex-direction:column}
+.sidebar-logo-name{font-size:1.3rem;font-weight:800;color:#fff;line-height:1}
+.sidebar-logo-name em{color:#2563eb;font-style:normal}
+.sidebar-logo-domain{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:1px}
+.sidebar-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px}
+.sidebar-close:hover{color:#fff;background:rgba(255,255,255,.1)}
+.sidebar-section-label{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:16px 16px 6px}
+.sidebar-nav{display:flex;flex-direction:column}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:.88rem;font-weight:600;color:rgba(184,196,217,.85);transition:background .15s,color .15s;text-decoration:none}
+.sidebar-nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+.sidebar-nav a.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:#fff;font-weight:700}
+.sb-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.sidebar-footer-social{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0}
+.sidebar-footer-social a{width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;transition:background .15s;text-decoration:none}
+.sidebar-footer-social a:hover{background:rgba(255,255,255,.15);color:#fff}
+#gc-hamburger{display:none;position:fixed;top:14px;left:14px;z-index:600;background:rgba(0,27,77,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:10px;width:40px;height:40px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;border:none}
+#gc-hamburger span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main,main.gc-main,.gc-main{margin-left:260px!important}}
+@media(max-width:768px){#gc-hamburger{display:flex!important}#gc-sidebar{transform:translateX(-100%);box-shadow:4px 0 24px rgba(0,0,0,.3)}#gc-sidebar.open{transform:translateX(0)}#gc-main,main.gc-main,.gc-main{margin-left:0!important}}
 </style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
   <meta property="og:type"        content="website">
@@ -184,56 +207,44 @@ body{
 <button class="gc-hamburger" id="hamburger" aria-label="Menu">☰</button>
 <div class="sb-overlay" id="overlay"></div>
 
-<aside class="gc-sidebar" id="sidebar">
-  <a href="/ucl/" class="sb-logo">
-    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-  </a>
-  <span class="sb-section-label">Main Menu</span>
-  <a href="/" class="sb-nav-link">🏠 Home</a>
-  <a href="/" class="sb-nav-link">🔴 Live Scores</a>
-  <a href="/" class="sb-nav-link">📅 Schedule</a>
-  <a href="/" class="sb-nav-link">🏅 Standings</a>
+<button id="gc-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+<!-- ═══ SIDEBAR OVERLAY ═══ -->
+<div id="gc-sidebar-overlay"></div>
 
-  <span class="sb-section-label">Competitions</span>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-pl',this)">
-    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-comp-badge sb-badge-pl">PL</span>
-  </button>
-  <div class="sb-links-group" id="g-pl">
-    <a href="/premier-league/">🏠 Overview</a>
-    <a href="/premier-league/table/">📊 Table</a>
-    <a href="/premier-league/fixtures/">📅 Fixtures</a>
-    <a href="/premier-league/results/">✅ Results</a>
-    <a href="/premier-league/news/">📰 News</a>
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="gc-sidebar" aria-label="Main navigation">
+  <div class="sidebar-header">
+    <a href="/" class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="/logo.svg" alt="GoalCurrent.live" width="36" height="36"
+             onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
+      </div>
+      <div class="sidebar-logo-text">
+        <span class="sidebar-logo-name">Goal<em>Current</em></span>
+        <span class="sidebar-logo-domain">.live</span>
+      </div>
+    </a>
+    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close sidebar">✕</button>
   </div>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-wc',this)">
-    <span>🏆 World Cup 2026</span><span class="sb-comp-badge sb-badge-wc">WC26</span>
-  </button>
-  <div class="sb-links-group" id="g-wc">
-    <a href="/worldcup2026/">🏠 Overview</a>
-    <a href="/worldcup2026/groups/">🔢 Groups</a>
-    <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
-    <a href="/worldcup2026/teams/">👕 Teams</a>
-    <a href="/worldcup2026/news/">📰 News</a>
+  <div class="sidebar-section-label">Main Menu</div>
+  <div class="sidebar-nav">
+    <a href="/"><span class="sb-icon">🏠</span> Home</a>
+    <a href="/live/"><span class="sb-icon">🔴</span> Live Scores</a>
+    <a href="/worldcup2026/fixtures/"><span class="sb-icon">📅</span> Today Fixtures</a>
+    <a href="/worldcup2026/news/"><span class="sb-icon">📰</span> Latest News</a>
   </div>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-ucl',this)">
-    <span>⭐ Champions League</span><span class="sb-comp-badge sb-badge-ucl">UCL</span>
-  </button>
-  <div class="sb-links-group open" id="g-ucl">
-    <a href="/ucl/">🏠 Overview</a>
-    <a href="/ucl/fixtures/">📅 Fixtures</a>
-    <a href="/ucl/results/">✅ Results</a>
-    <a href="/ucl/teams/" class="active">👕 Teams</a>
-    <a href="/ucl/news/">📰 News</a>
+  <div class="sidebar-section-label">Competitions</div>
+  <div class="sidebar-nav">
+    <a href="/premier-league/"><span class="sb-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
+    <a href="/worldcup2026/"><span class="sb-icon">🏆</span> World Cup 2026</a>
+    <a href="/ucl/" class="active"><span class="sb-icon">⭐</span> Champions League</a>
   </div>
-
-  <div class="sb-footer">
-    © 2026 Ashna4All · Ahmad Zafarani<br>
-    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+  <div class="sidebar-footer-social">
+    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
+    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
   </div>
-</aside>
+</nav>
 
 <div class="gc-main">
 
@@ -423,5 +434,16 @@ function gcSubscribe(){
 }
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
+<script>
+function gcOpenSidebar(){var s=document.getElementById('gc-sidebar'),o=document.getElementById('gc-sidebar-overlay');if(s)s.classList.add('open');if(o)o.classList.add('open');document.body.style.overflow='hidden';}
+function gcCloseSidebar(){var s=document.getElementById('gc-sidebar'),o=document.getElementById('gc-sidebar-overlay');if(s)s.classList.remove('open');if(o)o.classList.remove('open');document.body.style.overflow='';}
+var _hb=document.getElementById('gc-hamburger');
+var _sc=document.getElementById('gc-sidebar-close');
+var _so=document.getElementById('gc-sidebar-overlay');
+if(_hb)_hb.addEventListener('click',gcOpenSidebar);
+if(_sc)_sc.addEventListener('click',gcCloseSidebar);
+if(_so)_so.addEventListener('click',gcCloseSidebar);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
+</script>
 </body>
 </html>

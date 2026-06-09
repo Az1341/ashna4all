@@ -1,126 +1,116 @@
-CHANGELOG - GoalCurrent.live Pre-Launch Package
+CHANGELOG — Navigation Fix Package
 Generated: 2026-06-09
+Version: nav-fix-v1.0
 ============================================================
 
-MODIFIED FILES (20):
+FILES MODIFIED: 22 (all HTML pages)
 
 
-worldcup2026/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (3x): /worldcup2026/countdown/ → /countdown.html
-
-worldcup2026/fixtures/index.html:
-  + Added OG + Twitter card meta tags
-  + Removed /index.html from PL links (2x)
-  + Removed /index.html from WC links (2x)
-
-worldcup2026/groups/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-worldcup2026/standings/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-worldcup2026/bracket/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-worldcup2026/venues/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-worldcup2026/news/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-countdown.html:
-  + Added OG + Twitter card meta tags
-
-worldcup2026/favourites/index.html:
-  + Added OG + Twitter card meta tags
-  + Fixed countdown link (2x): /worldcup2026/countdown/ → /countdown.html
-
-premier-league/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added cookie consent banner
-  + Added footer (was missing)
-
-premier-league/table/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added cookie consent banner
-  + Added SEO h1 tag (visually hidden)
-  + Added footer (was missing)
+index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
 
 premier-league/fixtures/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
+  + Replaced old dropdown sidebar with new overlay sidebar
+  + Added sidebar CSS
+  + Added sidebar open/close JS
 
-premier-league/results/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added cookie consent banner
-  + Added footer (was missing)
-
-premier-league/teams/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added cookie consent banner
-  + Added footer (was missing)
+premier-league/index.html:
+  + Replaced aside sidebar block
 
 premier-league/news/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
+  + Replaced aside sidebar block
 
-ucl/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
+premier-league/results/index.html:
+  + Replaced aside sidebar block
+
+premier-league/table/index.html:
+  + Replaced aside sidebar block
+
+premier-league/teams/index.html:
+  + Replaced aside sidebar block
 
 ucl/fixtures/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added SEO h1 tag (visually hidden)
+  + Replaced aside sidebar block
 
-ucl/results/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added SEO h1 tag (visually hidden)
-
-ucl/teams/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
-  + Added SEO h1 tag (visually hidden)
+ucl/index.html:
+  + Replaced aside sidebar block
 
 ucl/news/index.html:
-  + Added OG + Twitter card meta tags
-  + Added Google Analytics G-X84HCE5KGT
+  + Replaced aside sidebar block
 
+ucl/results/index.html:
+  + Replaced aside sidebar block
 
-NEW FILES ADDED:
+ucl/teams/index.html:
+  + Replaced aside sidebar block
 
-sitemap.xml - Complete rebuild (28 pages, was 9)
-live/index.html - New dedicated live scores page
+worldcup2026/bracket/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
 
-UNCHANGED FILES (already perfect):
-index.html (homepage) - 95% audit score
-worldcup2026/teams/index.html - 100% audit score
+countdown.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
 
-ISSUES FIXED:
-1. OG tags missing on 20 pages - FIXED
-2. Twitter card missing on 20 pages - FIXED  
-3. Google Analytics missing on 11 PL+UCL pages - FIXED
-4. Cookie banner missing on 7 pages - FIXED
-5. Countdown link wrong on 8 pages - FIXED
-6. Old /index.html links in fixtures - FIXED
-7. Footer missing on 4 PL pages - FIXED
-8. H1 tags missing on 9 pages - FIXED
-9. Sitemap missing all WC pages - FIXED
-10. /live/ page 404 - FIXED
+worldcup2026/favourites/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
 
-NOT FIXED (intentional):
-- AdSense placement - requires manual positioning decision
-- Schema.org - requires careful verification, risk of Google penalty
-- Match 104 - verify on FIFA.com if 3rd place playoff exists
-- Sticky mobile bottom nav - feature addition, Week 1 task
+worldcup2026/fixtures/index.html:
+  + Replaced old dropdown sidebar with new overlay sidebar
+  + Added sidebar CSS
+  + Added sidebar open/close JS
+  + Fixed links: /worldcup2026/fixtures/index.html → /worldcup2026/fixtures/ (1x); /worldcup2026/groups/index.html → /worldcup2026/groups/ (1x); /worldcup2026/teams/index.html → /worldcup2026/teams/ (1x); /worldcup2026/news/index.html → /worldcup2026/news/ (1x); /worldcup2026/bracket/index.html → /worldcup2026/bracket/ (1x); /worldcup2026/venues/index.html → /worldcup2026/venues/ (1x); /worldcup2026/favourites/index.html → /worldcup2026/favourites/ (1x)
+
+worldcup2026/groups/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+worldcup2026/news/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+worldcup2026/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+worldcup2026/standings/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+worldcup2026/teams/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+worldcup2026/venues/index.html:
+  + Updated sidebar nav links
+  + Added/updated mobile sidebar CSS
+
+============================================================
+SUMMARY OF ALL CHANGES
+
+Navigation system:
+  - Standardised to single sidebar template across all 22 pages
+  - All pages now use <nav id="gc-sidebar"> overlay sidebar
+  - Old <aside class="gc-sidebar"> blocks replaced on PL + UCL pages
+  - Old dropdown (sb-comp-btn) sidebar replaced on wc-fixtures + PL + UCL
+  - Hamburger button added to all pages that were missing it
+  - Sidebar close X button functional on all pages
+  - Click overlay to close sidebar — works on all pages
+  - Escape key closes sidebar — works on all pages
+  - Mobile: sidebar slides in/out smoothly on all pages
+
+Link fixes:
+  - Live Scores → /live/ (was /premier-league/ or / on some pages)
+  - Today Fixtures → /worldcup2026/fixtures/
+  - Latest News → /worldcup2026/news/
+  - Countdown → /countdown.html (was /worldcup2026/countdown/)
+  - Champions League → /ucl/ (was /champions-league/ on some pages)
+  - Removed /index.html suffix from all internal hrefs
+  - Active page highlighted correctly per section
+
+Social links (fixed on all 22 pages):
+  - X: https://twitter.com/goalcurrentlive
+  - TikTok: https://tiktok.com/@goalcurrent
+  - Instagram: https://instagram.com/goalcurrentlive
