@@ -57,6 +57,13 @@ a{text-decoration:none;color:inherit}
 .gc-subnav-inner a{display:inline-block;padding:6px 14px;border-radius:999px;font-family:var(--head);font-size:.8rem;font-weight:700;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);transition:background .15s}
 .gc-subnav-inner a:hover{background:rgba(255,255,255,.16);color:#fff}
 .gc-subnav-inner a.active{background:var(--gold);border-color:var(--gold);color:#0f172a}
+
+/* TEST MODE BANNER */
+#test-banner{display:none;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;padding:16px 20px;border-bottom:3px solid #fbbf24;text-align:center}
+.test-banner-title{font-family:var(--head);font-size:1.6rem;font-weight:900;letter-spacing:.05em;margin-bottom:4px}
+.test-banner-sub{font-size:.85rem;font-weight:600;opacity:.9;margin-bottom:6px}
+.test-banner-warn{display:inline-block;background:rgba(251,191,36,.2);border:1px solid #fbbf24;border-radius:8px;padding:5px 14px;font-size:.78rem;font-weight:700;color:#fbbf24}
+
 .live-hero{background:var(--hdr-bg);padding:20px 20px 24px;color:#fff;border-bottom:2px solid rgba(245,158,11,.3)}
 .live-hero-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .live-hero h1{font-family:var(--head);font-size:2rem;font-weight:900;color:#fff}
@@ -82,10 +89,7 @@ a{text-decoration:none;color:inherit}
 .live-hdr .sec-dot{animation:blink 1.2s infinite}
 .comp-group{margin-bottom:16px}
 .comp-label{display:flex;align-items:center;gap:7px;font-family:var(--head);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--mid);padding:6px 0;margin-bottom:6px}
-.comp-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 .wc-badge{background:var(--gold);color:#0f172a;font-size:.65rem;padding:1px 6px;border-radius:4px;font-weight:900}
-
-/* MATCH CARD */
 .match-card{background:var(--card);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.85);border-radius:14px;margin-bottom:8px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer;text-decoration:none;display:block;color:var(--text)}
 .match-card:hover{box-shadow:0 8px 24px rgba(37,99,235,.14);transform:translateY(-1px)}
 .match-card.wc-card{border-color:rgba(245,158,11,.4)}
@@ -99,8 +103,6 @@ a{text-decoration:none;color:inherit}
 .sp.ft{background:rgba(16,185,129,.1);color:#059669}
 .sp.up{background:#dbeafe;color:var(--blue)}
 .live-dot2{width:5px;height:5px;border-radius:50%;background:var(--live);animation:blink 1s infinite}
-
-/* MATCH BODY — perfect alignment */
 .mc-body{display:grid;grid-template-columns:1fr 100px 1fr;align-items:center;gap:8px;padding:12px 14px}
 .mc-home{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
 .mc-away{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left}
@@ -118,21 +120,15 @@ a{text-decoration:none;color:inherit}
 .mc-tv{font-size:.72rem;font-weight:700;color:var(--mid)}
 .mc-venue{font-size:.68rem;color:var(--light)}
 .mc-detail-hint{font-size:.65rem;color:var(--blue);font-weight:700;padding:0 12px 6px;text-align:right;opacity:.8}
-
-/* LOADING */
 .load-card{background:var(--card);border:1px solid rgba(255,255,255,.85);border-radius:14px;padding:20px;margin-bottom:8px;animation:sh 1.5s infinite}
 @keyframes sh{0%,100%{opacity:.6}50%{opacity:1}}
 .load-line{height:12px;background:#e2e8f0;border-radius:6px;margin-bottom:8px}
 .load-line.s{width:40%}.load-line.m{width:60%}
-
-/* EMPTY STATE */
 .empty-box{text-align:center;padding:30px 20px;background:var(--card);border:1px solid rgba(255,255,255,.85);border-radius:14px}
 .empty-box .ei{font-size:2.5rem;margin-bottom:10px}
 .empty-box h3{font-family:var(--head);font-size:1rem;font-weight:800;color:var(--mid);margin-bottom:4px}
 .empty-box p{font-size:.8rem;color:var(--light);margin-bottom:12px}
 .empty-box a{display:inline-block;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;font-size:.8rem;font-weight:700}
-
-/* VPN + FOOTER */
 .gc-vpn-bar{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);padding:10px 18px;font-size:.78rem;text-align:center;color:var(--mid);margin-top:8px}
 .gc-vpn-bar a{font-weight:800;color:var(--blue)}
 .gc-footer{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);color:var(--light);padding:18px;font-size:.75rem;line-height:1.7}
@@ -196,11 +192,19 @@ a{text-decoration:none;color:inherit}
 </nav>
 
 <div id="gc-main">
+
+  <!-- TEST MODE BANNER — only visible on /live/?test=1 -->
+  <div id="test-banner">
+    <div class="test-banner-title">🧪 TEST MODE</div>
+    <div class="test-banner-sub">Pre-World Cup Live Data Testing</div>
+    <div class="test-banner-warn">⚠️ Not official World Cup fixtures · Real API-Football data · For development only</div>
+  </div>
+
   <header class="gc-hdr">
     <div class="gc-hdr-top">
       <div>
         <div class="gc-hdr-brand">Goal<span>Current</span>.live</div>
-        <div class="gc-hdr-sub">Live Scores · World Cup 2026 · News</div>
+        <div class="gc-hdr-sub" id="hdr-sub-text">Live Scores · World Cup 2026 · News</div>
       </div>
     </div>
     <nav class="gc-subnav">
@@ -212,7 +216,7 @@ a{text-decoration:none;color:inherit}
         <a href="/worldcup2026/groups/">🔢 Groups</a>
         <a href="/worldcup2026/teams/">👕 Teams</a>
         <a href="/worldcup2026/standings/">📊 Standings</a>
-        <a href="/premier-league/">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL</a>
+        <a href="/premier-league/">🏴 PL</a>
         <a href="/ucl/">⭐ UCL</a>
       </div>
     </nav>
@@ -221,7 +225,7 @@ a{text-decoration:none;color:inherit}
   <div class="live-hero">
     <div class="live-hero-top">
       <div class="live-dot"></div>
-      <h1>Live Scores</h1>
+      <h1 id="hero-title">Live Scores</h1>
     </div>
     <div class="live-meta" id="live-count">Loading…</div>
     <div class="live-updated" id="last-updated">Fetching latest data…</div>
@@ -233,7 +237,6 @@ a{text-decoration:none;color:inherit}
     <button class="filter-pill" data-filter="WC" onclick="setFilter('WC')">🏆 WC 2026</button>
     <button class="filter-pill" data-filter="PL" onclick="setFilter('PL')">🏴 PL</button>
     <button class="filter-pill" data-filter="CL" onclick="setFilter('CL')">⭐ UCL</button>
-    <button class="filter-pill" data-filter="INT" onclick="setFilter('INT')">🌍 Friendly</button>
     <div class="filter-search">
       <span style="font-size:.8rem;color:#94a3b8">🔍</span>
       <input type="search" id="search-input" placeholder="Search team…" oninput="applySearch()">
@@ -277,8 +280,8 @@ a{text-decoration:none;color:inherit}
     <div id="empty-state" style="display:none">
       <div class="empty-box">
         <div class="ei">⚽</div>
-        <h3>No matches found</h3>
-        <p>Try a different filter or check the full fixture list.</p>
+        <h3 id="empty-title">No live World Cup matches currently</h3>
+        <p id="empty-sub">The tournament begins 11 June 2026. Check the full fixture list below.</p>
         <a href="/worldcup2026/fixtures/">View All WC 2026 Fixtures →</a>
       </div>
     </div>
@@ -314,22 +317,24 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
+// ── MODE DETECTION ──────────────────────────────────────────────────────────
+// TEST MODE: /live/?test=1 — calls /api/test-live, shows banner
+// NORMAL:    /live/         — calls /api/scores?live=true, WC only, no fallback
+var IS_TEST = new URLSearchParams(window.location.search).get('test') === '1';
+
 var FLAGS={'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr','Czech Republic':'cz','Czechia':'cz','Canada':'ca','Bosnia & Herz.':'ba','Bosnia and Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa','Iceland':'is','Venezuela':'ve','Nigeria':'ng','Costa Rica':'cr','Chile':'cl','Peru':'pe','Serbia':'rs','Poland':'pl','Denmark':'dk','Romania':'ro','Hungary':'hu'};
 
-var COMPS={'WC':{name:'FIFA World Cup 2026',emoji:'🏆',color:'#f59e0b',wc:true},'PL':{name:'Premier League',emoji:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',color:'#3d0050'},'CL':{name:'Champions League',emoji:'⭐',color:'#1e3a8a'},'INT':{name:'International Friendly',emoji:'🌍',color:'#059669'},'FRIENDLY':{name:'Pre-WC Friendly',emoji:'🌍',color:'#059669'}};
-var PRIO=['WC','PL','CL','INT','FRIENDLY'];
-var WC_TV={'Mexico':'ITV','South Africa':'ITV','South Korea':'ITV','Czech Republic':'ITV','Canada':'BBC','Bosnia':'BBC','Qatar':'ITV','Switzerland':'ITV','USA':'BBC','Paraguay':'BBC','Brazil':'BBC','Morocco':'ITV','Germany':'ITV','England':'Amazon Prime','Croatia':'ITV','France':'BBC','Senegal':'BBC','Argentina':'ITV','Spain':'ITV','Portugal':'Amazon Prime','Nigeria':'Amazon Prime','Costa Rica':'Amazon Prime'};
-var TOURNEY_START=new Date('2026-06-11T19:00:00Z');
+var COMPS={
+  'WC' :{name:'FIFA World Cup 2026',emoji:'🏆',color:'#f59e0b',wc:true},
+  'PL' :{name:'Premier League',     emoji:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',  color:'#3d0050'},
+  'CL' :{name:'Champions League',   emoji:'⭐',  color:'#1e3a8a'},
+  'INT':{name:'International',      emoji:'🌍',  color:'#059669'}
+};
+var PRIO=['WC','PL','CL','INT'];
 
-var FALLBACK=[
-  {id:'fb-port-nig',h:'Portugal',a:'Nigeria',ko:'2026-06-10T19:45:00Z',comp:'FRIENDLY',tv:'Amazon Prime',venue:'Leiria, Portugal'},
-  {id:'fb-eng-crc',h:'England',a:'Costa Rica',ko:'2026-06-10T21:00:00Z',comp:'FRIENDLY',tv:'Amazon Prime',venue:'Orlando, USA'},
-  {id:'fb-wc1',h:'Mexico',a:'South Africa',ko:'2026-06-11T19:00:00Z',comp:'WC',g:'A',tv:'ITV',venue:'Mexico City'},
-  {id:'fb-wc2',h:'South Korea',a:'Czech Republic',ko:'2026-06-12T22:00:00Z',comp:'WC',g:'A',tv:'ITV',venue:'Guadalajara'},
-  {id:'fb-wc3',h:'Canada',a:'Bosnia & Herz.',ko:'2026-06-12T19:00:00Z',comp:'WC',g:'B',tv:'BBC',venue:'Toronto'}
-];
+var WC_TV={'Mexico':'ITV','South Africa':'ITV','South Korea':'ITV','Czech Republic':'ITV','Canada':'BBC','Bosnia':'BBC','Qatar':'ITV','Switzerland':'ITV','USA':'BBC','Paraguay':'BBC','Brazil':'BBC','Morocco':'ITV','Germany':'ITV','England':'BBC','Croatia':'ITV','France':'BBC','Senegal':'BBC','Argentina':'ITV','Spain':'ITV','Portugal':'ITV'};
 
-var allMatches=[],activeFilter='all',searchQuery='';
+var allMatches=[], activeFilter='all', searchQuery='';
 
 function pad(n){return String(n).padStart(2,'0');}
 function getBST(iso){var d=new Date(new Date(iso).getTime()+3600000);return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+' BST';}
@@ -349,7 +354,6 @@ function getStatus(m){
   if((now-ko)<7200000) return '1H';
   return 'FT';
 }
-
 function isLiveStatus(s){return['1H','2H','ET','HT','BT','P'].includes(s);}
 function isFTStatus(s){return['FT','AET','PEN'].includes(s);}
 
@@ -361,7 +365,6 @@ function buildCard(m){
   var ft=isFTStatus(status);
   var ns=status==='NS';
 
-  /* Status pill */
   var pill;
   if(live){
     var min=m.elapsed?m.elapsed+"'":'●';
@@ -374,19 +377,16 @@ function buildCard(m){
     pill='<span class="sp up">'+getBST(m.ko)+'</span>';
   }
 
-  /* Centre column */
   var centre;
   if(ns){
     centre='<div class="mc-centre"><span class="mc-ko">'+getBST(m.ko)+'</span></div>';
   } else {
-    var hg=m.homeGoals!=null?m.homeGoals:0;
-    var ag=m.awayGoals!=null?m.awayGoals:0;
+    // Scores come from API only — never hardcoded
+    var hg=m.homeGoals!=null?m.homeGoals:'?';
+    var ag=m.awayGoals!=null?m.awayGoals:'?';
     var minHtml='';
     if(live){
-      var minLabel;
-      if(status==='HT') minLabel='HT';
-      else if(m.elapsed) minLabel=m.elapsed+"'";
-      else { var calcMin=Math.floor((new Date()-new Date(m.ko))/60000); minLabel=Math.min(90,calcMin)+"'"; }
+      var minLabel=status==='HT'?'HT':m.elapsed?m.elapsed+"'":'●';
       minHtml='<span class="mc-min live-m">'+minLabel+'</span>';
     } else if(ft){
       minHtml='<span class="mc-min ft-m">FT</span>';
@@ -394,22 +394,24 @@ function buildCard(m){
     centre='<div class="mc-centre"><span class="mc-score">'+hg+' – '+ag+'</span>'+minHtml+'</div>';
   }
 
-  /* URL — real match page if real ID, fallback otherwise */
+  // Test mode label on card
+  var testLabel=IS_TEST?'<div style="background:#7c3aed;color:#fff;font-size:.6rem;font-weight:800;text-align:center;padding:3px;letter-spacing:.05em">🧪 TEST MODE — NOT A WORLD CUP FIXTURE</div>':'';
+
   var isFakeId=String(m.id).startsWith('fb-')||String(m.id).startsWith('wc');
   var url=(!isFakeId&&m.id)?'/match/?id='+m.id:'/worldcup2026/fixtures/';
-  var hint=(!isFakeId&&m.id)?'<div class="mc-detail-hint">Tap for lineups, events & stats →</div>':'';
+  var hint=(!isFakeId&&m.id&&!IS_TEST)?'<div class="mc-detail-hint">Tap for lineups, events & stats →</div>':'';
 
   var cls='match-card'+(isWC?' wc-card':'')+(live?' live-card':'');
   var grp=m.g?' · Grp '+m.g:'';
   var tv=m.tv?'<span class="mc-tv">📺 '+m.tv+'</span>':'';
   var venue=m.venue?'<span class="mc-venue">📍 '+m.venue+'</span>':'';
-  /* Date label */
   var days2=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var months2=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var koD=new Date(m.ko);
   var dateLabel=days2[koD.getUTCDay()]+' '+koD.getUTCDate()+' '+months2[koD.getUTCMonth()];
 
   return '<a class="'+cls+'" href="'+url+'">'
+    +testLabel
     +'<div class="mc-top">'
     +'<div class="mc-comp"><span class="mc-comp-dot" style="background:'+comp.color+'"></span>'
     +(isWC?'<span class="wc-badge">WC26</span> ':'')+comp.emoji+' '+comp.name+grp+'</div>'
@@ -442,18 +444,16 @@ function renderSection(matches,cardsId,countId){
   var filtered=matches.filter(passes);
   if(ce) ce.textContent=filtered.length;
   if(!filtered.length){el.innerHTML='';return 0;}
-  /* Sort by kick-off time — all competitions in chronological order */
   var sorted=filtered.slice().sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
-  var html=sorted.map(buildCard).join('');
-  el.innerHTML=html;
+  el.innerHTML=sorted.map(buildCard).join('');
   return filtered.length;
 }
 
 function renderAll(){
-  var now=new Date(),today=todayUTC(),ahead=daysPlusN(2);
-  var liveM=allMatches.filter(function(m){return isLiveStatus(getStatus(m));}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
-  var ftM=allMatches.filter(function(m){return isFTStatus(getStatus(m))&&m.ko&&m.ko.slice(0,10)===today;}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
-  var upM=allMatches.filter(function(m){return getStatus(m)==='NS'&&m.ko&&m.ko.slice(0,10)<=ahead;}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
+  var today=todayUTC(), ahead=daysPlusN(2);
+  var liveM=allMatches.filter(function(m){return isLiveStatus(getStatus(m));});
+  var ftM=allMatches.filter(function(m){return isFTStatus(getStatus(m))&&m.ko&&m.ko.slice(0,10)===today;});
+  var upM=allMatches.filter(function(m){return getStatus(m)==='NS'&&m.ko&&m.ko.slice(0,10)<=ahead;});
   var lc=renderSection(liveM,'cards-live','cnt-live');
   var fc=renderSection(ftM,'cards-ft','cnt-ft');
   var uc=renderSection(upM,'cards-up','cnt-up');
@@ -462,51 +462,111 @@ function renderAll(){
   document.getElementById('section-up').style.display=upM.length?'block':'none';
   document.getElementById('loading-state').style.display='none';
   var total=lc+fc+uc;
-  document.getElementById('empty-state').style.display=(!total&&allMatches.length)?'block':'none';
+  // Show empty state when no matches — correct message per mode
+  document.getElementById('empty-state').style.display=(!total)?'block':'none';
   document.getElementById('live-count').textContent=liveM.length>0
     ?liveM.length+' match'+(liveM.length>1?'es':'')+' LIVE 🔴 · Tap any match for lineup & stats'
     :upM.length>0?upM.length+' upcoming · Tap any match for full details'
-    :'No matches right now';
+    :IS_TEST?'No matches returned from API right now':'No live World Cup matches currently';
   document.getElementById('last-updated').textContent='Last updated: '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';
 }
 
-async function fetchData(){
+// ── NORMAL MODE: fetch WC live data only ──────────────────────────────────
+async function fetchNormal(){
   var today=todayUTC();
   try{
-    var res=await fetch('/api/scores?date='+today);
+    // Fetch today's WC fixtures for upcoming/finished sections
+    var res=await fetch('/api/scores?date='+today,{cache:'no-store'});
     if(!res.ok) throw new Error('proxy '+res.status);
     var data=await res.json();
     if(data.matches&&data.matches.length){
-      var isTourney=new Date()>=TOURNEY_START;
       allMatches=data.matches.map(function(m){
-        var comp=isTourney?'WC':'FRIENDLY';
         var tv='';
         var name=(m.home&&m.home.name)||'';
-        for(var k in WC_TV){if(name.includes(k)){tv=WC_TV[k];break;}}
-        if(!tv){var an=(m.away&&m.away.name)||'';for(var k2 in WC_TV){if(an.includes(k2)){tv=WC_TV[k2];break;}}}
-        return {
+        for(var k in WC_TV){if(name.toLowerCase().includes(k.toLowerCase())){tv=WC_TV[k];break;}}
+        if(!tv){var an=(m.away&&m.away.name)||'';for(var k2 in WC_TV){if(an.toLowerCase().includes(k2.toLowerCase())){tv=WC_TV[k2];break;}}}
+        return{
           id:m.id,
           h:(m.home&&m.home.name)||'TBD',
           a:(m.away&&m.away.name)||'TBD',
-          ko:m.date,comp:comp,
+          ko:m.date,
+          comp:'WC',
           statusShort:m.status?m.status.short:'NS',
           elapsed:m.status?m.status.elapsed:null,
           homeGoals:m.goals?m.goals.home:null,
           awayGoals:m.goals?m.goals.away:null,
-          venue:m.venue||'',
+          venue:m.venue||m.city||'',
           g:m.league?(m.league.round||'').replace('Group Stage - ','').replace('Group ',''):'',
           tv:tv
         };
       });
-      renderAll();
-      return;
+    } else {
+      // API returned empty — show empty state, never show fallback
+      allMatches=[];
     }
-  }catch(e){console.warn('Proxy error:',e.message);}
-  /* Fallback — never blank */
-  var t=todayUTC(),a=daysPlusN(2);
-  allMatches=FALLBACK.filter(function(m){return m.ko.slice(0,10)>=t&&m.ko.slice(0,10)<=a;});
-  if(!allMatches.length) allMatches=FALLBACK.slice(0,3);
+  }catch(e){
+    console.warn('WC live proxy error:',e.message);
+    allMatches=[];
+  }
   renderAll();
+}
+
+// ── TEST MODE: fetch all today's matches from /api/test-live ─────────────
+async function fetchTest(){
+  try{
+    var res=await fetch('/api/test-live?confirm=testmode',{cache:'no-store'});
+    if(!res.ok) throw new Error('test-live '+res.status);
+    var data=await res.json();
+    if(data.matches&&data.matches.length){
+      allMatches=data.matches.map(function(m){
+        // Determine comp type from league
+        var comp='INT';
+        var leagueName=(m.league&&m.league.name)||'';
+        if(leagueName.toLowerCase().includes('world cup')) comp='WC';
+        else if(leagueName.toLowerCase().includes('premier league')) comp='PL';
+        else if(leagueName.toLowerCase().includes('champions')) comp='CL';
+        return{
+          id:m.id,
+          h:(m.home&&m.home.name)||'TBD',
+          a:(m.away&&m.away.name)||'TBD',
+          ko:m.date,
+          comp:comp,
+          statusShort:m.status?m.status.short:'NS',
+          elapsed:m.status?m.status.elapsed:null,
+          homeGoals:m.goals?m.goals.home:null,
+          awayGoals:m.goals?m.goals.away:null,
+          venue:m.venue||m.city||'',
+          g:'',
+          tv:''
+        };
+      });
+    } else {
+      allMatches=[];
+      document.getElementById('empty-title').textContent='No matches returned from API today';
+      document.getElementById('empty-sub').textContent='api-football.com returned no matches for today.';
+    }
+  }catch(e){
+    console.warn('Test live proxy error:',e.message);
+    allMatches=[];
+    document.getElementById('empty-title').textContent='API error in test mode';
+    document.getElementById('empty-sub').textContent=e.message;
+  }
+  renderAll();
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────
+if(IS_TEST){
+  // Show test banner
+  document.getElementById('test-banner').style.display='block';
+  document.getElementById('hero-title').textContent='🧪 Test Mode';
+  document.getElementById('hdr-sub-text').textContent='TEST MODE — Pre-WC Live Data Test';
+  document.getElementById('empty-title').textContent='No test matches found from API';
+  document.getElementById('empty-sub').textContent='api-football.com returned no matches for today in test mode.';
+  fetchTest();
+  setInterval(fetchTest,60000);
+} else {
+  fetchNormal();
+  setInterval(fetchNormal,60000);
 }
 
 function setFilter(f){
@@ -518,7 +578,7 @@ function setFilter(f){
 }
 function applySearch(){searchQuery=document.getElementById('search-input').value.toLowerCase();renderAll();}
 
-/* Sidebar */
+// ── SIDEBAR ───────────────────────────────────────────────────────────────
 function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('gc-hamburger').addEventListener('click',openSB);
@@ -526,13 +586,10 @@ document.getElementById('gc-sidebar-close').addEventListener('click',closeSB);
 document.getElementById('gc-sidebar-overlay').addEventListener('click',closeSB);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSB();});
 
-/* Cookie */
+// ── COOKIE ────────────────────────────────────────────────────────────────
 function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').classList.remove('show');}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').classList.add('show');},1500);}
-
-fetchData();
-setInterval(fetchData,60000);
 </script>
 </body>
 </html>
