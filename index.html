@@ -106,107 +106,22 @@ a{text-decoration:none;color:inherit}
 .gc-match-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08)}
 .gc-match-head{background:linear-gradient(135deg,#001a4d,#002b80);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.8rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
 .gc-match-updated{font-size:.68rem;color:rgba(255,255,255,.55);font-weight:600}
-
-/* ── MATCH ROW — fixed grid so everything lines up ── */
-.gc-match-row {
-  display: grid;
-  grid-template-columns: 80px 1fr 90px 1fr 110px;
-  align-items: center;
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(0,0,0,.05);
-  gap: 8px;
-  min-height: 52px;
-}
+.gc-match-row{display:grid;grid-template-columns:80px 1fr 90px 1fr 110px;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(0,0,0,.05);gap:8px;min-height:52px}
 .gc-match-row:last-child{border-bottom:none}
 .gc-match-row:hover{background:rgba(37,99,235,.03)}
-
-/* Column 1: status pill */
-.gc-col-status{ display:flex; justify-content:center; }
-
-/* Column 2: home team */
-.gc-col-home{
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-dark);
-  text-align: right;
-  padding-right: 4px;
-}
-
-/* Column 3: score or time */
-.gc-col-score{
-  text-align: center;
-  font-family: var(--font-head);
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-.gc-col-score .gc-ko-time{
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1d4ed8;
-  white-space: nowrap;
-  font-family: var(--font-head);
-}
-.gc-score-min{
-  font-size: 0.72rem !important;
-  font-weight: 700;
-  display: block;
-  margin-top: 2px;
-  letter-spacing: 0.03em;
-  font-family: var(--font-head);
-}
-.gc-score-min.ft-min  { color: #16a34a; }
-.gc-score-min.live-min{ color: #dc2626; }
-.gc-score-min{
-  font-size: 0.72rem !important;
-  font-weight: 700;
-  display: block;
-  margin-top: 2px;
-  letter-spacing: 0.03em;
-  font-family: var(--font-head);
-}
-.gc-score-min.ft-min  { color: #16a34a; }
-.gc-score-min.live-min{ color: #dc2626; }
-.gc-col-score 
-.gc-col-score .gc-score-min{
-  display: block;
-  font-size: .75rem;
-  font-weight: 700;
-  margin-top: 2px;
-}
-.gc-col-score .gc-score-min.live-min{ color: #dc2626; }
-.gc-col-score .gc-score-min.ft-min  { color: #16a34a; }
-
-/* Column 4: away team */
-.gc-col-away{
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-dark);
-  text-align: left;
-  padding-left: 4px;
-}
-
-/* Column 5: meta */
-.gc-col-meta{
-  font-size: .72rem;
-  color: var(--text-light);
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: right;
-}
-
+.gc-col-status{display:flex;justify-content:center}
+.gc-col-home{font-size:18px;font-weight:600;color:var(--text-dark);text-align:right;padding-right:4px}
+.gc-col-score{text-align:center;font-family:var(--font-head);font-size:2.2rem;font-weight:800;color:var(--text-dark);line-height:1;white-space:nowrap;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.gc-col-score .gc-ko-time{font-size:1rem;font-weight:700;color:#1d4ed8;white-space:nowrap;font-family:var(--font-head)}
+.gc-score-min{font-size:0.72rem!important;font-weight:700;display:block;margin-top:2px;letter-spacing:0.03em;font-family:var(--font-head)}
+.gc-score-min.ft-min{color:#16a34a}
+.gc-score-min.live-min{color:#dc2626}
+.gc-col-away{font-size:18px;font-weight:600;color:var(--text-dark);text-align:left;padding-left:4px}
+.gc-col-meta{font-size:.72rem;color:var(--text-light);font-weight:600;line-height:1.5;text-align:right}
 .gc-status-pill{display:inline-block;padding:4px 8px;border-radius:999px;font-family:var(--font-head);font-size:.7rem;font-weight:800;text-align:center;white-space:nowrap}
 .gc-status-pill.upcoming{background:#dbeafe;color:#1d4ed8}
 .gc-status-pill.live{background:#fee2e2;color:#dc2626;animation:pulse-live 1.4s infinite}
 .gc-status-pill.finished{background:#dcfce7;color:#166534}
-
 .gc-match-link{display:block;text-align:center;padding:10px;font-family:var(--font-head);font-size:.82rem;font-weight:700;color:var(--blue-dark);border-top:1px solid rgba(0,0,0,.06);transition:background .15s}
 .gc-match-link:hover{background:rgba(37,99,235,.05)}
 .gc-vpn-bar{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);padding:10px 18px;font-size:.78rem;text-align:center;color:var(--text-mid);margin-top:24px}
@@ -241,9 +156,6 @@ a{text-decoration:none;color:inherit}
 .oc-headliner-info p{font-size:.72rem;color:var(--text-light)}
 .oc-others{font-size:.75rem;color:var(--text-mid);line-height:1.7;background:#f8faff;border-radius:8px;padding:8px 10px;border:1px solid #e2e8f0}
 .oc-others strong{color:var(--text-dark);display:block;margin-bottom:2px}
-.gc-friendly-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08)}
-.gc-friendly-head{background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.82rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-
 @media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sidebar-w)!important}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
@@ -355,8 +267,6 @@ a{text-decoration:none;color:inherit}
 
   <div class="gc-content">
     <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Football Live Scores, Fixtures and World Cup 2026</h1>
-
-
 
     <!-- LIVE MATCH CENTRE -->
     <div class="gc-section-label" id="gc-section-label">
@@ -477,7 +387,7 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <script>
-var TOURNEY_START = new Date('2026-06-11T19:00:00Z'); /* v2 */
+var TOURNEY_START = new Date('2026-06-11T19:00:00Z');
 var TOURNEY_END   = new Date('2026-07-20T01:00:00Z');
 
 var FIXTURES = [
@@ -499,7 +409,6 @@ function tickCountdown(){
   var now=new Date(), diff=TOURNEY_START-now;
   var label=document.getElementById('gc-cd-label');
   var digits=document.getElementById('gc-cd-digits');
-  var row=document.getElementById('gc-cd-row');
   var chip=document.getElementById('gc-days-chip');
   if(diff>0){
     var ts=Math.floor(diff/1000);
@@ -535,19 +444,15 @@ function renderMatches(){
   if(!box) return;
   box.innerHTML='';
   var now=new Date();
-  var toShow;
-  /* Get today in BST */
   var bstNow=new Date(now.getTime()+3600000);
   var todayBST=bstNow.getUTCFullYear()+'-'+String(bstNow.getUTCMonth()+1).padStart(2,'0')+'-'+String(bstNow.getUTCDate()).padStart(2,'0');
-
+  var toShow;
   if(now<TOURNEY_START){
-    /* Pre-tournament: show only WC matches happening TODAY in BST */
     toShow=FIXTURES.filter(function(f){
       var fBST=new Date(new Date(f.dt).getTime()+3600000);
       var fDate=fBST.getUTCFullYear()+'-'+String(fBST.getUTCMonth()+1).padStart(2,'0')+'-'+String(fBST.getUTCDate()).padStart(2,'0');
       return fDate===todayBST;
     });
-    /* If no WC matches today, show the very next upcoming WC match only */
     if(!toShow.length){
       var next=FIXTURES.find(function(f){return new Date(f.dt)>now;});
       if(next) toShow=[next];
@@ -567,17 +472,11 @@ function renderMatches(){
     if(now<ko){statusText='UPCOMING';statusClass='upcoming';}
     else if(now>=ko&&now<ft){statusText='LIVE';statusClass='live';}
     else{statusText='FT';statusClass='finished';}
-
-    /* BST time */
     var bst=new Date(ko.getTime()+3600000);
     var koStr=pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';
-
-    /* Date string */
     var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
-
-    /* Score centre */
     var centreHtml;
     if(statusText==='UPCOMING'){
       centreHtml='<div class="gc-col-score"><span class="gc-ko-time">'+koStr+'</span></div>';
@@ -589,7 +488,6 @@ function renderMatches(){
       else minStr='<span class="gc-score-min live-min">'+Math.min(90,elapsed)+"'</span>";
       centreHtml='<div class="gc-col-score">0–0'+minStr+'</div>';
     }
-
     var row=document.createElement('div');
     row.className='gc-match-row';
     row.innerHTML=
@@ -637,114 +535,6 @@ renderMatches();
 updateClock();
 setInterval(tickCountdown,1000);
 setInterval(function(){renderMatches();updateClock();},30000);
-
-
-(function(){
-  /* VERIFIED SCORES — hardcoded, done:true prevents any API override */
-  var FRIENDLY_DATA = {
-    '2026-06-10': {
-      matches: [
-        {h:'Argentina', a:'Iceland',    ko:'2026-06-10T01:00Z', score:'3-0', done:true},
-        {h:'Iraq',      a:'Venezuela',  ko:'2026-06-10T01:00Z', score:'0-2', done:true},
-        {h:'Senegal',   a:'Saudi Arabia',ko:'2026-06-10T01:00Z',score:'0-0', done:true},
-        {h:'Portugal',  a:'Nigeria',    ko:'2026-06-10T19:45Z'},
-        {h:'England',   a:'Costa Rica', ko:'2026-06-10T20:00Z'}
-      ]
-    }
-  };
-
-  function pad2(n){return String(n).padStart(2,'0');}
-
-  function toBSTDate(d){
-    var b=new Date(d.getTime()+3600000);
-    return b.getUTCFullYear()+'-'+pad2(b.getUTCMonth()+1)+'-'+pad2(b.getUTCDate());
-  }
-
-  function fmtKO(iso){
-    var b=new Date(new Date(iso).getTime()+3600000);
-    return pad2(b.getUTCHours())+':'+pad2(b.getUTCMinutes())+' BST';
-  }
-
-  function fmtDate(iso){
-    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var d=new Date(iso);
-    return days[d.getUTCDay()]+' '+d.getUTCDate()+' '+months[d.getUTCMonth()];
-  }
-
-  function getStatus(m){
-    if(m.done) return {text:'FT',cls:'finished'};
-    var now=new Date(),ko=new Date(m.ko);
-    var ft=new Date(ko.getTime()+115*60000);
-    if(now<ko) return {text:'UPCOMING',cls:'upcoming'};
-    if(now>=ko&&now<ft){
-      var el=(now-ko)/60000;
-      if(el>=45&&el<=50) return {text:'HT',cls:'live'};
-      return {text:'LIVE',cls:'live'};
-    }
-    return {text:'FT',cls:'finished'};
-  }
-
-  function render(){
-    var wrapper=document.getElementById('gc-friendly-wrapper');
-    if(!wrapper) return;
-    var now=new Date();
-    var today=toBSTDate(now);
-    if(today>='2026-06-11'){wrapper.innerHTML='';return;}
-    var data=FRIENDLY_DATA[today];
-    if(!data){wrapper.innerHTML='';return;}
-    var updated=pad2(now.getHours())+':'+pad2(now.getMinutes());
-
-    var rows=data.matches.map(function(m){
-      var s=getStatus(m);
-
-      /* Score centre column */
-      var centreHtml;
-      if(s.text==='UPCOMING'){
-        centreHtml='<div class="gc-col-score"><span class="gc-ko-time">'+fmtKO(m.ko)+'</span></div>';
-      } else {
-        var scoreDisplay = m.score || '0-0';
-        /* Convert hyphen to en-dash for display */
-        scoreDisplay = scoreDisplay.replace('-','–');
-        var minHtml='';
-        if(s.text==='LIVE'){
-          var el=Math.floor((now-new Date(m.ko))/60000);
-          minHtml='<span class="gc-score-min live-min">'+Math.min(90,el)+"'</span>";
-        } else if(s.text==='HT'){
-          minHtml='<span class="gc-score-min live-min">HT</span>';
-        } else {
-          minHtml='<span class="gc-score-min ft-min">FT</span>';
-        }
-        centreHtml='<div class="gc-col-score">'+scoreDisplay+minHtml+'</div>';
-      }
-
-      return '<div class="gc-match-row">'
-        +'<div class="gc-col-status"><span class="gc-status-pill '+s.cls+'">'+s.text+'</span></div>'
-        +'<div class="gc-col-home">'+m.h+'</div>'
-        +centreHtml
-        +'<div class="gc-col-away">'+m.a+'</div>'
-        +'<div class="gc-col-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'
-        +'</div>';
-    }).join('');
-
-    wrapper.innerHTML=
-      '<div class="gc-section-label" style="margin-top:0;margin-bottom:12px">'
-        +'<span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>'
-        +' Pre-WC Friendlies &mdash; WC Nations'
-      +'</div>'
-      +'<div class="gc-friendly-card">'
-        +'<div class="gc-friendly-head">'
-          +'<span>INTERNATIONAL FRIENDLIES</span>'
-          +'<span style="font-size:.68rem;opacity:.75">BST &middot; Updated '+updated+'</span>'
-        +'</div>'
-        +'<div>'+rows+'</div>'
-        +'<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" target="_blank" rel="noopener">Full results on ESPN &rarr;</a>'
-      +'</div>';
-  }
-
-  render();
-  setInterval(render,60000);
-})();
 </script>
 </body>
 </html>
