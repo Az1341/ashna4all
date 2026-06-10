@@ -1,108 +1,209 @@
+// api/scores.js — GoalCurrent.live
+// api-football v3 (api-sports.io) — PRO plan
+// Endpoints: fixtures, events, lineups, statistics, players
+// WC 2026 League ID: 1 | Season: 2026
+
+const API_KEY  = process.env.FOOTBALL_DATA_KEY;
+const BASE_URL = 'https://v3.football.api-sports.io';
+const WC_LEAGUE  = 1;
+const WC_SEASON  = 2026;
+const TOURNAMENT_START = new Date('2026-06-11T19:00:00Z');
+
+const reqHeaders = () => ({ 'x-apisports-key': API_KEY });
+
+function isTournamentLive() { return new Date() >= TOURNAMENT_START; }
+function todayUTC()         { return new Date().toISOString().split('T')[0]; }
+
+async function apiFetch(path) {
+  const res = await fetch(`${BASE_URL}${path}`, { headers: reqHeaders() });
+  if (!res.ok) throw new Error(`api-sports ${res.status} — ${path}`);
+  const json = await res.json();
+  if (json.errors && Object.keys(json.errors).length)
+    throw new Error(JSON.stringify(json.errors));
+  return json.response || [];
+}
+
+// ── formatters ────────────────────────────────────────────────────────────────
+
+function fmtFixture(f) {
+  return {
+    id:        f.fixture.id,
+    date:      f.fixture.date,
+    timestamp: f.fixture.timestamp,
+    venue:     f.fixture.venue?.name  || '',
+    city:      f.fixture.venue?.city  || '',
+    referee:   f.fixture.referee      || '',
+    status: {
+      long:    f.fixture.status.long,
+      short:   f.fixture.status.short,   // NS 1H HT 2H ET BT P FT AET PEN
+      elapsed: f.fixture.status.elapsed  // minute or null
+    },
+    league: {
+      id:    f.league.id,
+      name:  f.league.name,
+      round: f.league.round
+    },
+    home: { id: f.teams.home.id, name: f.teams.home.name, logo: f.teams.home.logo, winner: f.teams.home.winner },
+    away: { id: f.teams.away.id, name: f.teams.away.name, logo: f.teams.away.logo, winner: f.teams.away.winner },
+    goals:  { home: f.goals.home,              away: f.goals.away },
+    score: {
+      halftime:  { home: f.score.halftime?.home,  away: f.score.halftime?.away  },
+      fulltime:  { home: f.score.fulltime?.home,  away: f.score.fulltime?.away  },
+      extratime: { home: f.score.extratime?.home, away: f.score.extratime?.away },
+      penalty:   { home: f.score.penalty?.home,   away: f.score.penalty?.away   }
+    }
+  };
+}
+
+function fmtEvents(events) {
+  return events.map(e => ({
+    time:      e.time.elapsed,
+    extra:     e.time.extra   || null,
+    team:      { id: e.team.id,   name: e.team.name },
+    player:    { id: e.player.id, name: e.player.name },
+    assist:    e.assist?.name || null,
+    type:      e.type,    // Goal | Card | subst | Var
+    detail:    e.detail,  // Normal Goal | Own Goal | Penalty | Missed Penalty | Yellow Card | Red Card | Yellow Red Card
+    comments:  e.comments || null
+  }));
+}
+
+function fmtLineups(lineups) {
+  return lineups.map(l => ({
+    team:      { id: l.team.id, name: l.team.name, logo: l.team.logo },
+    coach:     { id: l.coach?.id, name: l.coach?.name, photo: l.coach?.photo },
+    formation: l.formation,
+    startXI: (l.startXI || []).map(p => ({
+      id:     p.player.id,
+      name:   p.player.name,
+      number: p.player.number,
+      pos:    p.player.pos,   // G D M F
+      grid:   p.player.grid   // "1:1" layout position
+    })),
+    substitutes: (l.substitutes || []).map(p => ({
+      id:     p.player.id,
+      name:   p.player.name,
+      number: p.player.number,
+      pos:    p.player.pos
+    }))
+  }));
+}
+
+function fmtStats(stats) {
+  return stats.map(s => ({
+    team: { id: s.team.id, name: s.team.name },
+    data: (s.statistics || []).reduce((acc, item) => {
+      const key = item.type.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+      acc[key] = item.value;
+      return acc;
+    }, {})
+    // Available keys: ball_possession, total_shots, shots_on_goal, shots_off_goal,
+    // blocked_shots, shots_insidebox, shots_outsidebox, fouls, corner_kicks,
+    // offsides, yellow_cards, red_cards, goalkeeper_saves, total_passes,
+    // passes_accurate, passes_
+  }));
+}
+
+function fmtPlayers(players) {
+  // players endpoint returns array of {team, players:[{player,statistics}]}
+  return players.map(teamData => ({
+    team: { id: teamData.team.id, name: teamData.team.name, logo: teamData.team.logo },
+    players: (teamData.players || []).map(p => {
+      const s = p.statistics?.[0] || {};
+      return {
+        id:       p.player.id,
+        name:     p.player.name,
+        photo:    p.player.photo,
+        number:   s.games?.number,
+        pos:      s.games?.position,
+        rating:   s.games?.rating,
+        minutes:  s.games?.minutes,
+        captain:  s.games?.captain,
+        goals: {
+          total:   s.goals?.total,
+          assists: s.goals?.assists,
+          saves:   s.goals?.saves,
+          conceded:s.goals?.conceded
+        },
+        shots:    { total: s.shots?.total, on: s.shots?.on },
+        passes:   { total: s.passes?.total, key: s.passes?.key, accuracy: s.passes?.accuracy },
+        tackles:  { total: s.tackles?.total, blocks: s.tackles?.blocks, interceptions: s.tackles?.interceptions },
+        duels:    { total: s.duels?.total, won: s.duels?.won },
+        dribbles: { attempts: s.dribbles?.attempts, success: s.dribbles?.success },
+        fouls:    { drawn: s.fouls?.drawn, committed: s.fouls?.committed },
+        cards:    { yellow: s.cards?.yellow, yellowred: s.cards?.yellowred, red: s.cards?.red },
+        penalty:  { won: s.penalty?.won, committed: s.penalty?.committed, scored: s.penalty?.scored, missed: s.penalty?.missed, saved: s.penalty?.saved }
+      };
+    })
+  }));
+}
+
+// ── route handlers ────────────────────────────────────────────────────────────
+
+async function getByDate(date) {
+  const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&date=${date}&timezone=Europe/London`);
+  return raw.map(fmtFixture);
+}
+
+async function getLive() {
+  const raw = await apiFetch(`/fixtures?live=${WC_LEAGUE}`);
+  return raw.map(fmtFixture);
+}
+
+async function getDetail(id) {
+  const [fixtureRaw, eventsRaw, lineupsRaw, statsRaw, playersRaw] = await Promise.all([
+    apiFetch(`/fixtures?id=${id}`),
+    apiFetch(`/fixtures/events?fixture=${id}`),
+    apiFetch(`/fixtures/lineups?fixture=${id}`),
+    apiFetch(`/fixtures/statistics?fixture=${id}`),
+    apiFetch(`/fixtures/players?fixture=${id}`)
+  ]);
+
+  const fixture = fixtureRaw[0];
+  if (!fixture) return null;
+
+  return {
+    fixture:    fmtFixture(fixture),
+    events:     fmtEvents(eventsRaw),
+    lineups:    fmtLineups(lineupsRaw),
+    statistics: fmtStats(statsRaw),
+    players:    fmtPlayers(playersRaw)
+  };
+}
+
+// ── main handler ──────────────────────────────────────────────────────────────
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Cache-Control', 'no-store');
 
-  var key     = process.env.FOOTBALL_DATA_KEY;
-  var date    = req.query.date || new Date().toISOString().slice(0,10);
-  var matchId = req.query.id   || null;
+  if (!API_KEY) return res.status(500).json({ error: 'API key not configured' });
 
-  /* ── MATCH DETAIL (for cards + scorers) ── */
-  if(matchId && key){
-    try {
-      var r = await fetch(
-        'https://api.football-data.org/v4/matches/'+matchId,
-        {headers:{'X-Auth-Token':key}}
-      );
-      return res.status(200).json(await r.json());
-    } catch(e){
-      return res.status(200).json({error:'unavailable'});
+  const { id, live, date } = req.query;
+
+  try {
+    // Full match detail — fixture + events + lineups + stats + players
+    if (id) {
+      const detail = await getDetail(id);
+      if (!detail) return res.status(404).json({ error: 'Match not found' });
+      return res.status(200).json(detail);
     }
-  }
 
-  /* ── WC MATCHES (11 June onwards) ── */
-  if(key && date >= '2026-06-11'){
-    try {
-      var r2 = await fetch(
-        'https://api.football-data.org/v4/competitions/WC/matches?dateFrom='+date+'&dateTo='+date,
-        {headers:{'X-Auth-Token':key}}
-      );
-      var wc = await r2.json();
-      if(wc.matches && wc.matches.length > 0){
-        return res.status(200).json(wc);
-      }
-    } catch(e){}
-  }
-
-  /* ── PRE-TOURNAMENT FRIENDLIES (before 11 June) ──
-     Use TheSportsDB — free, no key, covers international friendlies
-     Runs server-side so no CORS issue                              */
-  if(date < '2026-06-11'){
-    try {
-      var r3 = await fetch(
-        'https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d='+date+'&s=Soccer'
-      );
-      var tsdb = await r3.json();
-      var events = (tsdb.events || []);
-
-      /* Filter to WC nations only — no women's or irrelevant matches */
-      var WC_NATIONS = [
-        'mexico','south africa','korea republic','czechia','czech republic',
-        'canada','bosnia','qatar','switzerland','brazil','morocco','haiti',
-        'scotland','usa','united states','paraguay','australia','turkey','türkiye',
-        'germany','ivory coast','cote d\'ivoire','ecuador','curacao','curaçao',
-        'netherlands','japan','sweden','tunisia','belgium','egypt','iran',
-        'new zealand','spain','cape verde','cabo verde','saudi arabia','uruguay',
-        'france','senegal','iraq','norway','argentina','algeria','austria',
-        'jordan','portugal','dr congo','congo dr','uzbekistan','colombia',
-        'england','croatia','ghana','panama','iceland','nigeria','costa rica',
-        'venezuela','india','chile','peru'
-      ];
-
-      var filtered = events.filter(function(ev){
-        var h = (ev.strHomeTeam||'').toLowerCase();
-        var a = (ev.strAwayTeam||'').toLowerCase();
-        /* Skip women's matches */
-        if(h.includes('women')||a.includes('women')||
-           h.includes('ladies')||a.includes('ladies')||
-           h.includes('w)')||a.includes('w)')) return false;
-        /* Must involve at least one WC nation */
-        var hWC = WC_NATIONS.some(function(n){return h.includes(n);});
-        var aWC = WC_NATIONS.some(function(n){return a.includes(n);});
-        return hWC || aWC;
-      });
-
-      /* Format to match football-data.org structure */
-      var matches = filtered.map(function(ev){
-        var hs = ev.intHomeScore;
-        var as = ev.intAwayScore;
-        var st = (ev.strStatus||'').toUpperCase();
-        var status = 'TIMED';
-        if(st === 'FT' || st === 'MATCH FINISHED' || st === 'AET') status = 'FINISHED';
-        else if(st === 'HT' || st === 'HALF TIME') status = 'PAUSED';
-        else if(st === 'NS' || st === '' || st === 'NOT STARTED') status = 'TIMED';
-        else if(!isNaN(parseInt(st))) status = 'IN_PLAY';
-
-        return {
-          id:       ev.idEvent,
-          status:   status,
-          minute:   !isNaN(parseInt(st)) ? parseInt(st) : null,
-          homeTeam: {name: ev.strHomeTeam || ''},
-          awayTeam: {name: ev.strAwayTeam || ''},
-          score: {
-            fullTime: {
-              home: (hs !== null && hs !== '') ? parseInt(hs) : null,
-              away: (as !== null && as !== '') ? parseInt(as) : null
-            },
-            halfTime: {home: null, away: null}
-          }
-        };
-      });
-
-      return res.status(200).json({matches: matches, source: 'tsdb'});
-    } catch(e){
-      return res.status(200).json({error:'unavailable'});
+    // Live matches right now
+    if (live === 'true') {
+      if (!isTournamentLive()) return res.status(200).json({ matches: [], phase: 'pre-tournament' });
+      const matches = await getLive();
+      return res.status(200).json({ matches, phase: 'live' });
     }
-  }
 
-  return res.status(200).json({matches:[], error:'unavailable'});
+    // Fixtures by date (defaults to today)
+    const targetDate = date || todayUTC();
+    const matches = await getByDate(targetDate);
+    return res.status(200).json({ matches, date: targetDate, phase: isTournamentLive() ? 'tournament' : 'pre-tournament' });
+
+  } catch (err) {
+    console.error('[scores proxy]', err.message);
+    return res.status(500).json({ error: 'Failed to fetch match data' });
+  }
 }
