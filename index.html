@@ -1178,117 +1178,240 @@ setInterval(tickCountdown, 1000);
 setInterval(function() { renderMatches(); updateClock(); }, 30000);
 
 (function(){
+  /* ── PRE-TOURNAMENT FRIENDLIES (hides 11 June when WC starts) ── */
   var FRIENDLY_DATA = {
     '2026-06-09': {
-      label: 'Friendly - Tue 9 June 2026',
+      label: 'Friendly — Tue 9 June 2026',
       matches: [
-        {h:'Peru',     a:'Spain',     ko:'2026-06-09T10:00Z', score:'1-3', done:true},
-        {h:'Congo DR', a:'Chile',     ko:'2026-06-09T16:00Z'},
+        {h:'Senegal',   a:'Saudi Arabia', ko:'2026-06-09T23:00Z'},
+        {h:'Congo DR',  a:'Chile',        ko:'2026-06-09T16:00Z'},
+        {h:'Peru',      a:'Spain',        ko:'2026-06-09T10:00Z', score:'1-3', done:true},
       ]
     },
     '2026-06-10': {
-      label: 'Friendly - Wed 10 June 2026',
+      label: 'Friendly — Wed 10 June 2026',
       matches: [
-        {h:'Saudi Arabia', a:'Senegal',    ko:'2026-06-09T23:00Z'},
-        {h:'Argentina',    a:'Iceland',    ko:'2026-06-10T01:00Z'},
-        {h:'Iraq',         a:'Venezuela',  ko:'2026-06-10T01:00Z'},
-        {h:'Portugal',     a:'Nigeria',    ko:'2026-06-10T19:45Z'},
-        {h:'England',      a:'Costa Rica', ko:'2026-06-10T20:00Z'},
+        {h:'Argentina', a:'Iceland',    ko:'2026-06-10T01:00Z'},
+        {h:'Iraq',      a:'Venezuela',  ko:'2026-06-10T01:00Z'},
+        {h:'Portugal',  a:'Nigeria',    ko:'2026-06-10T19:45Z'},
+        {h:'England',   a:'Costa Rica', ko:'2026-06-10T20:00Z'},
       ]
     }
   };
 
-  var API_UNAVAILABLE = false;
+  /* ── LIVE SCORE CACHE from TheSportsDB ── */
+  var TSDB_CACHE = {};
+
   function pad(n){ return String(n).padStart(2,'0'); }
-  function toBSTDate(d){var bst=new Date(d.getTime()+3600000);return bst.getUTCFullYear()+'-'+pad(bst.getUTCMonth()+1)+'-'+pad(bst.getUTCDate());}
-  function fmtKO(iso){var bst=new Date(new Date(iso).getTime()+3600000);return pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';}
-  function fmtDate(iso){var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var bst=new Date(new Date(iso).getTime()+3600000);return days[bst.getUTCDay()]+' '+bst.getUTCDate()+' '+months[bst.getUTCMonth()];}
-  function getStatus(m){
-    if(m.done) return {text:'FT',cls:'finished'};
-    if(m.liveStatus==='PAUSED') return {text:'HT',cls:'live'};
-    var now=new Date(),ko=new Date(m.ko),ft=new Date(ko.getTime()+110*60000);
-    if(now<ko) return {text:'UPCOMING',cls:'upcoming'};
-    if(now>=ko&&now<ft) return {text:'LIVE',cls:'live'};
-    return {text:'FT',cls:'finished'};
+
+  function toBSTDate(d){
+    var b=new Date(d.getTime()+3600000);
+    return b.getUTCFullYear()+'-'+pad(b.getUTCMonth()+1)+'-'+pad(b.getUTCDate());
   }
 
+  function fmtKO(iso){
+    var b=new Date(new Date(iso).getTime()+3600000);
+    return pad(b.getUTCHours())+':'+pad(b.getUTCMinutes())+' BST';
+  }
+
+  function fmtDate(iso){
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var b=new Date(new Date(iso).getTime()+3600000);
+    return days[b.getUTCDay()]+' '+b.getUTCDate()+' '+months[b.getUTCMonth()];
+  }
+
+  function getLiveMinute(ko){
+    var elapsed = (Date.now() - new Date(ko).getTime()) / 60000;
+    if(elapsed <= 45) return Math.floor(elapsed)+"'";
+    if(elapsed <= 50) return 'HT';
+    if(elapsed <= 95) return Math.min(90, Math.floor(elapsed))+"'";
+    return '90+';
+  }
+
+  function getStatus(m){
+    if(m.done) return {text:'FT', cls:'finished'};
+    var now=new Date(), ko=new Date(m.ko);
+    var ft=new Date(ko.getTime()+115*60000);
+    if(now < ko) return {text:'UPCOMING', cls:'upcoming'};
+    if(now >= ko && now < ft){
+      var elapsed=(now-ko)/60000;
+      if(elapsed>=45&&elapsed<=50) return {text:'HT', cls:'live'};
+      return {text:'LIVE', cls:'live'};
+    }
+    return {text:'FT', cls:'finished'};
+  }
+
+  /* ── FETCH FROM TheSportsDB (browser-side, CORS works) ── */
   function fetchLiveScores(){
-    var today=toBSTDate(new Date());
-    fetch('/api/scores?date='+today)
-    .then(function(r){if(!r.ok)throw new Error('fail');return r.json();})
+    var today = toBSTDate(new Date());
+    if(today >= '2026-06-11') return; /* WC started — no friendlies */
+
+    fetch('https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d='+today+'&s=Soccer')
+    .then(function(r){ return r.json(); })
     .then(function(data){
-      if(data.error){API_UNAVAILABLE=true;render();return;}
-      API_UNAVAILABLE=false;
-      (data.matches||[]).forEach(function(m){
-        var hName=((m.homeTeam||{}).name||'').toLowerCase();
-        var aName=((m.awayTeam||{}).name||'').toLowerCase();
-        var hs=m.score&&m.score.fullTime?m.score.fullTime.home:null;
-        var as_=m.score&&m.score.fullTime?m.score.fullTime.away:null;
-        var ht_h=m.score&&m.score.halfTime?m.score.halfTime.home:null;
-        var ht_a=m.score&&m.score.halfTime?m.score.halfTime.away:null;
-        var status=m.status||'';
-        Object.keys(FRIENDLY_DATA).forEach(function(date){
-          FRIENDLY_DATA[date].matches.forEach(function(fx){
-            var mh=fx.h.toLowerCase(),ma=fx.a.toLowerCase();
-            if((hName.indexOf(mh)!==-1||mh.indexOf(hName)!==-1)&&(aName.indexOf(ma)!==-1||ma.indexOf(aName)!==-1)){
-              if(status==='IN_PLAY'){fx.score=hs+'-'+as_;fx.liveStatus='IN_PLAY';}
-              else if(status==='PAUSED'){fx.score=(ht_h||0)+'-'+(ht_a||0);fx.liveStatus='PAUSED';}
-              else if(status==='FINISHED'){fx.score=(hs||0)+'-'+(as_||0);fx.done=true;}
+      var events = data.events || [];
+      events.forEach(function(ev){
+        /* Skip women's matches */
+        var h=(ev.strHomeTeam||''), a=(ev.strAwayTeam||'');
+        if(h.toLowerCase().includes('women')||a.toLowerCase().includes('women')) return;
+
+        var hs  = ev.intHomeScore;
+        var as_ = ev.intAwayScore;
+        var st  = (ev.strStatus||'').toUpperCase();
+        var key = h.toLowerCase()+'|'+a.toLowerCase();
+        var rkey= a.toLowerCase()+'|'+h.toLowerCase();
+
+        /* Parse events from strProgress for yellow/red cards */
+        var events_arr = [];
+        var prog = ev.strProgress || '';
+        /* TheSportsDB strProgress contains event text like "45' Yellow Card - Player" */
+        if(prog){
+          var lines = prog.split('\n');
+          lines.forEach(function(line){
+            line = line.trim();
+            if(!line) return;
+            var minMatch = line.match(/^(\d+)'/);
+            var min = minMatch ? minMatch[1]+"'" : '';
+            if(line.toLowerCase().includes('yellow')){
+              var player = line.replace(/^\d+'\s*/,'').replace(/yellow card\s*[-–]\s*/i,'').trim();
+              events_arr.push({type:'yellow', min:min, player:player});
+            } else if(line.toLowerCase().includes('red')){
+              var player2 = line.replace(/^\d+'\s*/,'').replace(/red card\s*[-–]\s*/i,'').trim();
+              events_arr.push({type:'red', min:min, player:player2});
+            } else if(line.toLowerCase().includes('goal')||line.match(/\d+-\d+/)){
+              var player3 = line.replace(/^\d+'\s*/,'').replace(/goal\s*[-–]\s*/i,'').trim();
+              events_arr.push({type:'goal', min:min, player:player3});
             }
           });
-        });
+        }
+
+        var scoreData = {
+          homeScore: (hs!==null&&hs!=='') ? parseInt(hs) : null,
+          awayScore: (as_!==null&&as_!=='') ? parseInt(as_) : null,
+          status: st,
+          events: events_arr
+        };
+        TSDB_CACHE[key]  = scoreData;
+        TSDB_CACHE[rkey] = {
+          homeScore: scoreData.awayScore,
+          awayScore: scoreData.homeScore,
+          status:    scoreData.status,
+          events:    events_arr
+        };
       });
       render();
     })
-    .catch(function(){API_UNAVAILABLE=true;render();});
+    .catch(function(){ render(); });
   }
 
   fetchLiveScores();
-  setInterval(fetchLiveScores,60000);
+  setInterval(fetchLiveScores, 60000);
 
+  /* ── RENDER ── */
   function render(){
-    var wrapper=document.getElementById('gc-friendly-wrapper');
+    var wrapper = document.getElementById('gc-friendly-wrapper');
     if(!wrapper) return;
-    var now=new Date(),today=toBSTDate(now),tmrw=toBSTDate(new Date(now.getTime()+86400000));
-    if(today>='2026-06-11'){wrapper.innerHTML='';return;}
-    var data=FRIENDLY_DATA[today]||FRIENDLY_DATA[tmrw];
-    if(!data){wrapper.innerHTML='';return;}
 
-    var banner=API_UNAVAILABLE
-      ? '<div style="font-size:.78rem;color:#92400e;background:#fef3c7;border-radius:6px;padding:8px 12px;margin-bottom:8px">Live scores are temporarily unavailable. World Cup fixtures remain available below.</div>'
-      : '';
+    var now   = new Date();
+    var today = toBSTDate(now);
+    var tmrw  = toBSTDate(new Date(now.getTime()+86400000));
 
-    var updated=pad(now.getHours())+':'+pad(now.getMinutes());
-    var rows=data.matches.map(function(m){
-      var s=getStatus(m);
-      var mid=m.score
-        ? '<div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--text-dark);text-align:center;min-width:48px">'+m.score+'</div>'
-        : '<div style="font-size:.75rem;font-weight:700;color:var(--text-light);text-align:center;min-width:48px">'+fmtKO(m.ko)+'</div>';
-      return '<div class="gc-match-row">'+
-        '<div><span class="gc-status-pill '+s.cls+'">'+s.text+'</span></div>'+
-        '<div class="gc-match-teams"><strong>'+m.h+'</strong>'+mid+'<strong>'+m.a+'</strong></div>'+
-        '<div class="gc-match-meta">'+fmtDate(m.ko)+'<br>Friendly</div>'+
-        '</div>';
+    if(today >= '2026-06-11'){ wrapper.innerHTML=''; return; }
+
+    var data = FRIENDLY_DATA[today] || FRIENDLY_DATA[tmrw];
+    if(!data){ wrapper.innerHTML=''; return; }
+
+    var updated = pad(now.getHours())+':'+pad(now.getMinutes());
+
+    var rows = data.matches.map(function(m){
+      var s   = getStatus(m);
+      var key = m.h.toLowerCase()+'|'+m.a.toLowerCase();
+      var cached = TSDB_CACHE[key] || {};
+
+      /* Score: use cached, or m.score, or default to 0-0 if live */
+      var scoreStr = '';
+      if(m.done && m.score){
+        scoreStr = m.score;
+      } else if(cached.homeScore !== null && cached.homeScore !== undefined){
+        scoreStr = cached.homeScore + '-' + cached.awayScore;
+        if(cached.status==='FT'||cached.status==='MATCH FINISHED') m.done=true;
+      } else if(s.text==='LIVE'||s.text==='HT'){
+        scoreStr = '0-0'; /* Default until API responds */
+      }
+
+      /* Minute */
+      var minStr = '';
+      if(s.text==='LIVE') minStr = getLiveMinute(m.ko);
+      else if(s.text==='HT') minStr = 'HT';
+      else if(s.text==='FT') minStr = 'FT';
+
+      /* Centre display */
+      var centreHtml = '';
+      if(s.text==='UPCOMING'){
+        centreHtml = '<div style="text-align:center;min-width:64px">'
+          +'<div style="font-size:.75rem;font-weight:700;color:var(--text-light)">'+fmtKO(m.ko)+'</div>'
+          +'</div>';
+      } else {
+        centreHtml = '<div style="text-align:center;min-width:64px">'
+          +'<div style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--text-dark);line-height:1;letter-spacing:-1px">'
+            + (scoreStr||'0-0')
+          +'</div>'
+          +(minStr ? '<div style="font-size:.82rem;font-weight:700;color:'
+            +(s.text==='LIVE'?'#ef4444':'#64748b')
+            +';margin-top:3px">'+minStr+'</div>' : '')
+          +'</div>';
+      }
+
+      /* Events (yellow/red cards, goals) */
+      var eventsHtml = '';
+      if(cached.events && cached.events.length){
+        var evLines = cached.events.map(function(ev){
+          var icon = ev.type==='yellow' ? '🟨'
+                   : ev.type==='red'    ? '🟥'
+                   : '⚽';
+          return '<span style="font-size:12px;color:#475569">'+icon+' '+ev.min+' '+ev.player+'</span>';
+        }).join('&nbsp;&nbsp;');
+        eventsHtml = '<div style="padding:4px 12px 8px;font-size:12px;line-height:2;border-top:1px solid rgba(0,0,0,.06)">'
+          +evLines+'</div>';
+      }
+
+      /* Status pill */
+      var pillHtml = '<span class="gc-status-pill '+s.cls+'">'
+        +(s.text==='LIVE' ? 'LIVE' : s.text)
+        +'</span>';
+
+      return '<div class="gc-match-row" style="display:block;padding:0">'
+        +'<div style="display:flex;align-items:center;gap:8px;padding:8px 12px">'
+        +'<div>'+pillHtml+'</div>'
+        +'<div class="gc-match-teams">'
+          +'<strong>'+m.h+'</strong>'
+          +centreHtml
+          +'<strong>'+m.a+'</strong>'
+        +'</div>'
+        +'<div class="gc-match-meta" style="white-space:nowrap">'+fmtDate(m.ko)+'<br>Friendly</div>'
+        +'</div>'
+        +eventsHtml
+        +'</div>';
     }).join('');
 
-    wrapper.innerHTML=
-      '<div class="gc-section-label" style="margin-top:0;margin-bottom:12px">'+
-        '<span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>'+
-        'Pre-tournament Friendlies - WC Nations'+
-      '</div>'+
-      '<div class="gc-friendly-card">'+
-        '<div class="gc-friendly-head">'+
-          '<span>INTERNATIONAL FRIENDLIES</span>'+
-          '<span style="font-size:.68rem;opacity:.75">BST - Updated '+updated+'</span>'+
-        '</div>'+
-        banner+
-        '<div>'+rows+'</div>'+
-        '<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" target="_blank" rel="noopener">Full results on ESPN</a>'+
-      '</div>';
+    wrapper.innerHTML =
+      '<div class="gc-section-label" style="margin-top:0;margin-bottom:12px">'
+        +'<span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>'
+        +' Pre-WC Friendlies &mdash; WC Nations'
+      +'</div>'
+      +'<div class="gc-friendly-card">'
+        +'<div class="gc-friendly-head">'
+          +'<span>INTERNATIONAL FRIENDLIES</span>'
+          +'<span style="font-size:.68rem;opacity:.75">BST &middot; Updated '+updated+'</span>'
+        +'</div>'
+        +'<div>'+rows+'</div>'
+        +'<a class="gc-match-link" href="https://www.espn.com/soccer/schedule/_/league/fifa.friendly" target="_blank" rel="noopener">Full results on ESPN &rarr;</a>'
+      +'</div>';
   }
 
   render();
-  setInterval(render,60000);
+  setInterval(render, 60000);
 })();
 
 </script>
