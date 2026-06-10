@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderCal();
   // Small delay ensures calendar renders before showDay highlights
   setTimeout(()=>showDay(selDate),50);
-  if(API_KEY)loadLiveData();
+  loadLiveData();
   if(API_KEY&&'Notification'in window&&Notification.permission==='granted')startLiveEventPolling();
 });
 function renderCal(){
