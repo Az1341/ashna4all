@@ -48,41 +48,86 @@ body.rtl .gc-col-away { text-align: right; }
 body.rtl .gc-col-meta { text-align: left; }
 body.rtl .sidebar-footer-social { flex-direction: row-reverse; }
 
-/* Language bar */
+/* Language dropdown */
 .lang-bar {
   background: linear-gradient(135deg, #001a4d, #002b80);
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding: 6px 16px;
+  padding: 5px 16px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  justify-content: flex-end;
   position: sticky;
   top: 0;
   z-index: 999;
 }
-.lang-bar-label {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.5);
-  font-weight: 600;
-  margin-right: 4px;
-  white-space: nowrap;
+body.rtl .lang-bar { justify-content: flex-start; }
+
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
 }
-.lang-btn {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+.lang-dropdown-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 0.75rem;
+  padding: 5px 14px;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.65);
+  color: #fff;
   cursor: pointer;
-  transition: all 0.15s;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
   font-family: var(--font-main);
+  white-space: nowrap;
 }
-.lang-btn:hover { background: rgba(255,255,255,0.16); color: #fff; }
-.lang-btn.active { background: var(--gold); border-color: var(--gold); color: #0f172a; }
+.lang-dropdown-btn:hover { background: rgba(255,255,255,0.18); }
+.lang-dropdown-btn .lang-arrow {
+  font-size: 0.6rem;
+  opacity: 0.7;
+  transition: transform 0.2s;
+}
+.lang-dropdown.open .lang-arrow { transform: rotate(180deg); }
+
+.lang-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #001a4d;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  min-width: 160px;
+  z-index: 1000;
+}
+body.rtl .lang-dropdown-menu { right: auto; left: 0; }
+.lang-dropdown.open .lang-dropdown-menu { display: block; }
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-main);
+  white-space: nowrap;
+}
+body.rtl .lang-option { text-align: right; flex-direction: row-reverse; }
+.lang-option:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.lang-option.active { background: rgba(245,158,11,0.15); color: var(--gold); }
+.lang-option .lang-flag { font-size: 1rem; }
+.lang-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 2px 0; }
 
 /* Persian/Arabic font override */
 body.rtl .lang-btn,
@@ -267,16 +312,25 @@ body.rtl #gc-hamburger { left: auto; right: 14px; }
 </head>
 <body>
 
-<!-- LANGUAGE BAR -->
+<!-- LANGUAGE DROPDOWN -->
 <div class="lang-bar" id="lang-bar">
-  <span class="lang-bar-label" id="lang-bar-label">🌍 Language:</span>
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('fa')">🇮🇷 فارسی</button>
-  <button class="lang-btn" onclick="setLang('es')">🇪🇸 Español</button>
-  <button class="lang-btn" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-btn" onclick="setLang('nl')">🇳🇱 Nederlands</button>
-  <button class="lang-btn" onclick="setLang('de')">🇩🇪 Deutsch</button>
-  <button class="lang-btn" onclick="setLang('ar')">🇸🇦 العربية</button>
+  <div class="lang-dropdown" id="lang-dropdown">
+    <button class="lang-dropdown-btn" id="lang-dropdown-btn" onclick="toggleLangMenu()" aria-haspopup="true" aria-expanded="false">
+      <span id="lang-current-flag">🇬🇧</span>
+      <span id="lang-current-name">English</span>
+      <span class="lang-arrow">▼</span>
+    </button>
+    <div class="lang-dropdown-menu" id="lang-dropdown-menu" role="menu">
+      <button class="lang-option active" onclick="setLang('en')" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+      <button class="lang-option" onclick="setLang('fa')" data-lang="fa"><span class="lang-flag">🇮🇷</span> فارسی</button>
+      <button class="lang-option" onclick="setLang('es')" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+      <button class="lang-option" onclick="setLang('fr')" data-lang="fr"><span class="lang-flag">🇫🇷</span> Français</button>
+      <button class="lang-option" onclick="setLang('nl')" data-lang="nl"><span class="lang-flag">🇳🇱</span> Nederlands</button>
+      <button class="lang-option" onclick="setLang('de')" data-lang="de"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+      <div class="lang-divider"></div>
+      <button class="lang-option" onclick="setLang('ar')" data-lang="ar"><span class="lang-flag">🇸🇦</span> العربية</button>
+    </div>
+  </div>
 </div>
 
 <button id="gc-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -808,6 +862,17 @@ function t(key) {
     : (TRANSLATIONS['en'][key] || key);
 }
 
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if(dd) dd.classList.toggle('open');
+}
+
+/* Close dropdown when clicking outside */
+document.addEventListener('click', function(e) {
+  var dd = document.getElementById('lang-dropdown');
+  if(dd && !dd.contains(e.target)) dd.classList.remove('open');
+});
+
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('gc_lang', lang);
@@ -820,18 +885,30 @@ function applyLang() {
   document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
   document.body.classList.toggle('rtl', isRTL);
 
-  /* Update all lang buttons */
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.classList.remove('active');
-  });
-  var btns = document.querySelectorAll('.lang-btn');
-  var langOrder = ['en','fa','es','fr','nl','de','ar'];
-  var idx = langOrder.indexOf(currentLang);
-  if (btns[idx]) btns[idx].classList.add('active');
+  /* Update dropdown button display */
+  var LANG_META = {
+    en:{flag:'🇬🇧', name:'English'},
+    fa:{flag:'🇮🇷', name:'فارسی'},
+    es:{flag:'🇪🇸', name:'Español'},
+    fr:{flag:'🇫🇷', name:'Français'},
+    nl:{flag:'🇳🇱', name:'Nederlands'},
+    de:{flag:'🇩🇪', name:'Deutsch'},
+    ar:{flag:'🇸🇦', name:'العربية'}
+  };
+  var meta = LANG_META[currentLang] || LANG_META['en'];
+  var flagEl = document.getElementById('lang-current-flag');
+  var nameEl = document.getElementById('lang-current-name');
+  if(flagEl) flagEl.textContent = meta.flag;
+  if(nameEl) nameEl.textContent = meta.name;
 
-  /* Update lang bar label */
-  var lbl = document.getElementById('lang-bar-label');
-  if (lbl) lbl.textContent = t('lang_label');
+  /* Update active option */
+  document.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.classList.toggle('active', opt.getAttribute('data-lang') === currentLang);
+  });
+
+  /* Close dropdown */
+  var dd = document.getElementById('lang-dropdown');
+  if(dd) dd.classList.remove('open');
 
   /* Translate all data-i18n elements */
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
