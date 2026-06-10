@@ -517,7 +517,7 @@ function openSidebar(){document.getElementById('gcSidebar').classList.add('open'
 function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
 function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 
-const API_KEY=localStorage.getItem('fd_key')||'';
+const API_BASE='https://api.football-data.org/v4';
 const API_BASE='https://api.football-data.org/v4';
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const DOWS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
