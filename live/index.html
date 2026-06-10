@@ -383,7 +383,10 @@ function buildCard(m){
     var ag=m.awayGoals!=null?m.awayGoals:0;
     var minHtml='';
     if(live){
-      var minLabel=status==='HT'?'HT':(m.elapsed?m.elapsed+"'":'LIVE');
+      var minLabel;
+      if(status==='HT') minLabel='HT';
+      else if(m.elapsed) minLabel=m.elapsed+"'";
+      else { var calcMin=Math.floor((new Date()-new Date(m.ko))/60000); minLabel=Math.min(90,calcMin)+"'"; }
       minHtml='<span class="mc-min live-m">'+minLabel+'</span>';
     } else if(ft){
       minHtml='<span class="mc-min ft-m">FT</span>';
