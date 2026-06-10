@@ -1,389 +1,1395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#1a1f2e">
+  <title>Premier League Table 2026/27 | GoalCurrent.live</title>
+  <meta name="description" content="Live Premier League table 2026/27 — standings, form, home/away records. Updated automatically from official data.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://goalcurrent.live/premier-league/table/">
-  <title>Premier League Table 2025/26 — Final Standings | GoalCurrent.live</title>
-  <meta name="description" content="Premier League final table 2025/26. Arsenal champions 85 points. Full standings after GW38, 24 May 2026. European qualification confirmed.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+  <meta property="og:title" content="Premier League Table 2026/27 | GoalCurrent.live">
+  <meta property="og:description" content="Live Premier League 2026/27 standings — points, goal difference, form.">
+  <meta property="og:image" content="https://www.goalcurrent.live/logo.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.goalcurrent.live/premier-league/table/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1a1f2e">
+  <link rel="canonical" href="https://www.goalcurrent.live/premier-league/table/">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X84HCE5KGT');
+  </script>
+
   <style>
+    /* ============================================================
+       GOALCURRENT.LIVE — STANDARD COLOUR SCHEME (DO NOT CHANGE)
+       Body:    light blue/white gradient  #dbeafe / #eff6ff / #e0f2fe
+       Sidebar: dark navy                  #07111f / #0b1628
+       Header:  dark blue                  #001a4d / #002b80 / #003fb8
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --sb-w:240px; --sb-bg:#1a1f2e;
-      --sb-border:rgba(255,255,255,0.08);
-      --sb-hover:rgba(255,255,255,0.07);
-      --sb-active:rgba(37,99,235,0.22);
-      --sb-text:rgba(255,255,255,0.78);
-      --sb-text-dim:rgba(255,255,255,0.38);
-      --sb-accent:#3b82f6;
-      --ucl:#2563eb; --el:#d97706; --ecl:#16a34a; --rel:#dc2626;
+      --body-bg:        #eff6ff;
+      --body-bg-2:      #dbeafe;
+      --sidebar-bg:     #07111f;
+      --sidebar-bg-2:   #0b1628;
+      --header-bg:      #001a4d;
+      --header-bg-2:    #003fb8;
+      --accent:         #3b82f6;
+      --accent-dark:    #1d4ed8;
+      --text-dark:      #0f172a;
+      --text-mid:       #334155;
+      --text-light:     #94a3b8;
+      --text-white:     #f1f5f9;
+      --border:         #cbd5e1;
+      --card-bg:        #ffffff;
+      --row-hover:      #f0f7ff;
+
+      /* Zone colours */
+      --ucl-color:      #1d4ed8;
+      --uel-color:      #16a34a;
+      --uecl-color:     #d97706;
+      --rel-color:      #dc2626;
+      --rel-bg:         #fff1f1;
+
+      /* Form pill */
+      --form-w:         #16a34a;
+      --form-d:         #64748b;
+      --form-l:         #dc2626;
+
+      --sidebar-width:  260px;
+      --header-height:  60px;
+      --radius:         8px;
+      --shadow:         0 1px 4px rgba(0,0,0,0.08);
     }
-    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    body { background:#1a1f2e; color:#f1f5f9; font-family:Verdana,Geneva,sans-serif; min-height:100vh; }
-    #gc-app { display:flex; min-height:100vh; }
 
-    /* SIDEBAR */
-    .gc-sidebar { width:var(--sb-w); flex-shrink:0; background:var(--sb-bg); position:fixed; top:0; left:0; bottom:0; z-index:400; overflow-y:auto; scrollbar-width:none; border-right:1px solid var(--sb-border); display:flex; flex-direction:column; }
-    .gc-sidebar::-webkit-scrollbar { display:none; }
-    .sb-logo { display:flex; align-items:center; gap:10px; padding:18px 16px 16px; border-bottom:1px solid var(--sb-border); text-decoration:none; flex-shrink:0; }
-    .sb-logo img { height:42px; width:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4)); flex-shrink:0; }
-    .sb-logo-text { font-size:16px; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.1; }
-    .sb-logo-text em { color:#60a5fa; font-style:normal; }
-    .sb-logo-text span { color:#34d399; font-weight:400; }
-    .sb-section { padding:10px 0 4px; }
-    .sb-section-label { font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--sb-text-dim); padding:6px 16px; display:block; }
-    .sb-nav-link { display:flex; align-items:center; gap:10px; padding:9px 16px; color:var(--sb-text); text-decoration:none; font-size:12.5px; font-weight:600; transition:all 0.18s; border-left:3px solid transparent; background:none; border-right:none; border-top:none; border-bottom:none; width:100%; text-align:left; cursor:pointer; font-family:Verdana,Geneva,sans-serif; }
-    .sb-nav-link:hover { background:var(--sb-hover); color:#fff; }
-    .sb-nav-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
-    .sb-divider { height:1px; background:var(--sb-border); margin:6px 16px; }
-    .sb-comp-btn { width:100%; display:flex; align-items:center; gap:8px; padding:10px 16px; background:none; border:none; cursor:pointer; font-size:12.5px; font-weight:700; color:var(--sb-text); text-align:left; transition:background 0.18s; border-left:3px solid transparent; font-family:Verdana,Geneva,sans-serif; }
-    .sb-comp-btn:hover { background:var(--sb-hover); color:#fff; }
-    .sb-comp-icon { font-size:14px; flex-shrink:0; }
-    .sb-comp-name { flex:1; }
-    .sb-comp-badge { font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px; flex-shrink:0; }
-    .sb-comp-badge.pl  { background:rgba(56,0,60,0.8);  color:#e9b4ff; }
-    .sb-comp-badge.wc  { background:rgba(200,0,30,0.6); color:#ffa5b4; }
-    .sb-comp-badge.ucl { background:rgba(0,30,98,0.8);  color:#93c5fd; }
-    .sb-chevron { font-size:9px; color:var(--sb-text-dim); transition:transform 0.2s; flex-shrink:0; }
-    .sb-comp-btn.open .sb-chevron { transform:rotate(180deg); }
-    .sb-links { display:none; padding:2px 0 4px; }
-    .sb-links.open { display:block; }
-    .sb-links a { display:flex; align-items:center; gap:8px; padding:7px 16px 7px 42px; font-size:12px; font-weight:500; color:var(--sb-text-dim); text-decoration:none; transition:all 0.16s; border-left:3px solid transparent; }
-    .sb-links a:hover { color:#fff; background:var(--sb-hover); }
-    .sb-links a.active { color:#fff; border-left-color:var(--sb-accent); background:rgba(37,99,235,0.1); }
-    .sb-link-icon { font-size:12px; width:16px; text-align:center; flex-shrink:0; }
-    .sb-footer { margin-top:auto; padding:14px 16px; border-top:1px solid var(--sb-border); font-size:10px; color:var(--sb-text-dim); line-height:1.7; }
-    .sb-footer a { color:rgba(255,255,255,0.3); text-decoration:none; }
-
-    /* MAIN */
-    .gc-main-wrap { margin-left:var(--sb-w); flex:1; min-width:0; }
-    .gc-page-content { padding:24px 24px 130px; max-width:920px; }
-    .bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; }
-    .bc a { color:var(--sb-text-dim); text-decoration:none; }
-    .bc a:hover { color:#fff; }
-
-    /* Champion banner */
-    .champ-banner { background:linear-gradient(135deg,#38003c,#5c0070); border-radius:16px; padding:20px 24px; display:flex; align-items:center; gap:16px; margin-bottom:24px; border:1px solid rgba(255,255,255,0.1); position:relative; overflow:hidden; flex-wrap:wrap; }
-    .champ-banner::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent); background-size:200% 100%; animation:shimmer 3s linear infinite; }
-    @keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
-    .champ-trophy { font-size:48px; flex-shrink:0; }
-    .champ-text h2 { font-size:19px; font-weight:800; color:#fff; margin-bottom:4px; }
-    .champ-text h2 em { color:#00ff85; font-style:normal; }
-    .champ-text p { font-size:11px; color:rgba(255,255,255,0.7); }
-    .champ-pts { margin-left:auto; text-align:center; flex-shrink:0; }
-    .champ-pts .num { font-size:36px; font-weight:800; color:#ffd700; line-height:1; }
-    .champ-pts .lbl { font-size:10px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; }
-
-    /* Table header */
-    .tbl-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
-    .tbl-title { font-size:17px; font-weight:800; color:#fff; }
-    .tbl-subtitle { font-size:11px; color:var(--sb-text-dim); margin-top:2px; }
-    .tbl-updated { font-size:10px; color:var(--sb-text-dim); background:rgba(255,255,255,0.06); padding:4px 10px; border-radius:20px; white-space:nowrap; }
-
-    /* Table */
-    .pl-table { width:100%; border-collapse:collapse; }
-    .pl-table thead th { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--sb-text-dim); padding:8px 10px; text-align:center; border-bottom:1px solid var(--sb-border); }
-    .pl-table thead th:nth-child(2) { text-align:left; }
-    .pl-table tbody tr { border-bottom:1px solid rgba(255,255,255,0.04); transition:background 0.15s; }
-    .pl-table tbody tr:hover { background:rgba(255,255,255,0.03); }
-    .pl-table td { padding:10px; text-align:center; font-size:13px; }
-    .pl-table td:nth-child(2) { text-align:left; }
-    .pos-cell { display:flex; align-items:center; gap:8px; }
-    .pos-bar { width:4px; height:28px; border-radius:2px; flex-shrink:0; }
-    .pos-bar.ucl { background:var(--ucl); }
-    .pos-bar.el  { background:var(--el); }
-    .pos-bar.ecl { background:var(--ecl); }
-    .pos-bar.rel { background:var(--rel); }
-    .pos-bar.none { background:transparent; }
-    .pos-num { font-size:12px; font-weight:700; color:var(--sb-text-dim); width:18px; text-align:center; }
-    .team-cell { display:flex; align-items:center; gap:10px; }
-    .team-emoji { font-size:18px; width:28px; text-align:center; flex-shrink:0; }
-    .team-name { font-size:13px; font-weight:600; color:#f1f5f9; }
-    .team-badge { font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; margin-left:4px; }
-    .badge-champ { background:#d97706; color:#fff; }
-    .badge-rel { background:#dc2626; color:#fff; }
-    .pts-cell { font-size:14px; font-weight:800; color:#fff; }
-    .gd-pos { color:#4ade80; }
-    .gd-neg { color:#f87171; }
-    tr.ucl-row { background:rgba(37,99,235,0.06); }
-    tr.el-row  { background:rgba(217,119,6,0.06); }
-    tr.ecl-row { background:rgba(22,163,74,0.06); }
-    tr.rel-row { background:rgba(220,38,38,0.06); }
-
-    /* Legend */
-    .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.03); border:1px solid var(--sb-border); border-radius:12px; }
-    .legend-item { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--sb-text-dim); }
-    .legend-bar { width:12px; height:16px; border-radius:2px; flex-shrink:0; }
-    .source-note { font-size:10px; color:var(--sb-text-dim); margin-top:14px; text-align:center; }
-    .source-note a { color:rgba(255,255,255,0.3); text-decoration:none; }
-
-    /* Quick links */
-    .quick-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:24px; }
-    .ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }
-    .ql:hover { background:rgba(255,255,255,0.08); color:#fff; }
-    .ql span:first-child { font-size:20px; }
-
-    /* Nord */
-    #gc-nord-fixed { position:fixed; bottom:0; left:var(--sb-w); right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; }
-    #gc-nord-fixed a { padding:4px 12px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }
-
-    /* Mobile */
-    @media(max-width:768px) {
-      .gc-sidebar { transform:translateX(-100%); transition:transform 0.28s ease; }
-      .gc-sidebar.open { transform:translateX(0); box-shadow:4px 0 24px rgba(0,0,0,0.5); }
-      .gc-main-wrap { margin-left:0; }
-      .gc-page-content { padding:12px 12px 130px; }
-      #gc-nord-fixed { left:0 !important; bottom:64px !important; right:0 !important; }
-      .sb-hamburger { position:fixed; top:12px; right:12px; z-index:9999; background:var(--sb-bg); border:none; border-radius:10px; width:42px; height:42px; font-size:20px; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.3); }
-      .hide-mobile { display:none; }
-      .champ-pts { margin-left:0; }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --body-bg:      #0f172a;
+        --body-bg-2:    #1e293b;
+        --text-dark:    #f1f5f9;
+        --text-mid:     #cbd5e1;
+        --text-light:   #64748b;
+        --border:       #334155;
+        --card-bg:      #1e293b;
+        --row-hover:    #1e3a5f;
+        --rel-bg:       #2d1010;
+      }
     }
-    @media(min-width:769px) { .sb-hamburger { display:none; } }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--body-bg) 0%, var(--body-bg-2) 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ======================== SIDEBAR ======================== */
+    #sidebar {
+      width: var(--sidebar-width);
+      min-height: 100vh;
+      background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-2) 100%);
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    #sidebar .logo-wrap {
+      padding: 20px 16px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    #sidebar .logo-wrap a {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    #sidebar .logo-wrap a span { color: var(--accent); }
+
+    #sidebar nav { padding: 12px 0; flex: 1; }
+
+    .nav-section-label {
+      padding: 14px 16px 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+      border-left: 3px solid transparent;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .nav-item.active {
+      background: rgba(59,130,246,0.15);
+      color: #fff;
+      border-left-color: var(--accent);
+    }
+
+    .comp-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      user-select: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .comp-toggle .badge {
+      background: rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .comp-sub { display: flex; flex-direction: column; }
+
+    #sidebar .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+    #sidebar .sidebar-footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    #sidebar .sidebar-footer a:hover { color: #fff; }
+    #sidebar .social-row { display: flex; gap: 12px; margin-top: 8px; }
+    #sidebar .social-row a { font-size: 1rem; }
+
+    /* Close button (mobile) */
+    #sidebar-close {
+      display: none;
+      position: absolute;
+      top: 14px; right: 14px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* ======================== MAIN AREA ======================== */
+    #main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ======================== HEADER ======================== */
+    #header {
+      background: linear-gradient(90deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    #hamburger {
+      display: none;
+      background: none; border: none;
+      color: #fff; font-size: 1.4rem;
+      cursor: pointer; padding: 4px 8px;
+    }
+
+    .header-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-breadcrumb {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+    }
+    .header-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .header-breadcrumb a:hover { color: #fff; }
+
+    /* ======================== CONTENT ======================== */
+    #content { flex: 1; padding: 24px 20px; max-width: 1100px; width: 100%; margin: 0 auto; }
+
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(135deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
+      border-radius: var(--radius);
+      padding: 24px 24px 20px;
+      margin-bottom: 20px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '🏴󠁧󠁢󠁥󠁮󠁧󠁿';
+      position: absolute;
+      right: 24px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 4rem;
+      opacity: 0.15;
+    }
+    .page-hero h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    .page-hero .season-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    .page-hero .meta-row {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    .filter-bar label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filter-bar select {
+      padding: 6px 28px 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--body-bg);
+      color: var(--text-dark);
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+    }
+    .filter-bar select:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+
+    .filter-group { display: flex; align-items: center; gap: 6px; }
+
+    #btn-reset {
+      padding: 6px 14px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-left: auto;
+    }
+    #btn-reset:hover { background: var(--accent-dark); }
+
+    /* Last updated */
+    #last-updated {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    /* Zone legend */
+    .zone-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .zone-legend .zone-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--text-mid);
+      font-weight: 500;
+    }
+    .zone-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ======================== TABLE ======================== */
+    .table-wrap {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    #standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    #standings-table thead {
+      background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+      color: rgba(255,255,255,0.75);
+    }
+    #standings-table thead th {
+      padding: 11px 10px;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    #standings-table thead th.col-club { text-align: left; padding-left: 14px; }
+
+    #standings-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+      cursor: default;
+    }
+    #standings-table tbody tr:hover { background: var(--row-hover); }
+    #standings-table tbody tr:last-child { border-bottom: none; }
+
+    #standings-table td {
+      padding: 10px 10px;
+      text-align: center;
+      color: var(--text-dark);
+      vertical-align: middle;
+    }
+    #standings-table td.col-club {
+      text-align: left;
+      padding-left: 10px;
+      font-weight: 600;
+    }
+    #standings-table td.col-pts {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent-dark);
+    }
+
+    /* Position column */
+    .pos-cell {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      min-width: 32px;
+    }
+    /* Zone left border on td.pos-cell */
+    tr.zone-ucl  td.pos-cell { border-left: 3px solid var(--ucl-color); }
+    tr.zone-uel  td.pos-cell { border-left: 3px solid var(--uel-color); }
+    tr.zone-uecl td.pos-cell { border-left: 3px solid var(--uecl-color); }
+    tr.zone-rel  td.pos-cell { border-left: 3px solid var(--rel-color); }
+    tr.zone-rel  { background: var(--rel-bg); }
+    tr.zone-rel:hover { filter: brightness(0.97); }
+
+    /* Club cell */
+    .club-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .club-badge {
+      width: 28px; height: 28px;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+    .club-badge-fallback {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .club-name { font-size: 0.875rem; font-weight: 600; }
+    .club-name .short { display: none; }
+
+    /* GD colouring */
+    .gd-pos { color: #16a34a; font-weight: 700; }
+    .gd-neg { color: #dc2626; font-weight: 700; }
+    .gd-zero { color: var(--text-mid); font-weight: 700; }
+
+    /* Form pills */
+    .form-cell { display: flex; gap: 3px; justify-content: center; }
+    .form-pill {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .form-pill.W { background: var(--form-w); }
+    .form-pill.D { background: var(--form-d); }
+    .form-pill.L { background: var(--form-l); }
+
+    /* ======================== STATUS STATES ======================== */
+    #state-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      display: none;
+    }
+    #state-icon { font-size: 3rem; margin-bottom: 12px; }
+    #state-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+    #state-msg { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; max-width: 500px; margin: 0 auto; }
+    #state-detail {
+      margin-top: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 0.78rem;
+      font-family: monospace;
+      color: #64748b;
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+    }
+    #state-retry {
+      margin-top: 16px;
+      padding: 8px 20px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+    }
+    #state-retry:hover { background: var(--accent-dark); }
+
+    /* Skeleton loading */
+    .skeleton-row td { padding: 12px 10px; }
+    .skeleton-cell {
+      height: 16px;
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 400% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 4px;
+    }
+    @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+    /* ======================== NordVPN AD ======================== */
+    .ad-strip {
+      background: #0d1b36;
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .ad-strip .ad-text { color: rgba(255,255,255,0.85); font-size: 0.85rem; }
+    .ad-strip .ad-text strong { color: #fff; }
+    .ad-strip .ad-btn {
+      padding: 8px 18px;
+      background: #4a9eff;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .ad-tag { font-size: 0.65rem; color: rgba(255,255,255,0.35); }
+
+    /* ======================== FOOTER ======================== */
+    #footer {
+      background: #0f172a;
+      color: rgba(255,255,255,0.55);
+      padding: 20px;
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+    #footer .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 8px; }
+    #footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    #footer .footer-links a:hover { color: #fff; }
+    #footer .footer-copy { color: rgba(255,255,255,0.35); }
+
+    /* ======================== COOKIE BANNER ======================== */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #0f172a;
+      color: rgba(255,255,255,0.85);
+      padding: 14px 20px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      z-index: 9999;
+      flex-wrap: wrap;
+    }
+    #cookie-banner a { color: #93c5fd; text-decoration: none; }
+    #cookie-banner button {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-accept { background: #3b82f6; color: #fff; }
+    .btn-decline { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+
+    /* ======================== OVERLAY (mobile) ======================== */
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 150;
+    }
+
+    /* ======================== RESPONSIVE ======================== */
+
+    /* Hide columns progressively */
+    @media (max-width: 900px) {
+      .col-form { display: none; }
+    }
+    @media (max-width: 700px) {
+      .col-gf, .col-ga { display: none; }
+      .club-name .full { display: none; }
+      .club-name .short { display: inline; }
+    }
+    @media (max-width: 560px) {
+      .col-gd { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); }
+      #sidebar.open { transform: translateX(0); }
+      #sidebar-close { display: block; }
+      #overlay.show { display: block; }
+      #main { margin-left: 0; }
+      #hamburger { display: flex; }
+      #content { padding: 16px 12px; }
+      .page-hero h1 { font-size: 1.2rem; }
+      .filter-bar { gap: 8px; }
+      .filter-group { flex-wrap: wrap; }
+    }
   </style>
-<link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
-  <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Premier League Table 2025/26 | GoalCurrent.live">
-  <meta property="og:description" content="Final Premier League 2025/26 table — Arsenal champions with 85 points. Full standings.">
-  <meta property="og:url"         content="https://www.goalcurrent.live/premier-league/table/">
-  <meta property="og:image"       content="https://www.goalcurrent.live/logo.svg">
-  <meta property="og:site_name"   content="GoalCurrent.live">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="Premier League Table 2025/26 | GoalCurrent.live">
-  <meta name="twitter:description" content="Final Premier League 2025/26 table — Arsenal champions with 85 points. Full standings.">
-  <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
 </head>
 <body>
 
-<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+<!-- =============== SIDEBAR =============== -->
+<aside id="sidebar" role="navigation" aria-label="Site navigation">
+  <button id="sidebar-close" aria-label="Close menu">✕</button>
 
-<div id="gc-app">
-    <aside class="gc-sidebar" id="gc-sidebar">
-    <a href="/" class="sb-logo">
-      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
-      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-    </a>
-    <button class="sb-close-btn" id="gc-sidebar-close" onclick="document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';" aria-label="Close menu" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;z-index:10;">✕</button>
-    <div class="sb-section">
-      <span class="sb-section-label">Main Menu</span>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-      <a href="/live/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-      <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-      <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
+  <div class="logo-wrap">
+    <a href="https://www.goalcurrent.live/">Goal<span>Current</span>.live</a>
+  </div>
+
+  <nav>
+    <div class="nav-section-label">Main</div>
+    <a class="nav-item" href="https://www.goalcurrent.live/">🏠 Home</a>
+    <a class="nav-item" href="https://www.goalcurrent.live/live/">🔴 Live Scores</a>
+    <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/fixtures/">📅 Today's Fixtures</a>
+    <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/news/">📰 Latest News</a>
+
+    <div class="comp-toggle">
+      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League <span class="badge">PL</span></span>
     </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <span class="sb-section-label">Competitions</span>
-      <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-        <span class="sb-comp-name">Premier League</span>
-        <span class="sb-comp-badge pl">PL</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links open" id="sb-pl">
-        <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/premier-league/table/" class="active"><span class="sb-link-icon">📊</span> Table</a>
-        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-        <span class="sb-comp-icon">🏆</span>
-        <span class="sb-comp-name">World Cup 2026</span>
-        <span class="sb-comp-badge wc">WC26</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-wc">
-        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
-        <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
-        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-        <span class="sb-comp-icon">⭐</span>
-        <span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl">UCL</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-ucl">
-        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
+    <div class="comp-sub">
+      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/">🏠 Overview</a>
+      <a class="nav-item active" href="https://www.goalcurrent.live/premier-league/table/">📊 Table</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/fixtures/">📅 Fixtures</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/results/">✅ Results</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/news/">📰 News</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/teams/">👕 Teams</a>
     </div>
-    <div class="sb-footer">
-      © 2026 Ashna4All (A. Zafarani)<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-      <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
+
+    <div class="comp-toggle">
+      <span>🏆 World Cup 2026 <span class="badge">WC26</span></span>
     </div>
-  
-  <div class="sb-social" style="margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0;">
-    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="X / Twitter" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" class="sb-social-link" aria-label="TikTok" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="Instagram" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">📸</a>
+    <div class="comp-sub">
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/">🏠 Overview</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/groups/">🔢 Groups</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/fixtures/">📅 Fixtures</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/standings/">📊 Standings</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/bracket/">🏆 Bracket</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/venues/">🏟️ Venues</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/teams/">👕 Teams</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/news/">📰 News</a>
+    </div>
+
+    <div class="comp-toggle">
+      <span>⭐ Champions League <span class="badge">UCL</span></span>
+    </div>
+    <div class="comp-sub">
+      <a class="nav-item" href="https://www.goalcurrent.live/ucl/">🏠 Overview</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/ucl/fixtures/">📅 Fixtures</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/ucl/results/">✅ Results</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/ucl/teams/">👕 Teams</a>
+      <a class="nav-item" href="https://www.goalcurrent.live/ucl/news/">📰 News</a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    © 2026 Ashna4All (A. Zafarani)<br>
+    <a href="https://www.goalcurrent.live/about.html">About</a> ·
+    <a href="https://www.goalcurrent.live/privacy.html">Privacy</a> ·
+    <a href="https://www.goalcurrent.live/terms.html">Terms</a> ·
+    <a href="https://www.goalcurrent.live/disclaimer.html">Disclaimer</a>
+    <div class="social-row">
+      <a href="https://twitter.com/goalcurrentlive" aria-label="Twitter">𝕏</a>
+      <a href="https://tiktok.com/@goalcurrent" aria-label="TikTok">♪</a>
+      <a href="https://instagram.com/goalcurrentlive" aria-label="Instagram">📸</a>
+    </div>
   </div>
 </aside>
 
-  <div class="gc-main-wrap">
-    <main class="gc-page-content">
-<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Premier League Table 2025/26</h1>
-      <div class="bc"><a href="/">GoalCurrent.live</a> › <a href="/premier-league/">Premier League</a> › Table</div>
+<div id="overlay" aria-hidden="true"></div>
 
-      <div class="champ-banner">
-        <div class="champ-trophy">🏆</div>
-        <div class="champ-text">
-          <h2>Arsenal — <em>Premier League Champions!</em></h2>
-          <p>First title in 22 years · 2025/26 Season · GW38 Final Day · 24 May 2026</p>
-        </div>
-        <div class="champ-pts"><div class="num">85</div><div class="lbl">Points</div></div>
+<!-- =============== MAIN =============== -->
+<div id="main">
+
+  <!-- Header -->
+  <header id="header">
+    <button id="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    <div class="header-title">
+      📊 Premier League Table
+      <span class="header-breadcrumb">
+        <a href="https://www.goalcurrent.live/">Home</a> ›
+        <a href="https://www.goalcurrent.live/premier-league/">PL</a> › Table
+      </span>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main id="content">
+
+    <!-- Hero -->
+    <div class="page-hero">
+      <h1>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Table</h1>
+      <div class="season-badge">📅 2026/27 Season</div>
+      <div class="meta-row">
+        <span>🏟️ 20 clubs · 38 matchweeks · 380 matches</span>
+        <span>🎯 Season starts: 22 August 2026</span>
+        <span id="hero-status">⏳ Loading data…</span>
       </div>
+    </div>
 
-      <div class="tbl-header">
-        <div>
-          <div class="tbl-title">📊 Premier League Table</div>
-          <div class="tbl-subtitle">2025/26 Season · Final Standings · After GW38</div>
-        </div>
-        <div class="tbl-updated">✅ Final · 24 May 2026 · 18:16 BST</div>
+    <!-- Filter bar -->
+    <div class="filter-bar" role="search" aria-label="Table filters">
+      <div class="filter-group">
+        <label for="sel-season">Season</label>
+        <select id="sel-season" aria-label="Select season">
+          <option value="2026" selected>2026/27</option>
+        </select>
       </div>
+      <div class="filter-group">
+        <label for="sel-comp">Competition</label>
+        <select id="sel-comp" aria-label="Select competition">
+          <option value="PL" selected>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sel-matchweek">Matchweek</label>
+        <select id="sel-matchweek" aria-label="Select matchweek">
+          <option value="TOTAL" selected>All Matchweeks</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="sel-venue">Venue</label>
+        <select id="sel-venue" aria-label="Select venue filter">
+          <option value="TOTAL" selected>Home &amp; Away</option>
+          <option value="HOME">Home Only</option>
+          <option value="AWAY">Away Only</option>
+        </select>
+      </div>
+      <button id="btn-reset" aria-label="Reset all filters">↺ Reset</button>
+    </div>
 
-      <table class="pl-table">
+    <!-- Last updated -->
+    <div id="last-updated" aria-live="polite"></div>
+
+    <!-- Zone legend -->
+    <div class="zone-legend" role="list" aria-label="Zone colour key">
+      <div class="zone-item" role="listitem">
+        <div class="zone-dot" style="background:var(--ucl-color)"></div>
+        <span>Champions League (1–4)</span>
+      </div>
+      <div class="zone-item" role="listitem">
+        <div class="zone-dot" style="background:var(--uel-color)"></div>
+        <span>Europa League (5–6)</span>
+      </div>
+      <div class="zone-item" role="listitem">
+        <div class="zone-dot" style="background:var(--uecl-color)"></div>
+        <span>Conference League (7)</span>
+      </div>
+      <div class="zone-item" role="listitem">
+        <div class="zone-dot" style="background:var(--rel-color)"></div>
+        <span>Relegation (18–20)</span>
+      </div>
+    </div>
+
+    <!-- State container (error / pre-season / loading) -->
+    <div id="state-container" role="status" aria-live="polite">
+      <div id="state-icon"></div>
+      <div id="state-title"></div>
+      <div id="state-msg"></div>
+      <pre id="state-detail"></pre>
+      <button id="state-retry" onclick="fetchStandings()">↺ Retry</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap" id="table-wrap">
+      <table id="standings-table" aria-label="Premier League 2026/27 standings">
         <thead>
           <tr>
-            <th>#</th><th>Club</th><th>Pld</th>
-            <th class="hide-mobile">W</th><th class="hide-mobile">D</th><th class="hide-mobile">L</th>
-            <th>GD</th><th>Pts</th>
+            <th class="col-pos">#</th>
+            <th class="col-club" style="text-align:left;padding-left:14px;">Club</th>
+            <th title="Played">P</th>
+            <th title="Won">W</th>
+            <th title="Drawn">D</th>
+            <th title="Lost">L</th>
+            <th class="col-gf" title="Goals For">GF</th>
+            <th class="col-ga" title="Goals Against">GA</th>
+            <th class="col-gd" title="Goal Difference">GD</th>
+            <th title="Points" style="color:#93c5fd;">Pts</th>
+            <th class="col-form" title="Last 5 matches">Form</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">1</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Arsenal <span class="team-badge badge-champ">🏆 Champions</span></span></div></td><td>38</td><td class="hide-mobile">26</td><td class="hide-mobile">7</td><td class="hide-mobile">5</td><td><span class="gd-pos">+44</span></td><td class="pts-cell">85</td></tr>
-          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">2</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Manchester City</span></div></td><td>38</td><td class="hide-mobile">23</td><td class="hide-mobile">9</td><td class="hide-mobile">6</td><td><span class="gd-pos">+42</span></td><td class="pts-cell">78</td></tr>
-          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">3</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Manchester United</span></div></td><td>38</td><td class="hide-mobile">20</td><td class="hide-mobile">11</td><td class="hide-mobile">7</td><td><span class="gd-pos">+19</span></td><td class="pts-cell">71</td></tr>
-          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">4</div></div></td><td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">Aston Villa</span></div></td><td>38</td><td class="hide-mobile">19</td><td class="hide-mobile">8</td><td class="hide-mobile">11</td><td><span class="gd-pos">+7</span></td><td class="pts-cell">65</td></tr>
-          <tr class="ucl-row"><td><div class="pos-cell"><div class="pos-bar ucl"></div><div class="pos-num">5</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Liverpool</span></div></td><td>38</td><td class="hide-mobile">17</td><td class="hide-mobile">9</td><td class="hide-mobile">12</td><td><span class="gd-pos">+10</span></td><td class="pts-cell">60</td></tr>
-          <tr class="el-row"><td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">6</div></div></td><td><div class="team-cell"><span class="team-emoji">🍒</span><span class="team-name">AFC Bournemouth</span></div></td><td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">18</td><td class="hide-mobile">7</td><td><span class="gd-pos">+4</span></td><td class="pts-cell">57</td></tr>
-          <tr class="el-row"><td><div class="pos-cell"><div class="pos-bar el"></div><div class="pos-num">7</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Sunderland</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">12</td><td class="hide-mobile">12</td><td><span class="gd-neg">-6</span></td><td class="pts-cell">54</td></tr>
-          <tr class="ecl-row"><td><div class="pos-cell"><div class="pos-bar ecl"></div><div class="pos-num">8</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Brighton</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">53</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">9</div></div></td><td><div class="team-cell"><span class="team-emoji">🐝</span><span class="team-name">Brentford</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">11</td><td class="hide-mobile">13</td><td><span class="gd-pos">+3</span></td><td class="pts-cell">53</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">10</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Chelsea</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">10</td><td class="hide-mobile">14</td><td><span class="gd-pos">+6</span></td><td class="pts-cell">52</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">11</div></div></td><td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Fulham</span></div></td><td>38</td><td class="hide-mobile">15</td><td class="hide-mobile">7</td><td class="hide-mobile">16</td><td><span class="gd-neg">-4</span></td><td class="pts-cell">52</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">12</div></div></td><td><div class="team-cell"><span class="team-emoji">⚫</span><span class="team-name">Newcastle United</span></div></td><td>38</td><td class="hide-mobile">14</td><td class="hide-mobile">7</td><td class="hide-mobile">17</td><td><span class="gd-neg">-2</span></td><td class="pts-cell">49</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">13</div></div></td><td><div class="team-cell"><span class="team-emoji">🔵</span><span class="team-name">Everton</span></div></td><td>38</td><td class="hide-mobile">13</td><td class="hide-mobile">10</td><td class="hide-mobile">15</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">49</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">14</div></div></td><td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Leeds United</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">14</td><td class="hide-mobile">13</td><td><span class="gd-neg">-7</span></td><td class="pts-cell">47</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">15</div></div></td><td><div class="team-cell"><span class="team-emoji">🦅</span><span class="team-name">Crystal Palace</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">12</td><td class="hide-mobile">15</td><td><span class="gd-neg">-10</span></td><td class="pts-cell">45</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">16</div></div></td><td><div class="team-cell"><span class="team-emoji">🔴</span><span class="team-name">Nottm Forest</span></div></td><td>38</td><td class="hide-mobile">11</td><td class="hide-mobile">11</td><td class="hide-mobile">16</td><td><span class="gd-neg">-3</span></td><td class="pts-cell">44</td></tr>
-          <tr><td><div class="pos-cell"><div class="pos-bar none"></div><div class="pos-num">17</div></div></td><td><div class="team-cell"><span class="team-emoji">⚪</span><span class="team-name">Tottenham Hotspur</span></div></td><td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">11</td><td class="hide-mobile">17</td><td><span class="gd-neg">-9</span></td><td class="pts-cell">41</td></tr>
-          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">18</div></div></td><td><div class="team-cell"><span class="team-emoji">🟣</span><span class="team-name">West Ham United <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">10</td><td class="hide-mobile">9</td><td class="hide-mobile">19</td><td><span class="gd-neg">-19</span></td><td class="pts-cell">39</td></tr>
-          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">19</div></div></td><td><div class="team-cell"><span class="team-emoji">🟤</span><span class="team-name">Burnley <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">4</td><td class="hide-mobile">10</td><td class="hide-mobile">24</td><td><span class="gd-neg">-37</span></td><td class="pts-cell">22</td></tr>
-          <tr class="rel-row"><td><div class="pos-cell"><div class="pos-bar rel"></div><div class="pos-num">20</div></div></td><td><div class="team-cell"><span class="team-emoji">🟡</span><span class="team-name">Wolverhampton W. <span class="team-badge badge-rel">↓ Relegated</span></span></div></td><td>38</td><td class="hide-mobile">3</td><td class="hide-mobile">11</td><td class="hide-mobile">24</td><td><span class="gd-neg">-41</span></td><td class="pts-cell">20</td></tr>
+        <tbody id="table-body">
+          <!-- Skeleton rows shown while loading -->
         </tbody>
       </table>
-
-      <div class="legend">
-        <div class="legend-item"><div class="legend-bar" style="background:var(--ucl)"></div> UEFA Champions League (Pos 1–5)</div>
-        <div class="legend-item"><div class="legend-bar" style="background:var(--el)"></div> UEFA Europa League (Pos 6–7)</div>
-        <div class="legend-item"><div class="legend-bar" style="background:var(--ecl)"></div> UEFA Conference League Qualifiers (Pos 8)</div>
-        <div class="legend-item"><div class="legend-bar" style="background:var(--rel)"></div> Relegation (Pos 18–20)</div>
-      </div>
-      <div class="source-note">Source: <a href="https://www.bbc.co.uk/sport/football/tables" target="_blank" rel="noopener">BBC Sport</a> · Last updated 24 May 2026 at 18:16</div>
-
-      <div class="quick-links">
-        <a href="/premier-league/" class="ql"><span>🏠</span><span>PL Overview</span></a>
-        <a href="/premier-league/results/" class="ql"><span>✅</span><span>GW38 Results</span></a>
-        <a href="/premier-league/news/" class="ql"><span>📰</span><span>Latest News</span></a>
-        <a href="/premier-league/teams/" class="ql"><span>👕</span><span>All Teams</span></a>
-      </div>
-    </main>
-  </div>
-</div>
-
-<div id="gc-nord-fixed">
-  <span style="color:#fff;font-size:11px;font-weight:600;white-space:nowrap">🔒 NordVPN — 75% off + 3 months FREE</span>
-  <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="background:#1dbf73;">Get Deal →</a>
-  <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="background:#0066cc;">NordPass</a>
-  <span style="font-size:9px;color:#475569">#AD · <a href="/disclaimer.html" style="color:#475569;text-decoration:underline">Affiliate link</a></span>
-</div>
-
-<script>
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('DOMContentLoaded',function(){
-  document.addEventListener('click',function(e){
-    var sb=document.getElementById('gc-sidebar'),hb=document.querySelector('.sb-hamburger');
-    if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
-  });
-});
-</script>
-<script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
-
-<!-- COOKIE BANNER -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
-  <div style="font-size:11px;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb;text-decoration:none">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
-  </div>
-</div>
-<script>
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-</script>
-
-  <footer style="background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);color:#64748b;padding:18px;font-size:.78rem;line-height:1.7">
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
-      <a href="/about.html" style="color:#2563eb">About</a>
-      <a href="/contact.html" style="color:#2563eb">Contact</a>
-      <a href="/privacy.html" style="color:#2563eb">Privacy Policy</a>
-      <a href="/terms.html" style="color:#2563eb">Terms</a>
-      <a href="/disclaimer.html" style="color:#2563eb">Disclaimer</a>
-      <a href="/cookies.html" style="color:#2563eb">Cookies</a>
     </div>
-    <div style="color:#94a3b8;font-size:.72rem;line-height:1.8">
-      © 2026 <strong style="color:#64748b">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+
+    <!-- NordVPN Ad -->
+    <div class="ad-strip">
+      <div class="ad-text">
+        🔒 <strong>NordVPN</strong> — Watch the Premier League abroad. 75% off + 3 months FREE.
+        <div class="ad-tag">#AD · Affiliate link</div>
+      </div>
+      <a class="ad-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored">Get Deal →</a>
+    </div>
+
+  </main><!-- /#content -->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-links">
+      <a href="https://www.goalcurrent.live/about.html">About</a>
+      <a href="https://www.goalcurrent.live/contact.html">Contact</a>
+      <a href="https://www.goalcurrent.live/privacy.html">Privacy Policy</a>
+      <a href="https://www.goalcurrent.live/terms.html">Terms</a>
+      <a href="https://www.goalcurrent.live/disclaimer.html">Disclaimer</a>
+      <a href="https://www.goalcurrent.live/cookies.html">Cookies</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 <strong>Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League ·
+      Data: <a href="https://football-data.org" target="_blank" rel="noopener">football-data.org</a>
     </div>
   </footer>
 
+</div><!-- /#main -->
+
+<!-- Cookie banner -->
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <span>🍪 We use cookies to personalise content and analyse traffic.
+    <a href="https://www.goalcurrent.live/cookies.html">Cookie Policy</a></span>
+  <button class="btn-accept" onclick="acceptCookies()">Accept ✓</button>
+  <button class="btn-decline" onclick="declineCookies()">Decline</button>
+</div>
+
+<!-- =============== JAVASCRIPT =============== -->
+<!-- 
+  PL-SPECIFIC JS — completely isolated from WC26 and UCL.
+  No references to window.WC26, worldcup-data.js, gc-api.js, or UCL data.
+  Uses its own API proxy: /api/pl-standings
+-->
 <script>
-(function(){
-  // Sidebar close button
-  var sc = document.getElementById('gc-sidebar-close');
-  if(sc){ sc.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    var o=document.getElementById('gc-sidebar-overlay');
-    if(s) s.classList.remove('open');
-    if(o) o.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Overlay click to close
-  var ov = document.getElementById('gc-sidebar-overlay');
-  if(ov){ ov.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    if(s) s.classList.remove('open');
-    this.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Escape key
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){
-      var s=document.getElementById('gc-sidebar');
-      var o=document.getElementById('gc-sidebar-overlay');
-      if(s) s.classList.remove('open');
-      if(o) o.classList.remove('open');
-      document.body.style.overflow='';
+'use strict';
+
+/* ============================================================
+   PL TABLE MODULE — Premier League 2026/27
+   API: /api/pl-standings (Vercel proxy → football-data.org v4)
+   Competition code: PL  |  Season: 2026
+   ISOLATED: No WC26, no UCL data, no shared competition state.
+============================================================ */
+const PL_TABLE = (function() {
+
+  // --- Config (PL-only constants) ---
+  const API_PROXY       = '/api/pl-standings';
+  const PL_SEASON_LABEL = '2026/27';
+  const SEASON_START    = new Date('2026-08-22T11:00:00Z');
+  const FIXTURES_DATE   = new Date('2026-06-19T09:00:00Z');
+
+  // football-data.org badge URL pattern (PL clubs have IDs)
+  // We request team data from the API and use the crest URLs it returns.
+  // No hard-coded badge URLs — all come from API response.
+
+  // --- State ---
+  let currentVenueFilter = 'TOTAL';
+  let lastFetchedData    = null;
+  let retryCount         = 0;
+  const MAX_RETRIES      = 3;
+
+  // --- DOM ---
+  const tableBody     = document.getElementById('table-body');
+  const tableWrap     = document.getElementById('table-wrap');
+  const stateBox      = document.getElementById('state-container');
+  const stateIcon     = document.getElementById('state-icon');
+  const stateTitle    = document.getElementById('state-title');
+  const stateMsg      = document.getElementById('state-msg');
+  const stateDetail   = document.getElementById('state-detail');
+  const stateRetry    = document.getElementById('state-retry');
+  const lastUpdated   = document.getElementById('last-updated');
+  const heroStatus    = document.getElementById('hero-status');
+  const selVenue      = document.getElementById('sel-venue');
+  const selMatchweek  = document.getElementById('sel-matchweek');
+
+  /* ---- Skeleton loading ---- */
+  function showSkeleton() {
+    tableWrap.style.display = '';
+    stateBox.style.display  = 'none';
+    const rows = Array.from({ length: 20 }, (_, i) => `
+      <tr class="skeleton-row">
+        <td><div class="skeleton-cell" style="width:24px;margin:auto"></div></td>
+        <td>
+          <div class="club-cell">
+            <div class="skeleton-cell" style="width:28px;height:28px;border-radius:50%"></div>
+            <div class="skeleton-cell" style="width:${110 + (i % 4)*15}px"></div>
+          </div>
+        </td>
+        ${Array(9).fill('<td><div class="skeleton-cell" style="width:28px;margin:auto"></div></td>').join('')}
+      </tr>`).join('');
+    tableBody.innerHTML = rows;
+  }
+
+  /* ---- Show state message ---- */
+  function showState(icon, title, msg, detail = null, showRetry = false) {
+    tableWrap.style.display = 'none';
+    stateBox.style.display  = '';
+    stateIcon.textContent   = icon;
+    stateTitle.textContent  = title;
+    stateMsg.innerHTML      = msg;
+
+    if (detail) {
+      stateDetail.textContent = JSON.stringify(detail, null, 2);
+      stateDetail.style.display = '';
+    } else {
+      stateDetail.style.display = 'none';
     }
-  });
+
+    stateRetry.style.display = showRetry ? '' : 'none';
+
+    // Update hero status
+    heroStatus.textContent = '⚠️ ' + title;
+  }
+
+  /* ---- Fetch standings from Vercel proxy ---- */
+  async function fetchStandings() {
+    showSkeleton();
+    heroStatus.textContent = '⏳ Loading data…';
+    lastUpdated.textContent = '';
+
+    const venueFilter = selVenue.value || 'TOTAL';
+    const url = `${API_PROXY}?type=standings`;
+
+    try {
+      const resp = await fetch(url, {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store',
+      });
+
+      const data = await resp.json();
+
+      // --- Handle known error codes from our proxy ---
+      if (data.error) {
+        handleApiError(data);
+        return;
+      }
+
+      // --- Happy path: render table ---
+      lastFetchedData = data;
+      retryCount      = 0;
+      renderTable(data, venueFilter);
+
+    } catch (err) {
+      showState(
+        '🔌',
+        'Connection Error',
+        `Could not reach the GoalCurrent API proxy. Please check your internet connection and try again.<br><small>${err.message}</small>`,
+        null,
+        true
+      );
+      heroStatus.textContent = '❌ Connection failed';
+    }
+  }
+
+  /* ---- Handle structured API errors ---- */
+  function handleApiError(data) {
+    switch (data.error) {
+
+      case 'CONFIG_ERROR':
+        showState('🔑', 'API Key Not Configured',
+          'The <code>FOOTBALL_DATA_KEY</code> environment variable is missing from Vercel. Please add it in your Vercel project settings under Environment Variables.',
+          { error: data.error, message: data.message }
+        );
+        heroStatus.textContent = '❌ API key missing';
+        break;
+
+      case 'SEASON_NOT_AVAILABLE':
+        showState('📅', '2026/27 Season Data Not Yet Available',
+          `The 2026/27 Premier League season has not started yet. <br><br>
+          📅 <strong>Fixtures release:</strong> 19 June 2026<br>
+          ⚽ <strong>Season starts:</strong> 22 August 2026<br><br>
+          This page will automatically load real standings data once football-data.org makes the 2026/27 season available.
+          Come back after ${formatDate(SEASON_START)} for live standings.`,
+          null,
+          false
+        );
+        heroStatus.textContent = '📅 Season not started yet';
+        // Build empty pre-season placeholder
+        renderPreSeasonPlaceholder();
+        tableWrap.style.display = '';
+        stateBox.style.display  = 'none';
+        break;
+
+      case 'NO_STANDINGS':
+        showState('📊', 'No Standings Available Yet',
+          'The API connected successfully but has not yet published standings for the 2026/27 season. This will update automatically once matches begin on 22 August 2026.',
+          null,
+          false
+        );
+        heroStatus.textContent = '📊 No standings yet';
+        renderPreSeasonPlaceholder();
+        tableWrap.style.display = '';
+        stateBox.style.display  = 'none';
+        break;
+
+      case 'RATE_LIMIT':
+        showState('⏱️', 'API Rate Limit Reached',
+          `football-data.org free tier allows 10 requests per minute. Please wait ${data.retryAfter || 60} seconds and try again.`,
+          { retryAfter: data.retryAfter },
+          true
+        );
+        heroStatus.textContent = '⏱️ Rate limit — please wait';
+        break;
+
+      case 'AUTH_ERROR':
+        showState('🔒', 'API Authentication Failed',
+          'The API key was rejected by football-data.org. Please verify the key in your Vercel project settings.',
+          { error: data.error },
+          false
+        );
+        heroStatus.textContent = '❌ Auth error';
+        break;
+
+      case 'FETCH_ERROR':
+        if (retryCount < MAX_RETRIES) {
+          retryCount++;
+          setTimeout(fetchStandings, 3000 * retryCount);
+          heroStatus.textContent = `↺ Retry ${retryCount}/${MAX_RETRIES}…`;
+        } else {
+          showState('📡', 'API Temporarily Unavailable',
+            'football-data.org could not be reached after multiple attempts. Please try again later.',
+            { message: data.message },
+            true
+          );
+          heroStatus.textContent = '❌ API unavailable';
+        }
+        break;
+
+      default:
+        showState('❌', 'Unexpected API Error',
+          `An unexpected error occurred: <code>${data.error}</code>. Please report this to GoalCurrent.`,
+          data,
+          true
+        );
+        heroStatus.textContent = '❌ Unexpected error';
+    }
+  }
+
+  /* ---- Render pre-season placeholder (empty table, correct clubs from API /teams) ---- */
+  async function renderPreSeasonPlaceholder() {
+    // Try fetching the teams list from API to get club names & crests
+    try {
+      const resp = await fetch(`${API_PROXY}?type=teams`, {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store',
+      });
+      const data = await resp.json();
+
+      if (data.teams && data.teams.length > 0) {
+        // Sort alphabetically for pre-season
+        const teams = [...data.teams].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        renderPlaceholderRows(teams);
+        lastUpdated.textContent = '⏳ Pre-season — standings will update when the 2026/27 season begins (22 Aug 2026).';
+        heroStatus.textContent = '📅 Pre-season · No data yet';
+        return;
+      }
+    } catch (_) {
+      // API teams also unavailable — show minimal message
+    }
+
+    // Fallback: show "clubs not available" message without fake data
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="11" style="padding:24px;text-align:center;color:var(--text-mid);">
+          <strong>📅 2026/27 Premier League season begins 22 August 2026.</strong><br>
+          Club list and standings will load automatically from the API.
+        </td>
+      </tr>`;
+    lastUpdated.textContent = '⏳ Awaiting season data from football-data.org';
+    heroStatus.textContent = '📅 Pre-season';
+  }
+
+  /* ---- Render placeholder rows with team data from API (all zeros) ---- */
+  function renderPlaceholderRows(teams) {
+    const rows = teams.map((team, i) => {
+      const badge = team.crest
+        ? `<img class="club-badge" src="${escHtml(team.crest)}" alt="${escHtml(team.shortName || team.name)}" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : '';
+      const initials = (team.shortName || team.name || '?').substring(0, 3).toUpperCase();
+      const fbColor = team.clubColors
+        ? colorFromString(team.clubColors)
+        : colorFromString(team.name || '?');
+
+      return `
+        <tr data-team-id="${team.id}">
+          <td class="pos-cell">${i + 1}</td>
+          <td class="col-club">
+            <div class="club-cell">
+              ${badge}
+              <div class="club-badge-fallback" style="background:${fbColor};${badge ? 'display:none' : ''}"
+                aria-hidden="true">${initials}</div>
+              <span class="club-name">
+                <span class="full">${escHtml(team.name)}</span>
+                <span class="short">${escHtml(team.shortName || team.tla || team.name)}</span>
+              </span>
+            </div>
+          </td>
+          <td>0</td><td>0</td><td>0</td><td>0</td>
+          <td class="col-gf">0</td>
+          <td class="col-ga">0</td>
+          <td class="col-gd gd-zero">0</td>
+          <td class="col-pts">0</td>
+          <td class="col-form"><div class="form-cell">—</div></td>
+        </tr>`;
+    }).join('');
+    tableBody.innerHTML = rows;
+  }
+
+  /* ---- Render live table from standings API response ---- */
+  function renderTable(apiData, venueType = 'TOTAL') {
+    // football-data.org returns standings as an array of table types:
+    // TOTAL, HOME, AWAY
+    const standings = apiData.standings;
+    if (!standings || standings.length === 0) {
+      showState('📊', 'Empty Standings',
+        'The API returned no standings data. The season may not have started.', null, true);
+      return;
+    }
+
+    const tableData = standings.find(s => s.type === venueType)
+                   || standings.find(s => s.type === 'TOTAL')
+                   || standings[0];
+
+    if (!tableData || !tableData.table || tableData.table.length === 0) {
+      showState('📊', 'No Data',
+        'Could not find standings for the selected filter. Try "Home & Away".', null, false);
+      return;
+    }
+
+    // Populate matchweek selector based on data
+    const matchday = apiData.season?.currentMatchday;
+    if (matchday) buildMatchweekSelector(matchday);
+
+    // Render rows
+    const rows = tableData.table.map(entry => buildRow(entry)).join('');
+    tableBody.innerHTML = rows;
+    tableWrap.style.display = '';
+    stateBox.style.display  = 'none';
+
+    // Update last-updated timestamp
+    const now = new Date();
+    lastUpdated.textContent = `✅ Data from football-data.org · Updated ${formatTime(now)}`;
+    heroStatus.textContent  = `✅ Live · Matchweek ${matchday || '—'}`;
+  }
+
+  /* ---- Build a single table row ---- */
+  function buildRow(entry) {
+    const pos  = entry.position;
+    const team = entry.team;
+    const stats = entry;
+
+    // Zone class
+    let zoneClass = '';
+    if (pos <= 4)        zoneClass = 'zone-ucl';
+    else if (pos <= 6)   zoneClass = 'zone-uel';
+    else if (pos === 7)  zoneClass = 'zone-uecl';
+    else if (pos >= 18)  zoneClass = 'zone-rel';
+
+    // Badge
+    const badge = team.crest
+      ? `<img class="club-badge" src="${escHtml(team.crest)}" alt="${escHtml(team.shortName || team.name)}" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      : '';
+    const initials = (team.shortName || team.name || '?').substring(0, 3).toUpperCase();
+    const fbColor = colorFromString(team.name || '');
+
+    // GD
+    const gd = stats.goalDifference || 0;
+    const gdClass = gd > 0 ? 'gd-pos' : gd < 0 ? 'gd-neg' : 'gd-zero';
+    const gdDisplay = gd > 0 ? '+' + gd : String(gd);
+
+    // Form (last 5 from API if available)
+    const formHtml = buildForm(stats.form);
+
+    return `
+      <tr class="${zoneClass}" data-team-id="${team.id}">
+        <td class="pos-cell">${pos}</td>
+        <td class="col-club">
+          <div class="club-cell">
+            ${badge}
+            <div class="club-badge-fallback" style="background:${fbColor};${badge ? 'display:none' : ''}"
+              aria-hidden="true">${initials}</div>
+            <span class="club-name">
+              <span class="full">${escHtml(team.name)}</span>
+              <span class="short">${escHtml(team.shortName || team.tla || team.name)}</span>
+            </span>
+          </div>
+        </td>
+        <td>${stats.playedGames || 0}</td>
+        <td>${stats.won || 0}</td>
+        <td>${stats.draw || 0}</td>
+        <td>${stats.lost || 0}</td>
+        <td class="col-gf">${stats.goalsFor || 0}</td>
+        <td class="col-ga">${stats.goalsAgainst || 0}</td>
+        <td class="col-gd ${gdClass}">${gdDisplay}</td>
+        <td class="col-pts">${stats.points || 0}</td>
+        <td class="col-form">${formHtml}</td>
+      </tr>`;
+  }
+
+  /* ---- Build form pills from API form string e.g. "W,D,L,W,W" ---- */
+  function buildForm(formString) {
+    if (!formString || formString.trim() === '') {
+      return '<div class="form-cell"><span style="color:var(--text-light);font-size:0.8rem;">—</span></div>';
+    }
+    const results = formString.split(',').slice(-5);
+    const pills = results.map(r => {
+      const letter = r.trim().toUpperCase();
+      if (!['W','D','L'].includes(letter)) return '';
+      return `<span class="form-pill ${letter}" title="${letter === 'W' ? 'Win' : letter === 'D' ? 'Draw' : 'Loss'}">${letter}</span>`;
+    }).join('');
+    return `<div class="form-cell">${pills}</div>`;
+  }
+
+  /* ---- Build matchweek selector ---- */
+  function buildMatchweekSelector(currentMatchday) {
+    const existing = Array.from(selMatchweek.options).map(o => o.value);
+    if (existing.includes(String(currentMatchday))) return;
+    selMatchweek.innerHTML = '<option value="TOTAL">All Matchweeks</option>';
+    for (let i = 1; i <= 38; i++) {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      opt.textContent = `Matchweek ${i}`;
+      if (i === currentMatchday) opt.selected = true;
+      selMatchweek.appendChild(opt);
+    }
+  }
+
+  /* ---- Helpers ---- */
+  function escHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatTime(d) {
+    return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' BST';
+  }
+
+  function formatDate(d) {
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  // Deterministic colour from a string (for fallback badge backgrounds)
+  function colorFromString(str) {
+    const palette = [
+      '#1d4ed8','#dc2626','#16a34a','#d97706','#7c3aed',
+      '#0891b2','#be123c','#15803d','#b45309','#6d28d9',
+      '#0369a1','#c2410c','#047857','#b91c1c','#4338ca',
+    ];
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    return palette[Math.abs(hash) % palette.length];
+  }
+
+  /* ---- Venue filter ---- */
+  function applyVenueFilter() {
+    if (lastFetchedData) {
+      renderTable(lastFetchedData, selVenue.value);
+    }
+  }
+
+  /* ---- Reset filters ---- */
+  function resetFilters() {
+    selVenue.value     = 'TOTAL';
+    selMatchweek.value = 'TOTAL';
+    if (lastFetchedData) renderTable(lastFetchedData, 'TOTAL');
+    else fetchStandings();
+  }
+
+  /* ---- Auto-refresh every 90 seconds during live matches ---- */
+  function startAutoRefresh() {
+    const now = new Date();
+    if (now >= SEASON_START) {
+      setInterval(fetchStandings, 90_000);
+    }
+  }
+
+  /* ---- Public init ---- */
+  function init() {
+    // Wire up filters
+    selVenue.addEventListener('change', applyVenueFilter);
+    selMatchweek.addEventListener('change', () => {
+      // Matchweek filter: currently display-only (API standings don't filter by matchday on free tier)
+      if (lastFetchedData) renderTable(lastFetchedData, selVenue.value);
+    });
+    document.getElementById('btn-reset').addEventListener('click', resetFilters);
+
+    // Load data
+    fetchStandings();
+    startAutoRefresh();
+  }
+
+  return { init, fetchStandings };
 })();
+
+/* ============================================================
+   SIDEBAR & MOBILE NAV
+   (Shared UI only — no competition data here)
+============================================================ */
+const sidebar  = document.getElementById('sidebar');
+const overlay  = document.getElementById('overlay');
+const hamburger = document.getElementById('hamburger');
+const sideClose = document.getElementById('sidebar-close');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('show');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', openSidebar);
+sideClose.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+/* ============================================================
+   COOKIE BANNER
+============================================================ */
+function acceptCookies() {
+  localStorage.setItem('gc_cookies_pl', 'accepted');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function declineCookies() {
+  localStorage.setItem('gc_cookies_pl', 'declined');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+if (!localStorage.getItem('gc_cookies_pl')) {
+  document.getElementById('cookie-banner').style.display = 'flex';
+}
+
+/* ============================================================
+   BOOT — PL Table only. No WC26. No UCL.
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  PL_TABLE.init();
+});
 </script>
+
 </body>
 </html>
