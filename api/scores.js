@@ -3,7 +3,7 @@
 // Endpoints: fixtures, events, lineups, statistics, players
 // WC 2026 League ID: 1 | Season: 2026
 
-const API_KEY  = process.env.FOOTBALL_DATA_KEY;
+const API_KEY  = process.env.API_FOOTBALL_KEY;   // ← CHANGED from FOOTBALL_DATA_KEY
 const BASE_URL = 'https://v3.football.api-sports.io';
 const WC_LEAGUE  = 1;
 const WC_SEASON  = 2026;
@@ -62,8 +62,8 @@ function fmtEvents(events) {
     team:      { id: e.team.id,   name: e.team.name },
     player:    { id: e.player.id, name: e.player.name },
     assist:    e.assist?.name || null,
-    type:      e.type,    // Goal | Card | subst | Var
-    detail:    e.detail,  // Normal Goal | Own Goal | Penalty | Missed Penalty | Yellow Card | Red Card | Yellow Red Card
+    type:      e.type,
+    detail:    e.detail,
     comments:  e.comments || null
   }));
 }
@@ -77,8 +77,8 @@ function fmtLineups(lineups) {
       id:     p.player.id,
       name:   p.player.name,
       number: p.player.number,
-      pos:    p.player.pos,   // G D M F
-      grid:   p.player.grid   // "1:1" layout position
+      pos:    p.player.pos,
+      grid:   p.player.grid
     })),
     substitutes: (l.substitutes || []).map(p => ({
       id:     p.player.id,
@@ -97,15 +97,10 @@ function fmtStats(stats) {
       acc[key] = item.value;
       return acc;
     }, {})
-    // Available keys: ball_possession, total_shots, shots_on_goal, shots_off_goal,
-    // blocked_shots, shots_insidebox, shots_outsidebox, fouls, corner_kicks,
-    // offsides, yellow_cards, red_cards, goalkeeper_saves, total_passes,
-    // passes_accurate, passes_
   }));
 }
 
 function fmtPlayers(players) {
-  // players endpoint returns array of {team, players:[{player,statistics}]}
   return players.map(teamData => ({
     team: { id: teamData.team.id, name: teamData.team.name, logo: teamData.team.logo },
     players: (teamData.players || []).map(p => {
@@ -120,10 +115,10 @@ function fmtPlayers(players) {
         minutes:  s.games?.minutes,
         captain:  s.games?.captain,
         goals: {
-          total:   s.goals?.total,
-          assists: s.goals?.assists,
-          saves:   s.goals?.saves,
-          conceded:s.goals?.conceded
+          total:    s.goals?.total,
+          assists:  s.goals?.assists,
+          saves:    s.goals?.saves,
+          conceded: s.goals?.conceded
         },
         shots:    { total: s.shots?.total, on: s.shots?.on },
         passes:   { total: s.passes?.total, key: s.passes?.key, accuracy: s.passes?.accuracy },
@@ -183,21 +178,18 @@ export default async function handler(req, res) {
   const { id, live, date } = req.query;
 
   try {
-    // Full match detail — fixture + events + lineups + stats + players
     if (id) {
       const detail = await getDetail(id);
       if (!detail) return res.status(404).json({ error: 'Match not found' });
       return res.status(200).json(detail);
     }
 
-    // Live matches right now
     if (live === 'true') {
       if (!isTournamentLive()) return res.status(200).json({ matches: [], phase: 'pre-tournament' });
       const matches = await getLive();
       return res.status(200).json({ matches, phase: 'live' });
     }
 
-    // Fixtures by date (defaults to today)
     const targetDate = date || todayUTC();
     const matches = await getByDate(targetDate);
     return res.status(200).json({ matches, date: targetDate, phase: isTournamentLive() ? 'tournament' : 'pre-tournament' });
