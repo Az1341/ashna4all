@@ -385,9 +385,9 @@ function buildCard(m){
     if(live){
       var minLabel=status==='HT'?'HT':(m.elapsed?m.elapsed+"'":'LIVE');
       minHtml='<span class="mc-min live-m">'+minLabel+'</span>';
-    } else if(status==='HT'){
-      minHtml='<span class="mc-min live-m">HT</span>';
-    else if(ft) minHtml='<span class="mc-min ft-m">FT</span>';
+    } else if(ft){
+      minHtml='<span class="mc-min ft-m">FT</span>';
+    }
     centre='<div class="mc-centre"><span class="mc-score">'+hg+' – '+ag+'</span>'+minHtml+'</div>';
   }
 
