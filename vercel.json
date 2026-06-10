@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/match", "destination": "/match/index.html" },
+    { "source": "/match/", "destination": "/match/index.html" }
+  ]
+}
