@@ -379,8 +379,8 @@ function buildCard(m){
   if(ns){
     centre='<div class="mc-centre"><span class="mc-ko">'+getBST(m.ko)+'</span></div>';
   } else {
-    var hg=m.homeGoals!=null?m.homeGoals:'?';
-    var ag=m.awayGoals!=null?m.awayGoals:'?';
+    var hg=m.homeGoals!=null?m.homeGoals:0;
+    var ag=m.awayGoals!=null?m.awayGoals:0;
     var minHtml='';
     if(live) minHtml='<span class="mc-min live-m">'+(m.elapsed?m.elapsed+"'":'LIVE')+'</span>';
     else if(status==='HT') minHtml='<span class="mc-min live-m">HT</span>';
