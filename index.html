@@ -555,7 +555,7 @@ function renderMatches(){
     }
   } else {
     toShow=FIXTURES.filter(function(f){return f.dt.slice(0,10)===todayBST;});
-    if(!toShow.length) toShow=FIXTURES.filter(function(f){return new Date(f.dt)>now;}).slice(0,3);
+    if(!toShow.length) var next=FIXTURES.find(function(f){return new Date(f.dt)>now;}); if(next) toShow=[next];
   }
   if(!toShow.length){
     box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">No matches scheduled today</div>';
