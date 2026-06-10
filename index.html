@@ -129,6 +129,7 @@ a{text-decoration:none;color:inherit}
   font-weight: 600;
   color: var(--text-dark);
   text-align: right;
+  padding-right: 4px;
 }
 
 /* Column 3: score or time */
@@ -140,12 +141,20 @@ a{text-decoration:none;color:inherit}
   color: var(--text-dark);
   line-height: 1;
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 .gc-col-score .gc-ko-time{
-  font-size: 1.7rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1d4ed8;
+  white-space: nowrap;
+  font-family: var(--font-head);
 }
+.gc-col-score 
 .gc-col-score .gc-score-min{
   display: block;
   font-size: .75rem;
@@ -161,6 +170,7 @@ a{text-decoration:none;color:inherit}
   font-weight: 600;
   color: var(--text-dark);
   text-align: left;
+  padding-left: 4px;
 }
 
 /* Column 5: meta */
