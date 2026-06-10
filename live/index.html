@@ -113,7 +113,8 @@ a{text-decoration:none;color:inherit}
 .mc-min{font-size:.72rem;font-weight:700}
 .mc-min.live-m{color:#dc2626}
 .mc-min.ft-m{color:#16a34a}
-.mc-foot{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 8px;border-top:1px solid rgba(0,0,0,.05)}
+.mc-foot{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 8px;border-top:1px solid rgba(0,0,0,.05);flex-wrap:wrap;gap:4px}
+.mc-date{font-size:.72rem;font-weight:700;color:var(--blue-dark)}
 .mc-tv{font-size:.72rem;font-weight:700;color:var(--mid)}
 .mc-venue{font-size:.68rem;color:var(--light)}
 .mc-detail-hint{font-size:.65rem;color:var(--blue);font-weight:700;padding:0 12px 6px;text-align:right;opacity:.8}
@@ -324,7 +325,7 @@ var FALLBACK=[
   {id:'fb-port-nig',h:'Portugal',a:'Nigeria',ko:'2026-06-10T19:45:00Z',comp:'FRIENDLY',tv:'Amazon Prime',venue:'Leiria, Portugal'},
   {id:'fb-eng-crc',h:'England',a:'Costa Rica',ko:'2026-06-10T20:00:00Z',comp:'FRIENDLY',tv:'Amazon Prime',venue:'Orlando, USA'},
   {id:'fb-wc1',h:'Mexico',a:'South Africa',ko:'2026-06-11T19:00:00Z',comp:'WC',g:'A',tv:'ITV',venue:'Mexico City'},
-  {id:'fb-wc2',h:'South Korea',a:'Czech Republic',ko:'2026-06-11T22:00:00Z',comp:'WC',g:'A',tv:'ITV',venue:'Guadalajara'},
+  {id:'fb-wc2',h:'South Korea',a:'Czech Republic',ko:'2026-06-12T22:00:00Z',comp:'WC',g:'A',tv:'ITV',venue:'Guadalajara'},
   {id:'fb-wc3',h:'Canada',a:'Bosnia & Herz.',ko:'2026-06-12T19:00:00Z',comp:'WC',g:'B',tv:'BBC',venue:'Toronto'}
 ];
 
@@ -396,6 +397,11 @@ function buildCard(m){
   var grp=m.g?' · Grp '+m.g:'';
   var tv=m.tv?'<span class="mc-tv">📺 '+m.tv+'</span>':'';
   var venue=m.venue?'<span class="mc-venue">📍 '+m.venue+'</span>':'';
+  /* Date label */
+  var days2=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var months2=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var koD=new Date(m.ko);
+  var dateLabel=days2[koD.getUTCDay()]+' '+koD.getUTCDate()+' '+months2[koD.getUTCMonth()];
 
   return '<a class="'+cls+'" href="'+url+'">'
     +'<div class="mc-top">'
@@ -408,7 +414,10 @@ function buildCard(m){
     +centre
     +'<div class="mc-away"><div class="mc-name">'+m.a+'</div>'+flagImg(m.a)+'</div>'
     +'</div>'
-    +'<div class="mc-foot">'+tv+venue+'</div>'
+    +'<div class="mc-foot">'
+    +'<span class="mc-date">📅 '+dateLabel+'</span>'
+    +tv+venue
+    +'</div>'
     +hint
     +'</a>';
 }
@@ -427,22 +436,17 @@ function renderSection(matches,cardsId,countId){
   var filtered=matches.filter(passes);
   if(ce) ce.textContent=filtered.length;
   if(!filtered.length){el.innerHTML='';return 0;}
-  var groups={};
-  filtered.forEach(function(m){var k=m.comp||'OTHER';if(!groups[k])groups[k]=[];groups[k].push(m);});
-  var keys=Object.keys(groups).sort(function(a,b){var pa=PRIO.indexOf(a),pb=PRIO.indexOf(b);if(pa<0)pa=999;if(pb<0)pb=999;return pa-pb;});
-  var html='';
-  keys.forEach(function(k){
-    var c=COMPS[k]||{name:k,emoji:'⚽',color:'#64748b'};
-    html+='<div class="comp-group"><div class="comp-label"><span class="comp-dot" style="background:'+c.color+'"></span>'+c.emoji+' '+c.name+(k==='WC'?' <span class="wc-badge">PRIORITY</span>':'')+'</div>'+groups[k].map(buildCard).join('')+'</div>';
-  });
+  /* Sort by kick-off time — all competitions in chronological order */
+  var sorted=filtered.slice().sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
+  var html=sorted.map(buildCard).join('');
   el.innerHTML=html;
   return filtered.length;
 }
 
 function renderAll(){
   var now=new Date(),today=todayUTC(),ahead=daysPlusN(2);
-  var liveM=allMatches.filter(function(m){return isLiveStatus(getStatus(m));});
-  var ftM=allMatches.filter(function(m){return isFTStatus(getStatus(m))&&m.ko&&m.ko.slice(0,10)===today;});
+  var liveM=allMatches.filter(function(m){return isLiveStatus(getStatus(m));}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
+  var ftM=allMatches.filter(function(m){return isFTStatus(getStatus(m))&&m.ko&&m.ko.slice(0,10)===today;}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
   var upM=allMatches.filter(function(m){return getStatus(m)==='NS'&&m.ko&&m.ko.slice(0,10)<=ahead;}).sort(function(a,b){return new Date(a.ko)-new Date(b.ko);});
   var lc=renderSection(liveM,'cards-live','cnt-live');
   var fc=renderSection(ftM,'cards-ft','cnt-ft');
@@ -526,5 +530,3 @@ setInterval(fetchData,60000);
 </script>
 </body>
 </html>
-
-  
