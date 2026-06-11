@@ -962,9 +962,18 @@ html, body {
     </div>
 
     <div class="cd-hero">
-      <div class="cd-badge">⚽ FIFA World Cup 2026™</div>
-      <h1 class="cd-title">The Greatest <span>Countdown</span></h1>
-      <p class="cd-subtitle" id="cd-status-label">World Cup kicks off in...</p>
+      <div class="cd-badge" style="background:#ef4444;color:#fff">&#128308; FIFA World Cup 2026 is LIVE</div>
+      <h1 class="cd-title">World Cup <span>2026</span> is Live</h1>
+      <p class="cd-subtitle" id="cd-status-label">The tournament is underway</p>
+      <div id="cd-live-score-widget" style="margin:16px auto 0;max-width:340px;background:linear-gradient(135deg,#003fb8,#0057e7);border-radius:14px;padding:16px 20px;color:#fff;display:none">
+        <div id="cdw-badge" style="font-size:.7rem;font-weight:800;letter-spacing:.1em;margin-bottom:8px;opacity:.8">LIVE NOW</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div style="text-align:center;flex:1"><div id="cdw-home-flag" style="font-size:1.6rem"></div><div id="cdw-home" style="font-size:.8rem;font-weight:700;margin-top:4px"></div></div>
+          <div style="text-align:center"><div id="cdw-score" style="font-size:2rem;font-weight:900;color:#fbbf24">-</div><div id="cdw-min" style="font-size:.7rem;opacity:.7;margin-top:2px"></div></div>
+          <div style="text-align:center;flex:1"><div id="cdw-away-flag" style="font-size:1.6rem"></div><div id="cdw-away" style="font-size:.8rem;font-weight:700;margin-top:4px"></div></div>
+        </div>
+        <div style="text-align:center;margin-top:10px"><a href="/live/" style="font-size:.75rem;font-weight:800;color:#fff;opacity:.85;text-decoration:none">&#128308; Watch Live &#8594;</a></div>
+      </div>
     </div>
 
     <div class="cd-clock" id="cd-clock">
@@ -1140,7 +1149,7 @@ function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remov
       hrs.textContent=pad(Math.floor((diff%86400000)/3600000));
       mins.textContent=pad(Math.floor((diff%3600000)/60000));
       secs.textContent=pad(Math.floor((diff%60000)/1000));
-      if(label)label.textContent='World Cup ends in...';
+      if(label)label.textContent='Days until the World Cup Final...';
       if(liveBanner)liveBanner.style.display='block';
     } else {
       if(label)label.textContent='World Cup 2026 is over!';
@@ -1158,6 +1167,43 @@ function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remov
 </div>
 <style>#gc-wc-popup.show{transform:translateY(0);opacity:1;pointer-events:auto;}</style>
 
+
+<script>
+(function(){
+  function doFetch(){
+    fetch('/api/scores?date='+new Date().toISOString().split('T')[0],{cache:'no-store'})
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var FLAGS={Mexico:'MX',USA:'US',Canada:'CA','South Africa':'ZA',
+                   'South Korea':'KR','Czech Republic':'CZ'};
+        var live=(data.matches||[]).filter(function(m){
+          return ['1H','2H','HT','ET','BT','P'].indexOf(m.status&&m.status.short||'')!==-1;
+        });
+        var w=document.getElementById('cd-live-score-widget');
+        if(!w)return;
+        if(!live.length){w.style.display='none';return;}
+        var m=live[0];
+        var hN=m.home&&m.home.name||'';
+        var aN=m.away&&m.away.name||'';
+        var gH=m.goals&&m.goals.home!=null?m.goals.home:0;
+        var gA=m.goals&&m.goals.away!=null?m.goals.away:0;
+        var elapsed=m.status&&m.status.elapsed||null;
+        var status=m.status&&m.status.short||'';
+        var badge=status==='HT'?'HALF TIME':(elapsed?elapsed+"' LIVE":'LIVE');
+        var e=function(id){return document.getElementById(id);};
+        var hf=e('cdw-home-flag'),af=e('cdw-away-flag'),hn=e('cdw-home'),an=e('cdw-away');
+        var sc=e('cdw-score'),mn=e('cdw-min'),bd=e('cdw-badge');
+        if(hf) hf.textContent=hN; if(af) af.textContent=aN;
+        if(hn) hn.textContent=hN; if(an) an.textContent=aN;
+        if(sc) sc.textContent=gH+' - '+gA;
+        if(mn) mn.textContent=elapsed?elapsed+"'":'';
+        if(bd) bd.textContent=badge;
+        w.style.display='block';
+      }).catch(function(){});
+  }
+  doFetch();setInterval(doFetch,60000);
+})();
+</script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
 <!-- Cookie Banner -->
