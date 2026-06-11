@@ -42,6 +42,7 @@
 
   <!-- ═══ Language engine — defer: downloads in parallel, runs after DOM parsed ═══ -->
   <!-- Loaded here so GC_Lang is available when inline scripts call gcT() -->
+  <script src="/js/gc-datetime.js"></script>
   <script src="/js/gc-lang.js" defer></script>
 
   <!-- ═══ Google Analytics ═══ -->
@@ -469,9 +470,9 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
           </div>
         </div>
         <div class="gc-om-details" dir="ltr">
-          <div class="gc-om-detail">⏰ <strong>20:00 BST</strong> Kickoff</div>
+          <div class="gc-om-detail">⏰ <strong id="gc-om-local-time">20:00 BST</strong> Kickoff</div>
           <div class="gc-om-detail">🏟 <strong>Estadio Azteca</strong>, Mexico City</div>
-          <div class="gc-om-detail">📺 <strong>ITV</strong></div>
+          <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster">ITV</strong></div>
         </div>
         <div class="gc-om-ko-wrap" dir="ltr">
           <div class="gc-om-ko-label" id="gc-om-ko-label">⏱ Kickoff in</div>
@@ -518,7 +519,7 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
         <div class="gc-news-body">
           <div class="gc-news-source">FIFA</div>
           <div class="gc-news-headline">World Cup 2026 Opens Tonight — Mexico Host South Africa in Group A</div>
-          <div class="gc-news-time">Today · 20:00 BST</div>
+          <div class="gc-news-time">Today · <span id="gc-news-ko-time">20:00 BST</span></div>
         </div>
       </div>
       <div class="gc-news-item">
@@ -847,7 +848,10 @@ function renderMatches(){
       statusClass='finished';
     }
     var bst=new Date(ko.getTime()+3600000);
-    var koStr=pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST';
+    /* Use visitor local time instead of hardcoded BST */
+    var koStr=window.GC_DateTime
+      ? GC_DateTime.formatMatchCardTime(match.dt)
+      : (pad(bst.getUTCHours())+':'+pad(bst.getUTCMinutes())+' BST');
     var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
@@ -880,7 +884,11 @@ function renderMatches(){
 
 function updateClock(){
   var el=document.getElementById('updatedTime');
-  if(el) el.textContent='BST · Updated '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  if(el){
+    var _n=new Date();
+    var _tz=window.GC_DateTime&&GC_DateTime.getLocalTZAbbr?GC_DateTime.getLocalTZAbbr(_n):'';
+    el.textContent=(_tz||'Local')+' · Updated '+_n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  }
 }
 
 /* ── Sidebar ── */
@@ -960,6 +968,31 @@ function tickOpeningMatch(){
 }
 tickOpeningMatch();
 setInterval(tickOpeningMatch, 1000);
+
+/* Update hardcoded BST times to visitor's local time on page load */
+(function setLocalTimes(){
+  var MEXICO_UTC = '2026-06-11T19:00:00Z';
+  if (!window.GC_DateTime) {
+    setTimeout(setLocalTimes, 100); /* wait for gc-datetime.js */
+    return;
+  }
+  var local = GC_DateTime.formatLocalKickoff(MEXICO_UTC);
+  var isUK  = GC_DateTime.isVisitorInUK();
+
+  /* Opening match card */
+  var omTime = document.getElementById('gc-om-local-time');
+  if (omTime) omTime.textContent = local;
+
+  /* News card */
+  var newsTime = document.getElementById('gc-news-ko-time');
+  if (newsTime) newsTime.textContent = local;
+
+  /* Opening match TV broadcaster */
+  var omTV = document.getElementById('gc-om-broadcaster');
+  if (omTV && window.GC_DateTime) {
+    omTV.textContent = '📺 ' + GC_DateTime.buildTVDisplay();
+  }
+})();
 
 /* ── Language event listeners ── */
 /* When gc-lang.js finishes loading a language file, it fires these events.
