@@ -346,6 +346,40 @@
     return formatLocalDate(utcIso) + ' · ' + formatLocalKickoff(utcIso);
   }
 
+  /**
+   * Return today's date string in visitor's LOCAL timezone: "YYYY-MM-DD"
+   * Used for filtering "today's matches" correctly per visitor location.
+   */
+  function todayLocal() {
+    var d = new Date();
+    return d.getFullYear() + '-'
+      + String(d.getMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getDate()).padStart(2, '0');
+  }
+
+  /**
+   * Return date N days from now in visitor's LOCAL timezone: "YYYY-MM-DD"
+   */
+  function localDatePlusN(n) {
+    var d = new Date();
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + '-'
+      + String(d.getMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getDate()).padStart(2, '0');
+  }
+
+  /**
+   * Convert any UTC ISO string to local "YYYY-MM-DD"
+   * Used to check if a match falls on a particular local date.
+   */
+  function utcToLocalDate(utcIso) {
+    var d = new Date(utcIso);
+    if (isNaN(d.getTime())) return '';
+    return d.getFullYear() + '-'
+      + String(d.getMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getDate()).padStart(2, '0');
+  }
+
   // ── REGION SELECTOR ───────────────────────────────────────────────────────
 
   var _userCountryOverride = null;
@@ -395,6 +429,11 @@
     // Region override
     setRegion: setRegion,
     getRegion: getRegion,
+
+    // Date helpers
+    todayLocal:      todayLocal,
+    localDatePlusN:  localDatePlusN,
+    utcToLocalDate:  utcToLocalDate,
 
     // Internal data (for testing)
     _TZ_COUNTRY:   TZ_COUNTRY,
