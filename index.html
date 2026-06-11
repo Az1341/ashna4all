@@ -211,6 +211,33 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:400px){.gc-hero-nav{gap:6px}.gc-hero-btn{padding:8px 12px;font-size:.78rem}}
 
+
+/* ── FIFA MATCH PREVIEW VIDEOS ──────────────────────────────────────────── */
+.gc-video-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.gc-video-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.08)}
+.gc-video-head{background:linear-gradient(135deg,#001a4d,#002b80);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.82rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.gc-video-badge{background:var(--gold);color:#0f172a;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.gc-video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:#000}
+.gc-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.gc-video-body{padding:12px 14px 14px}
+.gc-video-title{font-family:var(--font-head);font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:4px;line-height:1.3}
+.gc-video-meta{font-size:.72rem;color:var(--text-light);font-weight:600;margin-bottom:10px;line-height:1.6}
+.gc-video-desc{font-size:.78rem;color:var(--text-mid);line-height:1.6;margin-bottom:12px}
+.gc-video-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#ff0000;color:#fff;border-radius:8px;font-size:.75rem;font-weight:700;font-family:var(--font-head);text-decoration:none;transition:background .15s}
+.gc-video-btn:hover{background:#cc0000}
+.gc-video-btn svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
+@media(max-width:768px){
+  .gc-video-grid{grid-template-columns:1fr}
+}
+@media(min-width:769px) and (max-width:1000px){
+  .gc-video-grid{grid-template-columns:1fr 1fr}
+}
+/* RTL: video cards stay LTR layout — video content is always directional */
+html[dir='rtl'] .gc-video-card{direction:ltr}
+html[dir='rtl'] .gc-video-title,
+html[dir='rtl'] .gc-video-meta,
+html[dir='rtl'] .gc-video-desc{direction:rtl;text-align:right}
+html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
 </style>
 </head>
 <body>
@@ -369,6 +396,78 @@ a{text-decoration:none;color:inherit}
       <a class="gc-match-link" href="/worldcup2026/fixtures/" data-gc-i18n="fixtures.allFixtures">View all 104 fixtures →</a>
     </div>
 
+
+    <!-- ═══ FIFA MATCH PREVIEW VIDEOS ═══════════════════════════════════════
+         Videos: Official FIFA WC2026 match previews
+         Lazy loaded · Responsive · RTL safe
+    ═════════════════════════════════════════════════════════════════════ -->
+    <div class="gc-section-label" style="margin-top:22px">
+      🎥 <span data-gc-i18n="gc.matchPreviews">Official FIFA Match Previews</span>
+    </div>
+    <div class="gc-video-grid">
+
+      <!-- VIDEO 1: Mexico vs South Africa -->
+      <div class="gc-video-card">
+        <div class="gc-video-head">
+          <span>🇲🇽 Mexico vs South Africa 🇿🇦</span>
+          <span class="gc-video-badge">Group A</span>
+        </div>
+        <div class="gc-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/PhSvaIymYes?rel=0&modestbranding=1"
+            title="Mexico vs South Africa — Official FIFA World Cup 2026 Match Preview"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="gc-video-body">
+          <div class="gc-video-title">Mexico vs South Africa</div>
+          <div class="gc-video-meta">
+            📅 Thu 11 Jun 2026 &nbsp;·&nbsp; ⏰ 20:00 BST &nbsp;·&nbsp; 🏟️ Estadio Azteca, Mexico City
+          </div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video1Desc">
+            Official FIFA World Cup 2026 match preview. Mexico open the tournament at home against South Africa in Group A.
+          </div>
+          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            Watch on YouTube
+          </a>
+        </div>
+      </div>
+
+      <!-- VIDEO 2: Korea Republic vs Czechia -->
+      <div class="gc-video-card">
+        <div class="gc-video-head">
+          <span>🇰🇷 Korea Republic vs Czechia 🇨🇿</span>
+          <span class="gc-video-badge">Group A</span>
+        </div>
+        <div class="gc-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/G8_qxZRpWpg?rel=0&modestbranding=1"
+            title="Korea Republic vs Czechia — Official FIFA World Cup 2026 Match Preview"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="gc-video-body">
+          <div class="gc-video-title">Korea Republic vs Czechia</div>
+          <div class="gc-video-meta">
+            📅 Fri 12 Jun 2026 &nbsp;·&nbsp; ⏰ 22:00 BST &nbsp;·&nbsp; 🏟️ SoFi Stadium, Los Angeles
+          </div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video2Desc">
+            Official FIFA World Cup 2026 match preview. Korea Republic face Czechia in their Group A opener.
+          </div>
+          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            Watch on YouTube
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- ═══ END FIFA MATCH PREVIEW VIDEOS ═══ -->
     <!-- OPENING CEREMONIES -->
     <!-- Section label translated; ceremony content (artist names, dates, venues) stays in English — these are proper nouns and event data -->
     <div class="gc-section-label" style="margin-top:22px">

@@ -91,7 +91,10 @@ window.GC_LANG = {
     headerSub         : 'Live standen · WK 2026 · Nieuws',
     liveMatchCentre   : 'Live wedstrijdcentrum',
     upcomingMatches   : 'AANKOMENDE WEDSTRIJDEN — WK 2026',
-    openingCeremonies : 'Openingsceremonies WK 2026'
+    openingCeremonies : 'Openingsceremonies WK 2026',
+    matchPreviews     : 'Officiële FIFA wedstrijdvoorbeelden',
+    video1Desc        : 'Officieel WK 2026 wedstrijdoverzicht. Mexico opent het toernooi thuis tegen Zuid-Afrika in Groep A.',
+    video2Desc        : 'Officieel WK 2026 wedstrijdoverzicht. Zuid-Korea neemt het op tegen Tsjechië in Groep A.'
   },
 
   seo: {

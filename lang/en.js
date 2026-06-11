@@ -237,7 +237,10 @@ window.GC_LANG = {
     headerSub         : 'Live Scores · World Cup 2026 · News',
     liveMatchCentre   : 'Live Match Centre',
     upcomingMatches   : 'UPCOMING MATCHES — WORLD CUP 2026',
-    openingCeremonies : 'World Cup 2026 Opening Ceremonies'
+    openingCeremonies : 'World Cup 2026 Opening Ceremonies',
+    matchPreviews     : 'Official FIFA Match Previews',
+    video1Desc        : 'Official FIFA World Cup 2026 match preview. Mexico open the tournament at home against South Africa in Group A.',
+    video2Desc        : 'Official FIFA World Cup 2026 match preview. Korea Republic face Czechia in their Group A opener.'
   },
 
   seo: {

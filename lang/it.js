@@ -92,7 +92,10 @@ window.GC_LANG = {
     headerSub         : 'Risultati in diretta · Mondiali 2026 · Notizie',
     liveMatchCentre   : 'Centro risultati in diretta',
     upcomingMatches   : 'PROSSIME PARTITE — MONDIALI 2026',
-    openingCeremonies : 'Cerimonie di apertura Mondiali 2026'
+    openingCeremonies : 'Cerimonie di apertura Mondiali 2026',
+    matchPreviews     : 'Anteprime ufficiali partite FIFA',
+    video1Desc        : 'Anteprima ufficiale del Mondiale 2026. Il Messico apre il torneo in casa contro il Sudafrica nel Gruppo A.',
+    video2Desc        : 'Anteprima ufficiale del Mondiale 2026. La Corea del Sud affronta la Repubblica Ceca nel Gruppo A.'
   },
 
   seo: {

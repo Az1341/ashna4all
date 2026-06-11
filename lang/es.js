@@ -92,7 +92,10 @@ window.GC_LANG = {
     headerSub         : 'Marcadores en vivo · Copa del Mundo 2026 · Noticias',
     liveMatchCentre   : 'Centro de marcadores en vivo',
     upcomingMatches   : 'PRÓXIMOS PARTIDOS — COPA DEL MUNDO 2026',
-    openingCeremonies : 'Ceremonias de apertura de la Copa del Mundo 2026'
+    openingCeremonies : 'Ceremonias de apertura de la Copa del Mundo 2026',
+    matchPreviews     : 'Avances oficiales de partidos FIFA',
+    video1Desc        : 'Avance oficial del partido del Mundial 2026. México abre el torneo en casa contra Sudáfrica en el Grupo A.',
+    video2Desc        : 'Avance oficial del partido del Mundial 2026. Corea del Sur se enfrenta a Chequia en el Grupo A.'
   },
 
   seo: {

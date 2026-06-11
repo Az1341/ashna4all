@@ -92,7 +92,10 @@ window.GC_LANG = {
     headerSub         : 'Placar ao vivo · Copa do Mundo 2026 · Notícias',
     liveMatchCentre   : 'Central de Placares ao Vivo',
     upcomingMatches   : 'PRÓXIMOS JOGOS — COPA DO MUNDO 2026',
-    openingCeremonies : 'Cerimônias de Abertura da Copa do Mundo 2026'
+    openingCeremonies : 'Cerimônias de Abertura da Copa do Mundo 2026',
+    matchPreviews     : 'Prévias oficiais de jogos da FIFA',
+    video1Desc        : 'Prévia oficial da Copa do Mundo 2026. México abre o torneio em casa contra a África do Sul no Grupo A.',
+    video2Desc        : 'Prévia oficial da Copa do Mundo 2026. Coreia do Sul enfrenta a República Tcheca no Grupo A.'
   },
 
   seo: {

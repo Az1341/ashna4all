@@ -91,7 +91,10 @@ window.GC_LANG = {
     headerSub         : 'Live-Ergebnisse · WM 2026 · Nachrichten',
     liveMatchCentre   : 'Live-Ergebnisse',
     upcomingMatches   : 'BEVORSTEHENDE SPIELE — WM 2026',
-    openingCeremonies : 'Eröffnungsfeierlichkeiten WM 2026'
+    openingCeremonies : 'Eröffnungsfeierlichkeiten WM 2026',
+    matchPreviews     : 'Offizielle FIFA Spielvorschauen',
+    video1Desc        : 'Offizielle FIFA WM 2026 Spielvorschau. Mexiko eröffnet das Turnier zu Hause gegen Südafrika in Gruppe A.',
+    video2Desc        : 'Offizielle FIFA WM 2026 Spielvorschau. Korea Republik trifft in Gruppe A auf Tschechien.'
   },
 
   seo: {
