@@ -875,6 +875,11 @@ async function init() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (data.error) throw new Error(data.error);
+    /* Handle wrong response format — if API returns {matches:[]} instead of {fixture:{}} */
+    if (!data.fixture && data.matches) {
+      throw new Error('Match detail not yet available. The API is returning scheduled data only. Please try again closer to kickoff or during the match.');
+    }
+    if (!data.fixture) throw new Error('Match data not available');
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('match-content').style.display = '';
