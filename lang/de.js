@@ -94,7 +94,8 @@ window.GC_LANG = {
     openingCeremonies : 'Eröffnungsfeierlichkeiten WM 2026',
     matchPreviews     : 'Offizielle FIFA Spielvorschauen',
     video1Desc        : 'Offizielle FIFA WM 2026 Spielvorschau. Mexiko eröffnet das Turnier zu Hause gegen Südafrika in Gruppe A.',
-    video2Desc        : 'Offizielle FIFA WM 2026 Spielvorschau. Korea Republik trifft in Gruppe A auf Tschechien.'
+    video2Desc        : 'Offizielle FIFA WM 2026 Spielvorschau. Korea Republik trifft in Gruppe A auf Tschechien.',
+    latestWCNews      : 'WM 2026 — Neueste Nachrichten'
   },
 
   seo: {

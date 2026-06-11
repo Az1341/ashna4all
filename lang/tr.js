@@ -94,7 +94,8 @@ window.GC_LANG = {
     openingCeremonies : 'Dünya Kupası 2026 Açılış Törenleri',
     matchPreviews     : 'Resmi FIFA Maç Önizlemeleri',
     video1Desc        : 'Resmi FIFA Dünya Kupası 2026 maç önizlemesi. Meksika, A Grubu'nda evinde Güney Afrika'ya karşı turnuvayı açıyor.',
-    video2Desc        : 'Resmi FIFA Dünya Kupası 2026 maç önizlemesi. Güney Kore, A Grubu'nda Çekya ile karşılaşıyor.'
+    video2Desc        : 'Resmi FIFA Dünya Kupası 2026 maç önizlemesi. Güney Kore, A Grubu'nda Çekya ile karşılaşıyor.',
+    latestWCNews      : 'Dünya Kupası 2026 — Son Haberler'
   },
 
   seo: {

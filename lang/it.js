@@ -95,7 +95,8 @@ window.GC_LANG = {
     openingCeremonies : 'Cerimonie di apertura Mondiali 2026',
     matchPreviews     : 'Anteprime ufficiali partite FIFA',
     video1Desc        : 'Anteprima ufficiale del Mondiale 2026. Il Messico apre il torneo in casa contro il Sudafrica nel Gruppo A.',
-    video2Desc        : 'Anteprima ufficiale del Mondiale 2026. La Corea del Sud affronta la Repubblica Ceca nel Gruppo A.'
+    video2Desc        : 'Anteprima ufficiale del Mondiale 2026. La Corea del Sud affronta la Repubblica Ceca nel Gruppo A.',
+    latestWCNews      : 'Mondiali 2026 — Ultime notizie'
   },
 
   seo: {

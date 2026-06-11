@@ -94,7 +94,8 @@ window.GC_LANG = {
     openingCeremonies : 'Openingsceremonies WK 2026',
     matchPreviews     : 'Officiële FIFA wedstrijdvoorbeelden',
     video1Desc        : 'Officieel WK 2026 wedstrijdoverzicht. Mexico opent het toernooi thuis tegen Zuid-Afrika in Groep A.',
-    video2Desc        : 'Officieel WK 2026 wedstrijdoverzicht. Zuid-Korea neemt het op tegen Tsjechië in Groep A.'
+    video2Desc        : 'Officieel WK 2026 wedstrijdoverzicht. Zuid-Korea neemt het op tegen Tsjechië in Groep A.',
+    latestWCNews      : 'WK 2026 — Laatste nieuws'
   },
 
   seo: {

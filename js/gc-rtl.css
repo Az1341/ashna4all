@@ -1,0 +1,450 @@
+/**
+ * gc-rtl.css — GoalCurrent.live RTL Stylesheet
+ * Version : 3.0
+ * Loaded  : ONLY when Persian (fa) or Arabic (ar) is selected
+ * Purpose : Full RTL layout for goalcurrent.live
+ *
+ * DESIGN PRINCIPLES:
+ * 1. Text labels switch to RTL direction
+ * 2. Match data (scores, times, team names) stays LTR always
+ * 3. Countdown numbers stay LTR always
+ * 4. Statistics stay LTR always
+ * 5. Sidebar moves to right side with correct icon placement
+ * 6. Sidebar nav icons stay on LEFT, text reads RTL to the right
+ *    This is the standard BBC Arabic / Al Jazeera convention
+ */
+
+/* ══════════════════════════════════════════════════════════
+   1. PAGE BASE DIRECTION
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] {
+  direction: rtl;
+}
+
+html[dir='rtl'] body {
+  direction: rtl;
+  text-align: right;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   2. TYPOGRAPHY — PERSIAN AND ARABIC FONTS
+══════════════════════════════════════════════════════════ */
+
+/* Persian: Vazirmatn — modern, highly readable */
+html[dir='rtl']:lang(fa) {
+  font-family: 'Vazirmatn', 'IRANSans', 'Tahoma', sans-serif;
+}
+html[dir='rtl']:lang(fa) body,
+html[dir='rtl']:lang(fa) p,
+html[dir='rtl']:lang(fa) span,
+html[dir='rtl']:lang(fa) div,
+html[dir='rtl']:lang(fa) a,
+html[dir='rtl']:lang(fa) button,
+html[dir='rtl']:lang(fa) li,
+html[dir='rtl']:lang(fa) h1,
+html[dir='rtl']:lang(fa) h2,
+html[dir='rtl']:lang(fa) h3,
+html[dir='rtl']:lang(fa) h4 {
+  font-family: 'Vazirmatn', 'IRANSans', 'Tahoma', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+/* Arabic: Cairo — modern, highly readable */
+html[dir='rtl']:lang(ar) {
+  font-family: 'Cairo', 'Noto Sans Arabic', 'Tahoma', sans-serif;
+}
+html[dir='rtl']:lang(ar) body,
+html[dir='rtl']:lang(ar) p,
+html[dir='rtl']:lang(ar) span,
+html[dir='rtl']:lang(ar) div,
+html[dir='rtl']:lang(ar) a,
+html[dir='rtl']:lang(ar) button,
+html[dir='rtl']:lang(ar) li,
+html[dir='rtl']:lang(ar) h1,
+html[dir='rtl']:lang(ar) h2,
+html[dir='rtl']:lang(ar) h3,
+html[dir='rtl']:lang(ar) h4 {
+  font-family: 'Cairo', 'Noto Sans Arabic', 'Tahoma', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+/* Increase font size slightly for readability in RTL scripts */
+html[dir='rtl'] .sidebar-nav a {
+  font-size: 0.95rem !important;
+}
+html[dir='rtl'] .sidebar-section-label {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   3. LAYOUT — SIDEBAR POSITION
+══════════════════════════════════════════════════════════ */
+
+/* Move sidebar from left to right */
+html[dir='rtl'] #gc-sidebar {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* Desktop: sidebar always visible on right */
+@media (min-width: 769px) {
+  html[dir='rtl'] #gc-sidebar {
+    transform: translateX(0) !important;
+  }
+  /* Push main content to the LEFT to clear the right sidebar */
+  html[dir='rtl'] #gc-main {
+    margin-left: 0 !important;
+    margin-right: var(--sidebar-w) !important;
+  }
+}
+
+/* Mobile: sidebar slides in from right */
+@media (max-width: 768px) {
+  html[dir='rtl'] #gc-sidebar {
+    transform: translateX(100%) !important;
+  }
+  html[dir='rtl'] #gc-sidebar.open {
+    transform: translateX(0) !important;
+  }
+  html[dir='rtl'] #gc-main {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* Header: RTL mobile needs padding on LEFT for language selector */
+  html[dir='rtl'] .gc-header {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   4. SIDEBAR INTERIOR LAYOUT
+══════════════════════════════════════════════════════════ */
+
+/* Sidebar header: logo on right, close on left */
+html[dir='rtl'] .sidebar-header {
+  flex-direction: row-reverse;
+}
+
+/* Sidebar logo: keep internal order natural for RTL */
+html[dir='rtl'] .sidebar-logo {
+  flex-direction: row-reverse;
+}
+
+/* Section labels: right-aligned text */
+html[dir='rtl'] .sidebar-section-label {
+  text-align: right;
+  padding-right: 16px;
+  padding-left: 0;
+}
+
+/*
+ * SIDEBAR NAV ITEMS — ICON PLACEMENT
+ * Convention (BBC Arabic, Al Jazeera):
+ * Icon stays on the LEFT side visually.
+ * Text reads right-to-left to the RIGHT of the icon.
+ * This means the user sees: [icon] [text reading RTL]
+ * The reading flow is natural for RTL users — they read
+ * the text starting from the right and the icon anchors left.
+ * We do NOT reverse the flex order.
+ */
+html[dir='rtl'] .sidebar-nav a {
+  /* Keep icon-left, text-right — standard RTL nav convention */
+  flex-direction: row !important;
+  text-align: right;
+  padding-right: 16px;
+  padding-left: 16px;
+  /* Ensure the text fills available space from right */
+  justify-content: flex-start;
+}
+
+/* The text label fills the space to the right of icon */
+html[dir='rtl'] .sidebar-nav a span:not(.nav-icon) {
+  flex: 1;
+  text-align: right;
+}
+
+/* Nav icon stays at its fixed width */
+html[dir='rtl'] .nav-icon {
+  flex-shrink: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Footer social icons */
+html[dir='rtl'] .sidebar-footer-social {
+  flex-direction: row-reverse;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   5. HEADER
+══════════════════════════════════════════════════════════ */
+
+/* Header top row: brand on right, selector on left */
+html[dir='rtl'] .gc-header-top {
+  flex-direction: row-reverse;
+}
+
+/* Language selector: appears on LEFT in RTL header */
+html[dir='rtl'] #gc-lang-selector-root {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Header subtitle text */
+html[dir='rtl'] .gc-header-sub {
+  text-align: right;
+}
+
+/* Subnav tabs: keep in logical left-to-right order
+   Tab order is NOT reversed — competitions read left-to-right */
+html[dir='rtl'] .gc-subnav-inner {
+  direction: rtl;
+}
+html[dir='rtl'] .gc-subnav-inner a {
+  text-align: right;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   6. HERO SECTION
+══════════════════════════════════════════════════════════ */
+
+/*
+ * "FIFA World Cup 2026" — English proper noun — stays LTR left-aligned.
+ * "USA · Mexico · Canada · dates" — stays LTR left-aligned.
+ * These are international tournament identifiers that do not translate.
+ */
+html[dir='rtl'] .gc-hero-title,
+html[dir='rtl'] .gc-hero-sub {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Countdown label (translated text) — RTL */
+html[dir='rtl'] .gc-cd-label {
+  direction: rtl !important;
+  text-align: right !important;
+  width: 100%;
+}
+
+/* Countdown row: keep Days→Hours→Minutes→Seconds left-to-right always */
+html[dir='rtl'] .gc-cd-row {
+  direction: ltr !important;
+  flex-wrap: wrap;
+}
+html[dir='rtl'] .gc-cd-digits {
+  direction: ltr !important;
+  flex-direction: row !important;
+}
+html[dir='rtl'] .gc-cd-num {
+  direction: ltr !important;
+  text-align: center !important;
+}
+/* Countdown unit labels (Days, Hours...) — translated, RTL */
+html[dir='rtl'] .gc-cd-lbl {
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+/* Hero buttons — reverse order so primary button is on right */
+html[dir='rtl'] .gc-hero-nav {
+  flex-direction: row-reverse;
+}
+
+/* Stats row — keep number order left-to-right */
+html[dir='rtl'] .gc-stats-row {
+  direction: ltr !important;
+  flex-direction: row !important;
+}
+/* Each chip — numbers LTR, labels RTL */
+html[dir='rtl'] .gc-stat-chip {
+  direction: rtl !important;
+}
+html[dir='rtl'] .gc-stat-num {
+  direction: ltr !important;
+  text-align: center !important;
+}
+html[dir='rtl'] .gc-stat-lbl {
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   7. MATCH CARDS — ALWAYS LTR
+   Sports fixture data must never mirror.
+   Team order, scores, times are fixed international data.
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .gc-match-card {
+  direction: ltr !important;
+}
+
+/* Match card header — translated title is RTL, time is LTR */
+html[dir='rtl'] .gc-match-head {
+  flex-direction: row-reverse;
+  direction: ltr !important;
+}
+html[dir='rtl'] #matchCardTitle {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html[dir='rtl'] #updatedTime {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Match rows: always LTR grid layout */
+html[dir='rtl'] .gc-match-row {
+  direction: ltr !important;
+}
+
+/* Score, time, meta: always LTR */
+html[dir='rtl'] .gc-col-score,
+html[dir='rtl'] .gc-ko-time,
+html[dir='rtl'] .gc-score-min,
+html[dir='rtl'] .gc-col-meta {
+  direction: ltr !important;
+}
+
+/* Match link (translated text) — RTL */
+html[dir='rtl'] .gc-match-link {
+  direction: rtl !important;
+}
+
+/* Section labels */
+html[dir='rtl'] .gc-section-label {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   8. OPENING CEREMONY CARDS
+   Artist names, venue names, dates: always LTR
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .oc-head {
+  direction: ltr !important;
+}
+html[dir='rtl'] .oc-meta {
+  direction: ltr !important;
+}
+html[dir='rtl'] .oc-others {
+  direction: ltr !important;
+  text-align: left !important;
+}
+html[dir='rtl'] .oc-headliner-info h4,
+html[dir='rtl'] .oc-headliner-info p {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   9. FOOTER
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .gc-footer {
+  text-align: right;
+  direction: rtl;
+}
+html[dir='rtl'] .gc-footer-links {
+  flex-direction: row-reverse;
+}
+html[dir='rtl'] .gc-footer-copy {
+  text-align: right;
+  direction: rtl;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   10. COOKIE BANNER
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] #gc-cookie-banner {
+  flex-direction: row-reverse;
+}
+html[dir='rtl'] .gc-cookie-text {
+  text-align: right;
+  direction: rtl;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   11. SUBSCRIBE POPUP
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .gc-sub-box {
+  text-align: right;
+  direction: rtl;
+}
+html[dir='rtl'] .gc-sub-close {
+  right: auto !important;
+  left: 14px !important;
+}
+html[dir='rtl'] #gc-sub-email-input {
+  text-align: right;
+  direction: rtl;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   12. FORMS AND INPUTS
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] input[type='text'],
+html[dir='rtl'] input[type='email'],
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+  text-align: right;
+  direction: rtl;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   13. LANGUAGE SELECTOR
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] #gc-lang-list {
+  right: auto;
+  left: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   14. CRITICAL LTR PROTECTION
+   These elements NEVER change direction.
+   Numbers, scores, times are universal.
+══════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .gc-cd-num,
+html[dir='rtl'] #cd-d,
+html[dir='rtl'] #cd-h,
+html[dir='rtl'] #cd-m,
+html[dir='rtl'] #cd-s,
+html[dir='rtl'] .gc-stat-num,
+html[dir='rtl'] #gc-days-chip,
+html[dir='rtl'] .gc-col-score,
+html[dir='rtl'] .gc-ko-time,
+html[dir='rtl'] .gc-score-min,
+html[dir='rtl'] [data-ltr],
+html[dir='rtl'] .gc-ltr-always {
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* Flag images — never flip */
+html[dir='rtl'] img[src*="flagcdn"],
+html[dir='rtl'] img[class*="flag"] {
+  transform: none !important;
+}

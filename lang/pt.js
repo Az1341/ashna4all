@@ -95,7 +95,8 @@ window.GC_LANG = {
     openingCeremonies : 'Cerimônias de Abertura da Copa do Mundo 2026',
     matchPreviews     : 'Prévias oficiais de jogos da FIFA',
     video1Desc        : 'Prévia oficial da Copa do Mundo 2026. México abre o torneio em casa contra a África do Sul no Grupo A.',
-    video2Desc        : 'Prévia oficial da Copa do Mundo 2026. Coreia do Sul enfrenta a República Tcheca no Grupo A.'
+    video2Desc        : 'Prévia oficial da Copa do Mundo 2026. Coreia do Sul enfrenta a República Tcheca no Grupo A.',
+    latestWCNews      : 'Copa do Mundo 2026 — Últimas notícias'
   },
 
   seo: {
