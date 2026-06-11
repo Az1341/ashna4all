@@ -496,9 +496,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   curYear=2026;
   renderCal();
   setTimeout(()=>showDay(selDate),50);
-  // PATCHED: always load live data — no API_KEY check needed
+  // Load live data on page load, then poll every 60s for all visitors
   loadLiveData();
-  if('Notification'in window&&Notification.permission==='granted')startLiveEventPolling();
+  startLiveEventPolling();
 });
 function renderCal(){
   document.getElementById('calMonthLbl').textContent=`${MONTHS[curMonth]} ${curYear}`;
@@ -527,9 +527,14 @@ async function loadLiveData(){
     if(data&&data.matches&&data.matches.length){
       data.matches.forEach(m=>{
         const ds=m.date?m.date.split('T')[0]:today;
-        if(!liveDB[ds])liveDB[ds]=[];liveDB[ds].push(m);
+        if(!liveDB[ds])liveDB[ds]=[];
+        /* update existing entry or push new */
+        const idx=liveDB[ds].findIndex(x=>x.id===m.id);
+        if(idx>=0)liveDB[ds][idx]=m;else liveDB[ds].push(m);
       });
       renderCal();
+      /* FIX 1: re-render current day's fixture cards with live data */
+      if(selDate)showDay(selDate);
     }
     if(Notification.permission==='granted')startLiveEventPolling();
   }catch(e){console.warn('Live data unavailable:',e);}
@@ -650,30 +655,35 @@ function processMatchEventsAPI(detail){
 
 let livePollingInterval=null;
 
-// PATCHED: pollLiveEvents — calls /api/scores proxy only, no football-data.org
+// FIXED: pollLiveEvents — runs for ALL visitors, re-renders cards
 async function pollLiveEvents(){
-  if(!favourites.length)return;
-  if(!('Notification'in window)||Notification.permission!=='granted')return;
   try{
     const data=await fetch('/api/scores?live=true',{cache:'no-store'}).then(r=>r.json());
-    if(!data||!data.matches||!data.matches.length)return;
-    data.matches.forEach(apiMatch=>{
-      const favMatch=findFavouriteApiMatch(apiMatch);
-      if(favMatch){
-        fetch('/api/scores?id='+apiMatch.id,{cache:'no-store'}).then(r=>r.json())
-          .then(detail=>{if(detail&&detail.fixture)processMatchEventsAPI(detail);})
-          .catch(e=>console.warn('Match detail error:',e));
-      }
-      const ds=apiMatch.date?apiMatch.date.split('T')[0]:toDS(new Date());
-      if(!liveDB[ds])liveDB[ds]=[];
-      const idx=liveDB[ds].findIndex(x=>x.id===apiMatch.id);
-      if(idx>=0)liveDB[ds][idx]=apiMatch;else liveDB[ds].push(apiMatch);
-    });
+    if(!data||!data.matches)return;
+    if(data.matches.length){
+      data.matches.forEach(apiMatch=>{
+        /* fire push notifications for favourites if permission granted */
+        if(favourites.length&&'Notification'in window&&Notification.permission==='granted'){
+          const favMatch=findFavouriteApiMatch(apiMatch);
+          if(favMatch){
+            fetch('/api/scores?id='+apiMatch.id,{cache:'no-store'}).then(r=>r.json())
+              .then(detail=>{if(detail&&detail.fixture)processMatchEventsAPI(detail);})
+              .catch(e=>console.warn('Match detail error:',e));
+          }
+        }
+        const ds=apiMatch.date?apiMatch.date.split('T')[0]:toDS(new Date());
+        if(!liveDB[ds])liveDB[ds]=[];
+        const idx=liveDB[ds].findIndex(x=>x.id===apiMatch.id);
+        if(idx>=0)liveDB[ds][idx]=apiMatch;else liveDB[ds].push(apiMatch);
+      });
+    }
     renderCal();
+    /* FIX 2: always re-render fixture cards after live poll */
+    if(selDate)showDay(selDate);
   }catch(e){console.warn('Live polling error:',e);}
 }
 
-// PATCHED: startLiveEventPolling — no API_KEY guard needed
+// FIXED: startLivePolling — runs for all visitors, 60s refresh
 function startLiveEventPolling(){
   if(livePollingInterval)return;
   pollLiveEvents();
