@@ -1389,6 +1389,31 @@ function tickCountdown(){
   }
 }
 
+/* ── SHARED API SCORE STORE ─────────────────────────────────────────────────
+   Populated by the live poll below.
+   Key: fixture number (match.n), value: API match object from /api/scores.
+   renderMatches() reads this to show real scores instead of 0–0.
+   ───────────────────────────────────────────────────────────────────────── */
+var _gcApiScores = {}; /* { fixtureNumber: apiMatchObject } */
+
+/* Match a FIXTURES entry (home/away names) against an API match object.
+   Returns true if names overlap enough to be the same fixture. */
+function _gcMatchesFixture(apiMatch, fixture){
+  var ah=(apiMatch.home&&apiMatch.home.name||'').toLowerCase();
+  var aa=(apiMatch.away&&apiMatch.away.name||'').toLowerCase();
+  var fh=fixture.h.toLowerCase();
+  var fa=fixture.a.toLowerCase();
+  /* Allow partial match — e.g. "Korea Republic" matches "South Korea" */
+  function overlap(s1,s2){
+    var w1=s1.split(/\s+/), w2=s2.split(/\s+/);
+    for(var i=0;i<w1.length;i++){
+      if(w1[i].length>2&&w2.indexOf(w1[i])!==-1) return true;
+    }
+    return s1===s2||s1.indexOf(s2)!==-1||s2.indexOf(s1)!==-1;
+  }
+  return overlap(ah,fh)&&overlap(aa,fa);
+}
+
 function renderMatches(){
   var box=document.getElementById('gc-matches');
   if(!box) return;
@@ -1425,39 +1450,74 @@ function renderMatches(){
   }
   toShow.forEach(function(match){
     var ko=new Date(match.dt);
-    var ft=new Date(ko.getTime()+120*60000);
-    var statusText,statusClass;
-    if(now<ko){
-      /* MODIFIED: status labels use translation if available */
-      statusText=gcT('live.upcoming','UPCOMING');
-      statusClass='upcoming';
-    } else if(now>=ko&&now<ft){
-      statusText=gcT('live.liveNow','LIVE');
-      statusClass='live';
-    } else {
-      statusText=gcT('live.fullTime','FT');
-      statusClass='finished';
-    }
-    /* Use visitor local time — no hardcoded BST offset */
-    var koStr=window.GC_DateTime
-      ? GC_DateTime.formatMatchCardTime(match.dt)
-      : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
     var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
-    var centreHtml;
-    if(statusText===gcT('live.upcoming','UPCOMING')){
-      /* Score column: always LTR — dir="ltr" hardcoded */
-      centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';
-    } else {
-      var elapsed=Math.floor((now-ko)/60000);
-      var minStr;
-      if(statusText===gcT('live.fullTime','FT')) minStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';
-      else if(elapsed>=45&&elapsed<=50) minStr='<span class="gc-score-min live-min" dir="ltr">'+gcT('live.halfTime','HT')+'</span>';
-      else minStr='<span class="gc-score-min live-min" dir="ltr">'+Math.min(90,elapsed)+"'</span>";
-      /* Score: always LTR */
-      centreHtml='<div class="gc-col-score" dir="ltr">0–0'+minStr+'</div>';
+
+    /* ── Resolve status and score from API data when available ── */
+    var apiData=_gcApiScores[match.n]||null;
+    var statusText,statusClass,centreHtml;
+
+    if(apiData){
+      /* API has data for this fixture — use it as authoritative source */
+      var apiStatus=apiData.status&&apiData.status.short||'NS';
+      var apiElapsed=apiData.status&&apiData.status.elapsed||null;
+      var gH=apiData.goals&&apiData.goals.home!=null?apiData.goals.home:0;
+      var gA=apiData.goals&&apiData.goals.away!=null?apiData.goals.away:0;
+      var LIVE_S=['1H','2H','HT','ET','BT','P'];
+      var FT_S=['FT','AET','PEN'];
+      var isLive=LIVE_S.indexOf(apiStatus)!==-1;
+      var isFT=FT_S.indexOf(apiStatus)!==-1;
+      var isNS=apiStatus==='NS';
+
+      if(isNS){
+        /* Not started — show local kickoff time */
+        statusText=gcT('live.upcoming','UPCOMING');
+        statusClass='upcoming';
+        var koStr2=window.GC_DateTime
+          ? GC_DateTime.formatMatchCardTime(match.dt)
+          : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
+        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr2+'</span></div>';
+      } else if(isLive){
+        statusText=gcT('live.liveNow','LIVE');
+        statusClass='live';
+        var minLabel=apiStatus==='HT'?gcT('live.halfTime','HT'):(apiElapsed?apiElapsed+"'":'●');
+        var minStr='<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span>';
+        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>';
+      } else if(isFT){
+        statusText=gcT('live.fullTime','FT');
+        statusClass='finished';
+        var ftStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';
+        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>';
+      } else {
+        /* Unknown API status — fall through to clock-based logic below */
+        apiData=null;
+      }
     }
+
+    if(!apiData){
+      /* No API data yet — use clock to infer state (pre-match only; avoids stale 0-0) */
+      var ft=new Date(ko.getTime()+120*60000);
+      if(now<ko){
+        statusText=gcT('live.upcoming','UPCOMING');
+        statusClass='upcoming';
+        var koStr=window.GC_DateTime
+          ? GC_DateTime.formatMatchCardTime(match.dt)
+          : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
+        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';
+      } else if(now>=ko&&now<ft){
+        /* Match time has passed but no API data yet — show LIVE with no score */
+        statusText=gcT('live.liveNow','LIVE');
+        statusClass='live';
+        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time" style="font-size:1rem">–</span></div>';
+      } else {
+        /* Well past kick-off + 2h, no API data — show FT placeholder */
+        statusText=gcT('live.fullTime','FT');
+        statusClass='finished';
+        centreHtml='<div class="gc-col-score" dir="ltr">–<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
+      }
+    }
+
     var row=document.createElement('div');
     row.className='gc-match-row';
     /* Team names, date string, group letter, broadcaster: untranslated — match data */
@@ -1594,22 +1654,41 @@ function gcReRenderAll(){
 }
 document.addEventListener('gc:languageChanged', gcReRenderAll);
 
-/* ── HOMEPAGE LIVE POLL — Mexico vs SA ──────────────────────────── */
+/* ── HOMEPAGE LIVE POLL — all today's WC fixtures ───────────────── */
 (function(){
+  /* Fetch date key in visitor's LOCAL timezone so API returns the right day */
+  function getTodayKey(){
+    if(window.GC_DateTime&&GC_DateTime.getTodayLocalDateKey) return GC_DateTime.getTodayLocalDateKey();
+    var d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
   function doFetch(){
-    fetch('/api/scores?date='+new Date().toISOString().split('T')[0],{cache:'no-store'})
+    var dateKey=getTodayKey();
+    fetch('/api/scores?date='+dateKey,{cache:'no-store'})
       .then(function(r){return r.json();})
       .then(function(data){
-        var m=(data.matches||[]).find(function(m){
+        var apiMatches=data.matches||[];
+
+        /* ── Populate shared score store for renderMatches() ── */
+        FIXTURES.forEach(function(fixture){
+          var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
+          if(found) _gcApiScores[fixture.n]=found;
+        });
+        /* Re-render the Match Centre widget with real API scores */
+        renderMatches();
+
+        /* ── Update the opening match hero card (Mexico vs SA) ── */
+        var mxSA=apiMatches.find(function(m){
           var h=(m.home&&m.home.name||'').toLowerCase();
           var a=(m.away&&m.away.name||'').toLowerCase();
           return h.indexOf('mexico')!==-1&&a.indexOf('south africa')!==-1;
         });
-        if(!m) return;
-        var status=m.status&&m.status.short||'NS';
-        var elapsed=m.status&&m.status.elapsed||null;
-        var gH=m.goals&&m.goals.home!=null?m.goals.home:null;
-        var gA=m.goals&&m.goals.away!=null?m.goals.away:null;
+        if(!mxSA) return;
+        var status=mxSA.status&&mxSA.status.short||'NS';
+        var elapsed=mxSA.status&&mxSA.status.elapsed||null;
+        var gH=mxSA.goals&&mxSA.goals.home!=null?mxSA.goals.home:null;
+        var gA=mxSA.goals&&mxSA.goals.away!=null?mxSA.goals.away:null;
         var LIVE_S=['1H','2H','HT','ET','BT','P'];
         var FT_S=['FT','AET','PEN'];
         var isL=LIVE_S.indexOf(status)!==-1;
@@ -1629,7 +1708,7 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
       }).catch(function(){});
   }
   doFetch();
-  setInterval(doFetch,60000);
+  setInterval(doFetch,30000); /* 30s — matches live scores page refresh rate */
 })();
 /* ── END HOMEPAGE LIVE POLL ──────────────────────────────────────── */
 
