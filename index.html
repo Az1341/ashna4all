@@ -956,7 +956,7 @@ html[dir='rtl'] .team.away{align-items:flex-end;text-align:right;}
         <a href="/worldcup2026/groups/">🔢 <span data-gc-i18n="nav.groups">Groups</span></a>
         <a href="/worldcup2026/teams/">👕 <span data-gc-i18n="nav.teams">Teams</span></a>
         <a href="/worldcup2026/standings/">📊 <span data-gc-i18n="nav.standings">Standings</span></a>
-        <a href="/countdown.html">⏳ <span data-gc-i18n="nav.countdown">Countdown</span></a>
+        <a href="/live/">&#128308; <span>Live Scores</span></a>
       </div>
     </nav>
   </header>
@@ -1046,7 +1046,7 @@ html[dir='rtl'] .team.away{align-items:flex-end;text-align:right;}
             <div class="gc-om-flag">🇲🇽</div>
             <div class="gc-om-teamname">Mexico</div>
           </div>
-          <div class="gc-om-vs">VS</div>
+          <div class="gc-om-vs" id="gc-om-score">VS</div>
           <div class="gc-om-team">
             <div class="gc-om-flag">🇿🇦</div>
             <div class="gc-om-teamname">South Africa</div>
@@ -1593,6 +1593,46 @@ function gcReRenderAll(){
   updateClock();     /* re-renders updated time */
 }
 document.addEventListener('gc:languageChanged', gcReRenderAll);
+
+/* ── HOMEPAGE LIVE POLL — Mexico vs SA ──────────────────────────── */
+(function(){
+  function doFetch(){
+    fetch('/api/scores?date='+new Date().toISOString().split('T')[0],{cache:'no-store'})
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var m=(data.matches||[]).find(function(m){
+          var h=(m.home&&m.home.name||'').toLowerCase();
+          var a=(m.away&&m.away.name||'').toLowerCase();
+          return h.indexOf('mexico')!==-1&&a.indexOf('south africa')!==-1;
+        });
+        if(!m) return;
+        var status=m.status&&m.status.short||'NS';
+        var elapsed=m.status&&m.status.elapsed||null;
+        var gH=m.goals&&m.goals.home!=null?m.goals.home:null;
+        var gA=m.goals&&m.goals.away!=null?m.goals.away:null;
+        var LIVE_S=['1H','2H','HT','ET','BT','P'];
+        var FT_S=['FT','AET','PEN'];
+        var isL=LIVE_S.indexOf(status)!==-1;
+        var isFT=FT_S.indexOf(status)!==-1;
+        if(!isL&&!isFT) return; /* pre-match: leave countdown running */
+        var sc=(gH!==null?gH:0)+' - '+(gA!==null?gA:0);
+        var scoreEl=document.getElementById('gc-om-score');
+        var startEl=document.getElementById('gc-om-started');
+        var digEl=document.getElementById('gc-om-ko-digits');
+        var lblEl=document.getElementById('gc-om-ko-label');
+        var badEl=document.querySelector('.gc-om-badge');
+        if(scoreEl) scoreEl.textContent=sc;
+        if(digEl) digEl.style.display='none';
+        if(startEl){ startEl.style.display='block'; startEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time'; }
+        if(lblEl) lblEl.style.display='none';
+        if(badEl) badEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time';
+      }).catch(function(){});
+  }
+  doFetch();
+  setInterval(doFetch,60000);
+})();
+/* ── END HOMEPAGE LIVE POLL ──────────────────────────────────────── */
+
 </script>
 
 <!-- gc-lang.js loaded in <head> with defer attribute -->
