@@ -1322,7 +1322,7 @@ function renderFavMatches(){
     teamsDiv.className='gc-mf-teams';
     teamsDiv.innerHTML=
       '<div class="gc-mf-team"><img src="https://flagcdn.com/w80/'+m.hc+'.png" alt="'+m.h+'" width="56" height="38" style="object-fit:cover;border-radius:4px"><div class="gc-mf-name">'+m.h+'</div></div>'
-      +'<div class="gc-mf-center"><div class="gc-mf-vs">VS</div><div class="gc-mf-time">'+m.t+'<span style="font-size:.6rem;color:var(--text-light);margin-left:3px">BST</span></div></div>'
+      +'<div class="gc-mf-center" id="fav-center-'+m.n+'"><div class="gc-mf-vs" id="fav-score-'+m.n+'">VS</div><div class="gc-mf-time" id="fav-time-'+m.n+'">'+m.t+'<span style="font-size:.6rem;color:var(--text-light);margin-left:3px">BST</span></div></div>'
       +'<div class="gc-mf-team"><img src="https://flagcdn.com/w80/'+m.ac+'.png" alt="'+m.a+'" width="56" height="38" style="object-fit:cover;border-radius:4px"><div class="gc-mf-name">'+m.a+'</div></div>';
     var footerDiv=document.createElement('div');
     footerDiv.className='gc-mf-footer';
@@ -1402,5 +1402,56 @@ function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=docume
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
 </script>
+
+/* ── FAVOURITES MATCHES LIVE POLL ─────────────────────────────── */
+(function(){
+  function updateFavMatchCards(){
+    var today = new Date().toISOString().split('T')[0];
+    fetch('/api/scores?date='+today, {cache:'no-store'})
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        (data.matches||[]).forEach(function(m){
+          var hN = (m.home&&m.home.name||'').toLowerCase();
+          var aN = (m.away&&m.away.name||'').toLowerCase();
+          var status  = m.status&&m.status.short||'NS';
+          var elapsed = m.status&&m.status.elapsed||null;
+          var gH = m.goals&&m.goals.home!=null?m.goals.home:null;
+          var gA = m.goals&&m.goals.away!=null?m.goals.away:null;
+          var isL = ['1H','2H','HT','ET','BT','P'].indexOf(status)!==-1;
+          var isFT= ['FT','AET','PEN'].indexOf(status)!==-1;
+          if(!isL&&!isFT) return;
+          /* Find the matching FIXTURE_LIST entry */
+          var fix = (typeof FIXTURE_LIST!=='undefined'?FIXTURE_LIST:[]).find(function(f){
+            return f.h.toLowerCase().indexOf(hN.slice(0,4))!==-1 &&
+                   f.a.toLowerCase().indexOf(aN.slice(0,4))!==-1;
+          });
+          if(!fix) return;
+          var sc = (gH!==null?gH:0)+' - '+(gA!==null?gA:0);
+          var scEl = document.getElementById('fav-score-'+fix.n);
+          var tmEl = document.getElementById('fav-time-'+fix.n);
+          if(scEl) scEl.textContent = sc;
+          if(tmEl){
+            if(isL){
+              tmEl.innerHTML = '<span style="color:#ef4444;font-weight:800;font-size:.78rem">LIVE '+(elapsed?elapsed+"'":'')+'</span>';
+            } else {
+              tmEl.innerHTML = '<span style="color:#64748b;font-weight:800;font-size:.78rem">FT</span>';
+            }
+          }
+        });
+      }).catch(function(){});
+  }
+  /* Run when Matches tab is shown */
+  var origShowFavTab = typeof showFavTab !== 'undefined' ? showFavTab : null;
+  document.addEventListener('DOMContentLoaded', function(){
+    var matchBtn = document.getElementById('tab-matches');
+    if(matchBtn){
+      matchBtn.addEventListener('click', function(){
+        setTimeout(updateFavMatchCards, 200);
+      });
+    }
+    setInterval(updateFavMatchCards, 60000);
+  });
+})();
+/* ── END FAVOURITES LIVE POLL ───────────────────────────────────── */
 </body>
 </html>
