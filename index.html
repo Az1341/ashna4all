@@ -192,7 +192,7 @@ a{text-decoration:none;color:inherit}
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE — ORIGINAL UNCHANGED
 ═══════════════════════════════════════════════════════ */
-@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sidebar-w)!important}}
+@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sidebar-w)!important}.sidebar-close{display:none!important}#gc-sidebar-overlay{display:none!important}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
   #gc-sidebar{transform:translateX(-100%);box-shadow:4px 0 24px rgba(0,0,0,.3)}
@@ -681,7 +681,7 @@ tickCountdown();
 renderMatches();
 updateClock();
 setInterval(tickCountdown,1000);
-setInterval(function(){renderMatches();updateClock();},30000);
+setInterval(function(){renderMatches();updateClock();},5000);
 
 /* ── Language event listeners ── */
 /* When gc-lang.js finishes loading a language file, it fires these events.
@@ -691,7 +691,6 @@ function gcReRenderAll(){
   tickCountdown();   /* re-renders countdown label */
   updateClock();     /* re-renders updated time */
 }
-document.addEventListener('gc:languageReady',   gcReRenderAll);
 document.addEventListener('gc:languageChanged', gcReRenderAll);
 </script>
 

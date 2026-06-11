@@ -93,7 +93,7 @@ window.GC_LANG = {
     headerSub         : 'Scores en direct · Coupe du Monde 2026 · Actualités',
     liveMatchCentre   : 'Centre des scores en direct',
     upcomingMatches   : 'PROCHAINS MATCHS — COUPE DU MONDE 2026',
-    openingCeremonies : 'Cérémonies d'ouverture de la Coupe du Monde 2026'
+    openingCeremonies : "Cérémonies d'ouverture de la Coupe du Monde 2026"
   },
 
   seo: {
