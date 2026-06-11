@@ -338,15 +338,27 @@ var WC_TV={'Mexico':'ITV','South Africa':'ITV','South Korea':'ITV','Czech Republ
 var allMatches=[], activeFilter='all', searchQuery='';
 
 function pad(n){return String(n).padStart(2,'0');}
-/* getBST() replaced by GC_DateTime.formatMatchCardTime() — shows visitor local time */
+/* getBST() — shows visitor local time via GC_DateTime, falls back to UTC+1 */
 function getBST(iso){
   if(window.GC_DateTime) return GC_DateTime.formatMatchCardTime(iso);
-  /* Fallback if library not loaded: show UTC+1 BST */
-  var d=new Date(new Date(iso).getTime()+3600000);
-  return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+' BST';
+  /* Emergency fallback only: gc-datetime.js failed to load */
+  console.warn('[GoalCurrent] gc-datetime.js not loaded — using UTC+1 fallback');
+  var d=new Date(iso);
+  var localH=pad(d.getHours()), localM=pad(d.getMinutes());
+  return localH+':'+localM+' (local)';
 }
-function todayUTC(){return new Date().toISOString().slice(0,10);}
-function daysPlusN(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+function todayUTC(){
+  /* Returns visitor's LOCAL date "YYYY-MM-DD" not UTC date */
+  /* This ensures matches near midnight show on the correct local date */
+  if(window.GC_DateTime && GC_DateTime.todayLocal) return GC_DateTime.todayLocal();
+  var d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function daysPlusN(n){
+  if(window.GC_DateTime && GC_DateTime.localDatePlusN) return GC_DateTime.localDatePlusN(n);
+  var d=new Date();d.setDate(d.getDate()+n);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
 
 function flagImg(name){
   var c=FLAGS[name];
@@ -420,7 +432,8 @@ function buildCard(m){
         var d=new Date(m.ko);
         var dy=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
         var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        return dy[d.getUTCDay()]+' '+d.getUTCDate()+' '+mo[d.getUTCMonth()];
+        /* LOCAL date methods — correct for all timezones */
+        return dy[d.getDay()]+' '+d.getDate()+' '+mo[d.getMonth()];
       })();
 
   return '<a class="'+cls+'" href="'+url+'">'
@@ -465,8 +478,21 @@ function renderSection(matches,cardsId,countId){
 function renderAll(){
   var today=todayUTC(), ahead=daysPlusN(2);
   var liveM=allMatches.filter(function(m){return isLiveStatus(getStatus(m));});
-  var ftM=allMatches.filter(function(m){return isFTStatus(getStatus(m))&&m.ko&&m.ko.slice(0,10)===today;});
-  var upM=allMatches.filter(function(m){return getStatus(m)==='NS'&&m.ko&&m.ko.slice(0,10)<=ahead;});
+  var ftM=allMatches.filter(function(m){
+    if(!isFTStatus(getStatus(m))||!m.ko) return false;
+    /* Compare match's LOCAL date to today's LOCAL date */
+    var matchLocalDate=window.GC_DateTime&&GC_DateTime.utcToLocalDate
+      ? GC_DateTime.getLocalDateKey(m.ko)
+      : m.ko.slice(0,10);
+    return matchLocalDate===today;
+  });
+  var upM=allMatches.filter(function(m){
+    if(getStatus(m)!=='NS'||!m.ko) return false;
+    var matchLocalDate=window.GC_DateTime&&GC_DateTime.utcToLocalDate
+      ? GC_DateTime.getLocalDateKey(m.ko)
+      : m.ko.slice(0,10);
+    return matchLocalDate<=ahead;
+  });
   var lc=renderSection(liveM,'cards-live','cnt-live');
   var fc=renderSection(ftM,'cards-ft','cnt-ft');
   var uc=renderSection(upM,'cards-up','cnt-up');

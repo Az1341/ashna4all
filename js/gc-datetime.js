@@ -412,6 +412,90 @@
       + String(d.getDate()).padStart(2, '0');
   }
 
+
+  // ── FIXTURE GROUPING ─────────────────────────────────────────────────────
+
+  /**
+   * getLocalDateKey(utcIso) → "YYYY-MM-DD" in visitor's local timezone.
+   *
+   * THIS IS THE CORRECT WAY TO GROUP FIXTURES BY DATE.
+   *
+   * BAD:  groupKey = fixture.date          (UK date hardcoded in data)
+   * BAD:  groupKey = fixture.dt.slice(0,10) (UTC date, wrong for Americas)
+   * GOOD: groupKey = GC_DateTime.getLocalDateKey(fixture.dt)
+   *
+   * How it works:
+   *   new Date('2026-06-12T02:00:00Z')
+   *   In Toronto (UTC-4): .getDate() = 11, .getMonth() = 5 → "2026-06-11"
+   *   In UK      (UTC+1): .getDate() = 12, .getMonth() = 5 → "2026-06-12"
+   */
+  function getLocalDateKey(utcIso) {
+    var d = new Date(utcIso);
+    if (isNaN(d.getTime())) return '';
+    return d.getFullYear() + '-'
+      + String(d.getMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getDate()).padStart(2, '0');
+  }
+
+  /**
+   * getTodayLocalDateKey() → "YYYY-MM-DD" of today in visitor's local timezone.
+   *
+   * BAD:  today = new Date().toISOString().slice(0,10)  (UTC date)
+   * GOOD: today = GC_DateTime.getTodayLocalDateKey()    (local date)
+   *
+   * Difference matters after midnight UTC — e.g. at 23:30 UTC on June 11,
+   * a Canadian visitor (UTC-4) is still on June 11, but UTC is June 12.
+   */
+  function getTodayLocalDateKey() {
+    var d = new Date();
+    return d.getFullYear() + '-'
+      + String(d.getMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getDate()).padStart(2, '0');
+  }
+
+  /**
+   * formatLocalDateHeader(utcIso) → "Thursday 12 June 2026" (long form)
+   * Uses visitor's local timezone.
+   * For date group headers in fixture lists.
+   */
+  var LONG_DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var LONG_MONTHS = ['January','February','March','April','May','June',
+                     'July','August','September','October','November','December'];
+
+  function formatLocalDateHeader(utcIso) {
+    var d = new Date(utcIso);
+    if (isNaN(d.getTime())) return '—';
+    return LONG_DAYS[d.getDay()] + ' ' + d.getDate() + ' '
+         + LONG_MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  /**
+   * formatLocalTime(utcIso) → "22:00 EDT"
+   * Alias for formatLocalKickoff — same output, explicit name.
+   */
+  function formatLocalTime(utcIso) {
+    return formatLocalKickoff(utcIso);
+  }
+
+  /**
+   * formatUKDateTime(utcIso) → "Fri 12 Jun · 03:00 BST"
+   * Always returns UK date and time regardless of visitor location.
+   * Use as secondary reference line for non-UK visitors.
+   */
+  function formatUKDateTime(utcIso) {
+    var d = new Date(utcIso);
+    if (isNaN(d.getTime())) return '—';
+    var ukOffset = isUKSummer(d) ? 1 : 0;
+    var ukD  = new Date(d.getTime() + ukOffset * 3600000);
+    var ukTZ = ukOffset === 1 ? 'BST' : 'GMT';
+    var day  = DAYS[ukD.getUTCDay()];
+    var date = ukD.getUTCDate();
+    var mon  = MONTHS[ukD.getUTCMonth()];
+    var hh   = pad(ukD.getUTCHours());
+    var mm   = pad(ukD.getUTCMinutes());
+    return day + ' ' + date + ' ' + mon + ' · ' + hh + ':' + mm + ' ' + ukTZ;
+  }
+
   // ── REGION SELECTOR ───────────────────────────────────────────────────────
 
   var _userCountryOverride = null;
@@ -463,9 +547,16 @@
     getRegion: getRegion,
 
     // Date helpers
-    todayLocal:      todayLocal,
-    localDatePlusN:  localDatePlusN,
-    utcToLocalDate:  utcToLocalDate,
+    todayLocal:          todayLocal,
+    localDatePlusN:      localDatePlusN,
+    utcToLocalDate:      utcToLocalDate,
+
+    // Fixture grouping — USE THESE for grouping/filtering fixtures by date
+    getLocalDateKey:        getLocalDateKey,
+    getTodayLocalDateKey:   getTodayLocalDateKey,
+    formatLocalDateHeader:  formatLocalDateHeader,
+    formatLocalTime:        formatLocalTime,
+    formatUKDateTime:       formatUKDateTime,
 
     // Internal data (for testing)
     _TZ_COUNTRY:   TZ_COUNTRY,
