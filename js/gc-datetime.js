@@ -145,7 +145,39 @@
         hour: 'numeric'
       }).formatToParts(date);
       var tzPart = parts.find(function(p) { return p.type === 'timeZoneName'; });
-      return tzPart ? tzPart.value : '';
+      var raw = tzPart ? tzPart.value : '';
+
+      /* Normalise generic offsets to readable abbreviations.
+         Some browsers return "GMT+1" instead of "BST", etc.
+         We map the common ones visitors will see. */
+      var ABBR_MAP = {
+        'GMT+1':  'BST',   /* UK summer */
+        'GMT+2':  'CEST',  /* Central Europe summer */
+        'GMT+3':  'MSK',   /* Moscow / Arabia */
+        'GMT+4':  'GST',   /* Gulf */
+        'GMT+5':  'PKT',   /* Pakistan */
+        'GMT+5:30':'IST',  /* India */
+        'GMT+5:45':'NPT',  /* Nepal */
+        'GMT+6':  'BST',   /* Bangladesh (BST) */
+        'GMT+7':  'WIB',   /* West Indonesia */
+        'GMT+8':  'CST',   /* China */
+        'GMT+9':  'JST',   /* Japan */
+        'GMT+10': 'AEST',  /* Eastern Australia */
+        'GMT+11': 'AEDT',  /* Eastern Australia DST */
+        'GMT+12': 'NZST',  /* New Zealand */
+        'GMT-3':  'BRT',   /* Brazil */
+        'GMT-3:30':'NST',  /* Newfoundland */
+        'GMT-4':  'EDT',   /* Eastern Daylight */
+        'GMT-5':  'CDT',   /* Central Daylight / EST */
+        'GMT-6':  'MDT',   /* Mountain Daylight / CST */
+        'GMT-7':  'PDT',   /* Pacific Daylight / MST */
+        'GMT-8':  'PST',   /* Pacific Standard */
+        'GMT-9':  'AKDT',  /* Alaska */
+        'GMT-10': 'HST',   /* Hawaii */
+        'GMT+3:30':'IRST'  /* Iran */
+      };
+
+      return ABBR_MAP[raw] || raw;
     } catch(e) {
       return '';
     }
