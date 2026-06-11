@@ -1,3 +1,153 @@
+Open the current homepage and evaluate it as a first-time World Cup visitor, not as a developer.
+
+The homepage is technically working but the design priorities are wrong.
+
+CURRENT PROBLEM
+
+The page feels like:
+
+Navigation → Countdown → Statistics → More Navigation
+
+instead of:
+
+Match → News → Video → Fixtures → Teams
+
+A visitor arriving today should instantly understand that the World Cup starts within hours and immediately see the opening match.
+
+DO NOT redesign the entire website.
+
+DO NOT change working language functionality.
+
+DO NOT touch Premier League or Champions League.
+
+Focus ONLY on improving the homepage user experience.
+
+====================================================
+
+REDUCE HERO HEIGHT
+====================================================
+
+Current hero wastes too much vertical space.
+
+Reduce hero height by approximately 35–40%.
+
+Keep:
+
+Tournament title
+Countdown
+Key stats
+
+but compress spacing dramatically.
+
+Goal:
+
+Visitors should see actual football content without scrolling.
+
+Place immediately below the hero.
+
+Large premium card.
+
+Content:
+
+🔥 TODAY'S OPENING MATCH
+
+🇲🇽 Mexico vs South Africa
+
+Group A
+
+11 June 2026
+
+20:00 BST
+
+🏟 Estadio Azteca
+
+Include:
+
+Team flags
+Venue
+Kickoff time
+Countdown to kickoff
+Match link
+
+This must become the visual focus of the homepage.
+
+Create section:
+
+🎥 OFFICIAL FIFA MATCH PREVIEWS
+
+Embed:
+
+Mexico vs South Africa
+https://www.youtube.com/watch?v=PhSvaIymYes
+
+Korea Republic vs Czechia
+https://www.youtube.com/watch?v=G8_qxZRpWpg
+
+Requirements:
+
+Desktop:
+
+2-column layout
+
+Tablet:
+
+Responsive
+
+Mobile:
+
+Single column
+
+Use modern premium cards.
+
+Videos must play directly on GoalCurrent.live.
+
+Add:
+
+▶ Watch on YouTube
+
+button below each video.
+
+Create homepage news section.
+
+Show latest World Cup stories.
+
+Display:
+
+Image
+Headline
+Time
+Source
+
+Use live data where available.
+
+This content should update automatically.
+
+Current fonts are too condensed.
+
+Increase:
+
+readability
+line-height
+contrast
+
+Benchmark against:
+
+BBC Sport
+ESPN
+Sky Sports
+
+Visitors must be able to scan information quickly.
+
+Sidebar currently attracts too much attention.
+
+Make content the star.
+
+Reduce visual weight of sidebar.
+
+Football content must dominate the page.
+
+GoalCurrent.live branding should be more prominent.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,8 +430,8 @@ a{text-decoration:none;color:inherit}
     <div id="empty-state" style="display:none">
       <div class="empty-box">
         <div class="ei">⚽</div>
-        <h3 id="empty-title">No live World Cup matches currently</h3>
-        <p id="empty-sub">The tournament begins 11 June 2026. Check the full fixture list below.</p>
+        <h3 id="empty-title">Mexico vs South Africa — 20:00 BST</h3>
+        <p id="empty-sub">World Cup 2026 opening match kicks off at 20:00 BST tonight. Data updates every 30 seconds.</p>
         <a href="/worldcup2026/fixtures/">View All WC 2026 Fixtures →</a>
       </div>
     </div>
@@ -398,8 +548,9 @@ function buildCard(m){
   var testLabel=IS_TEST?'<div style="background:#7c3aed;color:#fff;font-size:.6rem;font-weight:800;text-align:center;padding:3px;letter-spacing:.05em">🧪 TEST MODE — NOT A WORLD CUP FIXTURE</div>':'';
 
   var isFakeId=String(m.id).startsWith('fb-')||String(m.id).startsWith('wc');
-  var url=(!isFakeId&&m.id)?'/match/?id='+m.id:'/worldcup2026/fixtures/';
-  var hint=(!isFakeId&&m.id&&!IS_TEST)?'<div class="mc-detail-hint">Tap for lineups, events & stats →</div>':'';
+  /* /match/ page unaudited — all cards link to fixtures until confirmed safe */
+  var url='/worldcup2026/fixtures/';
+  var hint=''; /* lineups link disabled — /match/ page not yet audited */
 
   var cls='match-card'+(isWC?' wc-card':'')+(live?' live-card':'');
   var grp=m.g?' · Grp '+m.g:'';
@@ -555,18 +706,22 @@ async function fetchTest(){
 }
 
 // ── BOOT ─────────────────────────────────────────────────────────────────
+// Production check: open DevTools console to verify API is working
+// Normal mode calls: /api/scores?date=TODAY
+// Test mode (add ?test=1 to URL) calls: /api/test-live?confirm=testmode
 if(IS_TEST){
   // Show test banner
   document.getElementById('test-banner').style.display='block';
   document.getElementById('hero-title').textContent='🧪 Test Mode';
   document.getElementById('hdr-sub-text').textContent='TEST MODE — Pre-WC Live Data Test';
   document.getElementById('empty-title').textContent='No test matches found from API';
-  document.getElementById('empty-sub').textContent='api-football.com returned no matches for today in test mode.';
+  document.getElementById('empty-sub').textContent='API returned no matches. Check API key and quota at dashboard.api-football.com';
   fetchTest();
-  setInterval(fetchTest,60000);
+  setInterval(fetchTest,30000);
 } else {
+  console.log("[GoalCurrent] Production mode — fetching /api/scores");
   fetchNormal();
-  setInterval(fetchNormal,60000);
+  setInterval(fetchNormal,30000); /* 30s refresh for live match updates */
 }
 
 function setFilter(f){
