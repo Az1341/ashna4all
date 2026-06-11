@@ -487,19 +487,6 @@
       translatePlaceholders();
       translateMeta();
       renderSelector(); // Re-render to update active item highlight
-
-      // Fire custom events so page scripts can re-render dynamic content
-      try {
-        var eventName = (code === currentLang && !window._gcLangInitialized)
-          ? 'gc:languageReady'
-          : 'gc:languageChanged';
-        window._gcLangInitialized = true;
-        document.dispatchEvent(new CustomEvent(eventName, { detail: { code: code, dir: langMeta.dir } }));
-        // Always fire languageChanged as well for listeners that only watch changes
-        if (eventName === 'gc:languageReady') {
-          document.dispatchEvent(new CustomEvent('gc:languageChanged', { detail: { code: code, dir: langMeta.dir } }));
-        }
-      } catch(e) { /* CustomEvent not supported — IE fallback silent fail */ }
     });
   }
 

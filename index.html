@@ -119,14 +119,14 @@ a{text-decoration:none;color:inherit}
 .gc-cd-label{font-family:var(--font-head);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);white-space:nowrap}
 .gc-cd-digits{display:flex;gap:5px;align-items:center}
 .gc-cd-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 10px;text-align:center;min-width:52px}
-.gc-cd-num{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr;unicode-bidi:embed}
+.gc-cd-num{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
 .gc-cd-lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.55);margin-top:2px}
 .gc-cd-sep{font-size:1.2rem;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:8px}
 .gc-live-pill{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.8rem;font-weight:800;padding:6px 14px;border-radius:20px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
 @keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.6}}
 .gc-stats-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .gc-stat-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 14px;text-align:center;min-width:70px}
-.gc-stat-num{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr;unicode-bidi:embed}
+.gc-stat-num{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
 .gc-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
 .gc-hero-nav{display:flex;gap:8px;flex-wrap:wrap}
 .gc-hero-btn{padding:10px 16px;border-radius:10px;font-family:var(--font-head);font-size:.85rem;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;transition:background .15s;white-space:nowrap}
@@ -199,6 +199,7 @@ a{text-decoration:none;color:inherit}
   #gc-sidebar.open{transform:translateX(0)}
   #gc-main{margin-left:0!important}
   .gc-header{padding-left:60px;padding-right:8px}
+  /* RTL header padding handled by gc-rtl.css */
   .gc-hero{padding:18px 16px 22px}
   .gc-cd-row{flex-direction:column;align-items:flex-start;gap:8px}
   .gc-stats-row{gap:6px}
@@ -210,155 +211,6 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:400px){.gc-hero-nav{gap:6px}.gc-hero-btn{padding:8px 12px;font-size:.78rem}}
 
-/* ═══════════════════════════════════════════════════════
-   RTL ADDITIONS — New, targeted, non-breaking
-   Applied only when html[dir='rtl'] is set by gc-lang.js
-═══════════════════════════════════════════════════════ */
-
-/* Main content: mirror padding for sidebar position */
-html[dir='rtl'] #gc-main {
-  margin-left: 0;
-  margin-right: var(--sidebar-w);
-}
-@media(max-width:768px){
-  html[dir='rtl'] #gc-main {
-    margin-right: 0;
-  }
-  /* Hamburger stays left on mobile RTL — it controls the left sidebar */
-  /* Note: #gc-lang-btn-wrap RTL position handled by gc-rtl.css */
-}
-
-/* Sidebar: flip to right side */
-html[dir='rtl'] #gc-sidebar {
-  left: auto;
-  right: 0;
-  transform: translateX(100%);
-}
-html[dir='rtl'] #gc-sidebar.open {
-  transform: translateX(0);
-}
-@media(min-width:769px){
-  html[dir='rtl'] #gc-sidebar {
-    transform: translateX(0) !important;
-  }
-}
-
-/* Note: html[dir='rtl'] body direction/text-align handled by gc-rtl.css */
-
-/* Header stays flexible in RTL */
-html[dir='rtl'] .gc-header-top {
-  flex-direction: row-reverse;
-}
-html[dir='rtl'] .gc-subnav-inner {
-  flex-direction: row-reverse;
-}
-
-/* Sidebar text alignment */
-html[dir='rtl'] .sidebar-nav a {
-  flex-direction: row-reverse;
-}
-html[dir='rtl'] .sidebar-section-label {
-  text-align: right;
-}
-
-/* Hero section */
-html[dir='rtl'] .gc-hero-title,
-html[dir='rtl'] .gc-hero-sub {
-  text-align: right;
-}
-html[dir='rtl'] .gc-hero-nav {
-  flex-direction: row-reverse;
-}
-/* Note: gc-cd-row is NOT reversed in RTL — label + digits stay in natural order.
-   The label text switches language via data-gc-i18n. Digits are always LTR numbers. */
-
-/* ── CRITICAL LTR PROTECTION ── */
-/* These NEVER change direction regardless of language */
-html[dir='rtl'] .gc-cd-num,
-html[dir='rtl'] #cd-d,
-html[dir='rtl'] #cd-h,
-html[dir='rtl'] #cd-m,
-html[dir='rtl'] #cd-s {
-  direction: ltr !important;
-  unicode-bidi: embed !important;
-  text-align: center !important;
-}
-html[dir='rtl'] .gc-stat-num,
-html[dir='rtl'] #gc-days-chip {
-  direction: ltr !important;
-  unicode-bidi: embed !important;
-  text-align: center !important;
-}
-html[dir='rtl'] .gc-col-score,
-html[dir='rtl'] .gc-ko-time,
-html[dir='rtl'] .gc-score-min,
-html[dir='rtl'] .gc-col-meta,
-html[dir='rtl'] #updatedTime {
-  direction: ltr !important;
-  unicode-bidi: embed !important;
-}
-/* Match row: home team right, score centre, away team left — same as LTR */
-/* The grid handles this — we only need to ensure text alignment is correct */
-html[dir='rtl'] .gc-col-home { text-align: right; }
-html[dir='rtl'] .gc-col-away { text-align: left; }
-
-/* Footer */
-html[dir='rtl'] .gc-footer-links,
-html[dir='rtl'] .gc-footer-social {
-  flex-direction: row-reverse;
-}
-html[dir='rtl'] .gc-footer-copy {
-  text-align: right;
-}
-
-/* Cookie banner */
-html[dir='rtl'] #gc-cookie-banner {
-  flex-direction: row-reverse;
-}
-html[dir='rtl'] .gc-cookie-text {
-  text-align: right;
-}
-
-/* Subscribe popup */
-html[dir='rtl'] .gc-sub-box {
-  text-align: right;
-  direction: rtl;
-}
-html[dir='rtl'] .gc-sub-close {
-  right: auto;
-  left: 14px;
-}
-html[dir='rtl'] #gc-sub-email-input {
-  text-align: right;
-  direction: rtl;
-}
-
-/* Section labels */
-html[dir='rtl'] .gc-section-label {
-  flex-direction: row-reverse;
-}
-
-/* Opening ceremony cards */
-html[dir='rtl'] .oc-head,
-html[dir='rtl'] .oc-body,
-html[dir='rtl'] .oc-meta,
-html[dir='rtl'] .oc-others {
-  text-align: right;
-}
-html[dir='rtl'] .oc-headliner {
-  flex-direction: row-reverse;
-}
-
-/* Match card header */
-html[dir='rtl'] .gc-match-head {
-  flex-direction: row-reverse;
-}
-
-/* VPN bar */
-html[dir='rtl'] .gc-vpn-bar {
-  direction: rtl;
-  text-align: right;
-}
 </style>
 </head>
 <body>
@@ -788,13 +640,24 @@ function updateClock(){
   if(el) el.textContent='BST · Updated '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 }
 
-/* ── Sidebar — UNCHANGED ── */
-function gcOpenSidebar(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';}
-function gcCloseSidebar(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('gc-hamburger').addEventListener('click',gcOpenSidebar);
-document.getElementById('gc-sidebar-close').addEventListener('click',gcCloseSidebar);
-document.getElementById('gc-sidebar-overlay').addEventListener('click',gcCloseSidebar);
-document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
+/* ── Sidebar ── */
+function gcOpenSidebar(){
+  document.getElementById('gc-sidebar').classList.add('open');
+  document.getElementById('gc-sidebar-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function gcCloseSidebar(){
+  document.getElementById('gc-sidebar').classList.remove('open');
+  document.getElementById('gc-sidebar-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+/* Delegated click handler — works regardless of RTL layout, language changes, or DOM reordering */
+document.addEventListener('click', function(e) {
+  if (e.target.closest && e.target.closest('#gc-hamburger'))    { gcOpenSidebar();  return; }
+  if (e.target.closest && e.target.closest('#gc-sidebar-close')){ gcCloseSidebar(); return; }
+  if (e.target.id === 'gc-sidebar-overlay')                     { gcCloseSidebar(); return; }
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ gcCloseSidebar(); } });
 
 /* ── Cookie — UNCHANGED ── */
 function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
@@ -813,12 +676,23 @@ function gcSubSubmit(){
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');sessionStorage.setItem('gc_sub_closed','1');}
 if(!sessionStorage.getItem('gc_sub_closed')){setTimeout(function(){document.getElementById('gc-sub-overlay').classList.add('show');},8000);}
 
-/* ── Tick / render — UNCHANGED logic ── */
+/* ── Initial render — runs immediately with English fallback ── */
 tickCountdown();
 renderMatches();
 updateClock();
 setInterval(tickCountdown,1000);
 setInterval(function(){renderMatches();updateClock();},30000);
+
+/* ── Language event listeners ── */
+/* When gc-lang.js finishes loading a language file, it fires these events.
+   We re-render all dynamic JS-generated content so it matches the active language. */
+function gcReRenderAll(){
+  renderMatches();   /* re-renders status pills with correct language */
+  tickCountdown();   /* re-renders countdown label */
+  updateClock();     /* re-renders updated time */
+}
+document.addEventListener('gc:languageReady',   gcReRenderAll);
+document.addEventListener('gc:languageChanged', gcReRenderAll);
 </script>
 
 <!-- gc-lang.js loaded in <head> with defer attribute -->
