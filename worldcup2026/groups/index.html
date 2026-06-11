@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Cup 2026 Groups | GoalCurrent.live</title>
-<meta name="description" content="FIFA World Cup 2026 all 12 groups A to L — teams, standings and fixtures for every group.">
+<title>World Cup 2026 Group A — Mexico · South Africa · South Korea · Czech Republic | GoalCurrent.live</title>
+<meta name="description" content="FIFA World Cup 2026 Group A: Mexico · South Africa · South Korea · Czech Republic. Standings, fixtures, TV times and more.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.goalcurrent.live/worldcup2026/groups/">
+<link rel="canonical" href="https://www.goalcurrent.live/worldcup2026/groups/group-a/">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
@@ -813,29 +813,44 @@ html, body {
 @media (max-width: 400px) {
   .gc-team-flag { width: 60px; height: 40px; }
 }
-
-.gc-groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:28px;}
-.gc-group-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:16px;padding:18px;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;}
-.gc-group-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,99,235,.12);}
-.gc-group-card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.gc-group-letter{font-family:var(--font-heading);font-size:1.3rem;font-weight:800;color:var(--blue);}
-.gc-group-arrow{font-size:.8rem;color:var(--text-light);font-weight:700;}
-.gc-group-flags{display:flex;gap:6px;flex-wrap:wrap;}
-.gc-group-flags img{border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.1);}
-.gc-group-names{margin-top:10px;font-size:.75rem;color:var(--text-mid);line-height:1.6;}
-
+<style>
+/* Group page specific styles */
+.gc-group-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.gc-group-nav a{padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;background:rgba(255,255,255,.7);color:var(--blue);border:1.5px solid rgba(37,99,235,.2);transition:.2s;}
+.gc-group-nav a:hover,.gc-group-nav a.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.gc-standings-table{width:100%;border-collapse:collapse;background:var(--card-bg);backdrop-filter:blur(12px);border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(37,99,235,.08);}
+.gc-standings-table th{background:var(--blue);color:#fff;padding:10px 12px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-align:center;}
+.gc-standings-table th:first-child{text-align:left;padding-left:16px;}
+.gc-standings-table td{padding:10px 12px;font-size:.85rem;color:var(--text-dark);text-align:center;border-bottom:1px solid rgba(0,0,0,.04);}
+.gc-standings-table td:first-child{text-align:left;padding-left:16px;}
+.gc-standings-table tr:last-child td{border-bottom:none;}
+.gc-standings-table tr.qualified td:first-child{border-left:3px solid #10b981;}
+.gc-standings-table tr.third td:first-child{border-left:3px solid var(--gold);}
+.gc-team-row{display:flex;align-items:center;gap:10px;}
+.gc-team-row img{border-radius:3px;flex-shrink:0;}
+.gc-match-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;padding:16px 20px;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.07);}
+.gc-match-meta{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--text-light);margin-bottom:12px;flex-wrap:wrap;gap:4px;}
+.gc-match-teams{display:grid;grid-template-columns:1fr 90px 1fr;align-items:center;gap:10px;}
+.gc-match-team{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+.gc-match-team img{border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.gc-match-name{font-size:.88rem;font-weight:700;color:var(--text-dark);}
+.gc-match-center{text-align:center;}
+.gc-match-vs{font-size:.85rem;font-weight:800;color:var(--gold);}
+.gc-match-time{font-size:1rem;font-weight:800;color:var(--blue);margin-top:2px;}
+.gc-match-time small{font-size:.65rem;color:var(--text-light);font-weight:500;}
+.gc-match-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,0,0,.05);flex-wrap:wrap;gap:6px;}
+.gc-tv-badge{font-size:.75rem;color:var(--text-mid);display:flex;align-items:center;gap:5px;}
+.gc-tv-pill{background:rgba(37,99,235,.1);color:var(--blue);font-weight:700;padding:2px 8px;border-radius:6px;font-size:.72rem;}
+.gc-live-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(239,68,68,.12);color:#ef4444;font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:20px;}
+.gc-live-dot{width:7px;height:7px;background:#ef4444;border-radius:50%;animation:livePulse 1s infinite;}
+.gc-qual-box{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:14px 18px;margin:24px 0;}
+.gc-qual-box h3{color:#059669;font-size:.85rem;font-weight:800;margin-bottom:4px;}
+.gc-qual-box p{font-size:.78rem;color:var(--text-mid);}
+.gc-section-hdr{font-family:var(--font-heading);font-size:1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);padding-bottom:8px;border-bottom:2px solid var(--blue);margin:24px 0 14px;}
+@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+</style>
 </style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
-  <meta property="og:type"        content="website">
-  <meta property="og:title"       content="World Cup 2026 Groups A–L | GoalCurrent.live">
-  <meta property="og:description" content="All 12 groups at FIFA World Cup 2026 — teams, fixtures and standings for Groups A through L.">
-  <meta property="og:url"         content="https://www.goalcurrent.live/worldcup2026/groups/">
-  <meta property="og:image"       content="https://www.goalcurrent.live/logo.svg">
-  <meta property="og:site_name"   content="GoalCurrent.live">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="World Cup 2026 Groups A–L | GoalCurrent.live">
-  <meta name="twitter:description" content="All 12 groups at FIFA World Cup 2026 — teams, fixtures and standings for Groups A through L.">
-  <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
 </head>
 <body>
 
@@ -860,13 +875,12 @@ html, body {
         <span class="sidebar-logo-domain">.live</span>
       </div>
     </a>
-    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close menu" onclick="gcCloseSidebar()">✕</button>
+    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close menu">✕</button>
   </div>
 
   <div class="sidebar-section-label">Main Menu</div>
   <div class="sidebar-nav">
     <a href="/"><span class="nav-icon">🏠</span> Home</a>
-    <a href="/live/">🔴 Live Scores</a>
     <a href="/worldcup2026/" class="active"><span class="nav-icon">🌍</span> World Cup 2026</a>
     <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
     <a href="/ucl/"><span class="nav-icon">⭐</span> Champions League</a>
@@ -883,7 +897,7 @@ html, body {
     <a href="/worldcup2026/venues/"><span class="nav-icon">🏟️</span> Venues</a>
     <a href="/worldcup2026/teams/"><span class="nav-icon">👕</span> Teams</a>
     <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> WC News</a>
-    <a href="/countdown.html"><span class="nav-icon">⏳</span> Countdown</a>
+    <a href="/worldcup2026/countdown/"><span class="nav-icon">⏳</span> Countdown</a>
     <a href="/worldcup2026/favourites/"><span class="nav-icon">⭐</span> Favourites</a>
   </div>
 
@@ -895,8 +909,8 @@ html, body {
 
   <div class="sidebar-footer-social">
     <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" title="Twitter/X">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" title="TikTok">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" title="YouTube">▶</a>
+    <a href="#" title="TikTok">♪</a>
+    <a href="#" title="YouTube">▶</a>
   </div>
 </nav>
 
@@ -918,10 +932,10 @@ html, body {
       <div class="gc-header-divider"></div>
       <div class="gc-header-logo">🏆</div>
       <div>
-        <div class="gc-header-title">World Cup <span>2026</span></div>
-        <div class="gc-header-sub">12 Groups · 48 Teams</div>
+        <div class="gc-header-title">Group <span>A</span></div>
+        <div class="gc-header-sub">Mexico · South Africa · South Korea · Czech Republic</div>
       </div>
-      <div class="gc-header-badge">Groups</div>
+      <div class="gc-header-badge">Group Stage</div>
     </div>
 
     <!-- SUB-NAV: WC2026 sections only — NO Premier League tab -->
@@ -935,7 +949,7 @@ html, body {
         <a href="/worldcup2026/venues/">🏟️ Venues</a>
         <a href="/worldcup2026/teams/">👕 Teams</a>
         <a href="/worldcup2026/news/">📰 News</a>
-        <a href="/countdown.html">⏳ Countdown</a>
+        <a href="/worldcup2026/countdown/">⏳ Countdown</a>
         <a href="/worldcup2026/favourites/">⭐ Favourites</a>
         <!-- ✅ Premier League REMOVED from WC top nav — it lives in the sidebar only -->
       </div>
@@ -945,96 +959,220 @@ html, body {
   <!-- ── MAIN CONTENT ── -->
   <main class="gc-main">
     <div class="gc-ad-slot" id="gc-ad-top"><span>Advertisement</span></div>
-    <div class="gc-page-title-bar" style="margin-bottom:8px">
-      <h1 class="gc-page-title">World Cup <span>Groups</span></h1>
-      <span class="gc-page-count">12 Groups · 48 Teams</span>
+
+    <h1 class="gc-page-title" style="margin-bottom:16px">Group <span style="color:var(--blue)">A</span></h1>
+    <p style="color:var(--text-mid);font-size:.9rem;margin-bottom:20px">Mexico · South Africa · South Korea · Czech Republic</p>
+
+    <!-- Group navigation -->
+    <div class="gc-group-nav">
+      <a href="/worldcup2026/groups/group-a/" class="active">Group A</a>
+<a href="/worldcup2026/groups/group-b/" class="">Group B</a>
+<a href="/worldcup2026/groups/group-c/" class="">Group C</a>
+<a href="/worldcup2026/groups/group-d/" class="">Group D</a>
+<a href="/worldcup2026/groups/group-e/" class="">Group E</a>
+<a href="/worldcup2026/groups/group-f/" class="">Group F</a>
+<a href="/worldcup2026/groups/group-g/" class="">Group G</a>
+<a href="/worldcup2026/groups/group-h/" class="">Group H</a>
+<a href="/worldcup2026/groups/group-i/" class="">Group I</a>
+<a href="/worldcup2026/groups/group-j/" class="">Group J</a>
+<a href="/worldcup2026/groups/group-k/" class="">Group K</a>
+<a href="/worldcup2026/groups/group-l/" class="">Group L</a>
+
     </div>
-    <p style="color:var(--text-mid);font-size:.85rem;margin-bottom:22px">Top 2 teams from each group advance · Best 8 third-placed teams also qualify</p>
-    <div class="gc-groups-grid"><a href="/worldcup2026/groups/group-a/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group A</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/mx.png" alt="Mexico" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/za.png" alt="South Africa" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/kr.png" alt="South Korea" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/cz.png" alt="Czech Republic" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Mexico · South Africa · South Korea · Czech Republic</div>
-    </a><a href="/worldcup2026/groups/group-b/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group B</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/ca.png" alt="Canada" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ba.png" alt="Bosnia & Herzegovina" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/qa.png" alt="Qatar" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ch.png" alt="Switzerland" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Canada · Bosnia & Herzegovina · Qatar · Switzerland</div>
-    </a><a href="/worldcup2026/groups/group-c/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group C</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ma.png" alt="Morocco" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/gb-sct.png" alt="Scotland" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ht.png" alt="Haiti" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Brazil · Morocco · Scotland · Haiti</div>
-    </a><a href="/worldcup2026/groups/group-d/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group D</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/us.png" alt="USA" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/py.png" alt="Paraguay" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/au.png" alt="Australia" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/tr.png" alt="Turkey" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">USA · Paraguay · Australia · Turkey</div>
-    </a><a href="/worldcup2026/groups/group-e/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group E</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/de.png" alt="Germany" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ci.png" alt="Ivory Coast" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ec.png" alt="Ecuador" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/cw.png" alt="Curaçao" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Germany · Ivory Coast · Ecuador · Curaçao</div>
-    </a><a href="/worldcup2026/groups/group-f/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group F</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/jp.png" alt="Japan" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/nl.png" alt="Netherlands" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/se.png" alt="Sweden" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/tn.png" alt="Tunisia" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Japan · Netherlands · Sweden · Tunisia</div>
-    </a><a href="/worldcup2026/groups/group-g/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group G</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/be.png" alt="Belgium" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/eg.png" alt="Egypt" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/ir.png" alt="Iran" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/nz.png" alt="New Zealand" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Belgium · Egypt · Iran · New Zealand</div>
-    </a><a href="/worldcup2026/groups/group-h/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group H</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/es.png" alt="Spain" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/cv.png" alt="Cape Verde" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Spain · Uruguay · Saudi Arabia · Cape Verde</div>
-    </a><a href="/worldcup2026/groups/group-i/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group I</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/fr.png" alt="France" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/no.png" alt="Norway" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/iq.png" alt="Iraq" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/sn.png" alt="Senegal" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">France · Norway · Iraq · Senegal</div>
-    </a><a href="/worldcup2026/groups/group-j/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group J</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/dz.png" alt="Algeria" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/at.png" alt="Austria" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/jo.png" alt="Jordan" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Argentina · Algeria · Austria · Jordan</div>
-    </a><a href="/worldcup2026/groups/group-k/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group K</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/co.png" alt="Colombia" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/cd.png" alt="DR Congo" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/uz.png" alt="Uzbekistan" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">Portugal · Colombia · DR Congo · Uzbekistan</div>
-    </a><a href="/worldcup2026/groups/group-l/" class="gc-group-card">
-      <div class="gc-group-card-hdr">
-        <span class="gc-group-letter">Group L</span>
-        <span class="gc-group-arrow">View →</span>
-      </div>
-      <div class="gc-group-flags"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/hr.png" alt="Croatia" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/pa.png" alt="Panama" width="40" height="27" loading="lazy"><img src="https://flagcdn.com/w40/gh.png" alt="Ghana" width="40" height="27" loading="lazy"></div>
-      <div class="gc-group-names">England · Croatia · Panama · Ghana</div>
-    </a></div>
+
+    <!-- Standings -->
+    <div class="gc-section-hdr">📊 Standings</div>
+    <div style="overflow-x:auto;margin-bottom:24px">
+      <table class="gc-standings-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>P</th><th>W</th><th>D</th><th>L</th>
+            <th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody id="grp-a-standings-body">
+          <tr class="qualified" id="row-mexico">
+          <td><div class="gc-team-row"><img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Mexico<span style="font-size:.65rem;background:var(--gold);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px">Host</span></span></div></td>
+          <td id="mx-p">0</td><td id="mx-w">0</td><td id="mx-d">0</td><td id="mx-l">0</td>
+          <td id="mx-gf">0</td><td id="mx-ga">0</td><td id="mx-gd">0</td><td id="mx-pts">0</td>
+        </tr><tr class="qualified" id="row-sa">
+          <td><div class="gc-team-row"><img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Africa</span></div></td>
+          <td id="sa-p">0</td><td id="sa-w">0</td><td id="sa-d">0</td><td id="sa-l">0</td>
+          <td id="sa-gf">0</td><td id="sa-ga">0</td><td id="sa-gd">0</td><td id="sa-pts">0</td>
+        </tr><tr class="third" id="row-kr">
+          <td><div class="gc-team-row"><img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Korea</span></div></td>
+          <td id="kr-p">0</td><td id="kr-w">0</td><td id="kr-d">0</td><td id="kr-l">0</td>
+          <td id="kr-gf">0</td><td id="kr-ga">0</td><td id="kr-gd">0</td><td id="kr-pts">0</td>
+        </tr><tr class="" id="row-cz">
+          <td><div class="gc-team-row"><img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Czech Republic</span></div></td>
+          <td id="cz-p">0</td><td id="cz-w">0</td><td id="cz-d">0</td><td id="cz-l">0</td>
+          <td id="cz-gf">0</td><td id="cz-ga">0</td><td id="cz-gd">0</td><td id="cz-pts">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:.72rem;color:var(--text-light);margin-bottom:24px">
+      <span style="display:inline-block;width:12px;height:12px;background:#10b981;border-radius:2px;margin-right:4px;vertical-align:middle"></span>Advance to Round of 32
+      &nbsp;&nbsp;
+      <span style="display:inline-block;width:12px;height:12px;background:var(--gold);border-radius:2px;margin-right:4px;vertical-align:middle"></span>Potential best third-place
+    </div>
+
+    <!-- Fixtures -->
+    <div class="gc-section-hdr">📅 Group A Fixtures</div>
+    <div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #1 · 📍 Mexico City</span>
+            <span>📅 2026-06-11</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Mexico</div>
+            </div>
+            <div class="gc-match-center" id="mc-center-1">
+              <div class="gc-match-vs" id="mc-vs-1">VS</div>
+              <div class="gc-match-time" id="mc-time-1">20:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Africa</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">ITV</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div><div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #2 · 📍 Guadalajara</span>
+            <span>📅 2026-06-12</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Korea</div>
+            </div>
+            <div class="gc-match-center">
+              <div class="gc-match-vs">VS</div>
+              <div class="gc-match-time">03:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Czech Republic</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">ITV</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div><div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #13 · 📍 Mexico City</span>
+            <span>📅 2026-06-16</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Mexico</div>
+            </div>
+            <div class="gc-match-center">
+              <div class="gc-match-vs">VS</div>
+              <div class="gc-match-time">20:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Korea</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">BBC</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div><div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #14 · 📍 Guadalajara</span>
+            <span>📅 2026-06-16</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Czech Republic</div>
+            </div>
+            <div class="gc-match-center">
+              <div class="gc-match-vs">VS</div>
+              <div class="gc-match-time">17:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Africa</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">BBC</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div><div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #25 · 📍 Mexico City</span>
+            <span>📅 2026-06-20</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Mexico</div>
+            </div>
+            <div class="gc-match-center">
+              <div class="gc-match-vs">VS</div>
+              <div class="gc-match-time">20:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">Czech Republic</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">ITV</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div><div class="gc-match-card">
+          <div class="gc-match-meta">
+            <span>Group A · Match #26 · 📍 Guadalajara</span>
+            <span>📅 2026-06-20</span>
+          </div>
+          <div class="gc-match-teams">
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Africa</div>
+            </div>
+            <div class="gc-match-center">
+              <div class="gc-match-vs">VS</div>
+              <div class="gc-match-time">20:00 <small>BST</small></div>
+            </div>
+            <div class="gc-match-team">
+              <img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="64" height="43" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">
+              <div class="gc-match-name">South Korea</div>
+            </div>
+          </div>
+          <div class="gc-match-footer">
+            <div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">ITV</span></div>
+            <a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>
+          </div>
+        </div>
+
+    <!-- Qualification info -->
+    <div class="gc-qual-box">
+      <h3>✅ Qualification</h3>
+      <p>Top 2 teams from Group A advance to the Round of 32. The best 8 third-placed teams across all groups also advance.</p>
+    </div>
+
+    <!-- Nav buttons -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px">
+      <a href="/worldcup2026/groups/" style="padding:8px 18px;background:rgba(37,99,235,.1);color:var(--blue);border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">← All Groups</a>
+      <a href="/worldcup2026/fixtures/" style="padding:8px 18px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">📅 Full Fixtures</a>
+      <a href="/worldcup2026/teams/" style="padding:8px 18px;background:rgba(37,99,235,.1);color:var(--blue);border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">👕 Teams</a>
+    </div>
+
     <div class="gc-ad-slot gc-ad-slot-mid"><span>Advertisement</span></div>
   </main>
   <!-- ── NORDVPN AFFILIATE BAR (ONE, above footer) ── -->
@@ -1079,10 +1217,18 @@ html, body {
     <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close">✕</button>
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
-    <div class="gc-sub-form">
-      <input type="email" id="gc-sub-email" placeholder="Your email address" autocomplete="email">
-      <button class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free</button>
-    </div>
+    <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ=="
+          method="POST"
+          data-type="subscription"
+          target="_blank"
+          onsubmit="setTimeout(function(){document.getElementById('gc-sub-thanks').style.display='block';},500);gcSubClose();">
+      <div class="gc-sub-form">
+        <input type="email" name="EMAIL" id="gc-sub-email" placeholder="Your email address" autocomplete="email" required>
+        <input type="hidden" name="locale" value="en">
+        <input type="text" name="email_address_check" value="" style="display:none">
+        <button type="submit" class="gc-sub-submit">Subscribe Free ✉️</button>
+      </div>
+    </form>
     <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
   </div>
 </div>
@@ -1100,76 +1246,164 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSideb
 (function(){if(localStorage.getItem('gc_cookie_choice'))return;setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.classList.add('show');},1200);})();
 function gcCookieAccept(){localStorage.setItem('gc_cookie_choice','accepted');document.getElementById('gc-cookie-banner').classList.remove('show');}
 function gcCookieDecline(){localStorage.setItem('gc_cookie_choice','declined');document.getElementById('gc-cookie-banner').classList.remove('show');}
-(function(){
-  if(sessionStorage.getItem('gc_sub_shown'))return;
-  var shown=false;
-  function show(){if(shown)return;shown=true;sessionStorage.setItem('gc_sub_shown','1');var el=document.getElementById('gc-sub-overlay');if(el)el.classList.add('show');}
-  setTimeout(show,10000);
-  window.addEventListener('scroll',function(){if(window.scrollY/(document.body.scrollHeight-window.innerHeight)>=0.5)show();},{passive:true});
-})();
+(function(){if(sessionStorage.getItem('gc_sub_shown'))return;var shown=false;function show(){if(shown)return;shown=true;sessionStorage.setItem('gc_sub_shown','1');var el=document.getElementById('gc-sub-overlay');if(el)el.classList.add('show');}setTimeout(show,10000);window.addEventListener('scroll',function(){if(window.scrollY/(document.body.scrollHeight-window.innerHeight)>=0.5)show();},{passive:true});})();
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');}
-function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}document.querySelector('.gc-sub-box').innerHTML='<div style="padding:20px"><h3 style="color:var(--blue)">You are in!</h3></div>';setTimeout(gcSubClose,2500);}
-(function(){
-  var MATCHES=[
-    {id:1,h:'Mexico',a:'South Africa',utc:'2026-06-11T19:00:00Z'},
-    {id:2,h:'South Korea',a:'Czech Republic',utc:'2026-06-12T02:00:00Z'},
-    {id:3,h:'Canada',a:'Bosnia & Herz.',utc:'2026-06-12T19:00:00Z'},
-    {id:4,h:'USA',a:'Paraguay',utc:'2026-06-13T01:00:00Z'},
-    {id:5,h:'Australia',a:'Turkey',utc:'2026-06-13T04:00:00Z'},
-    {id:6,h:'Qatar',a:'Switzerland',utc:'2026-06-13T19:00:00Z'},
-    {id:7,h:'Brazil',a:'Haiti',utc:'2026-06-13T19:00:00Z'},
-    {id:8,h:'Morocco',a:'Scotland',utc:'2026-06-13T16:00:00Z'}
-  ];
-  var now=new Date();
-  var preStart=new Date('2026-06-10T00:00:00Z');
-  var tourneyStart=new Date('2026-06-11T19:00:00Z');
-  var el=document.getElementById('gc-wc-popup');
-  var titleEl=document.getElementById('gc-wc-popup-title');
-  var bodyEl=document.getElementById('gc-wc-popup-body');
-  if(!el||!titleEl||!bodyEl)return;
-  function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
-  if(now>=preStart&&now<tourneyStart&&!sessionStorage.getItem('gc_wc_pre')){
-    sessionStorage.setItem('gc_wc_pre','1');
-    titleEl.textContent='World Cup 2026 Starts Tomorrow!';
-    bodyEl.innerHTML='<p style="margin:8px 0">The FIFA World Cup kicks off <strong>11 June 2026</strong>.</p><p style="margin:4px 0">First match: <strong>Mexico vs South Africa</strong> 20:00 BST</p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
-    setTimeout(function(){el.classList.add('show');},2000);
-    return;
-  }
-  if(now>=tourneyStart){
-    var shown=localStorage.getItem('gc_wc_match_popup');
-    var next=MATCHES.find(function(m){var k=new Date(m.utc);return String(m.id)!==shown&&now<k&&(k-now)<10800000;});
-    if(next){
-      localStorage.setItem('gc_wc_match_popup',String(next.id));
-      titleEl.textContent='Match Starting Soon!';
-      bodyEl.innerHTML='<p style="margin:8px 0;font-size:1rem;font-weight:800">'+next.h+' vs '+next.a+'</p><p style="color:var(--text-mid);font-size:.82rem">Kicks off <strong>'+bst(next.utc)+'</strong></p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
-      setTimeout(function(){el.classList.add('show');},3000);
-    }
-  }
-})();
-function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remove('show');}
+function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}document.querySelector('.gc-sub-box').innerHTML='<div style="padding:20px"><h3 style="color:var(--blue)">✅ Subscribed!</h3></div>';setTimeout(gcSubClose,2500);}
 </script>
-<!-- WC POPUP -->
-<div id="gc-wc-popup" style="position:fixed;bottom:20px;right:20px;z-index:1300;max-width:300px;width:calc(100vw - 40px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.22);padding:20px 20px 18px;border-top:4px solid var(--blue);transform:translateY(30px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s">
-  <button onclick="gcWcPopupClose()" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:#94a3b8;line-height:1">&#x2715;</button>
-  <div id="gc-wc-popup-title" style="font-family:var(--font-heading);font-size:.95rem;font-weight:800;color:var(--blue);margin-bottom:6px"></div>
-  <div id="gc-wc-popup-body" style="font-size:.82rem;color:var(--text-mid);line-height:1.5"></div>
-</div>
-<style>#gc-wc-popup.show{transform:translateY(0);opacity:1;pointer-events:auto;}</style>
 
-<script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
-<!-- Cookie Banner -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
-  <div style="font-size:.78rem;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:inherit">Decline</button>
-  </div>
-</div>
 <script>
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
+/* ── GROUP A LIVE DATA FEED ─────────────────────────────────────────────
+   Polls /api/scores every 60 seconds.
+   Updates standings and fixture cards from API data.
+   No hardcoded scores. All data from /api/scores.
+   Falls back to static display if API unavailable.
+──────────────────────────────────────────────────────────────────────── */
+(function(){
+  var TODAY_UTC = new Date().toISOString().split('T')[0];
+
+  /* Map API team names → our IDs */
+  var TEAM_MAP = {
+    'mexico':        'mx',
+    'south africa':  'sa',
+    'south korea':   'kr',
+    'korea republic':'kr',
+    'czech republic':'cz',
+    'czechia':       'cz'
+  };
+
+  function teamKey(name){
+    var n = (name||'').toLowerCase().trim();
+    for(var k in TEAM_MAP){ if(n.indexOf(k)!==-1) return TEAM_MAP[k]; }
+    return null;
+  }
+
+  function el(id){ return document.getElementById(id); }
+
+  function setCell(id, val){
+    var e = el(id);
+    if(e) e.textContent = val;
+  }
+
+  var LIVE_STATUSES = ['1H','2H','HT','ET','BT','P'];
+  var FT_STATUSES   = ['FT','AET','PEN'];
+
+  function isLive(s){ return LIVE_STATUSES.indexOf(s) !== -1; }
+  function isFT(s)  { return FT_STATUSES.indexOf(s) !== -1;   }
+
+  function applyMatch(m){
+    var hName = m.home && m.home.name ? m.home.name : '';
+    var aName = m.away && m.away.name ? m.away.name : '';
+    var hKey  = teamKey(hName);
+    var aKey  = teamKey(aName);
+    var status  = m.status && m.status.short ? m.status.short : 'NS';
+    var elapsed = m.status && m.status.elapsed ? m.status.elapsed : null;
+    var gH = m.goals && m.goals.home  != null ? m.goals.home  : null;
+    var gA = m.goals && m.goals.away  != null ? m.goals.away  : null;
+    var live = isLive(status);
+    var ft   = isFT(status);
+
+    /* Update Match #1 card center if this is Mexico vs SA */
+    if(hKey === 'mx' && aKey === 'sa'){
+      var vsEl   = el('mc-vs-1');
+      var timeEl = el('mc-time-1');
+      if(live){
+        if(vsEl)   vsEl.innerHTML  = '<span style="font-size:1.1rem;font-weight:900;color:#1e293b">'+(gH!=null?gH:0)+' – '+(gA!=null?gA:0)+'</span>';
+        if(timeEl) timeEl.innerHTML= '<span class="gc-live-badge"><span class="gc-live-dot"></span>LIVE '+(elapsed?elapsed+"'":'')+' </span>';
+      } else if(ft){
+        if(vsEl)   vsEl.innerHTML  = '<span style="font-size:1.1rem;font-weight:900;color:#1e293b">'+(gH!=null?gH:0)+' – '+(gA!=null?gA:0)+'</span>';
+        if(timeEl) timeEl.innerHTML= '<span style="font-size:.78rem;font-weight:800;color:#64748b;background:#f1f5f9;padding:2px 8px;border-radius:6px">FT</span>';
+      }
+    }
+
+    /* Calculate standings contribution */
+    if(!hKey || !aKey) return null;
+    if(gH == null || gA == null) return null;
+    if(!live && !ft) return null;
+
+    return {hKey:hKey, aKey:aKey, gH:parseInt(gH), gA:parseInt(gA), status:status};
+  }
+
+  function updateStandings(results){
+    /* results: array of {hKey, aKey, gH, gA, status} */
+    var teams = {
+      mx: {p:0,w:0,d:0,l:0,gf:0,ga:0},
+      sa: {p:0,w:0,d:0,l:0,gf:0,ga:0},
+      kr: {p:0,w:0,d:0,l:0,gf:0,ga:0},
+      cz: {p:0,w:0,d:0,l:0,gf:0,ga:0}
+    };
+
+    results.forEach(function(r){
+      if(!r) return;
+      var h = teams[r.hKey], a = teams[r.aKey];
+      if(!h || !a) return;
+      h.p++; h.gf += r.gH; h.ga += r.gA;
+      a.p++; a.gf += r.gA; a.ga += r.gH;
+      if(r.gH > r.gA){ h.w++; a.l++; }
+      else if(r.gH < r.gA){ h.l++; a.w++; }
+      else { h.d++; a.d++; }
+    });
+
+    /* Write cells */
+    ['mx','sa','kr','cz'].forEach(function(k){
+      var t = teams[k];
+      var gd = t.gf - t.ga;
+      var pts = t.w*3 + t.d;
+      setCell(k+'-p',  t.p);
+      setCell(k+'-w',  t.w);
+      setCell(k+'-d',  t.d);
+      setCell(k+'-l',  t.l);
+      setCell(k+'-gf', t.gf);
+      setCell(k+'-ga', t.ga);
+      setCell(k+'-gd', (gd>0?'+':'')+gd);
+      setCell(k+'-pts',pts);
+    });
+  }
+
+  function poll(){
+    /* Fetch today + adjacent dates (match on 2026-06-11 might be fetched on -12 for some TZs) */
+    var dates = [];
+    var d = new Date(); d.setDate(d.getDate()-1);
+    dates.push(d.toISOString().split('T')[0]);
+    dates.push(new Date().toISOString().split('T')[0]);
+    var d2 = new Date(); d2.setDate(d2.getDate()+1);
+    dates.push(d2.toISOString().split('T')[0]);
+
+    /* De-dupe by match ID */
+    var seen = {}, allMatches = [];
+    Promise.all(dates.map(function(dt){
+      return fetch('/api/scores?date='+dt, {cache:'no-store'})
+        .then(function(r){ return r.json(); })
+        .catch(function(){ return {matches:[]}; });
+    })).then(function(results){
+      results.forEach(function(data){
+        (data.matches||[]).forEach(function(m){
+          if(m && m.id && !seen[m.id]){
+            seen[m.id] = true;
+            allMatches.push(m);
+          }
+        });
+      });
+
+      /* Filter to Group A matches only (league id 1) */
+      var grpA = allMatches.filter(function(m){
+        return m.league && m.league.id === 1;
+      });
+
+      /* Apply each match */
+      var contributions = grpA.map(applyMatch).filter(Boolean);
+      updateStandings(contributions);
+
+    }).catch(function(e){
+      console.warn('[GroupA] Live update failed:', e.message);
+    });
+  }
+
+  /* Run on load, then every 60s */
+  poll();
+  setInterval(poll, 60000);
+})();
 </script>
+<script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 </body>
 </html>
