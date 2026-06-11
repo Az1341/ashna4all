@@ -60,7 +60,7 @@
   --blue:       #2563eb;
   --blue-dark:  #003fb8;
   --card-bg:    rgba(255,255,255,0.82);
-  --sidebar-w:  260px;
+  --sidebar-w:  220px;
   --text-dark:  #0f172a;
   --text-mid:   #334155;
   --text-light: #64748b;
@@ -69,7 +69,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-main);background:var(--body-bg);background-attachment:fixed;color:var(--text-dark);min-height:100vh}
+body{font-family:var(--font-main);background:var(--body-bg);background-attachment:fixed;color:var(--text-dark);min-height:100vh;font-size:15px;line-height:1.6}
 a{text-decoration:none;color:inherit}
 #gc-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
 #gc-sidebar-overlay.open{display:block}
@@ -80,14 +80,14 @@ a{text-decoration:none;color:inherit}
 .sidebar-logo-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent;flex-shrink:0;overflow:hidden;font-size:1.2rem}
 .sidebar-logo-icon img{width:100%;height:100%;object-fit:contain}
 .sidebar-logo-text{display:flex;flex-direction:column}
-.sidebar-logo-name{font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1}
+.sidebar-logo-name{font-family:var(--font-head);font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:.01em;white-space:nowrap;line-height:1}
 .sidebar-logo-name em{color:var(--blue);font-style:normal}
 .sidebar-logo-domain{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:1px}
 .sidebar-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px}
 .sidebar-close:hover{color:#fff;background:rgba(255,255,255,.1)}
-.sidebar-section-label{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:16px 16px 6px}
+.sidebar-section-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);padding:12px 14px 5px}
 .sidebar-nav{display:flex;flex-direction:column}
-.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:.88rem;font-weight:600;color:rgba(184,196,217,.85);transition:background .15s,color .15s}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:9px 14px;font-size:.84rem;font-weight:500;color:rgba(184,196,217,.8);transition:background .15s,color .15s}
 .sidebar-nav a:hover{background:rgba(255,255,255,.07);color:#fff}
 .sidebar-nav a.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:#fff;font-weight:700}
 .nav-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
@@ -100,9 +100,9 @@ a{text-decoration:none;color:inherit}
 .gc-header{background:var(--header-bg);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:12px 20px 0;position:sticky;top:0;z-index:300}
 .gc-header-top{display:flex;align-items:center;gap:12px;padding-bottom:10px}
 .gc-site-brand{display:flex;align-items:center;gap:10px}
-.gc-site-brand-icon{width:38px;height:38px;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:transparent;flex-shrink:0}
+.gc-site-brand-icon{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:transparent;flex-shrink:0}
 .gc-site-brand-icon img{width:100%;height:100%;object-fit:contain}
-.gc-site-brand-text{font-family:var(--font-head);font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:.01em;white-space:nowrap}
+.gc-site-brand-text{font-family:var(--font-head);font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:.01em;white-space:nowrap}
 .gc-site-brand-text span{color:var(--gold)}
 .gc-header-sub{font-size:.72rem;color:rgba(255,255,255,.6);font-weight:600;margin-top:2px}
 .gc-subnav{overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
@@ -111,29 +111,29 @@ a{text-decoration:none;color:inherit}
 .gc-subnav-inner a{display:inline-block;padding:6px 14px;border-radius:999px;font-family:var(--font-head);font-size:.82rem;font-weight:700;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);transition:background .15s,color .15s;white-space:nowrap}
 .gc-subnav-inner a:hover{background:rgba(255,255,255,.16);color:#fff}
 .gc-subnav-inner a.active{background:var(--gold);border-color:var(--gold);color:#0f172a}
-.gc-hero{background:var(--header-bg);padding:24px 20px 28px;color:#fff;border-bottom:2px solid rgba(245,158,11,.3)}
-.gc-hero-title{font-family:var(--font-head);font-size:1.6rem;font-weight:800;margin-bottom:2px}
+.gc-hero{background:var(--header-bg);padding:14px 20px 16px;color:#fff;border-bottom:2px solid rgba(245,158,11,.3)}
+.gc-hero-title{font-family:var(--font-head);font-size:1.4rem;font-weight:800;margin-bottom:1px}
 .gc-hero-title span{color:var(--gold)}
-.gc-hero-sub{font-size:.8rem;color:rgba(255,255,255,.65);font-weight:600;margin-bottom:18px}
-.gc-cd-row{display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.gc-hero-sub{font-size:.75rem;color:rgba(255,255,255,.65);font-weight:600;margin-bottom:10px}
+.gc-cd-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
 .gc-cd-label{font-family:var(--font-head);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);white-space:nowrap}
 .gc-cd-digits{display:flex;gap:5px;align-items:center}
-.gc-cd-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 10px;text-align:center;min-width:52px}
-.gc-cd-num{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
+.gc-cd-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 8px;text-align:center;min-width:44px}
+.gc-cd-num{font-family:var(--font-head);font-size:1.25rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
 .gc-cd-lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.55);margin-top:2px}
 .gc-cd-sep{font-size:1.2rem;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:8px}
 .gc-live-pill{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.8rem;font-weight:800;padding:6px 14px;border-radius:20px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
 @keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.6}}
-.gc-stats-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.gc-stat-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 14px;text-align:center;min-width:70px}
-.gc-stat-num{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
+.gc-stats-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.gc-stat-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:5px 10px;text-align:center;min-width:58px}
+.gc-stat-num{font-family:var(--font-head);font-size:1.15rem;font-weight:800;color:var(--gold);line-height:1;direction:ltr!important;unicode-bidi:embed}
 .gc-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
 .gc-hero-nav{display:flex;gap:8px;flex-wrap:wrap}
-.gc-hero-btn{padding:10px 16px;border-radius:10px;font-family:var(--font-head);font-size:.85rem;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;transition:background .15s;white-space:nowrap}
+.gc-hero-btn{padding:7px 13px;border-radius:8px;font-family:var(--font-head);font-size:.8rem;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;transition:background .15s;white-space:nowrap}
 .gc-hero-btn:hover{background:rgba(255,255,255,.22)}
 .gc-hero-btn.primary{background:var(--gold);border-color:var(--gold);color:#0f172a}
 .gc-hero-btn.primary:hover{background:#e08c09}
-.gc-content{flex:1;padding:20px 18px 0}
+.gc-content{flex:1;padding:16px 20px 0}
 .gc-section-label{font-family:var(--font-head);font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue-dark);padding-bottom:8px;border-bottom:2px solid var(--blue-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .gc-match-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08)}
 .gc-match-head{background:linear-gradient(135deg,#001a4d,#002b80);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.8rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
@@ -200,7 +200,7 @@ a{text-decoration:none;color:inherit}
   #gc-main{margin-left:0!important}
   .gc-header{padding-left:60px;padding-right:8px}
   /* RTL header padding handled by gc-rtl.css */
-  .gc-hero{padding:18px 16px 22px}
+  .gc-hero{padding:10px 14px 12px}
   .gc-cd-row{flex-direction:column;align-items:flex-start;gap:8px}
   .gc-stats-row{gap:6px}
   .gc-stat-chip{min-width:62px;padding:6px 10px}
@@ -211,15 +211,60 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:400px){.gc-hero-nav{gap:6px}.gc-hero-btn{padding:8px 12px;font-size:.78rem}}
 
+/* ── OPENING MATCH CARD ────────────────────────────────────────────────── */
+.gc-opening-match{background:linear-gradient(135deg,#001a4d 0%,#003fb8 60%,#0057e7 100%);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 8px 32px rgba(0,27,80,.35);border:1px solid rgba(255,255,255,.15)}
+.gc-om-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1)}
+.gc-om-badge{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
+.gc-om-meta{font-family:var(--font-head);font-size:.72rem;color:rgba(255,255,255,.7);font-weight:600}
+.gc-om-body{padding:16px 20px 20px;color:#fff}
+.gc-om-matchup{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.gc-om-team{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+.gc-om-flag{font-size:2.8rem;line-height:1}
+.gc-om-teamname{font-family:var(--font-head);font-size:1rem;font-weight:800;text-align:center;white-space:nowrap}
+.gc-om-vs{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);flex-shrink:0}
+.gc-om-details{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.gc-om-detail{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.9)}
+.gc-om-detail strong{color:var(--gold)}
+.gc-om-ko-wrap{margin-bottom:14px}
+.gc-om-ko-label{font-family:var(--font-head);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:4px}
+.gc-om-ko-digits{display:flex;gap:4px;align-items:center}
+.gc-om-ko-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 8px;text-align:center;min-width:42px}
+.gc-om-ko-num{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:#fff;line-height:1;direction:ltr!important}
+.gc-om-ko-lbl{font-size:.55rem;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:1px}
+.gc-om-ko-sep{font-size:1rem;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:6px}
+.gc-om-ko-started{font-family:var(--font-head);font-size:1rem;font-weight:800;color:#4ade80;display:none}
+.gc-om-actions{display:flex;gap:8px;flex-wrap:wrap}
+.gc-om-btn{padding:9px 18px;border-radius:10px;font-family:var(--font-head);font-size:.82rem;font-weight:700;text-decoration:none;transition:background .15s;white-space:nowrap}
+.gc-om-btn.primary{background:var(--gold);color:#0f172a}
+.gc-om-btn.primary:hover{background:#e08c09}
+.gc-om-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.gc-om-btn.secondary:hover{background:rgba(255,255,255,.22)}
+@media(max-width:768px){
+  .gc-om-flag{font-size:2.2rem}
+  .gc-om-teamname{font-size:.88rem}
+  .gc-om-matchup{gap:8px}
+  .gc-om-body{padding:12px 14px 14px}
+}
+/* RTL: match card always LTR */
+html[dir='rtl'] .gc-opening-match{direction:ltr}
+html[dir='rtl'] .gc-om-header{flex-direction:row-reverse}
+html[dir='rtl'] .gc-om-teamname{direction:ltr}
 
 /* ── FIFA MATCH PREVIEW VIDEOS ──────────────────────────────────────────── */
+/* ── FIFA MATCH PREVIEW CARDS (thumbnail + external link — no embed) ── */
 .gc-video-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-.gc-video-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.08)}
+.gc-video-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.08);display:flex;flex-direction:column}
 .gc-video-head{background:linear-gradient(135deg,#001a4d,#002b80);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.82rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .gc-video-badge{background:var(--gold);color:#0f172a;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;flex-shrink:0}
-.gc-video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:#000}
-.gc-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-.gc-video-body{padding:12px 14px 14px}
+/* Thumbnail with play button overlay — no iframe */
+.gc-video-thumb{position:relative;width:100%;padding-bottom:56.25%;background:#0f172a;overflow:hidden;cursor:pointer;display:block;text-decoration:none}
+.gc-video-thumb img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.gc-video-thumb:hover img{transform:scale(1.03)}
+.gc-video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(0,0,0,.75);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.gc-video-thumb:hover .gc-video-play{background:#ff0000;transform:translate(-50%,-50%) scale(1.1)}
+.gc-video-play svg{width:26px;height:26px;fill:#fff;margin-left:4px}
+.gc-video-duration{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.8);color:#fff;font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:4px;font-family:var(--font-head)}
+.gc-video-body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
 .gc-video-title{font-family:var(--font-head);font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:4px;line-height:1.3}
 .gc-video-meta{font-size:.72rem;color:var(--text-light);font-weight:600;margin-bottom:10px;line-height:1.6}
 .gc-video-desc{font-size:.78rem;color:var(--text-mid);line-height:1.6;margin-bottom:12px}
@@ -234,6 +279,28 @@ a{text-decoration:none;color:inherit}
 }
 /* RTL: video cards stay LTR layout — video content is always directional */
 html[dir='rtl'] .gc-video-card{direction:ltr}
+/* ── HOMEPAGE NEWS SECTION ──────────────────────────────────────────────── */
+.gc-news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.gc-news-item{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.06);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.gc-news-item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.12)}
+.gc-news-img{width:100%;height:130px;object-fit:cover;display:block;background:#dbeafe}
+.gc-news-img-placeholder{width:100%;height:130px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);display:flex;align-items:center;justify-content:center;font-size:2rem}
+.gc-news-body{padding:10px 12px 12px}
+.gc-news-source{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:3px}
+.gc-news-headline{font-family:var(--font-head);font-size:.9rem;font-weight:700;color:var(--text-dark);line-height:1.35;margin-bottom:5px}
+.gc-news-time{font-size:.68rem;color:var(--text-light);font-weight:600}
+@media(max-width:768px){
+  .gc-news-grid{grid-template-columns:1fr}
+  .gc-news-img,.gc-news-img-placeholder{height:160px}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .gc-news-grid{grid-template-columns:repeat(2,1fr)}
+}
+html[dir='rtl'] .gc-news-item{direction:rtl;text-align:right}
+html[dir='rtl'] .gc-news-source,
+html[dir='rtl'] .gc-news-headline,
+html[dir='rtl'] .gc-news-time{text-align:right}
+
 html[dir='rtl'] .gc-video-title,
 html[dir='rtl'] .gc-video-meta,
 html[dir='rtl'] .gc-video-desc{direction:rtl;text-align:right}
@@ -382,6 +449,48 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
   <div class="gc-content">
     <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Football Live Scores, Fixtures and World Cup 2026</h1>
 
+
+    <!-- ═══ TODAY'S OPENING MATCH — VISUAL FOCUS OF HOMEPAGE ═══════════════ -->
+    <div class="gc-opening-match" id="gc-opening-match">
+      <div class="gc-om-header">
+        <span class="gc-om-badge">🔥 TODAY'S OPENING MATCH</span>
+        <span class="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
+      </div>
+      <div class="gc-om-body">
+        <div class="gc-om-matchup" dir="ltr">
+          <div class="gc-om-team">
+            <div class="gc-om-flag">🇲🇽</div>
+            <div class="gc-om-teamname">Mexico</div>
+          </div>
+          <div class="gc-om-vs">VS</div>
+          <div class="gc-om-team">
+            <div class="gc-om-flag">🇿🇦</div>
+            <div class="gc-om-teamname">South Africa</div>
+          </div>
+        </div>
+        <div class="gc-om-details" dir="ltr">
+          <div class="gc-om-detail">⏰ <strong>20:00 BST</strong> Kickoff</div>
+          <div class="gc-om-detail">🏟 <strong>Estadio Azteca</strong>, Mexico City</div>
+          <div class="gc-om-detail">📺 <strong>ITV</strong></div>
+        </div>
+        <div class="gc-om-ko-wrap" dir="ltr">
+          <div class="gc-om-ko-label" id="gc-om-ko-label">⏱ Kickoff in</div>
+          <div class="gc-om-ko-digits" id="gc-om-ko-digits">
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
+          </div>
+          <div class="gc-om-ko-started" id="gc-om-started">🟢 MATCH IN PROGRESS</div>
+        </div>
+        <div class="gc-om-actions">
+          <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
+          <a class="gc-om-btn secondary" href="/live/">🔴 Live Scores</a>
+        </div>
+      </div>
+    </div>
+    <!-- ═══ END OPENING MATCH ════════════════════════════════════════════ -->
     <!-- LIVE MATCH CENTRE -->
     <div class="gc-section-label" id="gc-section-label">
       <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>
@@ -397,6 +506,43 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     </div>
 
 
+
+    <!-- ═══ LATEST WORLD CUP NEWS ══════════════════════════════════════════ -->
+    <div class="gc-section-label" style="margin-top:22px">
+      📰 <span data-gc-i18n="gc.latestWCNews">World Cup 2026 — Latest News</span>
+    </div>
+    <div class="gc-news-grid" id="gc-news-grid">
+      <!-- News items injected by JS -->
+      <div class="gc-news-item">
+        <div class="gc-news-img-placeholder">🏆</div>
+        <div class="gc-news-body">
+          <div class="gc-news-source">FIFA</div>
+          <div class="gc-news-headline">World Cup 2026 Opens Tonight — Mexico Host South Africa in Group A</div>
+          <div class="gc-news-time">Today · 20:00 BST</div>
+        </div>
+      </div>
+      <div class="gc-news-item">
+        <a href="https://www.bbc.com/sport/football/world-cup" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="gc-news-img-placeholder">⚽</div>
+          <div class="gc-news-body">
+            <div class="gc-news-source">BBC Sport</div>
+            <div class="gc-news-headline">World Cup 2026: All you need to know as the tournament gets underway</div>
+            <div class="gc-news-time">Today</div>
+          </div>
+        </a>
+      </div>
+      <div class="gc-news-item">
+        <a href="https://www.bbc.com/sport/football/world-cup" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="gc-news-img-placeholder">🇲🇽</div>
+          <div class="gc-news-body">
+            <div class="gc-news-source">World Cup 2026</div>
+            <div class="gc-news-headline">Group A Preview: Mexico, South Korea, South Africa, Czech Republic</div>
+            <div class="gc-news-time">Today</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- ═══ END NEWS ═════════════════════════════════════════════════════ -->
     <!-- ═══ FIFA MATCH PREVIEW VIDEOS ═══════════════════════════════════════
          Videos: Official FIFA WC2026 match previews
          Lazy loaded · Responsive · RTL safe
@@ -406,62 +552,60 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     </div>
     <div class="gc-video-grid">
 
-      <!-- VIDEO 1: Mexico vs South Africa -->
+      <!-- VIDEO 1: Mexico vs South Africa — thumbnail link, NO iframe -->
       <div class="gc-video-card">
         <div class="gc-video-head">
           <span>🇲🇽 Mexico vs South Africa 🇿🇦</span>
           <span class="gc-video-badge">Group A</span>
         </div>
-        <div class="gc-video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/PhSvaIymYes?rel=0&modestbranding=1"
-            title="Mexico vs South Africa — Official FIFA World Cup 2026 Match Preview"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
+        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener" aria-label="Watch Mexico vs South Africa FIFA preview on YouTube">
+          <img src="https://img.youtube.com/vi/PhSvaIymYes/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/PhSvaIymYes/hqdefault.jpg'"
+               alt="Mexico vs South Africa — FIFA World Cup 2026 Match Preview"
+               loading="lazy" width="640" height="360">
+          <div class="gc-video-play">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="gc-video-duration">FIFA Official</span>
+        </a>
         <div class="gc-video-body">
           <div class="gc-video-title">Mexico vs South Africa</div>
-          <div class="gc-video-meta">
-            📅 Thu 11 Jun 2026 &nbsp;·&nbsp; ⏰ 20:00 BST &nbsp;·&nbsp; 🏟️ Estadio Azteca, Mexico City
-          </div>
-          <div class="gc-video-desc" data-gc-i18n="gc.video1Desc">
+          <div class="gc-video-meta">📅 Thu 11 Jun 2026 &nbsp;·&nbsp; ⏰ 20:00 BST &nbsp;·&nbsp; 🏟️ Estadio Azteca</div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video1Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
             Official FIFA World Cup 2026 match preview. Mexico open the tournament at home against South Africa in Group A.
           </div>
           <a class="gc-video-btn" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
-            Watch on YouTube
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            ▶ Watch on YouTube
           </a>
         </div>
       </div>
 
-      <!-- VIDEO 2: Korea Republic vs Czechia -->
+      <!-- VIDEO 2: Korea Republic vs Czechia — thumbnail link, NO iframe -->
       <div class="gc-video-card">
         <div class="gc-video-head">
           <span>🇰🇷 Korea Republic vs Czechia 🇨🇿</span>
           <span class="gc-video-badge">Group A</span>
         </div>
-        <div class="gc-video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/G8_qxZRpWpg?rel=0&modestbranding=1"
-            title="Korea Republic vs Czechia — Official FIFA World Cup 2026 Match Preview"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
+        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener" aria-label="Watch Korea Republic vs Czechia FIFA preview on YouTube">
+          <img src="https://img.youtube.com/vi/G8_qxZRpWpg/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/G8_qxZRpWpg/hqdefault.jpg'"
+               alt="Korea Republic vs Czechia — FIFA World Cup 2026 Match Preview"
+               loading="lazy" width="640" height="360">
+          <div class="gc-video-play">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="gc-video-duration">FIFA Official</span>
+        </a>
         <div class="gc-video-body">
           <div class="gc-video-title">Korea Republic vs Czechia</div>
-          <div class="gc-video-meta">
-            📅 Fri 12 Jun 2026 &nbsp;·&nbsp; ⏰ 22:00 BST &nbsp;·&nbsp; 🏟️ SoFi Stadium, Los Angeles
-          </div>
-          <div class="gc-video-desc" data-gc-i18n="gc.video2Desc">
+          <div class="gc-video-meta">📅 Fri 12 Jun 2026 &nbsp;·&nbsp; ⏰ 22:00 BST &nbsp;·&nbsp; 🏟️ SoFi Stadium, LA</div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video2Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
             Official FIFA World Cup 2026 match preview. Korea Republic face Czechia in their Group A opener.
           </div>
           <a class="gc-video-btn" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
-            Watch on YouTube
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            ▶ Watch on YouTube
           </a>
         </div>
       </div>
@@ -781,6 +925,41 @@ renderMatches();
 updateClock();
 setInterval(tickCountdown,1000);
 setInterval(function(){renderMatches();updateClock();},5000);
+
+
+/* ── Opening Match Kickoff Countdown ── */
+var MEXICO_KO = new Date('2026-06-11T19:00:00Z'); /* 20:00 BST = 19:00 UTC */
+var MEXICO_FT = new Date(MEXICO_KO.getTime() + 115 * 60000); /* ~115 min */
+function tickOpeningMatch(){
+  var now = new Date();
+  var diff = MEXICO_KO - now;
+  var label = document.getElementById('gc-om-ko-label');
+  var digits = document.getElementById('gc-om-ko-digits');
+  var started = document.getElementById('gc-om-started');
+  if (!label) return;
+  if (diff > 0) {
+    var ts = Math.floor(diff / 1000);
+    var hh = Math.floor(ts / 3600);
+    var mm = Math.floor((ts % 3600) / 60);
+    var ss = ts % 60;
+    document.getElementById('om-h').textContent = pad(hh);
+    document.getElementById('om-m').textContent = pad(mm);
+    document.getElementById('om-s').textContent = pad(ss);
+    if (digits) digits.style.display = 'flex';
+    if (started) started.style.display = 'none';
+    label.textContent = '⏱ Kickoff in';
+  } else if (now < MEXICO_FT) {
+    if (digits) digits.style.display = 'none';
+    if (started) started.style.display = 'block';
+    label.textContent = '';
+  } else {
+    if (digits) digits.style.display = 'none';
+    if (started) { started.textContent = '✅ MATCH FINISHED'; started.style.display = 'block'; }
+    label.textContent = '';
+  }
+}
+tickOpeningMatch();
+setInterval(tickOpeningMatch, 1000);
 
 /* ── Language event listeners ── */
 /* When gc-lang.js finishes loading a language file, it fires these events.
