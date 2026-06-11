@@ -141,18 +141,25 @@ async function getByDate(date) {
 }
 
 async function getLive() {
-  const raw = await apiFetch(`/fixtures?live=${WC_LEAGUE}`);
+  const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&live=all`);
   return raw.map(fmtFixture);
 }
 
 async function getDetail(id) {
-  const [fixtureRaw, eventsRaw, lineupsRaw, statsRaw, playersRaw] = await Promise.all([
+  /* Use allSettled so one failed endpoint doesn't kill the whole response */
+  const [fixtureRes, eventsRes, lineupsRes, statsRes, playersRes] = await Promise.allSettled([
     apiFetch(`/fixtures?id=${id}`),
     apiFetch(`/fixtures/events?fixture=${id}`),
     apiFetch(`/fixtures/lineups?fixture=${id}`),
     apiFetch(`/fixtures/statistics?fixture=${id}`),
     apiFetch(`/fixtures/players?fixture=${id}`)
   ]);
+
+  const fixtureRaw = fixtureRes.status === 'fulfilled' ? fixtureRes.value : [];
+  const eventsRaw  = eventsRes.status  === 'fulfilled' ? eventsRes.value  : [];
+  const lineupsRaw = lineupsRes.status === 'fulfilled' ? lineupsRes.value : [];
+  const statsRaw   = statsRes.status   === 'fulfilled' ? statsRes.value   : [];
+  const playersRaw = playersRes.status === 'fulfilled' ? playersRes.value : [];
 
   const fixture = fixtureRaw[0];
   if (!fixture) return null;
