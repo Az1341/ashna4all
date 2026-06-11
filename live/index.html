@@ -666,71 +666,135 @@ function renderStandings(){
   container.innerHTML=html;
 }
 
-// ── NORMAL MODE: fetch WC data across date window for timezone accuracy ────
-// Fetches yesterday + today + tomorrow in UTC so visitors in western timezones
-// (Canada, USA, Mexico) see matches that fall on their LOCAL today even if the
-// UTC date is tomorrow.  Matches are deduplicated by ID.
-async function fetchNormal(){
-  /* Step 1: determine local today and the 3-day UTC window to fetch */
+// ── NORMAL MODE ──────────────────────────────────────────────────────────
+//
+// QUOTA STRATEGY:
+//   The 3-date window (yesterday/today/tomorrow) ensures western-timezone
+//   visitors see matches that cross midnight UTC.
+//   To protect API-Football quota, adjacent-date responses are CACHED for
+//   CACHE_ADJACENT_MS (10 minutes). Only the "today" date is always fresh.
+//
+//   REFRESH INTERVALS:
+//     Pre-match / post-match : 60 seconds  (1 call per minute × 3 = 3/min)
+//     Active live match      : 60 seconds  (same — saves quota vs 30s)
+//     Result: max ~180 calls / 90-minute match (vs 540 at 30s)
+//
+//   FAULT TOLERANCE:
+//     Each date fetch is independent. If yesterday or tomorrow 404s,
+//     the remaining dates still render. allMatches is never cleared on
+//     partial failure — last good data stays visible.
+
+var _adjacentCache = {};   /* { "YYYY-MM-DD": { ts: epoch, data: [...] } } */
+var CACHE_ADJACENT_MS = 10 * 60 * 1000; /* 10 minutes */
+
+function _shift(dk, n) {
+  return (window.GC_DateTime && GC_DateTime.shiftDateKey)
+    ? GC_DateTime.shiftDateKey(dk, n)
+    : (function(){
+        var d = new Date(dk + 'T12:00:00Z');
+        d.setUTCDate(d.getUTCDate() + n);
+        return d.getUTCFullYear() + '-'
+          + String(d.getUTCMonth()+1).padStart(2,'0') + '-'
+          + String(d.getUTCDate()).padStart(2,'0');
+      })();
+}
+
+function _fetchDate(dateKey, forceRefresh) {
+  /* Returns a Promise resolving to array of raw API matches.
+     Adjacent dates (not today) are cached for CACHE_ADJACENT_MS.
+     Any failure returns [] — never throws. */
+  var cached = _adjacentCache[dateKey];
+  if (!forceRefresh && cached && (Date.now() - cached.ts) < CACHE_ADJACENT_MS) {
+    return Promise.resolve(cached.data);
+  }
+  return fetch('/api/scores?date=' + dateKey, {cache:'no-store'})
+    .then(function(r) { return r.ok ? r.json() : {matches:[]}; })
+    .then(function(data) {
+      var matches = data.matches || [];
+      _adjacentCache[dateKey] = { ts: Date.now(), data: matches };
+      return matches;
+    })
+    .catch(function(e) {
+      console.warn('[GoalCurrent] fetch failed for', dateKey, e.message);
+      return (_adjacentCache[dateKey] && _adjacentCache[dateKey].data) || [];
+    });
+}
+
+function _mapMatch(m) {
+  var tv = window.GC_DateTime ? GC_DateTime.buildTVDisplay() : 'BBC / ITV';
+  return {
+    id:          m.id,
+    h:           (m.home && m.home.name) || 'TBD',
+    a:           (m.away && m.away.name) || 'TBD',
+    ko:          m.date,
+    comp:        'WC',
+    statusShort: m.status ? m.status.short : 'NS',
+    elapsed:     m.status ? m.status.elapsed : null,
+    homeGoals:   m.goals  ? m.goals.home    : null,
+    awayGoals:   m.goals  ? m.goals.away    : null,
+    venue:       m.venue || m.city || '',
+    g:           m.league ? (m.league.round||'').replace('Group Stage - ','').replace('Group ','') : '',
+    tv:          tv
+  };
+}
+
+async function fetchNormal() {
   var localToday = window.GC_DateTime
     ? GC_DateTime.getTodayLocalDateKey()
     : (function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
 
-  var shift = window.GC_DateTime && GC_DateTime.shiftDateKey
-    ? function(dk,n){return GC_DateTime.shiftDateKey(dk,n);}
-    : function(dk,n){var d=new Date(dk+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');};
+  var yesterday = _shift(localToday, -1);
+  var tomorrow  = _shift(localToday, +1);
 
-  var datesToFetch = [shift(localToday,-1), localToday, shift(localToday,1)];
-  console.log('[GoalCurrent] Fetching dates:', datesToFetch.join(', '), '| local today:', localToday);
+  console.log('[GoalCurrent] Production mode — fetching /api/scores | local today:', localToday);
 
-  try{
-    /* Step 2: fetch all three dates in parallel */
-    var responses = await Promise.all(
-      datesToFetch.map(function(d){
-        return fetch('/api/scores?date='+d, {cache:'no-store'})
-          .then(function(r){ return r.ok ? r.json() : {matches:[]}; })
-          .catch(function(){ return {matches:[]}; });
-      })
-    );
+  /* Today is always fresh. Adjacent dates served from cache if recent. */
+  var results = await Promise.all([
+    _fetchDate(yesterday, false),   /* cached up to 10 min */
+    _fetchDate(localToday, true),   /* always fresh */
+    _fetchDate(tomorrow,   false)   /* cached up to 10 min */
+  ]);
 
-    /* Step 3: merge and deduplicate by match ID */
-    var seen = {};
-    var merged = [];
-    responses.forEach(function(data){
-      (data.matches||[]).forEach(function(m){
-        if(!seen[m.id]){
-          seen[m.id] = true;
-          merged.push(m);
-        }
-      });
+  /* Merge and deduplicate by match ID */
+  var seen = {}, merged = [];
+  results.forEach(function(arr) {
+    arr.forEach(function(m) {
+      if (m && m.id && !seen[m.id]) {
+        seen[m.id] = true;
+        merged.push(m);
+      }
     });
+  });
 
-    if(merged.length){
-      allMatches = merged.map(function(m){
-        var tv = window.GC_DateTime ? GC_DateTime.buildTVDisplay() : 'BBC / ITV';
-        return{
-          id:m.id,
-          h:(m.home&&m.home.name)||'TBD',
-          a:(m.away&&m.away.name)||'TBD',
-          ko:m.date,
-          comp:'WC',
-          statusShort:m.status?m.status.short:'NS',
-          elapsed:m.status?m.status.elapsed:null,
-          homeGoals:m.goals?m.goals.home:null,
-          awayGoals:m.goals?m.goals.away:null,
-          venue:m.venue||m.city||'',
-          g:m.league?(m.league.round||'').replace('Group Stage - ','').replace('Group ',''):'',
-          tv:tv
-        };
-      });
-    } else {
-      allMatches = [];
-    }
-  }catch(e){
-    console.warn('WC live proxy error:',e.message);
-    allMatches = [];
+  if (merged.length) {
+    allMatches = merged.map(_mapMatch);
   }
+  /* On empty: keep previous allMatches so page does not go blank
+     (handles transient API failure gracefully) */
+
+  _updateRefreshInterval();
   renderAll();
+}
+
+/* ── ADAPTIVE REFRESH INTERVAL ──────────────────────────────────────────
+   60s always. Protects quota while still being responsive.
+   The interval is recreated after each fetch so it stays accurate.     */
+var _refreshTimer = null;
+var REFRESH_MS = 60000; /* 60 seconds — max ~180 API calls per 90-min match */
+
+function _updateRefreshInterval() {
+  /* Check if any match is currently live */
+  var hasLive = allMatches.some(function(m){ return isLiveStatus(getStatus(m)); });
+  var interval = REFRESH_MS; /* always 60s — change to 30000 if quota allows */
+  if (_refreshTimer) {
+    clearInterval(_refreshTimer);
+  }
+  _refreshTimer = setInterval(fetchNormal, interval);
+  var note = hasLive
+    ? 'Live · Updating every 60s'
+    : 'Updating every 60s';
+  var el = document.getElementById('standings-note');
+  if (el) el.textContent = note;
 }
 
 // ── TEST MODE: fetch all today's matches from /api/test-live ─────────────
@@ -805,9 +869,7 @@ if(IS_TEST){
   fetchTest();
   setInterval(fetchTest,30000);
 } else {
-  console.log("[GoalCurrent] Production mode — fetching /api/scores");
-  fetchNormal();
-  setInterval(fetchNormal,30000); /* 30s refresh for live match updates */
+  fetchNormal(); /* _updateRefreshInterval() inside fetchNormal sets the timer */
 }
 
 function setFilter(f){
