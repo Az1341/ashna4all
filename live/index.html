@@ -1,153 +1,3 @@
-Open the current homepage and evaluate it as a first-time World Cup visitor, not as a developer.
-
-The homepage is technically working but the design priorities are wrong.
-
-CURRENT PROBLEM
-
-The page feels like:
-
-Navigation → Countdown → Statistics → More Navigation
-
-instead of:
-
-Match → News → Video → Fixtures → Teams
-
-A visitor arriving today should instantly understand that the World Cup starts within hours and immediately see the opening match.
-
-DO NOT redesign the entire website.
-
-DO NOT change working language functionality.
-
-DO NOT touch Premier League or Champions League.
-
-Focus ONLY on improving the homepage user experience.
-
-====================================================
-
-REDUCE HERO HEIGHT
-====================================================
-
-Current hero wastes too much vertical space.
-
-Reduce hero height by approximately 35–40%.
-
-Keep:
-
-Tournament title
-Countdown
-Key stats
-
-but compress spacing dramatically.
-
-Goal:
-
-Visitors should see actual football content without scrolling.
-
-Place immediately below the hero.
-
-Large premium card.
-
-Content:
-
-🔥 TODAY'S OPENING MATCH
-
-🇲🇽 Mexico vs South Africa
-
-Group A
-
-11 June 2026
-
-20:00 BST
-
-🏟 Estadio Azteca
-
-Include:
-
-Team flags
-Venue
-Kickoff time
-Countdown to kickoff
-Match link
-
-This must become the visual focus of the homepage.
-
-Create section:
-
-🎥 OFFICIAL FIFA MATCH PREVIEWS
-
-Embed:
-
-Mexico vs South Africa
-https://www.youtube.com/watch?v=PhSvaIymYes
-
-Korea Republic vs Czechia
-https://www.youtube.com/watch?v=G8_qxZRpWpg
-
-Requirements:
-
-Desktop:
-
-2-column layout
-
-Tablet:
-
-Responsive
-
-Mobile:
-
-Single column
-
-Use modern premium cards.
-
-Videos must play directly on GoalCurrent.live.
-
-Add:
-
-▶ Watch on YouTube
-
-button below each video.
-
-Create homepage news section.
-
-Show latest World Cup stories.
-
-Display:
-
-Image
-Headline
-Time
-Source
-
-Use live data where available.
-
-This content should update automatically.
-
-Current fonts are too condensed.
-
-Increase:
-
-readability
-line-height
-contrast
-
-Benchmark against:
-
-BBC Sport
-ESPN
-Sky Sports
-
-Visitors must be able to scan information quickly.
-
-Sidebar currently attracts too much attention.
-
-Make content the star.
-
-Reduce visual weight of sidebar.
-
-Football content must dominate the page.
-
-GoalCurrent.live branding should be more prominent.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,6 +10,7 @@ GoalCurrent.live branding should be more prominent.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
+<script src="/js/gc-datetime.js"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
 <style>
 :root{
@@ -430,8 +281,8 @@ a{text-decoration:none;color:inherit}
     <div id="empty-state" style="display:none">
       <div class="empty-box">
         <div class="ei">⚽</div>
-        <h3 id="empty-title">Mexico vs South Africa — 20:00 BST</h3>
-        <p id="empty-sub">World Cup 2026 opening match kicks off at 20:00 BST tonight. Data updates every 30 seconds.</p>
+        <h3 id="empty-title">Mexico vs South Africa — <span id="gc-ko-local">20:00 BST</span></h3>
+        <p id="empty-sub">World Cup 2026 opening match kicks off at <span id="gc-ko-local2">20:00 BST</span> tonight. Data updates every 30 seconds.</p>
         <a href="/worldcup2026/fixtures/">View All WC 2026 Fixtures →</a>
       </div>
     </div>
@@ -487,7 +338,13 @@ var WC_TV={'Mexico':'ITV','South Africa':'ITV','South Korea':'ITV','Czech Republ
 var allMatches=[], activeFilter='all', searchQuery='';
 
 function pad(n){return String(n).padStart(2,'0');}
-function getBST(iso){var d=new Date(new Date(iso).getTime()+3600000);return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+' BST';}
+/* getBST() replaced by GC_DateTime.formatMatchCardTime() — shows visitor local time */
+function getBST(iso){
+  if(window.GC_DateTime) return GC_DateTime.formatMatchCardTime(iso);
+  /* Fallback if library not loaded: show UTC+1 BST */
+  var d=new Date(new Date(iso).getTime()+3600000);
+  return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+' BST';
+}
 function todayUTC(){return new Date().toISOString().slice(0,10);}
 function daysPlusN(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
 
@@ -556,10 +413,15 @@ function buildCard(m){
   var grp=m.g?' · Grp '+m.g:'';
   var tv=m.tv?'<span class="mc-tv">📺 '+m.tv+'</span>':'';
   var venue=m.venue?'<span class="mc-venue">📍 '+m.venue+'</span>':'';
-  var days2=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var months2=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var koD=new Date(m.ko);
-  var dateLabel=days2[koD.getUTCDay()]+' '+koD.getUTCDate()+' '+months2[koD.getUTCMonth()];
+  /* Use visitor's local timezone for date display */
+  var dateLabel=window.GC_DateTime
+    ? GC_DateTime.formatLocalDate(m.ko)
+    : (function(){
+        var d=new Date(m.ko);
+        var dy=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return dy[d.getUTCDay()]+' '+d.getUTCDate()+' '+mo[d.getUTCMonth()];
+      })();
 
   return '<a class="'+cls+'" href="'+url+'">'
     +testLabel
@@ -619,7 +481,10 @@ function renderAll(){
     ?liveM.length+' match'+(liveM.length>1?'es':'')+' LIVE 🔴 · Tap any match for lineup & stats'
     :upM.length>0?upM.length+' upcoming · Tap any match for full details'
     :IS_TEST?'No matches returned from API right now':'No live World Cup matches currently';
-  document.getElementById('last-updated').textContent='Last updated: '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';
+  var _now=new Date();
+  var _tzAbbr=window.GC_DateTime?GC_DateTime.getLocalTZAbbr?GC_DateTime.getLocalTZAbbr(_now):'local':'BST';
+  /* Use local time format for visitor */
+  document.getElementById('last-updated').textContent='Last updated: '+_now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' '+(_tzAbbr||'local');
 }
 
 // ── NORMAL MODE: fetch WC live data only ──────────────────────────────────
@@ -632,10 +497,8 @@ async function fetchNormal(){
     var data=await res.json();
     if(data.matches&&data.matches.length){
       allMatches=data.matches.map(function(m){
-        var tv='';
-        var name=(m.home&&m.home.name)||'';
-        for(var k in WC_TV){if(name.toLowerCase().includes(k.toLowerCase())){tv=WC_TV[k];break;}}
-        if(!tv){var an=(m.away&&m.away.name)||'';for(var k2 in WC_TV){if(an.toLowerCase().includes(k2.toLowerCase())){tv=WC_TV[k2];break;}}}
+        /* TV broadcaster: uses visitor's region via GC_DateTime */
+        var tv=window.GC_DateTime?GC_DateTime.buildTVDisplay():'BBC / ITV';
         return{
           id:m.id,
           h:(m.home&&m.home.name)||'TBD',
@@ -704,6 +567,21 @@ async function fetchTest(){
   }
   renderAll();
 }
+
+// ── LOCAL TIME INIT ─────────────────────────────────────────────────────
+// Update all hardcoded BST times to visitor's local time
+(function updateLocalTimes(){
+  var MEXICO_KO_UTC = '2026-06-11T19:00:00Z';
+  if (!window.GC_DateTime) {
+    console.warn('[GoalCurrent] gc-datetime.js not loaded — showing UK time as fallback');
+    return;
+  }
+  var localTime = GC_DateTime.formatLocalKickoff(MEXICO_KO_UTC);
+  var el1 = document.getElementById('gc-ko-local');
+  var el2 = document.getElementById('gc-ko-local2');
+  if (el1) el1.textContent = localTime;
+  if (el2) el2.textContent = localTime;
+})();
 
 // ── BOOT ─────────────────────────────────────────────────────────────────
 // Production check: open DevTools console to verify API is working
