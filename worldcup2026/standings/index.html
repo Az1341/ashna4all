@@ -991,7 +991,7 @@ html, body {
       <div style="overflow-x:auto">
         <table class="gc-standings-table">
           <thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
-          <tbody><tr class="qualified"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Mexico<span style="font-size:.6rem;background:var(--gold);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px">Host</span></span></div></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr class="qualified"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Africa</span></div></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr class="third"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Korea</span></div></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr class=""><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Czech Republic</span></div></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody>
+          <tbody><tr class="qualified"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/mx.png" alt="Mexico" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Mexico<span style="font-size:.6rem;background:var(--gold);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px">Host</span></span></div></td><td id="st-mx-p">0</td><td id="st-mx-w">0</td><td id="st-mx-d">0</td><td id="st-mx-l">0</td><td id="st-mx-gf">0</td><td id="st-mx-ga">0</td><td id="st-mx-gd">0</td><td id="st-mx-pts">0</td></tr><tr class="qualified"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/za.png" alt="South Africa" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Africa</span></div></td><td id="st-sa-p">0</td><td id="st-sa-w">0</td><td id="st-sa-d">0</td><td id="st-sa-l">0</td><td id="st-sa-gf">0</td><td id="st-sa-ga">0</td><td id="st-sa-gd">0</td><td id="st-sa-pts">0</td></tr><tr class="third"><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/kr.png" alt="South Korea" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>South Korea</span></div></td><td id="st-kr-p">0</td><td id="st-kr-w">0</td><td id="st-kr-d">0</td><td id="st-kr-l">0</td><td id="st-kr-gf">0</td><td id="st-kr-ga">0</td><td id="st-kr-gd">0</td><td id="st-kr-pts">0</td></tr><tr class=""><td><div class="gc-team-row"><img src="https://flagcdn.com/w80/cz.png" alt="Czech Republic" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy"><span>Czech Republic</span></div></td><td id="st-cz-p">0</td><td id="st-cz-w">0</td><td id="st-cz-d">0</td><td id="st-cz-l">0</td><td id="st-cz-gf">0</td><td id="st-cz-ga">0</td><td id="st-cz-gd">0</td><td id="st-cz-pts">0</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -1228,6 +1228,71 @@ function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim(
   <div id="gc-wc-popup-body" style="font-size:.82rem;color:var(--text-mid);line-height:1.5"></div>
 </div>
 <style>#gc-wc-popup.show{transform:translateY(0);opacity:1;pointer-events:auto;}</style>
+
+<script>
+/* Standings page — Group A live update from /api/scores */
+(function(){
+  var TEAM_MAP={'mexico':'mx','south africa':'sa','south korea':'kr',
+                'korea republic':'kr','czech republic':'cz','czechia':'cz'};
+  function tKey(n){
+    var s=(n||'').toLowerCase().trim();
+    for(var k in TEAM_MAP){if(s.indexOf(k)!==-1)return TEAM_MAP[k];}
+    return null;
+  }
+  function setCell(id,val){var e=document.getElementById(id);if(e)e.textContent=val;}
+  function poll(){
+    var dates=[],d=new Date();
+    d.setDate(d.getDate()-1);dates.push(d.toISOString().split('T')[0]);
+    dates.push(new Date().toISOString().split('T')[0]);
+    var d2=new Date();d2.setDate(d2.getDate()+1);dates.push(d2.toISOString().split('T')[0]);
+    var seen={},all=[];
+    Promise.all(dates.map(function(dt){
+      return fetch('/api/scores?date='+dt,{cache:'no-store'})
+        .then(function(r){return r.json();})
+        .catch(function(){return{matches:[]};});
+    })).then(function(res){
+      res.forEach(function(data){
+        (data.matches||[]).forEach(function(m){
+          if(m&&m.id&&!seen[m.id]){seen[m.id]=true;all.push(m);}
+        });
+      });
+      /* Only league id 1 (WC) */
+      var wc=all.filter(function(m){return m.league&&m.league.id===1;});
+      var teams={mx:{p:0,w:0,d:0,l:0,gf:0,ga:0},sa:{p:0,w:0,d:0,l:0,gf:0,ga:0},
+                 kr:{p:0,w:0,d:0,l:0,gf:0,ga:0},cz:{p:0,w:0,d:0,l:0,gf:0,ga:0}};
+      var hasLive=false;
+      wc.forEach(function(m){
+        var hk=tKey(m.home&&m.home.name||'');
+        var ak=tKey(m.away&&m.away.name||'');
+        var st=m.status&&m.status.short||'NS';
+        var gH=m.goals&&m.goals.home!=null?parseInt(m.goals.home):null;
+        var gA=m.goals&&m.goals.away!=null?parseInt(m.goals.away):null;
+        var isL=['1H','2H','HT','ET','BT','P'].indexOf(st)!==-1;
+        var isFT=['FT','AET','PEN'].indexOf(st)!==-1;
+        if(isL)hasLive=true;
+        if((!isL&&!isFT)||gH===null||gA===null)return;
+        if(!hk||!ak||!teams[hk]||!teams[ak])return;
+        var h=teams[hk],a=teams[ak];
+        h.p++;h.gf+=gH;h.ga+=gA;a.p++;a.gf+=gA;a.ga+=gH;
+        if(gH>gA){h.w++;a.l++;}else if(gH<gA){h.l++;a.w++;}else{h.d++;a.d++;}
+      });
+      ['mx','sa','kr','cz'].forEach(function(k){
+        var t=teams[k];
+        var gd=t.gf-t.ga;
+        var pts=t.w*3+t.d;
+        setCell('st-'+k+'-p',t.p);setCell('st-'+k+'-w',t.w);
+        setCell('st-'+k+'-d',t.d);setCell('st-'+k+'-l',t.l);
+        setCell('st-'+k+'-gf',t.gf);setCell('st-'+k+'-ga',t.ga);
+        setCell('st-'+k+'-gd',(gd>0?'+':'')+gd);
+        setCell('st-'+k+'-pts',pts);
+      });
+      var liveEl=document.getElementById('st-ga-live');
+      if(liveEl)liveEl.style.display=hasLive?'inline':'none';
+    }).catch(function(e){console.warn('[Standings] poll error:',e.message);});
+  }
+  poll();setInterval(poll,60000);
+})();
+</script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
 <!-- Cookie Banner -->
