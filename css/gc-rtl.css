@@ -1,0 +1,283 @@
+/**
+ * gc-rtl.css — GoalCurrent.live RTL Overrides
+ * Loaded ONLY when language is Persian (fa) or Arabic (ar).
+ * Does NOT modify existing CSS files — only adds overrides.
+ *
+ * CRITICAL RULE:
+ * Scores, match times, statistics, and standings numbers
+ * are ALWAYS kept LTR regardless of page language direction.
+ */
+
+/* ── BASE DIRECTION ─────────────────────────────────────────────────────── */
+
+html[dir='rtl'],
+html[dir='rtl'] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL Persian font */
+html[dir='rtl']:lang(fa) body,
+html[dir='rtl']:lang(fa) * {
+  font-family: 'Vazirmatn', 'Tahoma', 'Arial Unicode MS', sans-serif;
+}
+
+/* RTL Arabic font */
+html[dir='rtl']:lang(ar) body,
+html[dir='rtl']:lang(ar) * {
+  font-family: 'Cairo', 'Tahoma', 'Arial Unicode MS', sans-serif;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────────────── */
+
+/* Flip sidebar from left to right */
+html[dir='rtl'] .gc-sidebar,
+html[dir='rtl'] #gc-sidebar,
+html[dir='rtl'] [class*="sidebar"] {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* Mirror main content padding to account for sidebar on right */
+html[dir='rtl'] .gc-main,
+html[dir='rtl'] main,
+html[dir='rtl'] #gc-content,
+html[dir='rtl'] .gc-content {
+  padding-left: 0 !important;
+  padding-right: 260px !important;
+}
+
+/* Sidebar nav links — align text right */
+html[dir='rtl'] .gc-sidebar a,
+html[dir='rtl'] .gc-sidebar li,
+html[dir='rtl'] [class*="sidebar"] a,
+html[dir='rtl'] [class*="sidebar"] li {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+/* ── HAMBURGER / MOBILE NAV ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Hamburger mirrors to top-right on RTL */
+  html[dir='rtl'] .gc-hamburger,
+  html[dir='rtl'] [class*="hamburger"],
+  html[dir='rtl'] [class*="menu-btn"],
+  html[dir='rtl'] #menuToggle,
+  html[dir='rtl'] .menuToggle {
+    left: auto !important;
+    right: 1rem !important;
+  }
+
+  /* Language selector mirrors to top-left on RTL mobile */
+  html[dir='rtl'] #gc-lang-btn-wrap {
+    right: auto !important;
+    left: 1rem !important;
+  }
+
+  /* Main content: no extra padding on mobile */
+  html[dir='rtl'] .gc-main,
+  html[dir='rtl'] main,
+  html[dir='rtl'] #gc-content {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* ── FIXTURE CARDS ───────────────────────────────────────────────────────── */
+
+/* Reverse flex direction for match cards */
+html[dir='rtl'] .fixture-card,
+html[dir='rtl'] .match-card,
+html[dir='rtl'] [class*="fixture-row"],
+html[dir='rtl'] [class*="match-row"] {
+  flex-direction: row-reverse;
+}
+
+/* Team name text alignment in fixture cards */
+html[dir='rtl'] .home-team,
+html[dir='rtl'] .team-home,
+html[dir='rtl'] [class*="team-name"] {
+  text-align: right;
+}
+
+html[dir='rtl'] .away-team,
+html[dir='rtl'] .team-away {
+  text-align: left;
+}
+
+/* ── STANDINGS TABLE ─────────────────────────────────────────────────────── */
+
+html[dir='rtl'] table {
+  direction: rtl;
+}
+
+html[dir='rtl'] table th,
+html[dir='rtl'] table td {
+  text-align: right;
+}
+
+/* Team name column — right aligned in RTL */
+html[dir='rtl'] .standings-team,
+html[dir='rtl'] td.team-col {
+  text-align: right;
+}
+
+/* ── NEWS CARDS ──────────────────────────────────────────────────────────── */
+
+html[dir='rtl'] .news-card,
+html[dir='rtl'] .article-card,
+html[dir='rtl'] [class*="news-item"],
+html[dir='rtl'] [class*="article"] {
+  text-align: right;
+}
+
+html[dir='rtl'] .news-card img,
+html[dir='rtl'] .article-card img {
+  float: right;
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+/* ── HEADER / NAVIGATION TABS ────────────────────────────────────────────── */
+
+html[dir='rtl'] header,
+html[dir='rtl'] .gc-header,
+html[dir='rtl'] nav {
+  direction: rtl;
+}
+
+html[dir='rtl'] .gc-header-nav,
+html[dir='rtl'] [class*="header-nav"],
+html[dir='rtl'] [class*="nav-tabs"] {
+  flex-direction: row-reverse;
+}
+
+/* ── POPUPS AND MODALS ───────────────────────────────────────────────────── */
+
+html[dir='rtl'] .gc-popup,
+html[dir='rtl'] [class*="popup"],
+html[dir='rtl'] [class*="modal"],
+html[dir='rtl'] [class*="overlay"] {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Close button stays on left in RTL (becomes the natural "far" corner) */
+html[dir='rtl'] .gc-popup-close,
+html[dir='rtl'] [class*="close-btn"],
+html[dir='rtl'] .subscribeClose {
+  left: 1rem;
+  right: auto;
+}
+
+/* ── COOKIE BANNER ───────────────────────────────────────────────────────── */
+
+html[dir='rtl'] .gc-cookie,
+html[dir='rtl'] #cookieBanner,
+html[dir='rtl'] [class*="cookie"] {
+  text-align: right;
+  direction: rtl;
+}
+
+/* ── SUBSCRIBE POPUP ─────────────────────────────────────────────────────── */
+
+html[dir='rtl'] .gc-subscribe,
+html[dir='rtl'] [class*="subscribe"] {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir='rtl'] .gc-subscribe input,
+html[dir='rtl'] [class*="subscribe"] input {
+  text-align: right;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+
+html[dir='rtl'] footer,
+html[dir='rtl'] .gc-footer,
+html[dir='rtl'] [class*="footer"] {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir='rtl'] .gc-footer-links,
+html[dir='rtl'] [class*="footer-links"] {
+  flex-direction: row-reverse;
+}
+
+/* ── BUTTONS AND FORMS ───────────────────────────────────────────────────── */
+
+html[dir='rtl'] label,
+html[dir='rtl'] .form-label {
+  text-align: right;
+}
+
+html[dir='rtl'] input[type='text'],
+html[dir='rtl'] input[type='email'],
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+  text-align: right;
+  direction: rtl;
+}
+
+/* ── LANGUAGE SELECTOR — RTL ADJUSTMENT ─────────────────────────────────── */
+
+/* In RTL, the dropdown opens to the left (natural RTL direction) */
+html[dir='rtl'] #gc-lang-list {
+  right: 0;
+  left: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* CRITICAL PROTECTION: SCORES, TIMES, STATS — ALWAYS LTR                   */
+/* These elements NEVER change direction regardless of language.             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+html[dir='rtl'] .score,
+html[dir='rtl'] .match-score,
+html[dir='rtl'] [class*="score"],
+html[dir='rtl'] .match-time,
+html[dir='rtl'] [class*="match-time"],
+html[dir='rtl'] .kickoff-time,
+html[dir='rtl'] [class*="kickoff"],
+html[dir='rtl'] .stat-value,
+html[dir='rtl'] [class*="stat-val"],
+html[dir='rtl'] .standings-num,
+html[dir='rtl'] td.num,
+html[dir='rtl'] td.pts,
+html[dir='rtl'] td.played,
+html[dir='rtl'] td.won,
+html[dir='rtl'] td.drawn,
+html[dir='rtl'] td.lost,
+html[dir='rtl'] td.gf,
+html[dir='rtl'] td.ga,
+html[dir='rtl'] td.gd,
+html[dir='rtl'] [data-ltr],
+html[dir='rtl'] .gc-ltr-always {
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+  text-align: center !important;
+}
+
+/* Countdown numbers — always LTR */
+html[dir='rtl'] .countdown-number,
+html[dir='rtl'] [class*="countdown"] .number,
+html[dir='rtl'] [class*="countdown"] span[id] {
+  direction: ltr !important;
+  text-align: center !important;
+}
+
+/* API-fetched data containers — always LTR */
+html[dir='rtl'] .gc-api-data,
+html[dir='rtl'] [data-api-content] {
+  direction: ltr !important;
+}
+
+/* Flag images — no directional flip */
+html[dir='rtl'] img[src*="flagcdn"],
+html[dir='rtl'] img[class*="flag"] {
+  transform: none !important;
+}

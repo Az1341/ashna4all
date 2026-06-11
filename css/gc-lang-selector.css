@@ -1,0 +1,288 @@
+/**
+ * gc-lang-selector.css — GoalCurrent.live Language Selector Styles
+ *
+ * Matches the existing GoalCurrent.live design language:
+ *   - Dark navy background: #07111f / #0b1628
+ *   - Gold accent: #f59e0b
+ *   - Blue accent: #1e40af
+ *   - White text: #ffffff
+ *
+ * Z-INDEX: 1200 — above header (999), below all modals/popups (1500+)
+ */
+
+/* ── WRAPPER ─────────────────────────────────────────────────────────────── */
+
+.gc-lang-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1200;
+  flex-shrink: 0; /* Never squish on small headers */
+}
+
+/* ── TRIGGER BUTTON ──────────────────────────────────────────────────────── */
+
+.gc-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 6px 10px;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+  min-height: 36px; /* accessibility tap target */
+  min-width: 80px;
+}
+
+.gc-lang-btn:hover,
+.gc-lang-btn:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+.gc-lang-btn:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.gc-lang-btn--open {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #f59e0b;
+}
+
+/* Globe icon size */
+.gc-lang-btn > span:first-child {
+  font-size: 16px;
+}
+
+/* Full language name — shown on desktop */
+.gc-lang-name {
+  display: inline;
+}
+
+/* 2-letter code — shown on small mobile only */
+.gc-lang-code {
+  display: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Arrow indicator */
+.gc-lang-arrow {
+  font-size: 9px;
+  opacity: 0.7;
+  transition: transform 0.15s;
+  margin-left: 2px;
+}
+
+.gc-lang-btn--open .gc-lang-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── DROPDOWN LIST ───────────────────────────────────────────────────────── */
+
+.gc-lang-list {
+  position: absolute;
+  top: calc(100% + 6px); /* 6px gap below button */
+  right: 0;
+  left: auto;
+  background: #07111f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  min-width: 180px;
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 1201; /* just above wrapper */
+
+  /* Subtle scroll styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.gc-lang-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.gc-lang-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gc-lang-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* ── DROPDOWN ITEMS ──────────────────────────────────────────────────────── */
+
+.gc-lang-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background 0.1s, color 0.1s;
+  min-height: 44px; /* iOS/Android accessibility tap target */
+  white-space: nowrap;
+  /* Keep each item text in its own direction — native names display correctly */
+  unicode-bidi: plaintext;
+}
+
+.gc-lang-item:hover,
+.gc-lang-item:focus {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  outline: none;
+}
+
+.gc-lang-item:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: -2px;
+}
+
+/* Active / selected item */
+.gc-lang-item.gc-lang-active {
+  color: #f59e0b; /* gold highlight */
+  font-weight: 600;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.gc-lang-item.gc-lang-active:hover {
+  background: rgba(245, 158, 11, 0.15);
+}
+
+/* Checkmark column — always same width for alignment */
+.gc-lang-check {
+  display: inline-block;
+  width: 14px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ── PLACEMENT IN HEADER ─────────────────────────────────────────────────── */
+
+/*
+ * The selector must appear in the top-right corner of the header.
+ * These rules position it correctly inside the existing header structure.
+ *
+ * GoalCurrent.live header uses inline styles and flex layouts.
+ * The selector uses position: relative so it flows naturally.
+ */
+
+/* When inside a flex header, push selector to the right */
+header .gc-lang-wrap,
+.gc-header .gc-lang-wrap {
+  margin-left: auto;
+}
+
+/* Ensure it doesn't go outside the header bounds */
+header {
+  position: relative; /* Ensure dropdown positions relative to header */
+}
+
+/* ── MOBILE RESPONSIVE ───────────────────────────────────────────────────── */
+
+/* Up to 480px: show 2-letter code instead of full name */
+@media (max-width: 480px) {
+  .gc-lang-name {
+    display: none;
+  }
+  .gc-lang-code {
+    display: inline;
+  }
+  .gc-lang-btn {
+    min-width: 56px;
+    padding: 6px 8px;
+  }
+  .gc-lang-list {
+    min-width: 160px;
+    right: 0; /* Ensure dropdown doesn't go offscreen */
+  }
+}
+
+/* Tablet and up: always show full name */
+@media (min-width: 481px) {
+  .gc-lang-name {
+    display: inline;
+  }
+  .gc-lang-code {
+    display: none;
+  }
+}
+
+/* Very small screens: ensure dropdown stays within viewport */
+@media (max-width: 360px) {
+  .gc-lang-list {
+    right: 0;
+    left: 0;
+    min-width: unset;
+    width: 100vw;
+    border-radius: 0 0 8px 8px;
+    position: fixed;
+    top: auto;
+  }
+}
+
+/* ── RTL ADJUSTMENTS FOR SELECTOR ───────────────────────────────────────── */
+
+/* In RTL mode, dropdown opens to the LEFT of the button */
+html[dir='rtl'] .gc-lang-list {
+  right: auto;
+  left: 0;
+}
+
+/* In RTL, selector is pushed to the left side of header */
+html[dir='rtl'] header .gc-lang-wrap,
+html[dir='rtl'] .gc-header .gc-lang-wrap {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ── DARK THEME INTEGRATION ──────────────────────────────────────────────── */
+
+/*
+ * GoalCurrent.live uses a light background for main content
+ * but a dark navy header and sidebar.
+ * The selector lives in the dark header — colours are set accordingly.
+ */
+
+/* If the selector is ever placed outside the dark header, adapt it */
+.gc-lang-wrap.gc-lang-light .gc-lang-btn {
+  color: #1e293b;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.gc-lang-wrap.gc-lang-light .gc-lang-list {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.gc-lang-wrap.gc-lang-light .gc-lang-item {
+  color: #1e293b;
+}
+
+.gc-lang-wrap.gc-lang-light .gc-lang-item.gc-lang-active {
+  color: #b45309;
+}
+
+/* ── ANIMATION ───────────────────────────────────────────────────────────── */
+
+/*
+ * No transition animation — as per blueprint spec.
+ * display:none → display:block for maximum performance.
+ * This avoids any layout flash or animation overhead.
+ */
