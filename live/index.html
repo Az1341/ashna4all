@@ -739,39 +739,47 @@ function _mapMatch(m) {
 }
 
 async function fetchNormal() {
-  var localToday = window.GC_DateTime
-    ? GC_DateTime.getTodayLocalDateKey()
-    : (function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+  try {
+    var localToday = window.GC_DateTime
+      ? GC_DateTime.getTodayLocalDateKey()
+      : (function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
 
-  var yesterday = _shift(localToday, -1);
-  var tomorrow  = _shift(localToday, +1);
+    var yesterday = _shift(localToday, -1);
+    var tomorrow  = _shift(localToday, +1);
 
-  console.log('[GoalCurrent] Production mode — fetching /api/scores | local today:', localToday);
+    console.log('[GoalCurrent] Production mode — fetching /api/scores | local today:', localToday);
 
-  /* Today is always fresh. Adjacent dates served from cache if recent. */
-  var results = await Promise.all([
-    _fetchDate(yesterday, false),   /* cached up to 10 min */
-    _fetchDate(localToday, true),   /* always fresh */
-    _fetchDate(tomorrow,   false)   /* cached up to 10 min */
-  ]);
+    /* Today is always fresh. Adjacent dates served from cache if recent. */
+    var results = await Promise.all([
+      _fetchDate(yesterday, false),   /* cached up to 10 min */
+      _fetchDate(localToday, true),   /* always fresh */
+      _fetchDate(tomorrow,   false)   /* cached up to 10 min */
+    ]);
 
-  /* Merge and deduplicate by match ID */
-  var seen = {}, merged = [];
-  results.forEach(function(arr) {
-    arr.forEach(function(m) {
-      if (m && m.id && !seen[m.id]) {
-        seen[m.id] = true;
-        merged.push(m);
-      }
+    /* Merge and deduplicate by match ID */
+    var seen = {}, merged = [];
+    results.forEach(function(arr) {
+      (arr || []).forEach(function(m) {
+        if (m && m.id && !seen[m.id]) {
+          seen[m.id] = true;
+          merged.push(m);
+        }
+      });
     });
-  });
 
-  if (merged.length) {
-    allMatches = merged.map(_mapMatch);
+    if (merged.length) {
+      allMatches = merged.map(function(m) {
+        try { return _mapMatch(m); } catch(e) { return null; }
+      }).filter(Boolean);
+    }
+    /* On empty: keep previous allMatches so page does not go blank */
+
+  } catch(e) {
+    console.warn('[GoalCurrent] fetchNormal error:', e.message);
+    /* Do not clear allMatches — keep last good render */
   }
-  /* On empty: keep previous allMatches so page does not go blank
-     (handles transient API failure gracefully) */
 
+  /* Always call these — even after error — so skeleton disappears */
   _updateRefreshInterval();
   renderAll();
 }
