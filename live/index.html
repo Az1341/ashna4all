@@ -398,8 +398,8 @@ function daysPlusN(n){
 
 function flagImg(name){
   var c=FLAGS[name];
-  if(!c) return '<div class="mc-flag-fb">⚽</div>';
-  return '<img class="mc-flag" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.outerHTML=\'<div class=mc-flag-fb>⚽</div>\'">';
+  if(!c) return '<div class="mc-flag-fb">&#x26BD;</div>';
+  return '<img class="mc-flag" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
 
 function getStatus(m){
@@ -607,9 +607,9 @@ function sortGrp(teamMap){
 }
 
 function flagSm(name){
-  var c = (window.FLAGS || FLAGS || {})[name];
+  var c=(window.FLAGS||{})[name];
   if(!c) return '<span class="gs-flag-fb">⚽</span>';
-  return '<img class="gs-flag-sm" src="https://flagcdn.com/w40/' + c + '.png" alt="' + name + '" loading="lazy">';
+  return '<img class="gs-flag-sm" src="https://flagcdn.com/w40/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
 
 function renderStandings(){
