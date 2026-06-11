@@ -158,6 +158,33 @@ a{text-decoration:none;color:inherit}
   .mc-name{font-size:15px}
   .filter-search input{width:90px}
 }
+
+/* ── GROUP STANDINGS TABLE ─────────────────────────────────── */
+.gs-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:14px;overflow:hidden;margin-bottom:12px}
+.gs-group-hdr{background:linear-gradient(135deg,#001a4d,#003fb8);color:#fff;padding:8px 14px;font-family:var(--head);font-size:.82rem;font-weight:800;letter-spacing:.08em;display:flex;align-items:center;gap:8px}
+.gs-group-hdr .gs-live-dot{width:7px;height:7px;border-radius:50%;background:#ef4444;animation:blink 1.2s infinite;display:none}
+.gs-group-hdr.has-live .gs-live-dot{display:inline-block}
+.gs-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.gs-table thead tr{background:rgba(0,27,80,.06)}
+.gs-table th{padding:6px 8px;font-family:var(--head);font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#64748b;text-align:center;white-space:nowrap}
+.gs-table th.gs-team-col{text-align:left;padding-left:12px;min-width:120px}
+.gs-table td{padding:7px 8px;text-align:center;border-top:1px solid rgba(0,0,0,.05);color:#0f172a;font-weight:600}
+.gs-table td.gs-team-cell{text-align:left;padding-left:8px;display:flex;align-items:center;gap:7px;font-weight:700}
+.gs-table tr.gs-qualified{background:rgba(16,185,129,.06)}
+.gs-table tr.gs-live-row td{background:rgba(239,68,68,.04)}
+.gs-pts{font-weight:800;color:#003fb8}
+.gs-flag-sm{width:22px;height:15px;border-radius:2px;object-fit:cover;flex-shrink:0}
+.gs-flag-fb{width:22px;height:15px;border-radius:2px;background:#e2e8f0;display:inline-flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.gs-form{display:flex;gap:2px;justify-content:center}
+.gs-form-dot{width:9px;height:9px;border-radius:50%}
+.gs-form-dot.w{background:#10b981}
+.gs-form-dot.d{background:#f59e0b}
+.gs-form-dot.l{background:#ef4444}
+.gs-form-dot.empty{background:#e2e8f0}
+.gs-pos{font-size:.72rem;font-weight:800;color:#94a3b8;min-width:18px;text-align:center}
+.gs-pos.q1,.gs-pos.q2{color:#10b981}
+.gs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.gs-two-col{grid-template-columns:1fr}.gs-hide-mob{display:none!important}.gs-table{font-size:.72rem}}
 </style>
 </head>
 <body>
@@ -288,6 +315,15 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
+  <!-- GROUP STANDINGS — calculated from API match results -->
+  <div id="section-standings" style="display:none;margin-bottom:22px">
+    <div class="sec-hdr" style="color:#003fb8;border-color:#003fb8">
+      <div class="sec-dot" style="background:#003fb8"></div>
+      <h2>GROUP STANDINGS</h2>
+      <span style="font-size:.65rem;font-weight:700;color:#64748b;margin-left:auto" id="standings-note"></span>
+    </div>
+    <div id="standings-tables" class="gs-two-col"></div>
+  </div>
   <div class="gc-vpn-bar">
     🔒 <strong>Watching football abroad?</strong>
     Use <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored">NordVPN</a>
@@ -503,6 +539,8 @@ function renderAll(){
   var total=lc+fc+uc;
   // Show empty state when no matches — correct message per mode
   document.getElementById('empty-state').style.display=(!total)?'block':'none';
+  /* Render group standings from same allMatches data */
+  renderStandings();
   document.getElementById('live-count').textContent=liveM.length>0
     ?liveM.length+' match'+(liveM.length>1?'es':'')+' LIVE 🔴 · Tap any match for lineup & stats'
     :upM.length>0?upM.length+' upcoming · Tap any match for full details'
@@ -513,18 +551,163 @@ function renderAll(){
   document.getElementById('last-updated').textContent='Last updated: '+_now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' '+(_tzAbbr||'local');
 }
 
-// ── NORMAL MODE: fetch WC live data only ──────────────────────────────────
+
+// ── GROUP STANDINGS ──────────────────────────────────────────────────────
+
+var WC_GROUPS={
+  '1':{name:'A',teams:['Mexico','South Africa','Korea Republic','Czechia']},
+  '2':{name:'B',teams:['Canada','USA','Paraguay','Bosnia & Herz.']},
+  '3':{name:'C',teams:['Brazil','Switzerland','Germany','Egypt']},
+  '4':{name:'D',teams:['Morocco','Portugal','Uruguay','Algeria']},
+  '5':{name:'E',teams:['Spain','Japan','Senegal','Norway']},
+  '6':{name:'F',teams:['England','France','Netherlands','Iraq']},
+  '7':{name:'G',teams:['Argentina','Croatia','Venezuela','Nigeria']},
+  '8':{name:'H',teams:['Belgium','Poland','Ecuador','New Zealand']},
+  '9':{name:'I',teams:['Colombia','Austria','Cameroon','Saudi Arabia']},
+  '10':{name:'J',teams:['Turkey','Denmark','Qatar','Costa Rica']},
+  '11':{name:'K',teams:['Australia','Sweden','Uruguay','Cape Verde']},
+  '12':{name:'L',teams:['Tunisia','Ghana','Iran','Panama']}
+};
+
+function calcStandings(matches){
+  var tables={};
+  matches.forEach(function(m){
+    var grpNum=m.g;
+    if(!grpNum||!WC_GROUPS[grpNum]) return;
+    var status=getStatus(m);
+    var finished=isFTStatus(status), live=isLiveStatus(status)||status==='HT';
+    if(!finished&&!live) return;
+    if(m.homeGoals===null||m.awayGoals===null) return;
+    if(!tables[grpNum]) tables[grpNum]={};
+    var t=tables[grpNum];
+    function ens(tm){if(!t[tm])t[tm]={p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,form:[],live:false};}
+    ens(m.h);ens(m.a);
+    var hg=parseInt(m.homeGoals)||0, ag=parseInt(m.awayGoals)||0;
+    if(finished){
+      t[m.h].p++;t[m.a].p++;
+      t[m.h].gf+=hg;t[m.h].ga+=ag;
+      t[m.a].gf+=ag;t[m.a].ga+=hg;
+      if(hg>ag){t[m.h].w++;t[m.h].pts+=3;t[m.h].form.push('w');t[m.a].l++;t[m.a].form.push('l');}
+      else if(hg===ag){t[m.h].d++;t[m.h].pts++;t[m.h].form.push('d');t[m.a].d++;t[m.a].pts++;t[m.a].form.push('d');}
+      else{t[m.h].l++;t[m.h].form.push('l');t[m.a].w++;t[m.a].pts+=3;t[m.a].form.push('w');}
+    }
+    if(live){t[m.h].live=true;t[m.a].live=true;}
+  });
+  return tables;
+}
+
+function sortGrp(teamMap){
+  return Object.keys(teamMap).sort(function(a,b){
+    var ta=teamMap[a],tb=teamMap[b];
+    if(tb.pts!==ta.pts) return tb.pts-ta.pts;
+    var gda=ta.gf-ta.ga,gdb=tb.gf-tb.ga;
+    if(gdb!==gda) return gdb-gda;
+    return tb.gf-ta.gf;
+  });
+}
+
+function flagSm(name){
+  var c=(window.FLAGS||{})[name];
+  if(!c) return '<span class="gs-flag-fb">⚽</span>';
+  return '<img class="gs-flag-sm" src="https://flagcdn.com/w40/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.outerHTML='<span class=gs-flag-fb>⚽</span>'">';
+}
+
+function renderStandings(){
+  var tables=calcStandings(allMatches);
+  var keys=Object.keys(tables);
+  var section=document.getElementById('section-standings');
+  var container=document.getElementById('standings-tables');
+  var note=document.getElementById('standings-note');
+  if(!keys.length){section.style.display='none';return;}
+  section.style.display='block';
+  if(note) note.textContent='Updates every 30s';
+
+  var html='';
+  keys.sort(function(a,b){return parseInt(a)-parseInt(b);}).forEach(function(grpNum){
+    var gi=WC_GROUPS[grpNum]||{name:grpNum};
+    var tm=tables[grpNum];
+    var sorted=sortGrp(tm);
+    var hasLive=sorted.some(function(t){return tm[t].live;});
+
+    html+='<div class="gs-wrap">';
+    html+='<div class="gs-group-hdr'+(hasLive?' has-live':'')+'"><span class="gs-live-dot"></span>GROUP '+gi.name+'</div>';
+    html+='<table class="gs-table"><thead><tr>'
+      +'<th class="gs-team-col">TEAM</th>'
+      +'<th>P</th><th>W</th><th>D</th><th>L</th>'
+      +'<th class="gs-hide-mob">GF</th><th class="gs-hide-mob">GA</th>'
+      +'<th>GD</th><th class="gs-pts">PTS</th>'
+      +'<th class="gs-hide-mob">FORM</th>'
+      +'</tr></thead><tbody>';
+
+    sorted.forEach(function(team,idx){
+      var t=tm[team];
+      var gd=t.gf-t.ga;
+      var gdStr=gd>0?'+'+gd:String(gd);
+      var isQ=idx<2;
+      var formSlice=t.form.slice(-5);
+      while(formSlice.length<5) formSlice.unshift('empty');
+      var formDots=formSlice.map(function(r){return '<span class="gs-form-dot '+r+'"></span>';}).join('');
+
+      html+='<tr class="'+(t.live?'gs-live-row':'')+(isQ?' gs-qualified':'')+'">'
+        +'<td class="gs-team-cell">'
+          +'<span class="gs-pos'+(isQ?' q'+(idx+1)+'">'+( idx+1):'">'+( idx+1))+'</span>'
+          +flagSm(team)
+          +'<span>'+team+'</span>'
+          +(t.live?'<span style="font-size:.58rem;background:#ef4444;color:#fff;padding:1px 4px;border-radius:3px;font-weight:800;margin-left:3px;flex-shrink:0">LIVE</span>':'')
+        +'</td>'
+        +'<td>'+t.p+'</td><td>'+t.w+'</td><td>'+t.d+'</td><td>'+t.l+'</td>'
+        +'<td class="gs-hide-mob">'+t.gf+'</td><td class="gs-hide-mob">'+t.ga+'</td>'
+        +'<td>'+gdStr+'</td><td class="gs-pts">'+t.pts+'</td>'
+        +'<td class="gs-hide-mob"><div class="gs-form">'+formDots+'</div></td>'
+        +'</tr>';
+    });
+    html+='</tbody></table></div>';
+  });
+  container.innerHTML=html;
+}
+
+// ── NORMAL MODE: fetch WC data across date window for timezone accuracy ────
+// Fetches yesterday + today + tomorrow in UTC so visitors in western timezones
+// (Canada, USA, Mexico) see matches that fall on their LOCAL today even if the
+// UTC date is tomorrow.  Matches are deduplicated by ID.
 async function fetchNormal(){
-  var today=todayUTC();
+  /* Step 1: determine local today and the 3-day UTC window to fetch */
+  var localToday = window.GC_DateTime
+    ? GC_DateTime.getTodayLocalDateKey()
+    : (function(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+
+  var shift = window.GC_DateTime && GC_DateTime.shiftDateKey
+    ? function(dk,n){return GC_DateTime.shiftDateKey(dk,n);}
+    : function(dk,n){var d=new Date(dk+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');};
+
+  var datesToFetch = [shift(localToday,-1), localToday, shift(localToday,1)];
+  console.log('[GoalCurrent] Fetching dates:', datesToFetch.join(', '), '| local today:', localToday);
+
   try{
-    // Fetch today's WC fixtures for upcoming/finished sections
-    var res=await fetch('/api/scores?date='+today,{cache:'no-store'});
-    if(!res.ok) throw new Error('proxy '+res.status);
-    var data=await res.json();
-    if(data.matches&&data.matches.length){
-      allMatches=data.matches.map(function(m){
-        /* TV broadcaster: uses visitor's region via GC_DateTime */
-        var tv=window.GC_DateTime?GC_DateTime.buildTVDisplay():'BBC / ITV';
+    /* Step 2: fetch all three dates in parallel */
+    var responses = await Promise.all(
+      datesToFetch.map(function(d){
+        return fetch('/api/scores?date='+d, {cache:'no-store'})
+          .then(function(r){ return r.ok ? r.json() : {matches:[]}; })
+          .catch(function(){ return {matches:[]}; });
+      })
+    );
+
+    /* Step 3: merge and deduplicate by match ID */
+    var seen = {};
+    var merged = [];
+    responses.forEach(function(data){
+      (data.matches||[]).forEach(function(m){
+        if(!seen[m.id]){
+          seen[m.id] = true;
+          merged.push(m);
+        }
+      });
+    });
+
+    if(merged.length){
+      allMatches = merged.map(function(m){
+        var tv = window.GC_DateTime ? GC_DateTime.buildTVDisplay() : 'BBC / ITV';
         return{
           id:m.id,
           h:(m.home&&m.home.name)||'TBD',
@@ -541,12 +724,11 @@ async function fetchNormal(){
         };
       });
     } else {
-      // API returned empty — show empty state, never show fallback
-      allMatches=[];
+      allMatches = [];
     }
   }catch(e){
     console.warn('WC live proxy error:',e.message);
-    allMatches=[];
+    allMatches = [];
   }
   renderAll();
 }

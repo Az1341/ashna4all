@@ -496,6 +496,22 @@
     return day + ' ' + date + ' ' + mon + ' · ' + hh + ':' + mm + ' ' + ukTZ;
   }
 
+  /**
+   * shiftDateKey(dateKey, n) → shift a "YYYY-MM-DD" string by n days
+   * Used to build the fetch window: yesterday, today, tomorrow in local time.
+   *
+   * Example:
+   *   shiftDateKey("2026-06-11", -1) → "2026-06-10"
+   *   shiftDateKey("2026-06-11",  1) → "2026-06-12"
+   */
+  function shiftDateKey(dateKey, n) {
+    var d = new Date(dateKey + 'T12:00:00Z'); /* noon UTC avoids DST edge cases */
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.getUTCFullYear() + '-'
+      + String(d.getUTCMonth() + 1).padStart(2, '0') + '-'
+      + String(d.getUTCDate()).padStart(2, '0');
+  }
+
   // ── REGION SELECTOR ───────────────────────────────────────────────────────
 
   var _userCountryOverride = null;
@@ -550,6 +566,9 @@
     todayLocal:          todayLocal,
     localDatePlusN:      localDatePlusN,
     utcToLocalDate:      utcToLocalDate,
+
+    // Date window helpers
+    shiftDateKey:           shiftDateKey,
 
     // Fixture grouping — USE THESE for grouping/filtering fixtures by date
     getLocalDateKey:        getLocalDateKey,
