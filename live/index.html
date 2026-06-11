@@ -453,9 +453,8 @@ function buildCard(m){
   var testLabel=IS_TEST?'<div style="background:#7c3aed;color:#fff;font-size:.6rem;font-weight:800;text-align:center;padding:3px;letter-spacing:.05em">🧪 TEST MODE — NOT A WORLD CUP FIXTURE</div>':'';
 
   var isFakeId=String(m.id).startsWith('fb-')||String(m.id).startsWith('wc');
-  /* /match/ page unaudited — all cards link to fixtures until confirmed safe */
-  var url='/worldcup2026/fixtures/';
-  var hint=''; /* lineups link disabled — /match/ page not yet audited */
+  var url=(!isFakeId&&m.id)?'/match/?id='+m.id:'/worldcup2026/fixtures/';
+  var hint=(!isFakeId&&m.id&&!IS_TEST)?'<div class="mc-detail-hint">Tap for lineups, stats &amp; events &rarr;</div>':''; /* lineups link disabled — /match/ page not yet audited */
 
   var cls='match-card'+(isWC?' wc-card':'')+(live?' live-card':'');
   var grp=m.g?' · Grp '+m.g:'';
