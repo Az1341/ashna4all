@@ -248,6 +248,12 @@
   /* ─────────────────────────────────────────────
      HELPER — get flag img tag for a team name
   ───────────────────────────────────────────── */
+  function flagUrl(teamName, size) {
+    size = size || 'w80';
+    var code = FLAG[teamName] || 'un';
+    return 'https://flagcdn.com/' + size + '/' + code + '.png';
+  }
+
   function flagImg(teamName, size) {
     size = size || 'w40';
     var code = FLAG[teamName] || 'un';
@@ -414,6 +420,7 @@
     tv          : TV_CHANNELS,
     getUserTV   : getUserTV,
     isLive      : isLive,
+    flagUrl     : flagUrl,
     flagImg     : flagImg,
     validate    : validate
   };
