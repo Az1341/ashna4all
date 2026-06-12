@@ -95,7 +95,7 @@ window.GC_LANG = {
     upcomingMatches   : 'PROCHAINS MATCHS — COUPE DU MONDE 2026',
     openingCeremonies : "Cérémonies d'ouverture de la Coupe du Monde 2026",
     matchPreviews     : 'Avant-matchs officiels FIFA',
-    video1Desc        : 'Avant-match officiel de la Coupe du Monde 2026. Le Mexique ouvre le tournoi à domicile contre l'Afrique du Sud dans le Groupe A.',
+    video1Desc        : 'Avant-match officiel de la Coupe du Monde 2026. Le Mexique ouvre le tournoi à domicile contre l\'Afrique du Sud dans le Groupe A.',
     video2Desc        : 'Avant-match officiel de la Coupe du Monde 2026. La Corée du Sud affronte la République Tchèque dans le Groupe A.',
     latestWCNews      : 'Coupe du Monde 2026 — Dernières actualités'
   },

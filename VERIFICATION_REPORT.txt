@@ -1,0 +1,18 @@
+GoalCurrent WC26 verified deploy package
+
+Verified locally in container:
+- JavaScript syntax check passed for all inline HTML scripts, /js/*.js, /api/*.js and /lang/*.js.
+- /worldcup2026/fixtures/index.html now loads /js/worldcup-data.js only for fixture data.
+- No embedded fixture array remains in /worldcup2026/fixtures/index.html.
+- /js/worldcup-data.js contains 104 WC26 fixtures in chronological order.
+- Match #1: Mexico 2-0 South Africa FT.
+- Match #2: Korea Republic 2-1 Czechia FT with events.
+- Match #3: Canada vs Bosnia & Herzegovina, 12 June 2026, 20:00 UK/BST.
+- No visible /countdown/ navigation href remains in HTML/JS files.
+- CHECK LIVE placeholder removed.
+- Homepage Match Centre reads from window.WC26.schedule and falls back to static verified FT result when live API has no usable match result.
+- Fixtures page converts UK/BST times to visitor local timezone in browser.
+
+Live API note:
+- The code fetches /api/scores and lets live API data override static fixture status/score when available.
+- This container cannot authenticate against your production API key, so external live API content was not claimed as verified here.

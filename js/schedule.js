@@ -85,7 +85,7 @@ var GC_SCHEDULE = (function () {
   }
 
   function matchCard(m){
-    var status = new Date(m.utc) > new Date() ? 'UPCOMING' : 'CHECK LIVE';
+    var status = new Date(m.utc) > new Date() ? 'UPCOMING' : 'UPCOMING';
     var statusClass = new Date(m.utc) > new Date() ? 'upcoming' : 'live';
     return '<div class="gc-match-row">' +
       '<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+status+'</span></div>' +

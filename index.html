@@ -117,7 +117,7 @@ a{text-decoration:none;color:inherit}
 .gc-hero-title{font-family:var(--font-head);font-size:1.4rem;font-weight:800;margin-bottom:1px}
 .gc-hero-title span{color:var(--gold)}
 .gc-hero-sub{font-size:.75rem;color:rgba(255,255,255,.65);font-weight:600;margin-bottom:10px}
-/* tournament status styles */
+/* tournament is live */
 .gc-live-pill{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.8rem;font-weight:800;padding:6px 14px;border-radius:20px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
 @keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.6}}
 .gc-stats-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -207,7 +207,7 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:400px){.gc-hero-nav{gap:6px}.gc-hero-btn{padding:8px 12px;font-size:.78rem}}
 
-/* ── TODAY FIXTURES SUMMARY CARD ───────────────────────────────────────── */
+/* ── OPENING MATCH CARD ────────────────────────────────────────────────── */
 .gc-opening-match{background:linear-gradient(135deg,#001a4d 0%,#003fb8 60%,#0057e7 100%);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 8px 32px rgba(0,27,80,.35);border:1px solid rgba(255,255,255,.15)}
 .gc-om-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1)}
 .gc-om-badge{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
@@ -221,6 +221,14 @@ a{text-decoration:none;color:inherit}
 .gc-om-details{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .gc-om-detail{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.9)}
 .gc-om-detail strong{color:var(--gold)}
+.gc-om-ko-wrap{margin-bottom:14px}
+.gc-om-ko-label{font-family:var(--font-head);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:4px}
+.gc-om-ko-digits{display:flex;gap:4px;align-items:center}
+.gc-om-ko-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 8px;text-align:center;min-width:42px}
+.gc-om-ko-num{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:#fff;line-height:1;direction:ltr!important}
+.gc-om-ko-lbl{font-size:.55rem;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:1px}
+.gc-om-ko-sep{font-size:1rem;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:6px}
+.gc-om-ko-started{font-family:var(--font-head);font-size:1rem;font-weight:800;color:#4ade80;display:none}
 .gc-om-actions{display:flex;gap:8px;flex-wrap:wrap}
 .gc-om-btn{padding:9px 18px;border-radius:10px;font-family:var(--font-head);font-size:.82rem;font-weight:700;text-decoration:none;transition:background .15s;white-space:nowrap}
 .gc-om-btn.primary{background:var(--gold);color:#0f172a}
@@ -379,19 +387,19 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
       <!-- Numbers are hardcoded data — untouched. Labels translated -->
       <div class="gc-stat-chip">
         <div class="gc-stat-num">48</div>
-        <div class="gc-stat-lbl">Teams</div>
+        <div class="gc-stat-lbl" data-gc-i18n="stats.teams">Teams</div>
       </div>
       <div class="gc-stat-chip">
         <div class="gc-stat-num">104</div>
-        <div class="gc-stat-lbl">Matches</div>
+        <div class="gc-stat-lbl" data-gc-i18n="stats.matches">Matches</div>
       </div>
       <div class="gc-stat-chip">
         <div class="gc-stat-num">16</div>
-        <div class="gc-stat-lbl">Venues</div>
+        <div class="gc-stat-lbl" data-gc-i18n="stats.venues">Venues</div>
       </div>
       <div class="gc-stat-chip">
         <div class="gc-stat-num">3</div>
-        <div class="gc-stat-lbl">Hosts</div>
+        <div class="gc-stat-lbl" data-gc-i18n="stats.hosts">Hosts</div>
       </div>
 
     </div>
@@ -411,16 +419,39 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Football Live Scores, Fixtures and World Cup 2026</h1>
 
 
-    <!-- ═══ TODAY FIXTURES SUMMARY — DYNAMIC FROM window.WC26.schedule ═══════════════ -->
-    <div class="gc-opening-match" id="gc-today-summary">
+    <!-- ═══ TODAY'S OPENING MATCH — VISUAL FOCUS OF HOMEPAGE ═══════════════ -->
+    <div class="gc-opening-match" id="gc-opening-match">
       <div class="gc-om-header">
-        <span class="gc-om-badge">🏆 WORLD CUP TODAY</span>
-        <span class="gc-om-meta" id="gc-today-date-label">Local date</span>
+        <span class="gc-om-badge">🔥 TODAY'S OPENING MATCH</span>
+        <span class="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
       </div>
       <div class="gc-om-body">
-        <div style="text-align:center;padding:12px 8px">
-          <div style="font-family:var(--font-head);font-size:1.9rem;font-weight:800;color:var(--blue-dark);line-height:1" id="gc-today-count">0 Fixtures</div>
-          <div style="font-size:.82rem;color:var(--text-light);font-weight:600;margin-top:6px" id="gc-today-note">Showing verified World Cup fixtures for your local date.</div>
+        <div class="gc-om-matchup" dir="ltr">
+          <div class="gc-om-team">
+            <div class="gc-om-flag">🇲🇽</div>
+            <div class="gc-om-teamname">Mexico</div>
+          </div>
+          <div class="gc-om-vs" id="gc-om-score">2 - 0</div>
+          <div class="gc-om-team">
+            <div class="gc-om-flag">🇿🇦</div>
+            <div class="gc-om-teamname">South Africa</div>
+          </div>
+        </div>
+        <div class="gc-om-details" dir="ltr">
+          <div class="gc-om-detail">⏰ <strong id="gc-om-local-time">20:00 BST</strong> Kickoff</div>
+          <div class="gc-om-detail">🏟 <strong>Estadio Azteca</strong>, Mexico City</div>
+          <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster">ITV</strong></div>
+        </div>
+        <div class="gc-om-ko-wrap" dir="ltr">
+          <div class="gc-om-ko-label" id="gc-om-ko-label" style="display:none">Full Time</div>
+          <div class="gc-om-ko-digits" id="gc-om-ko-digits" style="display:none">
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
+          </div>
+          <div class="gc-om-ko-started" id="gc-om-started" style="display:block">Full Time</div>
         </div>
         <div class="gc-om-actions">
           <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
@@ -428,7 +459,7 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
         </div>
       </div>
     </div>
-    <!-- ═══ END TODAY FIXTURES SUMMARY ════════════════════════════════════ -->
+    <!-- ═══ END OPENING MATCH ════════════════════════════════════════════ -->
     <!-- LIVE MATCH CENTRE -->
     <div class="gc-section-label" id="gc-section-label">
       <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>
@@ -455,8 +486,8 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
         <div class="gc-news-img-placeholder">🏆</div>
         <div class="gc-news-body">
           <div class="gc-news-source">FIFA</div>
-          <div class="gc-news-headline">World Cup 2026 — Today’s Verified Fixtures and Live Scores</div>
-          <div class="gc-news-time">Updated today</div>
+          <div class="gc-news-headline">World Cup 2026 Opens Tonight — Mexico Host South Africa in Group A</div>
+          <div class="gc-news-time">Today · <span id="gc-news-ko-time">20:00 BST</span></div>
         </div>
       </div>
       <div class="gc-news-item">
@@ -481,8 +512,128 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
       </div>
     </div>
     <!-- ═══ END NEWS ═════════════════════════════════════════════════════ -->
-    <!-- Match preview video section removed: homepage is now fixture/data focused. -->
-    <!-- Ceremony section removed: homepage now shows only verified fixtures and live-score content. -->
+    <!-- ═══ FIFA MATCH PREVIEW VIDEOS ═══════════════════════════════════════
+         Videos: Official FIFA WC2026 match previews
+         Lazy loaded · Responsive · RTL safe
+    ═════════════════════════════════════════════════════════════════════ -->
+    <div class="gc-section-label" style="margin-top:22px">
+      🎥 <span data-gc-i18n="gc.matchPreviews">Official FIFA Match Previews</span>
+    </div>
+    <div class="gc-video-grid">
+
+      <!-- VIDEO 1: Mexico vs South Africa — thumbnail link, NO iframe -->
+      <div class="gc-video-card">
+        <div class="gc-video-head">
+          <span>🇲🇽 Mexico vs South Africa 🇿🇦</span>
+          <span class="gc-video-badge">Group A</span>
+        </div>
+        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener" aria-label="Watch Mexico vs South Africa FIFA preview on YouTube">
+          <img src="https://img.youtube.com/vi/PhSvaIymYes/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/PhSvaIymYes/hqdefault.jpg'"
+               alt="Mexico vs South Africa — FIFA World Cup 2026 Match Preview"
+               loading="lazy" width="640" height="360">
+          <div class="gc-video-play">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="gc-video-duration">FIFA Official</span>
+        </a>
+        <div class="gc-video-body">
+          <div class="gc-video-title">Mexico vs South Africa</div>
+          <div class="gc-video-meta">📅 Thu 11 Jun 2026 &nbsp;·&nbsp; ⏰ 20:00 BST &nbsp;·&nbsp; 🏟️ Estadio Azteca</div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video1Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
+            Official FIFA World Cup 2026 match preview. Mexico open the tournament at home against South Africa in Group A.
+          </div>
+          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            ▶ Watch on YouTube
+          </a>
+        </div>
+      </div>
+
+      <!-- VIDEO 2: Korea Republic vs Czechia — thumbnail link, NO iframe -->
+      <div class="gc-video-card">
+        <div class="gc-video-head">
+          <span>🇰🇷 Korea Republic vs Czechia 🇨🇿</span>
+          <span class="gc-video-badge">Group A</span>
+        </div>
+        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener" aria-label="Watch Korea Republic vs Czechia FIFA preview on YouTube">
+          <img src="https://img.youtube.com/vi/G8_qxZRpWpg/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/G8_qxZRpWpg/hqdefault.jpg'"
+               alt="Korea Republic vs Czechia — FIFA World Cup 2026 Match Preview"
+               loading="lazy" width="640" height="360">
+          <div class="gc-video-play">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="gc-video-duration">FIFA Official</span>
+        </a>
+        <div class="gc-video-body">
+          <div class="gc-video-title">Korea Republic vs Czechia</div>
+          <div class="gc-video-meta">📅 Fri 12 Jun 2026 &nbsp;·&nbsp; ⏰ 22:00 BST &nbsp;·&nbsp; 🏟️ SoFi Stadium, LA</div>
+          <div class="gc-video-desc" data-gc-i18n="gc.video2Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
+            Official FIFA World Cup 2026 match preview. Korea Republic face Czechia in their Group A opener.
+          </div>
+          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            ▶ Watch on YouTube
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- ═══ END FIFA MATCH PREVIEW VIDEOS ═══ -->
+    <!-- OPENING CEREMONIES -->
+    <!-- Section label translated; ceremony content (artist names, dates, venues) stays in English — these are proper nouns and event data -->
+    <div class="gc-section-label" style="margin-top:22px">
+      🎤 <span data-gc-i18n="gc.openingCeremonies">World Cup 2026 Opening Ceremonies</span>
+    </div>
+
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#006847,#ce1126)">
+        <span>🇲🇽 Mexico — Estadio Azteca, Mexico City</span>
+        <span style="font-size:.68rem;opacity:.8">Thu 11 Jun · 18:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before Mexico vs South Africa · Group A · 20:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2023-11-16_Gala_de_los_Latin_Grammy%2C_03_%28cropped%2902.jpg" alt="Shakira" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Shakira</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Untold_2024_-Burna_Boy_%2853927293424%29.jpg/800px-Untold_2024_-Burna_Boy_%2853927293424%29.jpg" alt="Burna Boy" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Burna Boy</div></div>
+          <div class="oc-headliner-info"><h4>Shakira &amp; Burna Boy</h4><p>Performing official tournament song <em>Dai Dai</em></p></div>
+        </div>
+        <div class="oc-others"><strong>Also performing:</strong>Alejandro Fernández · Belinda · Danny Ocean · J Balvin · Lila Downs · Los Ángeles Azules · Maná · Tyla</div>
+      </div>
+    </div>
+
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#d80621,#1a1a1a)">
+        <span>🇨🇦 Canada — BMO Field, Toronto</span>
+        <span style="font-size:.68rem;opacity:.8">Fri 12 Jun · 18:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before Canada vs Bosnia &amp; Herzegovina · Group B · 20:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Michael_Buble_by_Gage_Skidmore_%28cropped%29.jpg" alt="Michael Bublé" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Photo: Gage Skidmore / CC BY-SA 3.0</div></div>
+          <div class="oc-headliner-info"><h4>Michael Bublé</h4><p>Canadian icon headlining the Toronto ceremony</p></div>
+        </div>
+        <div class="oc-others"><strong>Also performing:</strong>Alessia Cara · Alanis Morissette · Elyanna · Vegedream · Jessie Reyez · Nora Fatehi · Sanjoy · William Prince</div>
+      </div>
+    </div>
+
+    <div class="oc-card">
+      <div class="oc-head" style="background:linear-gradient(135deg,#002868,#bf0a30)">
+        <span>🇺🇸 USA — SoFi Stadium, Los Angeles</span>
+        <span style="font-size:.68rem;opacity:.8">Sat 13 Jun · 00:30 BST</span>
+      </div>
+      <div class="oc-body">
+        <div class="oc-meta">Before USA vs Paraguay · Group D · 02:00 BST</div>
+        <div class="oc-headliner">
+          <div style="display:flex;flex-direction:column;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Katy_Perry_gig_Nottingham_2011_MMB_27.jpg/800px-Katy_Perry_gig_Nottingham_2011_MMB_27.jpg" alt="Katy Perry" width="72" height="72" style="width:72px;height:72px;object-fit:cover;object-position:top;border-radius:10px;flex-shrink:0;border:2px solid rgba(255,255,255,.3)" loading="lazy" onerror="this.style.display='none'"><div style="font-size:.6rem;color:#94a3b8;margin-top:3px;text-align:center;line-height:1.3;max-width:72px">Photo: M. Buckland / CC BY 2.0</div></div>
+          <div class="oc-headliner-info"><h4>Katy Perry &amp; Future</h4><p>Headlining at SoFi Stadium, Los Angeles</p></div>
+        </div>
+        <div class="oc-others"><strong>Also performing:</strong>Tyla · Lisa (Blackpink) · Rema · Anitta</div>
+        <div style="font-size:.65rem;color:#94a3b8;margin-top:8px">Source: The Independent, 8 June 2026</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- VPN bar — affiliate text kept in English (legal/affiliate requirement) -->
@@ -572,7 +723,7 @@ function gcT(key, fallback) {
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
-
+/* timer removed */
 
 /* ── SHARED API SCORE STORE ─────────────────────────────────────────────────
    Populated by the live poll below.
@@ -583,47 +734,19 @@ var _gcApiScores = {}; /* { fixtureNumber: apiMatchObject } */
 
 /* Match a FIXTURES entry (home/away names) against an API match object.
    Returns true if names overlap enough to be the same fixture. */
+function _gcTeamNorm(name){
+  var s=String(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9& ]/g,' ').replace(/\s+/g,' ').trim();
+  var map={
+    'south korea':'korea republic','czech republic':'czechia','bosnia and herzegovina':'bosnia & herzegovina','bosnia herz':'bosnia & herzegovina','bosnia & herz':'bosnia & herzegovina','iran':'ir iran','turkiye':'turkiye','turkey':'turkiye','türkiye':'turkiye','curacao':'curacao','curaçao':'curacao','ivory coast':'cote d ivoire','cote d ivoire':'cote d ivoire','côte d ivoire':'cote d ivoire','cape verde':'cabo verde','dr congo':'congo dr','usa':'usa','united states':'usa'
+  };
+  return map[s]||s;
+}
 function _gcMatchesFixture(apiMatch, fixture){
-  var ah=(apiMatch.home&&apiMatch.home.name||'').toLowerCase();
-  var aa=(apiMatch.away&&apiMatch.away.name||'').toLowerCase();
-  /* WC26.schedule uses .home/.away; support both field names */
-  var fh=(fixture.home||fixture.h||'').toLowerCase();
-  var fa=(fixture.away||fixture.a||'').toLowerCase();
-  /* Allow partial match — e.g. "Korea Republic" matches "South Korea" */
-  function overlap(s1,s2){
-    var w1=s1.split(/\s+/), w2=s2.split(/\s+/);
-    for(var i=0;i<w1.length;i++){
-      if(w1[i].length>2&&w2.indexOf(w1[i])!==-1) return true;
-    }
-    return s1===s2||s1.indexOf(s2)!==-1||s2.indexOf(s1)!==-1;
-  }
-  return overlap(ah,fh)&&overlap(aa,fa);
-}
-
-function getLocalDateKeyFromUTC(utc){
-  if(window.GC_DateTime&&GC_DateTime.getLocalDateKey) return GC_DateTime.getLocalDateKey(utc);
-  var d=new Date(utc);
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-
-function getTodayLocalKey(){
-  if(window.GC_DateTime&&GC_DateTime.getTodayLocalDateKey) return GC_DateTime.getTodayLocalDateKey();
-  var d=new Date();
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-
-function formatLocalDateLong(dateKey){
-  var d=new Date(dateKey+'T12:00:00');
-  return d.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-}
-
-function updateTodaySummary(count,dateKey){
-  var c=document.getElementById('gc-today-count');
-  var d=document.getElementById('gc-today-date-label');
-  var n=document.getElementById('gc-today-note');
-  if(c) c.textContent=count+' '+(count===1?'Fixture':'Fixtures');
-  if(d) d.textContent=formatLocalDateLong(dateKey);
-  if(n) n.textContent=count ? 'Only verified fixtures from the central World Cup data file are shown.' : 'No World Cup fixtures today.';
+  var ah=_gcTeamNorm(apiMatch.home&&apiMatch.home.name);
+  var aa=_gcTeamNorm(apiMatch.away&&apiMatch.away.name);
+  var fh=_gcTeamNorm(fixture.home||fixture.h);
+  var fa=_gcTeamNorm(fixture.away||fixture.a);
+  return (ah===fh&&aa===fa)||(ah===fa&&aa===fh);
 }
 
 function renderMatches(){
@@ -631,35 +754,42 @@ function renderMatches(){
   if(!box) return;
   box.innerHTML='';
   var now=new Date();
-  var todayKey=getTodayLocalKey();
-
-  /* Read from WC26.schedule only — single source of truth */
+  /* Use visitor's LOCAL date — not hardcoded BST offset */
+  var todayBST=window.GC_DateTime&&GC_DateTime.todayLocal
+    ? GC_DateTime.getTodayLocalDateKey()
+    : now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  /* Read from WC26.schedule — single source of truth */
   var allFixtures=(window.WC26&&window.WC26.schedule)||[];
 
-  /* Filter by visitor's LOCAL date. No fallback, no generated fixtures. */
+  /* Filter by visitor's LOCAL date — f.utc gives correct local date in all timezones */
   var toShow=allFixtures.filter(function(f){
-    return getLocalDateKeyFromUTC(f.utc)===todayKey;
+    var fLocalDate=window.GC_DateTime&&GC_DateTime.getLocalDateKey
+      ? GC_DateTime.getLocalDateKey(f.utc)
+      : (function(){var d=new Date(f.utc);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+    return fLocalDate===todayBST;
   });
 
-  updateTodaySummary(toShow.length,todayKey);
-
+  /* No matches today — show next upcoming; never a fake fixture */
   if(!toShow.length){
-    box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">' + gcT('live.noMatches','No World Cup fixtures today.') + '</div>';
+    var next=allFixtures.find(function(f){return new Date(f.utc)>now;});
+    if(next) toShow=[next];
+  }
+  if(!toShow.length){
+    box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">' + gcT('live.noMatches','No matches scheduled today') + '</div>';
     return;
   }
-
-  toShow.sort(function(a,b){return new Date(a.utc)-new Date(b.utc);});
-
   toShow.forEach(function(match){
     var ko=new Date(match.utc);
     var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
 
+    /* ── Resolve status and score from API data when available ── */
     var apiData=_gcApiScores[match.id]||null;
     var statusText,statusClass,centreHtml;
 
     if(apiData){
+      /* API has data for this fixture — use it as authoritative source */
       var apiStatus=apiData.status&&apiData.status.short||'NS';
       var apiElapsed=apiData.status&&apiData.status.elapsed||null;
       var gH=apiData.goals&&apiData.goals.home!=null?apiData.goals.home:0;
@@ -671,46 +801,72 @@ function renderMatches(){
       var isNS=apiStatus==='NS';
 
       if(isNS){
+        /* Not started — show local kickoff time */
         statusText=gcT('live.upcoming','UPCOMING');
         statusClass='upcoming';
-        var koStr2=window.GC_DateTime ? GC_DateTime.formatMatchCardTime(match.utc) : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
+        var koStr2=window.GC_DateTime
+          ? GC_DateTime.formatMatchCardTime(match.utc)
+          : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
         centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr2+'</span></div>';
       } else if(isLive){
         statusText=gcT('live.liveNow','LIVE');
         statusClass='live';
         var minLabel=apiStatus==='HT'?gcT('live.halfTime','HT'):(apiElapsed?apiElapsed+"'":'●');
-        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+'<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span></div>';
+        var minStr='<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span>';
+        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>';
       } else if(isFT){
         statusText=gcT('live.fullTime','FT');
         statusClass='finished';
-        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+'<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
+        var ftStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';
+        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>';
       } else {
+        /* Unknown API status — fall through to clock-based logic below */
         apiData=null;
       }
     }
 
     if(!apiData){
-      if(now<ko){
-        statusText=gcT('live.upcoming','UPCOMING');
-        statusClass='upcoming';
-        var koStr=window.GC_DateTime ? GC_DateTime.formatMatchCardTime(match.utc) : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
-        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';
+      /* Static official result from WC26 source, used when API is unavailable. */
+      if(match.status==='FT' && match.homeScore!=null && match.awayScore!=null){
+        statusText=gcT('live.fullTime','FT');
+        statusClass='finished';
+        centreHtml='<div class="gc-col-score" dir="ltr">'+match.homeScore+'–'+match.awayScore+'<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
       } else {
-        statusText=gcT('live.checking','CHECK');
-        statusClass='live';
-        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time" style="font-size:.9rem">Live API</span></div>';
+        var ft=new Date(ko.getTime()+120*60000);
+        if(now<ko){
+          statusText=gcT('live.upcoming','UPCOMING');
+          statusClass='upcoming';
+          var koStr=window.GC_DateTime ? GC_DateTime.formatMatchCardTime(match.utc) : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
+          centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';
+        } else if(now>=ko&&now<ft){
+          statusText=gcT('live.liveNow','LIVE');
+          statusClass='live';
+          centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time" style="font-size:1rem">–</span></div>';
+        } else {
+          statusText=gcT('live.fullTime','FT');
+          statusClass='finished';
+          centreHtml='<div class="gc-col-score" dir="ltr">–<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
+        }
       }
     }
 
     var row=document.createElement('div');
     row.className='gc-match-row';
+    /* Team names, date string, group letter, broadcaster: untranslated — match data */
+    /* col-meta: dir="ltr" — time/date/group data always LTR */
     row.innerHTML=
       '<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+statusText+'</span></div>'+
       '<div class="gc-col-home">'+(match.home||match.h)+'</div>'+
       centreHtml+
       '<div class="gc-col-away">'+(match.away||match.a)+'</div>'+
-      '<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.stage||('Group '+(match.group||match.g)))+' · '+(match.ukBroadcaster||match.tv||'')+'</div>';
+      '<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.group||match.g)+' · '+(match.ukBroadcaster||match.tv)+'</div>';
     box.appendChild(row);
+    if((match.events||[]).length){
+      var ev=document.createElement('div');
+      ev.style.cssText='grid-column:1/-1;padding:0 14px 10px;text-align:center;font-size:.72rem;color:#334155;border-bottom:1px solid rgba(0,0,0,.05)';
+      ev.innerHTML='⚽ '+match.events.map(function(x){return String(x).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}).join(' &nbsp; · &nbsp; ');
+      row.parentNode.insertBefore(ev,row.nextSibling);
+    }
   });
 }
 
@@ -765,7 +921,32 @@ updateClock();
 setInterval(function(){renderMatches();updateClock();},5000);
 
 
+/* tickOpeningMatch removed — Mexico vs SA finished */
 
+/* Update hardcoded BST times to visitor's local time on page load */
+(function setLocalTimes(){
+  var MEXICO_UTC = '2026-06-11T19:00:00Z';
+  if (!window.GC_DateTime) {
+    setTimeout(setLocalTimes, 100); /* wait for gc-datetime.js */
+    return;
+  }
+  var local = GC_DateTime.formatLocalKickoff(MEXICO_UTC);
+  var isUK  = GC_DateTime.isVisitorInUK();
+
+  /* Opening match card */
+  var omTime = document.getElementById('gc-om-local-time');
+  if (omTime) omTime.textContent = local;
+
+  /* News card */
+  var newsTime = document.getElementById('gc-news-ko-time');
+  if (newsTime) newsTime.textContent = local;
+
+  /* Opening match TV broadcaster */
+  var omTV = document.getElementById('gc-om-broadcaster');
+  if (omTV && window.GC_DateTime) {
+    omTV.textContent = '📺 ' + GC_DateTime.buildTVDisplay();
+  }
+})();
 
 /* ── Language event listeners ── */
 /* When gc-lang.js finishes loading a language file, it fires these events.
@@ -776,24 +957,63 @@ function gcReRenderAll(){
 }
 document.addEventListener('gc:languageChanged', gcReRenderAll);
 
-/* ── HOMEPAGE LIVE POLL — today's verified WC fixtures only ───────────────── */
+/* ── HOMEPAGE LIVE POLL — all today's WC fixtures ───────────────── */
 (function(){
+  /* Fetch date key in visitor's LOCAL timezone so API returns the right day */
+  function getTodayKey(){
+    if(window.GC_DateTime&&GC_DateTime.getTodayLocalDateKey) return GC_DateTime.getTodayLocalDateKey();
+    var d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
   function doFetch(){
-    var dateKey=getTodayLocalKey();
+    var dateKey=getTodayKey();
     fetch('/api/scores?date='+dateKey,{cache:'no-store'})
       .then(function(r){return r.json();})
       .then(function(data){
         var apiMatches=data.matches||[];
+
+        /* ── Populate shared score store for renderMatches() ── */
+        /* Read from single source of truth */
         var scheduleData=(window.WC26&&window.WC26.schedule)||[];
         scheduleData.forEach(function(fixture){
           var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
           if(found) _gcApiScores[fixture.id]=found;
         });
+        /* Re-render the Match Centre widget with real API scores */
         renderMatches();
+
+        /* ── Update the opening match hero card (Mexico vs SA) ── */
+        var mxSA=apiMatches.find(function(m){
+          var h=(m.home&&m.home.name||'').toLowerCase();
+          var a=(m.away&&m.away.name||'').toLowerCase();
+          return h.indexOf('mexico')!==-1&&a.indexOf('south africa')!==-1;
+        });
+        if(!mxSA) return;
+        var status=mxSA.status&&mxSA.status.short||'NS';
+        var elapsed=mxSA.status&&mxSA.status.elapsed||null;
+        var gH=mxSA.goals&&mxSA.goals.home!=null?mxSA.goals.home:null;
+        var gA=mxSA.goals&&mxSA.goals.away!=null?mxSA.goals.away:null;
+        var LIVE_S=['1H','2H','HT','ET','BT','P'];
+        var FT_S=['FT','AET','PEN'];
+        var isL=LIVE_S.indexOf(status)!==-1;
+        var isFT=FT_S.indexOf(status)!==-1;
+        if(!isL&&!isFT) return; /* pre-match: leave current fixture panel unchanged */
+        var sc=(gH!==null?gH:0)+' - '+(gA!==null?gA:0);
+        var scoreEl=document.getElementById('gc-om-score');
+        var startEl=document.getElementById('gc-om-started');
+        var digEl=document.getElementById('gc-om-ko-digits');
+        var lblEl=document.getElementById('gc-om-ko-label');
+        var badEl=document.querySelector('.gc-om-badge');
+        if(scoreEl) scoreEl.textContent=sc;
+        if(digEl) digEl.style.display='none';
+        if(startEl){ startEl.style.display='block'; startEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time'; }
+        if(lblEl) lblEl.style.display='none';
+        if(badEl) badEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time';
       }).catch(function(){});
   }
   doFetch();
-  setInterval(doFetch,30000);
+  setInterval(doFetch,30000); /* 30s — matches live scores page refresh rate */
 })();
 /* ── END HOMEPAGE LIVE POLL ──────────────────────────────────────── */
 

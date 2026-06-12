@@ -1,0 +1,1 @@
+Upload these files and folders over the same paths in GitHub. Replace existing files. The old World Cup timer URL is now redirected to fixtures.

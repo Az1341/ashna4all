@@ -580,41 +580,7 @@ function openNews() {
   modal("News item", "<p>News details, related fixtures and source links will open here. Latest headlines update on the news page when the feed is available.</p>");
 }
 
-  if (!el) return;
-
-  const target = new Date("2026-06-11T20:00:00+01:00");
-  const matchTitle = "Mexico vs South Africa";
-  const matchMeta = "Opening match · 11 June 2026 · 20:00 BST · Estadio Azteca";
-
-  const pad = (number) => String(number).padStart(2, "0");
-
-  function tick() {
-    const diff = target - new Date();
-
-    if (diff <= 0) {
-      return;
-    }
-
-    const days = Math.floor(diff / 864e5);
-    const hours = Math.floor((diff % 864e5) / 36e5);
-    const minutes = Math.floor((diff % 36e5) / 6e4);
-    const seconds = Math.floor((diff % 6e4) / 1000);
-
-    el.innerHTML = `
-          <h3>${matchTitle}</h3>
-          <p>${matchMeta}</p>
-        </div>
-        <div class="time-ring"><b>${days}</b><span>Days</span></div>
-        <div class="time-ring"><b>${pad(hours)}</b><span>Hours</span></div>
-        <div class="time-ring"><b>${pad(minutes)}</b><span>Minutes</span></div>
-        <div class="time-ring"><b>${pad(seconds)}</b><span>Seconds</span></div>
-      </div>
-    `;
-  }
-
-  tick();
-  setInterval(tick, 1000);
-}
+function renderTournamentStartedNotice(){ return; }
 
 function renderApiStatus(message, cls = "") {
   const el = $("#liveApiStatus");

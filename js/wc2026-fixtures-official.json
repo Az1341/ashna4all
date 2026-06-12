@@ -7,7 +7,7 @@
     "awayCode": "RSA",
     "home": "Mexico",
     "away": "South Africa",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Mexico City Stadium",
     "city": "Mexico City",
@@ -21,7 +21,12 @@
       "9' Julián Quiñones — Mexico",
       "67' Raúl Jiménez — Mexico",
       "Red cards recorded in live feed"
-    ]
+    ],
+    "utc": "2026-06-11T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-11",
+    "venue": "Mexico City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 2,
@@ -31,7 +36,7 @@
     "awayCode": "CZE",
     "home": "Korea Republic",
     "away": "Czechia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Guadalajara Stadium",
     "city": "Guadalajara",
@@ -45,7 +50,12 @@
       "59' Ladislav Krejčí — Czechia",
       "67' Hwang In-beom — Korea Republic",
       "80' Oh Hyeon-gyu — Korea Republic"
-    ]
+    ],
+    "utc": "2026-06-12T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-12",
+    "venue": "Guadalajara Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 3,
@@ -55,13 +65,18 @@
     "awayCode": "BIH",
     "home": "Canada",
     "away": "Bosnia & Herzegovina",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ca",
-    "awayFlag": "ba"
+    "awayFlag": "ba",
+    "utc": "2026-06-12T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-12",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 4,
@@ -71,13 +86,18 @@
     "awayCode": "PAR",
     "home": "USA",
     "away": "Paraguay",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "us",
-    "awayFlag": "py"
+    "awayFlag": "py",
+    "utc": "2026-06-13T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-13",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 5,
@@ -87,13 +107,18 @@
     "awayCode": "SUI",
     "home": "Qatar",
     "away": "Switzerland",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "qa",
-    "awayFlag": "ch"
+    "awayFlag": "ch",
+    "utc": "2026-06-13T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-13",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 6,
@@ -103,13 +128,18 @@
     "awayCode": "MAR",
     "home": "Brazil",
     "away": "Morocco",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "br",
-    "awayFlag": "ma"
+    "awayFlag": "ma",
+    "utc": "2026-06-13T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-13",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 7,
@@ -119,13 +149,18 @@
     "awayCode": "SCO",
     "home": "Haiti",
     "away": "Scotland",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "Boston Stadium",
     "city": "Boston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ht",
-    "awayFlag": "gb-sct"
+    "awayFlag": "gb-sct",
+    "utc": "2026-06-14T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-14",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 8,
@@ -135,13 +170,18 @@
     "awayCode": "TUR",
     "home": "Australia",
     "away": "Türkiye",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "au",
-    "awayFlag": "tr"
+    "awayFlag": "tr",
+    "utc": "2026-06-14T04:00:00Z",
+    "bst": "05:00",
+    "date": "2026-06-14",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 9,
@@ -151,13 +191,18 @@
     "awayCode": "CUW",
     "home": "Germany",
     "away": "Curaçao",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "Houston Stadium",
     "city": "Houston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "de",
-    "awayFlag": "cw"
+    "awayFlag": "cw",
+    "utc": "2026-06-14T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-14",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 10,
@@ -167,13 +212,18 @@
     "awayCode": "JPN",
     "home": "Netherlands",
     "away": "Japan",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "nl",
-    "awayFlag": "jp"
+    "awayFlag": "jp",
+    "utc": "2026-06-14T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-14",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 11,
@@ -183,13 +233,18 @@
     "awayCode": "ECU",
     "home": "Côte d'Ivoire",
     "away": "Ecuador",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ci",
-    "awayFlag": "ec"
+    "awayFlag": "ec",
+    "utc": "2026-06-14T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-06-15",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 12,
@@ -199,13 +254,18 @@
     "awayCode": "TUN",
     "home": "Sweden",
     "away": "Tunisia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Monterrey Stadium",
     "city": "Monterrey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "se",
-    "awayFlag": "tn"
+    "awayFlag": "tn",
+    "utc": "2026-06-15T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-15",
+    "venue": "Monterrey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 13,
@@ -215,13 +275,18 @@
     "awayCode": "CPV",
     "home": "Spain",
     "away": "Cabo Verde",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "es",
-    "awayFlag": "cv"
+    "awayFlag": "cv",
+    "utc": "2026-06-15T16:00:00Z",
+    "bst": "17:00",
+    "date": "2026-06-15",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 14,
@@ -231,13 +296,18 @@
     "awayCode": "EGY",
     "home": "Belgium",
     "away": "Egypt",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "be",
-    "awayFlag": "eg"
+    "awayFlag": "eg",
+    "utc": "2026-06-15T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-15",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 15,
@@ -247,13 +317,18 @@
     "awayCode": "URU",
     "home": "Saudi Arabia",
     "away": "Uruguay",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Miami Stadium",
     "city": "Miami",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "sa",
-    "awayFlag": "uy"
+    "awayFlag": "uy",
+    "utc": "2026-06-15T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-15",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 16,
@@ -263,13 +338,18 @@
     "awayCode": "NZL",
     "home": "IR Iran",
     "away": "New Zealand",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ir",
-    "awayFlag": "nz"
+    "awayFlag": "nz",
+    "utc": "2026-06-16T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-16",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 17,
@@ -279,13 +359,18 @@
     "awayCode": "SEN",
     "home": "France",
     "away": "Senegal",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "fr",
-    "awayFlag": "sn"
+    "awayFlag": "sn",
+    "utc": "2026-06-16T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-16",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 18,
@@ -295,13 +380,18 @@
     "awayCode": "NOR",
     "home": "Iraq",
     "away": "Norway",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "Boston Stadium",
     "city": "Boston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "iq",
-    "awayFlag": "no"
+    "awayFlag": "no",
+    "utc": "2026-06-16T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-16",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 19,
@@ -311,13 +401,18 @@
     "awayCode": "ALG",
     "home": "Argentina",
     "away": "Algeria",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ar",
-    "awayFlag": "dz"
+    "awayFlag": "dz",
+    "utc": "2026-06-17T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-17",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 20,
@@ -327,13 +422,18 @@
     "awayCode": "JOR",
     "home": "Austria",
     "away": "Jordan",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "at",
-    "awayFlag": "jo"
+    "awayFlag": "jo",
+    "utc": "2026-06-17T04:00:00Z",
+    "bst": "05:00",
+    "date": "2026-06-17",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 21,
@@ -343,13 +443,18 @@
     "awayCode": "COD",
     "home": "Portugal",
     "away": "Congo DR",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Houston Stadium",
     "city": "Houston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "pt",
-    "awayFlag": "cd"
+    "awayFlag": "cd",
+    "utc": "2026-06-17T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-17",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 22,
@@ -359,13 +464,18 @@
     "awayCode": "CRO",
     "home": "England",
     "away": "Croatia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "gb-eng",
-    "awayFlag": "hr"
+    "awayFlag": "hr",
+    "utc": "2026-06-17T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-17",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 23,
@@ -375,13 +485,18 @@
     "awayCode": "PAN",
     "home": "Ghana",
     "away": "Panama",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "gh",
-    "awayFlag": "pa"
+    "awayFlag": "pa",
+    "utc": "2026-06-17T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-06-18",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 24,
@@ -391,13 +506,18 @@
     "awayCode": "COL",
     "home": "Uzbekistan",
     "away": "Colombia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Mexico City Stadium",
     "city": "Mexico City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "uz",
-    "awayFlag": "co"
+    "awayFlag": "co",
+    "utc": "2026-06-18T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-18",
+    "venue": "Mexico City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 25,
@@ -407,13 +527,18 @@
     "awayCode": "RSA",
     "home": "Czechia",
     "away": "South Africa",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "cz",
-    "awayFlag": "za"
+    "awayFlag": "za",
+    "utc": "2026-06-18T16:00:00Z",
+    "bst": "17:00",
+    "date": "2026-06-18",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 26,
@@ -423,13 +548,18 @@
     "awayCode": "BIH",
     "home": "Switzerland",
     "away": "Bosnia & Herzegovina",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ch",
-    "awayFlag": "ba"
+    "awayFlag": "ba",
+    "utc": "2026-06-18T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-18",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 27,
@@ -439,13 +569,18 @@
     "awayCode": "QAT",
     "home": "Canada",
     "away": "Qatar",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ca",
-    "awayFlag": "qa"
+    "awayFlag": "qa",
+    "utc": "2026-06-18T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-18",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 28,
@@ -455,13 +590,18 @@
     "awayCode": "KOR",
     "home": "Mexico",
     "away": "Korea Republic",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Guadalajara Stadium",
     "city": "Guadalajara",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "mx",
-    "awayFlag": "kr"
+    "awayFlag": "kr",
+    "utc": "2026-06-19T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-19",
+    "venue": "Guadalajara Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 29,
@@ -471,13 +611,18 @@
     "awayCode": "AUS",
     "home": "USA",
     "away": "Australia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "us",
-    "awayFlag": "au"
+    "awayFlag": "au",
+    "utc": "2026-06-19T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-19",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 30,
@@ -487,13 +632,18 @@
     "awayCode": "MAR",
     "home": "Scotland",
     "away": "Morocco",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "Boston Stadium",
     "city": "Boston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "gb-sct",
-    "awayFlag": "ma"
+    "awayFlag": "ma",
+    "utc": "2026-06-19T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-19",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 31,
@@ -503,13 +653,18 @@
     "awayCode": "HAI",
     "home": "Brazil",
     "away": "Haiti",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "br",
-    "awayFlag": "ht"
+    "awayFlag": "ht",
+    "utc": "2026-06-20T00:30:00Z",
+    "bst": "01:30",
+    "date": "2026-06-20",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 32,
@@ -519,13 +674,18 @@
     "awayCode": "PAR",
     "home": "Türkiye",
     "away": "Paraguay",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "tr",
-    "awayFlag": "py"
+    "awayFlag": "py",
+    "utc": "2026-06-20T03:00:00Z",
+    "bst": "04:00",
+    "date": "2026-06-20",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 33,
@@ -535,13 +695,18 @@
     "awayCode": "SWE",
     "home": "Netherlands",
     "away": "Sweden",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Houston Stadium",
     "city": "Houston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "nl",
-    "awayFlag": "se"
+    "awayFlag": "se",
+    "utc": "2026-06-20T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-20",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 34,
@@ -551,13 +716,18 @@
     "awayCode": "CIV",
     "home": "Germany",
     "away": "Côte d'Ivoire",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "de",
-    "awayFlag": "ci"
+    "awayFlag": "ci",
+    "utc": "2026-06-20T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-20",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 35,
@@ -567,13 +737,18 @@
     "awayCode": "CUW",
     "home": "Ecuador",
     "away": "Curaçao",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ec",
-    "awayFlag": "cw"
+    "awayFlag": "cw",
+    "utc": "2026-06-21T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-06-21",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 36,
@@ -583,13 +758,18 @@
     "awayCode": "JPN",
     "home": "Tunisia",
     "away": "Japan",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Monterrey Stadium",
     "city": "Monterrey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "tn",
-    "awayFlag": "jp"
+    "awayFlag": "jp",
+    "utc": "2026-06-21T04:00:00Z",
+    "bst": "05:00",
+    "date": "2026-06-21",
+    "venue": "Monterrey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 37,
@@ -599,13 +779,18 @@
     "awayCode": "KSA",
     "home": "Spain",
     "away": "Saudi Arabia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "es",
-    "awayFlag": "sa"
+    "awayFlag": "sa",
+    "utc": "2026-06-21T16:00:00Z",
+    "bst": "17:00",
+    "date": "2026-06-21",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 38,
@@ -615,13 +800,18 @@
     "awayCode": "IRN",
     "home": "Belgium",
     "away": "IR Iran",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "be",
-    "awayFlag": "ir"
+    "awayFlag": "ir",
+    "utc": "2026-06-21T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-21",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 39,
@@ -631,13 +821,18 @@
     "awayCode": "CPV",
     "home": "Uruguay",
     "away": "Cabo Verde",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Miami Stadium",
     "city": "Miami",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "uy",
-    "awayFlag": "cv"
+    "awayFlag": "cv",
+    "utc": "2026-06-21T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-21",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 40,
@@ -647,13 +842,18 @@
     "awayCode": "EGY",
     "home": "New Zealand",
     "away": "Egypt",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "nz",
-    "awayFlag": "eg"
+    "awayFlag": "eg",
+    "utc": "2026-06-22T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-22",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 41,
@@ -663,13 +863,18 @@
     "awayCode": "AUT",
     "home": "Argentina",
     "away": "Austria",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ar",
-    "awayFlag": "at"
+    "awayFlag": "at",
+    "utc": "2026-06-22T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-22",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 42,
@@ -679,13 +884,18 @@
     "awayCode": "IRQ",
     "home": "France",
     "away": "Iraq",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "fr",
-    "awayFlag": "iq"
+    "awayFlag": "iq",
+    "utc": "2026-06-22T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-06-22",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 43,
@@ -695,13 +905,18 @@
     "awayCode": "SEN",
     "home": "Norway",
     "away": "Senegal",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "no",
-    "awayFlag": "sn"
+    "awayFlag": "sn",
+    "utc": "2026-06-23T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-06-23",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 44,
@@ -711,13 +926,18 @@
     "awayCode": "ALG",
     "home": "Jordan",
     "away": "Algeria",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "jo",
-    "awayFlag": "dz"
+    "awayFlag": "dz",
+    "utc": "2026-06-23T03:00:00Z",
+    "bst": "04:00",
+    "date": "2026-06-23",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 45,
@@ -727,13 +947,18 @@
     "awayCode": "UZB",
     "home": "Portugal",
     "away": "Uzbekistan",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Houston Stadium",
     "city": "Houston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "pt",
-    "awayFlag": "uz"
+    "awayFlag": "uz",
+    "utc": "2026-06-23T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-23",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 46,
@@ -743,13 +968,18 @@
     "awayCode": "GHA",
     "home": "England",
     "away": "Ghana",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "Boston Stadium",
     "city": "Boston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "gb-eng",
-    "awayFlag": "gh"
+    "awayFlag": "gh",
+    "utc": "2026-06-23T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-23",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 47,
@@ -759,13 +989,18 @@
     "awayCode": "CRO",
     "home": "Panama",
     "away": "Croatia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "pa",
-    "awayFlag": "hr"
+    "awayFlag": "hr",
+    "utc": "2026-06-23T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-06-24",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 48,
@@ -775,13 +1010,18 @@
     "awayCode": "COD",
     "home": "Colombia",
     "away": "Congo DR",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Guadalajara Stadium",
     "city": "Guadalajara",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "co",
-    "awayFlag": "cd"
+    "awayFlag": "cd",
+    "utc": "2026-06-24T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-24",
+    "venue": "Guadalajara Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 49,
@@ -791,13 +1031,18 @@
     "awayCode": "CAN",
     "home": "Switzerland",
     "away": "Canada",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ch",
-    "awayFlag": "ca"
+    "awayFlag": "ca",
+    "utc": "2026-06-24T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-24",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 50,
@@ -807,13 +1052,18 @@
     "awayCode": "QAT",
     "home": "Bosnia & Herzegovina",
     "away": "Qatar",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "B",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ba",
-    "awayFlag": "qa"
+    "awayFlag": "qa",
+    "utc": "2026-06-24T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-24",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 51,
@@ -823,13 +1073,18 @@
     "awayCode": "BRA",
     "home": "Scotland",
     "away": "Brazil",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "Miami Stadium",
     "city": "Miami",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "gb-sct",
-    "awayFlag": "br"
+    "awayFlag": "br",
+    "utc": "2026-06-24T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-24",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 52,
@@ -839,13 +1094,18 @@
     "awayCode": "HAI",
     "home": "Morocco",
     "away": "Haiti",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "C",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ma",
-    "awayFlag": "ht"
+    "awayFlag": "ht",
+    "utc": "2026-06-24T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-06-24",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 53,
@@ -855,13 +1115,18 @@
     "awayCode": "MEX",
     "home": "Czechia",
     "away": "Mexico",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Mexico City Stadium",
     "city": "Mexico City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "cz",
-    "awayFlag": "mx"
+    "awayFlag": "mx",
+    "utc": "2026-06-25T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-25",
+    "venue": "Mexico City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 54,
@@ -871,13 +1136,18 @@
     "awayCode": "KOR",
     "home": "South Africa",
     "away": "Korea Republic",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "A",
     "stadium": "Monterrey Stadium",
     "city": "Monterrey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "za",
-    "awayFlag": "kr"
+    "awayFlag": "kr",
+    "utc": "2026-06-25T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-25",
+    "venue": "Monterrey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 55,
@@ -887,13 +1157,18 @@
     "awayCode": "CIV",
     "home": "Curaçao",
     "away": "Côte d'Ivoire",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "cw",
-    "awayFlag": "ci"
+    "awayFlag": "ci",
+    "utc": "2026-06-25T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-25",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 56,
@@ -903,13 +1178,18 @@
     "awayCode": "GER",
     "home": "Ecuador",
     "away": "Germany",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "E",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "ec",
-    "awayFlag": "de"
+    "awayFlag": "de",
+    "utc": "2026-06-25T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-06-25",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 57,
@@ -919,13 +1199,18 @@
     "awayCode": "SWE",
     "home": "Japan",
     "away": "Sweden",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "jp",
-    "awayFlag": "se"
+    "awayFlag": "se",
+    "utc": "2026-06-25T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-06-26",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 58,
@@ -935,13 +1220,18 @@
     "awayCode": "NED",
     "home": "Tunisia",
     "away": "Netherlands",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "F",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "tn",
-    "awayFlag": "nl"
+    "awayFlag": "nl",
+    "utc": "2026-06-25T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-06-26",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 59,
@@ -951,13 +1241,18 @@
     "awayCode": "USA",
     "home": "Türkiye",
     "away": "USA",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "tr",
-    "awayFlag": "us"
+    "awayFlag": "us",
+    "utc": "2026-06-26T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-26",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 60,
@@ -967,13 +1262,18 @@
     "awayCode": "AUS",
     "home": "Paraguay",
     "away": "Australia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "D",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "py",
-    "awayFlag": "au"
+    "awayFlag": "au",
+    "utc": "2026-06-26T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-26",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 61,
@@ -983,13 +1283,18 @@
     "awayCode": "FRA",
     "home": "Norway",
     "away": "France",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "Boston Stadium",
     "city": "Boston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "no",
-    "awayFlag": "fr"
+    "awayFlag": "fr",
+    "utc": "2026-06-26T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-26",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 62,
@@ -999,13 +1304,18 @@
     "awayCode": "IRQ",
     "home": "Senegal",
     "away": "Iraq",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "I",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "sn",
-    "awayFlag": "iq"
+    "awayFlag": "iq",
+    "utc": "2026-06-26T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-26",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 63,
@@ -1015,13 +1325,18 @@
     "awayCode": "KSA",
     "home": "Cabo Verde",
     "away": "Saudi Arabia",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Houston Stadium",
     "city": "Houston",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "cv",
-    "awayFlag": "sa"
+    "awayFlag": "sa",
+    "utc": "2026-06-27T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-06-27",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 64,
@@ -1031,13 +1346,18 @@
     "awayCode": "ESP",
     "home": "Uruguay",
     "away": "Spain",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "H",
     "stadium": "Guadalajara Stadium",
     "city": "Guadalajara",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "uy",
-    "awayFlag": "es"
+    "awayFlag": "es",
+    "utc": "2026-06-27T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-06-27",
+    "venue": "Guadalajara Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 65,
@@ -1047,13 +1367,18 @@
     "awayCode": "IRN",
     "home": "Egypt",
     "away": "IR Iran",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "eg",
-    "awayFlag": "ir"
+    "awayFlag": "ir",
+    "utc": "2026-06-27T03:00:00Z",
+    "bst": "04:00",
+    "date": "2026-06-27",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 66,
@@ -1063,13 +1388,18 @@
     "awayCode": "BEL",
     "home": "New Zealand",
     "away": "Belgium",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "G",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "nz",
-    "awayFlag": "be"
+    "awayFlag": "be",
+    "utc": "2026-06-27T03:00:00Z",
+    "bst": "04:00",
+    "date": "2026-06-27",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 67,
@@ -1079,13 +1409,18 @@
     "awayCode": "ENG",
     "home": "Panama",
     "away": "England",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "pa",
-    "awayFlag": "gb-eng"
+    "awayFlag": "gb-eng",
+    "utc": "2026-06-27T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-06-27",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 68,
@@ -1095,13 +1430,18 @@
     "awayCode": "GHA",
     "home": "Croatia",
     "away": "Ghana",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "L",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "hr",
-    "awayFlag": "gh"
+    "awayFlag": "gh",
+    "utc": "2026-06-27T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-06-27",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 69,
@@ -1111,13 +1451,18 @@
     "awayCode": "POR",
     "home": "Colombia",
     "away": "Portugal",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Miami Stadium",
     "city": "Miami",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "co",
-    "awayFlag": "pt"
+    "awayFlag": "pt",
+    "utc": "2026-06-27T23:30:00Z",
+    "bst": "00:30",
+    "date": "2026-06-28",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 70,
@@ -1127,13 +1472,18 @@
     "awayCode": "UZB",
     "home": "Congo DR",
     "away": "Uzbekistan",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "K",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "cd",
-    "awayFlag": "uz"
+    "awayFlag": "uz",
+    "utc": "2026-06-27T23:30:00Z",
+    "bst": "00:30",
+    "date": "2026-06-28",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 71,
@@ -1143,13 +1493,18 @@
     "awayCode": "AUT",
     "home": "Algeria",
     "away": "Austria",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "dz",
-    "awayFlag": "at"
+    "awayFlag": "at",
+    "utc": "2026-06-28T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-28",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 72,
@@ -1159,13 +1514,18 @@
     "awayCode": "ARG",
     "home": "Jordan",
     "away": "Argentina",
-    "stage": "First Stage",
+    "stage": "Group Stage",
     "group": "J",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
     "source": "FIFA PDF UK/BST",
     "homeFlag": "jo",
-    "awayFlag": "ar"
+    "awayFlag": "ar",
+    "utc": "2026-06-28T02:00:00Z",
+    "bst": "03:00",
+    "date": "2026-06-28",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 73,
@@ -1176,10 +1536,15 @@
     "home": "2A",
     "away": "2B",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-28T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-06-28",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 74,
@@ -1190,10 +1555,15 @@
     "home": "1C",
     "away": "2F",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Houston Stadium",
     "city": "Houston",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-29T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-29",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 75,
@@ -1204,10 +1574,15 @@
     "home": "1E",
     "away": "3ABCDF",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Boston Stadium",
     "city": "Boston",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-29T20:30:00Z",
+    "bst": "21:30",
+    "date": "2026-06-29",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 76,
@@ -1218,10 +1593,15 @@
     "home": "1F",
     "away": "2C",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Monterrey Stadium",
     "city": "Monterrey",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-30T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-06-30",
+    "venue": "Monterrey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 77,
@@ -1232,10 +1612,15 @@
     "home": "2E",
     "away": "2I",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-30T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-06-30",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 78,
@@ -1246,10 +1631,15 @@
     "home": "1I",
     "away": "3CDFGH",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-06-30T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-06-30",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 79,
@@ -1260,10 +1650,15 @@
     "home": "1A",
     "away": "3CEFHI",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Mexico City Stadium",
     "city": "Mexico City",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-01T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-07-01",
+    "venue": "Mexico City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 80,
@@ -1274,10 +1669,15 @@
     "home": "1L",
     "away": "3EHIJK",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-01T16:00:00Z",
+    "bst": "17:00",
+    "date": "2026-07-01",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 81,
@@ -1288,10 +1688,15 @@
     "home": "1G",
     "away": "3AEHIJ",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-01T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-07-01",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 82,
@@ -1302,10 +1707,15 @@
     "home": "1D",
     "away": "3BEFIJ",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "San Francisco Bay Area Stadium",
     "city": "San Francisco Bay Area",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-02T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-07-02",
+    "venue": "San Francisco Bay Area Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 83,
@@ -1316,10 +1726,15 @@
     "home": "1H",
     "away": "2J",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-02T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-02",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 84,
@@ -1330,10 +1745,15 @@
     "home": "2K",
     "away": "2L",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Toronto Stadium",
     "city": "Toronto",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-02T23:00:00Z",
+    "bst": "00:00",
+    "date": "2026-07-03",
+    "venue": "Toronto Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 85,
@@ -1344,10 +1764,15 @@
     "home": "1B",
     "away": "3EFGIJ",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-03T03:00:00Z",
+    "bst": "04:00",
+    "date": "2026-07-03",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 86,
@@ -1358,10 +1783,15 @@
     "home": "2D",
     "away": "2G",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-03T18:00:00Z",
+    "bst": "19:00",
+    "date": "2026-07-03",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 87,
@@ -1372,10 +1802,15 @@
     "home": "1J",
     "away": "2H",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Miami Stadium",
     "city": "Miami",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-03T22:00:00Z",
+    "bst": "23:00",
+    "date": "2026-07-03",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 88,
@@ -1386,10 +1821,15 @@
     "home": "1K",
     "away": "3DEIJL",
     "stage": "Round of 32",
-    "group": "",
+    "group": "—",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-04T01:30:00Z",
+    "bst": "02:30",
+    "date": "2026-07-04",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 89,
@@ -1400,10 +1840,15 @@
     "home": "W73",
     "away": "W75",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Houston Stadium",
     "city": "Houston",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-04T17:00:00Z",
+    "bst": "18:00",
+    "date": "2026-07-04",
+    "venue": "Houston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 90,
@@ -1414,10 +1859,15 @@
     "home": "W74",
     "away": "W77",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-04T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-07-04",
+    "venue": "Philadelphia Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 91,
@@ -1428,10 +1878,15 @@
     "home": "W76",
     "away": "W78",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-05T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-07-05",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 92,
@@ -1442,10 +1897,15 @@
     "home": "W79",
     "away": "W80",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Mexico City Stadium",
     "city": "Mexico City",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-06T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-07-06",
+    "venue": "Mexico City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 93,
@@ -1456,10 +1916,15 @@
     "home": "W83",
     "away": "W84",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-06T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-06",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 94,
@@ -1470,10 +1935,15 @@
     "home": "W81",
     "away": "W82",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Seattle Stadium",
     "city": "Seattle",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-07T00:00:00Z",
+    "bst": "01:00",
+    "date": "2026-07-07",
+    "venue": "Seattle Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 95,
@@ -1484,10 +1954,15 @@
     "home": "W86",
     "away": "W88",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-07T16:00:00Z",
+    "bst": "17:00",
+    "date": "2026-07-07",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 96,
@@ -1498,10 +1973,15 @@
     "home": "W85",
     "away": "W87",
     "stage": "Round of 16",
-    "group": "",
+    "group": "—",
     "stadium": "BC Place Vancouver",
     "city": "Vancouver",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-07T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-07-07",
+    "venue": "BC Place Vancouver",
+    "ukBroadcaster": ""
   },
   {
     "id": 97,
@@ -1512,10 +1992,15 @@
     "home": "W89",
     "away": "W90",
     "stage": "Quarter-final",
-    "group": "",
+    "group": "—",
     "stadium": "Boston Stadium",
     "city": "Boston",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-09T20:00:00Z",
+    "bst": "21:00",
+    "date": "2026-07-09",
+    "venue": "Boston Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 98,
@@ -1526,10 +2011,15 @@
     "home": "W93",
     "away": "W94",
     "stage": "Quarter-final",
-    "group": "",
+    "group": "—",
     "stadium": "Los Angeles Stadium",
     "city": "Los Angeles",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-10T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-10",
+    "venue": "Los Angeles Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 99,
@@ -1540,10 +2030,15 @@
     "home": "W91",
     "away": "W92",
     "stage": "Quarter-final",
-    "group": "",
+    "group": "—",
     "stadium": "Miami Stadium",
     "city": "Miami",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-11T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-07-11",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 100,
@@ -1554,10 +2049,15 @@
     "home": "W95",
     "away": "W96",
     "stage": "Quarter-final",
-    "group": "",
+    "group": "—",
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-12T01:00:00Z",
+    "bst": "02:00",
+    "date": "2026-07-12",
+    "venue": "Kansas City Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 101,
@@ -1568,10 +2068,15 @@
     "home": "W97",
     "away": "W98",
     "stage": "Semi-final",
-    "group": "",
+    "group": "—",
     "stadium": "Dallas Stadium",
     "city": "Dallas",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-14T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-14",
+    "venue": "Dallas Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 102,
@@ -1582,10 +2087,15 @@
     "home": "W99",
     "away": "W100",
     "stage": "Semi-final",
-    "group": "",
+    "group": "—",
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-15T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-15",
+    "venue": "Atlanta Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 103,
@@ -1596,10 +2106,15 @@
     "home": "RU101",
     "away": "RU102",
     "stage": "Play-off for third place",
-    "group": "",
+    "group": "—",
     "stadium": "Miami Stadium",
     "city": "Miami",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-18T21:00:00Z",
+    "bst": "22:00",
+    "date": "2026-07-18",
+    "venue": "Miami Stadium",
+    "ukBroadcaster": ""
   },
   {
     "id": 104,
@@ -1610,9 +2125,14 @@
     "home": "W101",
     "away": "W102",
     "stage": "Final",
-    "group": "",
+    "group": "—",
     "stadium": "New York/New Jersey Stadium",
     "city": "New Jersey",
-    "source": "FIFA PDF UK/BST"
+    "source": "FIFA PDF UK/BST",
+    "utc": "2026-07-19T19:00:00Z",
+    "bst": "20:00",
+    "date": "2026-07-19",
+    "venue": "New York/New Jersey Stadium",
+    "ukBroadcaster": ""
   }
 ]
