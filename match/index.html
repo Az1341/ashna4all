@@ -860,22 +860,25 @@ function renderPlayers(players) {
 }
 
 // ── main ──
-async function init() {
-  const params = new URLSearchParams(location.search);
-  const id = params.get('id');
-  if (!id) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error-box').style.display = '';
-    document.getElementById('error-box').textContent = 'No match ID provided.';
-    return;
-  }
+let refreshTimer = null;
 
+function clearPanels() {
+  document.getElementById('events-list').innerHTML = '';
+  document.getElementById('events-empty').style.display = 'none';
+  document.getElementById('lineups-grid').innerHTML = '';
+  document.getElementById('pitch-container').innerHTML = '';
+  document.getElementById('stats-empty').style.display = 'none';
+  document.getElementById('players-tbody').innerHTML = '';
+  document.getElementById('players-empty').style.display = 'none';
+  document.getElementById('players-table').style.display = '';
+}
+
+async function loadMatch(id, isFirst) {
   try {
-    const res  = await fetch(`/api/scores?id=${id}`);
+    const res  = await fetch(`/api/scores?id=${id}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     if (data.error) throw new Error(data.error);
-    /* Handle wrong response format — if API returns {matches:[]} instead of {fixture:{}} */
     if (!data.fixture && data.matches) {
       throw new Error('Match detail not yet available. The API is returning scheduled data only. Please try again closer to kickoff or during the match.');
     }
@@ -884,23 +887,44 @@ async function init() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('match-content').style.display = '';
 
+    clearPanels();
     renderHeader(data.fixture);
     renderEvents(data.events || [], data.fixture);
     renderLineups(data.lineups || []);
     renderStats(data.statistics || []);
     renderPlayers(data.players || []);
 
-    // Auto-refresh every 60s if live
+    // Refresh in place while live — no page reload, no flash
     const s = data.fixture.status.short;
-    if (['1H','2H','ET','BT','P'].includes(s)) {
-      setTimeout(() => location.reload(), 60000);
+    const live = ['1H','2H','HT','ET','BT','P'].includes(s);
+    if (live && !refreshTimer) {
+      refreshTimer = setInterval(() => loadMatch(id, false), 60000);
     }
-
+    if (!live && refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
   } catch (err) {
+    if (isFirst) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error-box').style.display = '';
+      document.getElementById('error-box').textContent = `Failed to load match: ${err.message}`;
+    } else {
+      console.warn('[Match] refresh failed, keeping current data:', err.message);
+    }
+  }
+}
+
+function init() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  if (!id) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('error-box').style.display = '';
-    document.getElementById('error-box').textContent = `Failed to load match: ${err.message}`;
+    document.getElementById('error-box').textContent = 'No match ID provided.';
+    return;
   }
+  loadMatch(id, true);
 }
 
 init();
