@@ -43,6 +43,7 @@
   <!-- ═══ Language engine — defer: downloads in parallel, runs after DOM parsed ═══ -->
   <!-- Loaded here so GC_Lang is available when inline scripts call gcT() -->
   <script src="/js/worldcup-data.js"></script>
+  <script src="/js/wc-results.js" defer></script>
   <script src="/js/gc-datetime.js"></script>
   <script src="/js/gc-lang.js" defer></script>
 
@@ -422,24 +423,24 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <!-- ═══ TODAY'S OPENING MATCH — VISUAL FOCUS OF HOMEPAGE ═══════════════ -->
     <div class="gc-opening-match" id="gc-opening-match">
       <div class="gc-om-header">
-        <span class="gc-om-badge">🔥 TODAY'S OPENING MATCH</span>
-        <span class="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
+        <span class="gc-om-badge" id="gc-om-badge">🔥 TODAY'S OPENING MATCH</span>
+        <span class="gc-om-meta" id="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
       </div>
       <div class="gc-om-body">
         <div class="gc-om-matchup" dir="ltr">
           <div class="gc-om-team">
-            <div class="gc-om-flag">🇲🇽</div>
-            <div class="gc-om-teamname">Mexico</div>
+            <div class="gc-om-flag" id="gc-om-home-flag">🇲🇽</div>
+            <div class="gc-om-teamname" id="gc-om-home-name">Mexico</div>
           </div>
           <div class="gc-om-vs" id="gc-om-score">2 - 0</div>
           <div class="gc-om-team">
-            <div class="gc-om-flag">🇿🇦</div>
-            <div class="gc-om-teamname">South Africa</div>
+            <div class="gc-om-flag" id="gc-om-away-flag">🇿🇦</div>
+            <div class="gc-om-teamname" id="gc-om-away-name">South Africa</div>
           </div>
         </div>
         <div class="gc-om-details" dir="ltr">
           <div class="gc-om-detail">⏰ <strong id="gc-om-local-time">20:00 BST</strong> Kickoff</div>
-          <div class="gc-om-detail">🏟 <strong>Estadio Azteca</strong>, Mexico City</div>
+          <div class="gc-om-detail">🏟 <strong id="gc-om-venue">Estadio Azteca, Mexico City</strong></div>
           <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster">ITV</strong></div>
         </div>
         <div class="gc-om-ko-wrap" dir="ltr">
@@ -1022,5 +1023,99 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
 <!-- gc-lang.js loaded in <head> with defer attribute -->
 
 
+
+<script>
+/* ── DYNAMIC HERO MATCH CARD — live now → next match countdown → latest result ── */
+(function () {
+  if (!window.WC26 || !Array.isArray(WC26.schedule)) return;
+  var $ = function (id) { return document.getElementById(id); };
+  if (!$('gc-opening-match')) return;
+
+  var SPECIAL = { 'gb-eng': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
+                  'gb-sct': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F',
+                  'gb-wls': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73\uDB40\uDC7F' };
+  function flagEmoji(team) {
+    var code = (WC26.flags && WC26.flags[team]) || '';
+    if (SPECIAL[code]) return SPECIAL[code];
+    if (!/^[a-z]{2}$/.test(code)) return '\u26BD';
+    return code.toUpperCase().replace(/./g, function (c) { return String.fromCodePoint(127397 + c.charCodeAt(0)); });
+  }
+  function fmtDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function fmtTime(d) { return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
+
+  var timer = null;
+  function stopTick() { if (timer) { clearInterval(timer); timer = null; } }
+  function startTick(target) {
+    stopTick();
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) { render(); return; }
+      var h = Math.floor(diff / 3600000), mn = Math.floor(diff % 3600000 / 60000), s = Math.floor(diff % 60000 / 1000);
+      $('om-h').textContent = (h < 10 ? '0' : '') + h;
+      $('om-m').textContent = (mn < 10 ? '0' : '') + mn;
+      $('om-s').textContent = (s < 10 ? '0' : '') + s;
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+  }
+
+  function pick() {
+    var now = Date.now();
+    var sched = WC26.schedule.slice().sort(function (a, b) { return new Date(a.utc) - new Date(b.utc); });
+    var live = null, next = null, last = null;
+    for (var i = 0; i < sched.length; i++) {
+      var m = sched[i], t = new Date(m.utc).getTime();
+      if (m.status === 'FT') { last = m; continue; }
+      if (t <= now && now < t + 130 * 60000) { live = m; break; }
+      if (t > now) { next = m; break; }
+    }
+    return { live: live, next: next, last: last };
+  }
+
+  function setTeams(m) {
+    $('gc-om-home-flag').textContent = flagEmoji(m.home);
+    $('gc-om-home-name').textContent = m.home;
+    $('gc-om-away-flag').textContent = flagEmoji(m.away);
+    $('gc-om-away-name').textContent = m.away;
+    var d = new Date(m.utc);
+    $('gc-om-meta').innerHTML = (m.group ? 'Group ' + m.group : (m.stage || '')) + ' &nbsp;\u00B7&nbsp; ' + fmtDate(d);
+    $('gc-om-local-time').textContent = fmtTime(d);
+    $('gc-om-venue').textContent = m.venue || '';
+    $('gc-om-broadcaster').textContent = m.ukBroadcaster || 'TBC';
+  }
+
+  function render() {
+    var p = pick();
+    var digits = $('gc-om-ko-digits'), started = $('gc-om-started');
+    if (p.live) {
+      setTeams(p.live);
+      $('gc-om-badge').textContent = '\uD83D\uDD34 LIVE NOW';
+      $('gc-om-score').textContent = 'vs';
+      digits.style.display = 'none';
+      started.style.display = 'block';
+      started.textContent = 'Match in progress \u2014 follow on Live Scores';
+      stopTick();
+    } else if (p.next) {
+      setTeams(p.next);
+      $('gc-om-badge').textContent = '\u23ED NEXT MATCH';
+      $('gc-om-score').textContent = 'vs';
+      started.style.display = 'none';
+      digits.style.display = '';
+      startTick(new Date(p.next.utc).getTime());
+    } else if (p.last) {
+      setTeams(p.last);
+      $('gc-om-badge').textContent = '\uD83C\uDFC1 LATEST RESULT';
+      $('gc-om-score').textContent = p.last.homeScore + ' - ' + p.last.awayScore;
+      digits.style.display = 'none';
+      started.style.display = 'block';
+      started.textContent = 'Full Time';
+      stopTick();
+    }
+  }
+
+  render();
+  setInterval(render, 30000);   /* card flips by itself: countdown \u2192 live \u2192 result */
+})();
+</script>
 </body>
 </html>
