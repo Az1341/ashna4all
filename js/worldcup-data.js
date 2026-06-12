@@ -294,8 +294,8 @@
      To display in visitor local time: new Date(entry.utc)
   ───────────────────────────────────────────── */
   var SCHEDULE = [
-    {id:  1,group:'A',home:'Mexico',away:'South Africa',utc:'2026-06-11T19:00:00Z',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV',stage:'Group Stage'},
-    {id:  2,group:'A',home:'Korea Republic',away:'Czechia',utc:'2026-06-12T02:00:00Z',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC',stage:'Group Stage'},
+    {id:  1,group:'A',home:'Mexico',away:'South Africa',utc:'2026-06-11T19:00:00Z',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV',stage:'Group Stage',homeScore:2,awayScore:0,status:'FT'},
+    {id:  2,group:'A',home:'Korea Republic',away:'Czechia',utc:'2026-06-12T02:00:00Z',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC',stage:'Group Stage',homeScore:2,awayScore:1,status:'FT'},
     {id:  3,group:'B',home:'Canada',away:'Bosnia & Herzegovina',utc:'2026-06-12T19:00:00Z',venue:'BMO Field, Toronto',ukBroadcaster:'BBC',stage:'Group Stage'},
     {id:  4,group:'D',home:'USA',away:'Paraguay',utc:'2026-06-13T01:00:00Z',venue:'Rose Bowl, Los Angeles',ukBroadcaster:'BBC',stage:'Group Stage'},
     {id:  5,group:'B',home:'Qatar',away:'Switzerland',utc:'2026-06-13T19:00:00Z',venue:'Levi\'s Stadium, San Francisco Bay Area',ukBroadcaster:'ITV',stage:'Group Stage'},
