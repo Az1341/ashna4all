@@ -18,17 +18,18 @@
     'bosnia herzegovina': 'Bosnia & Herzegovina',
     'usa': 'USA',
     'united states': 'USA',
-    'turkiye': 'Turkey',
-    'turkey': 'Turkey',
-    'ivory coast': 'Ivory Coast',
-    'cote d ivoire': 'Ivory Coast',
+    'turkiye': 'Türkiye',
+    'turkey': 'Türkiye',
+    'ivory coast': "Côte d'Ivoire",
+    'cote d ivoire': "Côte d'Ivoire",
     'curacao': 'Curaçao',
-    'cape verde islands': 'Cape Verde',
-    'cape verde': 'Cape Verde',
-    'congo dr': 'DR Congo',
-    'dr congo': 'DR Congo',
-    'ir iran': 'Iran',
-    'iran': 'Iran'
+    'cape verde islands': 'Cabo Verde',
+    'cape verde': 'Cabo Verde',
+    'cabo verde': 'Cabo Verde',
+    'congo dr': 'Congo DR',
+    'dr congo': 'Congo DR',
+    'ir iran': 'IR Iran',
+    'iran': 'IR Iran'
   };
 
   function norm(n) {
