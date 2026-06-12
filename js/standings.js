@@ -28,10 +28,13 @@
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function flagSrc(team) {
-    if (typeof WC26.flagImg === 'function') return WC26.flagImg(team);
+  function flagHTML(team) {
+    /* WC26.flagImg returns a FULL <img> tag, so we build our own from the
+       name→ISO map to control size (w80 source shown at 20×14, like the site standard) */
     var code = WC26.flags && WC26.flags[team];
-    return code ? 'https://flagcdn.com/w80/' + code + '.png' : '';
+    if (!code) return '';
+    return '<img src="https://flagcdn.com/w80/' + code + '.png" alt="' + esc(team) +
+      '" width="20" height="14" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">';
   }
 
   function isFT(m) {
@@ -74,12 +77,7 @@
     var host = HOSTS.indexOf(r.team) !== -1
       ? '<span style="font-size:.6rem;background:var(--gold);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px">Host</span>'
       : '';
-    var img = flagSrc(r.team);
-    var flag = img
-      ? '<img src="' + img + '" alt="' + esc(r.team) + '" width="20" height="14" ' +
-        'style="object-fit:cover;border-radius:4px;display:block" loading="lazy">'
-      : '';
-    return '<tr class="' + cls + '"><td><div class="gc-team-row">' + flag +
+    return '<tr class="' + cls + '"><td><div class="gc-team-row">' + flagHTML(r.team) +
       '<span>' + esc(r.team) + host + '</span></div></td>' +
       '<td>' + r.p + '</td><td>' + r.w + '</td><td>' + r.d + '</td><td>' + r.l + '</td>' +
       '<td>' + r.gf + '</td><td>' + r.ga + '</td>' +
