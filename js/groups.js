@@ -98,6 +98,11 @@
     if (typeof iso === "number") { var dn = new Date(iso * (iso < 1e12 ? 1000 : 1)); if (!isNaN(dn)) return dn; }
     if (iso) { var d = new Date(iso); if (!isNaN(d)) return d; }
     var date = pick(m, ["date", "day"], null);
+    var bst = pick(m, ["bst"], null);
+    if (date && bst) {
+      var db = new Date(date + "T" + bst + ":00+01:00");
+      if (!isNaN(db)) return db;
+    }
     var time = pick(m, ["timeUTC", "time", "ko"], null);
     if (date && time) {
       var hasTZ = /Z|[+-]\d{2}:?\d{2}$/.test(String(time));
@@ -125,7 +130,8 @@
   }
 
   function flagImg(name, w, h) {
-    var src = FLAGS[name] || "";
+    var code = (WC.flags || {})[name];
+    var src = FLAGS[name] || (code ? "https://flagcdn.com/w80/" + code + ".png" : "");
     if (!src) {
       return '<span style="display:inline-block;width:' + w + 'px;height:' + h + 'px;background:rgba(0,0,0,.06);border-radius:4px"></span>';
     }
@@ -203,7 +209,7 @@
       var ko = kickoffDate(m);
       var venue = pick(m, ["venue", "stadium", "city"], "");
       var matchNo = pick(m, ["matchNumber", "match", "no", "id"], "");
-      var tv = pick(m, ["tv", "tvUK", "broadcaster"], "");
+      var tv = pick(m, ["tv", "tvUK", "broadcaster", "ukBroadcaster"], "");
       var ft = isFT(m), live = isLive(m);
 
       var centre;
