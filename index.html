@@ -787,7 +787,7 @@ function renderMatches(){
     var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
 
     /* ── Resolve status and score from API data when available ── */
-    var apiData=_gcApiScores[match.n]||null;
+    var apiData=_gcApiScores[match.id]||null;
     var statusText,statusClass,centreHtml;
 
     if(apiData){
@@ -972,7 +972,7 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
         var scheduleData=(window.WC26&&window.WC26.schedule)||[];
         scheduleData.forEach(function(fixture){
           var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
-          if(found) _gcApiScores[fixture.n]=found;
+          if(found) _gcApiScores[fixture.id]=found;
         });
         /* Re-render the Match Centre widget with real API scores */
         renderMatches();
