@@ -1,386 +1,174 @@
-/* home.js — Home page, league-aware — Updated GW38 Final 24 May 2026 */
+/* home.js — GoalCurrent.live
+   Senior safe build: no duplicate World Cup fixture database.
+   World Cup data is read only from window.WC26.
+*/
 var GC_HOME = (function () {
-  var _timer  = null;
-  var _league = 'ALL';
+  'use strict';
 
-  var DATES = {
-    PL:  new Date('2026-05-24T15:00:00Z'),
-    WC:  new Date('2026-06-11T19:00:00Z'),
-    UCL: new Date('2026-05-30T16:00:00Z')
-  };
+  var _league = 'WC';
+  var _wcGroupIndex = 0;
 
-  var HEROES = {
-    PL:  { img:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80', title:'🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League 2025/26', sub:'✅ Season Complete — Arsenal Champions! · 24 May 2026' },
-    WC:  { img:'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80', title:'🏆 FIFA World Cup 2026', sub:'USA · Canada · Mexico · 48 Teams · 104 Matches · 11 Jun' },
-    UCL: { img:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=900&q=80', title:'⭐ UEFA Champions League Final', sub:'PSG vs Arsenal · Budapest · 30 May 2026 · 17:00 UK' }
-  };
-
-  function heroBanner(t) {
-    var h = HEROES[t];
-    return '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:14px">' +
-      '<img src="' + h.img + '" style="width:100%;height:100%;object-fit:cover" alt="">' +
-      '<div class="gc-hero-banner-overlay">' +
-        '<div class="gc-hero-banner-title">' + h.title + '</div>' +
-        '<div class="gc-hero-banner-sub">' + h.sub + '</div>' +
-      '</div></div>';
+  function esc(v){
+    return String(v == null ? '' : v).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
   }
 
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function todayLocalKey(){
+    if(window.GC_DateTime && GC_DateTime.getTodayLocalDateKey) return GC_DateTime.getTodayLocalDateKey();
+    var d = new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
 
-  function startCountdown(key, targetDate) {
-    function tick() {
-      var el = document.getElementById('gc-cd-' + key);
-      if (!el) return;
-      var diff = targetDate - new Date();
-      if (diff <= 0 && key === 'PL') {
-        el.innerHTML = '<span class="gc-cd-unit"><span class="gc-cd-val" style="color:#22c55e">✅ Season Complete</span></span>';
-        return;
-      }
-      if (diff <= 0) { el.innerHTML = '<span class="gc-cd-unit"><span class="gc-cd-val" style="color:#dc2626">LIVE NOW!</span></span>'; return; }
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      el.innerHTML =
-        '<span class="gc-cd-unit"><span class="gc-cd-val">' + d + '</span><span class="gc-cd-lbl">Days</span></span>' +
-        '<span class="gc-cd-unit"><span class="gc-cd-val">' + pad(h) + '</span><span class="gc-cd-lbl">Hrs</span></span>' +
-        '<span class="gc-cd-unit"><span class="gc-cd-val">' + pad(m) + '</span><span class="gc-cd-lbl">Min</span></span>' +
-        '<span class="gc-cd-unit"><span class="gc-cd-val">' + pad(s) + '</span><span class="gc-cd-lbl">Sec</span></span>';
+  function localDateKey(utc){
+    if(window.GC_DateTime && GC_DateTime.getLocalDateKey) return GC_DateTime.getLocalDateKey(utc);
+    var d = new Date(utc);
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  function localKickoff(utc){
+    if(window.GC_DateTime && GC_DateTime.formatMatchCardTime) return GC_DateTime.formatMatchCardTime(utc);
+    var d = new Date(utc);
+    return d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  }
+
+  function longDate(dateKey){
+    var d = new Date(dateKey + 'T12:00:00');
+    return d.toLocaleDateString(undefined,{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  }
+
+  function flag(team){
+    if(window.WC26 && WC26.flagUrl) return '<img src="'+esc(WC26.flagUrl(team))+'" alt="" style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.18)">';
+    return '🏳️';
+  }
+
+  function getGroups(){
+    if(!window.WC26 || !WC26.groups) return [];
+    return Object.keys(WC26.groups).sort().map(function(k){
+      return { name:k, teams:WC26.groups[k] || [] };
+    });
+  }
+
+  function getSchedule(){
+    return (window.WC26 && WC26.schedule) ? WC26.schedule.slice() : [];
+  }
+
+  function cardShell(title, body, actionHtml){
+    return '<div class="gc-card" style="padding:16px;margin-bottom:14px">' +
+      '<div style="font-family:var(--font-head,Arial);font-size:1rem;font-weight:800;color:#003fb8;margin-bottom:10px">'+title+'</div>' +
+      body + (actionHtml || '') + '</div>';
+  }
+
+  function fixtureRow(m){
+    return '<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(37,99,235,.09)">' +
+      '<div style="display:flex;align-items:center;gap:8px;justify-content:flex-end;text-align:right;font-weight:700;color:#0f172a">'+esc(m.home)+' '+flag(m.home)+'</div>' +
+      '<div style="text-align:center;min-width:96px"><div style="font-family:var(--font-head,Arial);font-size:1rem;font-weight:800;color:#1d4ed8">'+esc(localKickoff(m.utc))+'</div><div style="font-size:.68rem;color:#64748b;font-weight:700">'+esc(m.stage || ('Group '+m.group))+'</div></div>' +
+      '<div style="display:flex;align-items:center;gap:8px;text-align:left;font-weight:700;color:#0f172a">'+flag(m.away)+' '+esc(m.away)+'</div>' +
+      '<div style="grid-column:1 / -1;font-size:.72rem;color:#64748b;text-align:center">🏟 '+esc(m.venue || '')+' · 📺 '+esc(m.ukBroadcaster || '')+'</div>' +
+    '</div>';
+  }
+
+  function renderToday(container){
+    var key = todayLocalKey();
+    var matches = getSchedule().filter(function(m){ return localDateKey(m.utc) === key; })
+      .sort(function(a,b){ return new Date(a.utc) - new Date(b.utc); });
+
+    var body = '<div style="font-size:.82rem;color:#64748b;margin-bottom:12px">Verified World Cup fixtures for '+esc(longDate(key))+'.</div>';
+    if(matches.length){
+      body += matches.map(fixtureRow).join('');
+    } else {
+      body += '<div style="padding:18px;text-align:center;color:#64748b;background:rgba(255,255,255,.65);border-radius:12px">No World Cup fixtures today.</div>';
     }
-    tick();
-    return setInterval(tick, 1000);
-  }
 
-  function setLeague(t) { _league = t; }
-
-  /* ══ PL ONLY PAGE ══════════════════════════════════════ */
-  function renderPL(container) {
     container.innerHTML =
-      '<div style="padding-top:16px">' +
-      heroBanner('PL') +
-
-      '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
-        '<div class="gc-cd-header">' +
-          '<img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" alt="PL">' +
-          '<div><div class="gc-cd-title">🏆 Arsenal — Premier League Champions 2025/26!</div><div class="gc-cd-sub">Season Complete · GW38 · 24 May 2026</div></div>' +
-        '</div>' +
-        '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<a href="/premier-league/" class="gc-btn gc-btn-primary" style="display:inline-block;text-decoration:none;text-align:center">📊 View Final Table & Results →</a>' +
+      '<div style="padding:16px">' +
+      '<div style="background:linear-gradient(135deg,#001a4d,#003fb8);color:#fff;border-radius:18px;padding:18px;margin-bottom:14px;text-align:center">' +
+        '<div style="font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72)">GoalCurrent.live</div>' +
+        '<div style="font-family:var(--font-head,Arial);font-size:2rem;font-weight:900;margin-top:4px">FIFA World Cup 2026</div>' +
+        '<div style="font-size:.85rem;color:rgba(255,255,255,.72);margin-top:4px">Live scores · Fixtures · Groups · Teams · News</div>' +
       '</div>' +
-
-      '<div class="gc-section-title">✅ GW38 Final Day Results — 24 May 2026</div>' +
-      '<div class="gc-card" style="padding:14px;margin-bottom:14px">' +
-        [
-          {h:'Crystal Palace', a:'Arsenal 🏆', hs:1, as:2, note:'Title celebration'},
-          {h:'Brighton', a:'Man United', hs:0, as:3, note:'UCL'},
-          {h:'Burnley ↓', a:'Wolves ↓', hs:1, as:1, note:'Relegated'},
-          {h:'Fulham', a:'Newcastle', hs:2, as:0, note:''},
-          {h:'Liverpool', a:'Brentford', hs:1, as:1, note:''},
-          {h:'Man City', a:'Aston Villa', hs:1, as:2, note:"Pep's Last"},
-          {h:"Nott'm Forest", a:'Bournemouth', hs:1, as:1, note:'EL'},
-          {h:'Sunderland', a:'Chelsea', hs:2, as:1, note:'EL'},
-          {h:'Tottenham', a:'Everton', hs:1, as:0, note:'Safe ✅'},
-          {h:'West Ham ↓', a:'Leeds United', hs:3, as:0, note:'Relegated'}
-        ].map(function(m) {
-          var isArsenal = m.a.indexOf('Arsenal') > -1;
-          var isRel = m.note.indexOf('Relegated') > -1;
-          var color = isArsenal ? '#7c3aed' : isRel ? '#dc2626' : '#2563eb';
-          return '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:8px 4px;border-bottom:1px solid rgba(37,99,235,0.07);gap:8px">' +
-            '<span style="font-size:12px;font-weight:600;color:#334155">' + m.h + '</span>' +
-            '<span style="font-size:14px;font-weight:800;color:' + color + ';background:rgba(37,99,235,0.06);padding:3px 10px;border-radius:8px;white-space:nowrap">' + m.hs + ' – ' + m.as + ' FT</span>' +
-            '<span style="font-size:12px;font-weight:600;color:#334155;text-align:right">' + m.a + '</span>' +
-          '</div>';
-        }).join('') +
-      '</div>' +
-
-      '<div class="gc-section-title">📰 PL News</div>' +
-      '<a href="/premier-league/news/" style="text-decoration:none;display:block;margin-bottom:10px">' +
-        '<div class="gc-card" style="padding:14px;cursor:pointer">' +
-          '<div style="font-size:11px;font-weight:700;color:#9B1C1C;margin-bottom:4px">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PREMIER LEAGUE · SEASON COMPLETE</div>' +
-          '<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:4px">🏆 Arsenal Champions! GW38 Results, Final Table & Parade Info</div>' +
-          '<span style="font-size:12px;color:#2563eb;font-weight:600">Read more →</span>' +
-        '</div>' +
-      '</a>' +
-
-      '<div class="gc-card gc-signup-card">' +
-        '<div class="gc-signup-title">📬 Get Football Alerts by Email</div>' +
-        '<div class="gc-signup-sub">World Cup 2026 · UCL Final · Free!</div>' +
-        '<div id="gc-brevo-form" style="margin-top:14px">' +
-          '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' +
-            '<input type="email" id="gc-email-input" placeholder="Your email address" style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none">' +
-            '<button onclick="GC_HOME._subscribe()" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Subscribe Free →</button>' +
-          '</div>' +
-          '<div id="gc-brevo-msg" style="margin-top:10px;font-size:12px;color:#16a34a;display:none;font-weight:600"></div>' +
-        '</div>' +
-      '</div>' +
-
+      cardShell('🏆 Today Fixtures — World Cup 2026', body, '<a href="/worldcup2026/fixtures/" class="gc-btn gc-btn-primary" style="display:inline-block;margin-top:12px;text-decoration:none;text-align:center">View all fixtures →</a>') +
       '</div>';
-
-    if (_timer) clearInterval(_timer);
-    _timer = startCountdown('PL', DATES.PL);
   }
 
-  /* ══ TEAM DATA ══════════════════════════════════════════ */
-  var TEAM_DATA = {
-    'Mexico':       { espnId:'MEX', coach:'Javier Aguirre',    confederation:'CONCACAF' },
-    'South Africa': { espnId:'RSA', coach:'Hugo Broos',         confederation:'CAF' },
-    'South Korea':  { espnId:'KOR', coach:'Hong Myung-bo',      confederation:'AFC' },
-    'Czechia':      { espnId:'CZE', coach:'Ivan Hasek',         confederation:'UEFA' },
-    'Canada':       { espnId:'CAN', coach:'Jesse Marsch',       confederation:'CONCACAF' },
-    'Switzerland':  { espnId:'SUI', coach:'Murat Yakin',        confederation:'UEFA' },
-    'Qatar':        { espnId:'QAT', coach:'Marquez Lopez',      confederation:'AFC' },
-    'Bosnia & Herz.':{ espnId:'BIH', coach:'Sergej Barbarez',  confederation:'UEFA' },
-    'Brazil':       { espnId:'BRA', coach:'Carlo Ancelotti',    confederation:'CONMEBOL' },
-    'Morocco':      { espnId:'MAR', coach:'Walid Regragui',     confederation:'CAF' },
-    'Scotland':     { espnId:'SCO', coach:'Steve Clarke',       confederation:'UEFA' },
-    'Haiti':        { espnId:'HAI', coach:'Marc Collat',        confederation:'CONCACAF' },
-    'USA':          { espnId:'USA', coach:'Mauricio Pochettino', confederation:'CONCACAF' },
-    'Paraguay':     { espnId:'PAR', coach:'Gustavo Alfaro',     confederation:'CONMEBOL' },
-    'Australia':    { espnId:'AUS', coach:'Tony Popovic',       confederation:'AFC' },
-    'Turkiye':      { espnId:'TUR', coach:'Vincenzo Montella',  confederation:'UEFA' },
-    'Germany':      { espnId:'GER', coach:'Julian Nagelsmann',  confederation:'UEFA' },
-    'Curacao':      { espnId:'CUW', coach:'Erwin Sluiter',      confederation:'CONCACAF' },
-    "Côte d'Ivoire":{ espnId:'CIV', coach:'Emerse Fae',        confederation:'CAF' },
-    'Ecuador':      { espnId:'ECU', coach:'Sebastian Beccacece',confederation:'CONMEBOL' },
-    'Netherlands':  { espnId:'NED', coach:'Ronald Koeman',      confederation:'UEFA' },
-    'Japan':        { espnId:'JPN', coach:'Hajime Moriyasu',    confederation:'AFC' },
-    'Tunisia':      { espnId:'TUN', coach:'Faouzi Benzarti',    confederation:'CAF' },
-    'Sweden':       { espnId:'SWE', coach:'Jon Dahl Tomasson',  confederation:'UEFA' },
-    'Belgium':      { espnId:'BEL', coach:'Rudi Garcia',        confederation:'UEFA' },
-    'Egypt':        { espnId:'EGY', coach:'Hossam Hassan',      confederation:'CAF' },
-    'Iran':         { espnId:'IRN', coach:'Jalal Talebi',       confederation:'AFC' },
-    'New Zealand':  { espnId:'NZL', coach:'Darren Bazeley',     confederation:'OFC' },
-    'Spain':        { espnId:'ESP', coach:'Luis de la Fuente',  confederation:'UEFA' },
-    'Cape Verde':   { espnId:'CPV', coach:'Pedro Brito',        confederation:'CAF' },
-    'Saudi Arabia': { espnId:'KSA', coach:'Herve Renard',       confederation:'AFC' },
-    'Uruguay':      { espnId:'URU', coach:'Marcelo Bielsa',     confederation:'CONMEBOL' },
-    'France':       { espnId:'FRA', coach:'Didier Deschamps',   confederation:'UEFA' },
-    'Senegal':      { espnId:'SEN', coach:'Aliou Cisse',        confederation:'CAF' },
-    'Norway':       { espnId:'NOR', coach:'Stale Solbakken',    confederation:'UEFA' },
-    'Iraq':         { espnId:'IRQ', coach:'Graham Arnold',      confederation:'AFC' },
-    'Argentina':    { espnId:'ARG', coach:'Lionel Scaloni',     confederation:'CONMEBOL' },
-    'Algeria':      { espnId:'ALG', coach:'Vladimir Petkovic',  confederation:'CAF' },
-    'Austria':      { espnId:'AUT', coach:'Ralf Rangnick',      confederation:'UEFA' },
-    'Jordan':       { espnId:'JOR', coach:'Hussain Ammouta',    confederation:'AFC' },
-    'Portugal':     { espnId:'POR', coach:'Roberto Martinez',   confederation:'UEFA' },
-    'Colombia':     { espnId:'COL', coach:'Nestor Lorenzo',     confederation:'CONMEBOL' },
-    'Uzbekistan':   { espnId:'UZB', coach:'Srecko Katanec',     confederation:'AFC' },
-    'DR Congo':     { espnId:'COD', coach:'Sébastien Desabre',  confederation:'CAF' },
-    'England':      { espnId:'ENG', coach:'Thomas Tuchel',      confederation:'UEFA' },
-    'Croatia':      { espnId:'CRO', coach:'Zlatko Dalic',       confederation:'UEFA' },
-    'Ghana':        { espnId:'GHA', coach:'Otto Addo',          confederation:'CAF' },
-    'Panama':       { espnId:'PAN', coach:'Thomas Christiansen',confederation:'CONCACAF' }
-  };
+  function renderWCGroup(container, idx){
+    var groups = getGroups();
+    if(!groups.length){ container.innerHTML='<div class="gc-card" style="padding:16px">World Cup data not loaded.</div>'; return; }
+    _wcGroupIndex = Math.max(0, Math.min(idx || 0, groups.length - 1));
+    var g = groups[_wcGroupIndex];
+    var matches = getSchedule().filter(function(m){ return String(m.group) === String(g.name); })
+      .sort(function(a,b){ return new Date(a.utc) - new Date(b.utc); });
 
-  /* ══ WC GROUPS DATA ════════════════════════════════════ */
-  var WC_GROUPS = [
-    { name:'A', teams:[{flag:'🇲🇽',name:'Mexico'},{flag:'🇿🇦',name:'South Africa'},{flag:'🇰🇷',name:'South Korea'},{flag:'🇨🇿',name:'Czechia'}]},
-    { name:'B', teams:[{flag:'🇨🇦',name:'Canada'},{flag:'🇨🇭',name:'Switzerland'},{flag:'🇶🇦',name:'Qatar'},{flag:'🇧🇦',name:'Bosnia & Herz.'}]},
-    { name:'C', teams:[{flag:'🇧🇷',name:'Brazil'},{flag:'🇲🇦',name:'Morocco'},{flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',name:'Scotland'},{flag:'🇭🇹',name:'Haiti'}]},
-    { name:'D', teams:[{flag:'🇺🇸',name:'USA'},{flag:'🇵🇾',name:'Paraguay'},{flag:'🇦🇺',name:'Australia'},{flag:'🇹🇷',name:'Turkiye'}]},
-    { name:'E', teams:[{flag:'🇩🇪',name:'Germany'},{flag:'🇨🇼',name:'Curacao'},{flag:'🇨🇮',name:"Côte d'Ivoire"},{flag:'🇪🇨',name:'Ecuador'}]},
-    { name:'F', teams:[{flag:'🇳🇱',name:'Netherlands'},{flag:'🇯🇵',name:'Japan'},{flag:'🇹🇳',name:'Tunisia'},{flag:'🇸🇪',name:'Sweden'}]},
-    { name:'G', teams:[{flag:'🇧🇪',name:'Belgium'},{flag:'🇪🇬',name:'Egypt'},{flag:'🇮🇷',name:'Iran'},{flag:'🇳🇿',name:'New Zealand'}]},
-    { name:'H', teams:[{flag:'🇪🇸',name:'Spain'},{flag:'🇨🇻',name:'Cape Verde'},{flag:'🇸🇦',name:'Saudi Arabia'},{flag:'🇺🇾',name:'Uruguay'}]},
-    { name:'I', teams:[{flag:'🇫🇷',name:'France'},{flag:'🇸🇳',name:'Senegal'},{flag:'🇳🇴',name:'Norway'},{flag:'🇮🇶',name:'Iraq'}]},
-    { name:'J', teams:[{flag:'🇦🇷',name:'Argentina'},{flag:'🇩🇿',name:'Algeria'},{flag:'🇦🇹',name:'Austria'},{flag:'🇯🇴',name:'Jordan'}]},
-    { name:'K', teams:[{flag:'🇵🇹',name:'Portugal'},{flag:'🇨🇴',name:'Colombia'},{flag:'🇺🇿',name:'Uzbekistan'},{flag:'🇨🇩',name:'DR Congo'}]},
-    { name:'L', teams:[{flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',name:'England'},{flag:'🇭🇷',name:'Croatia'},{flag:'🇬🇭',name:'Ghana'},{flag:'🇵🇦',name:'Panama'}]}
-  ];
-
-  var _wcGroup = 0;
-
-  /* Keep all WC/UCL/squad functions exactly as original */
-  var HARDCODED_SQUADS = {
-    'England': {
-      GK:[{name:'Jordan Pickford',pos:'GK',club:'Everton'},{name:'Dean Henderson',pos:'GK',club:'Crystal Palace'},{name:'James Trafford',pos:'GK',club:'Burnley'}],
-      DF:[{name:'Reece James',pos:'RB',club:'Chelsea'},{name:'Tino Livramento',pos:'RB',club:'Newcastle'},{name:'John Stones',pos:'CB',club:'Man City'},{name:'Marc Guehi',pos:'CB',club:'Crystal Palace'},{name:'Ezri Konsa',pos:'CB',club:'Aston Villa'},{name:'Dan Burn',pos:'CB',club:'Newcastle'},{name:'Jarell Quansah',pos:'CB',club:'Liverpool'},{name:'Djed Spence',pos:'RB',club:'Genoa'},{name:'Nico OReilly',pos:'LB',club:'Man City'}],
-      MF:[{name:'Declan Rice',pos:'CM',club:'Arsenal'},{name:'Jude Bellingham',pos:'CM',club:'Real Madrid'},{name:'Jordan Henderson',pos:'CM',club:'Ajax'},{name:'Kobbie Mainoo',pos:'CM',club:'Man Utd'},{name:'Elliot Anderson',pos:'CM',club:'Nottm Forest'},{name:'Morgan Rogers',pos:'AM',club:'Aston Villa'}],
-      FW:[{name:'Harry Kane (C)',pos:'ST',club:'Bayern Munich'},{name:'Bukayo Saka',pos:'RW',club:'Arsenal'},{name:'Noni Madueke',pos:'RW',club:'Chelsea'},{name:'Eberechi Eze',pos:'AM',club:'Crystal Palace'},{name:'Marcus Rashford',pos:'LW',club:'Aston Villa'},{name:'Anthony Gordon',pos:'LW',club:'Newcastle'},{name:'Ollie Watkins',pos:'ST',club:'Aston Villa'},{name:'Ivan Toney',pos:'ST',club:'Al-Ahli'}]
-    }
-  };
-
-  function fetchSquad(espnId, teamName) {
-    var el = document.getElementById('wc-squad-content');
-    if (!el) return;
-    if (HARDCODED_SQUADS[teamName]) {
-      var sq = HARDCODED_SQUADS[teamName];
-      el.innerHTML = buildPositionGroup('🥅 Goalkeepers', sq.GK, '#f59e0b') +
-                     buildPositionGroup('🛡️ Defenders', sq.DF, '#3b82f6') +
-                     buildPositionGroup('⚙️ Midfielders', sq.MF, '#22c55e') +
-                     buildPositionGroup('⚡ Forwards', sq.FW, '#ef4444');
-      return;
-    }
-    el.innerHTML = '<div style="text-align:center;padding:20px;font-size:12px;color:#64748b">Squad data will be confirmed by FIFA on 2 June 2026.<br><br><a href="https://www.espn.com/soccer/national-team/_/country/' + teamName.toLowerCase().replace(/ /g,'-') + '" target="_blank" style="color:#2563eb;font-weight:700">View on ESPN →</a></div>';
-  }
-
-  function buildPositionGroup(title, players, color) {
-    if (!players || !players.length) return '';
-    return '<div style="margin-bottom:12px"><div style="font-size:10px;font-weight:800;color:' + color + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;padding:4px 0;border-bottom:2px solid ' + color + '20">' + title + ' (' + players.length + ')</div>' +
-      players.map(function(p){
-        return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.08);border-radius:8px;margin-bottom:4px"><div style="display:flex;align-items:center;gap:10px"><span style="width:24px;height:24px;background:' + color + '20;color:' + color + ';border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">' + (p.number || p.pos) + '</span><div><div style="font-size:13px;font-weight:700;color:#0f172a">' + p.name + '</div>' + (p.club ? '<div style="font-size:10px;color:#64748b;margin-top:1px">' + p.club + '</div>' : '') + '</div></div><span style="font-size:10px;font-weight:700;color:' + color + ';background:' + color + '15;padding:3px 8px;border-radius:20px">' + p.pos + '</span></div>';
-      }).join('') + '</div>';
-  }
-
-  function renderTeamProfile(container, team, groupIdx) {
-    var info = TEAM_DATA[team.name] || { espnId:'', coach:'TBC', confederation:'' };
-    container.innerHTML = '<div style="padding-top:16px"><div style="padding:0 16px;margin-bottom:12px"><button onclick="GC_HOME._wcNav(' + groupIdx + ')" style="background:rgba(37,99,235,0.1);border:1.5px solid rgba(37,99,235,0.2);color:#2563eb;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Verdana,sans-serif">← Back to Group ' + WC_GROUPS[groupIdx].name + '</button></div><div style="background:linear-gradient(135deg,#002868,#bf0a30);border-radius:16px;margin:0 16px 14px;padding:20px;text-align:center"><div style="font-size:56px;margin-bottom:8px">' + team.flag + '</div><div style="font-family:Verdana,sans-serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:4px">' + team.name + '</div><div style="font-size:11px;color:rgba(255,255,255,0.65)">FIFA World Cup 2026 · Group ' + WC_GROUPS[groupIdx].name + ' · ' + info.confederation + '</div></div><div class="gc-card" style="margin:0 16px 14px;padding:14px"><div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(37,99,235,0.08)"><span style="font-size:12px;color:#64748b;font-weight:600">🧑‍💼 Head Coach</span><span style="font-size:13px;font-weight:700;color:#0f172a">' + info.coach + '</span></div><div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0"><span style="font-size:12px;color:#64748b;font-weight:600">🌍 Confederation</span><span style="font-size:13px;font-weight:700;color:#0f172a">' + info.confederation + '</span></div></div><div style="padding:0 16px;margin-bottom:8px"><div style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">👕 Official Squad</div><div id="wc-squad-content"><div class="gc-loading"><div class="gc-spinner"></div><span>Loading squad...</span></div></div></div></div>';
-    fetchSquad(info.espnId, team.name);
-  }
-
-  function renderWCGroup(container, idx) {
-    _wcGroup = idx;
-    var g = WC_GROUPS[idx];
-    var prev = idx > 0 ? WC_GROUPS[idx-1].name : null;
-    var next = idx < WC_GROUPS.length-1 ? WC_GROUPS[idx+1].name : null;
-    var teamsHtml = g.teams.map(function(t, i) {
-      return '<div style="display:grid;grid-template-columns:32px 1fr 26px 26px 26px 34px;gap:4px;padding:10px 14px;background:' + (i%2===0?'rgba(255,255,255,0.58)':'rgba(255,255,255,0.35)') + ';border-top:1px solid rgba(100,160,220,0.1);align-items:center;font-size:13px;font-weight:600"><span style="font-size:22px">' + t.flag + '</span><span style="color:#0f172a">' + t.name + '</span><span style="text-align:center;color:#94a3b8;font-size:11px">0</span><span style="text-align:center;color:#94a3b8;font-size:11px">0</span><span style="text-align:center;color:#94a3b8;font-size:11px">0</span><span style="text-align:right;font-weight:800;color:#2563eb">0</span></div>';
+    var teamsHtml = g.teams.map(function(t){
+      return '<div style="display:grid;grid-template-columns:36px 1fr 32px 32px 32px 42px;gap:6px;align-items:center;padding:10px 12px;border-top:1px solid rgba(37,99,235,.08);background:rgba(255,255,255,.58)">' +
+        '<span>'+flag(t)+'</span><strong>'+esc(t)+'</strong><span style="text-align:center;color:#64748b">0</span><span style="text-align:center;color:#64748b">0</span><span style="text-align:center;color:#64748b">0</span><strong style="text-align:right;color:#2563eb">0</strong></div>';
     }).join('');
-    container.innerHTML = '<div style="padding-top:16px"><div style="background:linear-gradient(135deg,#002868,#bf0a30);padding:16px;border-radius:16px;margin:0 16px 14px;text-align:center"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.7);margin-bottom:4px">FIFA WORLD CUP 2026</div><div style="font-family:Verdana,sans-serif;font-size:28px;font-weight:900;color:#ffd700;letter-spacing:2px">GROUP ' + g.name + '</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px">USA · Canada · Mexico · 11 Jun – 19 Jul 2026</div></div><div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:14px">' + (prev ? '<button onclick="GC_HOME._wcNav(' + (idx-1) + ')" style="background:#2563eb;color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Verdana,sans-serif">← Group ' + prev + '</button>' : '<div></div>') + '<div style="display:flex;gap:5px">' + WC_GROUPS.map(function(gr,i){ return '<div onclick="GC_HOME._wcNav(' + i + ')" style="width:' + (i===idx?'20px':'8px') + ';height:8px;border-radius:20px;background:' + (i===idx?'#2563eb':'rgba(37,99,235,0.25)') + ';cursor:pointer"></div>'; }).join('') + '</div>' + (next ? '<button onclick="GC_HOME._wcNav(' + (idx+1) + ')" style="background:#2563eb;color:#fff;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Verdana,sans-serif">Group ' + next + ' →</button>' : '<div></div>') + '</div><div style="margin:0 16px;border-radius:14px;overflow:hidden;border:1.5px solid rgba(37,99,235,0.15);margin-bottom:14px"><div style="display:grid;grid-template-columns:32px 1fr 26px 26px 26px 34px;gap:4px;padding:8px 14px;background:#dbeafe;font-size:9px;font-weight:700;color:#2563eb;letter-spacing:1px;text-transform:uppercase"><span></span><span>Team</span><span style="text-align:center">P</span><span style="text-align:center">W</span><span style="text-align:center">D</span><span style="text-align:right">Pts</span></div>' + teamsHtml + '</div><div style="display:flex;gap:8px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none"><button onclick="GC_HOME._wcTab(this,\'fixtures\',' + idx + ')" class="gc-round-tab active" style="font-family:Verdana,sans-serif">📅 Fixtures</button><button onclick="GC_HOME._wcTab(this,\'news\',' + idx + ')" class="gc-round-tab" style="font-family:Verdana,sans-serif">📰 News</button><button onclick="GC_HOME._wcTab(this,\'teams\',' + idx + ')" class="gc-round-tab" style="font-family:Verdana,sans-serif">👕 Teams</button></div><div id="wc-tab-content" style="padding:0 16px">' + renderWCFixtures(g) + '</div><div class="gc-card" style="margin:14px 16px;text-align:center"><div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px">⏱ World Cup Begins In</div><div class="gc-cd-units" id="gc-cd-WC" style="justify-content:center"></div></div></div>';
-    if (_timer) clearInterval(_timer);
-    _timer = startCountdown('WC', DATES.WC);
-  }
 
-  function renderWCFixtures(g) {
-    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">Group ' + g.name + ' Fixtures</div><div style="background:rgba(255,255,255,0.7);border:1px solid rgba(37,99,235,0.1);border-radius:12px;padding:12px;font-size:12px;color:#64748b;text-align:center">📅 Group ' + g.name + ' fixtures will appear here once the tournament begins on 11 June 2026</div>';
-  }
+    var nav = '<div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px">' +
+      (_wcGroupIndex>0 ? '<button onclick="GC_HOME._wcNav('+(_wcGroupIndex-1)+')" class="gc-round-tab">← Group '+esc(groups[_wcGroupIndex-1].name)+'</button>' : '<span></span>') +
+      '<strong style="color:#003fb8">Group '+esc(g.name)+'</strong>' +
+      (_wcGroupIndex<groups.length-1 ? '<button onclick="GC_HOME._wcNav('+(_wcGroupIndex+1)+')" class="gc-round-tab">Group '+esc(groups[_wcGroupIndex+1].name)+' →</button>' : '<span></span>') +
+    '</div>';
 
-  function renderWCTeams(g) {
-    var gIdx = WC_GROUPS.indexOf(g);
-    return '<div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">👕 Tap a team to see their squad</div>' +
-    g.teams.map(function(t, tIdx){
-      var info = TEAM_DATA[t.name] || {};
-      return '<div onclick="GC_HOME._viewTeam(' + gIdx + ',' + tIdx + ')" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.8);border:1.5px solid rgba(37,99,235,0.12);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:36px">' + t.flag + '</span><div><div style="font-size:14px;font-weight:700;color:#0f172a">' + t.name + '</div><div style="font-size:11px;color:#64748b;margin-top:2px">🧑‍💼 ' + (info.coach || 'TBC') + '</div><div style="font-size:10px;color:#2563eb;margin-top:2px;font-weight:600">Tap to view squad →</div></div></div><span style="font-size:18px;color:#94a3b8">›</span></div>';
-    }).join('');
-  }
-
-  function renderWC(container) { renderWCGroup(container, _wcGroup); }
-
-  function renderUCLHome(container) {
-    container.innerHTML =
-      '<div style="padding-top:16px">' +
-      heroBanner('UCL') +
-      '<div class="gc-card" style="background:linear-gradient(135deg,rgba(26,26,46,0.06),rgba(15,52,96,0.04));border:1px solid rgba(255,215,0,0.25);padding:20px;margin-bottom:14px;text-align:center">' +
-        '<div style="font-size:12px;font-weight:700;color:#0f3460;letter-spacing:1px;margin-bottom:10px">⭐ UCL FINAL COUNTDOWN</div>' +
-        '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:14px">' +
-          '<div style="text-align:center"><div style="font-size:38px">🇫🇷</div><div style="font-size:16px;font-weight:800;color:#0f172a">PSG</div></div>' +
-          '<div style="text-align:center"><div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center"></div></div>' +
-          '<div style="text-align:center"><div style="font-size:38px">🔴</div><div style="font-size:16px;font-weight:800;color:#9B1C1C">Arsenal</div></div>' +
-        '</div>' +
-        '<div style="font-size:12px;color:#475569">📅 Sat 30 May 2026 · 17:00 UK · Puskás Aréna, Budapest</div>' +
-        '<button class="gc-btn gc-btn-primary" style="margin-top:12px" onclick="GC.go(&quot;ucl&quot;)">⭐ Full Match Preview + Lineups →</button>' +
-      '</div></div>';
-    if (_timer) clearInterval(_timer);
-    _timer = startCountdown('UCL', DATES.UCL);
-  }
-
-  /* ══ HOME PAGE — shows ALL leagues ═════════════════════ */
-  function renderAll(container) {
-    container.innerHTML =
-      '<div style="padding-top:16px">' +
-
-      '<div class="gc-hero">' +
-        '<div class="gc-hero-eyebrow"><span class="gc-hero-dot-red"></span>LIVE SCORES</div>' +
-        '<h1 class="gc-hero-title">Goal<span>Current</span>.live</h1>' +
-        '<p class="gc-hero-sub">Premier League · UCL Final · World Cup 2026 · Real-time scores</p>' +
+    container.innerHTML = '<div style="padding:16px">' + nav +
+      '<div class="gc-card" style="overflow:hidden;margin-bottom:14px">' +
+        '<div style="display:grid;grid-template-columns:36px 1fr 32px 32px 32px 42px;gap:6px;padding:8px 12px;background:#dbeafe;color:#2563eb;font-size:.68rem;font-weight:800;text-transform:uppercase"><span></span><span>Team</span><span style="text-align:center">P</span><span style="text-align:center">W</span><span style="text-align:center">D</span><span style="text-align:right">Pts</span></div>' +
+        teamsHtml +
       '</div>' +
-
-      /* PL CARD — Season Complete */
-      '<div class="gc-card gc-cd-card gc-cd-pl-card" style="margin-bottom:14px">' +
-        heroBanner('PL') +
-        '<div class="gc-cd-header"><img class="gc-cd-logo" src="https://resources.premierleague.com/premierleague/badges/pl_3lions.png" alt="PL"><div><div class="gc-cd-title">🏆 Arsenal — PL Champions 2025/26!</div><div class="gc-cd-sub">✅ Season Complete · GW38 · 24 May 2026</div></div></div>' +
-        '<div class="gc-cd-units" id="gc-cd-PL"></div>' +
-        '<a href="/premier-league/" class="gc-btn gc-btn-primary" style="display:inline-block;text-decoration:none;text-align:center">📊 Final Table & Results →</a>' +
-      '</div>' +
-
-      /* UCL FINAL CARD */
-      '<div class="gc-card" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);border:1px solid rgba(255,215,0,0.4);padding:18px;margin-bottom:14px;cursor:pointer;text-align:center" onclick="GC.go(&quot;ucl&quot;)">' +
-        '<div style="font-size:11px;font-weight:700;color:#ffd700;letter-spacing:2px;margin-bottom:10px">⭐ UEFA CHAMPIONS LEAGUE FINAL 2026</div>' +
-        '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:12px">' +
-          '<div style="text-align:center"><div style="font-size:32px">🇫🇷</div><div style="font-size:15px;font-weight:800;color:#fff;margin-top:4px">PSG</div></div>' +
-          '<div style="text-align:center"><div style="font-family:Verdana,sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:4px">SAT 30 MAY</div><div class="gc-cd-units" id="gc-cd-UCL" style="justify-content:center;gap:4px"></div></div>' +
-          '<div style="text-align:center"><div style="font-size:32px">🔴</div><div style="font-size:15px;font-weight:800;color:#fff;margin-top:4px">Arsenal</div></div>' +
-        '</div>' +
-        '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px">📍 Puskás Aréna, Budapest · 17:00 UK · BT Sport / TNT Sports</div>' +
-        '<span style="display:inline-block;background:rgba(255,215,0,0.15);color:#ffd700;border:1px solid rgba(255,215,0,0.3);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700">⭐ Full Preview + Lineups →</span>' +
-      '</div>' +
-
-      /* WC CARD */
-      '<div class="gc-card gc-cd-card gc-cd-wc-card" style="margin-bottom:14px">' +
-        heroBanner('WC') +
-        '<div class="gc-cd-header"><span class="gc-cd-icon">🏆</span><div><div class="gc-cd-title">FIFA World Cup 2026</div><div class="gc-cd-sub">USA · Canada · Mexico · 48 Teams · 104 Matches</div></div></div>' +
-        '<div class="gc-cd-units" id="gc-cd-WC"></div>' +
-        '<button class="gc-btn gc-btn-gold" onclick="GC.go(&quot;schedule&quot;)">📅 View Full Schedule →</button>' +
-      '</div>' +
-
-      /* LATEST NEWS */
-      '<div class="gc-section-title">📰 Latest News</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">' +
-        '<a href="/blog-ucl-final.html" style="text-decoration:none"><div class="gc-card" style="padding:14px;cursor:pointer;height:100%"><div style="font-size:10px;font-weight:700;color:#0f3460;margin-bottom:4px">⭐ UCL FINAL</div><div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:4px;line-height:1.4">PSG vs Arsenal — UCL Final Preview</div><span style="font-size:11px;color:#2563eb;font-weight:600">Read →</span></div></a>' +
-        '<a href="/premier-league/news/" style="text-decoration:none"><div class="gc-card" style="padding:14px;cursor:pointer;height:100%"><div style="font-size:10px;font-weight:700;color:#9B1C1C;margin-bottom:4px">🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL FINAL DAY</div><div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:4px;line-height:1.4">Arsenal Champions! Final Day Guide</div><span style="font-size:11px;color:#2563eb;font-weight:600">Read →</span></div></a>' +
-        '<a href="/blog-england-croatia.html" style="text-decoration:none"><div class="gc-card" style="padding:14px;cursor:pointer;height:100%"><div style="font-size:10px;font-weight:700;color:#1d4ed8;margin-bottom:4px">🏆 WORLD CUP 2026</div><div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:4px;line-height:1.4">England vs Croatia — WC2026 Preview</div><span style="font-size:11px;color:#2563eb;font-weight:600">Read →</span></div></a>' +
-      '</div>' +
-
-      /* LATEST NEWS SWIPE */
-      '<div class="gc-section-title">📰 Latest News — Swipe →</div>' +
-      '<div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;margin-bottom:14px">' +
-        newsCard('Arsenal Champions! The Story of a Historic Title', 'Sky Sports · Today', '🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL FINAL DAY', '/premier-league/news/', '#9B1C1C') +
-        newsCard('Tottenham vs Everton — Spurs Survive?', 'BBC Sport · Today', '🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL FINAL DAY', '/premier-league/news/', '#9B1C1C') +
-        newsCard('Pep Guardiola Leaves Man City After 10 Years', 'BBC Sport · Today', '🏴󠁧󠁢󠁥󠁮󠁧󠁿 PL FINAL DAY', '/premier-league/news/', '#9B1C1C') +
-      '</div>' +
-
-      /* EMAIL SIGNUP */
-      '<div class="gc-card gc-signup-card">' +
-        '<div class="gc-signup-title">📬 Get Goal Alerts by Email</div>' +
-        '<div class="gc-signup-sub">Never miss a goal — PL · UCL Final · World Cup 2026. Free!</div>' +
-        '<div id="gc-brevo-form" style="margin-top:14px"><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><input type="email" id="gc-email-input" placeholder="Your email address" style="flex:1;min-width:200px;max-width:300px;padding:11px 14px;border:1px solid rgba(100,160,220,0.3);border-radius:8px;background:rgba(255,255,255,0.85);font-family:Verdana,sans-serif;font-size:13px;color:#0f172a;outline:none"><button onclick="GC_HOME._subscribe()" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px 20px;border-radius:8px;font-family:Verdana,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Subscribe Free →</button></div><div id="gc-brevo-msg" style="margin-top:10px;font-size:12px;color:#16a34a;display:none;font-weight:600"></div></div>' +
-      '</div>' +
-
+      cardShell('📅 Group '+esc(g.name)+' Fixtures', matches.length ? matches.map(fixtureRow).join('') : '<div style="color:#64748b">No fixtures found for this group.</div>') +
       '</div>';
-
-    if (_timer) clearInterval(_timer);
-    _timer = startCountdown('PL', DATES.PL);
-    startCountdown('WC', DATES.WC);
-    startCountdown('UCL', DATES.UCL);
   }
 
-  function newsCard(title, source, tag, href, tagColor) {
-    return '<a href="' + href + '" style="text-decoration:none;flex-shrink:0;width:180px"><div class="gc-card" style="padding:12px;height:100%;cursor:pointer"><div style="background:rgba(37,99,235,0.08);border-radius:8px;height:80px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:28px">📰</div><div style="font-size:9px;font-weight:700;color:' + tagColor + ';margin-bottom:4px">' + tag + '</div><div style="font-size:11px;font-weight:700;color:#0f172a;line-height:1.4;margin-bottom:6px">' + title + '</div><div style="font-size:10px;color:#64748b">' + source + '</div><div style="margin-top:8px;display:flex;gap:6px"><span style="font-size:10px;color:#2563eb;font-weight:600">Read</span></div></div></a>';
+  function renderWC(container){
+    renderWCGroup(container, _wcGroupIndex);
   }
 
-  function render(container) {
-    if      (_league === 'WC')  renderWC(container);
-    else if (_league === 'UCL') renderUCLHome(container);
-    else if (_league === 'PL')  renderPL(container);
-    else                         renderAll(container);
+  function renderPL(container){
+    container.innerHTML = '<div style="padding:16px">' +
+      cardShell('🏴 Premier League', '<div style="color:#64748b">Season complete. Use the Premier League section for final table, fixtures and news.</div>', '<a href="/premier-league/" class="gc-btn gc-btn-primary" style="display:inline-block;margin-top:12px;text-decoration:none">Open Premier League →</a>') +
+      '</div>';
+  }
+
+  function renderUCL(container){
+    container.innerHTML = '<div style="padding:16px">' +
+      cardShell('⭐ Champions League', '<div style="color:#64748b">Use the Champions League section for fixtures, results and news.</div>', '<a href="/ucl/" class="gc-btn gc-btn-primary" style="display:inline-block;margin-top:12px;text-decoration:none">Open Champions League →</a>') +
+      '</div>';
+  }
+
+  function render(container){
+    if(!container) return;
+    if(_league === 'PL') return renderPL(container);
+    if(_league === 'UCL') return renderUCL(container);
+    if(_league === 'WC') return renderWC(container);
+    return renderToday(container);
+  }
+
+  function setLeague(t){
+    _league = t || 'WC';
   }
 
   return {
-    render: render, setLeague: setLeague,
-    _wcNav: function(idx) { var el = document.getElementById('gc-content'); if (el) renderWCGroup(el, idx); },
-    _viewTeam: function(groupIdx, teamIdx) { var el = document.getElementById('gc-content'); var team = WC_GROUPS[groupIdx].teams[teamIdx]; if (el && team) renderTeamProfile(el, team, groupIdx); },
-    _wcTab: function(btn, tab, idx) {
-      btn.closest('div').querySelectorAll('.gc-round-tab').forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      var content = document.getElementById('wc-tab-content');
-      if (!content) return;
-      var g = WC_GROUPS[idx];
-      if (tab === 'fixtures') content.innerHTML = renderWCFixtures(g);
-      else if (tab === 'teams') content.innerHTML = renderWCTeams(g);
-      else if (tab === 'news') content.innerHTML = '<div style="padding:14px;text-align:center;font-size:12px;color:#64748b">News will appear once the tournament begins on 11 June 2026.</div>';
+    render: render,
+    setLeague: setLeague,
+    _wcNav: function(idx){
+      var el = document.getElementById('gc-content') || document.getElementById('gc-main') || document.body;
+      renderWCGroup(el, idx);
     },
-    _subscribe: function() {
+    _viewTeam: function(groupIdx, teamIdx){
+      var groups=getGroups();
+      var team=groups[groupIdx] && groups[groupIdx].teams[teamIdx];
+      if(!team) return;
+      var el = document.getElementById('gc-content') || document.getElementById('gc-main') || document.body;
+      el.innerHTML='<div style="padding:16px"><button onclick="GC_HOME._wcNav('+groupIdx+')" class="gc-round-tab">← Back to Group '+esc(groups[groupIdx].name)+'</button>'+cardShell(flag(team)+' '+esc(team), '<div style="color:#64748b">Official squad information will be displayed when confirmed.</div>')+'</div>';
+    },
+    _wcTab: function(btn, tab, idx){
+      var el = document.getElementById('gc-content') || document.getElementById('gc-main') || document.body;
+      renderWCGroup(el, idx);
+    },
+    _subscribe: function(){
       var input = document.getElementById('gc-email-input');
-      var msg = document.getElementById('gc-brevo-msg');
-      if (!input || !input.value || input.value.indexOf('@') < 0) { if (msg) { msg.style.display='block'; msg.style.color='#dc2626'; msg.textContent='Please enter a valid email address.'; } return; }
-      var form = document.createElement('form'); form.method='POST'; form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ=='; form.target='_blank'; form.style.display='none';
-      var f1=document.createElement('input'); f1.name='EMAIL'; f1.value=input.value;
-      var f2=document.createElement('input'); f2.name='email_address_check'; f2.value='';
-      var f3=document.createElement('input'); f3.name='locale'; f3.value='en';
-      form.appendChild(f1); form.appendChild(f2); form.appendChild(f3);
-      document.body.appendChild(form); form.submit(); document.body.removeChild(form);
-      if (msg) { msg.style.display='block'; msg.style.color='#16a34a'; msg.textContent='Thank you! Please check your email to confirm.'; }
-      if (input) input.value='';
+      if(!input || !input.value || input.value.indexOf('@') < 0) return;
+      window.open('https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==','_blank','noopener');
     }
   };
 })();
