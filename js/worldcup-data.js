@@ -1,6 +1,6 @@
 /**
  * GoalCurrent.live — FIFA World Cup 2026
- * SINGLE SOURCE OF TRUTH — all group, team, fixture and standing data lives here.
+ * SINGLE SOURCE OF TRUTH — allid:1 group, team, fixture and standing data lives here.
  * Every page on the site reads ONLY from window.WC26.
  * To update any team or fixture, edit ONLY this file.
  *
@@ -93,8 +93,8 @@
      Format: { id, group, home, away, date, bst, venue, ukBroadcaster }
   ───────────────────────────────────────────── */
     var FIXTURES = [
-    {id:1  ,group:'A',home:'Mexico',away:'South Africa',date:'2026-06-11',bst:'20:00',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV'},
-    {id:2  ,group:'A',home:'Korea Republic',away:'Czechia',date:'2026-06-12',bst:'03:00',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC'},
+    {{id:1 ,group:'A',home:'Mexico',away:'South Africa',date:'2026-06-11',bst:'20:00',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV',homeScore:2,awayScore:0,status:'FT'},  ,group:'A',home:'Mexico',away:'South Africa',date:'2026-06-11',bst:'20:00',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV'},
+    {{{id:2 ,group:'A',home:'Korea Republic',away:'Czechia',date:'2026-06-12',bst:'03:00',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC',homeScore:2,awayScore:1,status:'FT'},,group:'A',home:'Korea Republic',away:'Czechia',date:'2026-06-12',bst:'03:00',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC',homeScore:2,awayScore:1,status:'FT'}, ,group:'A',home:'Korea Republic',away:'Czechia',date:'2026-06-12',bst:'03:00',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC'},
     {id:3  ,group:'B',home:'Canada',away:'Bosnia & Herzegovina',date:'2026-06-12',bst:'20:00',venue:'BMO Field, Toronto',ukBroadcaster:'BBC'},
     {id:4  ,group:'D',home:'USA',away:'Paraguay',date:'2026-06-13',bst:'02:00',venue:'Rose Bowl, Los Angeles',ukBroadcaster:'BBC'},
     {id:5  ,group:'B',home:'Qatar',away:'Switzerland',date:'2026-06-13',bst:'20:00',venue:'Levi\'s Stadium, San Francisco Bay Area',ukBroadcaster:'ITV'},
@@ -294,7 +294,7 @@
      To display in visitor local time: new Date(entry.utc)
   ───────────────────────────────────────────── */
   var SCHEDULE = [
-    {id:  1,group:'A',home:'Mexico',away:'South Africa',utc:'2026-06-11T19:00:00Z',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV',stage:'Group Stage'},
+    {id:  1,group:'A',home:'Mexico',away:'South Africa',utc:'2026-06-11T19:00:00Z',venue:'Estadio Azteca, Mexico City',ukBroadcaster:'ITV',stage:'Group Stage',homeScore:2,awayScore:0,status:'FT'},
     {id:  2,group:'A',home:'Korea Republic',away:'Czechia',utc:'2026-06-12T02:00:00Z',venue:'Estadio Akron, Guadalajara',ukBroadcaster:'BBC',stage:'Group Stage'},
     {id:  3,group:'B',home:'Canada',away:'Bosnia & Herzegovina',utc:'2026-06-12T19:00:00Z',venue:'BMO Field, Toronto',ukBroadcaster:'BBC',stage:'Group Stage'},
     {id:  4,group:'D',home:'USA',away:'Paraguay',utc:'2026-06-13T01:00:00Z',venue:'Rose Bowl, Los Angeles',ukBroadcaster:'BBC',stage:'Group Stage'},
