@@ -12,7 +12,6 @@ var path = window.location.pathname.toLowerCase();
 function isActive(href){ return path.indexOf(href.toLowerCase()) !== -1; }
 
 /* ── DETECT ACTIVE SECTION ── */
-var isWC = path.indexOf('/worldcup2026/') !== -1 || path.indexOf('/countdown') !== -1 || path.indexOf('/worldcup') !== -1;
 var isPL = path.indexOf('/premier-league/') !== -1;
 var isUCL = path.indexOf('/ucl/') !== -1;
 
@@ -159,7 +158,6 @@ function makeSidebar(activePage){
     {href:'/worldcup2026/venues/index.html',  icon:'🏟️', label:'Venues'},
     {href:'/worldcup2026/teams/index.html',   icon:'👕', label:'Teams'},
     {href:'/worldcup2026/news/index.html',    icon:'📰', label:'News'},
-    {href:'/countdown.html',                  icon:'⏱', label:'Countdown'},
     {href:'/worldcup2026/favourites/index.html',icon:'⭐', label:'Favourites'},
   ];
   var plLinks = [
@@ -243,7 +241,6 @@ function makeHeader(opts){
     {href:'/worldcup2026/venues/index.html',     icon:'🏟️', label:'Venues'},
     {href:'/worldcup2026/teams/index.html',      icon:'👕', label:'Teams'},
     {href:'/worldcup2026/news/index.html',       icon:'📰', label:'News'},
-    {href:'/countdown.html',                     icon:'⏱',  label:'Countdown'},
     {href:'/worldcup2026/favourites/index.html', icon:'⭐', label:'Favourites'},
     {href:'/premier-league/index.html',          icon:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', label:'Premier League'},
   ];

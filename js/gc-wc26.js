@@ -131,7 +131,6 @@ function renderStandardSidebar() {
     <a href="/worldcup2026/venues/">🏟️ Venues</a>
     <a href="/worldcup2026/teams/">👕 Teams</a>
     <a href="/worldcup2026/news/">📰 News</a>
-    <a href="/worldcup2026/countdown/">⌛ Countdown</a>
     <a href="/worldcup2026/favourites/">⭐ Favourites</a>
 
     <h3>PREMIER LEAGUE</h3>
@@ -426,7 +425,6 @@ function renderNews() {
 
   const news = [
     ["BREAKING", "World Cup 2026 preparation: follow official squads, fixtures and team updates", "GoalCurrent", "Live page"],
-    ["FIXTURES", "Opening fixture countdown and match guide", "GoalCurrent", "Updated today"],
     ["GROUPS", "All 12 group pages use cards, flags and clickable team navigation", "GoalCurrent", "Site update"],
     ["LIVE", "Live match centre will show goals, cards and lineups when matches are active", "GoalCurrent", "Live coverage"],
     ["TEAMS", "Browse all 48 teams with flags and favourite controls", "GoalCurrent", "Guide"]
@@ -582,8 +580,6 @@ function openNews() {
   modal("News item", "<p>News details, related fixtures and source links will open here. Latest headlines update on the news page when the feed is available.</p>");
 }
 
-function initCountdown() {
-  const el = $("#countdown");
   if (!el) return;
 
   const target = new Date("2026-06-11T20:00:00+01:00");
@@ -596,7 +592,6 @@ function initCountdown() {
     const diff = target - new Date();
 
     if (diff <= 0) {
-      el.innerHTML = `<div class="countdown-live"><div class="pulse-dot"></div><div><h3>World Cup 2026 has started</h3><p>${matchTitle} coverage is now live when match data is available.</p></div></div>`;
       return;
     }
 
@@ -606,9 +601,6 @@ function initCountdown() {
     const seconds = Math.floor((diff % 6e4) / 1000);
 
     el.innerHTML = `
-      <div class="countdown-clock" aria-label="Countdown to ${matchTitle}">
-        <div class="countdown-match">
-          <span class="kicker">Next match countdown</span>
           <h3>${matchTitle}</h3>
           <p>${matchMeta}</p>
         </div>
@@ -770,7 +762,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderVenues();
   renderNews();
   renderFavourites();
-  initCountdown();
   updateFavButtons();
   initSiteMarketing();
 

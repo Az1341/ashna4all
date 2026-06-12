@@ -853,6 +853,10 @@ html, body {
   <meta name="twitter:title"      content="FIFA World Cup 2026 — Overview | GoalCurrent.live">
   <meta name="twitter:description" content="Complete FIFA World Cup 2026 guide — 48 teams, 104 matches, 16 venues across USA, Mexico and Canada.">
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
+
+<style id="gc-no-countdown-hard-hide">
+a[href*="countdown"], .wc-quick-link[href*="countdown"] { display:none !important; }
+</style>
 </head>
 <body>
 
@@ -900,8 +904,7 @@ html, body {
     <a href="/worldcup2026/venues/"><span class="nav-icon">🏟️</span> Venues</a>
     <a href="/worldcup2026/teams/"><span class="nav-icon">👕</span> Teams</a>
     <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> WC News</a>
-    <a href="/countdown.html"><span class="nav-icon">⏳</span> Countdown</a>
-    <a href="/worldcup2026/favourites/"><span class="nav-icon">⭐</span> Favourites</a>
+<a href="/worldcup2026/favourites/"><span class="nav-icon">⭐</span> Favourites</a>
   </div>
 
   <div class="sidebar-section-label">Competitions</div>
@@ -952,8 +955,7 @@ html, body {
         <a href="/worldcup2026/venues/">🏟️ Venues</a>
         <a href="/worldcup2026/teams/">👕 Teams</a>
         <a href="/worldcup2026/news/">📰 News</a>
-        <a href="/countdown.html">⏳ Countdown</a>
-        <a href="/worldcup2026/favourites/">⭐ Favourites</a>
+<a href="/worldcup2026/favourites/">⭐ Favourites</a>
         <!-- ✅ Premier League REMOVED from WC top nav — it lives in the sidebar only -->
       </div>
     </nav>
@@ -976,24 +978,12 @@ html, body {
         <div class="wc-stat"><div class="wc-stat-num">12</div><div class="wc-stat-lbl">Groups</div></div>
       </div>
     </div>
-
-    <!-- Countdown bar -->
+    <!-- Live status bar -->
     <div class="wc-cd-bar">
-      <div>
-        <div class="wc-cd-label" id="ov-cd-label">⏳ World Cup Kicks Off In</div>
-      </div>
-      <div class="wc-cd-units">
-        <div class="wc-cd-unit"><div class="wc-cd-num" id="ov-cd-days">--</div><div class="wc-cd-lbl">Days</div></div>
-        <div class="wc-cd-sep">:</div>
-        <div class="wc-cd-unit"><div class="wc-cd-num" id="ov-cd-hrs">--</div><div class="wc-cd-lbl">Hrs</div></div>
-        <div class="wc-cd-sep">:</div>
-        <div class="wc-cd-unit"><div class="wc-cd-num" id="ov-cd-mins">--</div><div class="wc-cd-lbl">Min</div></div>
-        <div class="wc-cd-sep">:</div>
-        <div class="wc-cd-unit"><div class="wc-cd-num" id="ov-cd-secs">--</div><div class="wc-cd-lbl">Sec</div></div>
-      </div>
+      <div class="wc-cd-label">🏆 World Cup is live</div>
+      <div style="font-size:.82rem;font-weight:700;color:rgba(255,255,255,.8)">Follow fixtures, results and live scores</div>
     </div>
-
-    <!-- Quick links -->
+<!-- Quick links -->
     <h2 style="font-family:var(--font-heading);font-size:1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px">Quick Navigation</h2>
     <div class="wc-quick-links">
       <a href="/worldcup2026/groups/" class="wc-quick-link"><span class="wc-quick-link-icon">🔢</span><span class="wc-quick-link-label">Groups</span></a>
@@ -1003,8 +993,7 @@ html, body {
       <a href="/worldcup2026/venues/" class="wc-quick-link"><span class="wc-quick-link-icon">🏟️</span><span class="wc-quick-link-label">Venues</span></a>
       <a href="/worldcup2026/teams/" class="wc-quick-link"><span class="wc-quick-link-icon">👕</span><span class="wc-quick-link-label">Teams</span></a>
       <a href="/worldcup2026/news/" class="wc-quick-link"><span class="wc-quick-link-icon">📰</span><span class="wc-quick-link-label">News</span></a>
-      <a href="/countdown.html" class="wc-quick-link"><span class="wc-quick-link-icon">⏳</span><span class="wc-quick-link-label">Countdown</span></a>
-    </div>
+</div>
 
     <!-- Info cards -->
     <div class="wc-info-grid">
@@ -1138,38 +1127,6 @@ function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim(
   }
 })();
 function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remove('show');}
-</script>
-<script>
-// Countdown
-(function(){
-  var end=new Date('2026-06-11T19:00:00Z');
-  var label=document.getElementById('ov-cd-label');
-  var days=document.getElementById('ov-cd-days');
-  var hrs=document.getElementById('ov-cd-hrs');
-  var mins=document.getElementById('ov-cd-mins');
-  var secs=document.getElementById('ov-cd-secs');
-  function pad(n){return String(n).padStart(2,'0');}
-  function tick(){
-    var now=new Date();
-    if(!days)return;
-    if(now>=end){
-      if(label)label.textContent='🏆 World Cup is LIVE!';
-      if(days)days.textContent='--';
-      if(hrs)hrs.textContent='--';
-      if(mins)mins.textContent='--';
-      if(secs)secs.textContent='--';
-      return;
-    }
-    var diff=end-now;
-    var d=Math.floor(diff/86400000);
-    var h=Math.floor((diff%86400000)/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    if(label)label.textContent='⏳ World Cup Kicks Off In';
-    days.textContent=pad(d);hrs.textContent=pad(h);mins.textContent=pad(m);secs.textContent=pad(s);
-  }
-  tick();setInterval(tick,1000);
-})();
 </script>
 <!-- WC POPUP -->
 <div id="gc-wc-popup" style="position:fixed;bottom:20px;right:20px;z-index:1300;max-width:300px;width:calc(100vw - 40px);background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.22);padding:20px 20px 18px;border-top:4px solid var(--blue);transform:translateY(30px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s">
