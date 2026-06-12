@@ -228,13 +228,13 @@ body{font-family:Verdana,Geneva,Tahoma,sans-serif;background:linear-gradient(135
 </style>
   <meta property="og:type" content="website">
   <meta property="og:title" content="World Cup 2026 Fixtures &amp; Schedule | GoalCurrent.live">
-  <meta property="og:description" content="Full FIFA World Cup 2026 fixture list — all 104 matches with dates, times (BST) and TV broadcasters.">
+  <meta property="og:description" content="Full FIFA World Cup 2026 fixture list — official order with visitor local times and TV broadcasters.">
   <meta property="og:url" content="https://www.goalcurrent.live/worldcup2026/fixtures/">
   <meta property="og:image" content="https://www.goalcurrent.live/logo.svg">
   <meta property="og:site_name" content="GoalCurrent.live">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="World Cup 2026 Fixtures &amp; Schedule | GoalCurrent.live">
-  <meta name="twitter:description" content="Full FIFA World Cup 2026 fixture list — all 104 matches with dates, times (BST) and TV broadcasters.">
+  <meta name="twitter:description" content="Full FIFA World Cup 2026 fixture list — official order with visitor local times and TV broadcasters.">
   <meta name="twitter:image" content="https://www.goalcurrent.live/logo.svg">
 
 <style id="gc-no-countdown-hard-hide">
@@ -333,18 +333,7 @@ a[href*="countdown"], .wc-quick-link[href*="countdown"] { display:none !importan
       <span class="gc-ticker-item">🔔 Enable notifications for match reminders</span>
     </div>
   </div>
-      <div class="wc-sep">:</div>
-      <div class="wc-unit"><div class="wc-unit-num" id="cdHours">--</div><div class="wc-unit-lbl">Hours</div></div>
-      <div class="wc-sep">:</div>
-      <div class="wc-unit"><div class="wc-unit-num" id="cdMins">--</div><div class="wc-unit-lbl">Mins</div></div>
-      <div class="wc-sep">:</div>
-      <div class="wc-unit"><div class="wc-unit-num" id="cdSecs">--</div><div class="wc-unit-lbl">Secs</div></div>
-    </div>
-    <div id="cdMatchesLeft" class="wc-matches-left">
-      <span class="wc-matches-left-num" id="cdMatchNum">104</span>
-      <span class="wc-matches-left-txt">matches<br>total</span>
-    </div>
-  </div>
+      
 
   <main class="gc-content">
     <section class="hero-box">
@@ -476,7 +465,30 @@ const userLocale=navigator.language||'en-GB';
 function toDS(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function getTZLabel(){try{return new Date().toLocaleTimeString('en-GB',{timeZoneName:'short',timeZone:userTZ}).split(' ').pop()||'Local';}catch(e){return'Local'}}
 const TZ_LABEL=getTZLabel();
-function bstToLocal(dateStr,timeStr){const[h,m]=timeStr.split(':').map(Number);const utcH=String(h-1).padStart(2,'0');const utcM=String(m).padStart(2,'0');const dt=new Date(`${dateStr}T${utcH}:${utcM}:00Z`);return{localTime:dt.toLocaleTimeString(userLocale,{hour:'2-digit',minute:'2-digit',timeZone:userTZ}),localDate:dt.toLocaleDateString(userLocale,{weekday:'short',day:'numeric',month:'short',timeZone:userTZ}),scheduledLocalDate:dt.toLocaleDateString('en-CA',{timeZone:userTZ})}}
+function bstToLocal(dateStr,timeStr){
+  const [y,mo,d]=dateStr.split('-').map(Number);
+  const [h,m]=timeStr.split(':').map(Number);
+  const dt=new Date(Date.UTC(y,mo-1,d,h-1,m,0));
+  return {
+    localTime:dt.toLocaleTimeString(userLocale,{hour:'2-digit',minute:'2-digit',timeZone:userTZ}),
+    localDate:dt.toLocaleDateString(userLocale,{weekday:'short',day:'numeric',month:'short',timeZone:userTZ}),
+    scheduledLocalDate:dt.toLocaleDateString('en-CA',{timeZone:userTZ}),
+    dateObj:dt
+  };
+}
+function getLocalSchedule(){
+  const map={};
+  Object.entries(SCHEDULE).forEach(([ukDate,matches])=>{
+    matches.forEach(m=>{
+      const local=bstToLocal(ukDate,m.t);
+      const localDate=local.scheduledLocalDate;
+      if(!map[localDate])map[localDate]=[];
+      map[localDate].push({...m,ukDate:ukDate,localDate:localDate,localTime:local.localTime});
+    });
+  });
+  Object.keys(map).forEach(ds=>map[ds].sort((a,b)=>bstToLocal(a.ukDate,a.t).dateObj-bstToLocal(b.ukDate,b.t).dateObj));
+  return map;
+}
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('tzBadge').textContent=`🕐 ${TZ_LABEL}`;
   const countryEl=document.getElementById('countrySelect');
@@ -486,9 +498,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('searchInput').addEventListener('input',applyFilters);
   updateTVPreview();updateFavouriteCount();
   const today=toDS(new Date());
-  const allDates=Object.keys(SCHEDULE).sort();
+  const localSchedule=getLocalSchedule();
+  const allDates=Object.keys(localSchedule).sort();
   const futureDates=allDates.filter(d=>d>=today);
-  selDate=SCHEDULE[today]?today:(futureDates.length?futureDates[0]:allDates[0]);
+  selDate=localSchedule[today]?today:(futureDates.length?futureDates[0]:allDates[0]);
   curMonth=new Date(selDate+'T12:00:00').getMonth();
   curYear=2026;
   renderCal();
@@ -503,7 +516,7 @@ function renderCal(){
   const today=toDS(new Date());const days=new Date(curYear,curMonth+1,0).getDate();
   for(let d=1;d<=days;d++){
     const ds=`${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const has=!!SCHEDULE[ds];const dow=new Date(curYear,curMonth,d).getDay();const cnt=SCHEDULE[ds]?.length||0;
+    const localSchedule=getLocalSchedule();const has=!!localSchedule[ds];const dow=new Date(curYear,curMonth,d).getDay();const cnt=localSchedule[ds]?.length||0;
     const isLive=liveDB[ds]?.some(m=>m.status?.short==='1H'||m.status?.short==='2H'||m.status?.short==='HT');
     const el=document.createElement('div');
     el.className=`cal-day${has?' has-match':' no-match'}${ds===today?' today':''}${ds===selDate?' active':''}${isLive?' live-day':''}`;
@@ -537,13 +550,13 @@ async function loadLiveData(){
   }catch(e){console.warn('Live data unavailable:',e);}
 }
 
-function getAllMatches(){const arr=[];Object.entries(SCHEDULE).forEach(([date,matches])=>{matches.forEach(m=>arr.push({...m,date}));});return arr;}
+function getAllMatches(){const arr=[];Object.entries(getLocalSchedule()).forEach(([date,matches])=>{matches.forEach(m=>arr.push({...m,date}));});return arr;}
 function applyFilters(){const search=document.getElementById('searchInput').value.trim();const group=document.getElementById('groupFilter').value;const stage=document.getElementById('stageFilter').value;const fav=document.getElementById('favFilter').value;if(search||group||stage||fav){showFilteredResults(search,group,stage,fav);}else{showDay(selDate);}}
 function showFilteredResults(search,group,stage,fav){const out=document.getElementById('fixturesOut');const q=search.toLowerCase();let matches=getAllMatches();matches=matches.filter(m=>{const tv=getTVInfo();const haystack=[m.h,m.a,m.v,m.g,m.s,m.uk,(tv.channels||[]).join(' ')].join(' ').toLowerCase();const matchSearch=!q||haystack.includes(q);const matchGroup=!group||m.g===group;const matchStage=!stage||m.s.includes(stage);const matchFav=fav!=='fav'||favourites.includes(m.n);return matchSearch&&matchGroup&&matchStage&&matchFav;});if(!matches.length){out.innerHTML='<div class="no-results">No matches found.</div>';return;}out.innerHTML=`<div class="day-block expanded"><div class="day-header"><div class="day-header-left"><div class="day-date-badge"><div class="day-date-num">${matches.length}</div><div class="day-date-mon">FOUND</div></div><div><div class="day-name">Search Results</div><div class="day-meta">Filtered World Cup 2026 fixtures</div></div></div></div><div class="day-content"><div class="day-matches">${matches.map(m=>matchCard(m,m.date)).join('')}</div></div></div>`;}
-function showDay(ds){const out=document.getElementById('fixturesOut');if(!ds||!SCHEDULE[ds]){out.innerHTML='<div class="loading">No matches on this date.</div>';return;}const date=new Date(ds+'T12:00:00');const ph=getPhase(ds);const dayLabel=date.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const matches=SCHEDULE[ds];document.getElementById('hdrPhase').textContent=ph?.label||'World Cup 2026';document.getElementById('calPhase').textContent=`${ph?.label||'World Cup 2026'} · ${matches.length} match${matches.length>1?'es':''}`;out.innerHTML=`<div class="day-block expanded" id="dayBlock"><div class="day-header" onclick="toggleDay()"><div class="day-header-left"><div class="day-date-badge"><div class="day-date-num">${date.getDate()}</div><div class="day-date-mon">${MONTHS[date.getMonth()].slice(0,3)}</div></div><div><div class="day-name">${dayLabel}</div><div class="day-meta">${ph?.label||'World Cup 2026'} · ${matches.length} match${matches.length>1?'es':''}</div></div></div><div class="day-header-right"><span class="count-badge">${matches.length} Matches</span><span class="chevron">▾</span></div></div><div class="day-content"><div class="day-matches">${matches.map(m=>matchCard(m,ds)).join('')}</div></div></div>`;}
-function matchCard(m,ds){const local=bstToLocal(ds,m.t);const tv=getTVInfo();const isFav=favourites.includes(m.n);const grpLabel=m.g!=='—'?`Group ${m.g} · `:'';const tvChannels=(USER_COUNTRY==='GB'&&m.uk&&m.uk!=='TBC')?[m.uk]:tv.channels;const hEnc=escapeText(m.h);const aEnc=escapeText(m.a);
+function showDay(ds){const out=document.getElementById('fixturesOut');const localSchedule=getLocalSchedule();if(!ds||!localSchedule[ds]){out.innerHTML='<div class="loading">No matches on this date.</div>';return;}const date=new Date(ds+'T12:00:00');const ph=getPhase(ds);const dayLabel=date.toLocaleDateString(userLocale,{weekday:'long',day:'numeric',month:'long',year:'numeric'});const matches=localSchedule[ds];document.getElementById('hdrPhase').textContent=ph?.label||'World Cup 2026';document.getElementById('calPhase').textContent=`${ph?.label||'World Cup 2026'} · ${matches.length} match${matches.length>1?'es':''}`;out.innerHTML=`<div class="day-block expanded" id="dayBlock"><div class="day-header" onclick="toggleDay()"><div class="day-header-left"><div class="day-date-badge"><div class="day-date-num">${date.getDate()}</div><div class="day-date-mon">${MONTHS[date.getMonth()].slice(0,3)}</div></div><div><div class="day-name">${dayLabel}</div><div class="day-meta">${ph?.label||'World Cup 2026'} · ${matches.length} match${matches.length>1?'es':''}</div></div></div><div class="day-header-right"><span class="count-badge">${matches.length} Matches</span><span class="chevron">▾</span></div></div><div class="day-content"><div class="day-matches">${matches.map(m=>matchCard(m,ds)).join('')}</div></div></div>`;}
+function matchCard(m,ds){const ukDate=m.ukDate||ds;const local=bstToLocal(ukDate,m.t);const tv=getTVInfo();const isFav=favourites.includes(m.n);const grpLabel=m.g!=='—'?`Group ${m.g} · `:'';const tvChannels=(USER_COUNTRY==='GB'&&m.uk&&m.uk!=='TBC')?[m.uk]:tv.channels;const hEnc=escapeText(m.h);const aEnc=escapeText(m.a);
 // Check liveDB for real score from api-football
-const liveMatch=liveDB[ds]?.find(lm=>{const lh=(lm.home?.name||'').toLowerCase();const la=(lm.away?.name||'').toLowerCase();const mh=m.h.toLowerCase();const ma=m.a.toLowerCase();return(lh.includes(mh.slice(0,4))||mh.includes(lh.slice(0,4)))&&(la.includes(ma.slice(0,4))||ma.includes(la.slice(0,4)));});
+const liveMatch=(liveDB[ukDate]||liveDB[ds]||[])?.find(lm=>{const lh=(lm.home?.name||'').toLowerCase();const la=(lm.away?.name||'').toLowerCase();const mh=m.h.toLowerCase();const ma=m.a.toLowerCase();return(lh.includes(mh.slice(0,4))||mh.includes(lh.slice(0,4)))&&(la.includes(ma.slice(0,4))||ma.includes(la.slice(0,4)));});
 const status=liveMatch?.status?.short;
 const elapsed=liveMatch?.status?.elapsed;
 const goalH=liveMatch?.goals?.home;
@@ -554,7 +567,7 @@ let scoreBadge,scoreDisplay;
 if(isLive){scoreBadge=`<span class="badge-live">🔴 LIVE ${elapsed?elapsed+"'":''}</span>`;scoreDisplay=`<div class="score-num">${goalH??0} – ${goalA??0}</div><div class="score-time">${status==='HT'?'Half Time':elapsed?elapsed+"'":''}</div>`;}
 else if(isFT){scoreBadge=`<span class="badge-ft">FT</span>`;scoreDisplay=`<div class="score-num">${goalH??0} – ${goalA??0}</div><div class="score-time">Full Time</div>`;}
 else{scoreBadge=`<span class="badge-time">⏰ ${local.localTime} ${TZ_LABEL}</span>`;scoreDisplay=`<div class="score-vs">vs</div><div class="score-time">${local.localTime} ${TZ_LABEL}</div>`;}
-return`<div class="match-card${isFav?' fav':''}" id="match-${m.n}"><div class="match-top"><div><div class="match-stage">${grpLabel}${m.s}</div><div class="match-venue">📍 ${m.v}</div></div><div class="match-actions">${scoreBadge}<button class="fav-btn${isFav?' active':''}" onclick="toggleFavourite(${m.n},'${hEnc}','${aEnc}','${ds}','${m.t}')" title="Save favourite match">${isFav?'★':'☆'}</button><span class="match-num">#${m.n}</span></div></div><div class="match-row"><div class="team"><div class="team-flag">${flag(m.h)}</div><div class="team-name">${m.h}</div></div><div class="score-mid">${scoreDisplay}</div><div class="team"><div class="team-flag">${flag(m.a)}</div><div class="team-name">${m.a}</div></div></div><div class="tv-box"><div><div class="tv-title">TV Broadcast</div><div style="font-size:11px;color:#64748b;margin-top:2px">${tv.flag} ${tv.name}</div></div><div class="tv-channels">${tvChannels.map(ch=>`<span class="tv-pill">${ch}</span>`).join('')}</div></div><div class="mp-tabs"><button class="mp-tab" onclick="openTab(${m.n},'lineup','${hEnc}','${aEnc}','${ds}','${m.t}')">📋 Lineup</button><button class="mp-tab" onclick="openTab(${m.n},'predict','${hEnc}','${aEnc}','${ds}','${m.t}')">🎯 Predict</button><button class="mp-tab" onclick="openTab(${m.n},'news','${hEnc}','${aEnc}','${ds}','${m.t}')">📰 News & Media</button></div><div class="mp-panel" id="panel-${m.n}-lineup"><div id="lu-content-${m.n}" class="lu-wrap"><div class="lu-loading">Loading lineup…</div></div></div><div class="mp-panel" id="panel-${m.n}-predict">${buildPredictPanel(m.n,m.h,m.a)}</div><div class="mp-panel" id="panel-${m.n}-news">${buildNewsPanel(m.h,m.a,ds)}</div></div>`;}
+return`<div class="match-card${isFav?' fav':''}" id="match-${m.n}"><div class="match-top"><div><div class="match-stage">${grpLabel}${m.s}</div><div class="match-venue">📍 ${m.v}</div></div><div class="match-actions">${scoreBadge}<button class="fav-btn${isFav?' active':''}" onclick="toggleFavourite(${m.n},'${hEnc}','${aEnc}','${ukDate}','${m.t}')" title="Save favourite match">${isFav?'★':'☆'}</button><span class="match-num">#${m.n}</span></div></div><div class="match-row"><div class="team"><div class="team-flag">${flag(m.h)}</div><div class="team-name">${m.h}</div></div><div class="score-mid">${scoreDisplay}</div><div class="team"><div class="team-flag">${flag(m.a)}</div><div class="team-name">${m.a}</div></div></div><div class="tv-box"><div><div class="tv-title">TV Broadcast</div><div style="font-size:11px;color:#64748b;margin-top:2px">${tv.flag} ${tv.name}</div></div><div class="tv-channels">${tvChannels.map(ch=>`<span class="tv-pill">${ch}</span>`).join('')}</div></div><div class="mp-tabs"><button class="mp-tab" onclick="openTab(${m.n},'lineup','${hEnc}','${aEnc}','${ukDate}','${m.t}')">📋 Lineup</button><button class="mp-tab" onclick="openTab(${m.n},'predict','${hEnc}','${aEnc}','${ukDate}','${m.t}')">🎯 Predict</button><button class="mp-tab" onclick="openTab(${m.n},'news','${hEnc}','${aEnc}','${ukDate}','${m.t}')">📰 News & Media</button></div><div class="mp-panel" id="panel-${m.n}-lineup"><div id="lu-content-${m.n}" class="lu-wrap"><div class="lu-loading">Loading lineup…</div></div></div><div class="mp-panel" id="panel-${m.n}-predict">${buildPredictPanel(m.n,m.h,m.a)}</div><div class="mp-panel" id="panel-${m.n}-news">${buildNewsPanel(m.h,m.a,ukDate)}</div></div>`;}
 function escapeText(text){return String(text).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
 const openPanels={};
 function openTab(matchNo,tabName,home,away,ds,time){const tabs=['lineup','predict','news'];const isOpen=openPanels[matchNo]===tabName;tabs.forEach(t=>{const panel=document.getElementById(`panel-${matchNo}-${t}`);const btns=document.querySelectorAll(`#match-${matchNo} .mp-tab`);if(panel)panel.classList.remove('open');if(btns[tabs.indexOf(t)])btns[tabs.indexOf(t)].classList.remove('active');});if(isOpen){openPanels[matchNo]=null;return;}openPanels[matchNo]=tabName;const panel=document.getElementById(`panel-${matchNo}-${tabName}`);if(panel)panel.classList.add('open');const allTabs=document.querySelectorAll(`#match-${matchNo} .mp-tab`);const idx=tabs.indexOf(tabName);if(allTabs[idx])allTabs[idx].classList.add('active');if(tabName==='lineup')loadLineup(matchNo,home,away,ds,time);}
