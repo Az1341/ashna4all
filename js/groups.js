@@ -1,182 +1,266 @@
-/* groups.js — OFFICIAL FIFA WC 2026 groups + PL standings
-   PL data: verified from BBC Sport after GW38 Final Day 24 May 2026
-*/
-var GC_GROUPS = (function () {
-  var _league = 'PL';
-  function setLeague(t) { _league = t; }
+/* =========================================================
+   /js/groups.js — GoalCurrent.live World Cup 2026
+   Single dynamic renderer for ALL 12 group pages (A–L).
+   Data source: /js/worldcup-data.js (window.WC26) ONLY.
+   - Standings computed from FT matches only
+   - Sort: Points → Goal Difference → Goals For
+   - Qualification colours applied AFTER sorting
+   - Kick-off times shown in the visitor's local timezone
+   - Zero hardcoded teams, fixtures, standings or BST text
+   Usage:
+     <div id="group-root" data-group="A"></div>
+     <script src="/js/worldcup-data.js"></script>
+     <script src="/js/groups.js"></script>
+   ========================================================= */
+(function () {
+  "use strict";
 
-  var B = 'https://resources.premierleague.com/premierleague/badges/50/';
+  var root = document.getElementById("group-root");
+  if (!root) return;
 
-  /* ✅ VERIFIED PL TABLE — Final Standings After GW38 · 24 May 2026
-     Source: BBC Sport */
-  var PL_DATA = [{ name: 'Premier League 2025/26 — Final Standings', entries: [
-    {team:'Arsenal 🏆',      logo:B+'t3.png',   played:38,won:26,drawn:7, lost:5,  gf:71,ga:27,gd:44,  pts:85},
-    {team:'Man City',        logo:B+'t43.png',  played:38,won:23,drawn:9, lost:6,  gf:76,ga:34,gd:42,  pts:78},
-    {team:'Man United',      logo:B+'t1.png',   played:38,won:20,drawn:11,lost:7,  gf:71,ga:52,gd:19,  pts:71},
-    {team:'Aston Villa',     logo:B+'t7.png',   played:38,won:19,drawn:8, lost:11, gf:57,ga:50,gd:7,   pts:65},
-    {team:'Liverpool',       logo:B+'t14.png',  played:38,won:17,drawn:9, lost:12, gf:59,ga:49,gd:10,  pts:60},
-    {team:'Bournemouth',     logo:B+'t91.png',  played:38,won:13,drawn:18,lost:7,  gf:59,ga:55,gd:4,   pts:57},
-    {team:'Sunderland',      logo:B+'t56.png',  played:38,won:14,drawn:12,lost:12, gf:45,ga:51,gd:-6,  pts:54},
-    {team:'Brighton',        logo:B+'t36.png',  played:38,won:14,drawn:11,lost:13, gf:53,ga:47,gd:6,   pts:53},
-    {team:'Brentford',       logo:B+'t94.png',  played:38,won:14,drawn:11,lost:13, gf:56,ga:53,gd:3,   pts:53},
-    {team:'Chelsea',         logo:B+'t8.png',   played:38,won:14,drawn:10,lost:14, gf:63,ga:57,gd:6,   pts:52},
-    {team:'Fulham',          logo:B+'t54.png',  played:38,won:15,drawn:7, lost:16, gf:52,ga:56,gd:-4,  pts:52},
-    {team:'Newcastle',       logo:B+'t4.png',   played:38,won:14,drawn:7, lost:17, gf:54,ga:56,gd:-2,  pts:49},
-    {team:'Everton',         logo:B+'t11.png',  played:38,won:13,drawn:10,lost:15, gf:48,ga:51,gd:-3,  pts:49},
-    {team:'Leeds United',    logo:B+'t2.png',   played:38,won:11,drawn:14,lost:13, gf:52,ga:59,gd:-7,  pts:47},
-    {team:'Crystal Palace',  logo:B+'t31.png',  played:38,won:11,drawn:12,lost:15, gf:45,ga:55,gd:-10, pts:45},
-    {team:"Nott'm Forest",   logo:B+'t17.png',  played:38,won:11,drawn:11,lost:16, gf:43,ga:46,gd:-3,  pts:44},
-    {team:'Tottenham',       logo:B+'t6.png',   played:38,won:10,drawn:11,lost:17, gf:49,ga:58,gd:-9,  pts:41},
-    {team:'West Ham ↓',      logo:B+'t21.png',  played:38,won:10,drawn:9, lost:19, gf:44,ga:63,gd:-19, pts:39},
-    {team:'Burnley ↓',       logo:B+'t90.png',  played:38,won:4, drawn:10,lost:24, gf:37,ga:74,gd:-37, pts:22},
-    {team:'Wolves ↓',        logo:B+'t39.png',  played:38,won:3, drawn:11,lost:24, gf:29,ga:70,gd:-41, pts:20}
-  ]}];
+  var GROUP = (root.getAttribute("data-group") || "A").toUpperCase();
+  var WC = window.WC26 || {};
+  var FLAGS = window.TEAM_FLAGS || WC.TEAM_FLAGS || {};
 
-  /* ✅ OFFICIAL FIFA World Cup 2026 Groups */
-  var F = 'https://media.api-sports.io/flags/';
-  var WC_DATA = [
-    {name:'Group A', entries:[
-      {team:'Mexico',              logo:F+'mx.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'South Africa',        logo:F+'za.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'South Korea',         logo:F+'kr.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Czechia',             logo:F+'cz.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group B', entries:[
-      {team:'Canada',              logo:F+'ca.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Bosnia & Herzegovina',logo:F+'ba.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Qatar',               logo:F+'qa.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Switzerland',         logo:F+'ch.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group C', entries:[
-      {team:'Brazil',              logo:F+'br.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Morocco',             logo:F+'ma.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Haiti',               logo:F+'ht.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Scotland',            logo:F+'gb-sct.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group D', entries:[
-      {team:'USA',                 logo:F+'us.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Paraguay',            logo:F+'py.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Australia',           logo:F+'au.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Türkiye',             logo:F+'tr.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group E', entries:[
-      {team:'Germany',             logo:F+'de.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Curaçao',             logo:F+'cw.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Ivory Coast',         logo:F+'ci.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Ecuador',             logo:F+'ec.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group F', entries:[
-      {team:'Netherlands',         logo:F+'nl.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Japan',               logo:F+'jp.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Sweden',              logo:F+'se.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Tunisia',             logo:F+'tn.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group G', entries:[
-      {team:'Belgium',             logo:F+'be.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Egypt',               logo:F+'eg.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'IR Iran',             logo:F+'ir.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'New Zealand',         logo:F+'nz.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group H', entries:[
-      {team:'Spain',               logo:F+'es.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Cape Verde',          logo:F+'cv.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Saudi Arabia',        logo:F+'sa.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Uruguay',             logo:F+'uy.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group I', entries:[
-      {team:'France',              logo:F+'fr.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Senegal',             logo:F+'sn.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Iraq',                logo:F+'iq.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Norway',              logo:F+'no.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group J', entries:[
-      {team:'Argentina',           logo:F+'ar.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Algeria',             logo:F+'dz.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Austria',             logo:F+'at.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Jordan',              logo:F+'jo.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group K', entries:[
-      {team:'Portugal',            logo:F+'pt.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'DR Congo',            logo:F+'cd.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Uzbekistan',          logo:F+'uz.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Colombia',            logo:F+'co.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]},
-    {name:'Group L', entries:[
-      {team:'England',             logo:F+'gb-eng.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Croatia',             logo:F+'hr.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Ghana',               logo:F+'gh.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0},
-      {team:'Panama',              logo:F+'pa.svg', played:0,won:0,drawn:0,lost:0,gf:0,ga:0,gd:0,pts:0}
-    ]}
-  ];
-
-  function render(container) {
-    container.innerHTML = '<div class="gc-loading"><div class="gc-spinner"></div><span>Loading...</span></div>';
-    if (_league === 'PL') {
-      container.innerHTML = buildHTML(PL_DATA);
-    } else {
-      container.innerHTML = buildHTML(WC_DATA);
+  /* ---------- tolerant field access ---------- */
+  function pick(obj, keys, fallback) {
+    for (var i = 0; i < keys.length; i++) {
+      if (obj && obj[keys[i]] !== undefined && obj[keys[i]] !== null) return obj[keys[i]];
     }
+    return fallback;
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
   }
 
-  function buildHTML(groups) {
-    var isWC = _league === 'WC';
-    var html = '<div style="padding-top:16px">';
-    if (isWC) {
-      html += '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:18px"><img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80" style="width:100%;height:100%;object-fit:cover"><div class="gc-hero-banner-overlay"><div class="gc-hero-banner-title">🏆 World Cup 2026 — All 12 Groups</div><div class="gc-hero-banner-sub">48 Teams · USA · Canada · Mexico · Starts 11 June 2026</div></div></div>';
-    } else {
-      html += '<div class="gc-hero-banner-wrap" style="height:150px;margin-bottom:18px"><img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900&q=80" style="width:100%;height:100%;object-fit:cover"><div class="gc-hero-banner-overlay"><div class="gc-hero-banner-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Table 2025/26</div><div class="gc-hero-banner-sub">✅ Final Standings — Season Complete · 24 May 2026</div></div></div>';
+  function getGroupTeams() {
+    var g = WC.groups;
+    if (!g) return [];
+    if (!Array.isArray(g) && g[GROUP]) {
+      return g[GROUP].map(function (t) {
+        return typeof t === "string" ? t : pick(t, ["name", "team", "title"], "");
+      });
     }
-    html += '<div class="gc-section-title">'+(isWC?'🏆 World Cup 2026 — Official Groups':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League Final Table 2025/26')+'</div>';
-    groups.forEach(function(g){ html += groupTable(g); });
-    if (isWC) { html += '<div class="gc-section-title" style="margin-top:28px">🗓 Knockout Stage</div>'+bracket(); }
-    html += '</div>';
-    return html;
-  }
-
-  function groupTable(g) {
-    var isWC = _league === 'WC';
-    var html = '<div class="gc-group-card"><div class="gc-group-name">'+esc(g.name)+'</div>';
-    html += '<table class="gc-table"><thead><tr><th class="gc-th-team">Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="gc-th-pts">Pts</th></tr></thead><tbody>';
-    g.entries.forEach(function(t,i){
-      var cls='';
-      if(!isWC){
-        if(i<5) cls='gc-row-qualify';
-        else if(i===5||i===6) cls='gc-row-el';
-        else if(i>=g.entries.length-3) cls='gc-row-relegate';
-      } else {
-        if(i<2) cls='gc-row-qualify';
+    if (Array.isArray(g)) {
+      var found = null;
+      for (var i = 0; i < g.length; i++) {
+        var letter = String(pick(g[i], ["group", "letter", "id", "name"], "")).toUpperCase().replace("GROUP ", "");
+        if (letter === GROUP) { found = g[i]; break; }
       }
-      html+='<tr class="gc-table-row '+cls+'"><td class="gc-td-team"><div class="gc-td-inner"><span class="gc-tbl-pos">'+(i+1)+'</span>'+(t.logo?'<img class="gc-tbl-logo" src="'+esc(t.logo)+'" alt="" onerror="this.style.display=\'none\'">':'')+'<span class="gc-tbl-name">'+esc(t.team)+'</span></div></td><td>'+t.played+'</td><td>'+t.won+'</td><td>'+t.drawn+'</td><td>'+t.lost+'</td><td>'+t.gf+'</td><td>'+t.ga+'</td><td>'+(t.gd>=0?'+':'')+t.gd+'</td><td class="gc-td-pts">'+t.pts+'</td></tr>';
-    });
-    html+='</tbody></table>';
-    if(!isWC){
-      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Champions League (1-5)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#ea580c"></span>Europa League (6-7)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#16a34a"></span>Conference League (8)</span><span class="gc-leg"><span class="gc-leg-dot" style="background:#dc2626"></span>Relegation</span></div>';
-      html+='<p style="font-size:10px;color:#94a3b8;margin-top:8px;padding:0 4px">✅ Final standings verified from BBC Sport after GW38 · 24 May 2026</p>';
-    } else {
-      html+='<div class="gc-legend"><span class="gc-leg"><span class="gc-leg-dot" style="background:#2563eb"></span>Advance to Round of 32</span></div>';
+      if (found) {
+        return (found.teams || []).map(function (t) {
+          return typeof t === "string" ? t : pick(t, ["name", "team", "title"], "");
+        });
+      }
     }
-    html+='</div>';
-    return html;
+    return [];
   }
 
-  function bracket() {
-    var rounds=[
-      {t:'Round of 32',m:[['A1','B2'],['C1','D2'],['E1','F2'],['G1','H2'],['I1','J2'],['K1','L2'],['B1','A2'],['D1','C2']]},
-      {t:'Round of 16',m:[['W1','W2'],['W3','W4'],['W5','W6'],['W7','W8']]},
-      {t:'Quarter-Finals',m:[['W9','W10'],['W11','W12']]},
-      {t:'Semi-Finals',m:[['W13','W14'],['W15','W16']]},
-      {t:'👑 Final',m:[['W SF-1','W SF-2']]}
-    ];
-    var html='<div class="gc-bracket"><div class="gc-bracket-inner">';
-    rounds.forEach(function(r){
-      html+='<div class="gc-bracket-col"><div class="gc-bracket-round-title">'+r.t+'</div>';
-      r.m.forEach(function(m){html+='<div class="gc-bracket-match gc-bracket-tbd"><div class="gc-bracket-team"><span class="gc-bracket-name">'+m[0]+'</span><span class="gc-bracket-score">-</span></div><div class="gc-bracket-team"><span class="gc-bracket-name">'+m[1]+'</span><span class="gc-bracket-score">-</span></div></div>';});
-      html+='</div>';
+  function getGroupFixtures() {
+    var sched = WC.schedule || WC.fixtures || WC.matches || [];
+    if (!Array.isArray(sched)) return [];
+    return sched.filter(function (m) {
+      var g = String(pick(m, ["group", "grp", "stage"], "")).toUpperCase().replace("GROUP ", "");
+      return g === GROUP;
     });
-    html+='</div></div>';
+  }
+
+  function teamName(m, side) {
+    var v = side === "home"
+      ? pick(m, ["home", "homeTeam", "team1", "h"], "")
+      : pick(m, ["away", "awayTeam", "team2", "a"], "");
+    return typeof v === "string" ? v : pick(v, ["name", "team"], "");
+  }
+  function score(m, side) {
+    var v = side === "home"
+      ? pick(m, ["homeScore", "scoreHome", "homeGoals", "hs"], null)
+      : pick(m, ["awayScore", "scoreAway", "awayGoals", "as"], null);
+    if (v === "" || v === null || v === undefined) return null;
+    var n = Number(v);
+    return isNaN(n) ? null : n;
+  }
+  function status(m) { return String(pick(m, ["status", "state"], "")).toUpperCase(); }
+  function isFT(m) {
+    var s = status(m);
+    if (s === "FT" || s === "FINISHED" || s === "AET" || s === "PEN") return true;
+    // Fallback: explicit finished flag
+    return pick(m, ["finished", "isFinished"], false) === true;
+  }
+  function isLive(m) {
+    var s = status(m);
+    return s === "LIVE" || s === "1H" || s === "2H" || s === "HT" || s === "ET";
+  }
+
+  function kickoffDate(m) {
+    var iso = pick(m, ["kickoffUTC", "dateUTC", "utc", "kickoff", "datetime", "dateTime", "timestamp"], null);
+    if (typeof iso === "number") { var dn = new Date(iso * (iso < 1e12 ? 1000 : 1)); if (!isNaN(dn)) return dn; }
+    if (iso) { var d = new Date(iso); if (!isNaN(d)) return d; }
+    var date = pick(m, ["date", "day"], null);
+    var time = pick(m, ["timeUTC", "time", "ko"], null);
+    if (date && time) {
+      var hasTZ = /Z|[+-]\d{2}:?\d{2}$/.test(String(time));
+      var d2 = new Date(date + "T" + time + (hasTZ ? "" : "Z"));
+      if (!isNaN(d2)) return d2;
+    }
+    if (date) { var d3 = new Date(date); if (!isNaN(d3)) return d3; }
+    return null;
+  }
+  function localDateStr(d) {
+    if (!d) return "Date TBC";
+    return d.toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  }
+  function localTimeStr(d) {
+    if (!d) return "TBC";
+    return d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+  }
+  function tzAbbr(d) {
+    if (!d) return "";
+    try {
+      var parts = new Intl.DateTimeFormat(undefined, { timeZoneName: "short" }).formatToParts(d);
+      for (var i = 0; i < parts.length; i++) if (parts[i].type === "timeZoneName") return parts[i].value;
+    } catch (e) {}
+    return "";
+  }
+
+  function flagImg(name, w, h) {
+    var src = FLAGS[name] || "";
+    if (!src) {
+      return '<span style="display:inline-block;width:' + w + 'px;height:' + h + 'px;background:rgba(0,0,0,.06);border-radius:4px"></span>';
+    }
+    return '<img src="' + esc(src) + '" alt="' + esc(name) + '" width="' + w + '" height="' + h + '" style="object-fit:cover;border-radius:4px;display:block" loading="lazy">';
+  }
+  function isHost(name) {
+    var hosts = WC.hosts || [];
+    return Array.isArray(hosts) && hosts.indexOf(name) !== -1;
+  }
+
+  /* ---------- standings (FT only) ---------- */
+  function buildStandings(teams, fixtures) {
+    var table = {};
+    teams.forEach(function (t) {
+      table[t] = { team: t, P: 0, W: 0, D: 0, L: 0, GF: 0, GA: 0, GD: 0, Pts: 0 };
+    });
+    fixtures.forEach(function (m) {
+      if (!isFT(m)) return;
+      var h = teamName(m, "home"), a = teamName(m, "away");
+      var hs = score(m, "home"), as = score(m, "away");
+      if (hs === null || as === null || !table[h] || !table[a]) return;
+      var H = table[h], A = table[a];
+      H.P++; A.P++;
+      H.GF += hs; H.GA += as;
+      A.GF += as; A.GA += hs;
+      if (hs > as) { H.W++; A.L++; H.Pts += 3; }
+      else if (hs < as) { A.W++; H.L++; A.Pts += 3; }
+      else { H.D++; A.D++; H.Pts++; A.Pts++; }
+    });
+    var rows = teams.map(function (t) { var r = table[t]; r.GD = r.GF - r.GA; return r; });
+    rows.sort(function (x, y) {
+      return (y.Pts - x.Pts) || (y.GD - x.GD) || (y.GF - x.GF) || x.team.localeCompare(y.team);
+    });
+    return rows;
+  }
+
+  /* ---------- rendering (uses existing site classes) ---------- */
+  function renderStandings(rows) {
+    var html = '<div class="gc-section-hdr">📊 Standings</div>' +
+      '<div style="overflow-x:auto;margin-bottom:24px">' +
+      '<table class="gc-standings-table"><thead><tr>' +
+      '<th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th>' +
+      '<th>GF</th><th>GA</th><th>GD</th><th>Pts</th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (r, i) {
+      var pos = i + 1;
+      var cls = pos <= 2 ? "qualified" : (pos === 3 ? "third" : "");
+      var hostBadge = isHost(r.team)
+        ? '<span style="font-size:.65rem;background:var(--gold);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px">Host</span>'
+        : "";
+      html += '<tr' + (cls ? ' class="' + cls + '"' : "") + '>' +
+        '<td><div class="gc-team-row">' + flagImg(r.team, 20, 14) +
+        '<span>' + esc(r.team) + hostBadge + '</span></div></td>' +
+        '<td>' + r.P + '</td><td>' + r.W + '</td><td>' + r.D + '</td><td>' + r.L + '</td>' +
+        '<td>' + r.GF + '</td><td>' + r.GA + '</td><td>' + (r.GD > 0 ? "+" : "") + r.GD + '</td>' +
+        '<td><strong>' + r.Pts + '</strong></td></tr>';
+    });
+    html += '</tbody></table></div>' +
+      '<p style="font-size:.72rem;color:var(--text-light);margin:-12px 0 24px">' +
+      '<span style="display:inline-block;width:12px;height:12px;background:#10b981;border-radius:2px;margin-right:4px;vertical-align:middle"></span>Qualify for Round of 32 &nbsp;&nbsp;' +
+      '<span style="display:inline-block;width:12px;height:12px;background:var(--gold);border-radius:2px;margin-right:4px;vertical-align:middle"></span>Potential best third-place' +
+      '</p>';
     return html;
   }
 
-  function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):'';};
-  return{render:render,setLeague:setLeague};
+  function renderFixtures(fixtures) {
+    var sorted = fixtures.slice().sort(function (a, b) {
+      var da = kickoffDate(a), db = kickoffDate(b);
+      return (da ? da.getTime() : 9e15) - (db ? db.getTime() : 9e15);
+    });
+    var html = '<div class="gc-section-hdr">📅 Group ' + GROUP + ' Fixtures</div>';
+    sorted.forEach(function (m) {
+      var h = teamName(m, "home"), a = teamName(m, "away");
+      var hs = score(m, "home"), as = score(m, "away");
+      var ko = kickoffDate(m);
+      var venue = pick(m, ["venue", "stadium", "city"], "");
+      var matchNo = pick(m, ["matchNumber", "match", "no", "id"], "");
+      var tv = pick(m, ["tv", "tvUK", "broadcaster"], "");
+      var ft = isFT(m), live = isLive(m);
+
+      var centre;
+      if ((ft || live) && hs !== null && as !== null) {
+        centre = '<div class="gc-match-vs" style="font-family:var(--font-heading);font-size:1.6rem;color:var(--text-dark)">' + hs + '–' + as + '</div>' +
+          (live
+            ? '<div class="gc-match-time" style="color:#dc2626">LIVE</div>'
+            : '<div class="gc-match-time"><small>FT</small></div>');
+      } else {
+        centre = '<div class="gc-match-vs">VS</div>' +
+          '<div class="gc-match-time">' + esc(localTimeStr(ko)) + ' <small>' + esc(tzAbbr(ko)) + '</small></div>';
+      }
+
+      html += '<div class="gc-match-card">' +
+        '<div class="gc-match-meta">' +
+        '<span>Group ' + GROUP + (matchNo ? ' · Match #' + esc(matchNo) : '') + (venue ? ' · 📍 ' + esc(venue) : '') + '</span>' +
+        '<span>📅 ' + esc(localDateStr(ko)) + '</span>' +
+        '</div>' +
+        '<div class="gc-match-teams">' +
+        '<div class="gc-match-team">' + flagImg(h, 64, 43) + '<div class="gc-match-name">' + esc(h) + '</div></div>' +
+        '<div class="gc-match-center">' + centre + '</div>' +
+        '<div class="gc-match-team">' + flagImg(a, 64, 43) + '<div class="gc-match-name">' + esc(a) + '</div></div>' +
+        '</div>' +
+        '<div class="gc-match-footer">' +
+        (tv ? '<div class="gc-tv-badge">📺 UK: <span class="gc-tv-pill">' + esc(tv) + '</span></div>' : '<span></span>') +
+        '<a href="/worldcup2026/fixtures/" style="font-size:.72rem;color:var(--blue);text-decoration:none;font-weight:600">Full details →</a>' +
+        '</div></div>';
+    });
+    return html;
+  }
+
+  function renderQualBox() {
+    return '<div class="gc-qual-box">' +
+      '<h3>✅ Qualification</h3>' +
+      '<p>Top 2 teams from Group ' + GROUP + ' advance to the Round of 32. The best 8 third-placed teams across all groups also advance.</p>' +
+      '</div>';
+  }
+
+  /* ---------- boot ---------- */
+  function render() {
+    var teams = getGroupTeams();
+    var fixtures = getGroupFixtures();
+    if (!teams.length) {
+      root.innerHTML = '<p style="padding:30px;text-align:center;color:var(--text-light)">Group ' + GROUP + ' data is unavailable. Please check back shortly.</p>';
+      return;
+    }
+    var subtitle = teams.map(esc).join(" · ");
+    root.innerHTML =
+      '<p style="color:var(--text-mid);font-size:.9rem;margin-bottom:20px">' + subtitle + '</p>' +
+      renderStandings(buildStandings(teams, fixtures)) +
+      renderFixtures(fixtures) +
+      renderQualBox();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", render);
+  } else {
+    render();
+  }
 })();
