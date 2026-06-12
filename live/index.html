@@ -359,7 +359,7 @@ a{text-decoration:none;color:inherit}
 // NORMAL:    /live/         — calls /api/scores?live=true, WC only, no fallback
 var IS_TEST = new URLSearchParams(window.location.search).get('test') === '1';
 
-var FLAGS={'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr','Czech Republic':'cz','Czechia':'cz','Canada':'ca','Bosnia & Herz.':'ba','Bosnia and Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa','Iceland':'is','Venezuela':'ve','Nigeria':'ng','Costa Rica':'cr','Chile':'cl','Peru':'pe','Serbia':'rs','Poland':'pl','Denmark':'dk','Romania':'ro','Hungary':'hu'};
+var FLAGS={'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr','Czech Republic':'cz','Czechia':'cz','Canada':'ca','Bosnia & Herz.':'ba','Bosnia & Herzegovina':'ba','Bosnia and Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa','Iceland':'is','Venezuela':'ve','Nigeria':'ng','Costa Rica':'cr','Chile':'cl','Peru':'pe','Serbia':'rs','Poland':'pl','Denmark':'dk','Romania':'ro','Hungary':'hu'};
 
 var COMPS={
   'WC' :{name:'FIFA World Cup 2026',emoji:'🏆',color:'#f59e0b',wc:true},
@@ -396,8 +396,12 @@ function daysPlusN(n){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
 
+var FLAGS_NORM={};
+function normName(n){return String(n||'').toLowerCase().replace(/&amp;/g,' and ').replace(/&/g,' and ').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();}
+(function(){for(var k in FLAGS)FLAGS_NORM[normName(k)]=FLAGS[k];})();
+function flagCode(name){return FLAGS[name]||FLAGS_NORM[normName(name)]||null;}
 function flagImg(name){
-  var c=FLAGS[name];
+  var c=flagCode(name);
   if(!c) return '<div class="mc-flag-fb">&#x26BD;</div>';
   return '<img class="mc-flag" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
@@ -606,7 +610,7 @@ function sortGrp(teamMap){
 }
 
 function flagSm(name){
-  var c=(window.FLAGS||{})[name];
+  var c=flagCode(name);
   if(!c) return '<span class="gs-flag-fb">⚽</span>';
   return '<img class="gs-flag-sm" src="https://flagcdn.com/w40/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
