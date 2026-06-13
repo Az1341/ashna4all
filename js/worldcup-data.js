@@ -1,7 +1,7 @@
 /**
- * GoalCurrent.live — FIFA World Cup 2026
- * ═══════════════════════════════════════════════════════════════
- * SINGLE SOURCE OF TRUTH — all data lives here.
+ * GoalCurrent.live - FIFA World Cup 2026
+ * ===============================================================
+ * SINGLE SOURCE OF TRUTH - all data lives here.
  * Every page reads ONLY from window.WC26.
  *
  * HOW TO UPDATE A RESULT (the ONLY thing you ever need to do):
@@ -13,7 +13,7 @@
  * qualification colours, sorting) is computed automatically by
  * the renderers (standings.js / groups.js) from this array.
  * You NEVER touch any renderer file to update a score.
- * ═══════════════════════════════════════════════════════════════
+ * ===============================================================
  *
  * Source: FIFA Official Draw, December 2025
  *         Fixtures: FIFA.com / BBC Sport verified (UTC)
@@ -24,7 +24,7 @@
 (function () {
   'use strict';
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      FLAG CODES  (flagcdn.com ISO alpha-2)
      Used by every renderer — never hard-code codes elsewhere.
   ───────────────────────────────────────────────────────────── */
@@ -79,7 +79,7 @@
     'Panama':               'pa'
   };
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      GROUPS  — 12 groups × 4 teams
      Renderers derive the team list from GROUPS.
      Never duplicate team names here vs SCHEDULE.
@@ -99,7 +99,7 @@
     L: ['England',     'Croatia',              'Ghana',          'Panama']
   };
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      SCHEDULE — all 104 matches (group stage + knockout)
      ─────────────────────────────────────────────────────────────
      FIELD REFERENCE
@@ -129,7 +129,7 @@
   ───────────────────────────────────────────────────────────── */
   var SCHEDULE = [
 
-    /* ── GROUP STAGE — MATCHDAY 1 ──────────────────────────── */
+    /* -- GROUP STAGE - MATCHDAY 1 ---------------------------- */
     /* To mark a result FT: add  homeScore:X, awayScore:Y, status:'FT'  */
 
     {id:  1, group:'A', home:'Mexico',              away:'South Africa',         utc:'2026-06-11T19:00:00Z', venue:'Estadio Azteca, Mexico City',                   ukBroadcaster:'ITV', stage:'Group Stage', homeScore:2, awayScore:0, status:'FT'},
@@ -141,7 +141,7 @@
     {id:  7, group:'C', home:'Haiti',               away:'Scotland',             utc:'2026-06-14T01:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage'},
     {id:  8, group:'D', home:'Australia',           away:'Türkiye',              utc:'2026-06-14T04:00:00Z', venue:'BC Place, Vancouver',                           ukBroadcaster:'ITV', stage:'Group Stage'},
 
-    /* ── GROUP STAGE — MATCHDAY 2 ──────────────────────────── */
+    /* -- GROUP STAGE - MATCHDAY 2 ---------------------------- */
     {id:  9, group:'E', home:'Germany',             away:'Curaçao',              utc:'2026-06-14T17:00:00Z', venue:'NRG Stadium, Houston',                          ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 10, group:'F', home:'Netherlands',         away:'Japan',                utc:'2026-06-14T20:00:00Z', venue:'AT&T Stadium, Dallas',                          ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 11, group:'E', home:"Côte d'Ivoire",       away:'Ecuador',              utc:'2026-06-14T23:00:00Z', venue:'Lincoln Financial Field, Philadelphia',          ukBroadcaster:'ITV', stage:'Group Stage'},
@@ -171,7 +171,7 @@
     {id: 35, group:'E', home:'Ecuador',             away:'Curaçao',              utc:'2026-06-21T00:00:00Z', venue:'Arrowhead Stadium, Kansas City',                ukBroadcaster:'BBC', stage:'Group Stage'},
     {id: 36, group:'F', home:'Tunisia',             away:'Japan',                utc:'2026-06-21T04:00:00Z', venue:'Estadio BBVA, Monterrey',                       ukBroadcaster:'BBC', stage:'Group Stage'},
 
-    /* ── GROUP STAGE — MATCHDAY 3 ──────────────────────────── */
+    /* -- GROUP STAGE - MATCHDAY 3 ---------------------------- */
     {id: 37, group:'H', home:'Spain',               away:'Saudi Arabia',         utc:'2026-06-21T16:00:00Z', venue:'Mercedes-Benz Stadium, Atlanta',                ukBroadcaster:'BBC', stage:'Group Stage'},
     {id: 38, group:'G', home:'Belgium',             away:'IR Iran',              utc:'2026-06-21T19:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 39, group:'H', home:'Uruguay',             away:'Cabo Verde',           utc:'2026-06-21T22:00:00Z', venue:'Hard Rock Stadium, Miami',                      ukBroadcaster:'BBC', stage:'Group Stage'},
@@ -209,7 +209,7 @@
     {id: 71, group:'J', home:'Algeria',             away:'Austria',              utc:'2026-06-28T02:00:00Z', venue:'Arrowhead Stadium, Kansas City',                ukBroadcaster:'BBC', stage:'Group Stage'},
     {id: 72, group:'J', home:'Jordan',              away:'Argentina',            utc:'2026-06-28T02:00:00Z', venue:'AT&T Stadium, Dallas',                          ukBroadcaster:'BBC', stage:'Group Stage'},
 
-    /* ── KNOCKOUT STAGE ─────────────────────────────────────── */
+    /* -- KNOCKOUT STAGE --------------------------------------- */
     /* Round of 32 */
     {id: 73, group:'—', home:'2A',    away:'2B',    utc:'2026-06-28T19:00:00Z', venue:'Los Angeles',          ukBroadcaster:'TBC', stage:'Round of 32'},
     {id: 74, group:'—', home:'1C',    away:'2F',    utc:'2026-06-29T17:00:00Z', venue:'Houston',              ukBroadcaster:'TBC', stage:'Round of 32'},
@@ -250,7 +250,7 @@
 
   ];
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      STANDINGS BOOTSTRAP
      Renderers call WC26.computeStandings(groupLetter) to get
      a sorted array of row objects derived live from SCHEDULE.
@@ -291,7 +291,7 @@
       return r;
     });
 
-    /* Sort: Points → GD → GF → alphabetical */
+    /* Sort: Points -> GD -> GF -> alphabetical */
     rows.sort(function (x, y) {
       return (y.pts - x.pts) || (y.gd - x.gd) || (y.gf - x.gf) ||
              x.team.localeCompare(y.team);
@@ -300,7 +300,7 @@
     return rows;
   }
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      HELPERS
   ───────────────────────────────────────────────────────────── */
   function flagImg(teamName, size) {
@@ -324,7 +324,7 @@
     return now >= kick && now <= end && m.status !== 'FT' && m.status !== 'AET' && m.status !== 'PEN';
   }
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      TV CHANNELS — auto-detected by visitor timezone
   ───────────────────────────────────────────────────────────── */
   var TV_CHANNELS = {
@@ -347,7 +347,7 @@
     return TV_CHANNELS[tz] || { channel:'Check local listings', country:'🌍 Your region' };
   }
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      VALIDATION — runs on every page load, errors to console only
   ───────────────────────────────────────────────────────────── */
   function validate() {
@@ -389,7 +389,7 @@
     return true;
   }
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      PUBLISH  window.WC26
      ─────────────────────────────────────────────────────────────
      wc-results.js merges API results into WC26.schedule at runtime.
