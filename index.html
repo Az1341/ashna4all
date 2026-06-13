@@ -43,7 +43,6 @@
   <!-- ═══ Language engine — defer: downloads in parallel, runs after DOM parsed ═══ -->
   <!-- Loaded here so GC_Lang is available when inline scripts call gcT() -->
   <script src="/js/worldcup-data.js"></script>
-  <script src="/js/gc-home-nextmatch.js" defer></script>
   <script src="/js/wc-results.js" defer></script>
   <script src="/js/gc-datetime.js"></script>
   <script src="/js/gc-lang.js" defer></script>
@@ -514,73 +513,33 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
       </div>
     </div>
     <!-- ═══ END NEWS ═════════════════════════════════════════════════════ -->
-    <!-- ═══ FIFA MATCH PREVIEW VIDEOS ═══════════════════════════════════════
-         Videos: Official FIFA WC2026 match previews
-         Lazy loaded · Responsive · RTL safe
+    <!-- ═══ FIFA MATCH PREVIEW VIDEOS — FULLY DYNAMIC ════════════════════════
+         Source: /api/videos → YouTube Data API v3 → FIFA official channel
+         Auto-updates every hour via Vercel CDN cache.
+         No manual steps — new previews appear automatically on page load.
     ═════════════════════════════════════════════════════════════════════ -->
     <div class="gc-section-label" style="margin-top:22px">
       🎥 <span data-gc-i18n="gc.matchPreviews">Official FIFA Match Previews</span>
     </div>
-    <div class="gc-video-grid">
-
-      <!-- VIDEO 1: Mexico vs South Africa — thumbnail link, NO iframe -->
-      <div class="gc-video-card">
-        <div class="gc-video-head">
-          <span>🇲🇽 Mexico vs South Africa 🇿🇦</span>
-          <span class="gc-video-badge">Group A</span>
-        </div>
-        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener" aria-label="Watch Mexico vs South Africa FIFA preview on YouTube">
-          <img src="https://img.youtube.com/vi/PhSvaIymYes/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/PhSvaIymYes/hqdefault.jpg'"
-               alt="Mexico vs South Africa — FIFA World Cup 2026 Match Preview"
-               loading="lazy" width="640" height="360">
-          <div class="gc-video-play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <span class="gc-video-duration">FIFA Official</span>
-        </a>
+    <!-- Dynamic video grid — populated by gc-videos.js on page load -->
+    <div class="gc-video-grid" id="gc-video-grid">
+      <!-- Loading skeletons — replaced by real cards when /api/videos responds -->
+      <div class="gc-video-card" style="opacity:.4">
+        <div class="gc-video-head"><span>Loading previews…</span></div>
+        <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
         <div class="gc-video-body">
-          <div class="gc-video-title">Mexico vs South Africa</div>
-          <div class="gc-video-meta">📅 Thu 11 Jun 2026 &nbsp;·&nbsp; ⏰ 20:00 BST &nbsp;·&nbsp; 🏟️ Estadio Azteca</div>
-          <div class="gc-video-desc" data-gc-i18n="gc.video1Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
-            Official FIFA World Cup 2026 match preview. Mexico open the tournament at home against South Africa in Group A.
-          </div>
-          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=PhSvaIymYes" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
-            ▶ Watch on YouTube
-          </a>
+          <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
+          <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
         </div>
       </div>
-
-      <!-- VIDEO 2: Korea Republic vs Czechia — thumbnail link, NO iframe -->
-      <div class="gc-video-card">
-        <div class="gc-video-head">
-          <span>🇰🇷 Korea Republic vs Czechia 🇨🇿</span>
-          <span class="gc-video-badge">Group A</span>
-        </div>
-        <a class="gc-video-thumb" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener" aria-label="Watch Korea Republic vs Czechia FIFA preview on YouTube">
-          <img src="https://img.youtube.com/vi/G8_qxZRpWpg/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/G8_qxZRpWpg/hqdefault.jpg'"
-               alt="Korea Republic vs Czechia — FIFA World Cup 2026 Match Preview"
-               loading="lazy" width="640" height="360">
-          <div class="gc-video-play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <span class="gc-video-duration">FIFA Official</span>
-        </a>
+      <div class="gc-video-card" style="opacity:.4">
+        <div class="gc-video-head"><span>Loading previews…</span></div>
+        <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
         <div class="gc-video-body">
-          <div class="gc-video-title">Korea Republic vs Czechia</div>
-          <div class="gc-video-meta">📅 Fri 12 Jun 2026 &nbsp;·&nbsp; ⏰ 22:00 BST &nbsp;·&nbsp; 🏟️ SoFi Stadium, LA</div>
-          <div class="gc-video-desc" data-gc-i18n="gc.video2Desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">
-            Official FIFA World Cup 2026 match preview. Korea Republic face Czechia in their Group A opener.
-          </div>
-          <a class="gc-video-btn" href="https://www.youtube.com/watch?v=G8_qxZRpWpg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
-            ▶ Watch on YouTube
-          </a>
+          <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
+          <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
         </div>
       </div>
-
     </div>
     <!-- ═══ END FIFA MATCH PREVIEW VIDEOS ═══ -->
     <!-- OPENING CEREMONIES -->
@@ -1116,6 +1075,131 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
 
   render();
   setInterval(render, 30000);   /* card flips by itself: countdown \u2192 live \u2192 result */
+})();
+</script>
+
+<script>
+/* ── DYNAMIC FIFA PREVIEW VIDEOS — fetches /api/videos on load ─────────────
+   /api/videos calls YouTube Data API v3 → FIFA channel → latest WC2026 previews
+   Vercel CDN caches response 1 hour — no quota waste, always fresh enough.
+   Fallback: shows last 2 known videos if API unavailable.
+   ─────────────────────────────────────────────────────────────────────────── */
+(function () {
+  var YT_PLAY_SVG =
+    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0">' +
+    '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2' +
+    'C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6' +
+    'a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>';
+
+  /* Known-good fallback videos — used only if /api/videos fails completely */
+  var FALLBACK = [
+    {
+      videoId: 'PhSvaIymYes',
+      title: 'Mexico vs South Africa — Match Preview',
+      description: 'Official FIFA World Cup 2026 match preview.',
+      publishedAt: '2026-06-10T00:00:00Z',
+      thumbnail: 'https://img.youtube.com/vi/PhSvaIymYes/hqdefault.jpg',
+      url: 'https://www.youtube.com/watch?v=PhSvaIymYes'
+    },
+    {
+      videoId: 'G8_qxZRpWpg',
+      title: 'Korea Republic vs Czechia — Match Preview',
+      description: 'Official FIFA World Cup 2026 match preview.',
+      publishedAt: '2026-06-11T00:00:00Z',
+      thumbnail: 'https://img.youtube.com/vi/G8_qxZRpWpg/hqdefault.jpg',
+      url: 'https://www.youtube.com/watch?v=G8_qxZRpWpg'
+    }
+  ];
+
+  function esc(v) {
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    try {
+      var d = new Date(iso);
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    } catch(e) { return ''; }
+  }
+
+  function buildCard(v) {
+    var thumb = v.thumbnail ||
+      'https://img.youtube.com/vi/' + esc(v.videoId) + '/hqdefault.jpg';
+    var fallbackThumb =
+      'https://img.youtube.com/vi/' + esc(v.videoId) + '/hqdefault.jpg';
+    var dateStr = fmtDate(v.publishedAt);
+    /* Truncate description to 120 chars */
+    var desc = v.description ? v.description.slice(0, 120) + (v.description.length > 120 ? '…' : '') : '';
+
+    return (
+      '<div class="gc-video-card">' +
+        '<div class="gc-video-head">' +
+          '<span>🎥 ' + esc(v.title) + '</span>' +
+          '<span class="gc-video-badge">FIFA Official</span>' +
+        '</div>' +
+        '<a class="gc-video-thumb" href="' + esc(v.url) + '" target="_blank" rel="noopener" ' +
+           'aria-label="Watch ' + esc(v.title) + ' on YouTube">' +
+          '<img src="' + esc(thumb) + '" ' +
+               'onerror="this.src='' + fallbackThumb + ''" ' +
+               'alt="' + esc(v.title) + '" loading="lazy" width="640" height="360">' +
+          '<div class="gc-video-play">' +
+            '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+          '</div>' +
+          '<span class="gc-video-duration">FIFA Official</span>' +
+        '</a>' +
+        '<div class="gc-video-body">' +
+          '<div class="gc-video-title">' + esc(v.title) + '</div>' +
+          (dateStr ? '<div class="gc-video-meta">📅 Published ' + esc(dateStr) + ' · ' + esc(v.channelTitle || 'FIFA') + '</div>' : '') +
+          (desc ? '<div class="gc-video-desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">' + esc(desc) + '</div>' : '') +
+          '<a class="gc-video-btn" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
+            YT_PLAY_SVG +
+            ' ▶ Watch on YouTube' +
+          '</a>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderVideos(videos) {
+    var grid = document.getElementById('gc-video-grid');
+    if (!grid) return;
+    if (!videos || !videos.length) {
+      grid.innerHTML =
+        '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-light);font-size:.85rem">' +
+        '🎥 FIFA match preview videos will appear here automatically.' +
+        '</div>';
+      return;
+    }
+    grid.innerHTML = videos.map(buildCard).join('');
+  }
+
+  function loadVideos() {
+    fetch('/api/videos', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) {
+        var videos = data.videos || [];
+        if (videos.length) {
+          renderVideos(videos);
+        } else {
+          /* API returned empty — show fallback */
+          renderVideos(FALLBACK);
+        }
+      })
+      .catch(function (err) {
+        console.warn('[GoalCurrent] /api/videos failed (' + err + ') — showing fallback videos');
+        renderVideos(FALLBACK);
+      });
+  }
+
+  /* Run on DOM ready */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadVideos);
+  } else {
+    loadVideos();
+  }
 })();
 </script>
 </body>
