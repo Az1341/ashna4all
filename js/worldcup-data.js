@@ -385,7 +385,7 @@
       errors.forEach(function (e) { console.error('[WC26 DATA ERROR] ' + e); });
       return false;
     }
-    console.info('[WC26] Validated OK — 48 teams · 12 groups · 72 group fixtures · 32 knockout fixtures');
+    console.info('[WC26] Validated OK - 48 teams, 12 groups, 72 group fixtures, 32 knockout fixtures');
     return true;
   }
 
