@@ -1,9 +1,14 @@
 // api/scores.js — GoalCurrent.live
 // api-football v3 (api-sports.io) — PRO plan
-// Endpoints: fixtures, events, lineups, statistics, players
-// WC 2026 League ID: 1 | Season: 2026
+// WC 2026: League ID 1 | Season 2026
+// Endpoints served:
+//   GET /api/scores                      → today's WC fixtures (by visitor date)
+//   GET /api/scores?date=YYYY-MM-DD      → fixtures for specific date
+//   GET /api/scores?live=true            → currently live WC fixtures
+//   GET /api/scores?results=wc           → ALL finished WC fixtures (for wc-results.js)
+//   GET /api/scores?id=FIXTURE_ID        → full match detail (events, lineups, stats, players)
 
-const API_KEY  = process.env.API_FOOTBALL_KEY;   // ← CHANGED from FOOTBALL_DATA_KEY
+const API_KEY  = process.env.API_FOOTBALL_KEY;
 const BASE_URL = 'https://v3.football.api-sports.io';
 const WC_LEAGUE  = 1;
 const WC_SEASON  = 2026;
@@ -29,23 +34,27 @@ function fmtFixture(f) {
   return {
     id:        f.fixture.id,
     date:      f.fixture.date,
+    utc:       f.fixture.date,          // alias used by wc-results.js
     timestamp: f.fixture.timestamp,
     venue:     f.fixture.venue?.name  || '',
     city:      f.fixture.venue?.city  || '',
     referee:   f.fixture.referee      || '',
     status: {
       long:    f.fixture.status.long,
-      short:   f.fixture.status.short,   // NS 1H HT 2H ET BT P FT AET PEN
-      elapsed: f.fixture.status.elapsed  // minute or null
+      short:   f.fixture.status.short,  // NS 1H HT 2H ET BT P FT AET PEN
+      elapsed: f.fixture.status.elapsed
     },
     league: {
       id:    f.league.id,
       name:  f.league.name,
       round: f.league.round
     },
-    home: { id: f.teams.home.id, name: f.teams.home.name, logo: f.teams.home.logo, winner: f.teams.home.winner },
-    away: { id: f.teams.away.id, name: f.teams.away.name, logo: f.teams.away.logo, winner: f.teams.away.winner },
-    goals:  { home: f.goals.home,              away: f.goals.away },
+    home:  { id: f.teams.home.id, name: f.teams.home.name, logo: f.teams.home.logo, winner: f.teams.home.winner },
+    away:  { id: f.teams.away.id, name: f.teams.away.name, logo: f.teams.away.logo, winner: f.teams.away.winner },
+    goals: { home: f.goals.home, away: f.goals.away },
+    // Aliases consumed by wc-results.js merge logic
+    goalsHome: f.goals.home,
+    goalsAway: f.goals.away,
     score: {
       halftime:  { home: f.score.halftime?.home,  away: f.score.halftime?.away  },
       fulltime:  { home: f.score.fulltime?.home,  away: f.score.fulltime?.away  },
@@ -57,14 +66,14 @@ function fmtFixture(f) {
 
 function fmtEvents(events) {
   return events.map(e => ({
-    time:      e.time.elapsed,
-    extra:     e.time.extra   || null,
-    team:      { id: e.team.id,   name: e.team.name },
-    player:    { id: e.player.id, name: e.player.name },
-    assist:    e.assist?.name || null,
-    type:      e.type,
-    detail:    e.detail,
-    comments:  e.comments || null
+    time:     e.time.elapsed,
+    extra:    e.time.extra   || null,
+    team:     { id: e.team.id,   name: e.team.name },
+    player:   { id: e.player.id, name: e.player.name },
+    assist:   e.assist?.name || null,
+    type:     e.type,
+    detail:   e.detail,
+    comments: e.comments || null
   }));
 }
 
@@ -127,7 +136,8 @@ function fmtPlayers(players) {
         dribbles: { attempts: s.dribbles?.attempts, success: s.dribbles?.success },
         fouls:    { drawn: s.fouls?.drawn, committed: s.fouls?.committed },
         cards:    { yellow: s.cards?.yellow, yellowred: s.cards?.yellowred, red: s.cards?.red },
-        penalty:  { won: s.penalty?.won, committed: s.penalty?.committed, scored: s.penalty?.scored, missed: s.penalty?.missed, saved: s.penalty?.saved }
+        penalty:  { won: s.penalty?.won, committed: s.penalty?.committed, scored: s.penalty?.scored,
+                    missed: s.penalty?.missed, saved: s.penalty?.saved }
       };
     })
   }));
@@ -145,8 +155,17 @@ async function getLive() {
   return raw.map(fmtFixture);
 }
 
+// Returns ALL finished WC fixtures — consumed by wc-results.js on every page
+// Cached 5 minutes at the edge (Vercel CDN) to avoid burning API quota
+async function getAllResults() {
+  const FT_STATUSES = ['FT', 'AET', 'PEN'];
+  const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&status=FT-AET-PEN`);
+  return raw
+    .filter(f => FT_STATUSES.includes(f.fixture.status.short))
+    .map(fmtFixture);
+}
+
 async function getDetail(id) {
-  /* Use allSettled so one failed endpoint doesn't kill the whole response */
   const [fixtureRes, eventsRes, lineupsRes, statsRes, playersRes] = await Promise.allSettled([
     apiFetch(`/fixtures?id=${id}`),
     apiFetch(`/fixtures/events?fixture=${id}`),
@@ -178,31 +197,49 @@ async function getDetail(id) {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Cache-Control', 'no-store');
 
-  if (!API_KEY) return res.status(500).json({ error: 'API key not configured' });
+  if (!API_KEY) return res.status(500).json({ error: 'API_FOOTBALL_KEY env var not set' });
 
-  const { id, live, date } = req.query;
+  const { id, live, date, results } = req.query;
 
   try {
+
+    // ── GET /api/scores?id=FIXTURE_ID — full match detail
     if (id) {
+      res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
       const detail = await getDetail(id);
       if (!detail) return res.status(404).json({ error: 'Match not found' });
       return res.status(200).json(detail);
     }
 
+    // ── GET /api/scores?live=true — live fixtures only
     if (live === 'true') {
+      res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
       if (!isTournamentLive()) return res.status(200).json({ matches: [], phase: 'pre-tournament' });
       const matches = await getLive();
       return res.status(200).json({ matches, phase: 'live' });
     }
 
+    // ── GET /api/scores?results=wc — ALL finished fixtures (for wc-results.js)
+    // Cached 5 min — result data changes slowly; saves API quota significantly
+    if (results === 'wc') {
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
+      const matches = await getAllResults();
+      return res.status(200).json({ matches, fetchedAt: new Date().toISOString() });
+    }
+
+    // ── GET /api/scores or /api/scores?date=YYYY-MM-DD — fixtures for a date
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
     const targetDate = date || todayUTC();
     const matches = await getByDate(targetDate);
-    return res.status(200).json({ matches, date: targetDate, phase: isTournamentLive() ? 'tournament' : 'pre-tournament' });
+    return res.status(200).json({
+      matches,
+      date: targetDate,
+      phase: isTournamentLive() ? 'tournament' : 'pre-tournament'
+    });
 
   } catch (err) {
     console.error('[scores proxy]', err.message);
-    return res.status(500).json({ error: 'Failed to fetch match data' });
+    return res.status(500).json({ error: 'Failed to fetch match data', detail: err.message });
   }
 }
