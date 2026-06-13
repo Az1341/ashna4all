@@ -1079,42 +1079,38 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
 </script>
 
 <script>
-/* ── DYNAMIC FIFA PREVIEW VIDEOS — fetches /api/videos on load ─────────────
-   /api/videos calls YouTube Data API v3 → FIFA channel → latest WC2026 previews
-   Vercel CDN caches response 1 hour — no quota waste, always fresh enough.
-   Fallback: shows last 2 known videos if API unavailable.
-   ─────────────────────────────────────────────────────────────────────────── */
 (function () {
-  var YT_PLAY_SVG =
-    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;fill:#fff;flex-shrink:0">' +
-    '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2' +
-    'C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6' +
-    'a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>';
+  'use strict';
 
-  /* Known-good fallback videos — used only if /api/videos fails completely */
+  /* Fallback videos shown if /api/videos fails */
   var FALLBACK = [
     {
       videoId: 'PhSvaIymYes',
-      title: 'Mexico vs South Africa — Match Preview',
+      title: 'Mexico vs South Africa - Match Preview',
       description: 'Official FIFA World Cup 2026 match preview.',
       publishedAt: '2026-06-10T00:00:00Z',
-      thumbnail: 'https://img.youtube.com/vi/PhSvaIymYes/hqdefault.jpg',
+      thumbnail: '',
+      channelTitle: 'FIFA',
       url: 'https://www.youtube.com/watch?v=PhSvaIymYes'
     },
     {
       videoId: 'G8_qxZRpWpg',
-      title: 'Korea Republic vs Czechia — Match Preview',
+      title: 'Korea Republic vs Czechia - Match Preview',
       description: 'Official FIFA World Cup 2026 match preview.',
       publishedAt: '2026-06-11T00:00:00Z',
-      thumbnail: 'https://img.youtube.com/vi/G8_qxZRpWpg/hqdefault.jpg',
+      thumbnail: '',
+      channelTitle: 'FIFA',
       url: 'https://www.youtube.com/watch?v=G8_qxZRpWpg'
     }
   ];
 
   function esc(v) {
     return String(v == null ? '' : v)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function fmtDate(iso) {
@@ -1122,55 +1118,58 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
     try {
       var d = new Date(iso);
       return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    } catch(e) { return ''; }
+    } catch (e) { return ''; }
   }
 
   function buildCard(v) {
-    var thumb = v.thumbnail ||
-      'https://img.youtube.com/vi/' + esc(v.videoId) + '/hqdefault.jpg';
-    var fallbackThumb =
-      'https://img.youtube.com/vi/' + esc(v.videoId) + '/hqdefault.jpg';
+    var vid = esc(v.videoId || '');
+    var url = esc(v.url || ('https://www.youtube.com/watch?v=' + vid));
+    var title = esc(v.title || 'FIFA World Cup 2026 Preview');
+    var thumb = esc(v.thumbnail || ('https://img.youtube.com/vi/' + vid + '/hqdefault.jpg'));
+    var fallback = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
     var dateStr = fmtDate(v.publishedAt);
-    /* Truncate description to 120 chars */
-    var desc = v.description ? v.description.slice(0, 120) + (v.description.length > 120 ? '…' : '') : '';
+    var channel = esc(v.channelTitle || 'FIFA');
+    var rawDesc = v.description || '';
+    var desc = esc(rawDesc.length > 120 ? rawDesc.slice(0, 120) + '...' : rawDesc);
 
-    return (
-      '<div class="gc-video-card">' +
-        '<div class="gc-video-head">' +
-          '<span>🎥 ' + esc(v.title) + '</span>' +
-          '<span class="gc-video-badge">FIFA Official</span>' +
-        '</div>' +
-        '<a class="gc-video-thumb" href="' + esc(v.url) + '" target="_blank" rel="noopener" ' +
-           'aria-label="Watch ' + esc(v.title) + ' on YouTube">' +
-          '<img src="' + esc(thumb) + '" ' +
-               'onerror="this.src='' + fallbackThumb + ''" ' +
-               'alt="' + esc(v.title) + '" loading="lazy" width="640" height="360">' +
-          '<div class="gc-video-play">' +
-            '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
-          '</div>' +
-          '<span class="gc-video-duration">FIFA Official</span>' +
-        '</a>' +
-        '<div class="gc-video-body">' +
-          '<div class="gc-video-title">' + esc(v.title) + '</div>' +
-          (dateStr ? '<div class="gc-video-meta">📅 Published ' + esc(dateStr) + ' · ' + esc(v.channelTitle || 'FIFA') + '</div>' : '') +
-          (desc ? '<div class="gc-video-desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">' + esc(desc) + '</div>' : '') +
-          '<a class="gc-video-btn" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
-            YT_PLAY_SVG +
-            ' ▶ Watch on YouTube' +
-          '</a>' +
-        '</div>' +
-      '</div>'
-    );
+    var html = '';
+    html += '<div class="gc-video-card">';
+    html +=   '<div class="gc-video-head">';
+    html +=     '<span>' + title + '</span>';
+    html +=     '<span class="gc-video-badge">FIFA Official</span>';
+    html +=   '</div>';
+    html +=   '<a class="gc-video-thumb" href="' + url + '" target="_blank" rel="noopener">';
+    html +=     '<img src="' + thumb + '" alt="' + title + '" loading="lazy" width="640" height="360"';
+    html +=       ' onerror="this.onerror=null;this.src=\'' + fallback + '\'">';
+    html +=     '<div class="gc-video-play">';
+    html +=       '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    html +=     '</div>';
+    html +=     '<span class="gc-video-duration">FIFA Official</span>';
+    html +=   '</a>';
+    html +=   '<div class="gc-video-body">';
+    html +=     '<div class="gc-video-title">' + title + '</div>';
+    if (dateStr) {
+      html += '<div class="gc-video-meta">Published ' + esc(dateStr) + ' - ' + channel + '</div>';
+    }
+    if (desc) {
+      html += '<div class="gc-video-desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">' + desc + '</div>';
+    }
+    html +=     '<a class="gc-video-btn" href="' + url + '" target="_blank" rel="noopener">';
+    html +=       '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0">';
+    html +=         '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/>';
+    html +=       '</svg>';
+    html +=       ' Watch on YouTube';
+    html +=     '</a>';
+    html +=   '</div>';
+    html += '</div>';
+    return html;
   }
 
   function renderVideos(videos) {
     var grid = document.getElementById('gc-video-grid');
     if (!grid) return;
     if (!videos || !videos.length) {
-      grid.innerHTML =
-        '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-light);font-size:.85rem">' +
-        '🎥 FIFA match preview videos will appear here automatically.' +
-        '</div>';
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-light);font-size:.85rem">FIFA match preview videos will appear here automatically.</div>';
       return;
     }
     grid.innerHTML = videos.map(buildCard).join('');
@@ -1181,20 +1180,14 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (data) {
         var videos = data.videos || [];
-        if (videos.length) {
-          renderVideos(videos);
-        } else {
-          /* API returned empty — show fallback */
-          renderVideos(FALLBACK);
-        }
+        renderVideos(videos.length ? videos : FALLBACK);
       })
       .catch(function (err) {
-        console.warn('[GoalCurrent] /api/videos failed (' + err + ') — showing fallback videos');
+        console.warn('[GoalCurrent] /api/videos failed (' + err + ') - showing fallback');
         renderVideos(FALLBACK);
       });
   }
 
-  /* Run on DOM ready */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadVideos);
   } else {
@@ -1203,4 +1196,3 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
 })();
 </script>
 </body>
-</html>
