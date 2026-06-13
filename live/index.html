@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
-<script src="/js/gc-datetime.js"></script>
+<script src="/js/worldcup-data.js"></script>
+  <script src="/js/gc-datetime.js"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
 <style>
 :root{
@@ -557,23 +558,54 @@ function renderAll(){
 
 // ── GROUP STANDINGS ──────────────────────────────────────────────────────
 
+/* WC_GROUPS — correct FIFA 2026 Official Draw
+   Keys: group LETTER ('A'–'L') — matches what _mapMatch.g now returns */
 var WC_GROUPS={
-  '1':{name:'A',teams:['Mexico','South Africa','Korea Republic','Czechia']},
-  '2':{name:'B',teams:['Canada','USA','Paraguay','Bosnia & Herz.']},
-  '3':{name:'C',teams:['Brazil','Switzerland','Germany','Egypt']},
-  '4':{name:'D',teams:['Morocco','Portugal','Uruguay','Algeria']},
-  '5':{name:'E',teams:['Spain','Japan','Senegal','Norway']},
-  '6':{name:'F',teams:['England','France','Netherlands','Iraq']},
-  '7':{name:'G',teams:['Argentina','Croatia','Venezuela','Nigeria']},
-  '8':{name:'H',teams:['Belgium','Poland','Ecuador','New Zealand']},
-  '9':{name:'I',teams:['Colombia','Austria','Cameroon','Saudi Arabia']},
-  '10':{name:'J',teams:['Turkey','Denmark','Qatar','Costa Rica']},
-  '11':{name:'K',teams:['Australia','Sweden','Uruguay','Cape Verde']},
-  '12':{name:'L',teams:['Tunisia','Ghana','Iran','Panama']}
+  'A':{name:'A',teams:['Mexico','South Africa','Korea Republic','Czechia']},
+  'B':{name:'B',teams:['Canada','Bosnia & Herzegovina','Qatar','Switzerland']},
+  'C':{name:'C',teams:['Brazil','Morocco','Haiti','Scotland']},
+  'D':{name:'D',teams:['USA','Paraguay','Australia','Türkiye']},
+  'E':{name:'E',teams:['Germany','Curaçao',"Côte d'Ivoire",'Ecuador']},
+  'F':{name:'F',teams:['Netherlands','Japan','Sweden','Tunisia']},
+  'G':{name:'G',teams:['Belgium','Egypt','IR Iran','New Zealand']},
+  'H':{name:'H',teams:['Spain','Cabo Verde','Saudi Arabia','Uruguay']},
+  'I':{name:'I',teams:['France','Senegal','Iraq','Norway']},
+  'J':{name:'J',teams:['Argentina','Algeria','Austria','Jordan']},
+  'K':{name:'K',teams:['Portugal','Congo DR','Uzbekistan','Colombia']},
+  'L':{name:'L',teams:['England','Croatia','Ghana','Panama']}
 };
 
 function calcStandings(matches){
   var tables={};
+
+  /* STEP 1: Seed from WC26.schedule manual FT results (always authoritative).
+     These are results you've confirmed in worldcup-data.js.
+     They fill in any gaps where the API hasn't returned data yet. */
+  if (window.WC26 && Array.isArray(WC26.schedule)) {
+    WC26.schedule.forEach(function(s){
+      if (s.group === '—') return;                          /* skip knockout */
+      var finished = s.status === 'FT' || s.status === 'AET' || s.status === 'PEN';
+      if (!finished || s.homeScore == null || s.awayScore == null) return;
+      var grp = s.group;
+      if (!tables[grp]) tables[grp] = {};
+      var t = tables[grp];
+      function ens(tm){ if(!t[tm]) t[tm]={p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0,form:[],live:false,seeded:false}; }
+      ens(s.home); ens(s.away);
+      /* Only seed once — API data below may overwrite */
+      var key = s.home + '|' + s.away;
+      if (t['__seeded_' + key]) return;
+      t['__seeded_' + key] = true;
+      var hg = s.homeScore, ag = s.awayScore;
+      t[s.home].p++; t[s.away].p++;
+      t[s.home].gf += hg; t[s.home].ga += ag;
+      t[s.away].gf += ag; t[s.away].ga += hg;
+      if (hg > ag){ t[s.home].w++; t[s.home].pts+=3; t[s.home].form.push('w'); t[s.away].l++; t[s.away].form.push('l'); }
+      else if (hg < ag){ t[s.away].w++; t[s.away].pts+=3; t[s.away].form.push('w'); t[s.home].l++; t[s.home].form.push('l'); }
+      else { t[s.home].d++; t[s.home].pts++; t[s.home].form.push('d'); t[s.away].d++; t[s.away].pts++; t[s.away].form.push('d'); }
+    });
+  }
+
+  /* STEP 2: Merge live API matches (may update scores in real time) */
   matches.forEach(function(m){
     var grpNum=m.g;
     if(!grpNum||!WC_GROUPS[grpNum]) return;
@@ -723,12 +755,43 @@ function _fetchDate(dateKey, forceRefresh) {
     });
 }
 
+/* _normTeam — normalise team name for fuzzy matching against WC26.schedule */
+function _normTeam(s){
+  return String(s||'').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim();
+}
+
 function _mapMatch(m) {
-  var tv = window.GC_DateTime ? GC_DateTime.buildTVDisplay() : 'BBC / ITV';
+  var homeName = (m.home && m.home.name) || 'TBD';
+  var awayName = (m.away && m.away.name) || 'TBD';
+
+  /* Look up correct group letter AND broadcaster from WC26.schedule */
+  var groupLetter = '';
+  var tv = 'TBC';
+  if (window.WC26 && Array.isArray(WC26.schedule)) {
+    var nh = _normTeam(homeName), na = _normTeam(awayName);
+    var found = null;
+    for (var si = 0; si < WC26.schedule.length; si++) {
+      var s = WC26.schedule[si];
+      if (s.group === '—') continue; /* skip knockout */
+      if (_normTeam(s.home) === nh && _normTeam(s.away) === na) { found = s; break; }
+    }
+    if (found) {
+      groupLetter = found.group || '';
+      tv = found.ukBroadcaster || 'TBC';
+    }
+  }
+
+  /* Fallback broadcaster from WC_TV map (per-team, less accurate) */
+  if (tv === 'TBC') {
+    tv = WC_TV[homeName] || WC_TV[awayName] || 'BBC / ITV';
+  }
+
   return {
     id:          m.id,
-    h:           (m.home && m.home.name) || 'TBD',
-    a:           (m.away && m.away.name) || 'TBD',
+    h:           homeName,
+    a:           awayName,
     ko:          m.date,
     comp:        'WC',
     statusShort: m.status ? m.status.short : 'NS',
@@ -736,8 +799,8 @@ function _mapMatch(m) {
     homeGoals:   m.goals  ? m.goals.home    : null,
     awayGoals:   m.goals  ? m.goals.away    : null,
     venue:       m.venue || m.city || '',
-    g:           m.league ? (m.league.round||'').replace('Group Stage - ','').replace('Group ','') : '',
-    tv:          tv
+    g:           groupLetter,   /* now 'A'–'L', matching WC_GROUPS keys */
+    tv:          tv             /* per-match correct broadcaster */
   };
 }
 
