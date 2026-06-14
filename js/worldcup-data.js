@@ -148,7 +148,7 @@
     {id: 12, group:'F', home:'Sweden',              away:'Tunisia',              utc:'2026-06-15T02:00:00Z', venue:'Estadio BBVA, Monterrey',                       ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 13, group:'H', home:'Spain',               away:'Cabo Verde',           utc:'2026-06-15T16:00:00Z', venue:'Mercedes-Benz Stadium, Atlanta',                ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 14, group:'G', home:'Belgium',             away:'Egypt',                utc:'2026-06-15T19:00:00Z', venue:'Lumen Field, Seattle',                          ukBroadcaster:'BBC', stage:'Group Stage'},
-    {id: 15, group:'G', home:'IR Iran',             away:'New Zealand',          utc:'2026-06-15T20:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'BBC', stage:'Group Stage'},
+    {id: 15, group:'G', home:'IR Iran',             away:'New Zealand',          utc:'2026-06-16T01:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'BBC', stage:'Group Stage'},
     {id: 16, group:'H', home:'Saudi Arabia',        away:'Uruguay',              utc:'2026-06-15T22:00:00Z', venue:'Hard Rock Stadium, Miami',                      ukBroadcaster:'ITV', stage:'Group Stage'},
     {id: 17, group:'I', home:'France',              away:'Senegal',              utc:'2026-06-16T19:00:00Z', venue:'MetLife Stadium, New York/New Jersey',           ukBroadcaster:'BBC', stage:'Group Stage'},
     {id: 18, group:'I', home:'Iraq',                away:'Norway',               utc:'2026-06-16T22:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage'},
