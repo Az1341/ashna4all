@@ -404,7 +404,7 @@ function flagCode(name){return FLAGS[name]||FLAGS_NORM[normName(name)]||null;}
 function flagImg(name){
   var c=flagCode(name);
   if(!c) return '<div class="mc-flag-fb">&#x26BD;</div>';
-  return '<img class="mc-flag" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
+  return '<img class="mc-flag" src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/'+c+'.svg" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<span style=\\"display:inline-flex;width:36px;height:24px;align-items:center;justify-content:center;background:#1e3a8a;border-radius:3px;font-size:14px\\">⚽</span>\')">';
 }
 
 function getStatus(m){
@@ -644,7 +644,7 @@ function sortGrp(teamMap){
 function flagSm(name){
   var c=flagCode(name);
   if(!c) return '<span class="gs-flag-fb">⚽</span>';
-  return '<img class="gs-flag-sm" src="https://flagcdn.com/w40/'+c+'.png" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
+  return '<img class="gs-flag-sm" src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/'+c+'.svg" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
 
 function renderStandings(){
