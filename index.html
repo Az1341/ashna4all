@@ -423,7 +423,7 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <!-- ═══ TODAY'S OPENING MATCH — VISUAL FOCUS OF HOMEPAGE ═══════════════ -->
     <div class="gc-opening-match" id="gc-opening-match">
       <div class="gc-om-header">
-        <span class="gc-om-badge" id="gc-om-badge">🔥 TODAY'S OPENING MATCH</span>
+        <span class="gc-om-badge" id="gc-om-badge">✅ MATCH FINISHED</span>
         <span class="gc-om-meta" id="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
       </div>
       <div class="gc-om-body">
@@ -439,20 +439,12 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
           </div>
         </div>
         <div class="gc-om-details" dir="ltr">
-          <div class="gc-om-detail">⏰ <strong id="gc-om-local-time">20:00 BST</strong> Kickoff</div>
-          <div class="gc-om-detail">🏟 <strong id="gc-om-venue">Estadio Azteca, Mexico City</strong></div>
-          <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster">ITV</strong></div>
+          <div class="gc-om-detail">⏰ <strong>20:00 BST</strong> Kickoff</div>
+          <div class="gc-om-detail">🏟 <strong>Estadio Azteca, Mexico City</strong></div>
+          <div class="gc-om-detail">📺 <strong>ITV</strong></div>
         </div>
         <div class="gc-om-ko-wrap" dir="ltr">
-          <div class="gc-om-ko-label" id="gc-om-ko-label" style="display:none">Full Time</div>
-          <div class="gc-om-ko-digits" id="gc-om-ko-digits" style="display:none">
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
-            <span class="gc-om-ko-sep">:</span>
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
-            <span class="gc-om-ko-sep">:</span>
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
-          </div>
-          <div class="gc-om-ko-started" id="gc-om-started" style="display:block">Full Time</div>
+          <div class="gc-om-ko-started" id="gc-om-started" style="display:block">✅ FULL TIME — Mexico 2–0 South Africa</div>
         </div>
         <div class="gc-om-actions">
           <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
@@ -944,34 +936,9 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
         /* Re-render the Match Centre widget with real API scores */
         renderMatches();
 
-        /* ── Update the opening match hero card (Mexico vs SA) ── */
-        var mxSA=apiMatches.find(function(m){
-          var h=(m.home&&m.home.name||'').toLowerCase();
-          var a=(m.away&&m.away.name||'').toLowerCase();
-          return h.indexOf('mexico')!==-1&&a.indexOf('south africa')!==-1;
-        });
-        if(!mxSA) return;
-        var status=mxSA.status&&mxSA.status.short||'NS';
-        var elapsed=mxSA.status&&mxSA.status.elapsed||null;
-        var gH=mxSA.goals&&mxSA.goals.home!=null?mxSA.goals.home:null;
-        var gA=mxSA.goals&&mxSA.goals.away!=null?mxSA.goals.away:null;
-        var LIVE_S=['1H','2H','HT','ET','BT','P'];
-        var FT_S=['FT','AET','PEN'];
-        var isL=LIVE_S.indexOf(status)!==-1;
-        var isFT=FT_S.indexOf(status)!==-1;
-        if(!isL&&!isFT) return; /* pre-match: leave current fixture panel unchanged */
-        var sc=(gH!==null?gH:0)+' - '+(gA!==null?gA:0);
-        var scoreEl=document.getElementById('gc-om-score');
-        var startEl=document.getElementById('gc-om-started');
-        var digEl=document.getElementById('gc-om-ko-digits');
-        var lblEl=document.getElementById('gc-om-ko-label');
-        var badEl=document.querySelector('.gc-om-badge');
-        if(scoreEl) scoreEl.textContent=sc;
-        if(digEl) digEl.style.display='none';
-        if(startEl){ startEl.style.display='block'; startEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time'; }
-        if(lblEl) lblEl.style.display='none';
-        if(badEl) badEl.textContent=isL?('LIVE '+(elapsed?elapsed+"'":'')):'Full Time';
-      }).catch(function(){});
+        /* Hero card for Mexico vs SA is static HTML (match finished 2-0).
+           No dynamic hero update needed. */
+            }).catch(function(){});
   }
   doFetch();
   setInterval(doFetch,30000); /* 30s — matches live scores page refresh rate */
