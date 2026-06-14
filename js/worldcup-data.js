@@ -306,7 +306,7 @@
   function flagImg(teamName, size) {
     size = size || 'w40';
     var code = FLAG[teamName] || 'un';
-    return '<img src="https://flagcdn.com/' + size + '/' + code + '.png" '
+    return '<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/' + code + '.svg" '
          + 'alt="' + teamName + '" '
          + 'style="height:' + (size === 'w20' ? '14' : '24') + 'px;'
          + 'border-radius:2px;vertical-align:middle;margin-right:6px">';
@@ -314,7 +314,7 @@
 
   function flagUrl(teamName) {
     var code = FLAG[teamName] || 'un';
-    return 'https://flagcdn.com/w80/' + code + '.png';
+    return 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/' + code + '.svg';
   }
 
   function isMatchLive(m) {
