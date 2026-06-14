@@ -65,28 +65,31 @@ body {
 }
 
 .teams-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: nowrap;
+  gap: 8px;
   width: 100%;
+  padding: 0 12px;
 }
 .team-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  min-width: 80px;
-  flex: 1;
-  max-width: 160px;
+  gap: 6px;
 }
-.team-flag {
-  width: 48px;
-  height: 33px;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 2px solid rgba(255,255,255,0.2);
+.team-block:first-child {
+  align-items: flex-end;
+  text-align: right;
+}
+.team-block:last-child {
+  align-items: flex-start;
+  text-align: left;
+}
+.team-flag-emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+  display: block;
 }
 .team-name {
   font-size: 18px;
@@ -469,7 +472,7 @@ body {
     <div class="match-venue" id="hd-venue"></div>
     <div class="teams-row">
       <div class="team-block">
-        <img class="team-flag" id="hd-home-flag" src="" alt="" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')"><span class="team-flag-fb" id="hd-home-flag-fb" style="display:none;width:48px;height:33px;border-radius:4px;background:#1d4ed8;align-items:center;justify-content:center;font-size:20px">⚽</span>
+        <span class="team-flag-emoji" id="hd-home-flag" aria-hidden="true"></span>
         <div class="team-name" id="hd-home-name"></div>
       </div>
       <div class="score-block">
@@ -480,7 +483,7 @@ body {
         <div class="score-pen"   id="hd-pen" style="display:none"></div>
       </div>
       <div class="team-block">
-        <img class="team-flag" id="hd-away-flag" src="" alt="" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')"><span class="team-flag-fb" id="hd-away-flag-fb" style="display:none;width:48px;height:33px;border-radius:4px;background:#1d4ed8;align-items:center;justify-content:center;font-size:20px">⚽</span>
+        <span class="team-flag-emoji" id="hd-away-flag" aria-hidden="true"></span>
         <div class="team-name" id="hd-away-name"></div>
       </div>
     </div>
@@ -541,47 +544,76 @@ body {
 </div>
 
 <script>
-// ── flag helper ──
-function flagUrl(teamName) {
+// ── flag helper — emoji flags, no CDN dependency ──
+function flagEmoji(teamName) {
+  /* Map team name → ISO 3166-1 alpha-2 code (2 chars) or special code */
   const FLAGS = {
-    /* Original entries */
-    "Mexico":"mx","South Africa":"za","Argentina":"ar","Australia":"au",
-    "Brazil":"br","England":"gb-eng","France":"fr","Germany":"de",
-    "Italy":"it","Netherlands":"nl","Portugal":"pt","Spain":"es",
-    "USA":"us","United States":"us","Canada":"ca","Morocco":"ma","Japan":"jp","South Korea":"kr",
-    "Senegal":"sn","Nigeria":"ng","Ecuador":"ec","Uruguay":"uy","Chile":"cl",
-    "Colombia":"co","Peru":"pe","Venezuela":"ve","Bolivia":"bo","Paraguay":"py",
-    "Costa Rica":"cr","Panama":"pa","Jamaica":"jm","Honduras":"hn",
-    "El Salvador":"sv","Trinidad and Tobago":"tt","Cuba":"cu",
-    "Saudi Arabia":"sa","Iran":"ir","Iraq":"iq","Qatar":"qa",
-    "Korea Republic":"kr","China PR":"cn","Indonesia":"id","Uzbekistan":"uz",
-    "New Zealand":"nz","Serbia":"rs","Croatia":"hr","Poland":"pl","Ukraine":"ua",
-    "Belgium":"be","Austria":"at","Switzerland":"ch","Sweden":"se",
-    "Denmark":"dk","Norway":"no","Czech Republic":"cz","Slovakia":"sk",
-    "Hungary":"hu","Romania":"ro","Greece":"gr","Turkey":"tr",
-    "Czechia":"cz","Ivory Coast":"ci","Ghana":"gh","Cameroon":"cm",
-    "Egypt":"eg","Algeria":"dz","Tunisia":"tn","DR Congo":"cd",
-    "Burkina Faso":"bf","Mali":"ml",
-    /* WC 2026 teams missing from original map */
-    "Curaçao":"cw","Curacao":"cw",
-    "Türkiye":"tr",
-    "IR Iran":"ir",
-    "Scotland":"gb-sct",
-    "Bosnia & Herzegovina":"ba","Bosnia & Herz.":"ba","Bosnia and Herzegovina":"ba",
-    "Cape Verde":"cv","Cabo Verde":"cv",
-    "Côte d'Ivoire":"ci","Cote d'Ivoire":"ci",
-    "Haiti":"ht",
-    "DR Congo":"cd","Congo DR":"cd",
-    "Jordan":"jo",
-    "Iceland":"is",
-    "Wales":"gb-wls",
-    "Northern Ireland":"gb-nir"
+    /* Group A */
+    'Mexico':'MX','South Africa':'ZA','Korea Republic':'KR','South Korea':'KR',
+    'Czechia':'CZ','Czech Republic':'CZ',
+    /* Group B */
+    'Canada':'CA','Bosnia & Herzegovina':'BA','Bosnia & Herz.':'BA',
+    'Bosnia and Herzegovina':'BA','Qatar':'QA','Switzerland':'CH',
+    /* Group C */
+    'Brazil':'BR','Morocco':'MA','Haiti':'HT','Scotland':'GBSCT',
+    /* Group D */
+    'USA':'US','United States':'US','Paraguay':'PY','Australia':'AU',
+    'Türkiye':'TR','Turkey':'TR',
+    /* Group E */
+    'Germany':'DE',
+    'Curaçao':'CW','Curacao':'CW','Curaçao National Team':'CW',
+    "Côte d'Ivoire":'CI',"Cote d'Ivoire":'CI','Ivory Coast':'CI',
+    'Ecuador':'EC',
+    /* Group F */
+    'Netherlands':'NL','Japan':'JP','Sweden':'SE','Tunisia':'TN',
+    /* Group G */
+    'Belgium':'BE','Egypt':'EG','IR Iran':'IR','Iran':'IR',
+    'New Zealand':'NZ',
+    /* Group H */
+    'Spain':'ES','Cape Verde':'CV','Cabo Verde':'CV',
+    'Saudi Arabia':'SA','Uruguay':'UY',
+    /* Group I */
+    'France':'FR','Senegal':'SN','Iraq':'IQ','Norway':'NO',
+    /* Group J */
+    'Argentina':'AR','Algeria':'DZ','Austria':'AT','Jordan':'JO',
+    /* Group K */
+    'Portugal':'PT','DR Congo':'CD','Congo DR':'CD',
+    'Uzbekistan':'UZ','Colombia':'CO',
+    /* Group L */
+    'England':'GBENG','Croatia':'HR','Ghana':'GH','Panama':'PA',
+    /* Others */
+    'Serbia':'RS','Poland':'PL','Denmark':'DK','Romania':'RO',
+    'Nigeria':'NG','Cameroon':'CM','Burkina Faso':'BF','Mali':'ML',
+    'Venezuela':'VE','Bolivia':'BO','Peru':'PE','Chile':'CL',
+    'Jamaica':'JM','Honduras':'HN','Costa Rica':'CR',
+    'El Salvador':'SV','Cuba':'CU','Iceland':'IS','Ukraine':'UA',
+    'Indonesia':'ID','China PR':'CN','Greece':'GR','Slovakia':'SK',
+    'Hungary':'HU','Italy':'IT','Turkey':'TR'
   };
+
+  const SPECIAL = {
+    'GBSCT': '🏴󠁧󠁢󠁳󠁣󠁴󠁿',  /* Scotland */
+    'GBENG': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',  /* England */
+  };
+
   const code = FLAGS[teamName];
-  if (code) return `https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/${code}.svg`;
-  /* Fallback: neutral flag */
-  return `https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/un.svg`;
+  if (!code) return '⚽'; /* Unknown team */
+  if (SPECIAL[code]) return SPECIAL[code];
+
+  /* Build emoji from 2-letter ISO code using Regional Indicator Symbols */
+  const OFFSET = 0x1F1E6 - 65; /* 'A' = 65 */
+  return String.fromCodePoint(
+    code.charCodeAt(0) + OFFSET,
+    code.charCodeAt(1) + OFFSET
+  );
 }
+
+/* Keep flagUrl as alias for compatibility with other code that may call it */
+function flagUrl(teamName) {
+  return flagEmoji(teamName);
+}
+
+
 
 // ── tab switching ──
 function showTab(name) {
@@ -616,10 +648,9 @@ function renderHeader(f) {
   document.getElementById('hd-venue').textContent = f.venue ? `${f.venue}, ${f.city}` : '';
   document.getElementById('hd-home-name').textContent = f.home.name;
   document.getElementById('hd-away-name').textContent = f.away.name;
-  document.getElementById('hd-home-flag').src = flagUrl(f.home.name);
-  document.getElementById('hd-home-flag').alt = f.home.name;
-  document.getElementById('hd-away-flag').src = flagUrl(f.away.name);
-  document.getElementById('hd-away-flag').alt = f.away.name;
+  /* Use emoji flag — no CDN, no img load failure */
+  document.getElementById('hd-home-flag').textContent = flagEmoji(f.home.name);
+  document.getElementById('hd-away-flag').textContent = flagEmoji(f.away.name);
 
   const gh = f.goals.home ?? '-';
   const ga = f.goals.away ?? '-';
