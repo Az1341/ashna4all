@@ -771,14 +771,26 @@ function renderMatches(){
       } else if(isLive){
         statusText=gcT('live.liveNow','LIVE');
         statusClass='live';
+        /* Guard: never show score for a match whose kickoff is in the future */
+        var liveGuard=window.WC26&&WC26.scoreGuard
+          ? WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-live')
+          : {show:ko<=now};
         var minLabel=apiStatus==='HT'?gcT('live.halfTime','HT'):(apiElapsed?apiElapsed+"'":'●');
         var minStr='<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span>';
-        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>';
+        centreHtml=liveGuard.show
+          ? '<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>'
+          : '<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">LIVE</span></div>';
       } else if(isFT){
         statusText=gcT('live.fullTime','FT');
         statusClass='finished';
+        /* Guard: never show FT score for a match whose kickoff is in the future */
+        var ftGuard=window.WC26&&WC26.scoreGuard
+          ? WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-ft')
+          : {show:ko<=now};
         var ftStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';
-        centreHtml='<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>';
+        centreHtml=ftGuard.show
+          ? '<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>'
+          : '<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">FT</span></div>';
       } else {
         /* Unknown API status — fall through to clock-based logic below */
         apiData=null;
@@ -1038,11 +1050,18 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
       startTick(new Date(p.next.utc).getTime());
     } else if (p.last) {
       setTeams(p.last);
+      var guard = (window.WC26 && WC26.scoreGuard)
+        ? WC26.scoreGuard(p.last, 'homepage-hero')
+        : { show: false };
       $('gc-om-badge').textContent = '\uD83C\uDFC1 LATEST RESULT';
-      $('gc-om-score').textContent = p.last.homeScore + ' - ' + p.last.awayScore;
+      $('gc-om-score').textContent = guard.show
+        ? (guard.home + ' - ' + guard.away)
+        : 'FT';
       digits.style.display = 'none';
       started.style.display = 'block';
-      started.textContent = 'Full Time';
+      started.textContent = guard.show
+        ? ('Full Time \u2014 ' + p.last.home + ' ' + guard.home + '\u2013' + guard.away + ' ' + p.last.away)
+        : 'Full Time';
       stopTick();
     }
   }
