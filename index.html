@@ -943,9 +943,9 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
         /* Re-render the Match Centre widget with real API scores */
         renderMatches();
 
-        /* Hero card for Mexico vs SA is static HTML (match finished 2-0).
-           No dynamic hero update needed. */
-            }).catch(function(){});
+        /* Hero card is fully dynamic — render() reads WC26.schedule automatically.
+           No manual update needed here. render() runs every 30s independently. */
+      }).catch(function(){});
   }
   doFetch();
   setInterval(doFetch,30000); /* 30s — matches live scores page refresh rate */
