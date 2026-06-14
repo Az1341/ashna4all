@@ -1318,12 +1318,16 @@ function gcOpenSidebar(){
   overlay.classList.add('active');
   hamburger.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';
 }
 function gcCloseSidebar(){
   sidebar.classList.remove('open');
   overlay.classList.remove('active');
   hamburger.classList.remove('open');
   document.body.style.overflow = '';
+
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';
 }
 
 hamburger.addEventListener('click', function(){

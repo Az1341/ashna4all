@@ -245,7 +245,7 @@
 </head>
 <body>
 
-<button class="sb-hamburger" onclick="document.getElementById('gc-sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+<button class="sb-hamburger" onclick="var s=document.getElementById('gc-sidebar');s.classList.toggle('open');this.style.display=s.classList.contains('open')?'none':'';" aria-label="Menu">☰</button>
 
 <div id="gc-app">
 
@@ -255,7 +255,7 @@
       <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
       <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
     </a>
-    <button class="sb-close-btn" id="gc-sidebar-close" onclick="document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';" aria-label="Close menu" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;z-index:10;">✕</button>
+    <button class="sb-close-btn" id="gc-sidebar-close" onclick="document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';document.querySelector('.sb-hamburger').style.display='';" aria-label="Close menu" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;z-index:10;">✕</button>
     <div class="sb-section">
       <span class="sb-section-label">Main Menu</span>
       <button class="sb-nav-link" onclick="location.href='/'"><span class="sb-nav-icon">🏠</span> Home</button>

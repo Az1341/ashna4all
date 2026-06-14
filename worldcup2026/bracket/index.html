@@ -1113,8 +1113,12 @@ a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 var sidebar=document.getElementById('gc-sidebar');
 var overlay=document.getElementById('gc-sidebar-overlay');
 var hamburger=document.getElementById('gc-hamburger');
-function gcOpenSidebar(){sidebar.classList.add('open');overlay.classList.add('active');hamburger.classList.add('open');document.body.style.overflow='hidden';}
-function gcCloseSidebar(){sidebar.classList.remove('open');overlay.classList.remove('active');hamburger.classList.remove('open');document.body.style.overflow='';}
+function gcOpenSidebar(){sidebar.classList.add('open');overlay.classList.add('active');hamburger.classList.add('open');document.body.style.overflow='hidden';
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';
+}
+function gcCloseSidebar(){sidebar.classList.remove('open');overlay.classList.remove('active');hamburger.classList.remove('open');document.body.style.overflow='';
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';
+}
 hamburger.addEventListener('click',function(){sidebar.classList.contains('open')?gcCloseSidebar():gcOpenSidebar();});
 document.getElementById('gc-sidebar-close').addEventListener('click',gcCloseSidebar);
 document.getElementById('gc-sidebar-overlay').addEventListener('click',gcCloseSidebar);

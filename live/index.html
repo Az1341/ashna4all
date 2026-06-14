@@ -956,8 +956,8 @@ function setFilter(f){
 function applySearch(){searchQuery=document.getElementById('search-input').value.toLowerCase();renderAll();}
 
 // ── SIDEBAR ───────────────────────────────────────────────────────────────
-function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';}
+function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';}
+function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';}
 document.getElementById('gc-hamburger').addEventListener('click',openSB);
 document.getElementById('gc-sidebar-close').addEventListener('click',closeSB);
 document.getElementById('gc-sidebar-overlay').addEventListener('click',closeSB);

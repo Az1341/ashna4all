@@ -411,8 +411,8 @@ async function loadNews(){
 document.getElementById('banner-time').textContent=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';
 
 /* Sidebar */
-function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';}
+function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';}
+function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';}
 document.getElementById('gc-hamburger').addEventListener('click',openSB);
 document.getElementById('gc-sidebar-close').addEventListener('click',closeSB);
 document.getElementById('gc-sidebar-overlay').addEventListener('click',closeSB);

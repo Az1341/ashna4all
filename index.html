@@ -856,11 +856,13 @@ function gcOpenSidebar(){
   document.getElementById('gc-sidebar').classList.add('open');
   document.getElementById('gc-sidebar-overlay').classList.add('open');
   document.body.style.overflow='hidden';
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';
 }
 function gcCloseSidebar(){
   document.getElementById('gc-sidebar').classList.remove('open');
   document.getElementById('gc-sidebar-overlay').classList.remove('open');
   document.body.style.overflow='';
+  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';
 }
 /* Delegated click handler — works regardless of RTL layout, language changes, or DOM reordering */
 document.addEventListener('click', function(e) {
