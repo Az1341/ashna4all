@@ -423,28 +423,35 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <!-- ═══ TODAY'S OPENING MATCH — VISUAL FOCUS OF HOMEPAGE ═══════════════ -->
     <div class="gc-opening-match" id="gc-opening-match">
       <div class="gc-om-header">
-        <span class="gc-om-badge" id="gc-om-badge">✅ MATCH FINISHED</span>
-        <span class="gc-om-meta" id="gc-om-meta">Group A &nbsp;·&nbsp; 11 June 2026</span>
+        <span class="gc-om-badge" id="gc-om-badge">⏳ Loading…</span>
+        <span class="gc-om-meta" id="gc-om-meta"></span>
       </div>
       <div class="gc-om-body">
         <div class="gc-om-matchup" dir="ltr">
           <div class="gc-om-team">
-            <div class="gc-om-flag" id="gc-om-home-flag">🇲🇽</div>
-            <div class="gc-om-teamname" id="gc-om-home-name">Mexico</div>
+            <div class="gc-om-flag" id="gc-om-home-flag">⚽</div>
+            <div class="gc-om-teamname" id="gc-om-home-name"></div>
           </div>
-          <div class="gc-om-vs" id="gc-om-score">2 - 0</div>
+          <div class="gc-om-vs" id="gc-om-score">vs</div>
           <div class="gc-om-team">
-            <div class="gc-om-flag" id="gc-om-away-flag">🇿🇦</div>
-            <div class="gc-om-teamname" id="gc-om-away-name">South Africa</div>
+            <div class="gc-om-flag" id="gc-om-away-flag">⚽</div>
+            <div class="gc-om-teamname" id="gc-om-away-name"></div>
           </div>
         </div>
         <div class="gc-om-details" dir="ltr">
-          <div class="gc-om-detail">⏰ <strong>20:00 BST</strong> Kickoff</div>
-          <div class="gc-om-detail">🏟 <strong>Estadio Azteca, Mexico City</strong></div>
-          <div class="gc-om-detail">📺 <strong>ITV</strong></div>
+          <div class="gc-om-detail">⏰ <strong id="gc-om-local-time"></strong> Kickoff</div>
+          <div class="gc-om-detail">🏟 <strong id="gc-om-venue"></strong></div>
+          <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster"></strong></div>
         </div>
         <div class="gc-om-ko-wrap" dir="ltr">
-          <div class="gc-om-ko-started" id="gc-om-started" style="display:block">✅ FULL TIME — Mexico 2–0 South Africa</div>
+          <div class="gc-om-ko-digits" id="gc-om-ko-digits" style="display:none">
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
+            <span class="gc-om-ko-sep">:</span>
+            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
+          </div>
+          <div class="gc-om-ko-started" id="gc-om-started" style="display:none"></div>
         </div>
         <div class="gc-om-actions">
           <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
