@@ -138,8 +138,8 @@
     {id:  4, group:'D', home:'USA',                 away:'Paraguay',             utc:'2026-06-13T01:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'BBC', stage:'Group Stage', homeScore:4, awayScore:1, status:'FT'},
     {id:  5, group:'B', home:'Qatar',               away:'Switzerland',          utc:'2026-06-13T19:00:00Z', venue:"Levi's Stadium, San Francisco Bay Area",         ukBroadcaster:'ITV', stage:'Group Stage'},
     {id:  6, group:'C', home:'Brazil',              away:'Morocco',              utc:'2026-06-13T22:00:00Z', venue:'MetLife Stadium, New York/New Jersey',           ukBroadcaster:'BBC', stage:'Group Stage'},
-    {id:  7, group:'C', home:'Haiti',               away:'Scotland',             utc:'2026-06-14T01:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage'},
-    {id:  8, group:'D', home:'Australia',           away:'Türkiye',              utc:'2026-06-14T04:00:00Z', venue:'BC Place, Vancouver',                           ukBroadcaster:'ITV', stage:'Group Stage'},
+    {id:  7, group:'C', home:'Haiti',               away:'Scotland',             utc:'2026-06-14T01:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage', homeScore:0, awayScore:1, status:'FT'},
+    {id:  8, group:'D', home:'Australia',           away:'Türkiye',              utc:'2026-06-14T04:00:00Z', venue:'BC Place, Vancouver',                           ukBroadcaster:'ITV', stage:'Group Stage', homeScore:2, awayScore:0, status:'FT'},
 
     /* -- GROUP STAGE - MATCHDAY 2 ---------------------------- */
     {id:  9, group:'E', home:'Germany',             away:'Curaçao',              utc:'2026-06-14T17:00:00Z', venue:'NRG Stadium, Houston',                          ukBroadcaster:'ITV', stage:'Group Stage'},
@@ -398,6 +398,60 @@
      Manual FT entries in SCHEDULE always win — wc-results.js
      never overwrites an entry that already has status:'FT'.
   ───────────────────────────────────────────────────────────── */
+
+  /* ─────────────────────────────────────────────────────────────
+     GC_SCORE_GUARD  — global score safety lock
+     Called before any score is displayed anywhere on the site.
+
+     Returns:
+       { show: true,  home: N, away: N, state: 'FT'|'LIVE'|'HT'|... }
+         → safe to display score
+       { show: false, home: null, away: null, state: 'UPCOMING' }
+         → show "vs" only, never a number
+
+     Rules enforced:
+       1. kickoff UTC must be in the past
+       2. status must be a recognised live or finished code
+       3. homeScore and awayScore must be real numbers (not null/undefined)
+       4. Logs a console warning if any rule is violated
+  ─────────────────────────────────────────────────────────────── */
+  var SCORE_LIVE_S  = { '1H':1,'HT':1,'2H':1,'ET':1,'BT':1,'P':1,'INT':1,'LIVE':1 };
+  var SCORE_FT_S    = { 'FT':1,'AET':1,'PEN':1 };
+
+  function scoreGuard(match, context) {
+    var label = context || 'unknown';
+    var now   = Date.now();
+
+    /* Rule 1: kickoff must be in the past */
+    var ko = match.utc ? new Date(match.utc).getTime() : 0;
+    if (ko > now) {
+      console.warn('[GC SCORE GUARD BLOCKED] Future match attempted to show score',
+        label, match.home, 'vs', match.away, match.utc);
+      return { show: false, home: null, away: null, state: 'UPCOMING' };
+    }
+
+    var st = match.status || '';
+
+    /* Rule 2: status must be live or finished */
+    if (!SCORE_LIVE_S[st] && !SCORE_FT_S[st]) {
+      if (st) {
+        console.warn('[GC SCORE GUARD BLOCKED] Unrecognised status', label, st,
+          match.home, 'vs', match.away);
+      }
+      return { show: false, home: null, away: null, state: 'UPCOMING' };
+    }
+
+    /* Rule 3: scores must be real numbers */
+    var h = match.homeScore, a = match.awayScore;
+    if (typeof h !== 'number' || typeof a !== 'number' || isNaN(h) || isNaN(a)) {
+      console.warn('[GC SCORE GUARD BLOCKED] Missing or non-numeric score', label,
+        match.home, 'vs', match.away, 'homeScore='+h, 'awayScore='+a);
+      return { show: false, home: null, away: null, state: st || 'UPCOMING' };
+    }
+
+    return { show: true, home: h, away: a, state: st };
+  }
+
   window.WC26 = {
     lastUpdated      : '2026-06-13',
     source           : 'FIFA Official Draw Dec 2025 · FIFA.com fixtures · FIFA.com match centre results',
@@ -411,7 +465,8 @@
     isMatchLive      : isMatchLive,
     flagImg          : flagImg,
     flagUrl          : flagUrl,
-    validate         : validate
+    validate         : validate,
+    scoreGuard       : scoreGuard
   };
 
   validate();
