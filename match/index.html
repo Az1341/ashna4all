@@ -48,7 +48,7 @@ body {
 .match-header {
   background: linear-gradient(135deg, #001a4d, #002b80);
   color: #fff;
-  padding: 32px 20px 24px;
+  padding: 16px 20px 20px;
   text-align: center;
 }
 .match-round {
@@ -56,12 +56,12 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #93c5fd;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .match-venue {
   font-size: 0.85rem;
   color: #bfdbfe;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 
 .teams-row {
@@ -578,10 +578,9 @@ function flagUrl(teamName) {
     "Northern Ireland":"gb-nir"
   };
   const code = FLAGS[teamName];
-  if (code) return `https://flagcdn.com/32x24/${code}.png`;
-  /* Safe fallback: text initials, no broken image icon */
-  const initials = teamName ? teamName.slice(0,2).toUpperCase() : '??';
-  return `https://flagcdn.com/32x24/un.png`;
+  if (code) return `https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/${code}.svg`;
+  /* Fallback: neutral flag */
+  return `https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/un.svg`;
 }
 
 // ── tab switching ──
