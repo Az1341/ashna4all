@@ -239,18 +239,30 @@
 
       var centreHTML;
       if (live && showHg !== null && showAg !== null) {
-        centreHTML =
-          '<div class="gc-match-vs" style="font-family:var(--font-heading);font-size:1.6rem;color:var(--text-dark)">' +
-          showHg + '-' + showAg + '</div>' +
-          '<div class="gc-match-time" style="color:#dc2626;font-weight:800">' +
-          '<span style="display:inline-block;width:8px;height:8px;background:#dc2626;' +
-          'border-radius:50%;margin-right:4px;animation:gc-pulse 1s infinite"></span>' +
-          'LIVE ' + esc(elapsed) + '</div>';
+        var liveGrd = window.WC26 && WC26.scoreGuard
+          ? WC26.scoreGuard({ utc: m.utc, status: lm.status, homeScore: showHg, awayScore: showAg }, 'groups-live')
+          : { show: ko && ko.getTime() <= Date.now() };
+        centreHTML = liveGrd.show
+          ? '<div class="gc-match-vs" style="font-family:var(--font-heading);font-size:1.6rem;color:var(--text-dark)">' +
+            showHg + '-' + showAg + '</div>' +
+            '<div class="gc-match-time" style="color:#dc2626;font-weight:800">' +
+            '<span style="display:inline-block;width:8px;height:8px;background:#dc2626;' +
+            'border-radius:50%;margin-right:4px;animation:gc-pulse 1s infinite"></span>' +
+            'LIVE ' + esc(elapsed) + '</div>'
+          : '<div class="gc-match-vs">VS</div>' +
+            '<div class="gc-match-time">' + esc(localTimeStr(ko)) +
+            ' <small>' + esc(tzAbbr(ko)) + '</small></div>';
       } else if (ft && showHg !== null && showAg !== null) {
-        centreHTML =
-          '<div class="gc-match-vs" style="font-family:var(--font-heading);font-size:1.6rem;color:var(--text-dark)">' +
-          showHg + '-' + showAg + '</div>' +
-          '<div class="gc-match-time"><small>FT</small></div>';
+        var ftGrd = window.WC26 && WC26.scoreGuard
+          ? WC26.scoreGuard({ utc: m.utc, status: m.status, homeScore: showHg, awayScore: showAg }, 'groups-ft')
+          : { show: ko && ko.getTime() <= Date.now() };
+        centreHTML = ftGrd.show
+          ? '<div class="gc-match-vs" style="font-family:var(--font-heading);font-size:1.6rem;color:var(--text-dark)">' +
+            showHg + '-' + showAg + '</div>' +
+            '<div class="gc-match-time"><small>FT</small></div>'
+          : '<div class="gc-match-vs">VS</div>' +
+            '<div class="gc-match-time">' + esc(localTimeStr(ko)) +
+            ' <small>' + esc(tzAbbr(ko)) + '</small></div>';
       } else {
         centreHTML =
           '<div class="gc-match-vs">VS</div>' +
