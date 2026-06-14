@@ -124,6 +124,16 @@
       var f = extractFields(fx);
       if (FINISHED.indexOf(f.statusShort) === -1) return;
       if (f.goalsHome == null || f.goalsAway == null) return;
+      /* Use global scoreGuard — covers future-match protection + status validation */
+      if (window.WC26 && WC26.scoreGuard) {
+        var g = WC26.scoreGuard({
+          utc: f.utcStr, status: f.statusShort,
+          homeScore: Number(f.goalsHome), awayScore: Number(f.goalsAway)
+        }, 'wc-results-merge');
+        if (!g.show) return;
+      } else if (f.utcStr && new Date(f.utcStr).getTime() > Date.now()) {
+        return; /* fallback: never write FT if kickoff is in the future */
+      }
       var m = findEntry(f.homeName, f.awayName, f.utcStr);
       if (!m) {
         console.warn('[WC results] no schedule entry for:', f.homeName, 'vs', f.awayName);
@@ -133,7 +143,7 @@
       if (m.status === 'FT' || m.status === 'AET' || m.status === 'PEN') return;
       m.homeScore = Number(f.goalsHome);
       m.awayScore = Number(f.goalsAway);
-      m.status    = f.statusShort; /* FT | AET | PEN */
+      m.status    = f.statusShort;
       changed++;
     });
     return changed;
