@@ -1,0 +1,27 @@
+GOALCURRENT CLEAN FIX VERIFICATION
+
+1. GLOBAL SIDEBAR
+- HTML pages audited: 47
+- Global sidebar CSS/JS loaded on pages: 47
+- Sidebar-specific fixed-position CSS blocks remaining: 1
+- The active sidebar implementation uses body.gc-flow-shell and #gc-sidebar position:relative, not fixed or sticky.
+- X close and collapse/expand behaviour are implemented in js/gc-flow-sidebar-counter.js.
+
+2. HOMEPAGE GAME COUNTER
+- Games Left to Play widget injection present: True
+- Test button present: True
+- Counter deducts immediately by incrementing played count and recalculating games left.
+
+3. /worldcup2026/groups/ OVERVIEW
+- All 12 group keys A-L present in groups overview logic: True
+- Group overview card CSS present: True
+
+4. FLAGS
+- Homepage flag image restoration present: True
+- Groups overview flag images present: True
+- This package restores flag image rendering where the homepage match card previously showed ES/CV initials.
+
+Changed files cleaned for old sidebar fixed CSS: 39
+
+SIDEBAR FIXED BLOCKS STILL FOUND:
+js/gc-shared.js:   /* ── SIDEBAR ── */ .gc-sidebar{   width:var(--sb-w);   background:linear-gradient(180deg,#07111f,#0b1628);   height:100vh;position:fixed;top:0;left:0;   display:flex;flex-direct

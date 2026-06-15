@@ -71,8 +71,8 @@ html, body {
 
 /* ─── SIDEBAR ─── */
 #gc-sidebar {
-  position: fixed;
-  top: 0; left: 0; bottom: 0;
+  position:relative;
+    
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
   z-index: 1000;
@@ -857,11 +857,15 @@ html, body {
 <style id="gc-no-hard-hide">
 a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </style>
+<<<<<<< HEAD
 <!-- Phase 1 shared foundation -->
 <link rel="stylesheet" href="/css/gc-match-row.css">
 <script src="/js/gc-flags.js"></script>
 <script src="/js/gc-favourites.js"></script>
 <script src="/js/gc-shell.js"></script>
+=======
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
+>>>>>>> c55b400f76239a06b5a4891f928ba408954f64ea
 </head>
 <body>
 
@@ -1048,10 +1052,14 @@ function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=docume
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
 </script>
+<<<<<<< HEAD
 <script>
   if (window.GCShell) {
     GCShell.init({ contentSelector:'#gc-page-content', section:'worldcup2026', showSubnav:true, headerTitle:'World Cup 2026', headerSubtitle:'Overview' });
   }
 </script>
+=======
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
+>>>>>>> c55b400f76239a06b5a4891f928ba408954f64ea
 </body>
 </html>

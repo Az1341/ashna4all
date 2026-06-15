@@ -1,0 +1,24 @@
+FINAL TARGETED AUDIT - SIDEBAR / COUNTER / GROUPS / FLAGS
+
+Scope applied:
+1. Sidebar layout fixed globally by replacing the flow-sidebar CSS/JS files.
+2. No changes were made to /worldcup2026/groups/index.html content/cards in this patch.
+3. Homepage counter is injected beside the hosts/stat area with a test deduction button.
+4. World Cup internal pages with the metrics row also receive a compact Games Left counter.
+5. Homepage match-card flags are forced back to real flag images after the existing page script runs.
+
+Sidebar implementation:
+- Desktop: body.gc-flow-shell uses display:flex.
+- Sidebar is in normal page flow and uses position:sticky, not position:fixed.
+- Main content starts at the top beside the sidebar; no blank vertical gap.
+- Collapse button shrinks sidebar to icons only.
+- X button hides the sidebar.
+- Existing hamburger/menu buttons are rewired to reopen/collapse sidebar.
+
+Files changed in this patch:
+- /css/gc-flow-sidebar-counter.css
+- /js/gc-flow-sidebar-counter.js
+- /SIDEBAR-COUNTER-FINAL-AUDIT.txt
+
+Important note:
+- The Groups index page cards were preserved as requested.

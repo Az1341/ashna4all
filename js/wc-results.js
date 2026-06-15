@@ -1,7 +1,29 @@
+/* /js/wc-live-poll.js - GoalCurrent.live
+ * ============================================================
+ * Live match poller - polls /api/scores every 30s for
+ * in-progress WC2026 matches and maintains window.WC26_LIVE:
+ * a flat map of { "Home|Away": { hg, ag, elapsed, status } }
+ *
+ * NEVER writes to WC26.schedule (manual data is sacred).
+ * Instead renderers check WC26_LIVE first, then WC26.schedule.
+ *
+ * Calls window.renderStandings() and window.renderGroup()
+ * after every poll that returns data changes.
+ *
+ * Load order: worldcup-data.js -> renderer -> wc-live-poll.js
+ * ============================================================ */
 (function () {
   'use strict';
+
   if (!window.WC26 || !Array.isArray(WC26.schedule)) return;
 
+  /* Live overlay - keyed by canonical "Home|Away" string */
+  window.WC26_LIVE = window.WC26_LIVE || {};
+
+  var LIVE_STATUSES = { '1H':1,'HT':1,'2H':1,'ET':1,'BT':1,'P':1,'INT':1,'LIVE':1 };
+  var FT_STATUSES   = { 'FT':1,'AET':1,'PEN':1 };
+
+  /* Name normaliser - same logic as wc-results.js */
   var NAME_MAP = {
     'south korea':            'Korea Republic',
     'korea republic':         'Korea Republic',
@@ -25,196 +47,107 @@
     'iran':                   'IR Iran'
   };
 
-  function norm(n) {
-    return String(n || '').toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z ]/g, ' ').replace(/\s+/g, ' ').trim();
-  }
-
   var LOOKUP = {};
-  Object.keys(NAME_MAP).forEach(function (k) { LOOKUP[norm(k)] = NAME_MAP[k]; });
+  Object.keys(NAME_MAP).forEach(function (k) {
+    LOOKUP[k.toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim()] = NAME_MAP[k];
+  });
   Object.keys(WC26.flags || {}).forEach(function (name) {
-    if (!LOOKUP[norm(name)]) LOOKUP[norm(name)] = name;
+    var key = name.toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+    if (!LOOKUP[key]) LOOKUP[key] = name;
   });
 
-  function canon(apiName) { return LOOKUP[norm(apiName)] || null; }
-
-  var FINISHED = ['FT', 'AET', 'PEN'];
-  var LIVE_ST  = {'1H':1,'HT':1,'2H':1,'ET':1,'BT':1,'P':1,'INT':1,'LIVE':1};
-
-  /* Extract fields defensively — handles BOTH old and new api/scores.js shapes */
-  function extractFields(fx) {
-    /* status: object {short,elapsed} or plain string */
-    var statusShort, elapsed, goalsHome, goalsAway, utcStr, homeName, awayName;
-
-    if (fx.status && typeof fx.status === 'object') {
-      statusShort = fx.status.short || '';
-      elapsed     = fx.status.elapsed || null;
-    } else {
-      statusShort = String(fx.status || '');
-      elapsed     = null;
-    }
-
-    /* goals: {home,away} object or top-level goalsHome/goalsAway */
-    if (fx.goals && typeof fx.goals === 'object') {
-      goalsHome = fx.goals.home;
-      goalsAway = fx.goals.away;
-    } else {
-      goalsHome = fx.goalsHome != null ? fx.goalsHome : null;
-      goalsAway = fx.goalsAway != null ? fx.goalsAway : null;
-    }
-
-    /* fulltime score fallback when goals object is null mid-match */
-    if ((goalsHome == null || goalsAway == null) &&
-        fx.score && fx.score.fulltime) {
-      if (fx.score.fulltime.home != null) goalsHome = fx.score.fulltime.home;
-      if (fx.score.fulltime.away != null) goalsAway = fx.score.fulltime.away;
-    }
-
-    /* UTC: prefer fx.utc alias, then fx.date, then reconstruct from timestamp */
-    utcStr = fx.utc || fx.date || null;
-    if (!utcStr && fx.timestamp) {
-      utcStr = new Date(fx.timestamp * 1000).toISOString();
-    }
-
-    /* team names: object {name} or plain string */
-    homeName = (fx.home && typeof fx.home === 'object') ? fx.home.name : String(fx.home || '');
-    awayName = (fx.away && typeof fx.away === 'object') ? fx.away.name : String(fx.away || '');
-
-    return { statusShort:statusShort, elapsed:elapsed,
-             goalsHome:goalsHome, goalsAway:goalsAway,
-             utcStr:utcStr, homeName:homeName, awayName:awayName };
+  function canon(apiName) {
+    var key = String(apiName || '').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+    return LOOKUP[key] || null;
   }
 
-  /* Find matching WC26.schedule entry.
-     Strategy 1: UTC time window + one team name match.
-     Strategy 2: both team names match regardless of time (handles clock drift). */
-  function findEntry(homeName, awayName, utcStr) {
-    var h = canon(homeName);
-    var a = canon(awayName);
-
-    /* Strategy 2 first — most reliable when both names resolve */
-    if (h && a) {
-      for (var i = 0; i < WC26.schedule.length; i++) {
-        var m = WC26.schedule[i];
-        if (m.home === h && m.away === a) return m;
-      }
+  /* Find matching entry in WC26.schedule by team names */
+  function findSchedule(homeName, awayName) {
+    var h = canon(homeName), a = canon(awayName);
+    if (!h || !a) return null;
+    for (var i = 0; i < WC26.schedule.length; i++) {
+      var m = WC26.schedule[i];
+      if (m.home === h && m.away === a) return m;
     }
-
-    /* Strategy 1 — time window + one team */
-    if (utcStr) {
-      var kick = new Date(utcStr).getTime();
-      if (!isNaN(kick)) {
-        for (var j = 0; j < WC26.schedule.length; j++) {
-          var s = WC26.schedule[j];
-          var t = new Date(s.utc).getTime();
-          if (Math.abs(t - kick) > 3 * 3600 * 1000) continue;
-          if ((h && s.home === h) || (a && s.away === a)) return s;
-        }
-      }
-    }
-
     return null;
   }
 
-  /* Merge finished results into WC26.schedule */
-  function mergeFinished(fixtures) {
-    var changed = 0;
-    fixtures.forEach(function (fx) {
-      var f = extractFields(fx);
-      if (FINISHED.indexOf(f.statusShort) === -1) return;
-      if (f.goalsHome == null || f.goalsAway == null) return;
-      /* Use global scoreGuard — covers future-match protection + status validation */
-      if (window.WC26 && WC26.scoreGuard) {
-        var g = WC26.scoreGuard({
-          utc: f.utcStr, status: f.statusShort,
-          homeScore: Number(f.goalsHome), awayScore: Number(f.goalsAway)
-        }, 'wc-results-merge');
-        if (!g.show) return;
-      } else if (f.utcStr && new Date(f.utcStr).getTime() > Date.now()) {
-        return; /* fallback: never write FT if kickoff is in the future */
-      }
-      var m = findEntry(f.homeName, f.awayName, f.utcStr);
-      if (!m) {
-        console.warn('[WC results] no schedule entry for:', f.homeName, 'vs', f.awayName);
-        return;
-      }
-      /* Manual FT entry in worldcup-data.js always wins */
-      if (m.status === 'FT' || m.status === 'AET' || m.status === 'PEN') return;
-      m.homeScore = Number(f.goalsHome);
-      m.awayScore = Number(f.goalsAway);
-      m.status    = f.statusShort;
-      changed++;
-    });
-    return changed;
-  }
+  function liveKey(h, a) { return h + '|' + a; }
 
-  /* Merge live/in-progress matches into WC26_LIVE overlay */
-  function mergeLive(fixtures) {
-    var overlay = window.WC26_LIVE = window.WC26_LIVE || {};
-    fixtures.forEach(function (fx) {
-      var f = extractFields(fx);
-      if (!LIVE_ST[f.statusShort]) return;
-      var m = findEntry(f.homeName, f.awayName, f.utcStr);
-      if (!m) return;
-      var key = m.home + '|' + m.away;
-      overlay[key] = {
-        home:    m.home,
-        away:    m.away,
-        group:   m.group,
-        hg:      f.goalsHome,
-        ag:      f.goalsAway,
-        elapsed: f.elapsed,
-        status:  f.statusShort,
-        live:    true,
-        ft:      false
-      };
-    });
-  }
-
-  /* Remove ended matches from live overlay */
-  function cleanLiveOverlay(fixtures) {
-    var overlay = window.WC26_LIVE || {};
-    fixtures.forEach(function (fx) {
-      var f = extractFields(fx);
-      if (FINISHED.indexOf(f.statusShort) === -1) return;
-      var m = findEntry(f.homeName, f.awayName, f.utcStr);
-      if (!m) return;
-      var key = m.home + '|' + m.away;
-      delete overlay[key];
-    });
-  }
-
-  function rerender() {
-    if (typeof window.renderStandings === 'function') window.renderStandings();
-    if (typeof window.renderGroup     === 'function') window.renderGroup();
-    if (typeof window.renderFixtures  === 'function') window.renderFixtures();
-    if (typeof window.renderLivePage  === 'function') window.renderLivePage();
-  }
+  var _lastHash = '';
 
   function poll() {
-    fetch('/api/scores?results=wc', { cache: 'no-store' })
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
+    fetch('/api/scores?live=true', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (data) {
         var matches = data.matches || [];
-        mergeLive(matches);
-        cleanLiveOverlay(matches);
-        var n = mergeFinished(matches);
-        if (n > 0) {
-          console.info('[WC results] merged ' + n + ' new FT result(s)');
+        var newLive = {};
+        var hasFT   = false;
+
+        matches.forEach(function (m) {
+          var statusShort = (m.status && m.status.short) || '';
+          var homeName    = (m.home && m.home.name) || '';
+          var awayName    = (m.away && m.away.name) || '';
+          var sched       = findSchedule(homeName, awayName);
+          if (!sched) return;
+
+          var hg = (m.goals && m.goals.home != null) ? m.goals.home : null;
+          var ag = (m.goals && m.goals.away != null) ? m.goals.away : null;
+          var elapsed = (m.status && m.status.elapsed) || null;
+          var key = liveKey(sched.home, sched.away);
+
+          if (LIVE_STATUSES[statusShort]) {
+            newLive[key] = {
+              home:    sched.home,
+              away:    sched.away,
+              group:   sched.group,
+              hg:      hg,
+              ag:      ag,
+              elapsed: elapsed,
+              status:  statusShort,
+              live:    true,
+              ft:      false
+            };
+          } else if (FT_STATUSES[statusShort]) {
+            /* FT from live endpoint - update WC26.schedule if not already FT */
+            if (sched.status !== 'FT' && sched.status !== 'AET' && sched.status !== 'PEN') {
+              if (hg !== null && ag !== null) {
+                sched.homeScore = Number(hg);
+                sched.awayScore = Number(ag);
+                sched.status    = statusShort;
+                hasFT = true;
+              }
+            }
+          }
+        });
+
+        /* Detect changes */
+        var newHash = JSON.stringify(newLive);
+        var changed = (newHash !== _lastHash) || hasFT;
+        _lastHash = newHash;
+
+        /* Update global live overlay */
+        window.WC26_LIVE = newLive;
+
+        if (changed) {
+          if (typeof window.renderStandings === 'function') window.renderStandings();
+          if (typeof window.renderGroup     === 'function') window.renderGroup();
+          if (typeof window.renderLivePage  === 'function') window.renderLivePage();
+          if (typeof window.renderMatches   === 'function') window.renderMatches();
         }
-        /* Always re-render — live overlay may have changed even if no new FT */
-        rerender();
       })
       .catch(function (e) {
-        console.warn('[WC results] poll failed:', e.message);
+        console.warn('[WC Live Poll] fetch failed:', e);
       });
   }
 
+  /* Poll every 30 seconds. First call on load. */
   poll();
-  setInterval(poll, 60000);
+  setInterval(poll, 30000);
+
+  /* Expose for manual trigger */
+  window.WC26_pollLive = poll;
 
 })();
