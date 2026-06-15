@@ -947,20 +947,22 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
     var liveReq=fetch('/api/scores?live=true',{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {matches:[]};});
 
     Promise.all([dateReq,liveReq]).then(function(results){
-      var dateMathces=results[0].matches||[];
+      var dateMatches=results[0].matches||[];
       var liveMatches=results[1].matches||[];
 
-      /* Merge: live data wins over date data for same fixture */
-      var liveIds={};
-      liveMatches.forEach(function(m){ if(m.fixture&&m.fixture.id) liveIds[m.fixture.id]=m; });
+      /* Build a map of live matches by their API fixture id (top-level m.id) */
+      var liveById={};
+      liveMatches.forEach(function(m){ if(m.id) liveById[m.id]=m; });
 
-      var apiMatches=dateMathces.map(function(m){
-        return (m.fixture&&liveIds[m.fixture.id]) ? liveIds[m.fixture.id] : m;
+      /* Start with date matches, replace any that are now live with live data */
+      var apiMatches=dateMatches.map(function(m){
+        return (m.id && liveById[m.id]) ? liveById[m.id] : m;
       });
-      /* Add any live matches not in date results */
-      liveMatches.forEach(function(m){
-        if(m.fixture&&!apiMatches.find(function(x){return x.fixture&&x.fixture.id===m.fixture.id;})){
-          apiMatches.push(m);
+
+      /* Add any live matches not already in date results */
+      liveMatches.forEach(function(lm){
+        if(!dateMatches.find(function(dm){ return dm.id===lm.id; })){
+          apiMatches.push(lm);
         }
       });
 
