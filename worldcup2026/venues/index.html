@@ -1158,16 +1158,10 @@ function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim(
       .filter(function(m){return m.group&&m.group!=='\u2014';})
       .map(function(m){return {id:m.id,h:m.home,a:m.away,utc:m.utc};});
     var now=new Date();
-    var preStart=new Date('2026-06-10T00:00:00Z');
     var tourneyStart=new Date('2026-06-11T19:00:00Z');
-    function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
-    if(now>=preStart&&now<tourneyStart&&!sessionStorage.getItem('gc_wc_pre')){
-      sessionStorage.setItem('gc_wc_pre','1');
-      var first=MATCHES[0];
-      titleEl.textContent='World Cup 2026 Starts Tomorrow!';
-      bodyEl.innerHTML='<p style="margin:8px 0">The FIFA World Cup kicks off <strong>11 June 2026</strong>.</p>'+(first?'<p style="margin:4px 0">First match: <strong>'+first.h+' vs '+first.a+'</strong> '+bst(first.utc)+'</p>':'')+'<a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
-      setTimeout(function(){el.classList.add('show');},2000);
-      return;
+    function bst(u){
+      if(window.GC_DateTime&&GC_DateTime.formatLocalKickoff)return GC_DateTime.formatLocalKickoff(u);
+      return new Date(u).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'})+' BST';
     }
     if(now>=tourneyStart){
       var shown=localStorage.getItem('gc_wc_match_popup');

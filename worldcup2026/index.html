@@ -996,7 +996,7 @@ function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim(
       .map(function(m){return {id:m.id,h:m.home,a:m.away,utc:m.utc};});
     var now=new Date();
     var tourneyStart=new Date('2026-06-11T19:00:00Z');
-    function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
+    function bst(u){if(window.GC_DateTime&&GC_DateTime.formatLocalKickoff)return GC_DateTime.formatLocalKickoff(u);return new Date(u).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'})+' BST';}
     if(now>=tourneyStart){
       var shown=localStorage.getItem('gc_wc_match_popup');
       var next=MATCHES.find(function(m){var k=new Date(m.utc);return String(m.id)!==shown&&now<k&&(k-now)<10800000;});
