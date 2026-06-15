@@ -995,10 +995,26 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
     return { live: live, next: next, last: last };
   }
 
+  /* Image flags (flag-icons SVG) render consistently everywhere, including
+     Windows, which does not draw regional-indicator emoji as flags. Falls
+     back to the emoji if the SVG fails to load. */
+  function setFlag(elId, team) {
+    var el = $(elId); if (!el) return;
+    var url = (WC26.flagUrl) ? WC26.flagUrl(team) : '';
+    if (!url) { el.textContent = flagEmoji(team); return; }
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = team;
+    img.style.cssText = 'width:48px;height:36px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.25)';
+    img.onerror = function () { el.textContent = flagEmoji(team); };
+    el.textContent = '';
+    el.appendChild(img);
+  }
+
   function setTeams(m) {
-    $('gc-om-home-flag').textContent = flagEmoji(m.home);
+    setFlag('gc-om-home-flag', m.home);
     $('gc-om-home-name').textContent = m.home;
-    $('gc-om-away-flag').textContent = flagEmoji(m.away);
+    setFlag('gc-om-away-flag', m.away);
     $('gc-om-away-name').textContent = m.away;
     var d = new Date(m.utc);
     $('gc-om-meta').innerHTML = (m.group ? 'Group ' + m.group : (m.stage || '')) + ' &nbsp;\u00B7&nbsp; ' + fmtDate(d);
