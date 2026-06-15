@@ -1394,6 +1394,7 @@ a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
         }, 0) || 48;
         var venuesCount = Array.isArray(WC.schedule)
           ? Object.keys((WC.schedule || []).reduce(function (map, match) {
+              if (match.group === '—') return map;
               if (match.venue) map[match.venue] = true;
               return map;
             }, {})).length
