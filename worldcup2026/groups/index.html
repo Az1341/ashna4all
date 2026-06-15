@@ -469,6 +469,16 @@ html, body {
 }
 .gc-group-label a:hover { border-color: var(--blue); color: var(--blue); }
 
+.gc-standings-table{width:100%;border-collapse:collapse;background:var(--card-bg);backdrop-filter:blur(12px);border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(37,99,235,.08);margin-bottom:8px}
+.gc-standings-table th{background:var(--blue);color:#fff;padding:10px 12px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.gc-standings-table th:first-child{text-align:left;padding-left:16px}
+.gc-standings-table td{padding:10px 12px;font-size:.85rem;color:var(--text-dark);text-align:center;border-bottom:1px solid rgba(0,0,0,.04)}
+.gc-standings-table td:first-child{text-align:left;padding-left:16px}
+.gc-standings-table tr:last-child td{border-bottom:none}
+.gc-standings-table tr.qualified td:first-child{border-left:3px solid #10b981}
+.gc-standings-table tr.third td:first-child{border-left:3px solid var(--gold)}
+.gc-team-row{display:flex;align-items:center;gap:8px}
+
 /* ─── TEAM CARDS GRID ─── */
 .gc-teams-grid {
   display: grid;
@@ -1294,29 +1304,21 @@ html, body {
       </div>
     </section>
 
-    <section class="gc-groups-grid" id="gc-groups-grid" aria-label="World Cup 2026 group cards">
-      <div class="gc-groups-empty">Loading group cards...</div>
-    </section>
+    <div id="standings-root" aria-label="World Cup 2026 group standings"></div>
 
     <script src="/js/worldcup-data.js"></script>
     <script>
     (function () {
       'use strict';
-
       var summaryRoot = document.getElementById('gc-summary-grid');
-      var groupsRoot = document.getElementById('gc-groups-grid');
-      var WC = window.WC26 || {};
       var TOTAL_MATCHES = 104;
       var HOSTS = 3;
-      var COMPLETED_STATUSES = { 'ft':1, 'completed':1, 'full-time':1, 'aet':1, 'pen':1 };
-      var LIVE_STATUSES = { '1H':1, 'HT':1, '2H':1, 'ET':1, 'BT':1, 'P':1, 'INT':1, 'LIVE':1 };
+      var COMPLETED_STATUSES = { ft:1, completed:1, 'full-time':1, aet:1, pen:1 };
 
       function esc(value) {
         return String(value == null ? '' : value)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
           .replace(/'/g, '&#39;');
       }
 
@@ -1324,90 +1326,7 @@ html, body {
         return String(status || '').trim().toLowerCase();
       }
 
-      function flagHtml(team) {
-        if (WC.flagUrl) {
-          return '<img class="gc-group-team-flag" src="' + esc(WC.flagUrl(team)) + '" alt="' + esc(team) + ' flag" loading="lazy">';
-        }
-        return '<span class="gc-group-team-flag" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;background:#e2e8f0;color:#64748b;font-size:.7rem;font-weight:700">--</span>';
-      }
-
-      function applyResult(stats, home, away, homeGoals, awayGoals, isLive) {
-        var homeRow = stats[home];
-        var awayRow = stats[away];
-        if (!homeRow || !awayRow) return;
-
-        homeRow.p++;
-        awayRow.p++;
-        homeRow.gf += homeGoals;
-        homeRow.ga += awayGoals;
-        awayRow.gf += awayGoals;
-        awayRow.ga += homeGoals;
-
-        if (homeGoals > awayGoals) {
-          homeRow.w++;
-          awayRow.l++;
-          homeRow.pts += 3;
-        } else if (homeGoals < awayGoals) {
-          awayRow.w++;
-          homeRow.l++;
-          awayRow.pts += 3;
-        } else {
-          homeRow.d++;
-          awayRow.d++;
-          homeRow.pts++;
-          awayRow.pts++;
-        }
-
-        if (isLive) {
-          homeRow.live = true;
-          awayRow.live = true;
-        }
-      }
-
-      function buildRows(groupLetter) {
-        var teams = (WC.groups && WC.groups[groupLetter]) || [];
-        var stats = {};
-
-        teams.forEach(function (team) {
-          stats[team] = {
-            team: team,
-            p: 0,
-            w: 0,
-            d: 0,
-            l: 0,
-            gf: 0,
-            ga: 0,
-            gd: 0,
-            pts: 0,
-            live: false
-          };
-        });
-
-        (WC.schedule || []).forEach(function (match) {
-          if (match.group !== groupLetter) return;
-          if (!COMPLETED_STATUSES[normalizeStatus(match.status)]) return;
-          if (typeof match.homeScore !== 'number' || typeof match.awayScore !== 'number') return;
-          applyResult(stats, match.home, match.away, match.homeScore, match.awayScore, false);
-        });
-
-        Object.keys(window.WC26_LIVE || {}).forEach(function (key) {
-          var liveMatch = window.WC26_LIVE[key];
-          if (!liveMatch || !liveMatch.live || liveMatch.group !== groupLetter) return;
-          if (typeof liveMatch.hg !== 'number' || typeof liveMatch.ag !== 'number') return;
-          if (!LIVE_STATUSES[String(liveMatch.status || '').toUpperCase()]) return;
-          applyResult(stats, liveMatch.home, liveMatch.away, liveMatch.hg, liveMatch.ag, true);
-        });
-
-        return teams.map(function (team) {
-          var row = stats[team];
-          row.gd = row.gf - row.ga;
-          return row;
-        }).sort(function (a, b) {
-          return (b.pts - a.pts) || (b.gd - a.gd) || (b.gf - a.gf) || a.team.localeCompare(b.team);
-        });
-      }
-
-      function completedMatchesCount() {
+      function completedMatchesCount(WC) {
         var schedule = Array.isArray(WC.schedule) ? WC.schedule : [];
         var hasStatuses = schedule.some(function (match) {
           return typeof match.status === 'string' && match.status.trim();
@@ -1418,7 +1337,7 @@ html, body {
         }).length;
       }
 
-      function buildMetrics() {
+      function buildMetrics(WC) {
         var groupLetters = Object.keys(WC.groups || {}).sort();
         var teamsCount = groupLetters.reduce(function (count, letter) {
           return count + (((WC.groups || {})[letter] || []).length);
@@ -1430,9 +1349,8 @@ html, body {
               return map;
             }, {})).length
           : 16;
-        var completed = completedMatchesCount();
+        var completed = completedMatchesCount(WC);
         var gamesLeft = completed === null ? TOTAL_MATCHES : Math.max(TOTAL_MATCHES - completed, 0);
-
         return [
           { label: 'Teams', value: teamsCount, note: 'Across Groups A–L' },
           { label: 'Matches', value: TOTAL_MATCHES, note: 'Tournament total' },
@@ -1443,7 +1361,9 @@ html, body {
       }
 
       function renderSummary() {
-        var metrics = buildMetrics();
+        var WC = window.WC26 || {};
+        if (!summaryRoot) return;
+        var metrics = buildMetrics(WC);
         summaryRoot.innerHTML = metrics.map(function (metric) {
           return '<article class="gc-summary-card">' +
             '<span class="gc-summary-label">' + esc(metric.label) + '</span>' +
@@ -1453,69 +1373,25 @@ html, body {
         }).join('');
       }
 
-      function renderGroups() {
-        var groupLetters = Object.keys(WC.groups || {}).sort();
-        if (!groupLetters.length) {
-          groupsRoot.innerHTML = '<div class="gc-groups-empty">Group data is unavailable right now.</div>';
-          return;
-        }
-
-        groupsRoot.innerHTML = groupLetters.map(function (letter) {
-          var rows = buildRows(letter);
-          var groupHref = '/worldcup2026/groups/group-' + letter.toLowerCase() + '/';
-          var teamsHtml = rows.map(function (row, index) {
-            var badge = '';
-            var rowClass = '';
-            if (index < 2) {
-              badge = '<span class="gc-group-team-badge qualify">Q</span>';
-              rowClass = ' qualify';
-            } else if (index === 2) {
-              badge = '<span class="gc-group-team-badge third">3rd</span>';
-              rowClass = ' third';
-            } else {
-              badge = '<span class="gc-group-team-badge">—</span>';
-            }
-
-            return '<div class="gc-group-team-row' + rowClass + '">' +
-              flagHtml(row.team) +
-              '<div class="gc-group-team-name">' + esc(row.team) + '</div>' +
-              '<div class="gc-group-team-points">' + esc(row.pts) + ' pts</div>' +
-              badge +
-            '</div>';
-          }).join('');
-
-          return '<article class="gc-group-card">' +
-            '<div class="gc-group-card-top">' +
-              '<div>' +
-                '<span class="gc-group-card-kicker">Current standings</span>' +
-                '<h2 class="gc-group-card-title">Group ' + esc(letter) + '</h2>' +
-                '<p class="gc-group-card-sub">Top two qualify automatically. Third place stays in the best-third race.</p>' +
-              '</div>' +
-              '<a class="gc-group-card-link" href="' + esc(groupHref) + '">Open group →</a>' +
-            '</div>' +
-            '<div class="gc-group-standings">' + teamsHtml + '</div>' +
-            '<div class="gc-group-card-footer">' +
-              '<span class="gc-group-card-meta">4 teams • 6 group matches</span>' +
-              '<a class="gc-group-card-link" href="' + esc(groupHref) + '">View Group ' + esc(letter) + '</a>' +
-            '</div>' +
-          '</article>';
-        }).join('');
-      }
-
-      function renderGroupsHub() {
-        WC = window.WC26 || {};
+      window._gcRenderGroupsSummary = renderSummary;
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderSummary, { once: true });
+      } else {
         renderSummary();
-        renderGroups();
       }
-
+    }());
+    </script>
+    <script src="/js/standings.js"></script>
+    <script>
+    (function () {
+      var standingsRender = window.renderStandings;
+      function renderGroupsHub() {
+        if (window._gcRenderGroupsSummary) window._gcRenderGroupsSummary();
+        if (standingsRender) standingsRender();
+      }
       window.renderStandings = renderGroupsHub;
       window.renderGroup = renderGroupsHub;
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', renderGroupsHub, { once: true });
-      } else {
-        renderGroupsHub();
-      }
+      renderGroupsHub();
     }());
     </script>
     <script src="/js/wc-results.js" defer></script>
