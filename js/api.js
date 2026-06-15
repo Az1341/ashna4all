@@ -8,7 +8,10 @@
 
 var GC_API = (function () {
 
-  var API_FOOTBALL_KEY = '5daaac9cb6e548983db1a90l1a97d9c9';
+  /* SECURITY: never embed a live API key in client-side code. This orphaned file
+     previously shipped a real API-Football key. The key must be revoked/rotated and
+     all API-Football calls must go through a server-side proxy (e.g. /api/scores). */
+  var API_FOOTBALL_KEY = '';
 
   var IDS = {
     espn:        { PL: 'eng.1',  WC: 'fifa.world' },

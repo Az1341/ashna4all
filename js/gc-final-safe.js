@@ -190,6 +190,23 @@
     setTimeout(function () { s.classList.add('show'); }, 7000);
   }
 
+  /* ── 7b. ENSURE #gc-sub-thanks EXISTS ─────────────────────── */
+  /* The master subscribe form's inline onsubmit references
+     document.getElementById('gc-sub-thanks'); some pages ship the form
+     without that element, which throws on submit. Inject a hidden one
+     whenever the master overlay is present but the element is missing. */
+  function ensureSubThanks() {
+    if (document.getElementById('gc-sub-thanks')) return;
+    var box = document.querySelector('#gc-sub-overlay .gc-sub-box') ||
+              document.getElementById('gc-sub-overlay');
+    if (!box) return;
+    var t = document.createElement('p');
+    t.id = 'gc-sub-thanks';
+    t.style.cssText = 'display:none;margin-top:10px;font-weight:700;color:var(--blue,#2563eb)';
+    t.textContent = '\u2705 Thank you \u2014 please check your inbox to confirm your subscription.';
+    box.appendChild(t);
+  }
+
   /* ── 8. FAVOURITES REMOVE BUTTON ─────────────────────────── */
   function makeFavRemovable() {
     if (!/\/worldcup2026\/favourites\//.test(location.pathname)) return;
@@ -221,6 +238,7 @@
     addNord();
     addCookie();
     addSubscribe();
+    ensureSubThanks();
     makeFavRemovable();
     /* second pass for dynamically rendered content */
     setTimeout(enhanceFlags, 400);

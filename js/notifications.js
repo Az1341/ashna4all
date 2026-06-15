@@ -1,69 +1,52 @@
 /* ============================================================
-   notifications.js — OneSignal push notifications
+   notifications.js — OneSignal push (client opt-in + celebrations)
    goalcurrent.live
+
+   SECURITY: This file is CLIENT-SIDE. It must NEVER contain the OneSignal
+   REST API key or send REST push requests from the browser. Sending pushes
+   requires the OneSignal REST API key, which is a server-only secret and must
+   live ONLY in a Vercel serverless route using process.env.ONESIGNAL_REST_API_KEY
+   (with process.env.ONESIGNAL_APP_ID). Trigger pushes by calling that server
+   route, never from here.
    ============================================================ */
 
 var GC_NOTIFY = (function () {
 
-  var APP_ID  = 'e6a77420-dc1d-4dae-895f-ee68950148f9';
-  var REST_KEY = 'os_v2_app_42txiig4dvg25ck75zujkaki7ekky7dn5k3uhzeeljnes4t772nbpnydk4sfdwyppcjt5f6k32rzctubbeajvtaq74matbstdqj3xai';
-  var SITE_URL = 'https://goalcurrent.live';
-
-  /* ── OneSignal opt-in ─────────────────────────────────── */
+  /* ── OneSignal opt-in (client SDK only — no secret needed) ── */
   function optIn() {
     if (window.OneSignal) {
       try { OneSignal.User.PushSubscription.optIn(); } catch (e) {}
     }
   }
 
-  /* ── Send push via REST API ───────────────────────────── */
+  /* ── Server-side push trigger ──────────────────────────────
+     Client code must NOT call the OneSignal REST API directly.
+     This helper only asks our own serverless route to send the push;
+     the REST key stays server-side. If the route is not deployed yet,
+     this is a safe no-op. */
   function push(title, message, url) {
-    fetch('https://onesignal.com/api/v1/notifications', {
-      method : 'POST',
-      headers: {
-        'Content-Type' : 'application/json',
-        'Authorization': 'Basic ' + REST_KEY
-      },
-      body: JSON.stringify({
-        app_id           : APP_ID,
-        included_segments: ['All'],
-        headings         : { en: title },
-        contents         : { en: message },
-        url              : url || SITE_URL,
-        web_push_topic   : 'match-event'
-      })
-    }).catch(function () {});
+    try {
+      fetch('/api/notify', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ title: title, message: message, url: url || '' })
+      }).catch(function () {});
+    } catch (e) { /* no-op */ }
   }
 
-  /* ── Goal celebration ─────────────────────────────────── */
+  /* ── Goal celebration (local animation only) ──────────────── */
   function onGoal(team, player, minute) {
     showGoalAnimation(team, player, minute);
-    push(
-      '⚽ GOAL! ' + team,
-      (player ? player + ' · ' : '') + (minute || '') + ' — goalcurrent.live',
-      SITE_URL
-    );
   }
 
-  /* ── Card celebration ─────────────────────────────────── */
+  /* ── Card celebration (local animation only) ──────────────── */
   function onCard(colour, team, player, minute) {
     showCardAnimation(colour, player || team, minute);
-    var em = colour === 'red' ? '🟥 RED CARD' : '🟨 Yellow Card';
-    push(
-      em + ' — ' + (player || team),
-      team + (minute ? ' · ' + minute : '') + ' — goalcurrent.live',
-      SITE_URL
-    );
   }
 
-  /* ── Sub celebration ──────────────────────────────────── */
+  /* ── Sub celebration (local animation only) ───────────────── */
   function onSub(team, playerOn, playerOff, minute) {
     showSubAnimation(team, playerOn, playerOff, minute);
-    push(
-      '🔄 Sub — ' + team,
-      '🟢 ' + playerOn + (playerOff ? ' | 🔴 ' + playerOff : '') + (minute ? ' · ' + minute : ''),
-      SITE_URL
-    );
   }
 
   /* ══════════════════════════════════════════════════════
@@ -141,7 +124,7 @@ var GC_NOTIFY = (function () {
 
   function esc(str) {
     if (!str) return '';
-    return String(str).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
   /* ── Test helpers (browser console) ──────────────────── */

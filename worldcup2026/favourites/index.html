@@ -871,9 +871,6 @@ html, body {
   <meta name="twitter:description" content="Your saved FIFA World Cup 2026 favourite matches — get alerts for goals, red cards and penalties.">
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
 
-<style id="gc-no-hard-hide">
-a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
-</style>
 <!-- Phase 1 shared foundation -->
 <link rel="stylesheet" href="/css/gc-match-row.css">
 <script src="/js/gc-flags.js"></script>
@@ -976,44 +973,46 @@ function gcCookieDecline(){localStorage.setItem('gc_cookie_choice','declined');d
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');}
 function gcSubSubmit(){/* handled by Brevo form */}
 (function(){
-  var MATCHES=[
-    {id:1,h:'Mexico',a:'South Africa',utc:'2026-06-11T19:00:00Z'},
-    {id:2,h:'South Korea',a:'Czech Republic',utc:'2026-06-12T02:00:00Z'},
-    {id:3,h:'Canada',a:'Bosnia & Herz.',utc:'2026-06-12T19:00:00Z'},
-    {id:4,h:'USA',a:'Paraguay',utc:'2026-06-13T01:00:00Z'},
-    {id:5,h:'Australia',a:'Turkey',utc:'2026-06-13T04:00:00Z'},
-    {id:6,h:'Qatar',a:'Switzerland',utc:'2026-06-13T19:00:00Z'},
-    {id:7,h:'Brazil',a:'Haiti',utc:'2026-06-13T19:00:00Z'},
-    {id:8,h:'Morocco',a:'Scotland',utc:'2026-06-13T16:00:00Z'}
-  ];
-  var now=new Date();
-  var preStart=new Date('2026-06-10T00:00:00Z');
-  var tourneyStart=new Date('2026-06-11T19:00:00Z');
-  var el=document.getElementById('gc-wc-popup');
-  var titleEl=document.getElementById('gc-wc-popup-title');
-  var bodyEl=document.getElementById('gc-wc-popup-body');
-  if(!el||!titleEl||!bodyEl)return;
-  function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
-  if(now>=preStart&&now<tourneyStart&&!sessionStorage.getItem('gc_wc_pre')){
-    sessionStorage.setItem('gc_wc_pre','1');
-    titleEl.textContent='World Cup 2026 Starts Tomorrow!';
-    bodyEl.innerHTML='<p style="margin:8px 0">The FIFA World Cup kicks off <strong>11 June 2026</strong>.</p><p style="margin:4px 0">First match: <strong>Mexico vs South Africa</strong> 20:00 BST</p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
-    setTimeout(function(){el.classList.add('show');},2000);
-    return;
-  }
-  if(now>=tourneyStart){
-    var shown=localStorage.getItem('gc_wc_match_popup');
-    var next=MATCHES.find(function(m){var k=new Date(m.utc);return String(m.id)!==shown&&now<k&&(k-now)<10800000;});
-    if(next){
-      localStorage.setItem('gc_wc_match_popup',String(next.id));
-      titleEl.textContent='Match Starting Soon!';
-      bodyEl.innerHTML='<p style="margin:8px 0;font-size:1rem;font-weight:800">'+next.h+' vs '+next.a+'</p><p style="color:var(--text-mid);font-size:.82rem">Kicks off <strong>'+bst(next.utc)+'</strong></p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
-      setTimeout(function(){el.classList.add('show');},3000);
+  function initWcPopup(){
+    var el=document.getElementById('gc-wc-popup');
+    var titleEl=document.getElementById('gc-wc-popup-title');
+    var bodyEl=document.getElementById('gc-wc-popup-body');
+    if(!el||!titleEl||!bodyEl)return;
+    /* SINGLE SOURCE OF TRUTH — matches derived from window.WC26.schedule */
+    var WC=window.WC26;
+    var MATCHES=(WC&&WC.schedule?WC.schedule:[])
+      .filter(function(m){return m.group&&m.group!=='\u2014';})
+      .map(function(m){return {id:m.id,h:m.home,a:m.away,utc:m.utc};});
+    var now=new Date();
+    var preStart=new Date('2026-06-10T00:00:00Z');
+    var tourneyStart=new Date('2026-06-11T19:00:00Z');
+    function bst(u){var d=new Date(u);d.setHours(d.getHours()+1);return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' BST';}
+    if(now>=preStart&&now<tourneyStart&&!sessionStorage.getItem('gc_wc_pre')){
+      sessionStorage.setItem('gc_wc_pre','1');
+      var first=MATCHES[0];
+      titleEl.textContent='World Cup 2026 Starts Tomorrow!';
+      bodyEl.innerHTML='<p style="margin:8px 0">The FIFA World Cup kicks off <strong>11 June 2026</strong>.</p>'+(first?'<p style="margin:4px 0">First match: <strong>'+first.h+' vs '+first.a+'</strong> '+bst(first.utc)+'</p>':'')+'<a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
+      setTimeout(function(){el.classList.add('show');},2000);
+      return;
+    }
+    if(now>=tourneyStart){
+      var shown=localStorage.getItem('gc_wc_match_popup');
+      var next=MATCHES.find(function(m){var k=new Date(m.utc);return String(m.id)!==shown&&now<k&&(k-now)<10800000;});
+      if(next){
+        localStorage.setItem('gc_wc_match_popup',String(next.id));
+        titleEl.textContent='Match Starting Soon!';
+        bodyEl.innerHTML='<p style="margin:8px 0;font-size:1rem;font-weight:800">'+next.h+' vs '+next.a+'</p><p style="color:var(--text-mid);font-size:.82rem">Kicks off <strong>'+bst(next.utc)+'</strong></p><a href="/worldcup2026/fixtures/" style="display:inline-block;margin-top:10px;padding:8px 16px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">View Fixtures</a>';
+        setTimeout(function(){el.classList.add('show');},3000);
+      }
     }
   }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initWcPopup);
+  else initWcPopup();
 })();
 function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remove('show');}
 </script>
+<!-- WC26 single source of truth -->
+<script src="/js/worldcup-data.js"></script>
 <script>
 var TF={'Czech Republic':'cz','Mexico':'mx','South Africa':'za','South Korea':'kr','Bosnia & Herzegovina':'ba','Canada':'ca','Qatar':'qa','Switzerland':'ch','Brazil':'br','Haiti':'ht','Morocco':'ma','Scotland':'gb-sct','Australia':'au','Paraguay':'py','Turkey':'tr','USA':'us','Curaçao':'cw','Ecuador':'ec','Germany':'de','Ivory Coast':'ci','Japan':'jp','Netherlands':'nl','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','New Zealand':'nz','Cape Verde':'cv','Saudi Arabia':'sa','Spain':'es','Uruguay':'uy','France':'fr','Iraq':'iq','Norway':'no','Senegal':'sn','Algeria':'dz','Argentina':'ar','Austria':'at','Jordan':'jo','Colombia':'co','DR Congo':'cd','Portugal':'pt','Uzbekistan':'uz','Croatia':'hr','England':'gb-eng','Ghana':'gh','Panama':'pa'};
 var AT=[{n:'Czech Republic',g:'A',c:'UEFA'},{n:'Mexico',g:'A',c:'CONCACAF',h:1},{n:'South Africa',g:'A',c:'CAF'},{n:'South Korea',g:'A',c:'AFC'},{n:'Bosnia & Herzegovina',g:'B',c:'UEFA'},{n:'Canada',g:'B',c:'CONCACAF',h:1},{n:'Qatar',g:'B',c:'AFC'},{n:'Switzerland',g:'B',c:'UEFA'},{n:'Brazil',g:'C',c:'CONMEBOL'},{n:'Haiti',g:'C',c:'CONCACAF'},{n:'Morocco',g:'C',c:'CAF'},{n:'Scotland',g:'C',c:'UEFA'},{n:'Australia',g:'D',c:'AFC'},{n:'Paraguay',g:'D',c:'CONMEBOL'},{n:'Turkey',g:'D',c:'UEFA'},{n:'USA',g:'D',c:'CONCACAF',h:1},{n:'Curaçao',g:'E',c:'CONCACAF'},{n:'Ecuador',g:'E',c:'CONMEBOL'},{n:'Germany',g:'E',c:'UEFA'},{n:'Ivory Coast',g:'E',c:'CAF'},{n:'Japan',g:'F',c:'AFC'},{n:'Netherlands',g:'F',c:'UEFA'},{n:'Sweden',g:'F',c:'UEFA'},{n:'Tunisia',g:'F',c:'CAF'},{n:'Belgium',g:'G',c:'UEFA'},{n:'Egypt',g:'G',c:'CAF'},{n:'Iran',g:'G',c:'AFC'},{n:'New Zealand',g:'G',c:'OFC'},{n:'Cape Verde',g:'H',c:'CAF'},{n:'Saudi Arabia',g:'H',c:'AFC'},{n:'Spain',g:'H',c:'UEFA'},{n:'Uruguay',g:'H',c:'CONMEBOL'},{n:'France',g:'I',c:'UEFA'},{n:'Iraq',g:'I',c:'AFC'},{n:'Norway',g:'I',c:'UEFA'},{n:'Senegal',g:'I',c:'CAF'},{n:'Algeria',g:'J',c:'CAF'},{n:'Argentina',g:'J',c:'CONMEBOL'},{n:'Austria',g:'J',c:'UEFA'},{n:'Jordan',g:'J',c:'AFC'},{n:'Colombia',g:'K',c:'CONMEBOL'},{n:'DR Congo',g:'K',c:'CAF'},{n:'Portugal',g:'K',c:'UEFA'},{n:'Uzbekistan',g:'K',c:'AFC'},{n:'Croatia',g:'L',c:'UEFA'},{n:'England',g:'L',c:'UEFA'},{n:'Ghana',g:'L',c:'CAF'},{n:'Panama',g:'L',c:'CONCACAF'}];
@@ -1105,80 +1104,19 @@ function showFavTab(tab){
 }
 function renderAll(){renderFavs();renderAll2();}
 
-var FIXTURE_LIST=[
-  {n:1,h:'Mexico',hc:'mx',a:'South Africa',ac:'za',t:'20:00',g:'A',v:'Mexico City',date:'2026-06-11'},
-  {n:2,h:'South Korea',hc:'kr',a:'Czech Republic',ac:'cz',t:'03:00',g:'A',v:'Guadalajara',date:'2026-06-12'},
-  {n:3,h:'Canada',hc:'ca',a:'Bosnia & Herz.',ac:'ba',t:'20:00',g:'B',v:'Toronto',date:'2026-06-12'},
-  {n:4,h:'USA',hc:'us',a:'Paraguay',ac:'py',t:'02:00',g:'D',v:'Los Angeles',date:'2026-06-13'},
-  {n:5,h:'Australia',hc:'au',a:'Turkey',ac:'tr',t:'05:00',g:'D',v:'Seattle',date:'2026-06-13'},
-  {n:6,h:'Qatar',hc:'qa',a:'Switzerland',ac:'ch',t:'20:00',g:'B',v:'San Francisco',date:'2026-06-13'},
-  {n:7,h:'Brazil',hc:'br',a:'Morocco',ac:'ma',t:'23:00',g:'C',v:'New York/NJ',date:'2026-06-13'},
-  {n:8,h:'Haiti',hc:'ht',a:'Scotland',ac:'gb-sct',t:'00:00',g:'C',v:'Boston',date:'2026-06-14'},
-  {n:9,h:'Germany',hc:'de',a:'Curaçao',ac:'cw',t:'18:00',g:'E',v:'Houston',date:'2026-06-14'},
-  {n:10,h:'Netherlands',hc:'nl',a:'Japan',ac:'jp',t:'21:00',g:'F',v:'Seattle',date:'2026-06-14'},
-  {n:11,h:'Saudi Arabia',hc:'sa',a:'Uruguay',ac:'uy',t:'23:00',g:'H',v:'Miami',date:'2026-06-14'},
-  {n:13,h:'Ivory Coast',hc:'ci',a:'Ecuador',ac:'ec',t:'00:00',g:'E',v:'Houston',date:'2026-06-15'},
-  {n:12,h:'Sweden',hc:'se',a:'Tunisia',ac:'tn',t:'03:00',g:'F',v:'Monterrey',date:'2026-06-15'},
-  {n:14,h:'Spain',hc:'es',a:'Cape Verde',ac:'cv',t:'17:00',g:'H',v:'Atlanta',date:'2026-06-15'},
-  {n:15,h:'Belgium',hc:'be',a:'Egypt',ac:'eg',t:'20:00',g:'G',v:'Vancouver',date:'2026-06-15'},
-  {n:16,h:'Iran',hc:'ir',a:'New Zealand',ac:'nz',t:'02:00',g:'G',v:'Vancouver',date:'2026-06-16'},
-  {n:17,h:'France',hc:'fr',a:'Senegal',ac:'sn',t:'20:00',g:'I',v:'New York/NJ',date:'2026-06-16'},
-  {n:18,h:'Iraq',hc:'iq',a:'Norway',ac:'no',t:'23:00',g:'I',v:'Philadelphia',date:'2026-06-16'},
-  {n:19,h:'Argentina',hc:'ar',a:'Algeria',ac:'dz',t:'02:00',g:'J',v:'Dallas',date:'2026-06-17'},
-  {n:20,h:'Austria',hc:'at',a:'Jordan',ac:'jo',t:'05:00',g:'J',v:'San Francisco',date:'2026-06-17'},
-  {n:21,h:'Portugal',hc:'pt',a:'DR Congo',ac:'cd',t:'18:00',g:'K',v:'Houston',date:'2026-06-17'},
-  {n:22,h:'England',hc:'gb-eng',a:'Croatia',ac:'hr',t:'21:00',g:'L',v:'Dallas',date:'2026-06-17'},
-  {n:23,h:'Ghana',hc:'gh',a:'Panama',ac:'pa',t:'00:00',g:'L',v:'Toronto',date:'2026-06-18'},
-  {n:24,h:'Uzbekistan',hc:'uz',a:'Colombia',ac:'co',t:'03:00',g:'K',v:'Kansas City',date:'2026-06-18'},
-  {n:25,h:'Czech Republic',hc:'cz',a:'South Africa',ac:'za',t:'17:00',g:'A',v:'Guadalajara',date:'2026-06-18'},
-  {n:26,h:'Switzerland',hc:'ch',a:'Bosnia & Herz.',ac:'ba',t:'20:00',g:'B',v:'Seattle',date:'2026-06-18'},
-  {n:27,h:'Canada',hc:'ca',a:'Qatar',ac:'qa',t:'23:00',g:'B',v:'Toronto',date:'2026-06-18'},
-  {n:28,h:'Mexico',hc:'mx',a:'South Korea',ac:'kr',t:'02:00',g:'A',v:'Guadalajara',date:'2026-06-19'},
-  {n:29,h:'USA',hc:'us',a:'Australia',ac:'au',t:'20:00',g:'D',v:'Los Angeles',date:'2026-06-19'},
-  {n:30,h:'Scotland',hc:'gb-sct',a:'Morocco',ac:'ma',t:'23:00',g:'C',v:'Boston',date:'2026-06-19'},
-  {n:32,h:'Brazil',hc:'br',a:'Haiti',ac:'ht',t:'02:00',g:'C',v:'Philadelphia',date:'2026-06-20'},
-  {n:31,h:'Turkey',hc:'tr',a:'Paraguay',ac:'py',t:'05:00',g:'D',v:'San Francisco',date:'2026-06-20'},
-  {n:33,h:'Netherlands',hc:'nl',a:'Sweden',ac:'se',t:'18:00',g:'F',v:'Seattle',date:'2026-06-20'},
-  {n:34,h:'Germany',hc:'de',a:'Ivory Coast',ac:'ci',t:'21:00',g:'E',v:'Houston',date:'2026-06-20'},
-  {n:36,h:'Curaçao',hc:'cw',a:'Ecuador',ac:'ec',t:'01:00',g:'E',v:'Kansas City',date:'2026-06-21'},
-  {n:35,h:'Japan',hc:'jp',a:'Tunisia',ac:'tn',t:'05:00',g:'F',v:'Monterrey',date:'2026-06-21'},
-  {n:37,h:'Spain',hc:'es',a:'Saudi Arabia',ac:'sa',t:'17:00',g:'H',v:'Miami',date:'2026-06-21'},
-  {n:38,h:'Belgium',hc:'be',a:'Iran',ac:'ir',t:'20:00',g:'G',v:'Vancouver',date:'2026-06-21'},
-  {n:39,h:'Cape Verde',hc:'cv',a:'Uruguay',ac:'uy',t:'23:00',g:'H',v:'Miami',date:'2026-06-21'},
-  {n:40,h:'Egypt',hc:'eg',a:'New Zealand',ac:'nz',t:'02:00',g:'G',v:'Vancouver',date:'2026-06-22'},
-  {n:41,h:'Argentina',hc:'ar',a:'Austria',ac:'at',t:'18:00',g:'J',v:'Dallas',date:'2026-06-22'},
-  {n:42,h:'France',hc:'fr',a:'Iraq',ac:'iq',t:'22:00',g:'I',v:'Los Angeles',date:'2026-06-22'},
-  {n:43,h:'Senegal',hc:'sn',a:'Norway',ac:'no',t:'01:00',g:'I',v:'Toronto',date:'2026-06-23'},
-  {n:44,h:'Algeria',hc:'dz',a:'Jordan',ac:'jo',t:'04:00',g:'J',v:'San Francisco',date:'2026-06-23'},
-  {n:45,h:'Portugal',hc:'pt',a:'Uzbekistan',ac:'uz',t:'18:00',g:'K',v:'Atlanta',date:'2026-06-23'},
-  {n:46,h:'England',hc:'gb-eng',a:'Ghana',ac:'gh',t:'21:00',g:'L',v:'Boston',date:'2026-06-23'},
-  {n:47,h:'Croatia',hc:'hr',a:'Panama',ac:'pa',t:'00:00',g:'L',v:'Dallas',date:'2026-06-24'},
-  {n:48,h:'Colombia',hc:'co',a:'DR Congo',ac:'cd',t:'03:00',g:'K',v:'Kansas City',date:'2026-06-24'},
-  {n:49,h:'Canada',hc:'ca',a:'Switzerland',ac:'ch',t:'20:00',g:'B',v:'Toronto',date:'2026-06-24'},
-  {n:50,h:'Bosnia & Herz.',hc:'ba',a:'Qatar',ac:'qa',t:'20:00',g:'B',v:'Seattle',date:'2026-06-24'},
-  {n:51,h:'Scotland',hc:'gb-sct',a:'Brazil',ac:'br',t:'23:00',g:'C',v:'New York/NJ',date:'2026-06-24'},
-  {n:52,h:'Morocco',hc:'ma',a:'Haiti',ac:'ht',t:'23:00',g:'C',v:'Philadelphia',date:'2026-06-24'},
-  {n:53,h:'Mexico',hc:'mx',a:'Czech Republic',ac:'cz',t:'02:00',g:'A',v:'Mexico City',date:'2026-06-25'},
-  {n:54,h:'South Africa',hc:'za',a:'South Korea',ac:'kr',t:'02:00',g:'A',v:'Guadalajara',date:'2026-06-25'},
-  {n:55,h:'Germany',hc:'de',a:'Ecuador',ac:'ec',t:'21:00',g:'E',v:'Dallas',date:'2026-06-25'},
-  {n:56,h:'Curaçao',hc:'cw',a:'Ivory Coast',ac:'ci',t:'21:00',g:'E',v:'Kansas City',date:'2026-06-25'},
-  {n:59,h:'Japan',hc:'jp',a:'Sweden',ac:'se',t:'00:00',g:'F',v:'Los Angeles',date:'2026-06-26'},
-  {n:60,h:'Netherlands',hc:'nl',a:'Tunisia',ac:'tn',t:'00:00',g:'F',v:'Monterrey',date:'2026-06-26'},
-  {n:57,h:'Turkey',hc:'tr',a:'USA',ac:'us',t:'03:00',g:'D',v:'Los Angeles',date:'2026-06-26'},
-  {n:58,h:'Paraguay',hc:'py',a:'Australia',ac:'au',t:'03:00',g:'D',v:'San Francisco',date:'2026-06-26'},
-  {n:61,h:'France',hc:'fr',a:'Norway',ac:'no',t:'20:00',g:'I',v:'New York/NJ',date:'2026-06-26'},
-  {n:62,h:'Senegal',hc:'sn',a:'Iraq',ac:'iq',t:'20:00',g:'I',v:'Philadelphia',date:'2026-06-26'},
-  {n:63,h:'Cape Verde',hc:'cv',a:'Saudi Arabia',ac:'sa',t:'01:00',g:'H',v:'Miami',date:'2026-06-27'},
-  {n:64,h:'Uruguay',hc:'uy',a:'Spain',ac:'es',t:'01:00',g:'H',v:'Atlanta',date:'2026-06-27'},
-  {n:65,h:'Egypt',hc:'eg',a:'Iran',ac:'ir',t:'04:00',g:'G',v:'Vancouver',date:'2026-06-27'},
-  {n:66,h:'New Zealand',hc:'nz',a:'Belgium',ac:'be',t:'04:00',g:'G',v:'Seattle',date:'2026-06-27'},
-  {n:67,h:'England',hc:'gb-eng',a:'Panama',ac:'pa',t:'22:00',g:'L',v:'Boston',date:'2026-06-27'},
-  {n:68,h:'Croatia',hc:'hr',a:'Ghana',ac:'gh',t:'22:00',g:'L',v:'Dallas',date:'2026-06-27'},
-  {n:71,h:'Colombia',hc:'co',a:'Portugal',ac:'pt',t:'00:30',g:'K',v:'Miami',date:'2026-06-28'},
-  {n:72,h:'DR Congo',hc:'cd',a:'Uzbekistan',ac:'uz',t:'00:30',g:'K',v:'Kansas City',date:'2026-06-28'},
-  {n:69,h:'Algeria',hc:'dz',a:'Austria',ac:'at',t:'03:00',g:'J',v:'Atlanta',date:'2026-06-28'},
-  {n:70,h:'Argentina',hc:'ar',a:'Jordan',ac:'jo',t:'03:00',g:'J',v:'Kansas City',date:'2026-06-28'}
-];
+/* SINGLE SOURCE OF TRUTH — fixtures derived from window.WC26.schedule.
+   Keyed by numeric match id (m.n === WC26 id), so saved match favourites
+   (stored as ids) keep working. Flag codes come from WC26.flags; BST
+   time/date are computed from each match's UTC kickoff. */
+var FIXTURE_LIST=(function(){
+  var WC=window.WC26;
+  if(!WC||!WC.schedule)return [];
+  function bstTime(u){return new Date(u).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'});}
+  function bstDate(u){var p=new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'Europe/London'}).formatToParts(new Date(u));function g(t){return (p.find(function(x){return x.type===t;})||{}).value;}return g('year')+'-'+g('month')+'-'+g('day');}
+  return WC.schedule.filter(function(m){return m.group&&m.group!=='\u2014';}).map(function(m){
+    return {n:m.id,h:m.home,hc:(WC.flags[m.home]||'un'),a:m.away,ac:(WC.flags[m.away]||'un'),t:bstTime(m.utc),g:m.group,v:m.venue,date:bstDate(m.utc)};
+  });
+})();
 
 /* Group data */
 var GROUP_DATA_FAV={
@@ -1198,7 +1136,10 @@ var GROUP_DATA_FAV={
 
 /* ── RENDER FAVOURITE MATCHES ── */
 function renderFavMatches(){
-  var favMatchIds=JSON.parse(localStorage.getItem('gc_wc26_favourites')||'[]');
+  /* Read match favourites from the unified GCFavourites store (the fixtures
+     page writes there). getState() also migrates the legacy gc_wc26_favourites
+     key, so previously-saved matches are preserved. */
+  var favMatchIds=window.GCFavourites?GCFavourites.getState().matches:JSON.parse(localStorage.getItem('gc_wc26_favourites')||'[]');
   var panel=document.getElementById('gc-matches-panel');
   if(!panel) return;
   var matchIds=favMatchIds.filter(function(x){
@@ -1288,19 +1229,7 @@ document.addEventListener('DOMContentLoaded',renderAll);
 
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
-<!-- Cookie Banner -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
-  <div style="font-size:.78rem;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:inherit">Decline</button>
-  </div>
-</div>
-<script>
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-</script>
+<!-- duplicate cookie banner removed — single master #gc-cookie-banner is above -->
 
 <script>
 /* ── FAVOURITES MATCHES LIVE POLL ─────────────────────────────── */

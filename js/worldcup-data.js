@@ -303,11 +303,17 @@
   /* -------------------------------------------------------------
      HELPERS
   ───────────────────────────────────────────────────────────── */
+  function escAttr(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function flagImg(teamName, size) {
     size = size || 'w40';
     var code = FLAG[teamName] || 'un';
-    return '<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/' + code + '.svg" '
-         + 'alt="' + teamName + '" '
+    return '<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/' + escAttr(code) + '.svg" '
+         + 'alt="' + escAttr(teamName) + '" '
          + 'style="height:' + (size === 'w20' ? '14' : '24') + 'px;'
          + 'border-radius:2px;vertical-align:middle;margin-right:6px">';
   }
