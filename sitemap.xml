@@ -50,8 +50,9 @@
   <!-- STATIC PAGES -->
   <url><loc>https://www.goalcurrent.live/about.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.goalcurrent.live/contact.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://www.goalcurrent.live/privacy.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
-
-  <!-- countdown.html REMOVED — redirects to /worldcup2026/fixtures/ -->
+  <url><loc>https://www.goalcurrent.live/privacy.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.goalcurrent.live/terms.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.goalcurrent.live/disclaimer.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://www.goalcurrent.live/cookies.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
 
 </urlset>
