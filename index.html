@@ -695,18 +695,45 @@ var _gcApiScores = {}; /* { fixtureNumber: apiMatchObject } */
 
 /* Match a FIXTURES entry (home/away names) against an API match object.
    Returns true if names overlap enough to be the same fixture. */
-function _gcTeamNorm(name){
-  var s=String(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9& ]/g,' ').replace(/\s+/g,' ').trim();
-  var map={
-    'south korea':'korea republic','czech republic':'czechia','bosnia and herzegovina':'bosnia & herzegovina','bosnia herz':'bosnia & herzegovina','bosnia & herz':'bosnia & herzegovina','iran':'ir iran','turkiye':'turkiye','turkey':'turkiye','bosnia-herzegovina':'bosnia & herzegovina','bosnia herzegovina':'bosnia & herzegovina','türkiye':'turkiye','curacao':'curacao','curaçao':'curacao','ivory coast':'cote d ivoire','cote d ivoire':'cote d ivoire','côte d ivoire':'cote d ivoire','cape verde':'cabo verde','dr congo':'congo dr','usa':'usa','united states':'usa'
-  };
-  return map[s]||s;
+/* ── Team name normaliser ── same NAME_MAP as wc-live-poll.js and wc-results.js ── */
+var _GC_NAME_MAP={
+  'south korea':'Korea Republic','korea republic':'Korea Republic',
+  'czech republic':'Czechia','czechia':'Czechia',
+  'bosnia and herzegovina':'Bosnia & Herzegovina',
+  'bosnia herzegovina':'Bosnia & Herzegovina',
+  'bosnia-herzegovina':'Bosnia & Herzegovina',
+  'usa':'USA','united states':'USA',
+  'turkiye':'Türkiye','turkey':'Türkiye',
+  'ivory coast':"Côte d'Ivoire",'cote d ivoire':"Côte d'Ivoire",
+  'curacao':'Curaçao','curaçao':'Curaçao',
+  'cape verde islands':'Cabo Verde','cape verde':'Cabo Verde','cabo verde':'Cabo Verde',
+  'congo dr':'Congo DR','dr congo':'Congo DR',
+  'ir iran':'IR Iran','iran':'IR Iran'
+};
+var _GC_LOOKUP={};
+(function(){
+  function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();}
+  Object.keys(_GC_NAME_MAP).forEach(function(k){_GC_LOOKUP[nrm(k)]=_GC_NAME_MAP[k];});
+  /* Index all WC26 schedule team names so exact matches always work */
+  var sched=(window.WC26&&window.WC26.schedule)||[];
+  sched.forEach(function(m){
+    [m.home,m.away].forEach(function(name){
+      if(!name)return;
+      var nk=nrm(name);
+      if(!_GC_LOOKUP[nk])_GC_LOOKUP[nk]=name;
+    });
+  });
+}());
+function _gcCanon(apiName){
+  var nk=String(apiName||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+  return _GC_LOOKUP[nk]||null;
 }
-function _gcMatchesFixture(apiMatch, fixture){
-  var ah=_gcTeamNorm(apiMatch.home&&apiMatch.home.name);
-  var aa=_gcTeamNorm(apiMatch.away&&apiMatch.away.name);
-  var fh=_gcTeamNorm(fixture.home||fixture.h);
-  var fa=_gcTeamNorm(fixture.away||fixture.a);
+function _gcMatchesFixture(apiMatch,fixture){
+  var ah=_gcCanon(apiMatch.home&&apiMatch.home.name);
+  var aa=_gcCanon(apiMatch.away&&apiMatch.away.name);
+  var fh=_gcCanon(fixture.home||fixture.h)||(fixture.home||fixture.h);
+  var fa=_gcCanon(fixture.away||fixture.a)||(fixture.away||fixture.a);
+  if(!ah||!aa)return false;
   return (ah===fh&&aa===fa)||(ah===fa&&aa===fh);
 }
 
