@@ -12,11 +12,6 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
 <script src="/js/worldcup-data.js"></script>
   <script src="/js/gc-datetime.js"></script>
-<!-- Phase 1 shared foundation -->
-<link rel="stylesheet" href="/css/gc-match-row.css">
-<script src="/js/gc-flags.js"></script>
-<script src="/js/gc-favourites.js"></script>
-<script src="/js/gc-shell.js"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
 <style>
 :root{
@@ -195,11 +190,37 @@ a{text-decoration:none;color:inherit}
 </head>
 <body>
 
-<!-- Phase 2: GCShell owns the header + sidebar. The old bespoke
-     #gc-hamburger / #gc-sidebar / .gc-hdr markup was removed.
-     Page body content lives in #gc-page-content and is mounted into
-     the shell by GCShell.init() at the bottom of this file. -->
-<div id="gc-page-content">
+<button id="gc-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+<div id="gc-sidebar-overlay"></div>
+
+<nav id="gc-sidebar">
+  <div class="sb-wrap">
+    <a href="/" style="text-decoration:none">
+      <div class="sb-logo-name">Goal<em>Current</em><span style="color:rgba(255,255,255,.4);font-size:.75rem">.live</span></div>
+    </a>
+    <button class="sb-close" id="gc-sidebar-close">✕</button>
+  </div>
+  <div class="sb-sec">Main Menu</div>
+  <div class="sb-nav">
+    <a href="/"><span class="sb-icon">🏠</span> Home</a>
+    <a href="/live/" class="active"><span class="sb-icon">🔴</span> Live Scores</a>
+    <a href="/worldcup2026/fixtures/"><span class="sb-icon">📅</span> Today Fixtures</a>
+    <a href="/worldcup2026/news/"><span class="sb-icon">📰</span> Latest News</a>
+  </div>
+  <div class="sb-sec">Competitions</div>
+  <div class="sb-nav">
+    <a href="/premier-league/"><span class="sb-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
+    <a href="/worldcup2026/"><span class="sb-icon">🏆</span> World Cup 2026</a>
+    <a href="/ucl/"><span class="sb-icon">⭐</span> Champions League</a>
+  </div>
+  <div class="sb-social">
+    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener">𝕏</a>
+    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener">♪</a>
+    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
+  </div>
+</nav>
+
+<div id="gc-main">
 
   <!-- TEST MODE BANNER — only visible on /live/?test=1 -->
   <div id="test-banner">
@@ -207,6 +228,28 @@ a{text-decoration:none;color:inherit}
     <div class="test-banner-sub">Pre-World Cup Live Data Testing</div>
     <div class="test-banner-warn">⚠️ Not official World Cup fixtures · Real API-Football data · For development only</div>
   </div>
+
+  <header class="gc-hdr">
+    <div class="gc-hdr-top">
+      <div>
+        <div class="gc-hdr-brand">Goal<span>Current</span>.live</div>
+        <div class="gc-hdr-sub" id="hdr-sub-text">Live Scores · World Cup 2026 · News</div>
+      </div>
+    </div>
+    <nav class="gc-subnav">
+      <div class="gc-subnav-inner">
+        <a href="/">🏠 Home</a>
+        <a href="/live/" class="active">🔴 Live</a>
+        <a href="/worldcup2026/">🏆 World Cup</a>
+        <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
+        <a href="/worldcup2026/groups/">🔢 Groups</a>
+        <a href="/worldcup2026/teams/">👕 Teams</a>
+        <a href="/worldcup2026/standings/">📊 Standings</a>
+        <a href="/premier-league/">🏴 PL</a>
+        <a href="/ucl/">⭐ UCL</a>
+      </div>
+    </nav>
+  </header>
 
   <div class="live-hero">
     <div class="live-hero-top">
@@ -266,8 +309,8 @@ a{text-decoration:none;color:inherit}
     <div id="empty-state" style="display:none">
       <div class="empty-box">
         <div class="ei">⚽</div>
-        <h3 id="empty-title">No live matches right now</h3>
-        <p id="empty-sub">There are no live or upcoming World Cup 2026 matches at the moment. Scores update automatically every 60 seconds.</p>
+        <h3 id="empty-title">Mexico vs South Africa — <span id="gc-ko-local">20:00 BST</span></h3>
+        <p id="empty-sub">World Cup 2026 opening match kicks off at <span id="gc-ko-local2">20:00 BST</span> tonight. Data updates every 30 seconds.</p>
         <a href="/worldcup2026/fixtures/">View All WC 2026 Fixtures →</a>
       </div>
     </div>
@@ -317,7 +360,7 @@ a{text-decoration:none;color:inherit}
 // NORMAL:    /live/         — calls /api/scores?live=true, WC only, no fallback
 var IS_TEST = new URLSearchParams(window.location.search).get('test') === '1';
 
-var FLAGS={'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr','Czech Republic':'cz','Czechia':'cz','Canada':'ca','Bosnia & Herz.':'ba','Bosnia & Herzegovina':'ba','Bosnia and Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa','Iceland':'is','Venezuela':'ve','Nigeria':'ng','Costa Rica':'cr','Chile':'cl','Peru':'pe','Serbia':'rs','Poland':'pl','Denmark':'dk','Romania':'ro','Hungary':'hu'};
+var FLAGS={'Mexico':'mx','South Africa':'za','South Korea':'kr','Korea Republic':'kr','Czech Republic':'cz','Czechia':'cz','Canada':'ca','Bosnia & Herz.':'ba','Bosnia & Herzegovina':'ba','Bosnia and Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','United States':'us','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Türkiye':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','IR Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Cape Verde Islands':'cv','Cabo Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Congo DR':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa','Iceland':'is','Venezuela':'ve','Nigeria':'ng','Costa Rica':'cr','Chile':'cl','Peru':'pe','Serbia':'rs','Poland':'pl','Denmark':'dk','Romania':'ro','Hungary':'hu'};
 
 var COMPS={
   'WC' :{name:'FIFA World Cup 2026',emoji:'🏆',color:'#f59e0b',wc:true},
@@ -359,11 +402,9 @@ function normName(n){return String(n||'').toLowerCase().replace(/&amp;/g,' and '
 (function(){for(var k in FLAGS)FLAGS_NORM[normName(k)]=FLAGS[k];})();
 function flagCode(name){return FLAGS[name]||FLAGS_NORM[normName(name)]||null;}
 function flagImg(name){
-  /* Phase 1: single global resolver, real flags, no football-emoji fallback */
-  if(window.GCFlags) return GCFlags.img(name,{w:36,h:24,className:'mc-flag'});
   var c=flagCode(name);
-  if(!c) return '<div class="mc-flag-fb"></div>';
-  return '<img class="mc-flag" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy">';
+  if(!c) return '<div class="mc-flag-fb">&#x26BD;</div>';
+  return '<img class="mc-flag" src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/'+c+'.svg" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<span style=\\"display:inline-flex;width:36px;height:24px;align-items:center;justify-content:center;background:#1e3a8a;border-radius:3px;font-size:14px\\">⚽</span>\')">';
 }
 
 function getStatus(m){
@@ -420,7 +461,6 @@ function buildCard(m){
   var url=(!isFakeId&&m.id)?'/match/?id='+m.id:'/worldcup2026/fixtures/';
   var hint=(!isFakeId&&m.id&&!IS_TEST)?'<div class="mc-detail-hint">Tap for lineups, stats &amp; events &rarr;</div>':''; /* lineups link disabled — /match/ page not yet audited */
 
-  var favStar=window.GCFavourites?GCFavourites.renderStarButton({type:'match',id:m.id,label:'Save match to favourites'}):'';
   var cls='match-card'+(isWC?' wc-card':'')+(live?' live-card':'');
   var grp=m.g?' · Grp '+m.g:'';
   var tv=m.tv?'<span class="mc-tv">📺 '+m.tv+'</span>':'';
@@ -441,7 +481,7 @@ function buildCard(m){
     +'<div class="mc-top">'
     +'<div class="mc-comp"><span class="mc-comp-dot" style="background:'+comp.color+'"></span>'
     +(isWC?'<span class="wc-badge">WC26</span> ':'')+comp.emoji+' '+comp.name+grp+'</div>'
-    +'<div style="display:flex;align-items:center;gap:8px">'+pill+favStar+'</div>'
+    +'<div>'+pill+'</div>'
     +'</div>'
     +'<div class="mc-body">'
     +'<div class="mc-home">'+flagImg(m.h)+'<div class="mc-name">'+m.h+'</div></div>'
@@ -505,8 +545,6 @@ function renderAll(){
   document.getElementById('empty-state').style.display=(!total)?'block':'none';
   /* Render group standings from same allMatches data */
   renderStandings();
-  /* Wire favourite stars on freshly rendered cards (Phase 1) */
-  if(window.GCFavourites) GCFavourites.bindStars(document.querySelector('.gc-content'));
   document.getElementById('live-count').textContent=liveM.length>0
     ?liveM.length+' match'+(liveM.length>1?'es':'')+' LIVE 🔴 · Tap any match for lineup & stats'
     :upM.length>0?upM.length+' upcoming · Tap any match for full details'
@@ -604,10 +642,9 @@ function sortGrp(teamMap){
 }
 
 function flagSm(name){
-  if(window.GCFlags) return GCFlags.img(name,{w:22,h:15,className:'gs-flag-sm'});
   var c=flagCode(name);
-  if(!c) return '<span class="gs-flag-fb"></span>';
-  return '<img class="gs-flag-sm" src="https://flagcdn.com/w80/'+c+'.png" alt="'+name+'" loading="lazy">';
+  if(!c) return '<span class="gs-flag-fb">⚽</span>';
+  return '<img class="gs-flag-sm" src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/'+c+'.svg" alt="'+name+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
 
 function renderStandings(){
@@ -900,6 +937,7 @@ if(IS_TEST){
   // Show test banner
   document.getElementById('test-banner').style.display='block';
   document.getElementById('hero-title').textContent='🧪 Test Mode';
+  document.getElementById('hdr-sub-text').textContent='TEST MODE — Pre-WC Live Data Test';
   document.getElementById('empty-title').textContent='No test matches found from API';
   document.getElementById('empty-sub').textContent='API returned no matches. Check API key and quota at dashboard.api-football.com';
   fetchTest();
@@ -917,13 +955,13 @@ function setFilter(f){
 }
 function applySearch(){searchQuery=document.getElementById('search-input').value.toLowerCase();renderAll();}
 
-// ── SHELL: GCShell (Phase 1) owns the header + sidebar ─────────────────────
-// The old #gc-hamburger / #gc-sidebar / .gc-hdr markup and openSB/closeSB
-// handlers were removed. GCShell provides the standard header (logo + brand
-// on one line, hamburger) and sidebar (close ✕, Escape-to-close, overlay).
-if(window.GCShell){
-  GCShell.init({ contentSelector:'#gc-page-content', section:'home', showSubnav:false });
-}
+// ── SIDEBAR ───────────────────────────────────────────────────────────────
+function openSB(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';}
+function closeSB(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';}
+document.getElementById('gc-hamburger').addEventListener('click',openSB);
+document.getElementById('gc-sidebar-close').addEventListener('click',closeSB);
+document.getElementById('gc-sidebar-overlay').addEventListener('click',closeSB);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSB();});
 
 // ── COOKIE ────────────────────────────────────────────────────────────────
 function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
