@@ -1,0 +1,39 @@
+HEADER FIX REPORT
+
+Issue found:
+All individual World Cup group pages displayed the correct page body, but the top blue header was hardcoded as:
+Group A
+Mexico · South Africa · Korea Republic · Czechia
+
+Files fixed:
+worldcup2026/groups/group-a/index.html
+worldcup2026/groups/group-b/index.html
+worldcup2026/groups/group-c/index.html
+worldcup2026/groups/group-d/index.html
+worldcup2026/groups/group-e/index.html
+worldcup2026/groups/group-f/index.html
+worldcup2026/groups/group-g/index.html
+worldcup2026/groups/group-h/index.html
+worldcup2026/groups/group-i/index.html
+worldcup2026/groups/group-j/index.html
+worldcup2026/groups/group-k/index.html
+worldcup2026/groups/group-l/index.html
+
+Exact fix:
+Updated the top header title and subtitle on every group page so it matches the actual group letter and teams.
+
+Validation:
+Group A header: Group A — Mexico · South Africa · Korea Republic · Czechia
+Group B header: Group B — Canada · Bosnia & Herzegovina · Qatar · Switzerland
+Group C header: Group C — Brazil · Morocco · Haiti · Scotland
+Group D header: Group D — USA · Paraguay · Australia · Türkiye
+Group E header: Group E — Germany · Curaçao · Côte d'Ivoire · Ecuador
+Group F header: Group F — Netherlands · Japan · Sweden · Tunisia
+Group G header: Group G — Belgium · Egypt · IR Iran · New Zealand
+Group H header: Group H — Spain · Cabo Verde · Saudi Arabia · Uruguay
+Group I header: Group I — France · Senegal · Iraq · Norway
+Group J header: Group J — Argentina · Algeria · Austria · Jordan
+Group K header: Group K — Portugal · Congo DR · Uzbekistan · Colombia
+Group L header: Group L — England · Croatia · Ghana · Panama
+
+No CSS, layout, design, sidebar, or routing logic was changed for this fix.
