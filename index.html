@@ -402,6 +402,10 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
         <div class="gc-stat-num">3</div>
         <div class="gc-stat-lbl" data-gc-i18n="stats.hosts">Hosts</div>
       </div>
+      <div class="gc-stat-chip">
+        <div class="gc-stat-num" id="gc-games-left-num">104</div>
+        <div class="gc-stat-lbl">Games Left To Play</div>
+      </div>
 
     </div>
 
@@ -679,6 +683,33 @@ function gcT(key, fallback) {
   return fallback;
 }
 
+function gcFlagImg(team) {
+  if (!window.WC26 || typeof WC26.flagUrl !== 'function') return '';
+  var url = WC26.flagUrl(team);
+  if (!url) return '';
+  return '<img src="' + url + '" alt="" style="width:24px;height:17px;object-fit:cover;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.18);flex-shrink:0">';
+}
+
+function gcCompletedMatchesCount() {
+  var schedule = (window.WC26 && Array.isArray(WC26.schedule)) ? WC26.schedule : [];
+  var hasStatusData = schedule.some(function (match) {
+    return typeof match.status === 'string' && match.status.trim();
+  });
+  if (!hasStatusData) return 0;
+  return schedule.filter(function (match) {
+    var status = String(match.status || '').trim().toLowerCase();
+    return status === 'ft' || status === 'completed' || status === 'full-time' || status === 'aet' || status === 'pen';
+  }).length;
+}
+
+function updateGamesLeftStat() {
+  var el = document.getElementById('gc-games-left-num');
+  if (!el) return;
+  var totalMatches = 104;
+  var completedMatches = gcCompletedMatchesCount();
+  el.textContent = String(Math.max(totalMatches - completedMatches, 0));
+}
+
 /* TOURNEY_START/END and local FIXTURES removed — see window.WC26.schedule */
 
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -712,6 +743,7 @@ function _gcMatchesFixture(apiMatch, fixture){
 function renderMatches(){
   var box=document.getElementById('gc-matches');
   if(!box) return;
+  updateGamesLeftStat();
   box.innerHTML='';
   var now=new Date();
   /* Use visitor's LOCAL date — not hardcoded BST offset */
@@ -828,9 +860,9 @@ function renderMatches(){
     /* col-meta: dir="ltr" — time/date/group data always LTR */
     row.innerHTML=
       '<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+statusText+'</span></div>'+
-      '<div class="gc-col-home">'+(match.home||match.h)+'</div>'+
+      '<div class="gc-col-home"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;max-width:100%"><span>'+(match.home||match.h)+'</span>'+gcFlagImg(match.home||match.h)+'</span></div>'+
       centreHtml+
-      '<div class="gc-col-away">'+(match.away||match.a)+'</div>'+
+      '<div class="gc-col-away"><span style="display:inline-flex;align-items:center;gap:8px;max-width:100%">'+gcFlagImg(match.away||match.a)+'<span>'+(match.away||match.a)+'</span></span></div>'+
       '<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.group||match.g)+' · '+(match.ukBroadcaster||match.tv)+'</div>';
     box.appendChild(row);
     if((match.events||[]).length){
