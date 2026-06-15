@@ -309,8 +309,8 @@ a{text-decoration:none;color:inherit}
     <div id="empty-state" style="display:none">
       <div class="empty-box">
         <div class="ei">⚽</div>
-        <h3 id="empty-title">Mexico vs South Africa — <span id="gc-ko-local">20:00 BST</span></h3>
-        <p id="empty-sub">World Cup 2026 opening match kicks off at <span id="gc-ko-local2">20:00 BST</span> tonight. Data updates every 30 seconds.</p>
+        <h3 id="empty-title">No live matches right now</h3>
+        <p id="empty-sub">No World Cup 2026 matches are in play at the moment. Check the fixtures for upcoming and completed matches. Data updates every 30 seconds.</p>
         <a href="/worldcup2026/fixtures/">View All WC 2026 Fixtures →</a>
       </div>
     </div>
@@ -915,19 +915,8 @@ async function fetchTest(){
 }
 
 // ── LOCAL TIME INIT ─────────────────────────────────────────────────────
-// Update all hardcoded BST times to visitor's local time
-(function updateLocalTimes(){
-  var MEXICO_KO_UTC = '2026-06-11T19:00:00Z';
-  if (!window.GC_DateTime) {
-    console.warn('[GoalCurrent] gc-datetime.js not loaded — showing UK time as fallback');
-    return;
-  }
-  var localTime = GC_DateTime.formatLocalKickoff(MEXICO_KO_UTC);
-  var el1 = document.getElementById('gc-ko-local');
-  var el2 = document.getElementById('gc-ko-local2');
-  if (el1) el1.textContent = localTime;
-  if (el2) el2.textContent = localTime;
-})();
+// Empty-state text is generic (no hardcoded opening-match time) now that the
+// tournament is underway. Live match cards render their own local times.
 
 // ── BOOT ─────────────────────────────────────────────────────────────────
 // Production check: open DevTools console to verify API is working
