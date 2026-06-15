@@ -71,8 +71,8 @@ html, body {
 
 /* ─── SIDEBAR ─── */
 #gc-sidebar {
-  position:relative;
-    
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
   z-index: 1000;
@@ -874,7 +874,6 @@ html, body {
 <style id="gc-no-hard-hide">
 a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </style>
-  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -1460,6 +1459,5 @@ if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.get
   });
 })();
 /* ── END FAVOURITES LIVE POLL ───────────────────────────────────── */
-<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>

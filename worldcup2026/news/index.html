@@ -26,7 +26,7 @@ body{font-family:var(--font);background:var(--bg);background-attachment:fixed;co
 a{text-decoration:none;color:inherit}
 #gc-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
 #gc-sidebar-overlay.open{display:block}
-#gc-sidebar{width:var(--sb-w);background:var(--sb-bg);height:100vh;position:relative;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s}
+#gc-sidebar{width:var(--sb-w);background:var(--sb-bg);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s}
 #gc-sidebar::-webkit-scrollbar{display:none}
 .sb-wrap{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
 .sb-logo-name{font-family:var(--head);font-size:1.3rem;font-weight:800;color:#fff;line-height:1}
@@ -127,7 +127,7 @@ a{text-decoration:none;color:inherit}
 @media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sb-w)!important}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
-  #gc-sidebar{transform:none;}
+  #gc-sidebar{transform:translateX(-100%)}
   #gc-sidebar.open{transform:translateX(0)}
   #gc-main{margin-left:0!important}
   .gc-hdr{padding-left:60px}
@@ -139,7 +139,6 @@ a{text-decoration:none;color:inherit}
 <style id="gc-no-hard-hide">
 a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </style>
-  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -427,6 +426,5 @@ if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElemen
 loadNews();
 setInterval(loadNews,3600000); /* Refresh every hour */
 </script>
-<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>
