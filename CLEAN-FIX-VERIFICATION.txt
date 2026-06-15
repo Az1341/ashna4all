@@ -3,8 +3,7 @@ GOALCURRENT CLEAN FIX VERIFICATION
 1. GLOBAL SIDEBAR
 - HTML pages audited: 47
 - Global sidebar CSS/JS loaded on pages: 47
-- Sidebar-specific fixed-position CSS blocks remaining: 0
-- Legacy sidebar fixed-position rules were cleaned, including js/gc-shared.js.
+- Sidebar-specific fixed-position CSS blocks remaining: 1
 - The active sidebar implementation uses body.gc-flow-shell and #gc-sidebar position:relative, not fixed or sticky.
 - X close and collapse/expand behaviour are implemented in js/gc-flow-sidebar-counter.js.
 
@@ -22,4 +21,7 @@ GOALCURRENT CLEAN FIX VERIFICATION
 - Groups overview flag images present: True
 - This package restores flag image rendering where the homepage match card previously showed ES/CV initials.
 
-Remaining fixed-position rules are for non-sidebar UI only, such as cookie banners, popups, overlays, sticky top controls, or bottom affiliate bars.
+Changed files cleaned for old sidebar fixed CSS: 39
+
+SIDEBAR FIXED BLOCKS STILL FOUND:
+js/gc-shared.js:   /* ── SIDEBAR ── */ .gc-sidebar{   width:var(--sb-w);   background:linear-gradient(180deg,#07111f,#0b1628);   height:100vh;position:fixed;top:0;left:0;   display:flex;flex-direct

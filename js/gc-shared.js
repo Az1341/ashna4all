@@ -30,7 +30,7 @@ style.textContent = `
 .gc-sidebar{
   width:var(--sb-w);
   background:linear-gradient(180deg,#07111f,#0b1628);
-  min-height:100vh;position:relative;
+  height:100vh;position:fixed;top:0;left:0;
   display:flex;flex-direction:column;z-index:500;
   overflow-y:auto;scrollbar-width:none;
   transition:transform .3s ease;

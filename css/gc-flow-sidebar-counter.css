@@ -1,34 +1,195 @@
+/* GoalCurrent CLEAN GLOBAL SIDEBAR + GAME COUNTER PATCH
+   Scope: layout/sidebar behavior, counter widgets, flag image polish.
+   Important: sidebar remains in normal document flow on desktop via flex layout + sticky positioning.
+   It is NOT position:fixed. Main content starts at the top with no vertical gap. */
+:root{
+  --gc-side-open:220px;
+  --gc-side-collapsed:72px;
+  --gc-side-current:var(--gc-side-open);
+  --gc-blue:#2563eb;
+  --gc-blue-dark:#003fb8;
+  --gc-gold:#f59e0b;
+}
 
-/* GoalCurrent global flow-sidebar + homepage/groups enhancements
-   Primary sidebar layout: sidebar sits in normal page flow, can collapse to icons, and can be fully hidden. */
-:root{--gc-side-open:220px;--gc-side-collapsed:72px;--gc-side-current:var(--gc-side-open)}
+/* DESKTOP APP SHELL: sidebar column + content column, both start at top */
 @media (min-width:769px){
-  body.gc-flow-shell{display:grid!important;grid-template-columns:var(--gc-side-current) minmax(0,1fr)!important;align-items:start!important;overflow-x:hidden!important;transition:grid-template-columns .25s ease!important}
+  body.gc-flow-shell{
+    display:flex !important;
+    align-items:flex-start !important;
+    min-height:100vh !important;
+    overflow-x:hidden !important;
+  }
+
   body.gc-flow-shell.gc-sidebar-collapsed{--gc-side-current:var(--gc-side-collapsed)}
   body.gc-flow-shell.gc-sidebar-hidden{--gc-side-current:0px}
-  body.gc-flow-shell #gc-sidebar{position:relative!important;top:auto!important;left:auto!important;bottom:auto!important;width:var(--gc-side-current)!important;min-height:100vh!important;height:auto!important;transform:none!important;transition:width .25s ease,opacity .2s ease!important;grid-column:1!important;grid-row:1 / span 20!important;box-shadow:none!important;z-index:20!important;overflow-x:hidden!important}
-  body.gc-flow-shell.gc-sidebar-hidden #gc-sidebar{display:none!important}
-  body.gc-flow-shell #gc-sidebar-overlay{display:none!important}
-  body.gc-flow-shell #gc-main,body.gc-flow-shell #gc-page{grid-column:2!important;grid-row:1!important;margin-left:0!important;width:auto!important;min-width:0!important;max-width:none!important}
-  body.gc-flow-shell #gc-hamburger{display:flex!important;position:fixed!important;top:14px!important;left:14px!important;z-index:1200!important;background:rgba(0,27,77,.9)!important}
-  body.gc-flow-shell:not(.gc-sidebar-hidden) #gc-hamburger{left:calc(var(--gc-side-current) + 14px)!important}
+
+  /* Support both sidebar systems used across the site: #gc-sidebar and .sidebar#sidebar */
+  body.gc-flow-shell #gc-sidebar,
+  body.gc-flow-shell aside.sidebar,
+  body.gc-flow-shell #sidebar.sidebar{
+    position:sticky !important;
+    top:0 !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    width:var(--gc-side-current) !important;
+    flex:0 0 var(--gc-side-current) !important;
+    height:100vh !important;
+    min-height:100vh !important;
+    max-height:100vh !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    z-index:50 !important;
+    transition:width .22s ease, flex-basis .22s ease, opacity .18s ease !important;
+  }
+
+  body.gc-flow-shell.gc-sidebar-hidden #gc-sidebar,
+  body.gc-flow-shell.gc-sidebar-hidden aside.sidebar,
+  body.gc-flow-shell.gc-sidebar-hidden #sidebar.sidebar{
+    display:none !important;
+    flex-basis:0 !important;
+    width:0 !important;
+  }
+
+  body.gc-flow-shell #gc-sidebar-overlay,
+  body.gc-flow-shell .overlay{
+    display:none !important;
+  }
+
+  /* Main content: remove every old margin-left caused by fixed sidebar implementations */
+  body.gc-flow-shell #gc-main,
+  body.gc-flow-shell #gc-page,
+  body.gc-flow-shell .main,
+  body.gc-flow-shell main.gc-main,
+  body.gc-flow-shell > main,
+  body.gc-flow-shell > div.main{
+    margin-left:0 !important;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+    flex:1 1 auto !important;
+    align-self:stretch !important;
+  }
+
+  /* Use the existing hamburger as collapse/expand control. It stays visible beside the sidebar. */
+  body.gc-flow-shell #gc-hamburger,
+  body.gc-flow-shell .hamb{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    position:sticky !important;
+    top:12px !important;
+    left:auto !important;
+    z-index:120 !important;
+    width:38px !important;
+    height:38px !important;
+    border-radius:10px !important;
+  }
+
+  /* Injected universal controls */
+  .gc-sidebar-controlbar{
+    display:flex !important;
+    gap:6px !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    padding:8px !important;
+    border-bottom:1px solid rgba(255,255,255,.08) !important;
+  }
+  .gc-sidebar-controlbar button{
+    border:1px solid rgba(255,255,255,.12) !important;
+    background:rgba(255,255,255,.08) !important;
+    color:#fff !important;
+    min-width:30px !important;
+    height:30px !important;
+    border-radius:8px !important;
+    cursor:pointer !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+  }
+  .gc-sidebar-controlbar button:hover{background:rgba(255,255,255,.16) !important}
+
+  /* Collapsed state: icons only, no text labels. Covers both sidebar HTML patterns. */
   body.gc-flow-shell.gc-sidebar-collapsed .sidebar-logo-text,
+  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-logo-domain,
   body.gc-flow-shell.gc-sidebar-collapsed .sidebar-section-label,
   body.gc-flow-shell.gc-sidebar-collapsed .sidebar-footer-social,
-  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-nav a span:not(.nav-icon){display:none!important}
-  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-header{justify-content:center!important;padding-left:8px!important;padding-right:8px!important}
-  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-logo{justify-content:center!important;gap:0!important}
-  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-close{position:absolute!important;right:4px!important;top:6px!important;font-size:.8rem!important;padding:2px 5px!important}
-  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-nav a{justify-content:center!important;padding-!important;padding-right:0!important;gap:0!important}
-  body.gc-flow-shell.gc-sidebar-collapsed .nav-icon{width:100%!important;text-align:center!important;font-size:1.15rem!important}
+  body.gc-flow-shell.gc-sidebar-collapsed .side-section,
+  body.gc-flow-shell.gc-sidebar-collapsed .side-foot,
+  body.gc-flow-shell.gc-sidebar-collapsed .brand span,
+  body.gc-flow-shell.gc-sidebar-collapsed .brand,
+  body.gc-flow-shell.gc-sidebar-collapsed .comp-title span:not(.badge),
+  body.gc-flow-shell.gc-sidebar-collapsed .side-sub a,
+  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-nav a span:not(.nav-icon){
+    display:none !important;
+  }
+  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-header,
+  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-logo,
+  body.gc-flow-shell.gc-sidebar-collapsed .sidebar-nav a,
+  body.gc-flow-shell.gc-sidebar-collapsed .side-link,
+  body.gc-flow-shell.gc-sidebar-collapsed .comp-title{
+    justify-content:center !important;
+    text-align:center !important;
+    padding-left:6px !important;
+    padding-right:6px !important;
+  }
+  body.gc-flow-shell.gc-sidebar-collapsed .nav-icon,
+  body.gc-flow-shell.gc-sidebar-collapsed .side-link::first-letter{
+    margin:0 auto !important;
+  }
+  body.gc-flow-shell.gc-sidebar-collapsed .badge{display:inline-block !important;margin:0 auto !important}
 }
+
+/* MOBILE: sidebar behaves as an overlay drawer, no desktop column gap */
+@media (max-width:768px){
+  body.gc-flow-shell{display:block !important;overflow-x:hidden !important}
+  body.gc-flow-shell #gc-sidebar,
+  body.gc-flow-shell aside.sidebar,
+  body.gc-flow-shell #sidebar.sidebar{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    width:82vw !important;
+    max-width:300px !important;
+    height:100vh !important;
+    z-index:900 !important;
+    overflow-y:auto !important;
+    transform:translateX(-105%) !important;
+    transition:transform .22s ease !important;
+  }
+  body.gc-flow-shell:not(.gc-sidebar-hidden) #gc-sidebar,
+  body.gc-flow-shell:not(.gc-sidebar-hidden) aside.sidebar,
+  body.gc-flow-shell:not(.gc-sidebar-hidden) #sidebar.sidebar,
+  body.gc-flow-shell #gc-sidebar.open,
+  body.gc-flow-shell aside.sidebar.open,
+  body.gc-flow-shell #sidebar.sidebar.open{
+    transform:translateX(0) !important;
+  }
+  body.gc-flow-shell #gc-main,
+  body.gc-flow-shell #gc-page,
+  body.gc-flow-shell .main,
+  body.gc-flow-shell > main,
+  body.gc-flow-shell > div.main{
+    margin-left:0 !important;
+    width:100% !important;
+  }
+  .gc-sidebar-controlbar{display:flex;justify-content:flex-end;gap:8px;padding:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .gc-sidebar-controlbar button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;min-width:34px;height:34px;border-radius:8px;font-weight:900}
+}
+
+/* Games left counter widgets */
 .gc-hosts-counter-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:14px;margin:14px 0 18px;align-items:stretch}
-.gc-hosts-panel,.gc-games-left-panel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px;box-shadow:0 8px 18px rgba(0,0,0,.08)}
+.gc-hosts-panel,.gc-games-left-panel,.gc-games-left-inline{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .gc-hosts-title,.gc-games-left-title{font-family:var(--font-head,'Barlow Condensed',sans-serif);font-weight:800;font-size:1rem;color:#fff;margin-bottom:8px}
 .gc-hosts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .gc-host-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px;text-align:center;font-weight:800;color:#fff;font-size:.82rem}
-.gc-games-left-num{font-family:var(--font-head,'Barlow Condensed',sans-serif);font-size:2.4rem;line-height:1;font-weight:900;color:var(--gold,#f59e0b);direction:ltr!important;unicode-bidi:embed}
-.gc-games-left-label{font-weight:800;color:#fff;margin-top:2px}.gc-games-left-note{font-size:.72rem;color:rgba(255,255,255,.72);margin:5px 0 8px}.gc-games-left-test{border:0;border-radius:999px;background:var(--gold,#f59e0b);color:#07111f;font-weight:900;padding:7px 11px;cursor:pointer;font-size:.76rem}.gc-games-left-test:hover{filter:brightness(.95)}
+.gc-games-left-num{font-family:var(--font-head,'Barlow Condensed',sans-serif);font-size:2.4rem;line-height:1;font-weight:900;color:var(--gc-gold);direction:ltr!important;unicode-bidi:embed}
+.gc-games-left-label{font-weight:800;color:#fff;margin-top:2px}.gc-games-left-note{font-size:.72rem;color:rgba(255,255,255,.72);margin:5px 0 8px}.gc-games-left-test{border:0;border-radius:999px;background:var(--gc-gold);color:#07111f;font-weight:900;padding:7px 11px;cursor:pointer;font-size:.76rem}.gc-games-left-test:hover{filter:brightness(.95)}
+/* For non-home WC pages with light backgrounds */
+.gc-games-left-inline{margin:12px 0;background:linear-gradient(135deg,#0b3aa8,#2563eb);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.gc-games-left-inline .gc-games-left-title{margin:0}.gc-games-left-inline .gc-games-left-num{font-size:1.9rem}.gc-games-left-inline .gc-games-left-note{margin:0}
+
+/* Flag image polish */
 .gc-om-flag img{width:72px;height:52px;object-fit:cover;border-radius:7px;box-shadow:0 6px 14px rgba(0,0,0,.25);background:white;display:block;margin:0 auto}
-.gc-groups-overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0 28px}.gc-group-overview-card{background:rgba(255,255,255,.82);border:1px solid rgba(37,99,235,.16);border-radius:16px;padding:14px;box-shadow:0 10px 22px rgba(30,64,175,.08)}.gc-group-overview-card h2{font-family:var(--font-head,'Barlow Condensed',sans-serif);font-size:1.45rem;margin:0 0 8px;color:#0f172a}.gc-group-overview-teams{display:grid;gap:7px;margin-bottom:12px}.gc-group-overview-team{display:flex;align-items:center;gap:8px;background:#f8fbff;border:1px solid #dbeafe;border-radius:10px;padding:7px 9px;font-weight:700}.gc-group-overview-team img{width:26px;height:18px;object-fit:cover;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.12)}.gc-group-overview-actions{display:flex;gap:8px;flex-wrap:wrap}.gc-group-overview-actions a{padding:7px 10px;border-radius:10px;font-weight:800;font-size:.78rem;text-decoration:none}.gc-group-overview-actions a:first-child{background:var(--blue,#2563eb);color:#fff}.gc-group-overview-actions a:last-child{background:#eef4ff;color:var(--blue,#2563eb);border:1px solid #bfdbfe}
-@media(max-width:768px){.gc-hosts-counter-grid{grid-template-columns:1fr}.gc-hosts-row{grid-template-columns:1fr}.gc-games-left-num{font-size:2.1rem}.gc-om-flag img{width:58px;height:42px}.gc-groups-overview-grid{grid-template-columns:1fr}.gc-group-overview-card{padding:12px}}
+.gc-group-overview-team img,.flag img,.team img{object-fit:cover}
+
+@media(max-width:768px){.gc-hosts-counter-grid{grid-template-columns:1fr}.gc-hosts-row{grid-template-columns:1fr}.gc-games-left-num{font-size:2.1rem}.gc-om-flag img{width:58px;height:42px}.gc-games-left-inline{align-items:flex-start}}
