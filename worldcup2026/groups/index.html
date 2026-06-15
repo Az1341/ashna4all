@@ -989,6 +989,52 @@ a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
       <a href="/worldcup2026/teams/" style="padding:8px 18px;background:rgba(37,99,235,.1);color:var(--blue);border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem">👕 Teams</a>
     </div>
 
+    <!-- ── GROUP CARDS (A–L) — rendered dynamically from WC26.groups (js/worldcup-data.js). Pill nav above is the no-JS fallback. ── -->
+    <section id="gc-group-cards" class="gc-group-cards" aria-label="World Cup 2026 group cards"
+             style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px"></section>
+    <script src="/js/worldcup-data.js"></script>
+    <script>
+    (function () {
+      var data  = window.WC26;
+      var mount = document.getElementById('gc-group-cards');
+      if (!mount || !data || !data.groups) { return; } /* pill nav above remains as fallback */
+
+      var groups = data.groups;
+      function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+          return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c];
+        });
+      }
+      function flagUrl(team) {
+        if (typeof data.flagUrl === 'function') return data.flagUrl(team);
+        var code = (data.flags && data.flags[team]) || 'un';
+        return 'https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/' + code + '.svg';
+      }
+
+      var html = '';
+      Object.keys(groups).forEach(function (letter) {
+        var teams = groups[letter] || [];
+        var slug  = letter.toLowerCase();
+        html +=
+          '<article class="gc-group-card" style="background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);border-radius:14px;padding:16px;box-shadow:0 4px 16px rgba(37,99,235,.07)">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:12px">' +
+              '<h2 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0">Group ' + esc(letter) + '</h2>' +
+              '<a href="/worldcup2026/groups/group-' + slug + '/" style="font-size:.72rem;font-weight:700;color:var(--blue);text-decoration:none;border:1.5px solid rgba(37,99,235,.3);border-radius:14px;padding:4px 12px">View Group →</a>' +
+            '</div>' +
+            '<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px">';
+        teams.forEach(function (team) {
+          html +=
+            '<li style="display:flex;align-items:center;gap:10px">' +
+              '<img src="' + flagUrl(team) + '" alt="' + esc(team) + ' flag" width="28" height="21" loading="lazy" style="border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.18);flex-shrink:0" onerror="this.style.visibility=\'hidden\'">' +
+              '<span style="font-size:.9rem;font-weight:600;color:var(--text-dark)">' + esc(team) + '</span>' +
+            '</li>';
+        });
+        html += '</ul></article>';
+      });
+      mount.innerHTML = html;
+    }());
+    </script>
+
     <div class="gc-ad-slot gc-ad-slot-mid"><span>Advertisement</span></div>
   </main>
   <!-- ── NORDVPN AFFILIATE BAR (ONE, above footer) ── -->
