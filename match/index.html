@@ -6,6 +6,12 @@
 <title>Match Details — GoalCurrent.live</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Phase 1 shared foundation -->
+<link rel="stylesheet" href="/css/gc-match-row.css">
+<script src="/js/worldcup-data.js"></script>
+<script src="/js/gc-flags.js"></script>
+<script src="/js/gc-favourites.js"></script>
+<script src="/js/gc-shell.js"></script>
 <style>
 /* ── reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -157,8 +163,7 @@ body {
 .tabs-wrapper {
   background: #fff;
   border-bottom: 2px solid #e2e8f0;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 10;
   overflow-x: auto;
 }
@@ -457,11 +462,7 @@ body {
 </head>
 <body>
 
-<header class="site-header">
-  <a href="/">⚽ GoalCurrent.live</a>
-  <a href="/live/" class="back-btn">← Live Scores</a>
-</header>
-
+<div id="gc-page-content">
 <div id="loading">Loading match data…</div>
 <div id="error-box" style="display:none"></div>
 <div id="match-content" style="display:none">
@@ -481,6 +482,7 @@ body {
         <div class="score-ht"   id="hd-ht"></div>
         <div class="score-extra" id="hd-et" style="display:none"></div>
         <div class="score-pen"   id="hd-pen" style="display:none"></div>
+        <div id="hd-fav" style="margin-top:6px"></div>
       </div>
       <div class="team-block">
         <span class="team-flag-emoji" id="hd-away-flag" aria-hidden="true"></span>
@@ -542,78 +544,30 @@ body {
   </div>
 
 </div>
+</div>
 
 <script>
-// ── flag helper — emoji flags, no CDN dependency ──
-function flagEmoji(teamName) {
-  /* Map team name → ISO 3166-1 alpha-2 code (2 chars) or special code */
-  const FLAGS = {
-    /* Group A */
-    'Mexico':'MX','South Africa':'ZA','Korea Republic':'KR','South Korea':'KR',
-    'Czechia':'CZ','Czech Republic':'CZ',
-    /* Group B */
-    'Canada':'CA','Bosnia & Herzegovina':'BA','Bosnia & Herz.':'BA',
-    'Bosnia and Herzegovina':'BA','Qatar':'QA','Switzerland':'CH',
-    /* Group C */
-    'Brazil':'BR','Morocco':'MA','Haiti':'HT','Scotland':'GBSCT',
-    /* Group D */
-    'USA':'US','United States':'US','Paraguay':'PY','Australia':'AU',
-    'Türkiye':'TR','Turkey':'TR',
-    /* Group E */
-    'Germany':'DE',
-    'Curaçao':'CW','Curacao':'CW','Curaçao National Team':'CW',
-    "Côte d'Ivoire":'CI',"Cote d'Ivoire":'CI','Ivory Coast':'CI',
-    'Ecuador':'EC',
-    /* Group F */
-    'Netherlands':'NL','Japan':'JP','Sweden':'SE','Tunisia':'TN',
-    /* Group G */
-    'Belgium':'BE','Egypt':'EG','IR Iran':'IR','Iran':'IR',
-    'New Zealand':'NZ',
-    /* Group H */
-    'Spain':'ES','Cape Verde':'CV','Cabo Verde':'CV',
-    'Saudi Arabia':'SA','Uruguay':'UY',
-    /* Group I */
-    'France':'FR','Senegal':'SN','Iraq':'IQ','Norway':'NO',
-    /* Group J */
-    'Argentina':'AR','Algeria':'DZ','Austria':'AT','Jordan':'JO',
-    /* Group K */
-    'Portugal':'PT','DR Congo':'CD','Congo DR':'CD',
-    'Uzbekistan':'UZ','Colombia':'CO',
-    /* Group L */
-    'England':'GBENG','Croatia':'HR','Ghana':'GH','Panama':'PA',
-    /* Others */
-    'Serbia':'RS','Poland':'PL','Denmark':'DK','Romania':'RO',
-    'Nigeria':'NG','Cameroon':'CM','Burkina Faso':'BF','Mali':'ML',
-    'Venezuela':'VE','Bolivia':'BO','Peru':'PE','Chile':'CL',
-    'Jamaica':'JM','Honduras':'HN','Costa Rica':'CR',
-    'El Salvador':'SV','Cuba':'CU','Iceland':'IS','Ukraine':'UA',
-    'Indonesia':'ID','China PR':'CN','Greece':'GR','Slovakia':'SK',
-    'Hungary':'HU','Italy':'IT','Turkey':'TR'
-  };
-
-  const SPECIAL = {
-    'GBSCT': '🏴󠁧󠁢󠁳󠁣󠁴󠁿',  /* Scotland */
-    'GBENG': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',  /* England */
-  };
-
-  const code = FLAGS[teamName];
-  if (!code) return '⚽'; /* Unknown team */
-  if (SPECIAL[code]) return SPECIAL[code];
-
-  /* Build emoji from 2-letter ISO code using Regional Indicator Symbols */
-  const OFFSET = 0x1F1E6 - 65; /* 'A' = 65 */
-  return String.fromCodePoint(
-    code.charCodeAt(0) + OFFSET,
-    code.charCodeAt(1) + OFFSET
-  );
+// ── flag helper — real flags via GCFlags (Phase 1) ──
+/* Real flag <img> markup via the global GCFlags resolver (no ⚽ fallback). */
+function flagImgHTML(teamName, opts) {
+  if (window.GCFlags) return GCFlags.img(teamName, opts || { w: 48, h: 32 });
+  return '<span class="gc-flag-placeholder" style="display:inline-block;width:48px;height:32px;background:#e2e8f0;border-radius:4px"></span>';
 }
 
-/* Keep flagUrl as alias for compatibility with other code that may call it */
+/* flagUrl — real flagcdn URL for <img src> (used by line-up headers). */
 function flagUrl(teamName) {
-  return flagEmoji(teamName);
+  return window.GCFlags ? GCFlags.url(teamName, 80) : '';
 }
 
 
+
+// ── favourite star (Phase 1 GCFavourites) ──
+function renderFavStar(id) {
+  var host = document.getElementById('hd-fav');
+  if (!host || !window.GCFavourites || id == null) return;
+  host.innerHTML = GCFavourites.renderStarButton({ type: 'match', id: id, label: 'Save this match to favourites' });
+  GCFavourites.bindStars(host);
+}
 
 // ── tab switching ──
 function showTab(name) {
@@ -648,9 +602,9 @@ function renderHeader(f) {
   document.getElementById('hd-venue').textContent = f.venue ? `${f.venue}, ${f.city}` : '';
   document.getElementById('hd-home-name').textContent = f.home.name;
   document.getElementById('hd-away-name').textContent = f.away.name;
-  /* Use emoji flag — no CDN, no img load failure */
-  document.getElementById('hd-home-flag').textContent = flagEmoji(f.home.name);
-  document.getElementById('hd-away-flag').textContent = flagEmoji(f.away.name);
+  /* Real country flags via GCFlags (Phase 1) */
+  document.getElementById('hd-home-flag').innerHTML = flagImgHTML(f.home.name, { w: 52, h: 35 });
+  document.getElementById('hd-away-flag').innerHTML = flagImgHTML(f.away.name, { w: 52, h: 35 });
 
   const gh = f.goals.home ?? '-';
   const ga = f.goals.away ?? '-';
@@ -939,6 +893,7 @@ async function loadMatch(id, isFirst) {
 
     clearPanels();
     renderHeader(data.fixture);
+    renderFavStar(id);
     renderEvents(data.events || [], data.fixture);
     renderLineups(data.lineups || []);
     renderStats(data.statistics || []);
@@ -975,6 +930,17 @@ function init() {
     return;
   }
   loadMatch(id, true);
+}
+
+/* Mount the standard GoalCurrent header + sidebar (Phase 1 GCShell) */
+if (window.GCShell) {
+  GCShell.init({
+    contentSelector: '#gc-page-content',
+    section: 'worldcup2026',
+    headerTitle: 'Match Centre',
+    headerSubtitle: 'Live events · line-ups · stats',
+    showSubnav: false
+  });
 }
 
 init();

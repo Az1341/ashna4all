@@ -874,109 +874,15 @@ html, body {
 <style id="gc-no-hard-hide">
 a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </style>
+<!-- Phase 1 shared foundation -->
+<link rel="stylesheet" href="/css/gc-match-row.css">
+<script src="/js/gc-flags.js"></script>
+<script src="/js/gc-favourites.js"></script>
+<script src="/js/gc-shell.js"></script>
 </head>
 <body>
 
-<!-- ═══ HAMBURGER (always visible, fixed top-left) ═══ -->
-<button id="gc-hamburger" aria-label="Open navigation menu">
-  <span></span><span></span><span></span>
-</button>
-
-<!-- ═══ SIDEBAR OVERLAY ═══ -->
-<div id="gc-sidebar-overlay"></div>
-
-<!-- ═══ SIDEBAR ═══ -->
-<nav id="gc-sidebar" aria-label="Main navigation">
-  <div class="sidebar-header">
-    <a href="/" class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <img src="/logo.svg" alt="GoalCurrent.live logo" width="36" height="36"
-             onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
-      </div>
-      <div class="sidebar-logo-text">
-        <span class="sidebar-logo-name">Goal<em>Current</em></span>
-        <span class="sidebar-logo-domain">.live</span>
-      </div>
-    </a>
-    <button class="sidebar-close" id="gc-sidebar-close" aria-label="Close menu" onclick="gcCloseSidebar()">✕</button>
-  </div>
-
-  <div class="sidebar-section-label">Main Menu</div>
-  <div class="sidebar-nav">
-    <a href="/"><span class="nav-icon">🏠</span> Home</a>
-    <a href="/live/">🔴 Live Scores</a>
-    <a href="/worldcup2026/" class="active"><span class="nav-icon">🌍</span> World Cup 2026</a>
-    <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
-    <a href="/ucl/"><span class="nav-icon">⭐</span> Champions League</a>
-    <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> News</a>
-  </div>
-
-  <div class="sidebar-section-label">World Cup 2026</div>
-  <div class="sidebar-nav">
-    <a href="/worldcup2026/"><span class="nav-icon">📋</span> Overview</a>
-    <a href="/worldcup2026/groups/"><span class="nav-icon">🔢</span> Groups</a>
-    <a href="/worldcup2026/fixtures/"><span class="nav-icon">📅</span> Fixtures</a>
-    <a href="/worldcup2026/standings/"><span class="nav-icon">📊</span> Standings</a>
-    <a href="/worldcup2026/bracket/"><span class="nav-icon">🏆</span> Bracket</a>
-    <a href="/worldcup2026/venues/"><span class="nav-icon">🏟️</span> Venues</a>
-    <a href="/worldcup2026/teams/"><span class="nav-icon">👕</span> Teams</a>
-    <a href="/worldcup2026/news/"><span class="nav-icon">📰</span> WC News</a>
-<a href="/worldcup2026/favourites/" class="active"><span class="nav-icon">⭐</span> Favourites</a>
-  </div>
-
-  <div class="sidebar-section-label">Competitions</div>
-  <div class="sidebar-nav">
-    <a href="/premier-league/"><span class="nav-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</a>
-    <a href="/ucl/"><span class="nav-icon">🥇</span> Champions League</a>
-  </div>
-
-  <div class="sidebar-footer-social">
-    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" title="Twitter/X">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" title="TikTok">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" title="YouTube">▶</a>
-  </div>
-</nav>
-
-<!-- ═══ PAGE WRAPPER ═══ -->
-<div id="gc-page">
-
-  <!-- ── SECTION HEADER (WC2026) ── -->
-  <header class="gc-section-header">
-    <div class="gc-header-top">
-      <!-- Site branding (visible when sidebar is closed) -->
-      <div class="gc-site-brand">
-        <div class="gc-site-brand-icon">
-          <img src="/logo.svg" alt="GoalCurrent.live" width="30" height="30"
-               onerror="this.style.display='none';this.parentNode.innerHTML='⚽'">
-        </div>
-        <div class="gc-site-brand-text">Goal<span>Current</span><small>.live</small></div>
-      </div>
-      <!-- Divider -->
-      <div class="gc-header-divider"></div>
-      <div class="gc-header-logo">🏆</div>
-      <div>
-        <div class="gc-header-title">World Cup <span>2026</span></div>
-        <div class="gc-header-sub">⭐ My Favourites</div>
-      </div>
-      <div class="gc-header-badge">Favourites</div>
-    </div>
-
-    <!-- SUB-NAV: WC2026 sections only — NO Premier League tab -->
-    <nav class="gc-subnav" aria-label="World Cup 2026 sections">
-      <div class="gc-subnav-inner">
-        <a href="/worldcup2026/">📋 Overview</a>
-        <a href="/worldcup2026/groups/">🔢 Groups</a>
-        <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
-        <a href="/worldcup2026/standings/">📊 Standings</a>
-        <a href="/worldcup2026/bracket/">🏆 Bracket</a>
-        <a href="/worldcup2026/venues/">🏟️ Venues</a>
-        <a href="/worldcup2026/teams/">👕 Teams</a>
-        <a href="/worldcup2026/news/">📰 News</a>
-<a href="/worldcup2026/favourites/" class="active">⭐ Favourites</a>
-        <!-- ✅ Premier League REMOVED from WC top nav — it lives in the sidebar only -->
-      </div>
-    </nav>
-  </header>
+<div id="gc-page-content">
 
   <!-- ── MAIN CONTENT ── -->
   <main class="gc-main">
@@ -1022,7 +928,7 @@ a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
     </div>
   </footer>
 
-</div><!-- /#gc-page -->
+</div><!-- /#gc-page-content -->
 
 <!-- ═══ COOKIE BANNER (ONE, session-persistent) ═══ -->
 <div id="gc-cookie-banner" role="alert">
@@ -1057,19 +963,6 @@ a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </div>
 
 <script>
-var sidebar=document.getElementById('gc-sidebar');
-var overlay=document.getElementById('gc-sidebar-overlay');
-var hamburger=document.getElementById('gc-hamburger');
-function gcOpenSidebar(){sidebar.classList.add('open');overlay.classList.add('active');hamburger.classList.add('open');document.body.style.overflow='hidden';
-  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';
-}
-function gcCloseSidebar(){sidebar.classList.remove('open');overlay.classList.remove('active');hamburger.classList.remove('open');document.body.style.overflow='';
-  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';
-}
-hamburger.addEventListener('click',function(){sidebar.classList.contains('open')?gcCloseSidebar():gcOpenSidebar();});
-document.getElementById('gc-sidebar-close').addEventListener('click',gcCloseSidebar);
-document.getElementById('gc-sidebar-overlay').addEventListener('click',gcCloseSidebar);
-document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
 (function(){if(localStorage.getItem('gc_cookie_choice'))return;setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.classList.add('show');},1200);})();
 function gcCookieAccept(){localStorage.setItem('gc_cookie_choice','accepted');document.getElementById('gc-cookie-banner').classList.remove('show');}
 function gcCookieDecline(){localStorage.setItem('gc_cookie_choice','declined');document.getElementById('gc-cookie-banner').classList.remove('show');}
@@ -1409,6 +1302,7 @@ function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=docume
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
 </script>
 
+<script>
 /* ── FAVOURITES MATCHES LIVE POLL ─────────────────────────────── */
 (function(){
   function updateFavMatchCards(){
@@ -1459,5 +1353,11 @@ if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.get
   });
 })();
 /* ── END FAVOURITES LIVE POLL ───────────────────────────────────── */
+</script>
+<script>
+  if (window.GCShell) {
+    GCShell.init({ contentSelector:'#gc-page-content', section:'worldcup2026', showSubnav:true, headerTitle:'World Cup 2026', headerSubtitle:'Favourites' });
+  }
+</script>
 </body>
 </html>

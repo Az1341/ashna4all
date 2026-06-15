@@ -12,7 +12,7 @@
  *   - Active menu detection from the URL or a data-gc-section attribute
  *   - No overlap between hamburger, logo and close button:
  *       • Hamburger ☰ lives ONLY in the header (.gc-shell-hamburger),
- *         hidden on desktop (≥769px)
+ *         visible on all sizes; toggles the collapsible sidebar
  *       • Close ✕ lives ONLY inside the sidebar head (.gc-shell-sidebar-close)
  *       • Brand/logo gets its own flex slot in both header and sidebar
  *
@@ -182,7 +182,7 @@
       '.gc-shell-pill.is-active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}' +
 
       /* Main wrapper / content */
-      '.gc-shell-main{margin-left:var(--gc-shell-w);min-height:100vh;display:flex;flex-direction:column;transition:margin-left .3s ease}' +
+      '.gc-shell-main{margin-left:0;min-height:100vh;display:flex;flex-direction:column;transition:margin-left .3s ease}' +
       '.gc-shell-content{flex:1}' +
 
       /* Sidebar footer */
@@ -190,13 +190,10 @@
       '.gc-shell-social{display:flex;gap:8px;margin-bottom:10px}' +
       '.gc-shell-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:#10213a;border-radius:7px;font-size:13px;color:#b8c4d9;text-decoration:none}' +
 
-      /* Desktop ≥769px: sidebar fixed open, hamburger + close hidden */
+      /* Desktop ≥769px: collapsible push layout, hamburger always visible */
       '@media(min-width:769px){' +
-      '.gc-shell-overlay{display:none!important}' +
-      '.gc-shell-sidebar{transform:translateX(0)!important}' +
-      '.gc-shell-sidebar-close{display:none}' +
-      '.gc-shell-hamburger{display:none!important}' +
-      '.gc-shell-main{margin-left:var(--gc-shell-w)!important}' +
+      '.gc-shell-overlay,.gc-shell-overlay.is-open{display:none!important}' +
+      '.gc-shell-sidebar.is-open ~ .gc-shell-main{margin-left:var(--gc-shell-w)}' +
       '}' +
 
       /* Mobile ≤768px: sidebar slides over, header makes room for hamburger */
@@ -359,6 +356,12 @@
     var sbHolder = document.createElement('div');
     sbHolder.innerHTML = sidebarHTML(activeSection);
     document.body.insertBefore(sbHolder.firstChild, overlay.nextSibling);
+
+    /* Default open state by viewport: desktop opens, mobile stays closed */
+    if (window.innerWidth >= 769) {
+      var defaultSidebar = document.getElementById('gc-shell-sidebar');
+      if (defaultSidebar) defaultSidebar.classList.add('is-open');
+    }
 
     /* Main wrapper */
     var main = document.createElement('div');

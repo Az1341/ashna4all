@@ -1,0 +1,138 @@
+/* ============================================================
+   GoalCurrent.live — gc-match-row.css
+   One reusable horizontal match row:
+
+     [flag + team name]   |   [score / status]   |   [flag + team name]
+            home                   centre                  away
+
+   - Score / status is centred
+   - Team names are baseline-aligned with the score
+   - Mobile safe (collapses padding + font sizes, never wraps the score)
+
+   Uses a dedicated .gc-mrow namespace so it never collides with the
+   legacy inline .gc-match-row markup already in some pages.
+   ============================================================ */
+
+.gc-mrow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  min-height: 56px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Optional card wrapper */
+.gc-mrow-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.gc-mrow-card .gc-mrow:hover { background: rgba(37, 99, 235, 0.03); }
+
+/* ── SIDES (flag + name on a single horizontal line) ── */
+.gc-mrow-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.gc-mrow-side--home { justify-content: flex-end; text-align: right; }
+.gc-mrow-side--away { justify-content: flex-start; text-align: left; }
+
+/* Home flag sits on the right of its name, away flag on the left */
+.gc-mrow-side--home { flex-direction: row-reverse; }
+
+.gc-mrow-flag {
+  width: 28px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  display: block;
+}
+.gc-mrow-flag.gc-flag-placeholder {
+  background: #e2e8f0;
+}
+
+.gc-mrow-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ── CENTRE (score / status / kickoff) ── */
+.gc-mrow-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 64px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.gc-mrow-score {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.gc-mrow-status {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #2563eb;
+  white-space: nowrap;
+}
+.gc-mrow-status--live { color: #dc2626; }
+.gc-mrow-status--ft { color: #15803d; }
+.gc-mrow-ko {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+/* ── FAVOURITE STAR (pairs with gc-favourites.js) ── */
+.gc-fav-star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px;
+  color: #cbd5e1;
+  flex-shrink: 0;
+  transition: color 0.15s, transform 0.1s;
+  font-family: inherit;
+}
+.gc-fav-star:hover { color: #f59e0b; transform: scale(1.1); }
+.gc-fav-star--on { color: #f59e0b; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .gc-mrow {
+    gap: 6px;
+    padding: 10px 10px;
+    min-height: 50px;
+  }
+  .gc-mrow-name { font-size: 13px; }
+  .gc-mrow-flag { width: 24px; height: 17px; }
+  .gc-mrow-centre { min-width: 54px; }
+  .gc-mrow-score { font-size: 16px; }
+  .gc-fav-star { font-size: 16px; }
+}
