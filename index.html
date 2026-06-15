@@ -44,6 +44,7 @@
   <!-- Loaded here so GC_Lang is available when inline scripts call gcT() -->
   <script src="/js/worldcup-data.js"></script>
   <script src="/js/wc-results.js" defer></script>
+  <script src="/js/wc-live-poll.js" defer></script>
   <script src="/js/gc-datetime.js"></script>
   <script src="/js/gc-lang.js" defer></script>
 
@@ -697,7 +698,7 @@ var _gcApiScores = {}; /* { fixtureNumber: apiMatchObject } */
 function _gcTeamNorm(name){
   var s=String(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9& ]/g,' ').replace(/\s+/g,' ').trim();
   var map={
-    'south korea':'korea republic','czech republic':'czechia','bosnia and herzegovina':'bosnia & herzegovina','bosnia herz':'bosnia & herzegovina','bosnia & herz':'bosnia & herzegovina','iran':'ir iran','turkiye':'turkiye','turkey':'turkiye','türkiye':'turkiye','curacao':'curacao','curaçao':'curacao','ivory coast':'cote d ivoire','cote d ivoire':'cote d ivoire','côte d ivoire':'cote d ivoire','cape verde':'cabo verde','dr congo':'congo dr','usa':'usa','united states':'usa'
+    'south korea':'korea republic','czech republic':'czechia','bosnia and herzegovina':'bosnia & herzegovina','bosnia herz':'bosnia & herzegovina','bosnia & herz':'bosnia & herzegovina','iran':'ir iran','turkiye':'turkiye','turkey':'turkiye','bosnia-herzegovina':'bosnia & herzegovina','bosnia herzegovina':'bosnia & herzegovina','türkiye':'turkiye','curacao':'curacao','curaçao':'curacao','ivory coast':'cote d ivoire','cote d ivoire':'cote d ivoire','côte d ivoire':'cote d ivoire','cape verde':'cabo verde','dr congo':'congo dr','usa':'usa','united states':'usa'
   };
   return map[s]||s;
 }
