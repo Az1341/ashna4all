@@ -216,8 +216,7 @@ a{text-decoration:none;color:inherit}
 .gc-om-body{padding:16px 20px 20px;color:#fff}
 .gc-om-matchup{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .gc-om-team{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
-.gc-om-flag{display:flex;align-items:center;justify-content:center;line-height:1;min-height:54px;width:72px;margin:0 auto}
-.gc-om-flag img{display:block;width:72px!important;height:54px!important;max-width:none!important;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.gc-om-flag{font-size:2.8rem;line-height:1}
 .gc-om-teamname{font-family:var(--font-head);font-size:1rem;font-weight:800;text-align:center;white-space:nowrap}
 .gc-om-vs{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);flex-shrink:0}
 .gc-om-details{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
@@ -238,8 +237,7 @@ a{text-decoration:none;color:inherit}
 .gc-om-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
 .gc-om-btn.secondary:hover{background:rgba(255,255,255,.22)}
 @media(max-width:768px){
-  .gc-om-flag{min-height:42px;width:56px}
-  .gc-om-flag img{width:56px!important;height:42px!important}
+  .gc-om-flag{font-size:2.2rem}
   .gc-om-teamname{font-size:.88rem}
   .gc-om-matchup{gap:8px}
   .gc-om-body{padding:12px 14px 14px}
@@ -403,10 +401,6 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
       <div class="gc-stat-chip">
         <div class="gc-stat-num">3</div>
         <div class="gc-stat-lbl" data-gc-i18n="stats.hosts">Hosts</div>
-      </div>
-      <div class="gc-stat-chip">
-        <div class="gc-stat-num" id="gc-games-left-num">104</div>
-        <div class="gc-stat-lbl">Games Left To Play</div>
       </div>
 
     </div>
@@ -685,33 +679,6 @@ function gcT(key, fallback) {
   return fallback;
 }
 
-function gcFlagImg(team) {
-  if (!window.WC26 || typeof WC26.flagUrl !== 'function') return '';
-  var url = WC26.flagUrl(team);
-  if (!url) return '';
-  return '<img src="' + url + '" alt="" style="width:24px;height:17px;object-fit:cover;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.18);flex-shrink:0">';
-}
-
-function gcCompletedMatchesCount() {
-  var schedule = (window.WC26 && Array.isArray(WC26.schedule)) ? WC26.schedule : [];
-  var hasStatusData = schedule.some(function (match) {
-    return typeof match.status === 'string' && match.status.trim();
-  });
-  if (!hasStatusData) return 0;
-  return schedule.filter(function (match) {
-    var status = String(match.status || '').trim().toLowerCase();
-    return status === 'ft' || status === 'completed' || status === 'full-time' || status === 'aet' || status === 'pen';
-  }).length;
-}
-
-function updateGamesLeftStat() {
-  var el = document.getElementById('gc-games-left-num');
-  if (!el) return;
-  var totalMatches = 104;
-  var completedMatches = gcCompletedMatchesCount();
-  el.textContent = String(Math.max(totalMatches - completedMatches, 0));
-}
-
 /* TOURNEY_START/END and local FIXTURES removed — see window.WC26.schedule */
 
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -745,7 +712,6 @@ function _gcMatchesFixture(apiMatch, fixture){
 function renderMatches(){
   var box=document.getElementById('gc-matches');
   if(!box) return;
-  updateGamesLeftStat();
   box.innerHTML='';
   var now=new Date();
   /* Use visitor's LOCAL date — not hardcoded BST offset */
@@ -862,9 +828,9 @@ function renderMatches(){
     /* col-meta: dir="ltr" — time/date/group data always LTR */
     row.innerHTML=
       '<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+statusText+'</span></div>'+
-      '<div class="gc-col-home"><span style="display:inline-flex;align-items:center;gap:8px;justify-content:flex-end;max-width:100%"><span>'+(match.home||match.h)+'</span>'+gcFlagImg(match.home||match.h)+'</span></div>'+
+      '<div class="gc-col-home">'+(match.home||match.h)+'</div>'+
       centreHtml+
-      '<div class="gc-col-away"><span style="display:inline-flex;align-items:center;gap:8px;max-width:100%">'+gcFlagImg(match.away||match.a)+'<span>'+(match.away||match.a)+'</span></span></div>'+
+      '<div class="gc-col-away">'+(match.away||match.a)+'</div>'+
       '<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.group||match.g)+' · '+(match.ukBroadcaster||match.tv)+'</div>';
     box.appendChild(row);
     if((match.events||[]).length){
@@ -976,24 +942,40 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
 
   function doFetch(){
     var dateKey=getTodayKey();
-    fetch('/api/scores?date='+dateKey,{cache:'no-store'})
-      .then(function(r){return r.json();})
-      .then(function(data){
-        var apiMatches=data.matches||[];
+    /* Fetch both date matches AND live matches in parallel */
+    var dateReq=fetch('/api/scores?date='+dateKey,{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {matches:[]};});
+    var liveReq=fetch('/api/scores?live=true',{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {matches:[]};});
 
-        /* ── Populate shared score store for renderMatches() ── */
-        /* Read from single source of truth */
-        var scheduleData=(window.WC26&&window.WC26.schedule)||[];
-        scheduleData.forEach(function(fixture){
-          var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
-          if(found) _gcApiScores[fixture.id]=found;
-        });
-        /* Re-render the Match Centre widget with real API scores */
-        renderMatches();
+    Promise.all([dateReq,liveReq]).then(function(results){
+      var dateMathces=results[0].matches||[];
+      var liveMatches=results[1].matches||[];
 
-        /* Hero card is fully dynamic — render() reads WC26.schedule automatically.
-           No manual update needed here. render() runs every 30s independently. */
-      }).catch(function(){});
+      /* Merge: live data wins over date data for same fixture */
+      var liveIds={};
+      liveMatches.forEach(function(m){ if(m.fixture&&m.fixture.id) liveIds[m.fixture.id]=m; });
+
+      var apiMatches=dateMathces.map(function(m){
+        return (m.fixture&&liveIds[m.fixture.id]) ? liveIds[m.fixture.id] : m;
+      });
+      /* Add any live matches not in date results */
+      liveMatches.forEach(function(m){
+        if(m.fixture&&!apiMatches.find(function(x){return x.fixture&&x.fixture.id===m.fixture.id;})){
+          apiMatches.push(m);
+        }
+      });
+
+      /* ── Populate shared score store for renderMatches() ── */
+      var scheduleData=(window.WC26&&window.WC26.schedule)||[];
+      scheduleData.forEach(function(fixture){
+        var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
+        if(found) _gcApiScores[fixture.id]=found;
+      });
+      /* Re-render the Match Centre widget with real API scores */
+      renderMatches();
+
+      /* Hero card is fully dynamic — render() reads WC26.schedule automatically.
+         No manual update needed here. render() runs every 30s independently. */
+    }).catch(function(){});
   }
   doFetch();
   setInterval(doFetch,30000); /* 30s — matches live scores page refresh rate */
@@ -1013,8 +995,14 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
   var $ = function (id) { return document.getElementById(id); };
   if (!$('gc-opening-match')) return;
 
+  var SPECIAL = { 'gb-eng': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
+                  'gb-sct': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F',
+                  'gb-wls': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73\uDB40\uDC7F' };
   function flagEmoji(team) {
-    return gcFlagImg(team) || '\u26BD';
+    var code = (WC26.flags && WC26.flags[team]) || '';
+    if (SPECIAL[code]) return SPECIAL[code];
+    if (!/^[a-z]{2}$/.test(code)) return '\u26BD';
+    return code.toUpperCase().replace(/./g, function (c) { return String.fromCodePoint(127397 + c.charCodeAt(0)); });
   }
   function fmtDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
   function fmtTime(d) { return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
@@ -1049,9 +1037,9 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
   }
 
   function setTeams(m) {
-    $('gc-om-home-flag').innerHTML = flagEmoji(m.home);
+    $('gc-om-home-flag').textContent = flagEmoji(m.home);
     $('gc-om-home-name').textContent = m.home;
-    $('gc-om-away-flag').innerHTML = flagEmoji(m.away);
+    $('gc-om-away-flag').textContent = flagEmoji(m.away);
     $('gc-om-away-name').textContent = m.away;
     var d = new Date(m.utc);
     $('gc-om-meta').innerHTML = (m.group ? 'Group ' + m.group : (m.stage || '')) + ' &nbsp;\u00B7&nbsp; ' + fmtDate(d);
