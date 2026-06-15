@@ -468,7 +468,7 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     </div>
     <div class="gc-match-card">
       <div class="gc-match-head">
-        <span id="matchCardTitle" data-gc-i18n="gc.upcomingMatches">UPCOMING MATCHES — WORLD CUP 2026</span>
+        <span id="matchCardTitle">TODAY'S MATCHES — WORLD CUP 2026</span>
         <span class="gc-match-updated" id="updatedTime"><span data-gc-i18n="errors.loading">Loading…</span></span>
       </div>
       <div id="gc-matches"></div>
@@ -700,23 +700,27 @@ function renderMatches(){
   /* Read from WC26.schedule — single source of truth */
   var allFixtures=(window.WC26&&window.WC26.schedule)||[];
 
-  /* Filter by visitor's LOCAL date — f.utc gives correct local date in all timezones */
-  var toShow=allFixtures.filter(function(f){
+  /* No matches today — show next upcoming; never a fake fixture */
+  var todayMatches=allFixtures.filter(function(f){
     var fLocalDate=window.GC_DateTime&&GC_DateTime.getLocalDateKey
       ? GC_DateTime.getLocalDateKey(f.utc)
       : (function(){var d=new Date(f.utc);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
     return fLocalDate===todayBST;
   });
+  var showingToday=todayMatches.length>0;
+  var toShow=todayMatches.slice();
 
-  /* No matches today — show next upcoming; never a fake fixture */
   if(!toShow.length){
     var next=allFixtures.find(function(f){return new Date(f.utc)>now;});
     if(next) toShow=[next];
   }
   if(!toShow.length){
     box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">' + gcT('live.noMatches','No matches scheduled today') + '</div>';
+    var emptyTitle=document.getElementById('matchCardTitle');
+    if(emptyTitle) emptyTitle.textContent=gcT('gc.todayMatches','TODAY\'S MATCHES — WORLD CUP 2026');
     return;
   }
+  var titleCounts={live:0,ft:0,upcoming:0};
   toShow.forEach(function(match){
     var ko=new Date(match.utc);
     var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -818,7 +822,24 @@ function renderMatches(){
       ev.innerHTML='⚽ '+match.events.map(function(x){return String(x).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}).join(' &nbsp; · &nbsp; ');
       row.parentNode.insertBefore(ev,row.nextSibling);
     }
+    if(statusClass==='live') titleCounts.live++;
+    else if(statusClass==='finished') titleCounts.ft++;
+    else if(statusClass==='upcoming') titleCounts.upcoming++;
   });
+  var titleEl=document.getElementById('matchCardTitle');
+  if(titleEl){
+    if(!showingToday){
+      titleEl.textContent=gcT('gc.nextMatch','NEXT MATCH — WORLD CUP 2026');
+    } else if(titleCounts.live>0){
+      titleEl.textContent=gcT('gc.liveMatchesToday','LIVE NOW — WORLD CUP 2026');
+    } else if(titleCounts.ft>0&&titleCounts.upcoming===0){
+      titleEl.textContent=gcT('gc.resultsToday','RESULTS TODAY — WORLD CUP 2026');
+    } else if(titleCounts.upcoming>0&&titleCounts.ft===0&&titleCounts.live===0){
+      titleEl.textContent=gcT('gc.upcomingMatches','UPCOMING MATCHES — WORLD CUP 2026');
+    } else {
+      titleEl.textContent=gcT('gc.todayMatches','TODAY\'S MATCHES — WORLD CUP 2026');
+    }
+  }
 }
 
 function updateClock(){
