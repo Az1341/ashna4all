@@ -76,7 +76,7 @@ body{font-family:var(--font-main);background:var(--body-bg);background-attachmen
 a{text-decoration:none;color:inherit}
 #gc-sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
 #gc-sidebar-overlay.open{display:block}
-#gc-sidebar{width:var(--sidebar-w);background:var(--sidebar-bg);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+#gc-sidebar{width:var(--sidebar-w);background:var(--sidebar-bg);height:100vh;position:relative;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
 #gc-sidebar::-webkit-scrollbar{display:none}
 .sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
 .sidebar-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -192,7 +192,7 @@ a{text-decoration:none;color:inherit}
 @media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sidebar-w)!important}.sidebar-close{display:none!important}#gc-sidebar-overlay{display:none!important}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
-  #gc-sidebar{transform:translateX(-100%);box-shadow:4px 0 24px rgba(0,0,0,.3)}
+  #gc-sidebar{transform:none;box-shadow:4px 0 24px rgba(0,0,0,.3)}
   #gc-sidebar.open{transform:translateX(0)}
   #gc-main{margin-left:0!important}
   .gc-header{padding-left:60px;padding-right:8px}
@@ -304,6 +304,7 @@ html[dir='rtl'] .gc-video-desc{direction:rtl;text-align:right}
 html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
 
 </style>
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -1190,4 +1191,5 @@ document.addEventListener('gc:languageChanged', gcReRenderAll);
   }
 })();
 </script>
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>

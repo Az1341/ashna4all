@@ -25,7 +25,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 /* SIDEBAR */
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400}
 .sb-overlay.show{display:block}
-.gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+.gc-sidebar{width:var(--sb-w);background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:relative;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{padding:18px 16px;border-bottom:1px solid var(--sb-border);flex-shrink:0}
 .sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
@@ -119,7 +119,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
 
 /* RESPONSIVE */
 @media(min-width:769px){.gc-hamburger{display:none!important}.sb-overlay{display:none!important}.gc-sidebar{transform:translateX(0)!important}.gc-main{margin-left:var(--sb-w)!important}}
-@media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:translateX(-100%)!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:12px!important}}
+@media(max-width:768px){.gc-hamburger{display:block!important}.gc-main{margin-left:0!important}.gc-sidebar{transform:none;!important}.gc-sidebar.open{transform:translateX(0)!important}.gc-content{padding:12px!important}}
 </style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
   <meta property="og:type"        content="website">
@@ -132,6 +132,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,#dbeafe 0%,#eff6f
   <meta name="twitter:title"      content="Premier League Fixtures 2025/26 | GoalCurrent.live">
   <meta name="twitter:description" content="Premier League 2025/26 fixtures and results — all matches, dates, times and scores.">
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -368,5 +369,6 @@ function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=docume
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
 </script>
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>

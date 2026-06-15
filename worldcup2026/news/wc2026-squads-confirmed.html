@@ -239,7 +239,7 @@
 /* SIDEBAR — reuse site pattern */
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
 .sb-overlay.show{display:block}
-.gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
+.gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:relative;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
 .gc-sidebar::-webkit-scrollbar{display:none}
 .sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
 .sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
@@ -284,7 +284,7 @@
 @media(max-width:768px){
   .gc-hamburger{display:block!important}
   .gc-main{margin-left:0!important}
-  .gc-sidebar{transform:translateX(-100%)!important}
+  .gc-sidebar{transform:none;!important}
   .gc-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 24px rgba(0,0,0,.3)!important}
   .gc-phase-pill{display:none}
   .player-grid{grid-template-columns:1fr}
@@ -299,6 +299,7 @@
 <style id="gc-no-hard-hide">
 a[href*=""], .wc-quick-link[href*=""] { display:none !important; }
 </style>
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
@@ -620,5 +621,6 @@ function doSubscribe(){
 }
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>

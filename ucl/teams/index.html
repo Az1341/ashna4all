@@ -24,7 +24,7 @@ body{
 /* ── SIDEBAR ── */
 .gc-sidebar{
   width:240px;background:#1a1f2e;
-  position:fixed;top:0;left:0;bottom:0;
+  position:relative;
   z-index:300;overflow-y:auto;
   display:flex;flex-direction:column;
   scrollbar-width:none;
@@ -158,7 +158,7 @@ body{
 @media(max-width:768px){
   .gc-hamburger{display:flex;align-items:center;justify-content:center}
   .gc-main{margin-left:0}
-  .gc-sidebar{transform:translateX(-100%);transition:transform .3s}
+  .gc-sidebar{transform:none;transition:transform .3s}
   .gc-sidebar.open{transform:translateX(0);z-index:500}
   .sb-overlay.show{display:block}
   .final-matchup{gap:12px}
@@ -178,6 +178,7 @@ body{
   <meta name="twitter:title"      content="Champions League Teams 2025/26 | GoalCurrent.live">
   <meta name="twitter:description" content="All UEFA Champions League 2025/26 clubs — squads and season stats.">
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -445,5 +446,6 @@ function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=docume
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
 </script>
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>

@@ -32,7 +32,7 @@
     /* ── SIDEBAR ── */
     .gc-sidebar {
       width:var(--sb-w); flex-shrink:0; background:var(--sb-bg);
-      position:fixed; top:0; left:0; bottom:0; z-index:400;
+      position:relative;    z-index:400;
       overflow-y:auto; scrollbar-width:none;
       border-right:1px solid var(--sb-border);
       display:flex; flex-direction:column;
@@ -214,7 +214,7 @@
 
     /* Mobile */
     @media(max-width:768px) {
-      .gc-sidebar { transform:translateX(-100%); transition:transform 0.28s ease; }
+      .gc-sidebar { transform:none; transition:transform 0.28s ease; }
       .gc-sidebar.open { transform:translateX(0); box-shadow:4px 0 24px rgba(0,0,0,0.5); }
       .gc-main-wrap { margin-left:0; }
       .gc-page-content { padding:12px 12px 130px; }
@@ -242,6 +242,7 @@
   <meta name="twitter:title"      content="Premier League 2025/26 | GoalCurrent.live">
   <meta name="twitter:description" content="Premier League 2025/26 — live scores, fixtures, results, table and news. Arsenal champions.">
   <meta name="twitter:image"      content="https://www.goalcurrent.live/logo.svg">
+  <link rel="stylesheet" href="/css/gc-flow-sidebar-counter.css?v=20260615-flow2">
 </head>
 <body>
 
@@ -541,5 +542,6 @@ if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.get
   });
 })();
 </script>
+<script src="/js/gc-flow-sidebar-counter.js?v=20260615-flow2" defer></script>
 </body>
 </html>
