@@ -75,6 +75,11 @@
       var H = stats[lm.home], A = stats[lm.away];
       if (!H || !A) return;
       if (lm.hg === null || lm.ag === null) return;
+      /* Skip if this fixture is already finished in WC26.schedule */
+      var alreadyFT = (WC26.schedule || []).some(function (m) {
+        return m.group === letter && m.home === lm.home && m.away === lm.away && isFT(m);
+      });
+      if (alreadyFT) return;
       /* Add live contribution ON TOP of FT stats already counted */
       H.p++; A.p++;
       H.gf += lm.hg; H.ga += lm.ag;
@@ -156,7 +161,7 @@
       '</div>' +
       '<div style="font-size:.75rem;color:var(--text-light);margin-bottom:8px">' +
       teams.map(esc).join(' - ') + '</div>' +
-      '<div style="overflow-x:auto"><table class="gc-standings-table">' +
+      '<div class="gc-standings-scroll" style="overflow-x:auto"><table class="gc-standings-table">' +
       '<thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th>' +
       '<th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>' +
       '<tbody>' + rows.map(rowHTML).join('') + '</tbody>' +
@@ -167,14 +172,26 @@
   if (!document.getElementById('gc-pulse-style')) {
     var st = document.createElement('style');
     st.id  = 'gc-pulse-style';
-    st.textContent = '@keyframes gc-pulse{0%,100%{opacity:1}50%{opacity:.5}}';
+    st.textContent =
+      '@keyframes gc-pulse{0%,100%{opacity:1}50%{opacity:.5}}' +
+      '@media(max-width:640px){.gc-standings-scroll::after{content:"Swipe for full stats →";' +
+      'display:block;font-size:.65rem;color:var(--text-light,#64748b);text-align:right;padding:2px 4px 6px}' +
+      '.gc-standings-table th:last-child,.gc-standings-table td:last-child{position:sticky;right:0;z-index:1}' +
+      '.gc-standings-table th:last-child{background:var(--blue,#2563eb)}' +
+      '.gc-standings-table td:last-child{background:var(--card-bg,#fff);' +
+      'box-shadow:-4px 0 8px rgba(0,0,0,.06)}}';
     document.head.appendChild(st);
   }
 
   function render() {
+    if (!window.WC26_RESULTS_READY) {
+      root.innerHTML = '<p style="color:var(--text-mid)">Loading standings...</p>';
+      return;
+    }
     root.innerHTML = GROUPS.map(groupHTML).join('');
   }
 
   window.renderStandings = render;
+  document.addEventListener('WC26_results_ready', render);
   render();
 })();

@@ -4,8 +4,7 @@
  * in-progress WC2026 matches and maintains window.WC26_LIVE:
  * a flat map of { "Home|Away": { hg, ag, elapsed, status } }
  *
- * NEVER writes to WC26.schedule (manual data is sacred).
- * Instead renderers check WC26_LIVE first, then WC26.schedule.
+ * NEVER writes to WC26.schedule — finished scores come from wc-results.js.
  *
  * Calls window.renderStandings() and window.renderGroup()
  * after every poll that returns data changes.
@@ -21,7 +20,6 @@
   window.WC26_LIVE = window.WC26_LIVE || {};
 
   var LIVE_STATUSES = { '1H':1,'HT':1,'2H':1,'ET':1,'BT':1,'P':1,'INT':1,'LIVE':1 };
-  var FT_STATUSES   = { 'FT':1,'AET':1,'PEN':1 };
 
   /* Name normaliser - same logic as wc-results.js */
   var NAME_MAP = {
@@ -84,7 +82,6 @@
       .then(function (data) {
         var matches = data.matches || [];
         var newLive = {};
-        var hasFT   = false;
 
         matches.forEach(function (m) {
           var statusShort = (m.status && m.status.short) || '';
@@ -107,25 +104,14 @@
               ag:      ag,
               elapsed: elapsed,
               status:  statusShort,
-              live:    true,
-              ft:      false
+              live:    true
             };
-          } else if (FT_STATUSES[statusShort]) {
-            /* FT from live endpoint - update WC26.schedule if not already FT */
-            if (sched.status !== 'FT' && sched.status !== 'AET' && sched.status !== 'PEN') {
-              if (hg !== null && ag !== null) {
-                sched.homeScore = Number(hg);
-                sched.awayScore = Number(ag);
-                sched.status    = statusShort;
-                hasFT = true;
-              }
-            }
           }
         });
 
         /* Detect changes */
         var newHash = JSON.stringify(newLive);
-        var changed = (newHash !== _lastHash) || hasFT;
+        var changed = newHash !== _lastHash;
         _lastHash = newHash;
 
         /* Update global live overlay */

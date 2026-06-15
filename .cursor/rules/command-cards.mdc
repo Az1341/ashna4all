@@ -1,0 +1,29 @@
+---
+description: Put each shell command in its own card (one fenced block per command)
+alwaysApply: true
+---
+
+# Command cards
+
+When sharing terminal or git commands with the user:
+
+- Put **one command per card** — each command in its own fenced code block.
+- Do not split one command across multiple blocks.
+- Do not put multiple separate commands in the same block (no `&&` chains unless it is a single intentional pipeline the user asked for).
+- If several commands are needed, list them as separate cards in order.
+
+Example:
+
+```bash
+git add js/standings.js
+```
+
+```bash
+git commit -m "fix(wc26): keep Pts visible on mobile standings"
+```
+
+```bash
+git push origin main
+```
+
+When running Shell tool calls, prefer one command per invocation when the user will see or copy the commands; batch only independent read-only checks (e.g. `git status`, `git diff`) when efficiency matters and the user did not ask for copy-paste steps.

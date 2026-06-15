@@ -1,0 +1,14 @@
+---
+description: WC26 scores and standings must be API-driven, never hardcoded
+alwaysApply: true
+---
+
+# Dynamic scores and standings (WC26)
+
+Never hardcode match results or standings tables in HTML, JS, or `worldcup-data.js`.
+
+- **Fixtures metadata only** in `js/worldcup-data.js`: teams, groups, UTC kickoffs, venues, broadcasters. No `homeScore`, `awayScore`, or `status: 'FT'`.
+- **Results** come from `/api/scores?results=wc` via `js/wc-results.js`, merged into `WC26.schedule` at runtime.
+- **Live scores** come from `/api/scores?live=true` via `js/wc-live-poll.js` (`WC26_LIVE` overlay).
+- **Standings** are computed by `standings.js`, `groups.js`, and `WC26.computeStandings()` from merged schedule + live overlay — never static HTML tables or snapshot arrays.
+- After changing sync logic, verify groups hub, standings page, and a single group page show correct P/W/D/L/GF/GA/GD/Pts after API load.

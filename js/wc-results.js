@@ -1,29 +1,15 @@
-/* /js/wc-live-poll.js - GoalCurrent.live
- * ============================================================
- * Live match poller - polls /api/scores every 30s for
- * in-progress WC2026 matches and maintains window.WC26_LIVE:
- * a flat map of { "Home|Away": { hg, ag, elapsed, status } }
- *
- * NEVER writes to WC26.schedule (manual data is sacred).
- * Instead renderers check WC26_LIVE first, then WC26.schedule.
- *
- * Calls window.renderStandings() and window.renderGroup()
- * after every poll that returns data changes.
- *
- * Load order: worldcup-data.js -> renderer -> wc-live-poll.js
- * ============================================================ */
+/* /js/wc-results.js - GoalCurrent.live
+ * Merges finished WC2026 fixtures from /api/scores?results=wc into WC26.schedule.
+ * All scores are API-driven — worldcup-data.js holds fixture metadata only.
+ * Load order: worldcup-data.js -> page renderer -> wc-results.js -> wc-live-poll.js
+ */
 (function () {
   'use strict';
 
   if (!window.WC26 || !Array.isArray(WC26.schedule)) return;
 
-  /* Live overlay - keyed by canonical "Home|Away" string */
-  window.WC26_LIVE = window.WC26_LIVE || {};
+  var FT_STATUSES = { FT:1, AET:1, PEN:1 };
 
-  var LIVE_STATUSES = { '1H':1,'HT':1,'2H':1,'ET':1,'BT':1,'P':1,'INT':1,'LIVE':1 };
-  var FT_STATUSES   = { 'FT':1,'AET':1,'PEN':1 };
-
-  /* Name normaliser - same logic as wc-results.js */
   var NAME_MAP = {
     'south korea':            'Korea Republic',
     'korea republic':         'Korea Republic',
@@ -44,26 +30,26 @@
     'congo dr':               'Congo DR',
     'dr congo':               'Congo DR',
     'ir iran':                'IR Iran',
-    'iran':                   'IR Iran'
+    'iran':                   'IR Iran',
+    'new zealand':            'New Zealand'
   };
 
   var LOOKUP = {};
   Object.keys(NAME_MAP).forEach(function (k) {
-    LOOKUP[k.toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim()] = NAME_MAP[k];
+    LOOKUP[k.toLowerCase().replace(/[^a-z ]/g, ' ').replace(/\s+/g, ' ').trim()] = NAME_MAP[k];
   });
   Object.keys(WC26.flags || {}).forEach(function (name) {
-    var key = name.toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+    var key = name.toLowerCase().replace(/[^a-z ]/g, ' ').replace(/\s+/g, ' ').trim();
     if (!LOOKUP[key]) LOOKUP[key] = name;
   });
 
   function canon(apiName) {
     var key = String(apiName || '').toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-      .replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z ]/g, ' ').replace(/\s+/g, ' ').trim();
     return LOOKUP[key] || null;
   }
 
-  /* Find matching entry in WC26.schedule by team names */
   function findSchedule(homeName, awayName) {
     var h = canon(homeName), a = canon(awayName);
     if (!h || !a) return null;
@@ -74,80 +60,64 @@
     return null;
   }
 
-  function liveKey(h, a) { return h + '|' + a; }
+  function mergeOne(sched, apiMatch) {
+    var st = (apiMatch.status && apiMatch.status.short) || '';
+    if (!FT_STATUSES[st]) return false;
+    var hg = apiMatch.goals && apiMatch.goals.home;
+    var ag = apiMatch.goals && apiMatch.goals.away;
+    if (hg === null || hg === undefined || ag === null || ag === undefined) return false;
+    sched.homeScore = Number(hg);
+    sched.awayScore = Number(ag);
+    sched.status = st;
+    return true;
+  }
 
-  var _lastHash = '';
+  function notifyRenderers() {
+    if (typeof window.renderStandings === 'function') window.renderStandings();
+    if (typeof window.renderGroup === 'function') window.renderGroup();
+    if (typeof window.renderLivePage === 'function') window.renderLivePage();
+    if (typeof window.renderMatches === 'function') window.renderMatches();
+    if (typeof window.renderFixtures === 'function') window.renderFixtures();
+  }
 
-  function poll() {
-    fetch('/api/scores?live=true', { cache: 'no-store' })
+  function markReady() {
+    window.WC26_RESULTS_READY = true;
+    document.dispatchEvent(new CustomEvent('WC26_results_ready'));
+  }
+
+  function mergeResults(matches) {
+    var changed = false;
+    (matches || []).forEach(function (m) {
+      var homeName = (m.home && m.home.name) || '';
+      var awayName = (m.away && m.away.name) || '';
+      var sched = findSchedule(homeName, awayName);
+      if (!sched) return;
+      if (mergeOne(sched, m)) changed = true;
+    });
+    return changed;
+  }
+
+  var _initial = true;
+
+  function syncResults() {
+    return fetch('/api/scores?results=wc', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (data) {
-        var matches = data.matches || [];
-        var newLive = {};
-        var hasFT   = false;
-
-        matches.forEach(function (m) {
-          var statusShort = (m.status && m.status.short) || '';
-          var homeName    = (m.home && m.home.name) || '';
-          var awayName    = (m.away && m.away.name) || '';
-          var sched       = findSchedule(homeName, awayName);
-          if (!sched) return;
-
-          var hg = (m.goals && m.goals.home != null) ? m.goals.home : null;
-          var ag = (m.goals && m.goals.away != null) ? m.goals.away : null;
-          var elapsed = (m.status && m.status.elapsed) || null;
-          var key = liveKey(sched.home, sched.away);
-
-          if (LIVE_STATUSES[statusShort]) {
-            newLive[key] = {
-              home:    sched.home,
-              away:    sched.away,
-              group:   sched.group,
-              hg:      hg,
-              ag:      ag,
-              elapsed: elapsed,
-              status:  statusShort,
-              live:    true,
-              ft:      false
-            };
-          } else if (FT_STATUSES[statusShort]) {
-            /* FT from live endpoint - update WC26.schedule if not already FT */
-            if (sched.status !== 'FT' && sched.status !== 'AET' && sched.status !== 'PEN') {
-              if (hg !== null && ag !== null) {
-                sched.homeScore = Number(hg);
-                sched.awayScore = Number(ag);
-                sched.status    = statusShort;
-                hasFT = true;
-              }
-            }
-          }
-        });
-
-        /* Detect changes */
-        var newHash = JSON.stringify(newLive);
-        var changed = (newHash !== _lastHash) || hasFT;
-        _lastHash = newHash;
-
-        /* Update global live overlay */
-        window.WC26_LIVE = newLive;
-
-        if (changed) {
-          if (typeof window.renderStandings === 'function') window.renderStandings();
-          if (typeof window.renderGroup     === 'function') window.renderGroup();
-          if (typeof window.renderLivePage  === 'function') window.renderLivePage();
-          if (typeof window.renderMatches   === 'function') window.renderMatches();
-        }
+        var changed = mergeResults(data.matches);
+        if (changed || _initial) notifyRenderers();
+        _initial = false;
+        markReady();
       })
       .catch(function (e) {
-        console.warn('[WC Live Poll] fetch failed:', e);
+        console.warn('[WC Results] fetch failed:', e);
+        if (_initial) notifyRenderers();
+        _initial = false;
+        markReady();
       });
   }
 
-  /* Poll every 30 seconds. First call on load. */
-  poll();
-  setInterval(poll, 30000);
+  syncResults();
+  setInterval(syncResults, 300000);
 
-  /* Expose for manual trigger */
-  window.WC26_pollLive = poll;
-
+  window.WC26_syncResults = syncResults;
 })();

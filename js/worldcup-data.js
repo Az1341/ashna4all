@@ -1,24 +1,19 @@
 /**
  * GoalCurrent.live - FIFA World Cup 2026
  * ===============================================================
- * SINGLE SOURCE OF TRUTH - all data lives here.
- * Every page reads ONLY from window.WC26.
+ * SINGLE SOURCE OF TRUTH for fixture metadata (teams, times, venues).
+ * Every page reads from window.WC26.
  *
- * HOW TO UPDATE A RESULT (the ONLY thing you ever need to do):
- *   1. Find the match in SCHEDULE by id.
- *   2. Add/change:  homeScore: X, awayScore: Y, status: 'FT'
- *   3. Save and deploy.
- *
- * Everything else (standings, group tables, fixtures display,
- * qualification colours, sorting) is computed automatically by
- * the renderers (standings.js / groups.js) from this array.
- * You NEVER touch any renderer file to update a score.
+ * Scores and standings are NEVER stored here. They are merged at runtime:
+ *   - Finished matches: js/wc-results.js  → /api/scores?results=wc
+ *   - Live matches:     js/wc-live-poll.js → /api/scores?live=true
+ * Standings are computed dynamically by standings.js / groups.js.
  * ===============================================================
  *
  * Source: FIFA Official Draw, December 2025
  *         Fixtures: FIFA.com / BBC Sport verified (UTC)
  *         Results:  FIFA.com official match centre
- * Last updated: 2026-06-13
+ * Last updated: 2026-06-15
  */
 
 (function () {
@@ -112,34 +107,27 @@
        ukBroadcaster : 'BBC' | 'ITV' | 'BBC / ITV' | 'TBC'
        stage         : human-readable stage label
 
-     RESULT FIELDS (add these when a match is confirmed FT):
-       homeScore     : integer goals scored by home team
-       awayScore     : integer goals scored by away team
-       status        : 'FT' | 'AET' | 'PEN'
-                       (leave absent / undefined for upcoming matches)
+     RESULT FIELDS (runtime only — merged by wc-results.js / wc-live-poll.js):
+       homeScore, awayScore, status — never hardcode in this file.
 
      RENDERER CONTRACT
-       standings.js and groups.js loop WC26.schedule and process
-       ONLY entries where status === 'FT' (or 'AET'/'PEN') AND
-       both homeScore and awayScore are typeof number.
-       All other entries are treated as upcoming/unplayed.
-       Adding homeScore + awayScore + status to any entry here
-       instantly flows through to ALL standings, group tables,
-       and fixture cards with NO further code changes required.
+       After API sync, standings.js and groups.js process WC26.schedule
+       (finished matches) plus WC26_LIVE (in-progress). Tables are always
+       computed dynamically — never stored as static HTML or arrays here.
   ───────────────────────────────────────────────────────────── */
   var SCHEDULE = [
 
     /* -- GROUP STAGE - MATCHDAY 1 ---------------------------- */
-    /* To mark a result FT: add  homeScore:X, awayScore:Y, status:'FT'  */
+    /* To mark a result FT: wc-results.js merges from API — do not hardcode here */
 
-    {id:  1, group:'A', home:'Mexico',              away:'South Africa',         utc:'2026-06-11T19:00:00Z', venue:'Estadio Azteca, Mexico City',                   ukBroadcaster:'ITV', stage:'Group Stage', homeScore:2, awayScore:0, status:'FT'},
-    {id:  2, group:'A', home:'Korea Republic',      away:'Czechia',              utc:'2026-06-12T02:00:00Z', venue:'Estadio Akron, Guadalajara',                    ukBroadcaster:'ITV', stage:'Group Stage', homeScore:2, awayScore:1, status:'FT'},
-    {id:  3, group:'B', home:'Canada',              away:'Bosnia & Herzegovina', utc:'2026-06-12T19:00:00Z', venue:'BMO Field, Toronto',                            ukBroadcaster:'BBC', stage:'Group Stage', homeScore:1, awayScore:1, status:'FT'},
-    {id:  4, group:'D', home:'USA',                 away:'Paraguay',             utc:'2026-06-13T01:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'BBC', stage:'Group Stage', homeScore:4, awayScore:1, status:'FT'},
+    {id:  1, group:'A', home:'Mexico',              away:'South Africa',         utc:'2026-06-11T19:00:00Z', venue:'Estadio Azteca, Mexico City',                   ukBroadcaster:'ITV', stage:'Group Stage'},
+    {id:  2, group:'A', home:'Korea Republic',      away:'Czechia',              utc:'2026-06-12T02:00:00Z', venue:'Estadio Akron, Guadalajara',                    ukBroadcaster:'ITV', stage:'Group Stage'},
+    {id:  3, group:'B', home:'Canada',              away:'Bosnia & Herzegovina', utc:'2026-06-12T19:00:00Z', venue:'BMO Field, Toronto',                            ukBroadcaster:'BBC', stage:'Group Stage'},
+    {id:  4, group:'D', home:'USA',                 away:'Paraguay',             utc:'2026-06-13T01:00:00Z', venue:'SoFi Stadium, Los Angeles',                     ukBroadcaster:'BBC', stage:'Group Stage'},
     {id:  5, group:'B', home:'Qatar',               away:'Switzerland',          utc:'2026-06-13T19:00:00Z', venue:"Levi's Stadium, San Francisco Bay Area",         ukBroadcaster:'ITV', stage:'Group Stage'},
     {id:  6, group:'C', home:'Brazil',              away:'Morocco',              utc:'2026-06-13T22:00:00Z', venue:'MetLife Stadium, New York/New Jersey',           ukBroadcaster:'BBC', stage:'Group Stage'},
-    {id:  7, group:'C', home:'Haiti',               away:'Scotland',             utc:'2026-06-14T01:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage', homeScore:0, awayScore:1, status:'FT'},
-    {id:  8, group:'D', home:'Australia',           away:'Türkiye',              utc:'2026-06-14T04:00:00Z', venue:'BC Place, Vancouver',                           ukBroadcaster:'ITV', stage:'Group Stage', homeScore:2, awayScore:0, status:'FT'},
+    {id:  7, group:'C', home:'Haiti',               away:'Scotland',             utc:'2026-06-14T01:00:00Z', venue:'Gillette Stadium, Boston',                      ukBroadcaster:'BBC', stage:'Group Stage'},
+    {id:  8, group:'D', home:'Australia',           away:'Türkiye',              utc:'2026-06-14T04:00:00Z', venue:'BC Place, Vancouver',                           ukBroadcaster:'ITV', stage:'Group Stage'},
 
     /* -- GROUP STAGE - MATCHDAY 2 ---------------------------- */
     {id:  9, group:'E', home:'Germany',             away:'Curaçao',              utc:'2026-06-14T17:00:00Z', venue:'NRG Stadium, Houston',                          ukBroadcaster:'ITV', stage:'Group Stage'},
@@ -252,9 +240,8 @@
 
   /* -------------------------------------------------------------
      STANDINGS BOOTSTRAP
-     Renderers call WC26.computeStandings(groupLetter) to get
-     a sorted array of row objects derived live from SCHEDULE.
-     This replaces the old static buildStandings() snapshot.
+     Renderers call WC26.computeStandings(groupLetter) after wc-results.js
+     has merged API scores into SCHEDULE (runtime only).
   ───────────────────────────────────────────────────────────── */
   function computeStandings(groupLetter) {
     var teams = GROUPS[groupLetter];
@@ -398,11 +385,9 @@
   /* -------------------------------------------------------------
      PUBLISH  window.WC26
      ─────────────────────────────────────────────────────────────
-     wc-results.js merges API results into WC26.schedule at runtime.
-     After each merge it calls window.renderStandings() and/or
-     window.renderGroup() if those functions exist on the page.
-     Manual FT entries in SCHEDULE always win — wc-results.js
-     never overwrites an entry that already has status:'FT'.
+     wc-results.js merges API finished scores into WC26.schedule at runtime.
+     wc-live-poll.js maintains WC26_LIVE for in-progress matches.
+     Renderers refresh after each sync via renderStandings / renderGroup.
   ───────────────────────────────────────────────────────────── */
 
   /* ─────────────────────────────────────────────────────────────
@@ -459,7 +444,7 @@
   }
 
   window.WC26 = {
-    lastUpdated      : '2026-06-13',
+    lastUpdated      : '2026-06-15',
     source           : 'FIFA Official Draw Dec 2025 · FIFA.com fixtures · FIFA.com match centre results',
     groups           : GROUPS,
     schedule         : SCHEDULE,

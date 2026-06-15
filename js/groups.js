@@ -145,6 +145,10 @@
       var lm = liveMap[key];
       var H = stats[lm.home], A = stats[lm.away];
       if (!H || !A || lm.hg === null || lm.ag === null) return;
+      var alreadyFT = getGroupFixtures().some(function (m) {
+        return m.home === lm.home && m.away === lm.away && isFT(m);
+      });
+      if (alreadyFT) return;
       H.P++; A.P++;
       H.GF += lm.hg; H.GA += lm.ag;
       A.GF += lm.ag; A.GA += lm.hg;
@@ -335,10 +339,13 @@
     }
     var fixtures = getGroupFixtures();
     var rows     = buildStandings();
+    var standingsBlock = window.WC26_RESULTS_READY
+      ? renderStandingsHTML(rows)
+      : '<p style="padding:16px 0;color:var(--text-mid);font-size:.9rem">Loading standings...</p>';
 
     root.innerHTML =
       renderGroupTeamLine(teams) +
-      renderStandingsHTML(rows) +
+      standingsBlock +
       renderFixturesHTML(fixtures) +
       renderQualBox();
   }
@@ -351,4 +358,5 @@
   } else {
     render();
   }
+  document.addEventListener('WC26_results_ready', render);
 })();
