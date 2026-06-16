@@ -86,15 +86,16 @@
   }
 
   function mergeResults(matches) {
-    var changed = false;
+    var changed = 0;
     (matches || []).forEach(function (m) {
       var homeName = (m.home && m.home.name) || '';
       var awayName = (m.away && m.away.name) || '';
       var sched = findSchedule(homeName, awayName);
       if (!sched) return;
-      if (mergeOne(sched, m)) changed = true;
+      if (mergeOne(sched, m)) changed++;
     });
-    return changed;
+    if (changed) console.info('[WC Results] merged', changed, 'finished matches from API');
+    return changed > 0;
   }
 
   var _initial = true;

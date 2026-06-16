@@ -194,4 +194,14 @@
   window.renderStandings = render;
   document.addEventListener('WC26_results_ready', render);
   render();
+  setTimeout(function () {
+    if (!window.WC26_RESULTS_READY && window.WC26_syncResults) window.WC26_syncResults();
+  }, 2000);
+  setTimeout(function () {
+    if (!window.WC26_RESULTS_READY) {
+      console.warn('[Standings] results sync slow — rendering with available data');
+      window.WC26_RESULTS_READY = true;
+      render();
+    }
+  }, 8000);
 })();
