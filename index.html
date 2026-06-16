@@ -299,6 +299,23 @@ html[dir='rtl'] .gc-news-source,
 html[dir='rtl'] .gc-news-headline,
 html[dir='rtl'] .gc-news-time{text-align:right}
 
+/* ── HOMEPAGE EDITORIAL FEATURE TEASER ─────────────────────────────────── */
+.gc-feature-teaser{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.35fr);gap:0;margin-bottom:22px;background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.85);border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(37,99,235,.08)}
+.gc-feature-teaser-media{min-height:220px;background:#dbeafe}
+.gc-feature-teaser-media img{width:100%;height:100%;min-height:220px;object-fit:cover;display:block}
+.gc-feature-teaser-body{padding:18px 20px 20px;display:flex;flex-direction:column;justify-content:center}
+.gc-feature-teaser-tag{display:inline-block;width:fit-content;background:linear-gradient(135deg,#001a4d,#003fb8);color:#fff;font-size:.62rem;font-weight:900;padding:4px 10px;border-radius:999px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+.gc-feature-teaser-title{font-family:var(--font-head);font-size:clamp(1.15rem,2.2vw,1.55rem);font-weight:800;color:var(--text-dark);line-height:1.25;margin:0 0 10px}
+.gc-feature-teaser-summary{font-size:.88rem;line-height:1.65;color:var(--text-mid);margin:0 0 14px}
+.gc-feature-teaser-link{display:inline-flex;align-items:center;gap:6px;width:fit-content;font-family:var(--font-head);font-size:.82rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:10px 16px;border-radius:999px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.gc-feature-teaser-link:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(37,99,235,.28)}
+@media(max-width:768px){
+  .gc-feature-teaser{grid-template-columns:1fr}
+  .gc-feature-teaser-media,.gc-feature-teaser-media img{min-height:190px}
+}
+html[dir='rtl'] .gc-feature-teaser-body{text-align:right}
+html[dir='rtl'] .gc-feature-teaser-link{flex-direction:row-reverse}
+
 html[dir='rtl'] .gc-video-title,
 html[dir='rtl'] .gc-video-meta,
 html[dir='rtl'] .gc-video-desc{direction:rtl;text-align:right}
@@ -481,6 +498,27 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <div class="gc-section-label" style="margin-top:22px">
       📰 <span data-gc-i18n="gc.latestWCNews">World Cup 2026 — Latest News</span>
     </div>
+
+    <!-- GoalCurrent.live editorial feature — homepage teaser only -->
+    <article class="gc-feature-teaser" aria-labelledby="gc-feature-teaser-title">
+      <div class="gc-feature-teaser-media">
+        <img
+          src="/images/news/football-inspiring-canadas-next-generation/hero.jpg"
+          alt="Young footballers train on a community pitch in Toronto during the FIFA World Cup 2026 era"
+          width="960"
+          height="640"
+          loading="lazy">
+      </div>
+      <div class="gc-feature-teaser-body">
+        <span class="gc-feature-teaser-tag">GoalCurrent.live · Community Feature</span>
+        <h2 class="gc-feature-teaser-title" id="gc-feature-teaser-title">Football Is Inspiring Canada's Next Generation</h2>
+        <p class="gc-feature-teaser-summary">Canada is co-hosting the FIFA World Cup for the first time since 1986, and across Toronto a generation of boys and girls is discovering that the biggest tournament on earth is not a television fantasy — it is a neighbour. From community pitches in the GTA to BMO Field on the lakefront, football in 2026 feels close enough to touch.</p>
+        <p class="gc-feature-teaser-summary">This GoalCurrent.live community feature follows young players, volunteer coaches, and families living the World Cup era on home soil. Registration for mixed-gender leagues is climbing. Girls' programmes are seeing waiting lists. Children who once asked only who will win are now asking how they get there — with original photography from Toronto parks, grass fields, and artificial turf through every Canadian season.</p>
+        <p class="gc-feature-teaser-summary">When Canada kicks off at BMO Field, thousands of children will watch knowing the echo of that crowd could be theirs one day — not as spectators, but as players. That is the story behind the matches inside stadiums and the millions of small beginnings outside them.</p>
+        <a class="gc-feature-teaser-link" href="/news/football-inspiring-canadas-next-generation/">Read Full Story →</a>
+      </div>
+    </article>
+
     <div class="gc-news-grid" id="gc-news-grid">
       <!-- News items injected by JS -->
       <div class="gc-news-item">
