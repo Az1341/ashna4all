@@ -2,6 +2,9 @@
  * Merges finished WC2026 fixtures from /api/scores?results=wc into WC26.schedule.
  * All scores are API-driven — worldcup-data.js holds fixture metadata only.
  * Load order: worldcup-data.js -> page renderer -> wc-results.js -> wc-live-poll.js
+ *
+ * QUOTA NOTE: polls every 60 minutes — finished scores never change.
+ * The Vercel CDN caches /api/scores?results=wc for 1 hour anyway.
  */
 (function () {
   'use strict';
@@ -118,7 +121,10 @@
   }
 
   syncResults();
-  setInterval(syncResults, 300000);
+  /* Poll every 60 minutes — finished scores never change.
+     Vercel CDN caches /api/scores?results=wc for 1 hour anyway.
+     This prevents quota exhaustion across multiple pages and visitors. */
+  setInterval(syncResults, 3600000);
 
   window.WC26_syncResults = syncResults;
 })();
