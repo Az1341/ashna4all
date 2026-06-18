@@ -34,14 +34,14 @@ function fmtFixture(f) {
   return {
     id:        f.fixture.id,
     date:      f.fixture.date,
-    utc:       f.fixture.date,          // alias used by wc-results.js
+    utc:       f.fixture.date,
     timestamp: f.fixture.timestamp,
     venue:     f.fixture.venue?.name  || '',
     city:      f.fixture.venue?.city  || '',
     referee:   f.fixture.referee      || '',
     status: {
       long:    f.fixture.status.long,
-      short:   f.fixture.status.short,  // NS 1H HT 2H ET BT P FT AET PEN
+      short:   f.fixture.status.short,
       elapsed: f.fixture.status.elapsed
     },
     league: {
@@ -52,7 +52,6 @@ function fmtFixture(f) {
     home:  { id: f.teams.home.id, name: f.teams.home.name, logo: f.teams.home.logo, winner: f.teams.home.winner },
     away:  { id: f.teams.away.id, name: f.teams.away.name, logo: f.teams.away.logo, winner: f.teams.away.winner },
     goals: { home: f.goals.home, away: f.goals.away },
-    // Aliases consumed by wc-results.js merge logic
     goalsHome: f.goals.home,
     goalsAway: f.goals.away,
     score: {
@@ -156,7 +155,7 @@ async function getLive() {
 }
 
 // Returns ALL finished WC fixtures — consumed by wc-results.js on every page
-// Cached 5 minutes at the edge (Vercel CDN) to avoid burning API quota
+// Cache reduced to 60s to ensure scores appear promptly after matches end
 async function getAllResults() {
   const FT_STATUSES = ['FT', 'AET', 'PEN'];
   const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&status=FT-AET-PEN`);
@@ -221,9 +220,10 @@ export default async function handler(req, res) {
     }
 
     // ── GET /api/scores?results=wc — ALL finished fixtures (for wc-results.js)
-    // Cached 5 min — result data changes slowly; saves API quota significantly
+    // Cache reduced to 60s — scores must appear promptly after FT
     if (results === 'wc') {
-      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60
+');
       const matches = await getAllResults();
       return res.status(200).json({ matches, fetchedAt: new Date().toISOString() });
     }
