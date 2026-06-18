@@ -219,7 +219,8 @@ a{text-decoration:none;color:inherit}
 .gc-om-body{padding:16px 20px 20px;color:#fff}
 .gc-om-matchup{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .gc-om-team{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
-.gc-om-flag{font-size:2.8rem;line-height:1}
+.gc-om-flag{display:flex;align-items:center;justify-content:center;line-height:1;min-height:54px;width:72px;margin:0 auto}
+.gc-om-flag img{display:block;width:72px!important;height:54px!important;max-width:none!important;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .gc-om-teamname{font-family:var(--font-head);font-size:1rem;font-weight:800;text-align:center;white-space:nowrap}
 .gc-om-vs{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--gold);flex-shrink:0}
 .gc-om-details{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
@@ -240,7 +241,8 @@ a{text-decoration:none;color:inherit}
 .gc-om-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
 .gc-om-btn.secondary:hover{background:rgba(255,255,255,.22)}
 @media(max-width:768px){
-  .gc-om-flag{font-size:2.2rem}
+  .gc-om-flag{min-height:42px;width:56px}
+  .gc-om-flag img{width:56px!important;height:42px!important}
   .gc-om-teamname{font-size:.88rem}
   .gc-om-matchup{gap:8px}
   .gc-om-body{padding:12px 14px 14px}
