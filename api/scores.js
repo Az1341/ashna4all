@@ -222,7 +222,8 @@ export default async function handler(req, res) {
     // ── GET /api/scores?results=wc — ALL finished fixtures (for wc-results.js)
     // Cache reduced to 60s — scores must appear promptly after FT
     if (results === 'wc') {
-      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60
+');
       const matches = await getAllResults();
       return res.status(200).json({ matches, fetchedAt: new Date().toISOString() });
     }
