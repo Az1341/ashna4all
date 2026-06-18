@@ -1,12 +1,12 @@
 // api/scores.js — GoalCurrent.live
 // api-football v3 (api-sports.io) — PRO plan
 // WC 2026: League ID 1 | Season 2026
-// Endpoints served:
-//   GET /api/scores                      → today's WC fixtures (by visitor date)
-//   GET /api/scores?date=YYYY-MM-DD      → fixtures for specific date
-//   GET /api/scores?live=true            → currently live WC fixtures
-//   GET /api/scores?results=wc           → ALL finished WC fixtures (for wc-results.js)
-//   GET /api/scores?id=FIXTURE_ID        → full match detail (events, lineups, stats, players)
+// Cache strategy (quota-safe for 7500 req/day):
+//   live=true     → 60s  (1 req/min per edge node)
+//   date/today    → 300s (1 req/5min per edge node)
+//   results=wc    → 3600s (1 req/hour — finished scores never change)
+//   id=X          → 120s
+//   wc-live-poll  → handled client-side at 30s but Vercel CDN serves cache
 
 const API_KEY  = process.env.API_FOOTBALL_KEY;
 const BASE_URL = 'https://v3.football.api-sports.io';
@@ -195,27 +195,31 @@ export default async function handler(req, res) {
 
   try {
 
+    // Full match detail — 2 min cache
     if (id) {
-      res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
+      res.setHeader('Cache-Control', 's-maxage=120, stale-while-revalidate=60');
       const detail = await getDetail(id);
       if (!detail) return res.status(404).json({ error: 'Match not found' });
       return res.status(200).json(detail);
     }
 
+    // Live scores — 60s cache (1 API call/min max across all visitors)
     if (live === 'true') {
-      res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
+      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
       if (!isTournamentLive()) return res.status(200).json({ matches: [], phase: 'pre-tournament' });
       const matches = await getLive();
       return res.status(200).json({ matches, phase: 'live' });
     }
 
+    // Finished results — 1 hour cache (scores never change after FT)
     if (results === 'wc') {
-      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
+      res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=300');
       const matches = await getAllResults();
       return res.status(200).json({ matches, fetchedAt: new Date().toISOString() });
     }
 
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
+    // Today/date fixtures — 5 min cache
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
     const targetDate = date || todayUTC();
     const matches = await getByDate(targetDate);
     return res.status(200).json({
