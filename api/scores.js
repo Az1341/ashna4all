@@ -28,8 +28,6 @@ async function apiFetch(path) {
   return json.response || [];
 }
 
-// ── formatters ────────────────────────────────────────────────────────────────
-
 function fmtFixture(f) {
   return {
     id:        f.fixture.id,
@@ -142,8 +140,6 @@ function fmtPlayers(players) {
   }));
 }
 
-// ── route handlers ────────────────────────────────────────────────────────────
-
 async function getByDate(date) {
   const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&date=${date}&timezone=Europe/London`);
   return raw.map(fmtFixture);
@@ -154,8 +150,6 @@ async function getLive() {
   return raw.map(fmtFixture);
 }
 
-// Returns ALL finished WC fixtures — consumed by wc-results.js on every page
-// Cache reduced to 60s to ensure scores appear promptly after matches end
 async function getAllResults() {
   const FT_STATUSES = ['FT', 'AET', 'PEN'];
   const raw = await apiFetch(`/fixtures?league=${WC_LEAGUE}&season=${WC_SEASON}&status=FT-AET-PEN`);
@@ -191,8 +185,6 @@ async function getDetail(id) {
   };
 }
 
-// ── main handler ──────────────────────────────────────────────────────────────
-
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
@@ -203,7 +195,6 @@ export default async function handler(req, res) {
 
   try {
 
-    // ── GET /api/scores?id=FIXTURE_ID — full match detail
     if (id) {
       res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
       const detail = await getDetail(id);
@@ -211,7 +202,6 @@ export default async function handler(req, res) {
       return res.status(200).json(detail);
     }
 
-    // ── GET /api/scores?live=true — live fixtures only
     if (live === 'true') {
       res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=30');
       if (!isTournamentLive()) return res.status(200).json({ matches: [], phase: 'pre-tournament' });
@@ -219,15 +209,12 @@ export default async function handler(req, res) {
       return res.status(200).json({ matches, phase: 'live' });
     }
 
-    // ── GET /api/scores?results=wc — ALL finished fixtures (for wc-results.js)
-    // Cache reduced to 60s — scores must appear promptly after FT
     if (results === 'wc') {
-      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
       const matches = await getAllResults();
       return res.status(200).json({ matches, fetchedAt: new Date().toISOString() });
     }
 
-    // ── GET /api/scores or /api/scores?date=YYYY-MM-DD — fixtures for a date
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
     const targetDate = date || todayUTC();
     const matches = await getByDate(targetDate);
