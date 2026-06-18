@@ -1,0 +1,34 @@
+---
+description: Foldable dark report cards for ChatGPT/audit copy-paste output
+alwaysApply: true
+---
+
+# Report cards (ChatGPT / audit)
+
+When delivering a **report card** (audit summaries, phase reviews, status for ChatGPT):
+
+1. **Foldable** — wrap the card in HTML `<details>` / `<summary>` so the user can collapse it.
+2. **Copy-friendly** — put the card body in a single fenced code block inside `<details>` so Cursor shows the copy icon on the block.
+3. **Dark theme** — use a black/dark wrapper; light text in the summary line.
+
+## Template
+
+<details style="background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:0;margin:12px 0;">
+<summary style="cursor:pointer;padding:10px 14px;color:#fbbf24;font-weight:600;list-style:none;">📋 Copy report card — [TITLE]</summary>
+
+<div style="background:#111;padding:8px 12px 12px;border-top:1px solid #2a2a2a;">
+
+```
+[PASTE FULL CARD HERE — one block only]
+```
+
+</div>
+</details>
+
+## Rules
+
+- One report card per deliverable unless the user asks for more.
+- Summary line: short title + what the card is for (e.g. "Phase 10J audit").
+- Card interior: keep the existing box-drawing / section layout inside the code fence.
+- Do **not** nest multiple code fences inside the card body.
+- Command cards (git/shell steps) still follow `command-cards.mdc` — separate blocks, not merged into report cards unless the card is command-only.
