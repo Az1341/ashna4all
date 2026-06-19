@@ -6,8 +6,6 @@
   <title>GoalCurrent.live — FIFA World Cup 2026 | Live Scores, News &amp; Teams</title>
   <meta name="description" content="GoalCurrent.live — your home for FIFA World Cup 2026 live scores, fixtures, groups, teams and standings.">
   <link rel="canonical" href="https://www.goalcurrent.live/">
-
-  <!-- ═══ HREFLANG — All 10 supported languages ═══ -->
   <link rel="alternate" hreflang="en"        href="https://www.goalcurrent.live/">
   <link rel="alternate" hreflang="fa"        href="https://www.goalcurrent.live/">
   <link rel="alternate" hreflang="ar"        href="https://www.goalcurrent.live/">
@@ -19,8 +17,6 @@
   <link rel="alternate" hreflang="nl"        href="https://www.goalcurrent.live/">
   <link rel="alternate" hreflang="tr"        href="https://www.goalcurrent.live/">
   <link rel="alternate" hreflang="x-default" href="https://www.goalcurrent.live/">
-
-  <!-- ═══ OG / Twitter meta — updated dynamically by gc-lang.js ═══ -->
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="GoalCurrent.live — FIFA World Cup 2026">
   <meta property="og:description" content="Live scores, fixtures, groups, teams and standings for FIFA World Cup 2026.">
@@ -31,35 +27,22 @@
   <meta name="twitter:card"       content="summary">
   <meta name="twitter:title"      content="GoalCurrent.live — FIFA World Cup 2026">
   <meta name="twitter:description" content="Live scores, fixtures, groups, teams and standings for FIFA World Cup 2026.">
-
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <!-- ═══ Language selector CSS ═══ -->
-  <!-- gc-rtl.css is loaded dynamically by gc-lang.js only when FA or AR is selected -->
   <link rel="stylesheet" href="/css/gc-lang-selector.css">
-
-  <!-- ═══ Language engine — defer: downloads in parallel, runs after DOM parsed ═══ -->
-  <!-- Loaded here so GC_Lang is available when inline scripts call gcT() -->
   <script src="/js/worldcup-data.js"></script>
   <script src="/js/wc-results.js" defer></script>
   <script src="/js/wc-live-poll.js" defer></script>
   <script src="/js/gc-datetime.js"></script>
   <script src="/js/gc-lang.js" defer></script>
-
   <!-- ═══ Google AdSense ═══ -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697460993506171"
      crossorigin="anonymous"></script>
-
   <!-- ═══ Google Analytics ═══ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X84HCE5KGT"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X84HCE5KGT');</script>
-
   <style>
-/* ═══════════════════════════════════════════════════════
-   ORIGINAL STYLES — UNCHANGED
-═══════════════════════════════════════════════════════ */
 :root {
   --body-bg:    linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #e0f2fe 100%);
   --sidebar-bg: linear-gradient(180deg, #07111f, #0b1628);
@@ -69,6 +52,7 @@
   --blue-dark:  #003fb8;
   --card-bg:    rgba(255,255,255,0.82);
   --sidebar-w:  220px;
+  --ad-w:       160px;
   --text-dark:  #0f172a;
   --text-mid:   #334155;
   --text-light: #64748b;
@@ -104,7 +88,16 @@ a{text-decoration:none;color:inherit}
 .sidebar-footer-social a:hover{background:rgba(255,255,255,.15);color:#fff}
 #gc-hamburger{display:none;position:fixed;top:14px;left:14px;z-index:600;background:rgba(0,27,77,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:10px;width:40px;height:40px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
 #gc-hamburger span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:.2s}
-#gc-main{margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:column}
+
+/* ── LAYOUT WITH RIGHT AD COLUMN ── */
+#gc-page-wrap{margin-left:var(--sidebar-w);min-height:100vh;display:flex;flex-direction:row}
+#gc-main{flex:1;min-width:0;display:flex;flex-direction:column}
+
+/* ── RIGHT AD COLUMN ── */
+#gc-ad-rail{width:var(--ad-w);flex-shrink:0;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:16px;position:sticky;top:0;height:100vh;overflow-y:auto;background:rgba(255,255,255,.3);backdrop-filter:blur(8px);border-left:1px solid rgba(255,255,255,.6)}
+.gc-ad-unit{width:160px;display:block;text-align:center}
+.gc-ad-label{font-size:.6rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;display:block}
+
 .gc-header{background:var(--header-bg);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:12px 20px 0;position:sticky;top:0;z-index:300}
 .gc-header-top{display:flex;align-items:center;gap:12px;padding-bottom:10px}
 .gc-site-brand{display:flex;align-items:center;gap:10px}
@@ -123,8 +116,6 @@ a{text-decoration:none;color:inherit}
 .gc-hero-title{font-family:var(--font-head);font-size:1.4rem;font-weight:800;margin-bottom:1px}
 .gc-hero-title span{color:var(--gold)}
 .gc-hero-sub{font-size:.75rem;color:rgba(255,255,255,.65);font-weight:600;margin-bottom:10px}
-/* tournament is live */
-.gc-live-pill{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.8rem;font-weight:800;padding:6px 14px;border-radius:20px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
 @keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.6}}
 .gc-stats-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .gc-stat-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:5px 10px;text-align:center;min-width:58px}
@@ -181,25 +172,15 @@ a{text-decoration:none;color:inherit}
 .gc-sub-box h3{font-family:var(--font-head);font-size:1.4rem;font-weight:800;margin-bottom:6px}
 .gc-sub-box p{font-size:.85rem;color:var(--text-mid);margin-bottom:16px}
 .gc-sub-note{font-size:.7rem;color:var(--text-light);margin-top:10px}
-.oc-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(37,99,235,.08)}
-.oc-head{color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.85rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-.oc-body{padding:14px}
-.oc-meta{font-size:.72rem;color:var(--text-light);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
-.oc-headliner{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
-.oc-headliner-info h4{font-family:var(--font-head);font-size:.95rem;font-weight:800;color:var(--text-dark);margin-bottom:2px}
-.oc-headliner-info p{font-size:.72rem;color:var(--text-light)}
-.oc-others{font-size:.75rem;color:var(--text-mid);line-height:1.7;background:#f8faff;border-radius:8px;padding:8px 10px;border:1px solid #e2e8f0}
-.oc-others strong{color:var(--text-dark);display:block;margin-bottom:2px}
 
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE — ORIGINAL UNCHANGED
-═══════════════════════════════════════════════════════ */
-@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sidebar-w)!important}.sidebar-close{display:none!important}#gc-sidebar-overlay{display:none!important}}
+@media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}.sidebar-close{display:none!important}#gc-sidebar-overlay{display:none!important}}
+@media(max-width:1100px){#gc-ad-rail{display:none}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
   #gc-sidebar{transform:translateX(-100%);box-shadow:4px 0 24px rgba(0,0,0,.3)}
   #gc-sidebar.open{transform:translateX(0)}
-  #gc-main{margin-left:0!important}
+  #gc-page-wrap{margin-left:0!important}
+  #gc-ad-rail{display:none}
   .gc-header{padding-left:60px;padding-right:8px}
   .gc-hero{padding:10px 14px 12px}
   .gc-stats-row{gap:6px}
@@ -211,7 +192,6 @@ a{text-decoration:none;color:inherit}
 }
 @media(max-width:400px){.gc-hero-nav{gap:6px}.gc-hero-btn{padding:8px 12px;font-size:.78rem}}
 
-/* ── OPENING MATCH CARD ────────────────────────────────────────────────── */
 .gc-opening-match{background:linear-gradient(135deg,#001a4d 0%,#003fb8 60%,#0057e7 100%);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 8px 32px rgba(0,27,80,.35);border:1px solid rgba(255,255,255,.15)}
 .gc-om-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1)}
 .gc-om-badge{background:#ef4444;color:#fff;font-family:var(--font-head);font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.06em;animation:pulse-live 1.4s infinite}
@@ -226,7 +206,6 @@ a{text-decoration:none;color:inherit}
 .gc-om-detail{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.9)}
 .gc-om-detail strong{color:var(--gold)}
 .gc-om-ko-wrap{margin-bottom:14px}
-.gc-om-ko-label{font-family:var(--font-head);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-bottom:4px}
 .gc-om-ko-digits{display:flex;gap:4px;align-items:center}
 .gc-om-ko-box{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 8px;text-align:center;min-width:42px}
 .gc-om-ko-num{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:#fff;line-height:1;direction:ltr!important}
@@ -239,17 +218,11 @@ a{text-decoration:none;color:inherit}
 .gc-om-btn.primary:hover{background:#e08c09}
 .gc-om-btn.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
 .gc-om-btn.secondary:hover{background:rgba(255,255,255,.22)}
-@media(max-width:768px){
-  .gc-om-flag{font-size:2.2rem}
-  .gc-om-teamname{font-size:.88rem}
-  .gc-om-matchup{gap:8px}
-  .gc-om-body{padding:12px 14px 14px}
-}
+@media(max-width:768px){.gc-om-flag{font-size:2.2rem}.gc-om-teamname{font-size:.88rem}.gc-om-matchup{gap:8px}.gc-om-body{padding:12px 14px 14px}}
 html[dir='rtl'] .gc-opening-match{direction:ltr}
 html[dir='rtl'] .gc-om-header{flex-direction:row-reverse}
 html[dir='rtl'] .gc-om-teamname{direction:ltr}
 
-/* ── FIFA MATCH PREVIEW CARDS ── */
 .gc-video-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 .gc-video-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.08);display:flex;flex-direction:column}
 .gc-video-head{background:linear-gradient(135deg,#001a4d,#002b80);color:#fff;padding:10px 14px;font-family:var(--font-head);font-size:.82rem;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -269,25 +242,25 @@ html[dir='rtl'] .gc-om-teamname{direction:ltr}
 .gc-video-btn:hover{background:#cc0000}
 .gc-video-btn svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
 @media(max-width:768px){.gc-video-grid{grid-template-columns:1fr}}
-@media(min-width:769px) and (max-width:1000px){.gc-video-grid{grid-template-columns:1fr 1fr}}
+
+/* ── MOBILE IN-CONTENT ADS ── */
+.gc-mob-ad{display:none;text-align:center;padding:12px 0;margin:16px 0}
+.gc-mob-ad ins{margin:0 auto}
+@media(max-width:1100px){.gc-mob-ad{display:block}}
+
 html[dir='rtl'] .gc-video-card{direction:ltr}
 
-/* ── HOMEPAGE NEWS SECTION ── */
 .gc-news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
 .gc-news-item{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,235,.06);transition:transform .15s,box-shadow .15s;cursor:pointer}
 .gc-news-item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.12)}
-.gc-news-img{width:100%;height:130px;object-fit:cover;display:block;background:#dbeafe}
 .gc-news-img-placeholder{width:100%;height:130px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);display:flex;align-items:center;justify-content:center;font-size:2rem}
 .gc-news-body{padding:10px 12px 12px}
 .gc-news-source{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:3px}
 .gc-news-headline{font-family:var(--font-head);font-size:.9rem;font-weight:700;color:var(--text-dark);line-height:1.35;margin-bottom:5px}
 .gc-news-time{font-size:.68rem;color:var(--text-light);font-weight:600}
-@media(max-width:768px){.gc-news-grid{grid-template-columns:1fr}.gc-news-img,.gc-news-img-placeholder{height:160px}}
+@media(max-width:768px){.gc-news-grid{grid-template-columns:1fr}}
 @media(min-width:769px) and (max-width:1024px){.gc-news-grid{grid-template-columns:repeat(2,1fr)}}
-html[dir='rtl'] .gc-news-item{direction:rtl;text-align:right}
-html[dir='rtl'] .gc-news-source,html[dir='rtl'] .gc-news-headline,html[dir='rtl'] .gc-news-time{text-align:right}
 
-/* ── HOMEPAGE EDITORIAL FEATURE TEASER ── */
 .gc-feature-teaser{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.35fr);gap:0;margin-bottom:22px;background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.85);border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(37,99,235,.08)}
 .gc-feature-teaser-media{min-height:220px;background:#dbeafe}
 .gc-feature-teaser-media img{width:100%;height:100%;min-height:220px;object-fit:cover;display:block}
@@ -298,10 +271,6 @@ html[dir='rtl'] .gc-news-source,html[dir='rtl'] .gc-news-headline,html[dir='rtl'
 .gc-feature-teaser-link{display:inline-flex;align-items:center;gap:6px;width:fit-content;font-family:var(--font-head);font-size:.82rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:10px 16px;border-radius:999px;text-decoration:none;transition:transform .15s,box-shadow .15s}
 .gc-feature-teaser-link:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(37,99,235,.28)}
 @media(max-width:768px){.gc-feature-teaser{grid-template-columns:1fr}.gc-feature-teaser-media,.gc-feature-teaser-media img{min-height:190px}}
-html[dir='rtl'] .gc-feature-teaser-body{text-align:right}
-html[dir='rtl'] .gc-feature-teaser-link{flex-direction:row-reverse}
-html[dir='rtl'] .gc-video-title,html[dir='rtl'] .gc-video-meta,html[dir='rtl'] .gc-video-desc{direction:rtl;text-align:right}
-html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
 </style>
 </head>
 <body>
@@ -340,217 +309,262 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
   </div>
 </nav>
 
-<div id="gc-main">
-  <header class="gc-header">
-    <div class="gc-header-top">
-      <div class="gc-site-brand">
-        <div class="gc-site-brand-icon"><img src="/logo.svg" alt="GoalCurrent.live" width="30" height="30" onerror="this.style.display='none';this.parentNode.innerHTML='⚽'"></div>
-        <div>
-          <div class="gc-site-brand-text">Goal<span>Current</span>.live</div>
-          <div class="gc-header-sub" data-gc-i18n="gc.headerSub">Live Scores · World Cup 2026 · News</div>
+<!-- ═══ PAGE WRAP — main content + right ad rail ═══ -->
+<div id="gc-page-wrap">
+
+  <div id="gc-main">
+    <header class="gc-header">
+      <div class="gc-header-top">
+        <div class="gc-site-brand">
+          <div class="gc-site-brand-icon"><img src="/logo.svg" alt="GoalCurrent.live" width="30" height="30" onerror="this.style.display='none';this.parentNode.innerHTML='⚽'"></div>
+          <div>
+            <div class="gc-site-brand-text">Goal<span>Current</span>.live</div>
+            <div class="gc-header-sub" data-gc-i18n="gc.headerSub">Live Scores · World Cup 2026 · News</div>
+          </div>
+        </div>
+        <div id="gc-lang-selector-root" style="margin-left:auto;display:flex;align-items:center;flex-shrink:0;"></div>
+      </div>
+      <nav class="gc-subnav" aria-label="Quick navigation">
+        <div class="gc-subnav-inner">
+          <a href="/" class="active">🏠 <span data-gc-i18n="nav.home">Home</span></a>
+          <a href="/worldcup2026/">🏆 <span data-gc-i18n="nav.worldCup">World Cup</span></a>
+          <a href="/worldcup2026/fixtures/">📅 <span data-gc-i18n="nav.fixtures">Fixtures</span></a>
+          <a href="/worldcup2026/groups/">🔢 <span data-gc-i18n="nav.groups">Groups</span></a>
+          <a href="/worldcup2026/teams/">👕 <span data-gc-i18n="nav.teams">Teams</span></a>
+          <a href="/worldcup2026/standings/">📊 <span data-gc-i18n="nav.standings">Standings</span></a>
+          <a href="/live/">&#128308; <span>Live Scores</span></a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="gc-hero">
+      <div class="gc-hero-title">FIFA World Cup <span>2026</span></div>
+      <div class="gc-hero-sub">USA · Mexico · Canada · 11 June – 19 July 2026</div>
+      <div class="gc-stats-row">
+        <div class="gc-stat-chip"><div class="gc-stat-num">48</div><div class="gc-stat-lbl" data-gc-i18n="stats.teams">Teams</div></div>
+        <div class="gc-stat-chip"><div class="gc-stat-num">104</div><div class="gc-stat-lbl" data-gc-i18n="stats.matches">Matches</div></div>
+        <div class="gc-stat-chip"><div class="gc-stat-num">16</div><div class="gc-stat-lbl" data-gc-i18n="stats.venues">Venues</div></div>
+        <div class="gc-stat-chip"><div class="gc-stat-num">3</div><div class="gc-stat-lbl" data-gc-i18n="stats.hosts">Hosts</div></div>
+      </div>
+      <div class="gc-hero-nav">
+        <a class="gc-hero-btn primary" href="/worldcup2026/" data-gc-i18n="buttons.wcHub">🌍 WC2026 Hub →</a>
+        <a class="gc-hero-btn" href="/worldcup2026/fixtures/" data-gc-i18n="nav.fixtures">📅 Fixtures</a>
+        <a class="gc-hero-btn" href="/worldcup2026/groups/" data-gc-i18n="nav.groups">🔢 Groups</a>
+        <a class="gc-hero-btn" href="/worldcup2026/teams/" data-gc-i18n="nav.teams">👕 Teams</a>
+      </div>
+    </div>
+
+    <div class="gc-content">
+      <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Football Live Scores, Fixtures and World Cup 2026</h1>
+
+      <div class="gc-opening-match" id="gc-opening-match">
+        <div class="gc-om-header">
+          <span class="gc-om-badge" id="gc-om-badge">⏳ Loading…</span>
+          <span class="gc-om-meta" id="gc-om-meta"></span>
+        </div>
+        <div class="gc-om-body">
+          <div class="gc-om-matchup" dir="ltr">
+            <div class="gc-om-team"><div class="gc-om-flag" id="gc-om-home-flag">⚽</div><div class="gc-om-teamname" id="gc-om-home-name"></div></div>
+            <div class="gc-om-vs" id="gc-om-score">vs</div>
+            <div class="gc-om-team"><div class="gc-om-flag" id="gc-om-away-flag">⚽</div><div class="gc-om-teamname" id="gc-om-away-name"></div></div>
+          </div>
+          <div class="gc-om-details" dir="ltr">
+            <div class="gc-om-detail">⏰ <strong id="gc-om-local-time"></strong> Kickoff</div>
+            <div class="gc-om-detail">🏟 <strong id="gc-om-venue"></strong></div>
+            <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster"></strong></div>
+          </div>
+          <div class="gc-om-ko-wrap" dir="ltr">
+            <div class="gc-om-ko-digits" id="gc-om-ko-digits" style="display:none">
+              <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
+              <span class="gc-om-ko-sep">:</span>
+              <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
+              <span class="gc-om-ko-sep">:</span>
+              <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
+            </div>
+            <div class="gc-om-ko-started" id="gc-om-started" style="display:none"></div>
+          </div>
+          <div class="gc-om-actions">
+            <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
+            <a class="gc-om-btn secondary" href="/live/">🔴 Live Scores</a>
+          </div>
         </div>
       </div>
-      <div id="gc-lang-selector-root" style="margin-left:auto;display:flex;align-items:center;flex-shrink:0;"></div>
-    </div>
-    <nav class="gc-subnav" aria-label="Quick navigation">
-      <div class="gc-subnav-inner">
-        <a href="/" class="active">🏠 <span data-gc-i18n="nav.home">Home</span></a>
-        <a href="/worldcup2026/">🏆 <span data-gc-i18n="nav.worldCup">World Cup</span></a>
-        <a href="/worldcup2026/fixtures/">📅 <span data-gc-i18n="nav.fixtures">Fixtures</span></a>
-        <a href="/worldcup2026/groups/">🔢 <span data-gc-i18n="nav.groups">Groups</span></a>
-        <a href="/worldcup2026/teams/">👕 <span data-gc-i18n="nav.teams">Teams</span></a>
-        <a href="/worldcup2026/standings/">📊 <span data-gc-i18n="nav.standings">Standings</span></a>
-        <a href="/live/">&#128308; <span>Live Scores</span></a>
-      </div>
-    </nav>
-  </header>
 
-  <div class="gc-hero">
-    <div class="gc-hero-title">FIFA World Cup <span>2026</span></div>
-    <div class="gc-hero-sub">USA · Mexico · Canada · 11 June – 19 July 2026</div>
-    <div class="gc-stats-row">
-      <div class="gc-stat-chip">
-        <div class="gc-stat-num">48</div>
-        <div class="gc-stat-lbl" data-gc-i18n="stats.teams">Teams</div>
+      <div class="gc-section-label" id="gc-section-label">
+        <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>
+        <span data-gc-i18n="gc.liveMatchCentre">Live Match Centre</span>
       </div>
-      <div class="gc-stat-chip">
-        <div class="gc-stat-num">104</div>
-        <div class="gc-stat-lbl" data-gc-i18n="stats.matches">Matches</div>
+      <div class="gc-match-card">
+        <div class="gc-match-head">
+          <span id="matchCardTitle">TODAY'S MATCHES — WORLD CUP 2026</span>
+          <span class="gc-match-updated" id="updatedTime"><span data-gc-i18n="errors.loading">Loading…</span></span>
+        </div>
+        <div id="gc-matches"></div>
+        <a class="gc-match-link" href="/worldcup2026/fixtures/" data-gc-i18n="fixtures.allFixtures">View all 104 fixtures →</a>
       </div>
-      <div class="gc-stat-chip">
-        <div class="gc-stat-num">16</div>
-        <div class="gc-stat-lbl" data-gc-i18n="stats.venues">Venues</div>
+
+
+      <!-- ═══ MOBILE AD 1 — after match centre ═══ -->
+      <div class="gc-mob-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8697460993506171"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-      <div class="gc-stat-chip">
-        <div class="gc-stat-num">3</div>
-        <div class="gc-stat-lbl" data-gc-i18n="stats.hosts">Hosts</div>
+
+      <div class="gc-section-label" style="margin-top:22px">
+        📰 <span data-gc-i18n="gc.latestWCNews">World Cup 2026 — Latest News</span>
+      </div>
+
+      <article class="gc-feature-teaser" aria-labelledby="gc-feature-teaser-title">
+        <div class="gc-feature-teaser-media">
+          <img src="/images/news/football-inspiring-canadas-next-generation/hero.jpg"
+            alt="Young footballers train on a community pitch in Toronto during the FIFA World Cup 2026 era"
+            width="960" height="640" loading="lazy">
+        </div>
+        <div class="gc-feature-teaser-body">
+          <span class="gc-feature-teaser-tag">GoalCurrent.live · Community Feature</span>
+          <h2 class="gc-feature-teaser-title" id="gc-feature-teaser-title">Football Is Inspiring Canada's Next Generation</h2>
+          <p class="gc-feature-teaser-summary">Canada is co-hosting the FIFA World Cup for the first time since 1986, and across Toronto a generation of boys and girls is discovering that the biggest tournament on earth is not a television fantasy — it is a neighbour. From community pitches in the GTA to BMO Field on the lakefront, football in 2026 feels close enough to touch.</p>
+          <p class="gc-feature-teaser-summary">This GoalCurrent.live community feature follows young players, volunteer coaches, and families living the World Cup era on home soil. Registration for mixed-gender leagues is climbing. Girls' programmes are seeing waiting lists. Children who once asked only who will win are now asking how they get there — with original photography from Toronto parks, grass fields, and artificial turf through every Canadian season.</p>
+          <p class="gc-feature-teaser-summary">When Canada kicks off at BMO Field, thousands of children will watch knowing the echo of that crowd could be theirs one day — not as spectators, but as players. That is the story behind the matches inside stadiums and the millions of small beginnings outside them.</p>
+          <a class="gc-feature-teaser-link" href="/news/football-inspiring-canadas-next-generation/">Read Full Story →</a>
+        </div>
+      </article>
+
+      <div class="gc-news-grid" id="gc-news-grid">
+        <div class="gc-news-item">
+          <a href="/live/" style="text-decoration:none;color:inherit">
+            <div class="gc-news-img-placeholder">🔴</div>
+            <div class="gc-news-body">
+              <div class="gc-news-source">GoalCurrent</div>
+              <div class="gc-news-headline">World Cup 2026 Is Underway — Follow Live Scores &amp; Results</div>
+              <div class="gc-news-time">Live now</div>
+            </div>
+          </a>
+        </div>
+        <div class="gc-news-item">
+          <a href="https://www.bbc.com/sport/football/world-cup" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+            <div class="gc-news-img-placeholder">⚽</div>
+            <div class="gc-news-body">
+              <div class="gc-news-source">BBC Sport</div>
+              <div class="gc-news-headline">World Cup 2026: All you need to know as the tournament gets underway</div>
+              <div class="gc-news-time">Latest</div>
+            </div>
+          </a>
+        </div>
+        <div class="gc-news-item">
+          <a href="/worldcup2026/groups/" style="text-decoration:none;color:inherit">
+            <div class="gc-news-img-placeholder">🔢</div>
+            <div class="gc-news-body">
+              <div class="gc-news-source">World Cup 2026</div>
+              <div class="gc-news-headline">Group Stage: Live Standings, Results &amp; Fixtures</div>
+              <div class="gc-news-time">Updated live</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- ═══ MOBILE AD 2 — after news section ═══ -->
+      <div class="gc-mob-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8697460993506171"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="gc-section-label" style="margin-top:22px">
+        🎥 <span data-gc-i18n="gc.matchPreviews">Official FIFA Match Previews</span>
+      </div>
+      <div class="gc-video-grid" id="gc-video-grid">
+        <div class="gc-video-card" style="opacity:.4">
+          <div class="gc-video-head"><span>Loading previews…</span></div>
+          <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
+          <div class="gc-video-body">
+            <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
+            <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
+          </div>
+        </div>
+        <div class="gc-video-card" style="opacity:.4">
+          <div class="gc-video-head"><span>Loading previews…</span></div>
+          <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
+          <div class="gc-video-body">
+            <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
+            <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ MOBILE AD 3 — after videos ═══ -->
+      <div class="gc-mob-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8697460993506171"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
-    <div class="gc-hero-nav">
-      <a class="gc-hero-btn primary" href="/worldcup2026/" data-gc-i18n="buttons.wcHub">🌍 WC2026 Hub →</a>
-      <a class="gc-hero-btn" href="/worldcup2026/fixtures/" data-gc-i18n="nav.fixtures">📅 Fixtures</a>
-      <a class="gc-hero-btn" href="/worldcup2026/groups/" data-gc-i18n="nav.groups">🔢 Groups</a>
-      <a class="gc-hero-btn" href="/worldcup2026/teams/" data-gc-i18n="nav.teams">👕 Teams</a>
+
+    <div class="gc-vpn-bar">
+      🔒 <strong>Watching the World Cup abroad?</strong>
+      Use <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="color:var(--blue)">NordVPN</a>
+      to access your favourite streams from anywhere.
+      <small style="color:var(--text-light)">Affiliate link — we may earn a commission</small>
+      &nbsp;|&nbsp;
+      <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:var(--blue);font-weight:700">NordPass</a>
     </div>
+
+    <footer class="gc-footer">
+      <div class="gc-footer-links">
+        <a href="/about.html">About</a><a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a>
+        <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
+      </div>
+      <div class="gc-footer-social">
+        <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener noreferrer" title="GoalCurrent on X/Twitter" aria-label="GoalCurrent on X/Twitter">𝕏</a>
+        <a href="https://www.tiktok.com/@goalcurrent" target="_blank" rel="noopener noreferrer" title="GoalCurrent on TikTok" aria-label="GoalCurrent on TikTok">♪</a>
+        <a href="https://www.instagram.com/goalcurrentlive" target="_blank" rel="noopener noreferrer" title="GoalCurrent on Instagram" aria-label="GoalCurrent on Instagram">📸</a>
+      </div>
+      <div class="gc-footer-copy">
+        © 2026 <strong style="color:#64748b">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
+        Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
+      </div>
+    </footer>
   </div>
 
-  <div class="gc-content">
-    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">Football Live Scores, Fixtures and World Cup 2026</h1>
+  <!-- ═══ RIGHT AD RAIL — visible on screens wider than 1100px ═══ -->
+  <aside id="gc-ad-rail" aria-label="Advertisements">
+    <div class="gc-ad-unit">
+      <span class="gc-ad-label">Advertisement</span>
+      <ins class="adsbygoogle"
+           style="display:block;width:160px;height:600px"
+           data-ad-client="ca-pub-8697460993506171"
+           data-ad-slot="auto"
+           data-ad-format="vertical"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    <div class="gc-ad-unit" style="margin-top:16px">
+      <ins class="adsbygoogle"
+           style="display:block;width:160px;height:300px"
+           data-ad-client="ca-pub-8697460993506171"
+           data-ad-slot="auto"
+           data-ad-format="rectangle"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </aside>
 
-    <div class="gc-opening-match" id="gc-opening-match">
-      <div class="gc-om-header">
-        <span class="gc-om-badge" id="gc-om-badge">⏳ Loading…</span>
-        <span class="gc-om-meta" id="gc-om-meta"></span>
-      </div>
-      <div class="gc-om-body">
-        <div class="gc-om-matchup" dir="ltr">
-          <div class="gc-om-team">
-            <div class="gc-om-flag" id="gc-om-home-flag">⚽</div>
-            <div class="gc-om-teamname" id="gc-om-home-name"></div>
-          </div>
-          <div class="gc-om-vs" id="gc-om-score">vs</div>
-          <div class="gc-om-team">
-            <div class="gc-om-flag" id="gc-om-away-flag">⚽</div>
-            <div class="gc-om-teamname" id="gc-om-away-name"></div>
-          </div>
-        </div>
-        <div class="gc-om-details" dir="ltr">
-          <div class="gc-om-detail">⏰ <strong id="gc-om-local-time"></strong> Kickoff</div>
-          <div class="gc-om-detail">🏟 <strong id="gc-om-venue"></strong></div>
-          <div class="gc-om-detail">📺 <strong id="gc-om-broadcaster"></strong></div>
-        </div>
-        <div class="gc-om-ko-wrap" dir="ltr">
-          <div class="gc-om-ko-digits" id="gc-om-ko-digits" style="display:none">
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-h">00</div><div class="gc-om-ko-lbl">Hrs</div></div>
-            <span class="gc-om-ko-sep">:</span>
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-m">00</div><div class="gc-om-ko-lbl">Min</div></div>
-            <span class="gc-om-ko-sep">:</span>
-            <div class="gc-om-ko-box"><div class="gc-om-ko-num" id="om-s">00</div><div class="gc-om-ko-lbl">Sec</div></div>
-          </div>
-          <div class="gc-om-ko-started" id="gc-om-started" style="display:none"></div>
-        </div>
-        <div class="gc-om-actions">
-          <a class="gc-om-btn primary" href="/worldcup2026/fixtures/">📅 View All Fixtures →</a>
-          <a class="gc-om-btn secondary" href="/live/">🔴 Live Scores</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="gc-section-label" id="gc-section-label">
-      <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:pulse-live 1.4s infinite"></span>
-      <span data-gc-i18n="gc.liveMatchCentre">Live Match Centre</span>
-    </div>
-    <div class="gc-match-card">
-      <div class="gc-match-head">
-        <span id="matchCardTitle">TODAY'S MATCHES — WORLD CUP 2026</span>
-        <span class="gc-match-updated" id="updatedTime"><span data-gc-i18n="errors.loading">Loading…</span></span>
-      </div>
-      <div id="gc-matches"></div>
-      <a class="gc-match-link" href="/worldcup2026/fixtures/" data-gc-i18n="fixtures.allFixtures">View all 104 fixtures →</a>
-    </div>
-
-    <div class="gc-section-label" style="margin-top:22px">
-      📰 <span data-gc-i18n="gc.latestWCNews">World Cup 2026 — Latest News</span>
-    </div>
-
-    <article class="gc-feature-teaser" aria-labelledby="gc-feature-teaser-title">
-      <div class="gc-feature-teaser-media">
-        <img src="/images/news/football-inspiring-canadas-next-generation/hero.jpg"
-          alt="Young footballers train on a community pitch in Toronto during the FIFA World Cup 2026 era"
-          width="960" height="640" loading="lazy">
-      </div>
-      <div class="gc-feature-teaser-body">
-        <span class="gc-feature-teaser-tag">GoalCurrent.live · Community Feature</span>
-        <h2 class="gc-feature-teaser-title" id="gc-feature-teaser-title">Football Is Inspiring Canada's Next Generation</h2>
-        <p class="gc-feature-teaser-summary">Canada is co-hosting the FIFA World Cup for the first time since 1986, and across Toronto a generation of boys and girls is discovering that the biggest tournament on earth is not a television fantasy — it is a neighbour. From community pitches in the GTA to BMO Field on the lakefront, football in 2026 feels close enough to touch.</p>
-        <p class="gc-feature-teaser-summary">This GoalCurrent.live community feature follows young players, volunteer coaches, and families living the World Cup era on home soil. Registration for mixed-gender leagues is climbing. Girls' programmes are seeing waiting lists. Children who once asked only who will win are now asking how they get there — with original photography from Toronto parks, grass fields, and artificial turf through every Canadian season.</p>
-        <p class="gc-feature-teaser-summary">When Canada kicks off at BMO Field, thousands of children will watch knowing the echo of that crowd could be theirs one day — not as spectators, but as players. That is the story behind the matches inside stadiums and the millions of small beginnings outside them.</p>
-        <a class="gc-feature-teaser-link" href="/news/football-inspiring-canadas-next-generation/">Read Full Story →</a>
-      </div>
-    </article>
-
-    <div class="gc-news-grid" id="gc-news-grid">
-      <div class="gc-news-item">
-        <a href="/live/" style="text-decoration:none;color:inherit">
-          <div class="gc-news-img-placeholder">🔴</div>
-          <div class="gc-news-body">
-            <div class="gc-news-source">GoalCurrent</div>
-            <div class="gc-news-headline">World Cup 2026 Is Underway — Follow Live Scores &amp; Results</div>
-            <div class="gc-news-time">Live now</div>
-          </div>
-        </a>
-      </div>
-      <div class="gc-news-item">
-        <a href="https://www.bbc.com/sport/football/world-cup" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
-          <div class="gc-news-img-placeholder">⚽</div>
-          <div class="gc-news-body">
-            <div class="gc-news-source">BBC Sport</div>
-            <div class="gc-news-headline">World Cup 2026: All you need to know as the tournament gets underway</div>
-            <div class="gc-news-time">Latest</div>
-          </div>
-        </a>
-      </div>
-      <div class="gc-news-item">
-        <a href="/worldcup2026/groups/" style="text-decoration:none;color:inherit">
-          <div class="gc-news-img-placeholder">🔢</div>
-          <div class="gc-news-body">
-            <div class="gc-news-source">World Cup 2026</div>
-            <div class="gc-news-headline">Group Stage: Live Standings, Results &amp; Fixtures</div>
-            <div class="gc-news-time">Updated live</div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="gc-section-label" style="margin-top:22px">
-      🎥 <span data-gc-i18n="gc.matchPreviews">Official FIFA Match Previews</span>
-    </div>
-    <div class="gc-video-grid" id="gc-video-grid">
-      <div class="gc-video-card" style="opacity:.4">
-        <div class="gc-video-head"><span>Loading previews…</span></div>
-        <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
-        <div class="gc-video-body">
-          <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
-          <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
-        </div>
-      </div>
-      <div class="gc-video-card" style="opacity:.4">
-        <div class="gc-video-head"><span>Loading previews…</span></div>
-        <div style="width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#001a4d,#002b80)"></div>
-        <div class="gc-video-body">
-          <div class="gc-video-title" style="background:#e2e8f0;height:18px;border-radius:4px;margin-bottom:8px"></div>
-          <div class="gc-video-meta" style="background:#e2e8f0;height:12px;border-radius:4px;width:70%"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="gc-vpn-bar">
-    🔒 <strong>Watching the World Cup abroad?</strong>
-    Use <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347&url_id=902" target="_blank" rel="noopener sponsored" style="color:var(--blue)">NordVPN</a>
-    to access your favourite streams from anywhere.
-    <small style="color:var(--text-light)">Affiliate link — we may earn a commission</small>
-    &nbsp;|&nbsp;
-    <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=148347&url_id=9356" target="_blank" rel="noopener sponsored" style="color:var(--blue);font-weight:700">NordPass</a>
-  </div>
-
-  <footer class="gc-footer">
-    <div class="gc-footer-links">
-      <a href="/about.html">About</a><a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a>
-      <a href="/disclaimer.html">Disclaimer</a><a href="/cookies.html">Cookies</a>
-    </div>
-    <div class="gc-footer-social">
-      <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener noreferrer" title="GoalCurrent on X/Twitter" aria-label="GoalCurrent on X/Twitter">𝕏</a>
-      <a href="https://www.tiktok.com/@goalcurrent" target="_blank" rel="noopener noreferrer" title="GoalCurrent on TikTok" aria-label="GoalCurrent on TikTok">♪</a>
-      <a href="https://www.instagram.com/goalcurrentlive" target="_blank" rel="noopener noreferrer" title="GoalCurrent on Instagram" aria-label="GoalCurrent on Instagram">📸</a>
-    </div>
-    <div class="gc-footer-copy">
-      © 2026 <strong style="color:#64748b">Ashna4All</strong> · Ahmad Zafarani · GoalCurrent.live<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or the Premier League
-    </div>
-  </footer>
-</div>
+</div><!-- end #gc-page-wrap -->
 
 <div id="gc-cookie-banner" role="dialog" aria-label="Cookie consent">
   <div class="gc-cookie-text">
@@ -569,433 +583,98 @@ html[dir='rtl'] .gc-video-head{flex-direction:row-reverse}
     <h3 data-gc-i18n="subscribe.title">⚽ Stay Ahead of the Game</h3>
     <p data-gc-i18n="subscribe.subtitle">Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
     <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
-      <input type="email" id="gc-sub-email-input"
-             placeholder="Your email address"
-             data-gc-i18n-placeholder="subscribe.placeholder"
-             autocomplete="email"
-             style="flex:1;min-width:0;height:44px;border:1px solid #93c5fd;border-radius:999px;padding:0 14px;font-size:.88rem;font-family:inherit;outline:none">
-      <button onclick="gcSubSubmit()"
-              data-gc-i18n="subscribe.button"
-              style="height:44px;padding:0 18px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit">
-        Subscribe Free ✉️
-      </button>
+      <input type="email" id="gc-sub-email-input" placeholder="Your email address" data-gc-i18n-placeholder="subscribe.placeholder" autocomplete="email" style="flex:1;min-width:0;height:44px;border:1px solid #93c5fd;border-radius:999px;padding:0 14px;font-size:.88rem;font-family:inherit;outline:none">
+      <button onclick="gcSubSubmit()" data-gc-i18n="subscribe.button" style="height:44px;padding:0 18px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit">Subscribe Free ✉️</button>
     </div>
     <p class="gc-sub-note" data-gc-i18n="subscribe.footer">Unsubscribe any time · Powered by Brevo · You will receive a confirmation email</p>
   </div>
 </div>
 
 <script>
-function gcT(key, fallback) {
-  if (window.GC_Lang && typeof window.GC_Lang.t === 'function') {
-    var val = window.GC_Lang.t(key);
-    return (val && val !== key) ? val : fallback;
-  }
-  return fallback;
-}
-
-function pad(n){ return String(n).padStart(2,'0'); }
-
-var _gcApiScores = {};
-
-var _GC_NAME_MAP={
-  'south korea':'Korea Republic','korea republic':'Korea Republic',
-  'czech republic':'Czechia','czechia':'Czechia',
-  'bosnia and herzegovina':'Bosnia & Herzegovina',
-  'bosnia herzegovina':'Bosnia & Herzegovina',
-  'bosnia-herzegovina':'Bosnia & Herzegovina',
-  'usa':'USA','united states':'USA',
-  'turkiye':'Türkiye','turkey':'Türkiye',
-  'ivory coast':"Côte d'Ivoire",'cote d ivoire':"Côte d'Ivoire",
-  'curacao':'Curaçao','curaçao':'Curaçao',
-  'cape verde islands':'Cabo Verde','cape verde':'Cabo Verde','cabo verde':'Cabo Verde',
-  'congo dr':'Congo DR','dr congo':'Congo DR',
-  'ir iran':'IR Iran','iran':'IR Iran'
-};
+function gcT(key,fallback){if(window.GC_Lang&&typeof window.GC_Lang.t==='function'){var val=window.GC_Lang.t(key);return(val&&val!==key)?val:fallback;}return fallback;}
+function pad(n){return String(n).padStart(2,'0');}
+var _gcApiScores={};
+var _GC_NAME_MAP={'south korea':'Korea Republic','korea republic':'Korea Republic','czech republic':'Czechia','czechia':'Czechia','bosnia and herzegovina':'Bosnia & Herzegovina','bosnia herzegovina':'Bosnia & Herzegovina','bosnia-herzegovina':'Bosnia & Herzegovina','usa':'USA','united states':'USA','turkiye':'Türkiye','turkey':'Türkiye','ivory coast':"Côte d'Ivoire",'cote d ivoire':"Côte d'Ivoire",'curacao':'Curaçao','curaçao':'Curaçao','cape verde islands':'Cabo Verde','cape verde':'Cabo Verde','cabo verde':'Cabo Verde','congo dr':'Congo DR','dr congo':'Congo DR','ir iran':'IR Iran','iran':'IR Iran'};
 var _GC_LOOKUP={};
-(function(){
-  function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();}
-  Object.keys(_GC_NAME_MAP).forEach(function(k){_GC_LOOKUP[nrm(k)]=_GC_NAME_MAP[k];});
-  var sched=(window.WC26&&window.WC26.schedule)||[];
-  sched.forEach(function(m){
-    [m.home,m.away].forEach(function(name){
-      if(!name)return;
-      var nk=nrm(name);
-      if(!_GC_LOOKUP[nk])_GC_LOOKUP[nk]=name;
-    });
-  });
-}());
-function _gcCanon(apiName){
-  var nk=String(apiName||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();
-  return _GC_LOOKUP[nk]||null;
-}
-function _gcMatchesFixture(apiMatch,fixture){
-  var ah=_gcCanon(apiMatch.home&&apiMatch.home.name);
-  var aa=_gcCanon(apiMatch.away&&apiMatch.away.name);
-  var fh=_gcCanon(fixture.home||fixture.h)||(fixture.home||fixture.h);
-  var fa=_gcCanon(fixture.away||fixture.a)||(fixture.away||fixture.a);
-  if(!ah||!aa)return false;
-  return (ah===fh&&aa===fa)||(ah===fa&&aa===fh);
-}
+(function(){function nrm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();}Object.keys(_GC_NAME_MAP).forEach(function(k){_GC_LOOKUP[nrm(k)]=_GC_NAME_MAP[k];});var sched=(window.WC26&&window.WC26.schedule)||[];sched.forEach(function(m){[m.home,m.away].forEach(function(name){if(!name)return;var nk=nrm(name);if(!_GC_LOOKUP[nk])_GC_LOOKUP[nk]=name;});});}());
+function _gcCanon(apiName){var nk=String(apiName||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim();return _GC_LOOKUP[nk]||null;}
+function _gcMatchesFixture(apiMatch,fixture){var ah=_gcCanon(apiMatch.home&&apiMatch.home.name);var aa=_gcCanon(apiMatch.away&&apiMatch.away.name);var fh=_gcCanon(fixture.home||fixture.h)||(fixture.home||fixture.h);var fa=_gcCanon(fixture.away||fixture.a)||(fixture.away||fixture.a);if(!ah||!aa)return false;return(ah===fh&&aa===fa)||(ah===fa&&aa===fh);}
 
 function renderMatches(){
-  var box=document.getElementById('gc-matches');
-  if(!box) return;
-  box.innerHTML='';
+  var box=document.getElementById('gc-matches');if(!box)return;box.innerHTML='';
   var now=new Date();
-  var todayBST=window.GC_DateTime&&GC_DateTime.todayLocal
-    ? GC_DateTime.getTodayLocalDateKey()
-    : now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  var todayBST=window.GC_DateTime&&GC_DateTime.todayLocal?GC_DateTime.getTodayLocalDateKey():now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
   var allFixtures=(window.WC26&&window.WC26.schedule)||[];
-  var todayMatches=allFixtures.filter(function(f){
-    var fLocalDate=window.GC_DateTime&&GC_DateTime.getLocalDateKey
-      ? GC_DateTime.getLocalDateKey(f.utc)
-      : (function(){var d=new Date(f.utc);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
-    return fLocalDate===todayBST;
-  });
-  var showingToday=todayMatches.length>0;
-  var toShow=todayMatches.slice();
-  if(!toShow.length){
-    var next=allFixtures.find(function(f){return new Date(f.utc)>now;});
-    if(next) toShow=[next];
-  }
-  if(!toShow.length){
-    box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">' + gcT('live.noMatches','No matches scheduled today') + '</div>';
-    var emptyTitle=document.getElementById('matchCardTitle');
-    if(emptyTitle) emptyTitle.textContent=gcT('gc.todayMatches','TODAY\'S MATCHES — WORLD CUP 2026');
-    return;
-  }
+  var todayMatches=allFixtures.filter(function(f){var fLocalDate=window.GC_DateTime&&GC_DateTime.getLocalDateKey?GC_DateTime.getLocalDateKey(f.utc):(function(){var d=new Date(f.utc);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();return fLocalDate===todayBST;});
+  var showingToday=todayMatches.length>0;var toShow=todayMatches.slice();
+  if(!toShow.length){var next=allFixtures.find(function(f){return new Date(f.utc)>now;});if(next)toShow=[next];}
+  if(!toShow.length){box.innerHTML='<div style="padding:20px;text-align:center;color:var(--text-light);font-size:.85rem">'+gcT('live.noMatches','No matches scheduled today')+'</div>';var emptyTitle=document.getElementById('matchCardTitle');if(emptyTitle)emptyTitle.textContent=gcT('gc.todayMatches',"TODAY'S MATCHES — WORLD CUP 2026");return;}
   var titleCounts={live:0,ft:0,upcoming:0};
   toShow.forEach(function(match){
-    var ko=new Date(match.utc);
-    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
-    var apiData=_gcApiScores[match.id]||null;
-    var statusText,statusClass,centreHtml;
-    if(apiData){
-      var apiStatus=apiData.status&&apiData.status.short||'NS';
-      var apiElapsed=apiData.status&&apiData.status.elapsed||null;
-      var gH=apiData.goals&&apiData.goals.home!=null?apiData.goals.home:0;
-      var gA=apiData.goals&&apiData.goals.away!=null?apiData.goals.away:0;
-      var LIVE_S=['1H','2H','HT','ET','BT','P'];
-      var FT_S=['FT','AET','PEN'];
-      var isLive=LIVE_S.indexOf(apiStatus)!==-1;
-      var isFT=FT_S.indexOf(apiStatus)!==-1;
-      var isNS=apiStatus==='NS';
-      if(isNS){
-        statusText=gcT('live.upcoming','UPCOMING');
-        statusClass='upcoming';
-        var koStr2=window.GC_DateTime ? GC_DateTime.formatMatchCardTime(match.utc) : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
-        centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr2+'</span></div>';
-      } else if(isLive){
-        statusText=gcT('live.liveNow','LIVE');
-        statusClass='live';
-        var liveGuard=window.WC26&&WC26.scoreGuard ? WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-live') : {show:ko<=now};
-        var minLabel=apiStatus==='HT'?gcT('live.halfTime','HT'):(apiElapsed?apiElapsed+"'":'●');
-        var minStr='<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span>';
-        centreHtml=liveGuard.show ? '<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>' : '<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">LIVE</span></div>';
-      } else if(isFT){
-        statusText=gcT('live.fullTime','FT');
-        statusClass='finished';
-        var ftGuard=window.WC26&&WC26.scoreGuard ? WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-ft') : {show:ko<=now};
-        var ftStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';
-        centreHtml=ftGuard.show ? '<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>' : '<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">FT</span></div>';
-      } else {
-        apiData=null;
-      }
-    }
-    if(!apiData){
-      if(match.status==='FT' && match.homeScore!=null && match.awayScore!=null){
-        statusText=gcT('live.fullTime','FT');
-        statusClass='finished';
-        centreHtml='<div class="gc-col-score" dir="ltr">'+match.homeScore+'–'+match.awayScore+'<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
-      } else {
-        var ft=new Date(ko.getTime()+120*60000);
-        if(now<ko){
-          statusText=gcT('live.upcoming','UPCOMING');
-          statusClass='upcoming';
-          var koStr=window.GC_DateTime ? GC_DateTime.formatMatchCardTime(match.utc) : (pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');
-          centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';
-        } else if(now>=ko&&now<ft){
-          statusText=gcT('live.liveNow','LIVE');
-          statusClass='live';
-          centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time" style="font-size:1rem">–</span></div>';
-        } else {
-          statusText=gcT('live.fullTime','FT');
-          statusClass='finished';
-          centreHtml='<div class="gc-col-score" dir="ltr">–<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';
-        }
-      }
-    }
-    var row=document.createElement('div');
-    row.className='gc-match-row';
-    row.innerHTML=
-      '<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+statusText+'</span></div>'+
-      '<div class="gc-col-home">'+(match.home||match.h)+'</div>'+
-      centreHtml+
-      '<div class="gc-col-away">'+(match.away||match.a)+'</div>'+
-      '<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.group||match.g)+' · '+(match.ukBroadcaster||match.tv)+'</div>';
+    var ko=new Date(match.utc);var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];var dateStr=days[ko.getDay()]+' '+ko.getDate()+' '+months[ko.getMonth()];
+    var apiData=_gcApiScores[match.id]||null;var statusText,statusClass,centreHtml;
+    if(apiData){var apiStatus=apiData.status&&apiData.status.short||'NS';var apiElapsed=apiData.status&&apiData.status.elapsed||null;var gH=apiData.goals&&apiData.goals.home!=null?apiData.goals.home:0;var gA=apiData.goals&&apiData.goals.away!=null?apiData.goals.away:0;var LIVE_S=['1H','2H','HT','ET','BT','P'];var FT_S=['FT','AET','PEN'];var isLive=LIVE_S.indexOf(apiStatus)!==-1;var isFT=FT_S.indexOf(apiStatus)!==-1;var isNS=apiStatus==='NS';
+      if(isNS){statusText=gcT('live.upcoming','UPCOMING');statusClass='upcoming';var koStr2=window.GC_DateTime?GC_DateTime.formatMatchCardTime(match.utc):(pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr2+'</span></div>';}
+      else if(isLive){statusText=gcT('live.liveNow','LIVE');statusClass='live';var liveGuard=window.WC26&&WC26.scoreGuard?WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-live'):{show:ko<=now};var minLabel=apiStatus==='HT'?gcT('live.halfTime','HT'):(apiElapsed?apiElapsed+"'":'●');var minStr='<span class="gc-score-min live-min" dir="ltr">'+minLabel+'</span>';centreHtml=liveGuard.show?'<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+minStr+'</div>':'<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">LIVE</span></div>';}
+      else if(isFT){statusText=gcT('live.fullTime','FT');statusClass='finished';var ftGuard=window.WC26&&WC26.scoreGuard?WC26.scoreGuard({utc:match.utc,status:apiStatus,homeScore:gH,awayScore:gA},'match-centre-ft'):{show:ko<=now};var ftStr='<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span>';centreHtml=ftGuard.show?'<div class="gc-col-score" dir="ltr">'+gH+'–'+gA+ftStr+'</div>':'<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">FT</span></div>';}
+      else{apiData=null;}}
+    if(!apiData){if(match.status==='FT'&&match.homeScore!=null&&match.awayScore!=null){statusText=gcT('live.fullTime','FT');statusClass='finished';centreHtml='<div class="gc-col-score" dir="ltr">'+match.homeScore+'–'+match.awayScore+'<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';}else{var ft=new Date(ko.getTime()+120*60000);if(now<ko){statusText=gcT('live.upcoming','UPCOMING');statusClass='upcoming';var koStr=window.GC_DateTime?GC_DateTime.formatMatchCardTime(match.utc):(pad(ko.getHours())+':'+pad(ko.getMinutes())+' (local)');centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time">'+koStr+'</span></div>';}else if(now>=ko&&now<ft){statusText=gcT('live.liveNow','LIVE');statusClass='live';centreHtml='<div class="gc-col-score" dir="ltr"><span class="gc-ko-time" style="font-size:1rem">–</span></div>';}else{statusText=gcT('live.fullTime','FT');statusClass='finished';centreHtml='<div class="gc-col-score" dir="ltr">–<span class="gc-score-min ft-min" dir="ltr">'+gcT('live.fullTime','FT')+'</span></div>';}}}
+    var row=document.createElement('div');row.className='gc-match-row';
+    row.innerHTML='<div class="gc-col-status"><span class="gc-status-pill '+statusClass+'">'+statusText+'</span></div>'+'<div class="gc-col-home">'+(match.home||match.h)+'</div>'+centreHtml+'<div class="gc-col-away">'+(match.away||match.a)+'</div>'+'<div class="gc-col-meta" dir="ltr">'+dateStr+'<br>'+(match.group||match.g)+' · '+(match.ukBroadcaster||match.tv)+'</div>';
     box.appendChild(row);
-    if((match.events||[]).length){
-      var ev=document.createElement('div');
-      ev.style.cssText='grid-column:1/-1;padding:0 14px 10px;text-align:center;font-size:.72rem;color:#334155;border-bottom:1px solid rgba(0,0,0,.05)';
-      ev.innerHTML='⚽ '+match.events.map(function(x){return String(x).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}).join(' &nbsp; · &nbsp; ');
-      row.parentNode.insertBefore(ev,row.nextSibling);
-    }
-    if(statusClass==='live') titleCounts.live++;
-    else if(statusClass==='finished') titleCounts.ft++;
-    else if(statusClass==='upcoming') titleCounts.upcoming++;
+    if((match.events||[]).length){var ev=document.createElement('div');ev.style.cssText='grid-column:1/-1;padding:0 14px 10px;text-align:center;font-size:.72rem;color:#334155;border-bottom:1px solid rgba(0,0,0,.05)';ev.innerHTML='⚽ '+match.events.map(function(x){return String(x).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}).join(' &nbsp; · &nbsp; ');row.parentNode.insertBefore(ev,row.nextSibling);}
+    if(statusClass==='live')titleCounts.live++;else if(statusClass==='finished')titleCounts.ft++;else if(statusClass==='upcoming')titleCounts.upcoming++;
   });
   var titleEl=document.getElementById('matchCardTitle');
-  if(titleEl){
-    if(!showingToday){ titleEl.textContent=gcT('gc.nextMatch','NEXT MATCH — WORLD CUP 2026'); }
-    else if(titleCounts.live>0){ titleEl.textContent=gcT('gc.liveMatchesToday','LIVE NOW — WORLD CUP 2026'); }
-    else if(titleCounts.ft>0&&titleCounts.upcoming===0){ titleEl.textContent=gcT('gc.resultsToday','RESULTS TODAY — WORLD CUP 2026'); }
-    else if(titleCounts.upcoming>0&&titleCounts.ft===0&&titleCounts.live===0){ titleEl.textContent=gcT('gc.upcomingMatches','UPCOMING MATCHES — WORLD CUP 2026'); }
-    else { titleEl.textContent=gcT('gc.todayMatches','TODAY\'S MATCHES — WORLD CUP 2026'); }
-  }
+  if(titleEl){if(!showingToday){titleEl.textContent=gcT('gc.nextMatch','NEXT MATCH — WORLD CUP 2026');}else if(titleCounts.live>0){titleEl.textContent=gcT('gc.liveMatchesToday','LIVE NOW — WORLD CUP 2026');}else if(titleCounts.ft>0&&titleCounts.upcoming===0){titleEl.textContent=gcT('gc.resultsToday','RESULTS TODAY — WORLD CUP 2026');}else if(titleCounts.upcoming>0&&titleCounts.ft===0&&titleCounts.live===0){titleEl.textContent=gcT('gc.upcomingMatches','UPCOMING MATCHES — WORLD CUP 2026');}else{titleEl.textContent=gcT('gc.todayMatches',"TODAY'S MATCHES — WORLD CUP 2026");}}
 }
 
-function updateClock(){
-  var el=document.getElementById('updatedTime');
-  if(el){
-    var _n=new Date();
-    var _tz=window.GC_DateTime&&GC_DateTime.getLocalTZAbbr?GC_DateTime.getLocalTZAbbr(_n):'';
-    el.textContent=(_tz||'Local')+' · Updated '+_n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  }
-}
-
-function gcOpenSidebar(){
-  document.getElementById('gc-sidebar').classList.add('open');
-  document.getElementById('gc-sidebar-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';
-}
-function gcCloseSidebar(){
-  document.getElementById('gc-sidebar').classList.remove('open');
-  document.getElementById('gc-sidebar-overlay').classList.remove('open');
-  document.body.style.overflow='';
-  var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';
-}
-document.addEventListener('click', function(e) {
-  if (e.target.closest && e.target.closest('#gc-hamburger'))    { gcOpenSidebar();  return; }
-  if (e.target.closest && e.target.closest('#gc-sidebar-close')){ gcCloseSidebar(); return; }
-  if (e.target.id === 'gc-sidebar-overlay')                     { gcCloseSidebar(); return; }
-});
-document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ gcCloseSidebar(); } });
-
+function updateClock(){var el=document.getElementById('updatedTime');if(el){var _n=new Date();var _tz=window.GC_DateTime&&GC_DateTime.getLocalTZAbbr?GC_DateTime.getLocalTZAbbr(_n):'';el.textContent=(_tz||'Local')+' · Updated '+_n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}}
+function gcOpenSidebar(){document.getElementById('gc-sidebar').classList.add('open');document.getElementById('gc-sidebar-overlay').classList.add('open');document.body.style.overflow='hidden';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='none';}
+function gcCloseSidebar(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#gc-hamburger')){gcOpenSidebar();return;}if(e.target.closest&&e.target.closest('#gc-sidebar-close')){gcCloseSidebar();return;}if(e.target.id==='gc-sidebar-overlay'){gcCloseSidebar();return;}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){gcCloseSidebar();}});
 function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
 function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').classList.remove('show');}
 if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').classList.add('show');},1500);}
-
-function gcSubSubmit(){
-  var email=document.getElementById('gc-sub-email-input');
-  if(!email||!email.value||!email.value.includes('@')){email.style.borderColor='#ef4444';email.focus();return;}
-  window.open('https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==','_blank','noopener');
-  var box=document.querySelector('.gc-sub-box');
-  if(box){box.innerHTML='<div style="text-align:center;padding:20px"><div style="font-size:2.5rem;margin-bottom:10px">✉️</div><h3 style="font-family:inherit;margin-bottom:8px">Almost there!</h3><p style="color:#64748b;font-size:.85rem">Complete your sign-up in the tab that just opened.</p><button onclick="gcSubClose()" style="margin-top:16px;padding:10px 24px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer">Close</button></div>';}
-  sessionStorage.setItem('gc_sub_closed','1');
-}
+function gcSubSubmit(){var email=document.getElementById('gc-sub-email-input');if(!email||!email.value||!email.value.includes('@')){email.style.borderColor='#ef4444';email.focus();return;}window.open('https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==','_blank','noopener');var box=document.querySelector('.gc-sub-box');if(box){box.innerHTML='<div style="text-align:center;padding:20px"><div style="font-size:2.5rem;margin-bottom:10px">✉️</div><h3 style="font-family:inherit;margin-bottom:8px">Almost there!</h3><p style="color:#64748b;font-size:.85rem">Complete your sign-up in the tab that just opened.</p><button onclick="gcSubClose()" style="margin-top:16px;padding:10px 24px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer">Close</button></div>';}sessionStorage.setItem('gc_sub_closed','1');}
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');sessionStorage.setItem('gc_sub_closed','1');}
 if(!sessionStorage.getItem('gc_sub_closed')){setTimeout(function(){document.getElementById('gc-sub-overlay').classList.add('show');},8000);}
-
-renderMatches();
-updateClock();
-setInterval(function(){renderMatches();updateClock();},5000);
-
+renderMatches();updateClock();setInterval(function(){renderMatches();updateClock();},5000);
 function gcReRenderAll(){renderMatches();updateClock();}
-document.addEventListener('gc:languageChanged', gcReRenderAll);
-
+document.addEventListener('gc:languageChanged',gcReRenderAll);
 (function(){
-  function getTodayKey(){
-    if(window.GC_DateTime&&GC_DateTime.getTodayLocalDateKey) return GC_DateTime.getTodayLocalDateKey();
-    var d=new Date();
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-  function doFetch(){
-    var dateKey=getTodayKey();
-    var dateReq=fetch('/api/scores?date='+dateKey,{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {matches:[]};});
-    var liveReq=fetch('/api/scores?live=true',{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {matches:[]};});
-    Promise.all([dateReq,liveReq]).then(function(results){
-      var dateMatches=results[0].matches||[];
-      var liveMatches=results[1].matches||[];
-      var liveById={};
-      liveMatches.forEach(function(m){ if(m.id) liveById[m.id]=m; });
-      var apiMatches=dateMatches.map(function(m){ return (m.id && liveById[m.id]) ? liveById[m.id] : m; });
-      liveMatches.forEach(function(lm){
-        if(!dateMatches.find(function(dm){ return dm.id===lm.id; })){ apiMatches.push(lm); }
-      });
-      var scheduleData=(window.WC26&&window.WC26.schedule)||[];
-      scheduleData.forEach(function(fixture){
-        var found=apiMatches.find(function(am){ return _gcMatchesFixture(am,fixture); });
-        if(found) _gcApiScores[fixture.id]=found;
-      });
-      renderMatches();
-    }).catch(function(){});
-  }
-  doFetch();
-  setInterval(doFetch,30000);
+  function getTodayKey(){if(window.GC_DateTime&&GC_DateTime.getTodayLocalDateKey)return GC_DateTime.getTodayLocalDateKey();var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function doFetch(){var dateKey=getTodayKey();var dateReq=fetch('/api/scores?date='+dateKey,{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return{matches:[]};});var liveReq=fetch('/api/scores?live=true',{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return{matches:[]};});Promise.all([dateReq,liveReq]).then(function(results){var dateMatches=results[0].matches||[];var liveMatches=results[1].matches||[];var liveById={};liveMatches.forEach(function(m){if(m.id)liveById[m.id]=m;});var apiMatches=dateMatches.map(function(m){return(m.id&&liveById[m.id])?liveById[m.id]:m;});liveMatches.forEach(function(lm){if(!dateMatches.find(function(dm){return dm.id===lm.id;})){apiMatches.push(lm);}});var scheduleData=(window.WC26&&window.WC26.schedule)||[];scheduleData.forEach(function(fixture){var found=apiMatches.find(function(am){return _gcMatchesFixture(am,fixture);});if(found)_gcApiScores[fixture.id]=found;});renderMatches();}).catch(function(){});}
+  doFetch();setInterval(doFetch,30000);
 })();
 </script>
 
 <script>
-(function () {
-  if (!window.WC26 || !Array.isArray(WC26.schedule)) return;
-  var $ = function (id) { return document.getElementById(id); };
-  if (!$('gc-opening-match')) return;
-  var SPECIAL = { 'gb-eng': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
-                  'gb-sct': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F',
-                  'gb-wls': '\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73\uDB40\uDC7F' };
-  function flagEmoji(team) {
-    var code = (WC26.flags && WC26.flags[team]) || '';
-    if (SPECIAL[code]) return SPECIAL[code];
-    if (!/^[a-z]{2}$/.test(code)) return '\u26BD';
-    return code.toUpperCase().replace(/./g, function (c) { return String.fromCodePoint(127397 + c.charCodeAt(0)); });
-  }
-  function fmtDate(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
-  function fmtTime(d) { return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
-  var timer = null;
-  function stopTick() { if (timer) { clearInterval(timer); timer = null; } }
-  function startTick(target) {
-    stopTick();
-    function tick() {
-      var diff = target - Date.now();
-      if (diff <= 0) { render(); return; }
-      var h = Math.floor(diff / 3600000), mn = Math.floor(diff % 3600000 / 60000), s = Math.floor(diff % 60000 / 1000);
-      $('om-h').textContent = (h < 10 ? '0' : '') + h;
-      $('om-m').textContent = (mn < 10 ? '0' : '') + mn;
-      $('om-s').textContent = (s < 10 ? '0' : '') + s;
-    }
-    tick();
-    timer = setInterval(tick, 1000);
-  }
-  function pick() {
-    var now = Date.now();
-    var sched = WC26.schedule.slice().sort(function (a, b) { return new Date(a.utc) - new Date(b.utc); });
-    var live = null, next = null, last = null;
-    for (var i = 0; i < sched.length; i++) {
-      var m = sched[i], t = new Date(m.utc).getTime();
-      if (m.status === 'FT') { last = m; continue; }
-      if (t <= now && now < t + 130 * 60000) { live = m; break; }
-      if (t > now) { next = m; break; }
-    }
-    return { live: live, next: next, last: last };
-  }
-  function setFlag(elId, team) {
-    var el = $(elId); if (!el) return;
-    var url = (WC26.flagUrl) ? WC26.flagUrl(team) : '';
-    if (!url) { el.textContent = flagEmoji(team); return; }
-    var img = document.createElement('img');
-    img.src = url;
-    img.alt = team;
-    img.style.cssText = 'width:48px;height:36px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.25)';
-    img.onerror = function () { el.textContent = flagEmoji(team); };
-    el.textContent = '';
-    el.appendChild(img);
-  }
-  function setTeams(m) {
-    setFlag('gc-om-home-flag', m.home);
-    $('gc-om-home-name').textContent = m.home;
-    setFlag('gc-om-away-flag', m.away);
-    $('gc-om-away-name').textContent = m.away;
-    var d = new Date(m.utc);
-    $('gc-om-meta').innerHTML = (m.group ? 'Group ' + m.group : (m.stage || '')) + ' &nbsp;\u00B7&nbsp; ' + fmtDate(d);
-    $('gc-om-local-time').textContent = fmtTime(d);
-    $('gc-om-venue').textContent = m.venue || '';
-    $('gc-om-broadcaster').textContent = m.ukBroadcaster || 'TBC';
-  }
-  function render() {
-    var p = pick();
-    var digits = $('gc-om-ko-digits'), started = $('gc-om-started');
-    if (p.live) {
-      setTeams(p.live);
-      $('gc-om-badge').textContent = '\uD83D\uDD34 LIVE NOW';
-      $('gc-om-score').textContent = 'vs';
-      digits.style.display = 'none';
-      started.style.display = 'block';
-      started.textContent = 'Match in progress \u2014 follow on Live Scores';
-      stopTick();
-    } else if (p.next) {
-      setTeams(p.next);
-      $('gc-om-badge').textContent = '\u23ED NEXT MATCH';
-      $('gc-om-score').textContent = 'vs';
-      started.style.display = 'none';
-      digits.style.display = '';
-      startTick(new Date(p.next.utc).getTime());
-    } else if (p.last) {
-      setTeams(p.last);
-      var guard = (window.WC26 && WC26.scoreGuard) ? WC26.scoreGuard(p.last, 'homepage-hero') : { show: false };
-      $('gc-om-badge').textContent = '\uD83C\uDFC1 LATEST RESULT';
-      $('gc-om-score').textContent = guard.show ? (guard.home + ' - ' + guard.away) : 'FT';
-      digits.style.display = 'none';
-      started.style.display = 'block';
-      started.textContent = guard.show ? ('Full Time \u2014 ' + p.last.home + ' ' + guard.home + '\u2013' + guard.away + ' ' + p.last.away) : 'Full Time';
-      stopTick();
-    }
-  }
-  render();
-  setInterval(render, 30000);
-})();
+(function(){if(!window.WC26||!Array.isArray(WC26.schedule))return;var $=function(id){return document.getElementById(id);};if(!$('gc-opening-match'))return;
+var SPECIAL={'gb-eng':'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F','gb-sct':'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F','gb-wls':'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73\uDB40\uDC7F'};
+function flagEmoji(team){var code=(WC26.flags&&WC26.flags[team])||'';if(SPECIAL[code])return SPECIAL[code];if(!/^[a-z]{2}$/.test(code))return'\u26BD';return code.toUpperCase().replace(/./g,function(c){return String.fromCodePoint(127397+c.charCodeAt(0));});}
+function fmtDate(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+function fmtTime(d){return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+var timer=null;
+function stopTick(){if(timer){clearInterval(timer);timer=null;}}
+function startTick(target){stopTick();function tick(){var diff=target-Date.now();if(diff<=0){render();return;}var h=Math.floor(diff/3600000),mn=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);$('om-h').textContent=(h<10?'0':'')+h;$('om-m').textContent=(mn<10?'0':'')+mn;$('om-s').textContent=(s<10?'0':'')+s;}tick();timer=setInterval(tick,1000);}
+function pick(){var now=Date.now();var sched=WC26.schedule.slice().sort(function(a,b){return new Date(a.utc)-new Date(b.utc);});var live=null,next=null,last=null;for(var i=0;i<sched.length;i++){var m=sched[i],t=new Date(m.utc).getTime();if(m.status==='FT'){last=m;continue;}if(t<=now&&now<t+130*60000){live=m;break;}if(t>now){next=m;break;}}return{live:live,next:next,last:last};}
+function setFlag(elId,team){var el=$(elId);if(!el)return;var url=(WC26.flagUrl)?WC26.flagUrl(team):'';if(!url){el.textContent=flagEmoji(team);return;}var img=document.createElement('img');img.src=url;img.alt=team;img.style.cssText='width:48px;height:36px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.25)';img.onerror=function(){el.textContent=flagEmoji(team);};el.textContent='';el.appendChild(img);}
+function setTeams(m){setFlag('gc-om-home-flag',m.home);$('gc-om-home-name').textContent=m.home;setFlag('gc-om-away-flag',m.away);$('gc-om-away-name').textContent=m.away;var d=new Date(m.utc);$('gc-om-meta').innerHTML=(m.group?'Group '+m.group:(m.stage||''))+' &nbsp;\u00B7&nbsp; '+fmtDate(d);$('gc-om-local-time').textContent=fmtTime(d);$('gc-om-venue').textContent=m.venue||'';$('gc-om-broadcaster').textContent=m.ukBroadcaster||'TBC';}
+function render(){var p=pick();var digits=$('gc-om-ko-digits'),started=$('gc-om-started');if(p.live){setTeams(p.live);$('gc-om-badge').textContent='\uD83D\uDD34 LIVE NOW';$('gc-om-score').textContent='vs';digits.style.display='none';started.style.display='block';started.textContent='Match in progress \u2014 follow on Live Scores';stopTick();}else if(p.next){setTeams(p.next);$('gc-om-badge').textContent='\u23ED NEXT MATCH';$('gc-om-score').textContent='vs';started.style.display='none';digits.style.display='';startTick(new Date(p.next.utc).getTime());}else if(p.last){setTeams(p.last);var guard=(window.WC26&&WC26.scoreGuard)?WC26.scoreGuard(p.last,'homepage-hero'):{show:false};$('gc-om-badge').textContent='\uD83C\uDFC1 LATEST RESULT';$('gc-om-score').textContent=guard.show?(guard.home+' - '+guard.away):'FT';digits.style.display='none';started.style.display='block';started.textContent=guard.show?('Full Time \u2014 '+p.last.home+' '+guard.home+'\u2013'+guard.away+' '+p.last.away):'Full Time';stopTick();}}
+render();setInterval(render,30000);})();
 </script>
 
 <script>
-(function () {
-  'use strict';
-  var FALLBACK = [
-    { videoId: 'PhSvaIymYes', title: 'FIFA World Cup 2026 — Official', description: 'Official FIFA World Cup 2026 video.', publishedAt: '', thumbnail: '', channelTitle: 'FIFA', url: 'https://www.youtube.com/watch?v=PhSvaIymYes' },
-    { videoId: 'G8_qxZRpWpg', title: 'FIFA World Cup 2026 — Official', description: 'Official FIFA World Cup 2026 video.', publishedAt: '', thumbnail: '', channelTitle: 'FIFA', url: 'https://www.youtube.com/watch?v=G8_qxZRpWpg' }
-  ];
-  function esc(v) {
-    return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
-  function fmtDate(iso) {
-    if (!iso) return '';
-    try { var d = new Date(iso); return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return ''; }
-  }
-  function buildCard(v) {
-    var vid = esc(v.videoId || '');
-    var url = esc(v.url || ('https://www.youtube.com/watch?v=' + vid));
-    var title = esc(v.title || 'FIFA World Cup 2026 Preview');
-    var thumb = esc(v.thumbnail || ('https://img.youtube.com/vi/' + vid + '/hqdefault.jpg'));
-    var fallback = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
-    var dateStr = fmtDate(v.publishedAt);
-    var channel = esc(v.channelTitle || 'FIFA');
-    var rawDesc = v.description || '';
-    var desc = esc(rawDesc.length > 120 ? rawDesc.slice(0, 120) + '...' : rawDesc);
-    var html = '';
-    html += '<div class="gc-video-card">';
-    html +=   '<div class="gc-video-head"><span>' + title + '</span><span class="gc-video-badge">FIFA Official</span></div>';
-    html +=   '<a class="gc-video-thumb" href="' + url + '" target="_blank" rel="noopener">';
-    html +=     '<img src="' + thumb + '" alt="' + title + '" loading="lazy" width="640" height="360" onerror="this.onerror=null;this.src=\'' + fallback + '\'">';
-    html +=     '<div class="gc-video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>';
-    html +=     '<span class="gc-video-duration">FIFA Official</span>';
-    html +=   '</a>';
-    html +=   '<div class="gc-video-body">';
-    html +=     '<div class="gc-video-title">' + title + '</div>';
-    if (dateStr) { html += '<div class="gc-video-meta">Published ' + esc(dateStr) + ' - ' + channel + '</div>'; }
-    if (desc) { html += '<div class="gc-video-desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">' + desc + '</div>'; }
-    html +=     '<a class="gc-video-btn" href="' + url + '" target="_blank" rel="noopener">';
-    html +=       '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>';
-    html +=       ' Watch on YouTube</a>';
-    html +=   '</div></div>';
-    return html;
-  }
-  function renderVideos(videos) {
-    var grid = document.getElementById('gc-video-grid');
-    if (!grid) return;
-    if (!videos || !videos.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-light);font-size:.85rem">FIFA match preview videos will appear here automatically.</div>';
-      return;
-    }
-    grid.innerHTML = videos.map(buildCard).join('');
-  }
-  function loadVideos() {
-    fetch('/api/videos', { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function (data) { var videos = data.videos || []; renderVideos(videos.length ? videos : FALLBACK); })
-      .catch(function (err) { console.warn('[GoalCurrent] /api/videos failed (' + err + ') - showing fallback'); renderVideos(FALLBACK); });
-  }
-  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadVideos); } else { loadVideos(); }
+(function(){'use strict';
+var FALLBACK=[{videoId:'PhSvaIymYes',title:'FIFA World Cup 2026 — Official',description:'Official FIFA World Cup 2026 video.',publishedAt:'',thumbnail:'',channelTitle:'FIFA',url:'https://www.youtube.com/watch?v=PhSvaIymYes'},{videoId:'G8_qxZRpWpg',title:'FIFA World Cup 2026 — Official',description:'Official FIFA World Cup 2026 video.',publishedAt:'',thumbnail:'',channelTitle:'FIFA',url:'https://www.youtube.com/watch?v=G8_qxZRpWpg'}];
+function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function fmtDate(iso){if(!iso)return'';try{var d=new Date(iso);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return'';}}
+function buildCard(v){var vid=esc(v.videoId||'');var url=esc(v.url||('https://www.youtube.com/watch?v='+vid));var title=esc(v.title||'FIFA World Cup 2026 Preview');var thumb=esc(v.thumbnail||('https://img.youtube.com/vi/'+vid+'/hqdefault.jpg'));var fallback='https://img.youtube.com/vi/'+vid+'/hqdefault.jpg';var dateStr=fmtDate(v.publishedAt);var channel=esc(v.channelTitle||'FIFA');var rawDesc=v.description||'';var desc=esc(rawDesc.length>120?rawDesc.slice(0,120)+'...':rawDesc);var html='';html+='<div class="gc-video-card">';html+='<div class="gc-video-head"><span>'+title+'</span><span class="gc-video-badge">FIFA Official</span></div>';html+='<a class="gc-video-thumb" href="'+url+'" target="_blank" rel="noopener"><img src="'+thumb+'" alt="'+title+'" loading="lazy" width="640" height="360" onerror="this.onerror=null;this.src=\''+fallback+'\'"><div class="gc-video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="gc-video-duration">FIFA Official</span></a>';html+='<div class="gc-video-body"><div class="gc-video-title">'+title+'</div>';if(dateStr){html+='<div class="gc-video-meta">Published '+esc(dateStr)+' - '+channel+'</div>';}if(desc){html+='<div class="gc-video-desc" style="flex:1;font-size:.78rem;color:var(--text-mid);margin:6px 0 10px;line-height:1.5">'+desc+'</div>';}html+='<a class="gc-video-btn" href="'+url+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg> Watch on YouTube</a></div></div>';return html;}
+function renderVideos(videos){var grid=document.getElementById('gc-video-grid');if(!grid)return;if(!videos||!videos.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--text-light);font-size:.85rem">FIFA match preview videos will appear here automatically.</div>';return;}grid.innerHTML=videos.map(buildCard).join('');}
+function loadVideos(){fetch('/api/videos',{cache:'no-store'}).then(function(r){return r.ok?r.json():Promise.reject(r.status);}).then(function(data){var videos=data.videos||[];renderVideos(videos.length?videos:FALLBACK);}).catch(function(err){console.warn('[GoalCurrent] /api/videos failed ('+err+') - showing fallback');renderVideos(FALLBACK);});}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',loadVideos);}else{loadVideos();}
 })();
 </script>
 </body>
