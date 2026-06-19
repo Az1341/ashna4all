@@ -49,18 +49,18 @@
   ],
   "screenshots": [
     {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
+      "src": "/icons/screenshot-mobile.png",
+      "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "GoalCurrent - Live World Cup 2026 Scores"
+      "label": "GoalCurrent Live Scores on mobile"
     },
     {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
+      "src": "/icons/screenshot-desktop.png",
+      "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "GoalCurrent - FIFA World Cup 2026 Fixtures and Standings"
+      "label": "GoalCurrent FIFA World Cup 2026 on desktop"
     }
   ],
   "shortcuts": [
