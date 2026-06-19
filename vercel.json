@@ -51,6 +51,5 @@
         "Permissions-Policy": "geolocation=(), microphone=(), camera=(), interest-cohort=()"
       }
     }
-  ],
-  "$comment": "PWA + OneSignal deployment - force redeploy"
+  ]
 }
