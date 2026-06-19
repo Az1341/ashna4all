@@ -1,0 +1,163 @@
+# GoalCurrent.live — Design Specification
+
+Apply via `/css/gc-design-spec.css` on every HTML page (after page styles, before `</head>`).
+
+**Do not change:** site header chrome colour `#C8102E` (`.gc-header`, `.gc-section-header`, `.gc-hero`, `.fea-site-nav`, and equivalent header bars).
+
+**Do not add:** sidebar.
+
+---
+
+## 1. Sub-navigation bar (white + green active underline)
+
+```css
+.gc-subnav {
+  background: #ffffff !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+.gc-subnav-inner {
+  background: #ffffff !important;
+}
+
+.gc-subnav a,
+.gc-subnav-inner a {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #475569 !important;
+  border-bottom: 3px solid transparent !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.gc-subnav a:hover,
+.gc-subnav-inner a:hover {
+  background: transparent !important;
+  color: #0f172a !important;
+}
+
+.gc-subnav a.active,
+.gc-subnav-inner a.active {
+  background: transparent !important;
+  color: #16a34a !important;
+  border-bottom-color: #16a34a !important;
+}
+
+.gc-tabbar {
+  background: #ffffff !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+.gc-tab {
+  background: transparent !important;
+  color: #475569 !important;
+  border-bottom: 3px solid transparent !important;
+}
+
+.gc-tab:hover {
+  color: #0f172a !important;
+}
+
+.gc-tab-active,
+.gc-tab.gc-tab-active {
+  color: #16a34a !important;
+  border-bottom-color: #16a34a !important;
+}
+```
+
+## 2. Featured / opening match card (white + soft red border)
+
+```css
+.gc-opening-match {
+  background: #ffffff !important;
+  border: 1px solid #fecaca !important;
+  box-shadow: 0 4px 18px rgba(200, 16, 46, 0.08) !important;
+}
+
+.gc-om-header {
+  background: #fff1f2 !important;
+  border-bottom: 1px solid #fecaca !important;
+}
+
+.gc-om-body {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.gc-om-teamname,
+.gc-om-meta {
+  color: #334155 !important;
+}
+
+.gc-om-detail {
+  background: #fff1f2 !important;
+  border: 1px solid #fecaca !important;
+  color: #334155 !important;
+}
+
+.gc-om-detail strong {
+  color: #c8102e !important;
+}
+
+.gc-om-vs {
+  color: #c8102e !important;
+}
+
+.gc-om-ko-box {
+  background: #fff1f2 !important;
+  border: 1px solid #fecaca !important;
+}
+
+.gc-om-ko-num {
+  color: #0f172a !important;
+}
+
+.gc-om-ko-lbl,
+.gc-om-ko-sep {
+  color: #64748b !important;
+}
+```
+
+## 3. Match list cards (soft pink surface)
+
+```css
+.gc-match-card {
+  background: #fff1f2 !important;
+  border: 1px solid #fecaca !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 10px rgba(254, 202, 202, 0.35) !important;
+}
+
+.gc-match-head {
+  background: #fff1f2 !important;
+  color: #334155 !important;
+  border-bottom: 1px solid #fecaca !important;
+}
+
+.gc-match-updated {
+  color: #64748b !important;
+}
+```
+
+## 4. Section title pills (green)
+
+```css
+.gc-section-label,
+.gc-section-hdr {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin-bottom: 14px !important;
+  padding: 6px 14px !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-radius: 999px !important;
+  background: #16a34a !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+```
