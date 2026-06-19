@@ -181,6 +181,20 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
     }
   </script>
   <!-- ═══════════════════════════════════════════ -->
+
+  <!-- OneSignal Push Notifications -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "27dd2cba-29fc-4c6a-9183-54db03eef92d",
+        notifyButton: { enable: true },
+        allowLocalhostAsSecureOrigin: false,
+      });
+    });
+  </script>
+  <!-- End OneSignal -->
 </head>
 <body>
 
