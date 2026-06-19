@@ -75,6 +75,17 @@
     }
   </script>
   <!-- ═══════════════════════════════════════════ -->
+  <!-- OneSignal Push Notifications -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "27dd2cba-29fc-4c6a-9183-54db03eef92d",
+      });
+    });
+  </script>
+  <!-- End OneSignal -->
 </head>
 <body>
 <header class="header">
