@@ -1,0 +1,43 @@
+.gc-fixture-calendar,
+.gc-pl-fixture-card__calendar,
+.gc-wc26-fixture-card__calendar,
+.gc-match-detail-calendar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.gc-cal-link {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 7px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid rgba(56, 0, 60, 0.18);
+  background: #fff;
+  color: #38003c;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.gc-cal-link-google:hover,
+.gc-cal-link-ics:hover {
+  background: #fdf2f8;
+  border-color: rgba(56, 0, 60, 0.35);
+}
+
+@media (max-width: 480px) {
+  .gc-fixture-calendar,
+  .gc-pl-fixture-card__calendar,
+  .gc-wc26-fixture-card__calendar,
+  .gc-match-detail-calendar__actions {
+    flex-direction: column;
+  }
+
+  .gc-cal-link {
+    width: 100%;
+    text-align: center;
+  }
+}
