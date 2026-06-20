@@ -11,54 +11,19 @@
 <link rel="canonical" href="https://www.goalcurrent.live/ucl/teams/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{
   font-family:Verdana,Geneva,Tahoma,sans-serif;
   background:linear-gradient(135deg,#dbeafe,#eff6ff,#e0f2fe);
   background-attachment:fixed;
   min-height:100vh;
   color:#0f172a;
-}
-
-/* ── SIDEBAR ── */
-.gc-sidebar{
-  width:240px;background:#1a1f2e;
-  position:fixed;top:0;left:0;bottom:0;
-  z-index:300;overflow-y:auto;
-  display:flex;flex-direction:column;
-  scrollbar-width:none;
-}
-.gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none;display:block}
-.sb-logo-text{font-size:16px;font-weight:700;color:#fff}
-.sb-logo-text em{color:#60a5fa;font-style:normal}
-.sb-logo-text span{color:#34d399}
-.sb-section-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 16px 4px;display:block}
-.sb-links-group a,.sb-nav-link{display:block;padding:9px 16px 9px 42px;font-size:12px;color:rgba(255,255,255,.7);text-decoration:none}
-.sb-nav-link{padding-left:16px;font-size:12.5px;font-weight:600}
-.sb-nav-link:hover,.sb-links-group a:hover{background:rgba(255,255,255,.07);color:#fff}
-.sb-links-group a.active{color:#3b82f6;font-weight:700;background:rgba(37,99,235,.2)}
-.sb-comp-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:none;border:none;color:rgba(255,255,255,.78);font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;border-top:1px solid rgba(255,255,255,.06)}
-.sb-comp-btn:hover{background:rgba(255,255,255,.07);color:#fff}
-.sb-comp-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px}
-.sb-badge-pl{background:rgba(56,0,60,.8);color:#e9b4ff}
-.sb-badge-wc{background:rgba(200,0,30,.6);color:#ffa5b4}
-.sb-badge-ucl{background:rgba(0,30,98,.8);color:#93c5fd}
-.sb-links-group{display:none}
-.sb-links-group.open{display:block}
-.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;color:rgba(255,255,255,.35);line-height:1.7}
-.sb-footer a{color:rgba(255,255,255,.3);text-decoration:none}
-
-/* ── MAIN CONTENT ── */
+}/.sb-badge-pl{background:rgba(56,0,60,.8);color:#e9b4ff}.sb-badge-wc{background:rgba(200,0,30,.6);color:#ffa5b4}.sb-badge-ucl{background:rgba(0,30,98,.8);color:#93c5fd}/* ── MAIN CONTENT ── */
 .gc-main{
   margin-left:240px;
   min-height:100vh;
   display:flex;
   flex-direction:column;
-}
-
-/* ── TOPBAR ── */
+}/* ── TOPBAR ── */
 .gc-topbar{
   background:rgba(255,255,255,.8);
   backdrop-filter:blur(16px);
@@ -69,18 +34,11 @@ body{
   justify-content:space-between;
   position:sticky;top:0;z-index:200;
   box-shadow:0 1px 12px rgba(100,160,220,.1);
-}
-.gc-breadcrumb{font-size:12px;color:#64748b}
-.gc-breadcrumb a{color:#2563eb;text-decoration:none}
-.gc-topbar-badge{background:linear-gradient(135deg,#001e62,#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px}
-
-/* ── PAGE CONTENT ── */
+}.gc-breadcrumb{font-size:12px;color:#64748b}.gc-breadcrumb a{color:#2563eb;text-decoration:none}.gc-topbar-badge{background:linear-gradient(135deg,#001e62,#0033aa);color:#ffd700;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px}/* ── PAGE CONTENT ── */
 .gc-content{
   padding:20px;
   flex:1;
-}
-
-/* ── FINAL BANNER ── */
+}/* ── FINAL BANNER ── */
 .final-banner{
   background:linear-gradient(135deg,#001e62,#0033aa);
   border-radius:16px;
@@ -88,85 +46,26 @@ body{
   margin-bottom:16px;
   text-align:center;
   color:white;
-}
-.final-banner-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd700;margin-bottom:16px}
-.final-matchup{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px}
-.final-team{display:flex;flex-direction:column;align-items:center;gap:8px}
-.final-team img{width:60px;height:40px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.final-team-name{font-size:18px;font-weight:900;color:white}
-.final-team-sub{font-size:10px;color:rgba(255,255,255,.55)}
-.final-vs{font-size:28px;font-weight:900;color:#ffd700}
-.final-info{font-size:11px;color:rgba(255,255,255,.65)}
-
-/* ── TEAM CARD ── */
+}.final-banner-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd700;margin-bottom:16px}.final-matchup{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px}.final-team{display:flex;flex-direction:column;align-items:center;gap:8px}.final-team img{width:60px;height:40px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.3)}.final-team-name{font-size:18px;font-weight:900;color:white}.final-team-sub{font-size:10px;color:rgba(255,255,255,.55)}.final-vs{font-size:28px;font-weight:900;color:#ffd700}.final-info{font-size:11px;color:rgba(255,255,255,.65)}/* ── TEAM CARD ── */
 .team-card{
   background:white;
   border-radius:16px;
   margin-bottom:16px;
   overflow:hidden;
   box-shadow:0 4px 20px rgba(100,160,220,.15);
-}
-.team-card-header{
+}.team-card-header{
   padding:16px 20px;
   display:flex;
   align-items:center;
   gap:14px;
   border-bottom:1px solid #f1f5f9;
-}
-.team-card-header img{width:48px;height:32px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
-.team-card-name{font-size:16px;font-weight:900;color:#0f172a}
-.team-card-sub{font-size:11px;color:#64748b;margin-top:2px}
-.team-stats-row{
+}.team-card-header img{width:48px;height:32px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.12)}.team-card-name{font-size:16px;font-weight:900;color:#0f172a}.team-card-sub{font-size:11px;color:#64748b;margin-top:2px}.team-stats-row{
   display:flex;
   border-bottom:1px solid #f1f5f9;
-}
-.team-stat{flex:1;text-align:center;padding:12px 8px;border-right:1px solid #f1f5f9}
-.team-stat:last-child{border-right:none}
-.team-stat-val{font-size:18px;font-weight:900;color:#001e62;line-height:1}
-.team-stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;margin-top:3px}
-.squad-table{width:100%;border-collapse:collapse}
-.squad-table th{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#94a3b8;padding:8px 20px;text-align:left;background:#f8faff;border-bottom:1px solid #e2e8f0}
-.squad-table td{padding:8px 20px;border-bottom:1px solid #f1f5f9;font-size:12px;color:#334155;vertical-align:middle}
-.squad-table tr:last-child td{border-bottom:none}
-.squad-table tr:hover td{background:#f8faff}
-.squad-num{font-size:11px;font-weight:700;color:#94a3b8;width:30px}
-.squad-name{font-weight:700;color:#0f172a}
-.squad-pos-group{background:#f8faff;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#64748b;padding:6px 20px;border-bottom:1px solid #e2e8f0}
-.key-badge{font-size:9px;background:rgba(245,158,11,.15);color:#d97706;padding:2px 6px;border-radius:4px;font-weight:800;margin-left:4px}
-
-/* ── AD BAR ── */
-.gc-ad-bar{background:rgba(255,255,255,.8);border-top:1px solid rgba(255,255,255,.9);padding:8px 20px;font-size:12px;text-align:center}
-
-/* ── SUBSCRIBE ── */
-.gc-subscribe{background:linear-gradient(135deg,#001a4d,#003fb8);padding:16px 20px}
-.gc-subscribe-title{font-size:12px;font-weight:800;color:#ffd700;margin-bottom:10px}
-.gc-subscribe-row{display:flex;gap:8px}
-.gc-subscribe-row input{padding:9px 14px;border-radius:8px;border:none;font-size:12px;flex:1;outline:none;font-family:inherit}
-.gc-subscribe-row button{background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
-.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:8px}
-
-/* ── FOOTER ── */
-.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px;font-size:11px;line-height:1.7}
-.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
-.gc-footer-links a{color:#a8b2c8;text-decoration:none}
-.gc-footer-copy{color:rgba(168,178,200,.4);font-size:10px}
-
-/* ── HAMBURGER ── */
-.gc-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:#1a1f2e;border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200}
-
-@media(max-width:768px){
-  .gc-hamburger{display:flex;align-items:center;justify-content:center}
-  .gc-main{margin-left:0}
-  .gc-sidebar{transform:translateX(-100%);transition:transform .3s}
-  .gc-sidebar.open{transform:translateX(0);z-index:500}
-  .sb-overlay.show{display:block}
-  .final-matchup{gap:12px}
-  .final-vs{font-size:20px}
-  .final-team-name{font-size:14px}
-  .gc-content{padding:12px}
-}
-</style>
+}.team-stat{flex:1;text-align:center;padding:12px 8px;border-right:1px solid #f1f5f9}.team-stat:last-child{border-right:none}.team-stat-val{font-size:18px;font-weight:900;color:#001e62;line-height:1}.team-stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:#94a3b8;margin-top:3px}.squad-table{width:100%;border-collapse:collapse}.squad-table th{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#94a3b8;padding:8px 20px;text-align:left;background:#f8faff;border-bottom:1px solid #e2e8f0}.squad-table td{padding:8px 20px;border-bottom:1px solid #f1f5f9;font-size:12px;color:#334155;vertical-align:middle}.squad-table tr:last-child td{border-bottom:none}.squad-table tr:hover td{background:#f8faff}.squad-num{font-size:11px;font-weight:700;color:#94a3b8;width:30px}.squad-name{font-weight:700;color:#0f172a}.squad-pos-group{background:#f8faff;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#64748b;padding:6px 20px;border-bottom:1px solid #e2e8f0}.key-badge{font-size:9px;background:rgba(245,158,11,.15);color:#d97706;padding:2px 6px;border-radius:4px;font-weight:800;margin-left:4px}/* ── AD BAR ── */
+.gc-ad-bar{background:rgba(255,255,255,.8);border-top:1px solid rgba(255,255,255,.9);padding:8px 20px;font-size:12px;text-align:center}/* ── SUBSCRIBE ── */
+.gc-subscribe{background:linear-gradient(135deg,#001a4d,#003fb8);padding:16px 20px}.gc-subscribe-title{font-size:12px;font-weight:800;color:#ffd700;margin-bottom:10px}.gc-subscribe-row{display:flex;gap:8px}.gc-subscribe-row input{padding:9px 14px;border-radius:8px;border:none;font-size:12px;flex:1;outline:none;font-family:inherit}.gc-subscribe-row button{background:#ffd700;color:#001e62;border:none;padding:9px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:8px}/* ── FOOTER ── */
+.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px;font-size:11px;line-height:1.7}.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}.gc-footer-links a{color:#a8b2c8;text-decoration:none}.gc-footer-copy{color:rgba(168,178,200,.4);font-size:10px}/@media(max-width:768px){.gc-main{margin-left:0}.final-matchup{gap:12px}.final-vs{font-size:20px}.final-team-name{font-size:14px}.gc-content{padding:12px}}</style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Champions League Teams 2025/26 | GoalCurrent.live">
@@ -197,7 +96,7 @@ body{
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -219,68 +118,6 @@ body{
   <link rel="stylesheet" href="/css/gc-design-spec.css?v=20260619">
 </head>
 <body>
-
-<button class="gc-hamburger" id="hamburger" aria-label="Menu">☰</button>
-<div class="sb-overlay" id="overlay"></div>
-
-<aside class="gc-sidebar" id="sidebar">
-  <a href="/ucl/" class="sb-logo">
-    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-  </a>
-<button id="gc-sidebar-close" onclick="document.getElementById('sidebar').classList.remove('open');document.body.style.overflow='';" aria-label="Close" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;z-index:10;">✕</button>
-
-  <span class="sb-section-label">Main Menu</span>
-  <a href="/" class="sb-nav-link">🏠 Home</a>
-  <a href="/live/" class="sb-nav-link">🔴 Live Scores</a>
-  <a href="/" class="sb-nav-link">📅 Schedule</a>
-  <a href="/" class="sb-nav-link">🏅 Standings</a>
-
-  <span class="sb-section-label">Competitions</span>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-pl',this)">
-    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-comp-badge sb-badge-pl">PL</span>
-  </button>
-  <div class="sb-links-group" id="g-pl">
-    <a href="/premier-league/">🏠 Overview</a>
-    <a href="/premier-league/table/">📊 Table</a>
-    <a href="/premier-league/fixtures/">📅 Fixtures</a>
-    <a href="/premier-league/results/">✅ Results</a>
-    <a href="/premier-league/news/">📰 News</a>
-  </div>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-wc',this)">
-    <span>🏆 World Cup 2026</span><span class="sb-comp-badge sb-badge-wc">WC26</span>
-  </button>
-  <div class="sb-links-group" id="g-wc">
-    <a href="/worldcup2026/">🏠 Overview</a>
-    <a href="/worldcup2026/groups/">🔢 Groups</a>
-    <a href="/worldcup2026/fixtures/">📅 Fixtures</a>
-    <a href="/worldcup2026/teams/">👕 Teams</a>
-    <a href="/worldcup2026/news/">📰 News</a>
-  </div>
-
-  <button class="sb-comp-btn" onclick="toggleGroup('g-ucl',this)">
-    <span>⭐ Champions League</span><span class="sb-comp-badge sb-badge-ucl">UCL</span>
-  </button>
-  <div class="sb-links-group open" id="g-ucl">
-    <a href="/ucl/">🏠 Overview</a>
-    <a href="/ucl/fixtures/">📅 Fixtures</a>
-    <a href="/ucl/results/">✅ Results</a>
-    <a href="/ucl/teams/" class="active">👕 Teams</a>
-    <a href="/ucl/news/">📰 News</a>
-  </div>
-
-  <div class="sb-footer">
-    © 2026 Ashna4All · Ahmad Zafarani<br>
-    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
-  </div>
-
-  <div class="sb-social" style="margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0;">
-    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="X / Twitter" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" class="sb-social-link" aria-label="TikTok" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="Instagram" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">📸</a>
-  </div>
-</aside>
 
 <div class="gc-main">
 
@@ -421,15 +258,6 @@ body{
 </div>
 
 <script>
-// Sidebar toggle
-document.getElementById('hamburger').onclick = function(){
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('overlay').classList.add('show');
-};
-document.getElementById('overlay').onclick = function(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('overlay').classList.remove('show');
-};
 function toggleGroup(id,btn){
   document.getElementById(id).classList.toggle('open');
 }
@@ -451,5 +279,28 @@ function gcSubscribe(){
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab active">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

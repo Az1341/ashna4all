@@ -154,7 +154,6 @@ var GC_API = (function () {
         var label = league === 'WC' ? 'World Cup' : 'Premier League';
         var matches = events.map(function(e){ return normaliseESPN(e, label); })
                             .filter(Boolean);
-        console.log('[GC] ESPN OK —', matches.length, 'matches');
         return matches;
       });
   }
@@ -173,7 +172,6 @@ var GC_API = (function () {
         var label = league === 'WC' ? 'World Cup' : 'Premier League';
         var matches = events.map(function(e){ return normaliseSDB(e, label); })
                             .filter(Boolean);
-        console.log('[GC] TheSportsDB OK —', matches.length, 'matches');
         return matches;
       });
   }
@@ -195,7 +193,6 @@ var GC_API = (function () {
       var label = league === 'WC' ? 'World Cup' : 'Premier League';
       var matches = fixtures.map(function(f){ return normaliseAF(f, label); })
                             .filter(Boolean);
-      console.log('[GC] API-Football OK —', matches.length, 'matches');
       return matches;
     });
   }

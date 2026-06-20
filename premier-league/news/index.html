@@ -11,8 +11,7 @@
 <link rel="canonical" href="https://www.goalcurrent.live/premier-league/news/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-:root{
+<style>:root{
   --sb-w:240px;--sb-bg:#1a1f2e;--sb-border:rgba(255,255,255,0.08);
   --sb-hover:rgba(255,255,255,0.07);--sb-active:rgba(37,99,235,0.22);
   --sb-text:rgba(255,255,255,0.78);--sb-text-dim:rgba(255,255,255,0.38);
@@ -22,127 +21,15 @@
   --glass:rgba(255,255,255,0.62);--glass-border:rgba(255,255,255,0.82);
   --glass-shadow:0 4px 20px rgba(100,160,220,0.14);--blur:blur(22px);--r-md:16px;
   --pl:#38003c;--gold:#f59e0b;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;color:var(--t1);min-height:100vh;display:flex;overflow-x:hidden}
-
-/* SIDEBAR */
-.gc-sidebar{width:var(--sb-w);flex-shrink:0;background:var(--sb-bg);position:fixed;top:0;left:0;bottom:0;z-index:300;overflow-y:auto;scrollbar-width:none;border-right:1px solid var(--sb-border);display:flex;flex-direction:column}
-.gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{display:flex;align-items:center;gap:10px;padding:18px 16px 16px;border-bottom:1px solid var(--sb-border);text-decoration:none;flex-shrink:0}
-.sb-logo img{height:40px;width:auto;flex-shrink:0}
-.sb-logo-text{font-size:16px;font-weight:700;color:#fff;line-height:1.1}
-.sb-logo-text em{color:#60a5fa;font-style:normal}
-.sb-logo-text span{color:#34d399;font-weight:400}
-.sb-section{padding:10px 0 4px}
-.sb-section-label{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--sb-text-dim);padding:6px 16px;display:block}
-.sb-nav-link{display:flex;align-items:center;gap:10px;padding:9px 16px;color:var(--sb-text);text-decoration:none;font-size:12.5px;font-weight:600;transition:all 0.18s;border-left:3px solid transparent}
-.sb-nav-link:hover{background:var(--sb-hover);color:#fff}
-.sb-nav-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
-.sb-divider{height:1px;background:var(--sb-border);margin:6px 16px}
-.sb-comp-btn{width:100%;display:flex;align-items:center;gap:8px;padding:10px 16px;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:12.5px;font-weight:700;color:var(--sb-text);text-align:left;transition:background 0.18s}
-.sb-comp-btn:hover{background:var(--sb-hover);color:#fff}
-.sb-comp-icon{font-size:14px;flex-shrink:0}
-.sb-comp-name{flex:1}
-.sb-comp-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0}
-.sb-comp-badge.pl{background:rgba(56,0,60,0.8);color:#e9b4ff}
-.sb-comp-badge.wc{background:rgba(200,0,30,0.6);color:#ffa5b4}
-.sb-comp-badge.ucl{background:rgba(0,30,98,0.8);color:#93c5fd}
-.sb-chevron{font-size:9px;color:var(--sb-text-dim);transition:transform 0.2s;flex-shrink:0}
-.sb-comp-btn.open .sb-chevron{transform:rotate(180deg)}
-.sb-links{display:none;padding:2px 0 4px}
-.sb-links.open{display:block}
-.sb-links a{display:flex;align-items:center;gap:8px;padding:7px 16px 7px 42px;font-size:12px;font-weight:500;color:var(--sb-text-dim);text-decoration:none;transition:all 0.16s;border-left:3px solid transparent}
-.sb-links a:hover{color:#fff;background:var(--sb-hover)}
-.sb-links a.active{color:var(--sb-accent);background:var(--sb-active);border-left-color:var(--sb-accent);font-weight:700}
-.sb-link-icon{font-size:12px;width:16px;text-align:center;flex-shrink:0}
-.sb-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--sb-border);font-size:10px;color:var(--sb-text-dim);line-height:1.7}
-.sb-footer a{color:rgba(255,255,255,0.3);text-decoration:none}
-
-/* PAGE */
-.gc-page-wrap{margin-left:var(--sb-w);flex:1;min-width:0;display:flex;flex-direction:column}
-.gc-topbar{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1)}
-.gc-breadcrumb{font-size:12px;color:var(--t3)}
-.gc-breadcrumb a{color:var(--blue);text-decoration:none}
-.gc-topbar-badge{background:linear-gradient(135deg,#38003c,#5a0060);color:#e9b4ff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}
-.gc-content{padding:24px 28px 40px;flex:1}
-.sec-head{display:flex;align-items:center;gap:10px;margin:20px 0 14px}
-.sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}
-.sec-line{flex:1;height:1px;background:rgba(100,160,220,0.2)}
-
-/* PARADE HERO */
-.parade-hero{background:linear-gradient(135deg,#7f1d1d,#dc2626,#991b1b);border-radius:var(--r-md);padding:22px 20px;margin-bottom:20px;color:#fff;border:1px solid rgba(255,255,255,.15);box-shadow:0 8px 32px rgba(200,0,0,.25);position:relative;overflow:hidden}
-.parade-hero::before{content:'🏆';position:absolute;right:16px;top:10px;font-size:70px;opacity:.12;pointer-events:none}
-.parade-tag{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.parade-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.3}
-.parade-title span{color:#fcd34d}
-.parade-body{font-size:12px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:14px}
-.parade-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.parade-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:999px;font-size:11px;color:#fff}
-.parade-yt{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#dc2626;font-size:12px;font-weight:800;padding:9px 16px;border-radius:9px;text-decoration:none}
-
-/* SEASON 2026/27 CARD */
-.season-card{background:linear-gradient(135deg,rgba(56,0,60,.1),rgba(56,0,60,.03));border:1px solid rgba(56,0,60,.2);border-radius:var(--r-md);padding:20px;margin-bottom:14px;box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
-.season-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--pl)}
-.season-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--pl);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:10px}
-.season-title{font-size:16px;font-weight:800;color:var(--t1);margin-bottom:8px}
-.season-body{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}
-
-/* PROMOTED CLUBS */
-.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.promo-card{background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--glass-shadow)}
-.promo-emoji{font-size:28px;margin-bottom:6px}
-.promo-name{font-size:13px;font-weight:800;color:var(--t1);margin-bottom:2px}
-.promo-detail{font-size:10px;color:var(--t3)}
-
-/* RELEGATED CLUBS */
-.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.rel-card{background:rgba(254,242,242,.8);border:1px solid rgba(254,202,202,.8);border-radius:12px;padding:12px;text-align:center}
-.rel-name{font-size:13px;font-weight:700;color:#991b1b;margin-bottom:2px}
-.rel-detail{font-size:10px;color:#b91c1c}
-
-/* KEY DATES */
-.dates-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.date-item{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);border-radius:10px;padding:10px 14px;box-shadow:var(--glass-shadow)}
-.date-badge{background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0}
-.date-text{font-size:12px;font-weight:600;color:var(--t1)}
-.date-sub{font-size:11px;color:var(--t3);margin-top:1px}
-
-/* NEWS GRID */
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.news-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;box-shadow:var(--glass-shadow)}
-.news-card-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}
-.news-card-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.4}
-.news-card-desc{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px}
-.news-card-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--blue);text-decoration:none}
-.news-card-link:hover{text-decoration:underline}
-
-/* AD + FOOTER */
-.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center}
-.gc-subscribe{background:linear-gradient(135deg,#38003c,#5a0060);padding:14px 16px}
-.gc-subscribe-title{font-size:12px;font-weight:800;color:#e9b4ff;margin-bottom:8px}
-.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}
-.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}
-.gc-subscribe-row button{background:#f59e0b;color:#38003c;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap}
-.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px}
-.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7}
-.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
-.gc-footer-links a{color:#a8b2c8;text-decoration:none}
-.gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px}
-.sb-hamburger{display:none;position:fixed;top:12px;right:12px;z-index:9999;background:var(--sb-bg);border:none;border-radius:10px;width:42px;height:42px;font-size:20px;color:#fff;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
-
-@media(max-width:768px){
-  .gc-sidebar{transform:translateX(-100%);transition:transform .28s ease}
-  .gc-sidebar.open{transform:translateX(0)}
-  .gc-page-wrap{margin-left:0}
-  .gc-content{padding:16px 14px 40px}
-  .sb-hamburger{display:flex}
-  .gc-topbar{padding:10px 14px}
-  .news-grid{grid-template-columns:1fr}
-  .promo-grid,.rel-grid{grid-template-columns:repeat(3,1fr)}
-}
-</style>
+}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;color:var(--t1);min-height:100vh;display:flex;overflow-x:hidden}/* PAGE */
+.gc-page-wrap{flex:1;min-width:0;display:flex;flex-direction:column}.gc-topbar{background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.8);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 1px 16px rgba(100,160,220,0.1)}.gc-breadcrumb{font-size:12px;color:var(--t3)}.gc-breadcrumb a{color:var(--blue);text-decoration:none}.gc-topbar-badge{background:linear-gradient(135deg,#38003c,#5a0060);color:#e9b4ff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;white-space:nowrap}.gc-content{padding:24px 28px 40px;flex:1}.sec-head{display:flex;align-items:center;gap:10px;margin:20px 0 14px}.sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);white-space:nowrap}.sec-line{flex:1;height:1px;background:rgba(100,160,220,0.2)}/* PARADE HERO */
+.parade-hero{background:linear-gradient(135deg,#7f1d1d,#dc2626,#991b1b);border-radius:var(--r-md);padding:22px 20px;margin-bottom:20px;color:#fff;border:1px solid rgba(255,255,255,.15);box-shadow:0 8px 32px rgba(200,0,0,.25);position:relative;overflow:hidden}.parade-hero::before{content:'🏆';position:absolute;right:16px;top:10px;font-size:70px;opacity:.12;pointer-events:none}.parade-tag{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:8px;display:flex;align-items:center;gap:6px}.parade-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.3}.parade-title span{color:#fcd34d}.parade-body{font-size:12px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:14px}.parade-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.parade-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:999px;font-size:11px;color:#fff}.parade-yt{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#dc2626;font-size:12px;font-weight:800;padding:9px 16px;border-radius:9px;text-decoration:none}/* SEASON 2026/27 CARD */
+.season-card{background:linear-gradient(135deg,rgba(56,0,60,.1),rgba(56,0,60,.03));border:1px solid rgba(56,0,60,.2);border-radius:var(--r-md);padding:20px;margin-bottom:14px;box-shadow:var(--glass-shadow);position:relative;overflow:hidden}.season-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--pl)}.season-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--pl);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:10px}.season-title{font-size:16px;font-weight:800;color:var(--t1);margin-bottom:8px}.season-body{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}/* PROMOTED CLUBS */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.promo-card{background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--glass-shadow)}.promo-emoji{font-size:28px;margin-bottom:6px}.promo-name{font-size:13px;font-weight:800;color:var(--t1);margin-bottom:2px}.promo-detail{font-size:10px;color:var(--t3)}/* RELEGATED CLUBS */
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}.rel-card{background:rgba(254,242,242,.8);border:1px solid rgba(254,202,202,.8);border-radius:12px;padding:12px;text-align:center}.rel-name{font-size:13px;font-weight:700;color:#991b1b;margin-bottom:2px}.rel-detail{font-size:10px;color:#b91c1c}/* KEY DATES */
+.dates-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}.date-item{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);border-radius:10px;padding:10px 14px;box-shadow:var(--glass-shadow)}.date-badge{background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0}.date-text{font-size:12px;font-weight:600;color:var(--t1)}.date-sub{font-size:11px;color:var(--t3);margin-top:1px}/* NEWS GRID */
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}.news-card{background:var(--glass);backdrop-filter:var(--blur);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:16px;box-shadow:var(--glass-shadow)}.news-card-tag{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}.news-card-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.4}.news-card-desc{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px}.news-card-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:var(--blue);text-decoration:none}.news-card-link:hover{text-decoration:underline}/* AD + FOOTER */
+.gc-ad-bar{background:rgba(255,255,255,0.7);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.9);padding:8px 16px;font-size:12px;text-align:center}.gc-subscribe{background:linear-gradient(135deg,#38003c,#5a0060);padding:14px 16px}.gc-subscribe-title{font-size:12px;font-weight:800;color:#e9b4ff;margin-bottom:8px}.gc-subscribe-row{display:flex;gap:8px;flex-wrap:wrap}.gc-subscribe-row input{padding:8px 12px;border-radius:8px;border:none;font-size:12px;flex:1;min-width:0;outline:none;font-family:var(--font)}.gc-subscribe-row button{background:#f59e0b;color:#38003c;border:none;padding:8px 14px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap}.gc-sub-msg{display:none;font-size:11px;color:#34d399;font-weight:700;margin-top:6px}.gc-footer{background:#1a1f2e;color:#a8b2c8;padding:20px 16px;font-size:11px;line-height:1.7}.gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}.gc-footer-links a{color:#a8b2c8;text-decoration:none}.gc-footer-copy{color:rgba(168,178,200,.45);font-size:10px}@media(max-width:768px){.gc-page-wrap{margin-left:0}.gc-content{padding:16px 14px 40px}.gc-topbar{padding:10px 14px}.news-grid{grid-template-columns:1fr}.promo-grid,.rel-grid{grid-template-columns:repeat(3,1fr)}}</style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Premier League News 2025/26 | GoalCurrent.live">
@@ -173,7 +60,7 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -195,75 +82,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
   <link rel="stylesheet" href="/css/gc-design-spec.css?v=20260619">
 </head>
 <body>
-
-<button class="sb-hamburger" onclick="var s=document.getElementById('gc-sidebar');s.classList.toggle('open');this.style.display=s.classList.contains('open')?'none':'';" aria-label="Menu">☰</button>
-
-<aside class="gc-sidebar" id="gc-sidebar">
-  <a href="/" class="sb-logo">
-    <img src="/logo.svg" alt="GoalCurrent" onerror="this.style.display='none'">
-    <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-  </a>
-    <button class="sb-close-btn" id="gc-sidebar-close" onclick="document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';document.querySelector('.sb-hamburger').style.display='';" aria-label="Close menu" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;z-index:10;">✕</button>
-  <div class="sb-section">
-    <span class="sb-section-label">Main Menu</span>
-    <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-    <a href="/live/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-    <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
-    <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-    <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
-  </div>
-  <div class="sb-divider"></div>
-  <div class="sb-section">
-    <span class="sb-section-label">Competitions</span>
-    <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-      <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="sb-comp-name">Premier League</span>
-      <span class="sb-comp-badge pl">PL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links open" id="sb-pl">
-      <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-      <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/premier-league/news/" class="active"><span class="sb-link-icon">📰</span> News</a>
-      <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-    </div>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-      <span class="sb-comp-icon">🏆</span><span class="sb-comp-name">World Cup 2026</span>
-      <span class="sb-comp-badge wc">WC26</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-wc">
-      <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-      <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
-      <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
-      <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-    </div>
-    <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-      <span class="sb-comp-icon">⭐</span><span class="sb-comp-name">Champions League</span>
-      <span class="sb-comp-badge ucl">UCL</span><span class="sb-chevron">▼</span>
-    </button>
-    <div class="sb-links" id="sb-ucl">
-      <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-      <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-      <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-      <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-    </div>
-  </div>
-  <div class="sb-footer">
-    © 2026 Ashna4All (A. Zafarani)<br>
-    Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
-  </div>
-
-  <div class="sb-social" style="margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0;">
-    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="X / Twitter" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" class="sb-social-link" aria-label="TikTok" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="Instagram" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">📸</a>
-  </div>
-</aside>
 
 <div class="gc-page-wrap">
   <div class="gc-topbar">
@@ -445,7 +263,6 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
 </div>
 
 <script>
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
 function gcSubscribe(){
   var input=document.getElementById('gc-email-input');var msg=document.getElementById('gc-sub-msg');
   if(!input||!input.value||input.value.indexOf('@')<0){if(input)input.style.outline='2px solid #dc2626';return;}
@@ -459,45 +276,33 @@ function gcSubscribe(){
   })
   .catch(function(){if(msg){msg.textContent='Something went wrong. Try again.';msg.style.color='red';msg.style.display='block';}});
 }
-document.addEventListener('click',function(e){
-  var sb=document.getElementById('gc-sidebar');
-  var hb=document.querySelector('.sb-hamburger');
-  if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
-});
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
-<script>
-(function(){
-  // Sidebar close button
-  var sc = document.getElementById('gc-sidebar-close');
-  if(sc){ sc.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    var o=document.getElementById('gc-sidebar-overlay');
-    if(s) s.classList.remove('open');
-    if(o) o.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Overlay click to close
-  var ov = document.getElementById('gc-sidebar-overlay');
-  if(ov){ ov.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    if(s) s.classList.remove('open');
-    this.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Escape key
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){
-      var s=document.getElementById('gc-sidebar');
-      var o=document.getElementById('gc-sidebar-overlay');
-      if(s) s.classList.remove('open');
-      if(o) o.classList.remove('open');
-      document.body.style.overflow='';
-    }
-  });
-})();
-</script>
+
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab active">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

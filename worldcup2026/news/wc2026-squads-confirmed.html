@@ -14,18 +14,11 @@
 <link rel="canonical" href="https://www.goalcurrent.live/worldcup2026/news/wc2026-squads-confirmed.html">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-.art-page { max-width: 700px; margin: 0 auto; padding: 16px 14px 120px; }
-
-/* BREADCRUMB */
+<style>.art-page { max-width: 700px; margin: 0 auto; padding: 16px 14px 120px; }/* BREADCRUMB */
 .art-breadcrumb {
   font-size: 11px; color: var(--t4); margin-bottom: 14px;
   display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
-}
-.art-breadcrumb a { color: var(--blue); text-decoration: none; }
-.art-breadcrumb a:hover { text-decoration: underline; }
-
-/* ARTICLE HEADER CARD */
+}.art-breadcrumb a { color: var(--blue); text-decoration: none; }.art-breadcrumb a:hover { text-decoration: underline; }/* ARTICLE HEADER CARD */
 .art-header {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
@@ -35,8 +28,7 @@
   padding: 20px 18px;
   margin-bottom: 14px;
   box-shadow: var(--glass-shadow);
-}
-.art-tag {
+}.art-tag {
   display: inline-block;
   background: rgba(37,99,235,.1);
   color: var(--blue);
@@ -44,50 +36,39 @@
   letter-spacing: 1px; text-transform: uppercase;
   padding: 3px 10px; border-radius: 20px;
   margin-bottom: 12px;
-}
-.art-title {
+}.art-title {
   font-size: clamp(18px, 4.5vw, 26px);
   font-weight: 800; color: var(--t1);
   line-height: 1.25; margin-bottom: 10px;
-}
-.art-standfirst {
+}.art-standfirst {
   font-size: 14px; color: var(--t2);
   line-height: 1.65; margin-bottom: 14px;
   font-style: italic;
   border-left: 3px solid var(--blue);
   padding-left: 12px;
-}
-.art-meta {
+}.art-meta {
   display: flex; flex-wrap: wrap; gap: 12px;
   font-size: 11px; color: var(--t4); font-weight: 600;
   padding-top: 12px; border-top: 1px solid var(--glass-border);
-}
-.art-meta span { display: flex; align-items: center; gap: 4px; }
-
-/* STAT ROW */
+}.art-meta span { display: flex; align-items: center; gap: 4px; }/* STAT ROW */
 .art-stats {
   display: grid; grid-template-columns: repeat(3,1fr);
   gap: 8px; margin-bottom: 14px;
-}
-.art-stat {
+}.art-stat {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--r-md);
   padding: 14px 8px; text-align: center;
   box-shadow: var(--glass-shadow);
-}
-.art-stat-num {
+}.art-stat-num {
   display: block; font-size: clamp(22px,5vw,30px);
   font-weight: 800; color: var(--blue); line-height: 1;
-}
-.art-stat-lbl {
+}.art-stat-lbl {
   display: block; font-size: 9px; font-weight: 700;
   color: var(--t4); text-transform: uppercase;
   letter-spacing: .07em; margin-top: 5px;
-}
-
-/* BODY SECTION CARD */
+}/* BODY SECTION CARD */
 .art-section {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
@@ -95,22 +76,16 @@
   border-radius: var(--r-md);
   padding: 18px; margin-bottom: 12px;
   box-shadow: var(--glass-shadow);
-}
-.art-section-title {
+}.art-section-title {
   font-size: 14px; font-weight: 800; color: var(--t1);
   margin-bottom: 12px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--glass-border);
   display: flex; align-items: center; gap: 8px;
-}
-.art-body p {
+}.art-body p {
   font-size: 13px; color: var(--t2);
   line-height: 1.8; margin-bottom: 12px;
-}
-.art-body p:last-child { margin-bottom: 0; }
-.art-body strong { color: var(--t1); }
-
-/* PULL QUOTE */
+}.art-body p:last-child { margin-bottom: 0; }.art-body strong { color: var(--t1); }/* PULL QUOTE */
 .art-quote {
   background: rgba(37,99,235,.06);
   border-left: 3px solid var(--blue);
@@ -118,41 +93,27 @@
   padding: 12px 16px; margin: 14px 0;
   font-size: 13px; font-style: italic;
   color: var(--t1); line-height: 1.65;
-}
-
-/* PLAYER GRID */
+}/* PLAYER GRID */
 .player-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 8px; margin: 12px 0;
-}
-.player-card {
+}.player-card {
   background: rgba(255,255,255,.6);
   border: 1px solid var(--glass-border);
   border-radius: var(--r-sm);
   padding: 10px 12px;
   display: flex; align-items: center; gap: 10px;
-}
-.player-flag { font-size: 22px; flex-shrink: 0; }
-.player-name { font-size: 12px; font-weight: 700; color: var(--t1); }
-.player-detail { font-size: 10px; color: var(--t4); margin-top: 2px; }
-
-/* DEBUT NATIONS */
+}.player-flag { font-size: 22px; flex-shrink: 0; }.player-name { font-size: 12px; font-weight: 700; color: var(--t1); }.player-detail { font-size: 10px; color: var(--t4); margin-top: 2px; }/* DEBUT NATIONS */
 .debut-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 8px; margin: 12px 0;
-}
-.debut-card {
+}.debut-card {
   background: rgba(16,185,129,.06);
   border: 1px solid rgba(16,185,129,.2);
   border-radius: var(--r-sm);
   padding: 12px;
   display: flex; align-items: center; gap: 10px;
-}
-.debut-flag { font-size: 22px; }
-.debut-nation { font-size: 12px; font-weight: 700; color: var(--t1); }
-.debut-note { font-size: 10px; color: var(--t4); margin-top: 2px; }
-
-/* SOURCE BOX */
+}.debut-flag { font-size: 22px; }.debut-nation { font-size: 12px; font-weight: 700; color: var(--t1); }.debut-note { font-size: 10px; color: var(--t4); margin-top: 2px; }/* SOURCE BOX */
 .art-source {
   background: rgba(255,255,255,.6);
   border: 1px solid var(--glass-border);
@@ -160,9 +121,7 @@
   padding: 10px 14px; margin-top: 14px;
   font-size: 11px; color: var(--t4);
   display: flex; align-items: center; gap: 6px;
-}
-
-/* RELATED LINKS */
+}/* RELATED LINKS */
 .art-related {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
@@ -170,14 +129,11 @@
   border-radius: var(--r-md);
   padding: 16px; margin-bottom: 12px;
   box-shadow: var(--glass-shadow);
-}
-.art-related-title {
+}.art-related-title {
   font-size: 11px; font-weight: 800; color: var(--t4);
   text-transform: uppercase; letter-spacing: 1px;
   margin-bottom: 12px;
-}
-.art-related-links { display: flex; flex-direction: column; gap: 8px; }
-.art-related-link {
+}.art-related-links { display: flex; flex-direction: column; gap: 8px; }.art-related-link {
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(255,255,255,.6);
   border: 1px solid var(--glass-border);
@@ -185,11 +141,7 @@
   padding: 11px 14px;
   font-size: 13px; font-weight: 600; color: var(--t1);
   text-decoration: none; transition: all .2s;
-}
-.art-related-link:hover { border-color: rgba(37,99,235,.3); background: rgba(37,99,235,.05); }
-.art-related-link span { color: var(--blue); font-size: 14px; }
-
-/* SUBSCRIBE */
+}.art-related-link:hover { border-color: rgba(37,99,235,.3); background: rgba(37,99,235,.05); }.art-related-link span { color: var(--blue); font-size: 14px; }/* SUBSCRIBE */
 .art-subscribe {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
@@ -198,25 +150,17 @@
   border-radius: var(--r-md);
   padding: 16px; margin-bottom: 12px;
   box-shadow: var(--glass-shadow);
-}
-.art-subscribe h3 { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 10px; }
-.art-sub-row { display: flex; gap: 8px; }
-.art-sub-row input {
+}.art-subscribe h3 { font-size: 13px; font-weight: 700; color: var(--t1); margin-bottom: 10px; }.art-sub-row { display: flex; gap: 8px; }.art-sub-row input {
   flex: 1; padding: 11px 12px;
   border-radius: var(--r-sm); border: 1.5px solid var(--glass-border);
   background: rgba(255,255,255,.85);
   font-family: Verdana,sans-serif; font-size: 13px; color: var(--t1); outline: none;
-}
-.art-sub-row input:focus { border-color: var(--blue); }
-.art-sub-row button {
+}.art-sub-row input:focus { border-color: var(--blue); }.art-sub-row button {
   background: linear-gradient(135deg,#2563eb,#3b82f6); color: #fff;
   border: none; border-radius: var(--r-sm); padding: 11px 16px;
   font-family: Verdana,sans-serif; font-size: 13px; font-weight: 700;
   cursor: pointer; white-space: nowrap;
-}
-.art-sub-msg { display:none; font-size:11px; color: var(--green); font-weight:700; margin-top:8px; }
-
-/* NORDVPN */
+}.art-sub-msg { display:none; font-size:11px; color: var(--green); font-weight:700; margin-top:8px; }/* NORDVPN */
 .art-nord {
   background: var(--glass);
   backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
@@ -227,73 +171,8 @@
   display: flex; align-items: center; justify-content: center;
   gap: 10px; flex-wrap: wrap; text-align: center;
   font-size: 13px; color: var(--t2);
-}
-.art-nord a.deal { background: var(--blue); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; }
-.art-nord a.pass { color: var(--blue); font-size: 12px; font-weight: 700; text-decoration: none; }
-.art-nord .ad { font-size: 10px; color: var(--t4); }
-
-/* FOOTER */
-.art-footer { text-align: center; padding: 16px 0; font-size: 11px; color: var(--t4); }
-.art-footer a { color: var(--blue); text-decoration: none; margin: 0 4px; }
-
-/* SIDEBAR — reuse site pattern */
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400}
-.sb-overlay.show{display:block}
-.gc-sidebar{width:240px;background:linear-gradient(180deg,#07111f,#0b1628);height:100vh;position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:500;overflow-y:auto;scrollbar-width:none;transition:transform .3s ease}
-.gc-sidebar::-webkit-scrollbar{display:none}
-.sb-logo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
-.sb-logo a{font-size:17px;font-weight:800;color:white;text-decoration:none}
-.sb-logo span{color:#3b82f6}
-.sb-section{padding:14px 16px 4px;font-size:10px;font-weight:800;color:rgba(184,196,217,.48);text-transform:uppercase;letter-spacing:1.5px}
-.sb-link{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#b8c4d9;text-decoration:none;font-size:13px;font-weight:600}
-.sb-link:hover{background:#10213a;color:white}
-.sb-comp{border-top:1px solid rgba(255,255,255,.08)}
-.sb-comp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 16px;background:none;border:none;color:#b8c4d9;font-size:13px;font-weight:700;cursor:pointer;text-align:left}
-.sb-comp-btn:hover{background:#10213a;color:white}
-.sb-badge{font-size:10px;background:rgba(59,130,246,.25);color:#60a5fa;padding:2px 7px;border-radius:5px;font-weight:800}
-.sb-badge-gold{background:rgba(251,191,36,.25);color:#fbbf24}
-.sb-sub{display:none}.sb-sub.open{display:block}
-.sb-sub-link{display:block;padding:8px 16px 8px 38px;color:rgba(184,196,217,.78);text-decoration:none;font-size:12px}
-.sb-sub-link:hover{background:#10213a;color:white}
-.sb-sub-link.active{background:linear-gradient(135deg,#003fb8,#0057e7);color:white;font-weight:800}
-.sb-foot{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(184,196,217,.52);line-height:1.7;flex-shrink:0}
-.sb-foot a{color:rgba(184,196,217,.65);text-decoration:none}
-.sb-social{display:flex;gap:8px;margin-bottom:10px}
-.sb-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:#10213a;border-radius:7px;font-size:13px;color:#b8c4d9;text-decoration:none}
-.gc-main{margin-left:240px;flex:1;min-width:0;display:flex;flex-direction:column}
-.gc-header{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#001a4d,#002b80,#003fb8);border-bottom:2px solid rgba(245,158,11,.4);box-shadow:0 4px 24px rgba(0,27,80,.45);padding:0 16px}
-.gc-hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;gap:10px}
-.gc-hdr-left{display:flex;align-items:center;gap:10px}
-.gc-hdr-logo{font-size:16px;font-weight:900;color:white;line-height:1.15}
-.gc-hdr-logo span{color:#f59e0b}
-.gc-hdr-sub{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px}
-.gc-phase-pill{font-size:10px;font-weight:900;color:#f59e0b;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 10px;white-space:nowrap;text-transform:uppercase}
-.gc-hdr-nav{display:flex;gap:4px;padding-bottom:9px;overflow-x:auto;scrollbar-width:none}
-.gc-hdr-nav::-webkit-scrollbar{display:none}
-.gc-hdr-navlink{font-size:10px;font-weight:800;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 10px;text-decoration:none;white-space:nowrap;flex-shrink:0}
-.gc-hdr-navlink:hover{background:rgba(255,255,255,.16);color:white}
-.gc-hdr-navlink.active{background:#f59e0b;border-color:#f59e0b;color:#0f172a}
-.gc-hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:white;padding:4px;flex-shrink:0}
-
-@media(min-width:769px){
-  .gc-hamburger{display:none!important}
-  .sb-overlay{display:none!important}
-  .gc-sidebar{transform:translateX(0)!important}
-  .gc-main{margin-left:240px!important}
-}
-@media(max-width:768px){
-  .gc-hamburger{display:block!important}
-  .gc-main{margin-left:0!important}
-  .gc-sidebar{transform:translateX(-100%)!important}
-  .gc-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 24px rgba(0,0,0,.3)!important}
-  .gc-phase-pill{display:none}
-  .player-grid{grid-template-columns:1fr}
-  .debut-grid{grid-template-columns:1fr}
-  .art-stats{grid-template-columns:repeat(3,1fr)}
-  .art-sub-row{flex-direction:column}
-  .art-sub-row button{width:100%}
-}
-</style>
+}.art-nord a.deal { background: var(--blue); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; }.art-nord a.pass { color: var(--blue); font-size: 12px; font-weight: 700; text-decoration: none; }.art-nord .ad { font-size: 10px; color: var(--t4); }/* FOOTER */
+.art-footer { text-align: center; padding: 16px 0; font-size: 11px; color: var(--t4); }.art-footer a { color: var(--blue); text-decoration: none; margin: 0 4px; }</style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
 
 
@@ -315,7 +194,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -337,68 +216,13 @@
   <link rel="stylesheet" href="/css/gc-design-spec.css?v=20260619">
 </head>
 <body>
-<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
-
-<!-- SIDEBAR -->
-<nav class="gc-sidebar" id="gcSidebar">
-  <div class="sb-logo"><a href="/index.html">⚽ Goal<span>Current</span>.live</a></div>
-  <div class="sb-section">Main Menu</div>
-  <a href="/index.html" class="sb-link">🏠 Home</a>
-  <a href="/live/index.html" class="sb-link">🔴 Live Scores</a>
-  <a href="/worldcup2026/fixtures/index.html" class="sb-link">📋 Fixtures</a>
-  <a href="/worldcup2026/standings/index.html" class="sb-link">🏅 Standings</a>
-  <div class="sb-section">Competitions</div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('pl-sub')"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span><span class="sb-badge">PL</span></button>
-    <div class="sb-sub" id="pl-sub">
-      <a href="/premier-league/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/premier-league/table/index.html" class="sb-sub-link">📊 Table</a>
-      <a href="/premier-league/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/premier-league/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/premier-league/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
-  </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('wc-sub')" style="color:white"><span>🏆 World Cup 2026</span><span class="sb-badge sb-badge-gold">WC26</span></button>
-    <div class="sb-sub open" id="wc-sub">
-      <a href="/worldcup2026/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/worldcup2026/groups/index.html" class="sb-sub-link">🔢 Groups</a>
-      <a href="/worldcup2026/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/worldcup2026/standings/index.html" class="sb-sub-link">📊 Standings</a>
-      <a href="/worldcup2026/bracket/index.html" class="sb-sub-link">🏅 Bracket</a>
-      <a href="/worldcup2026/venues/index.html" class="sb-sub-link">🏟️ Venues</a>
-      <a href="/worldcup2026/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/worldcup2026/favourites/index.html" class="sb-sub-link">⭐ Favourites</a>
-      <a href="/worldcup2026/news/index.html" class="sb-sub-link active">📰 News</a>
-</div>
-  </div>
-  <div class="sb-comp">
-    <button class="sb-comp-btn" onclick="toggleSub('ucl-sub')"><span>⭐ Champions League</span><span class="sb-badge">UCL</span></button>
-    <div class="sb-sub" id="ucl-sub">
-      <a href="/ucl/index.html" class="sb-sub-link">🏠 Overview</a>
-      <a href="/ucl/fixtures/index.html" class="sb-sub-link">📅 Fixtures</a>
-      <a href="/ucl/results/index.html" class="sb-sub-link">✅ Results</a>
-      <a href="/ucl/teams/index.html" class="sb-sub-link">👕 Teams</a>
-      <a href="/ucl/news/index.html" class="sb-sub-link">📰 News</a>
-    </div>
-  </div>
-  <div class="sb-foot">
-    <div class="sb-social">
-      <a href="https://twitter.com/GoalCurrentlive" target="_blank" rel="noopener">𝕏</a>
-      <a href="https://tiktok.com/@goalcurrentlive" target="_blank" rel="noopener">🎵</a>
-      <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener">📸</a>
-    </div>
-    © 2026 <strong style="color:#a8b2c8">Ashna4All</strong><br>Ahmad Zafarani<br>
-    <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a>
-  </div>
-</nav>
 
 <div class="gc-main">
   <!-- HEADER -->
   <header class="gc-header">
     <div class="gc-hdr-top">
       <div class="gc-hdr-left">
-        <button class="gc-hamburger" onclick="openSidebar()">☰</button>
+        
         <div>
           <div class="gc-hdr-logo">🏆 World Cup <span>2026</span></div>
           <div class="gc-hdr-sub">News &amp; Updates · GoalCurrent.live</div>
@@ -638,8 +462,8 @@
 </div>
 
 <script>
-function openSidebar(){document.getElementById('gcSidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('show');document.body.style.overflow='hidden'}
-function closeSidebar(){document.getElementById('gcSidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('show');document.body.style.overflow=''}
+
+
 function toggleSub(id){document.getElementById(id).classList.toggle('open')}
 
 function doSubscribe(){
@@ -659,5 +483,28 @@ function doSubscribe(){
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab active">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

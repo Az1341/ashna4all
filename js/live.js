@@ -20,7 +20,7 @@ var GC_LIVE = (function () {
         container.innerHTML = noMatchesHTML();
       }
     }).catch(function(err) {
-      console.log('API error:', err);
+      console.error('API error:', err);
       container.innerHTML = '<div class="gc-empty">⚠️ Could not load scores right now.<br><small>This may be a CORS issue with the free API.</small><br><br><button class="gc-btn gc-btn-primary" onclick="GC.draw()">🔄 Retry</button></div>';
     });
   }

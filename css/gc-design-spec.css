@@ -144,3 +144,68 @@
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
 }
+
+/* 4. Mobile bottom tab bar */
+.gc-bottomnav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -4px 20px rgba(100, 160, 220, 0.14);
+  display: flex;
+  z-index: 500;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.gc-bottomnav .gc-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 4px;
+  color: #64748b;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.gc-bottomnav .gc-tab:hover {
+  color: #0f172a;
+}
+
+.gc-bottomnav .gc-tab.active {
+  color: #16a34a;
+  border-bottom-color: #16a34a;
+}
+
+.gc-bottomnav .gc-tab-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.gc-bottomnav .gc-tab-label {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 769px) {
+  .gc-bottomnav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}

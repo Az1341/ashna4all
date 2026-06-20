@@ -21,240 +21,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* ═══════════════════════════════════════════════
-   GOALCURRENT.LIVE — MASTER TEMPLATE v1.0
-   NEVER change body background or sidebar colours
-   ═══════════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --body-bg: linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #e0f2fe 100%);
-  --sidebar-bg: linear-gradient(180deg, #07111f, #0b1628);
-  --header-bg: linear-gradient(135deg, #001a4d 0%, #002b80 50%, #003fb8 100%);
-  --gold: #f59e0b;
-  --blue: #2563eb;
-  --card-bg: rgba(255,255,255,0.82);
-  --sidebar-w: 260px;
-  --header-h: 56px;
-  --subnav-h: 48px;
-  --font-main: 'Barlow', sans-serif;
-  --font-heading: 'Barlow Condensed', sans-serif;
-  --text-dark: #0f172a;
-  --text-mid: #334155;
-  --text-light: #64748b;
-}
-
-html, body {
-  height: 100%;
-  font-family: var(--font-main);
-  background: var(--body-bg);
-  background-attachment: fixed;
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
-
-/* ─── SIDEBAR OVERLAY ─── */
-#gc-sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 900;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-#gc-sidebar-overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-/* ─── SIDEBAR ─── */
-#gc-sidebar {
-  position: fixed;
-  top: 0; left: 0; bottom: 0;
-  width: var(--sidebar-w);
-  background: var(--sidebar-bg);
-  z-index: 1000;
-  transform: translateX(calc(-1 * var(--sidebar-w)));
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 4px 0 24px rgba(0,0,0,0.4);
-}
-#gc-sidebar.open {
-  transform: translateX(0);
-}
-
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  min-height: 56px;
-}
-/* ─── SIDEBAR LOGO / BRANDING ─── */
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  text-decoration: none;
-  flex: 1;
-  min-width: 0;
-}
-.sidebar-logo-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-  overflow: hidden;
-  background: transparent;
-}
-.sidebar-logo-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.sidebar-logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-.sidebar-logo-name {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-.sidebar-logo-name em {
-  font-style: normal;
-  color: var(--gold);
-}
-.sidebar-logo-domain {
-  font-size: 0.62rem;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.06em;
-  font-weight: 500;
-}
-
-.sidebar-close {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.6);
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  line-height: 1;
-  transition: color 0.2s, background 0.2s;
-}
-.sidebar-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
-
-.sidebar-section-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  padding: 18px 16px 6px;
-}
-
-.sidebar-nav a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 16px;
-  color: rgba(255,255,255,0.75);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  transition: background 0.2s, color 0.2s;
-  border-left: 3px solid transparent;
-}
-.sidebar-nav a:hover {
-  background: rgba(255,255,255,0.07);
-  color: #fff;
-  border-left-color: var(--gold);
-}
-.sidebar-nav a.active {
-  background: rgba(37,99,235,0.2);
-  color: #fff;
-  border-left-color: var(--blue);
-}
-.sidebar-nav a .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
-
-.sidebar-footer-social {
-  margin-top: auto;
-  padding: 16px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  gap: 10px;
-}
-.sidebar-footer-social a {
-  display: flex; align-items: center; justify-content: center;
-  width: 34px; height: 34px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-.sidebar-footer-social a:hover { background: rgba(255,255,255,0.18); color: #fff; }
-
-/* ─── HAMBURGER BUTTON (always top-left) ─── */
-#gc-hamburger {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 800;
-  background: rgba(0,26,77,0.92);
-  border: none;
-  border-radius: 8px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  transition: background 0.2s;
-}
-#gc-hamburger:hover { background: var(--blue); }
-#gc-hamburger span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-#gc-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-#gc-hamburger.open span:nth-child(2) { opacity: 0; }
-#gc-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ─── PAGE WRAPPER ─── */
+<style>/* ─── PAGE WRAPPER ─── */
 #gc-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Content always takes full width — sidebar overlays */
-}
-
-/* ─── SITE BRAND IN HEADER ─── */
+  /* ─── SITE BRAND IN HEADER ─── */
 .gc-site-brand {
   display: flex;
   align-items: center;
@@ -799,7 +571,6 @@ html, body {
 .gc-all-card.starred .gc-all-star{color:var(--gold);}
 .gc-grp-divider{font-family:var(--font-heading);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);padding:4px 0 6px;border-bottom:1.5px solid var(--blue);margin:18px 0 8px;grid-column:1/-1;}
 
-
 .gc-match-fav-card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.8);border-radius:14px;padding:14px 16px;margin-bottom:10px;}
 .gc-mf-meta{font-size:.7rem;color:var(--text-light);margin-bottom:8px;display:flex;justify-content:space-between;}
 .gc-mf-teams{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:8px;text-align:center;}
@@ -855,7 +626,7 @@ html, body {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -1257,5 +1028,28 @@ document.addEventListener('DOMContentLoaded',renderAll);
   }
 </script>
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab active">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

@@ -12,8 +12,7 @@
   <title>Premier League Results GW38 — Final Day 2025/26 | GoalCurrent.live</title>
   <meta name="description" content="Premier League GW38 final day results — all 10 scores from 24 May 2026. Arsenal champions, West Ham relegated.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-  <style>
-    :root {
+  <style>:root {
       --sb-w:240px; --sb-bg:#1a1f2e;
       --sb-border:rgba(255,255,255,0.08);
       --sb-hover:rgba(255,255,255,0.07);
@@ -22,117 +21,21 @@
       --sb-text-dim:rgba(255,255,255,0.38);
       --sb-accent:#3b82f6;
       --ucl:#2563eb; --el:#d97706; --ecl:#16a34a; --rel:#dc2626;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    body { background:#1a1f2e; color:#f1f5f9; font-family:Verdana,Geneva,sans-serif; min-height:100vh; }
-    #gc-app { display:flex; min-height:100vh; }
-
-    /* SIDEBAR */
-    .gc-sidebar { width:var(--sb-w); flex-shrink:0; background:var(--sb-bg); position:fixed; top:0; left:0; bottom:0; z-index:400; overflow-y:auto; scrollbar-width:none; border-right:1px solid var(--sb-border); display:flex; flex-direction:column; }
-    .gc-sidebar::-webkit-scrollbar { display:none; }
-    .sb-logo { display:flex; align-items:center; gap:10px; padding:18px 16px 16px; border-bottom:1px solid var(--sb-border); text-decoration:none; flex-shrink:0; }
-    .sb-logo img { height:42px; width:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.4)); flex-shrink:0; }
-    .sb-logo-text { font-size:16px; font-weight:700; color:#fff; letter-spacing:-0.3px; line-height:1.1; }
-    .sb-logo-text em { color:#60a5fa; font-style:normal; }
-    .sb-logo-text span { color:#34d399; font-weight:400; }
-    .sb-section { padding:10px 0 4px; }
-    .sb-section-label { font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:var(--sb-text-dim); padding:6px 16px; display:block; }
-    .sb-nav-link { display:flex; align-items:center; gap:10px; padding:9px 16px; color:var(--sb-text); text-decoration:none; font-size:12.5px; font-weight:600; transition:all 0.18s; border-left:3px solid transparent; background:none; border-right:none; border-top:none; border-bottom:none; width:100%; text-align:left; cursor:pointer; font-family:Verdana,Geneva,sans-serif; }
-    .sb-nav-link:hover { background:var(--sb-hover); color:#fff; }
-    .sb-nav-icon { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
-    .sb-divider { height:1px; background:var(--sb-border); margin:6px 16px; }
-    .sb-comp-btn { width:100%; display:flex; align-items:center; gap:8px; padding:10px 16px; background:none; border:none; cursor:pointer; font-size:12.5px; font-weight:700; color:var(--sb-text); text-align:left; transition:background 0.18s; border-left:3px solid transparent; font-family:Verdana,Geneva,sans-serif; }
-    .sb-comp-btn:hover { background:var(--sb-hover); color:#fff; }
-    .sb-comp-icon { font-size:14px; flex-shrink:0; }
-    .sb-comp-name { flex:1; }
-    .sb-comp-badge { font-size:9px; font-weight:700; padding:2px 7px; border-radius:8px; flex-shrink:0; }
-    .sb-comp-badge.pl  { background:rgba(56,0,60,0.8);  color:#e9b4ff; }
-    .sb-comp-badge.wc  { background:rgba(200,0,30,0.6); color:#ffa5b4; }
-    .sb-comp-badge.ucl { background:rgba(0,30,98,0.8);  color:#93c5fd; }
-    .sb-chevron { font-size:9px; color:var(--sb-text-dim); transition:transform 0.2s; flex-shrink:0; }
-    .sb-comp-btn.open .sb-chevron { transform:rotate(180deg); }
-    .sb-links { display:none; padding:2px 0 4px; }
-    .sb-links.open { display:block; }
-    .sb-links a { display:flex; align-items:center; gap:8px; padding:7px 16px 7px 42px; font-size:12px; font-weight:500; color:var(--sb-text-dim); text-decoration:none; transition:all 0.16s; border-left:3px solid transparent; }
-    .sb-links a:hover { color:#fff; background:var(--sb-hover); }
-    .sb-links a.active { color:#fff; border-left-color:var(--sb-accent); background:rgba(37,99,235,0.1); }
-    .sb-link-icon { font-size:12px; width:16px; text-align:center; flex-shrink:0; }
-    .sb-footer { margin-top:auto; padding:14px 16px; border-top:1px solid var(--sb-border); font-size:10px; color:var(--sb-text-dim); line-height:1.7; }
-    .sb-footer a { color:rgba(255,255,255,0.3); text-decoration:none; }
-
-    /* MAIN */
-    .gc-main-wrap { margin-left:var(--sb-w); flex:1; min-width:0; }
-    .gc-page-content { padding:24px 24px 130px; max-width:860px; }
-    .bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; }
-    .bc a { color:var(--sb-text-dim); text-decoration:none; }
-    .bc a:hover { color:#fff; }
-    .page-title { font-size:22px; font-weight:800; color:#fff; margin-bottom:4px; }
-    .page-sub { font-size:12px; color:var(--sb-text-dim); margin-bottom:20px; }
-
-    /* GW banner */
-    .gw-banner { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding:12px 16px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:12px; flex-wrap:wrap; gap:8px; }
-    .gw-banner-left { font-size:13px; font-weight:700; color:#4ade80; }
-    .gw-banner-right { font-size:10px; color:var(--sb-text-dim); }
-
-    /* Section label */
-    .section-lbl { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--sb-text-dim); margin:20px 0 10px; }
-
-    /* Result card */
-    .result-card { background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:14px; padding:14px 16px; margin-bottom:10px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; position:relative; overflow:hidden; }
-    .result-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
-    .result-card.featured::before { background:linear-gradient(180deg,#38003c,#5c0070); }
-    .result-card.rel-card::before { background:var(--rel); }
-    .result-card.ucl-card::before { background:var(--ucl); }
-    .result-card.el-card::before { background:var(--el); }
-
-    .team-side { display:flex; align-items:center; gap:10px; }
-    .team-side.away { flex-direction:row-reverse; text-align:right; }
-    .t-icon { font-size:22px; flex-shrink:0; }
-    .t-nm { font-size:13px; font-weight:700; color:#f1f5f9; line-height:1.3; }
-    .t-tag { font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; display:inline-block; margin-top:3px; }
-    .tag-champ { background:#d97706; color:#fff; }
-    .tag-rel   { background:var(--rel); color:#fff; }
-    .tag-ucl   { background:var(--ucl); color:#fff; }
-    .tag-el    { background:var(--el);  color:#fff; }
-    .tag-ecl   { background:var(--ecl); color:#fff; }
-    .tag-safe  { background:#1e293b; color:#64748b; }
-
-    .score-centre { text-align:center; flex-shrink:0; }
-    .score-box { display:flex; align-items:center; gap:8px; justify-content:center; }
-    .score-num { font-size:26px; font-weight:800; color:#fff; line-height:1; min-width:24px; text-align:center; }
-    .score-num.winner { color:#ffd700; }
-    .score-dash { font-size:18px; color:rgba(255,255,255,0.2); }
-    .score-ft { font-size:9px; font-weight:700; color:var(--sb-text-dim); letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
-
-    /* Scorers row */
-    .scorers-row { grid-column:1/-1; display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.05); margin-top:2px; gap:8px; }
-    .scorer { font-size:10px; color:rgba(255,255,255,0.5); }
-    .scorer.right { text-align:right; }
-    .goal-icon { color:#fbbf24; }
-
-    /* Quick links */
-    .quick-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-top:24px; }
-    .ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }
-    .ql:hover { background:rgba(255,255,255,0.08); color:#fff; }
-    .ql span:first-child { font-size:20px; }
-
-    /* Nord */
-    #gc-nord-fixed { position:fixed; bottom:0; left:var(--sb-w); right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; }
-    #gc-nord-fixed a { padding:4px 12px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }
-
-    /* Mobile */
+    }* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }body { background:#1a1f2e; color:#f1f5f9; font-family:Verdana,Geneva,sans-serif; min-height:100vh; }#gc-app { display:flex; min-height:100vh; }/* MAIN */
+    .gc-main-wrap {  flex:1; min-width:0; }.gc-page-content { padding:24px 24px 130px; max-width:860px; }.bc { font-size:11px; color:var(--sb-text-dim); margin-bottom:16px; }.bc a { color:var(--sb-text-dim); text-decoration:none; }.bc a:hover { color:#fff; }.page-title { font-size:22px; font-weight:800; color:#fff; margin-bottom:4px; }.page-sub { font-size:12px; color:var(--sb-text-dim); margin-bottom:20px; }/* GW banner */
+    .gw-banner { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding:12px 16px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:12px; flex-wrap:wrap; gap:8px; }.gw-banner-left { font-size:13px; font-weight:700; color:#4ade80; }.gw-banner-right { font-size:10px; color:var(--sb-text-dim); }/* Section label */
+    .section-lbl { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--sb-text-dim); margin:20px 0 10px; }/* Result card */
+    .result-card { background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:14px; padding:14px 16px; margin-bottom:10px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; position:relative; overflow:hidden; }.result-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }.result-card.featured::before { background:linear-gradient(180deg,#38003c,#5c0070); }.result-card.rel-card::before { background:var(--rel); }.result-card.ucl-card::before { background:var(--ucl); }.result-card.el-card::before { background:var(--el); }.team-side { display:flex; align-items:center; gap:10px; }.team-side.away { flex-direction:row-reverse; text-align:right; }.t-icon { font-size:22px; flex-shrink:0; }.t-nm { font-size:13px; font-weight:700; color:#f1f5f9; line-height:1.3; }.t-tag { font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; display:inline-block; margin-top:3px; }.tag-champ { background:#d97706; color:#fff; }.tag-rel   { background:var(--rel); color:#fff; }.tag-ucl   { background:var(--ucl); color:#fff; }.tag-el    { background:var(--el);  color:#fff; }.tag-ecl   { background:var(--ecl); color:#fff; }.tag-safe  { background:#1e293b; color:#64748b; }.score-centre { text-align:center; flex-shrink:0; }.score-box { display:flex; align-items:center; gap:8px; justify-content:center; }.score-num { font-size:26px; font-weight:800; color:#fff; line-height:1; min-width:24px; text-align:center; }.score-num.winner { color:#ffd700; }.score-dash { font-size:18px; color:rgba(255,255,255,0.2); }.score-ft { font-size:9px; font-weight:700; color:var(--sb-text-dim); letter-spacing:1px; text-transform:uppercase; margin-top:4px; }/* Scorers row */
+    .scorers-row { grid-column:1/-1; display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.05); margin-top:2px; gap:8px; }.scorer { font-size:10px; color:rgba(255,255,255,0.5); }.scorer.right { text-align:right; }.goal-icon { color:#fbbf24; }/* Quick links */
+    .quick-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-top:24px; }.ql { display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:rgba(255,255,255,0.04); border:1px solid var(--sb-border); border-radius:12px; text-decoration:none; color:var(--sb-text); font-size:11px; font-weight:600; text-align:center; transition:all 0.18s; }.ql:hover { background:rgba(255,255,255,0.08); color:#fff; }.ql span:first-child { font-size:20px; }/* Nord */
+    #gc-nord-fixed { position:fixed; bottom:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:center; gap:10px; background:rgba(11,31,58,0.97); padding:5px 12px; flex-wrap:nowrap; }#gc-nord-fixed a { padding:4px 12px; border-radius:6px; font-size:11px; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }/* Mobile */
     @media(max-width:768px) {
-      .gc-sidebar { transform:translateX(-100%); transition:transform 0.28s ease; }
-      .gc-sidebar.open { transform:translateX(0); box-shadow:4px 0 24px rgba(0,0,0,0.5); }
       .gc-main-wrap { margin-left:0; }
       .gc-page-content { padding:12px 12px 130px; }
       #gc-nord-fixed { left:0 !important; bottom:64px !important; right:0 !important; }
-      .sb-hamburger { position:fixed; top:12px; right:12px; z-index:9999; background:var(--sb-bg); border:none; border-radius:10px; width:42px; height:42px; font-size:20px; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.3); }
       .t-nm { font-size:11px; }
       .score-num { font-size:22px; }
-    }
-    @media(min-width:769px) { .sb-hamburger { display:none; } }
-  </style>
+    }</style>
 <link rel="stylesheet" href="/css/gc-final-safe.css?v=20260608-final-safe">
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Premier League Results 2025/26 | GoalCurrent.live">
@@ -163,7 +66,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -186,81 +89,8 @@
 </head>
 <body>
 
-<button class="sb-hamburger" onclick="var s=document.getElementById('gc-sidebar');s.classList.toggle('open');this.style.display=s.classList.contains('open')?'none':'';" aria-label="Menu">☰</button>
-
 <div id="gc-app">
-    <aside class="gc-sidebar" id="gc-sidebar">
-    <a href="/" class="sb-logo">
-      <img src="/logo.svg" alt="GoalCurrent logo" width="42" height="42" fetchpriority="high" onerror="this.style.display='none'">
-      <div class="sb-logo-text">Goal<em>Current</em><span>.live</span></div>
-    </a>
-    <button class="sb-close-btn" id="gc-sidebar-close" onclick="document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';document.querySelector('.sb-hamburger').style.display='';" aria-label="Close menu" style="position:absolute;top:12px;right:12px;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:4px 8px;border-radius:6px;z-index:10;">✕</button>
-    <div class="sb-section">
-      <span class="sb-section-label">Main Menu</span>
-      <a href="/" class="sb-nav-link"><span class="sb-nav-icon">🏠</span> Home</a>
-      <a href="/live/" class="sb-nav-link"><span class="sb-nav-icon">🔴</span> Live Scores</a>
-      <a href="/premier-league/fixtures/" class="sb-nav-link"><span class="sb-nav-icon">📅</span> Fixtures</a>
-      <a href="/premier-league/table/" class="sb-nav-link"><span class="sb-nav-icon">🏅</span> Standings</a>
-      <a href="/worldcup2026/news/" class="sb-nav-link"><span class="sb-nav-icon">📰</span> Latest News</a>
-    </div>
-    <div class="sb-divider"></div>
-    <div class="sb-section">
-      <span class="sb-section-label">Competitions</span>
-      <button class="sb-comp-btn open" onclick="sbToggle('sb-pl',this)">
-        <span class="sb-comp-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-        <span class="sb-comp-name">Premier League</span>
-        <span class="sb-comp-badge pl">PL</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links open" id="sb-pl">
-        <a href="/premier-league/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/premier-league/table/"><span class="sb-link-icon">📊</span> Table</a>
-        <a href="/premier-league/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/premier-league/results/" class="active"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/premier-league/news/"><span class="sb-link-icon">📰</span> News</a>
-        <a href="/premier-league/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-wc',this)">
-        <span class="sb-comp-icon">🏆</span>
-        <span class="sb-comp-name">World Cup 2026</span>
-        <span class="sb-comp-badge wc">WC26</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-wc">
-        <a href="/worldcup2026/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/worldcup2026/groups/"><span class="sb-link-icon">🔢</span> Groups</a>
-        <a href="/worldcup2026/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/worldcup2026/bracket/"><span class="sb-link-icon">🏅</span> Bracket</a>
-        <a href="/worldcup2026/venues/"><span class="sb-link-icon">🏟️</span> Venues</a>
-        <a href="/worldcup2026/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/worldcup2026/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-      <button class="sb-comp-btn" onclick="sbToggle('sb-ucl',this)">
-        <span class="sb-comp-icon">⭐</span>
-        <span class="sb-comp-name">Champions League</span>
-        <span class="sb-comp-badge ucl">UCL</span>
-        <span class="sb-chevron">▼</span>
-      </button>
-      <div class="sb-links" id="sb-ucl">
-        <a href="/ucl/"><span class="sb-link-icon">🏠</span> Overview</a>
-        <a href="/ucl/fixtures/"><span class="sb-link-icon">📅</span> Fixtures</a>
-        <a href="/ucl/results/"><span class="sb-link-icon">✅</span> Results</a>
-        <a href="/ucl/teams/"><span class="sb-link-icon">👕</span> Teams</a>
-        <a href="/ucl/news/"><span class="sb-link-icon">📰</span> News</a>
-      </div>
-    </div>
-    <div class="sb-footer">
-      © 2026 Ashna4All (A. Zafarani)<br>
-      Independent fan site · Not affiliated with FIFA, UEFA or Premier League<br><br>
-      <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/disclaimer.html">Disclaimer</a>
-    </div>
-  
-  <div class="sb-social" style="margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;flex-shrink:0;">
-    <a href="https://twitter.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="X / Twitter" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">𝕏</a>
-    <a href="https://tiktok.com/@goalcurrent" target="_blank" rel="noopener" class="sb-social-link" aria-label="TikTok" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">♪</a>
-    <a href="https://instagram.com/goalcurrentlive" target="_blank" rel="noopener" class="sb-social-link" aria-label="Instagram" style="width:30px;height:30px;background:rgba(255,255,255,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.85rem;text-decoration:none;">📸</a>
-  </div>
-</aside>
+    
 
   <div class="gc-main-wrap">
     <main class="gc-page-content">
@@ -457,13 +287,8 @@
 </div>
 
 <script>
-function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
 document.addEventListener('DOMContentLoaded',function(){
-  document.addEventListener('click',function(e){
-    var sb=document.getElementById('gc-sidebar'),hb=document.querySelector('.sb-hamburger');
-    if(window.innerWidth<=768&&sb&&!sb.contains(e.target)&&hb&&!hb.contains(e.target))sb.classList.remove('open');
   });
-});
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
@@ -482,37 +307,30 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
   </footer>
 
-<script>
-(function(){
-  // Sidebar close button
-  var sc = document.getElementById('gc-sidebar-close');
-  if(sc){ sc.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    var o=document.getElementById('gc-sidebar-overlay');
-    if(s) s.classList.remove('open');
-    if(o) o.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Overlay click to close
-  var ov = document.getElementById('gc-sidebar-overlay');
-  if(ov){ ov.addEventListener('click', function(){
-    var s=document.getElementById('gc-sidebar');
-    if(s) s.classList.remove('open');
-    this.classList.remove('open');
-    document.body.style.overflow='';
-  });}
-  // Escape key
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){
-      var s=document.getElementById('gc-sidebar');
-      var o=document.getElementById('gc-sidebar-overlay');
-      if(s) s.classList.remove('open');
-      if(o) o.classList.remove('open');
-      document.body.style.overflow='';
-    }
-  });
-})();
-</script>
+
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab active">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

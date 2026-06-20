@@ -24,114 +24,20 @@
     gtag('config', 'G-X84HCE5KGT');
   </script>
 
-  <style>
-    /* ============================================================
-       GOALCURRENT.LIVE — STANDARD COLOUR SCHEME (DO NOT CHANGE)
-       Body:    light blue/white gradient  #dbeafe / #eff6ff / #e0f2fe
-       Sidebar: dark navy                  #07111f / #0b1628
-       Header:  dark blue                  #001a4d / #002b80 / #003fb8
-    ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --body-bg:        #eff6ff;
-      --body-bg-2:      #dbeafe;
-      --sidebar-bg:     #07111f;
-      --sidebar-bg-2:   #0b1628;
-      --header-bg:      #001a4d;
-      --header-bg-2:    #003fb8;
-      --accent:         #3b82f6;
-      --accent-dark:    #1d4ed8;
-      --text-dark:      #0f172a;
-      --text-mid:       #334155;
-      --text-light:     #94a3b8;
-      --text-white:     #f1f5f9;
-      --border:         #cbd5e1;
-      --card-bg:        #ffffff;
-      --row-hover:      #f0f7ff;
-
-      /* Zone colours */
-      --ucl-color:      #1d4ed8;
-      --uel-color:      #16a34a;
-      --uecl-color:     #d97706;
-      --rel-color:      #dc2626;
-      --rel-bg:         #fff1f1;
-
-      /* Form pill */
-      --form-w:         #16a34a;
-      --form-d:         #64748b;
-      --form-l:         #dc2626;
-
-      --sidebar-width:  260px;
-      --header-height:  60px;
-      --radius:         8px;
-      --shadow:         0 1px 4px rgba(0,0,0,0.08);
-    }
-
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --body-bg:      #0f172a;
-        --body-bg-2:    #1e293b;
-        --text-dark:    #f1f5f9;
-        --text-mid:     #cbd5e1;
-        --text-light:   #64748b;
-        --border:       #334155;
-        --card-bg:      #1e293b;
-        --row-hover:    #1e3a5f;
-        --rel-bg:       #2d1010;
-      }
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
+  <style>/html { scroll-behavior: smooth; }body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: linear-gradient(135deg, var(--body-bg) 0%, var(--body-bg-2) 100%);
       color: var(--text-dark);
       min-height: 100vh;
       display: flex;
-    }
-
-    /* ======================== SIDEBAR ======================== */
-    #sidebar {
-      width: var(--sidebar-width);
-      min-height: 100vh;
-      background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-2) 100%);
-      position: fixed;
-      top: 0; left: 0;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-    }
-
-    #sidebar .logo-wrap {
-      padding: 20px 16px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    #sidebar .logo-wrap a {
-      color: #fff;
-      font-size: 1.25rem;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    #sidebar .logo-wrap a span { color: var(--accent); }
-
-    #sidebar nav { padding: 12px 0; flex: 1; }
-
-    .nav-section-label {
+    }/.nav-section-label {
       padding: 14px 16px 6px;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.35);
-    }
-
-    .nav-item {
+    }.nav-item {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -142,15 +48,11 @@
       font-weight: 500;
       transition: background 0.15s, color 0.15s;
       border-left: 3px solid transparent;
-    }
-    .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
-    .nav-item.active {
+    }.nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }.nav-item.active {
       background: rgba(59,130,246,0.15);
       color: #fff;
       border-left-color: var(--accent);
-    }
-
-    .comp-toggle {
+    }.comp-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -162,49 +64,20 @@
       cursor: pointer;
       user-select: none;
       border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .comp-toggle .badge {
+    }.comp-toggle .badge {
       background: rgba(255,255,255,0.12);
       border-radius: 4px;
       padding: 2px 6px;
       font-size: 0.65rem;
       font-weight: 700;
-    }
-    .comp-sub { display: flex; flex-direction: column; }
-
-    #sidebar .sidebar-footer {
-      padding: 16px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.5;
-    }
-    #sidebar .sidebar-footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-    #sidebar .sidebar-footer a:hover { color: #fff; }
-    #sidebar .social-row { display: flex; gap: 12px; margin-top: 8px; }
-    #sidebar .social-row a { font-size: 1rem; }
-
-    /* Close button (mobile) */
-    #sidebar-close {
-      display: none;
-      position: absolute;
-      top: 14px; right: 14px;
-      background: none; border: none;
-      color: rgba(255,255,255,0.6);
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-
-    /* ======================== MAIN AREA ======================== */
+    }.comp-sub { display: flex; flex-direction: column; }//* ======================== MAIN AREA ======================== */
     #main {
-      margin-left: var(--sidebar-width);
+      
       flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-    }
-
-    /* ======================== HEADER ======================== */
+    }/* ======================== HEADER ======================== */
     #header {
       background: linear-gradient(90deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
       height: var(--header-height);
@@ -216,35 +89,18 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    #hamburger {
-      display: none;
-      background: none; border: none;
-      color: #fff; font-size: 1.4rem;
-      cursor: pointer; padding: 4px 8px;
-    }
-
-    .header-title {
+    } .header-title {
       color: #fff;
       font-size: 1rem;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-
-    .header-breadcrumb {
+    }.header-breadcrumb {
       color: rgba(255,255,255,0.55);
       font-size: 0.8rem;
-    }
-    .header-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
-    .header-breadcrumb a:hover { color: #fff; }
-
-    /* ======================== CONTENT ======================== */
-    #content { flex: 1; padding: 24px 20px; max-width: 1100px; width: 100%; margin: 0 auto; }
-
-    /* Page hero */
+    }.header-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; }.header-breadcrumb a:hover { color: #fff; }/* ======================== CONTENT ======================== */
+    #content { flex: 1; padding: 24px 20px; max-width: 1100px; width: 100%; margin: 0 auto; }/* Page hero */
     .page-hero {
       background: linear-gradient(135deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
       border-radius: var(--radius);
@@ -253,22 +109,19 @@
       color: #fff;
       position: relative;
       overflow: hidden;
-    }
-    .page-hero::before {
+    }.page-hero::before {
       content: '🏴󠁧󠁢󠁥󠁮󠁧󠁿';
       position: absolute;
       right: 24px; top: 50%;
       transform: translateY(-50%);
       font-size: 4rem;
       opacity: 0.15;
-    }
-    .page-hero h1 {
+    }.page-hero h1 {
       font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       margin-bottom: 4px;
-    }
-    .page-hero .season-badge {
+    }.page-hero .season-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -279,17 +132,14 @@
       font-size: 0.8rem;
       font-weight: 600;
       margin-top: 6px;
-    }
-    .page-hero .meta-row {
+    }.page-hero .meta-row {
       margin-top: 10px;
       font-size: 0.8rem;
       color: rgba(255,255,255,0.65);
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-    }
-
-    /* Filter bar */
+    }/* Filter bar */
     .filter-bar {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -301,15 +151,13 @@
       gap: 10px;
       align-items: center;
       box-shadow: var(--shadow);
-    }
-    .filter-bar label {
+    }.filter-bar label {
       font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-mid);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-    }
-    .filter-bar select {
+    }.filter-bar select {
       padding: 6px 28px 6px 10px;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -322,12 +170,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 8px center;
-    }
-    .filter-bar select:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
-
-    .filter-group { display: flex; align-items: center; gap: 6px; }
-
-    #btn-reset {
+    }.filter-bar select:focus { outline: 2px solid var(--accent); border-color: var(--accent); }.filter-group { display: flex; align-items: center; gap: 6px; }#btn-reset {
       padding: 6px 14px;
       background: var(--accent);
       color: #fff;
@@ -338,58 +181,44 @@
       cursor: pointer;
       transition: background 0.15s;
       margin-left: auto;
-    }
-    #btn-reset:hover { background: var(--accent-dark); }
-
-    /* Last updated */
+    }#btn-reset:hover { background: var(--accent-dark); }/* Last updated */
     #last-updated {
       font-size: 0.75rem;
       color: var(--text-light);
       margin-bottom: 10px;
       text-align: right;
-    }
-
-    /* Zone legend */
+    }/* Zone legend */
     .zone-legend {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 14px;
-    }
-    .zone-legend .zone-item {
+    }.zone-legend .zone-item {
       display: flex;
       align-items: center;
       gap: 5px;
       font-size: 0.75rem;
       color: var(--text-mid);
       font-weight: 500;
-    }
-    .zone-dot {
+    }.zone-dot {
       width: 12px; height: 12px;
       border-radius: 50%;
       flex-shrink: 0;
-    }
-
-    /* ======================== TABLE ======================== */
+    }/* ======================== TABLE ======================== */
     .table-wrap {
       background: var(--card-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
       border: 1px solid var(--border);
-    }
-
-    #standings-table {
+    }#standings-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.875rem;
-    }
-
-    #standings-table thead {
+    }#standings-table thead {
       background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
       color: rgba(255,255,255,0.75);
-    }
-    #standings-table thead th {
+    }#standings-table thead th {
       padding: 11px 10px;
       text-align: center;
       font-size: 0.7rem;
@@ -397,62 +226,41 @@
       letter-spacing: 0.8px;
       text-transform: uppercase;
       white-space: nowrap;
-    }
-    #standings-table thead th.col-club { text-align: left; padding-left: 14px; }
-
-    #standings-table tbody tr {
+    }#standings-table thead th.col-club { text-align: left; padding-left: 14px; }#standings-table tbody tr {
       border-bottom: 1px solid var(--border);
       transition: background 0.1s;
       cursor: default;
-    }
-    #standings-table tbody tr:hover { background: var(--row-hover); }
-    #standings-table tbody tr:last-child { border-bottom: none; }
-
-    #standings-table td {
+    }#standings-table tbody tr:hover { background: var(--row-hover); }#standings-table tbody tr:last-child { border-bottom: none; }#standings-table td {
       padding: 10px 10px;
       text-align: center;
       color: var(--text-dark);
       vertical-align: middle;
-    }
-    #standings-table td.col-club {
+    }#standings-table td.col-club {
       text-align: left;
       padding-left: 10px;
       font-weight: 600;
-    }
-    #standings-table td.col-pts {
+    }#standings-table td.col-pts {
       font-weight: 800;
       font-size: 0.95rem;
       color: var(--accent-dark);
-    }
-
-    /* Position column */
+    }/* Position column */
     .pos-cell {
       font-weight: 700;
       font-size: 0.9rem;
       color: var(--text-mid);
       min-width: 32px;
-    }
-    /* Zone left border on td.pos-cell */
-    tr.zone-ucl  td.pos-cell { border-left: 3px solid var(--ucl-color); }
-    tr.zone-uel  td.pos-cell { border-left: 3px solid var(--uel-color); }
-    tr.zone-uecl td.pos-cell { border-left: 3px solid var(--uecl-color); }
-    tr.zone-rel  td.pos-cell { border-left: 3px solid var(--rel-color); }
-    tr.zone-rel  { background: var(--rel-bg); }
-    tr.zone-rel:hover { filter: brightness(0.97); }
-
-    /* Club cell */
+    }/* Zone left border on td.pos-cell */
+    tr.zone-ucl  td.pos-cell { border-left: 3px solid var(--ucl-color); }tr.zone-uel  td.pos-cell { border-left: 3px solid var(--uel-color); }tr.zone-uecl td.pos-cell { border-left: 3px solid var(--uecl-color); }tr.zone-rel  td.pos-cell { border-left: 3px solid var(--rel-color); }tr.zone-rel  { background: var(--rel-bg); }tr.zone-rel:hover { filter: brightness(0.97); }/* Club cell */
     .club-cell {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-    .club-badge {
+    }.club-badge {
       width: 28px; height: 28px;
       object-fit: contain;
       flex-shrink: 0;
       border-radius: 2px;
-    }
-    .club-badge-fallback {
+    }.club-badge-fallback {
       width: 28px; height: 28px;
       border-radius: 50%;
       display: flex;
@@ -462,18 +270,9 @@
       font-weight: 800;
       color: #fff;
       flex-shrink: 0;
-    }
-    .club-name { font-size: 0.875rem; font-weight: 600; }
-    .club-name .short { display: none; }
-
-    /* GD colouring */
-    .gd-pos { color: #16a34a; font-weight: 700; }
-    .gd-neg { color: #dc2626; font-weight: 700; }
-    .gd-zero { color: var(--text-mid); font-weight: 700; }
-
-    /* Form pills */
-    .form-cell { display: flex; gap: 3px; justify-content: center; }
-    .form-pill {
+    }.club-name { font-size: 0.875rem; font-weight: 600; }.club-name .short { display: none; }/* GD colouring */
+    .gd-pos { color: #16a34a; font-weight: 700; }.gd-neg { color: #dc2626; font-weight: 700; }.gd-zero { color: var(--text-mid); font-weight: 700; }/* Form pills */
+    .form-cell { display: flex; gap: 3px; justify-content: center; }.form-pill {
       width: 20px; height: 20px;
       border-radius: 50%;
       display: flex;
@@ -483,12 +282,7 @@
       font-weight: 800;
       color: #fff;
       flex-shrink: 0;
-    }
-    .form-pill.W { background: var(--form-w); }
-    .form-pill.D { background: var(--form-d); }
-    .form-pill.L { background: var(--form-l); }
-
-    /* ======================== STATUS STATES ======================== */
+    }.form-pill.W { background: var(--form-w); }.form-pill.D { background: var(--form-d); }.form-pill.L { background: var(--form-l); }/* ======================== STATUS STATES ======================== */
     #state-container {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -496,11 +290,7 @@
       padding: 40px 24px;
       text-align: center;
       display: none;
-    }
-    #state-icon { font-size: 3rem; margin-bottom: 12px; }
-    #state-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
-    #state-msg { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; max-width: 500px; margin: 0 auto; }
-    #state-detail {
+    }#state-icon { font-size: 3rem; margin-bottom: 12px; }#state-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }#state-msg { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; max-width: 500px; margin: 0 auto; }#state-detail {
       margin-top: 14px;
       background: #f8fafc;
       border: 1px solid var(--border);
@@ -514,8 +304,7 @@
       margin-left: auto;
       margin-right: auto;
       display: none;
-    }
-    #state-retry {
+    }#state-retry {
       margin-top: 16px;
       padding: 8px 20px;
       background: var(--accent);
@@ -526,21 +315,14 @@
       font-weight: 600;
       cursor: pointer;
       display: none;
-    }
-    #state-retry:hover { background: var(--accent-dark); }
-
-    /* Skeleton loading */
-    .skeleton-row td { padding: 12px 10px; }
-    .skeleton-cell {
+    }#state-retry:hover { background: var(--accent-dark); }/* Skeleton loading */
+    .skeleton-row td { padding: 12px 10px; }.skeleton-cell {
       height: 16px;
       background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
       background-size: 400% 100%;
       animation: shimmer 1.4s infinite;
       border-radius: 4px;
-    }
-    @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-
-    /* ======================== NordVPN AD ======================== */
+    }@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }/* ======================== NordVPN AD ======================== */
     .ad-strip {
       background: #0d1b36;
       border-radius: var(--radius);
@@ -551,10 +333,7 @@
       gap: 12px;
       margin: 20px 0;
       flex-wrap: wrap;
-    }
-    .ad-strip .ad-text { color: rgba(255,255,255,0.85); font-size: 0.85rem; }
-    .ad-strip .ad-text strong { color: #fff; }
-    .ad-strip .ad-btn {
+    }.ad-strip .ad-text { color: rgba(255,255,255,0.85); font-size: 0.85rem; }.ad-strip .ad-text strong { color: #fff; }.ad-strip .ad-btn {
       padding: 8px 18px;
       background: #4a9eff;
       color: #fff;
@@ -563,59 +342,19 @@
       font-size: 0.82rem;
       font-weight: 700;
       white-space: nowrap;
-    }
-    .ad-tag { font-size: 0.65rem; color: rgba(255,255,255,0.35); }
-
-    /* ======================== FOOTER ======================== */
+    }.ad-tag { font-size: 0.65rem; color: rgba(255,255,255,0.35); }/* ======================== FOOTER ======================== */
     #footer {
       background: #0f172a;
       color: rgba(255,255,255,0.55);
       padding: 20px;
       font-size: 0.78rem;
       line-height: 1.7;
-    }
-    #footer .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 8px; }
-    #footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; }
-    #footer .footer-links a:hover { color: #fff; }
-    #footer .footer-copy { color: rgba(255,255,255,0.35); }
-
-    /* ======================== OVERLAY (mobile) ======================== */
-    #overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 150;
-    }
-
-    /* ======================== RESPONSIVE ======================== */
+    }#footer .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 8px; }#footer .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; }#footer .footer-links a:hover { color: #fff; }#footer .footer-copy { color: rgba(255,255,255,0.35); }//* ======================== RESPONSIVE ======================== */
 
     /* Hide columns progressively */
     @media (max-width: 900px) {
       .col-form { display: none; }
-    }
-    @media (max-width: 700px) {
-      .col-gf, .col-ga { display: none; }
-      .club-name .full { display: none; }
-      .club-name .short { display: inline; }
-    }
-    @media (max-width: 560px) {
-      .col-gd { display: none; }
-    }
-
-    @media (max-width: 768px) {
-      #sidebar { transform: translateX(-100%); }
-      #sidebar.open { transform: translateX(0); }
-      #sidebar-close { display: block; }
-      #overlay.show { display: block; }
-      #main { margin-left: 0; }
-      #hamburger { display: flex; }
-      #content { padding: 16px 12px; }
-      .page-hero h1 { font-size: 1.2rem; }
-      .filter-bar { gap: 8px; }
-      .filter-group { flex-wrap: wrap; }
-    }
-  </style>
+    }@media (max-width: 700px) {.col-gf, .col-ga { display: none; }.club-name .full { display: none; }.club-name .short { display: inline; }}@media (max-width: 560px) {.col-gd { display: none; }}@media (max-width: 768px) {#main { margin-left: 0; }#content { padding: 16px 12px; }.page-hero h1 { font-size: 1.2rem; }.filter-bar { gap: 8px; }.filter-group { flex-wrap: wrap; }}</style>
 
   <!-- ═══════════════════════════════════════════
        GoalCurrent PWA — manifest + service worker
@@ -635,7 +374,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then(function (reg) { console.log('[GoalCurrent] SW registered:', reg.scope); })
+          .then(function () {})
           .catch(function (err) { console.warn('[GoalCurrent] SW failed:', err); });
       });
     }
@@ -658,81 +397,11 @@
 </head>
 <body>
 
-<!-- =============== SIDEBAR =============== -->
-<aside id="sidebar" role="navigation" aria-label="Site navigation">
-  <button id="sidebar-close" aria-label="Close menu">✕</button>
-
-  <div class="logo-wrap">
-    <a href="https://www.goalcurrent.live/">Goal<span>Current</span>.live</a>
-  </div>
-
-  <nav>
-    <div class="nav-section-label">Main</div>
-    <a class="nav-item" href="https://www.goalcurrent.live/">🏠 Home</a>
-    <a class="nav-item" href="https://www.goalcurrent.live/live/">🔴 Live Scores</a>
-    <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/fixtures/">📅 Today's Fixtures</a>
-    <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/news/">📰 Latest News</a>
-
-    <div class="comp-toggle">
-      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League <span class="badge">PL</span></span>
-    </div>
-    <div class="comp-sub">
-      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/">🏠 Overview</a>
-      <a class="nav-item active" href="https://www.goalcurrent.live/premier-league/table/">📊 Table</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/fixtures/">📅 Fixtures</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/results/">✅ Results</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/news/">📰 News</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/premier-league/teams/">👕 Teams</a>
-    </div>
-
-    <div class="comp-toggle">
-      <span>🏆 World Cup 2026 <span class="badge">WC26</span></span>
-    </div>
-    <div class="comp-sub">
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/">🏠 Overview</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/groups/">🔢 Groups</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/fixtures/">📅 Fixtures</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/standings/">📊 Standings</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/bracket/">🏆 Bracket</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/venues/">🏟️ Venues</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/teams/">👕 Teams</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/worldcup2026/news/">📰 News</a>
-    </div>
-
-    <div class="comp-toggle">
-      <span>⭐ Champions League <span class="badge">UCL</span></span>
-    </div>
-    <div class="comp-sub">
-      <a class="nav-item" href="https://www.goalcurrent.live/ucl/">🏠 Overview</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/ucl/fixtures/">📅 Fixtures</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/ucl/results/">✅ Results</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/ucl/teams/">👕 Teams</a>
-      <a class="nav-item" href="https://www.goalcurrent.live/ucl/news/">📰 News</a>
-    </div>
-  </nav>
-
-  <div class="sidebar-footer">
-    © 2026 Ashna4All (A. Zafarani)<br>
-    <a href="https://www.goalcurrent.live/about.html">About</a> ·
-    <a href="https://www.goalcurrent.live/privacy.html">Privacy</a> ·
-    <a href="https://www.goalcurrent.live/terms.html">Terms</a> ·
-    <a href="https://www.goalcurrent.live/disclaimer.html">Disclaimer</a>
-    <div class="social-row">
-      <a href="https://twitter.com/goalcurrentlive" aria-label="Twitter">𝕏</a>
-      <a href="https://tiktok.com/@goalcurrent" aria-label="TikTok">♪</a>
-      <a href="https://instagram.com/goalcurrentlive" aria-label="Instagram">📸</a>
-    </div>
-  </div>
-</aside>
-
-<div id="overlay" aria-hidden="true"></div>
-
 <!-- =============== MAIN =============== -->
 <div id="main">
 
   <!-- Header -->
   <header id="header">
-    <button id="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
     <div class="header-title">
       📊 Premier League Table
       <span class="header-breadcrumb">
@@ -1347,33 +1016,6 @@ const PL_TABLE = (function() {
 })();
 
 /* ============================================================
-   SIDEBAR & MOBILE NAV
-   (Shared UI only — no competition data here)
-============================================================ */
-const sidebar  = document.getElementById('sidebar');
-const overlay  = document.getElementById('overlay');
-const hamburger = document.getElementById('hamburger');
-const sideClose = document.getElementById('sidebar-close');
-
-function openSidebar() {
-  sidebar.classList.add('open');
-  overlay.classList.add('show');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
-function closeSidebar() {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('show');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', openSidebar);
-sideClose.addEventListener('click', closeSidebar);
-overlay.addEventListener('click', closeSidebar);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
-
-/* ============================================================
    BOOT — PL Table only. No WC26. No UCL.
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1382,5 +1024,28 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="/js/gc-consent.js"></script>
+
+<nav class="gc-bottomnav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="gc-tab">
+    <span class="gc-tab-icon">🏠</span>
+    <span class="gc-tab-label">Home</span>
+  </a>
+  <a href="/live/" class="gc-tab">
+    <span class="gc-tab-icon">⚡</span>
+    <span class="gc-tab-label">Live</span>
+  </a>
+  <a href="/premier-league/" class="gc-tab active">
+    <span class="gc-tab-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+    <span class="gc-tab-label">PL</span>
+  </a>
+  <a href="/worldcup2026/" class="gc-tab">
+    <span class="gc-tab-icon">🌍</span>
+    <span class="gc-tab-label">WC26</span>
+  </a>
+  <a href="/ucl/" class="gc-tab">
+    <span class="gc-tab-icon">🏆</span>
+    <span class="gc-tab-label">UCL</span>
+  </a>
+</nav>
 </body>
 </html>

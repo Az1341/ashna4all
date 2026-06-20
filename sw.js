@@ -23,11 +23,9 @@ const STATIC_ASSETS = [
 
 // ── INSTALL ─────────────────────────────────────────────────
 self.addEventListener('install', event => {
-  console.log('[SW] Installing GoalCurrent Service Worker...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('[SW] Caching static assets');
         // Use individual adds so one missing file doesn't break everything
         return Promise.allSettled(
           STATIC_ASSETS.map(url => cache.add(url).catch(err => {
@@ -41,14 +39,12 @@ self.addEventListener('install', event => {
 
 // ── ACTIVATE ─────────────────────────────────────────────────
 self.addEventListener('activate', event => {
-  console.log('[SW] Activating...');
   event.waitUntil(
     caches.keys().then(cacheNames =>
       Promise.all(
         cacheNames
           .filter(name => name !== CACHE_NAME && name !== API_CACHE)
           .map(name => {
-            console.log('[SW] Deleting old cache:', name);
             return caches.delete(name);
           })
       )

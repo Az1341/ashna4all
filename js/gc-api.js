@@ -691,8 +691,8 @@ var GC = {
      UTILITIES
   ───────────────────────────────────────────────────────── */
   setup: function(keys) {
-    if(keys.apif){ localStorage.setItem('gc_apif_key',keys.apif); console.log('[gc-api v3] ✅ API-Football key saved'); }
-    if(keys.fd)  { localStorage.setItem('gc_fd_key',  keys.fd);   console.log('[gc-api v3] ✅ Football-Data key saved'); }
+    if(keys.apif){ localStorage.setItem('gc_apif_key',keys.apif); }
+    if(keys.fd)  { localStorage.setItem('gc_fd_key',  keys.fd);   }
   },
 
   clearCache: function(key){ if(key){ delete _cache[key]; }else{ _cache={}; } },
@@ -705,15 +705,6 @@ var GC = {
   },
 
   status: function() {
-    console.group('[gc-api] v'+GC.version+' — GoalCurrent API Status');
-    console.log('API-Football:',      K.apif() ? '✅ key set' : '❌ not set — live/lineups/h2h/injuries/predictions unavailable');
-    console.log('Football-Data.org:', K.fd()   ? '✅ key set' : '⚠️  no key — using anonymous (10 req/min)');
-    console.log('TheSportsDB:',       '✅ always available (free public key)');
-    console.log('RSS News:',          '✅ always available (no key needed)');
-    console.log('Local JSON:',        typeof WC26!=='undefined' ? '✅ worldcup-data.js loaded' : '⚠️  worldcup-data.js not loaded');
-    console.log('Cache entries:',     Object.keys(_cache).length);
-    console.log('Watchers active:',   _watchers.length);
-    console.groupEnd();
     return { version:GC.version, apif:!!K.apif(), fd:!!K.fd(), tsdb:true, rss:true, local:typeof WC26!=='undefined' };
   },
 };

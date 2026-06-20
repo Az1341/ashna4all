@@ -10,18 +10,18 @@
 
 const WC26 = {
   groups: {
-    A: [["🇲🇽","Mexico","MX"],["🇿🇦","South Africa","ZA"],["🇰🇷","South Korea","KR"],["🇨🇿","Czech Republic","CZ"]],
-    B: [["🇨🇦","Canada","CA"],["🇧🇦","Bosnia & Herzegovina","BA"],["🇶🇦","Qatar","QA"],["🇨🇭","Switzerland","CH"]],
-    C: [["🇧🇷","Brazil","BR"],["🇲🇦","Morocco","MA"],["🇭🇹","Haiti","HT"],["🏴","Scotland","SCO"]],
-    D: [["🇺🇸","USA","US"],["🇵🇾","Paraguay","PY"],["🇦🇺","Australia","AU"],["🇹🇷","Turkey","TR"]],
-    E: [["🇩🇪","Germany","DE"],["🇨🇼","Curaçao","CW"],["🇨🇮","Côte d’Ivoire","CI"],["🇪🇨","Ecuador","EC"]],
-    F: [["🇳🇱","Netherlands","NL"],["🇯🇵","Japan","JP"],["🇸🇪","Sweden","SE"],["🇹🇳","Tunisia","TN"]],
-    G: [["🇧🇪","Belgium","BE"],["🇪🇬","Egypt","EG"],["🇮🇷","Iran","IR"],["🇳🇿","New Zealand","NZ"]],
-    H: [["🇪🇸","Spain","ES"],["🇨🇻","Cape Verde","CV"],["🇸🇦","Saudi Arabia","SA"],["🇺🇾","Uruguay","UY"]],
-    I: [["🇫🇷","France","FR"],["🇸🇳","Senegal","SN"],["🇮🇶","Iraq","IQ"],["🇳🇴","Norway","NO"]],
-    J: [["🇦🇷","Argentina","AR"],["🇩🇿","Algeria","DZ"],["🇦🇹","Austria","AT"],["🇯🇴","Jordan","JO"]],
-    K: [["🇵🇹","Portugal","PT"],["🇨🇩","DR Congo","CD"],["🇺🇿","Uzbekistan","UZ"],["🇨🇴","Colombia","CO"]],
-    L: [["🏴","England","EN"],["🇭🇷","Croatia","HR"],["🇬🇭","Ghana","GH"],["🇵🇦","Panama","PA"]]
+    A: [["Mexico","MX"],["South Africa","ZA"],["South Korea","KR"],["Czech Republic","CZ"]],
+    B: [["Canada","CA"],["Bosnia & Herzegovina","BA"],["Qatar","QA"],["Switzerland","CH"]],
+    C: [["Brazil","BR"],["Morocco","MA"],["Haiti","HT"],["Scotland","SCO"]],
+    D: [["USA","US"],["Paraguay","PY"],["Australia","AU"],["Turkey","TR"]],
+    E: [["Germany","DE"],["Curaçao","CW"],["Côte d'Ivoire","CI"],["Ecuador","EC"]],
+    F: [["Netherlands","NL"],["Japan","JP"],["Sweden","SE"],["Tunisia","TN"]],
+    G: [["Belgium","BE"],["Egypt","EG"],["Iran","IR"],["New Zealand","NZ"]],
+    H: [["Spain","ES"],["Cape Verde","CV"],["Saudi Arabia","SA"],["Uruguay","UY"]],
+    I: [["France","FR"],["Senegal","SN"],["Iraq","IQ"],["Norway","NO"]],
+    J: [["Argentina","AR"],["Algeria","DZ"],["Austria","AT"],["Jordan","JO"]],
+    K: [["Portugal","PT"],["DR Congo","CD"],["Uzbekistan","UZ"],["Colombia","CO"]],
+    L: [["England","EN"],["Croatia","HR"],["Ghana","GH"],["Panama","PA"]]
   },
 
   venues: [
@@ -56,7 +56,7 @@ const WC26 = {
 };
 
 WC26.teams = Object.entries(WC26.groups)
-  .flatMap(([group, teams]) => teams.map(([flag, name, code]) => ({ flag, name, code, group })))
+  .flatMap(([group, teams]) => teams.map(([name, code]) => ({ name, code, group })))
   .sort((a, b) => a.name.localeCompare(b.name));
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -84,16 +84,11 @@ function escAttr(value) {
   return escapeHtml(value);
 }
 
-function flagFor(name) {
-  const team = WC26.teams.find((item) => item.name === name);
-  return team ? team.flag : "🏳️";
-}
-
-/* Correct flag renderer.
-   Important: this does NOT render MX / ZA / KR / CZ anywhere. */
-function flagImg(name, code, emoji) {
-  const fallback = emoji || flagFor(name);
-  return `<span class="flag-wrap" title="${escapeHtml(name)}"><span class="flag-emoji-fallback" aria-hidden="true">${fallback}</span></span>`;
+function flagImg(name, code) {
+  if (window.GCFlags && typeof GCFlags.img === 'function') {
+    return GCFlags.img(name, { w: 36, h: 24, className: 'flag-img' });
+  }
+  return `<span class="flag-wrap" title="${escapeHtml(name)}"><span class="gc-flag-placeholder" style="display:inline-block;width:36px;height:24px;background:#e2e8f0;border-radius:4px;flex-shrink:0" aria-hidden="true"></span></span>`;
 }
 
 function openSide() {
@@ -213,10 +208,10 @@ function groupNav(active) {
 }
 
 function teamRow(team) {
-  const [flag, name, code] = team;
+  const [name, code] = team;
   return `
     <div class="team-row">
-      ${flagImg(name, code, flag)}
+      ${flagImg(name, code)}
       <strong>${escapeHtml(name)}</strong>
       <button class="fav" data-fav="teams:${escAttr(name)}" onclick="toggleFav('teams','${escAttr(name)}')" type="button">☆</button>
     </div>
@@ -279,7 +274,7 @@ function renderTeams() {
   el.innerHTML = teams
     .map((team) => `
       <article class="card team-card" onclick="openTeam('${escAttr(team.name)}')">
-        <div class="team-flag-large">${flagImg(team.name, team.code, team.flag)}</div>
+        <div class="team-flag-large">${flagImg(team.name, team.code)}</div>
         <div class="team-name">${escapeHtml(team.name)}</div>
         <div><span class="badge">Group ${team.group}</span></div>
         <p class="muted">Click for squad, fixtures, news and team profile.</p>
@@ -366,9 +361,9 @@ function renderStandings() {
             <tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr>
           </thead>
           <tbody>
-            ${teams.map(([flag, name, code]) => `
+            ${teams.map(([name, code]) => `
               <tr>
-                <td>${flagImg(name, code, flag)} <strong>${escapeHtml(name)}</strong></td>
+                <td>${flagImg(name, code)} <strong>${escapeHtml(name)}</strong></td>
                 <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td>
               </tr>
             `).join("")}
@@ -480,7 +475,7 @@ function renderFavourites() {
       <div class="card fav-item group-fav">
         <a style="display:block;text-decoration:none;color:inherit" href="/worldcup2026/groups/group-${group.toLowerCase()}/">
           <h3>Group ${group}</h3>
-          <p>${(WC26.groups[group] || []).map(([flag, name, code]) => `${flagImg(name, code, flag)} ${escapeHtml(name)}`).join(" · ")}</p>
+          <p>${(WC26.groups[group] || []).map(([name, code]) => `${flagImg(name, code)} ${escapeHtml(name)}`).join(" · ")}</p>
         </a>
         <button class="remove-fav" onclick="removeFav('groups','${group}')" type="button">Remove</button>
       </div>
@@ -491,7 +486,7 @@ function renderFavourites() {
     html = '<div class="fav-toolbar"><strong>All 48 teams</strong><span class="muted">Press ★ to add/remove favourites</span></div>' +
       WC26.teams.map((team) => `
         <div class="team-row fav-item">
-          ${flagImg(team.name, team.code, team.flag)}
+          ${flagImg(team.name, team.code)}
           <strong>${escapeHtml(team.name)}</strong>
           <span class="badge">Group ${team.group}</span>
           <button class="fav inline-fav" data-fav="teams:${escAttr(team.name)}" onclick="toggleFav('teams','${escAttr(team.name)}')" type="button">☆</button>
@@ -544,7 +539,7 @@ function openTeam(name) {
   if (!team) return;
 
   modal(
-    `${flagImg(team.name, team.code, team.flag)} ${escapeHtml(team.name)}`,
+    `${flagImg(team.name, team.code)} ${escapeHtml(team.name)}`,
     `<p><b>Group:</b> ${team.group}</p>
      <div class="tabs-mini"><button type="button">Squad</button><button type="button">Fixtures</button><button type="button">News</button><button type="button">World Cup history</button></div>
      <p class="notice">Squad and lineup details should be populated from official FIFA or a secure football data provider when available.</p>

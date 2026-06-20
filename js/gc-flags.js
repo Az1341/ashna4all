@@ -144,22 +144,7 @@
   /* onerror handler: replace a failed flag <img> with the emoji flag,
      or a neutral grey placeholder — never a football emoji, never text. */
   function imgError(el) {
-    if (!el || !el.parentNode) return;
-    var em = el.getAttribute('data-gcemoji') || '';
-    var w = el.getAttribute('width') || 36;
-    var h = el.getAttribute('height') || 24;
-    var span = document.createElement('span');
-    if (em) {
-      span.textContent = em;
-      span.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:' +
-        w + 'px;height:' + h + 'px;font-size:' + Math.round(h * 0.95) + 'px;line-height:1;flex-shrink:0';
-    } else {
-      span.className = 'gc-flag-placeholder';
-      span.style.cssText = 'display:inline-block;width:' + w + 'px;height:' + h +
-        'px;background:#e2e8f0;border-radius:4px;flex-shrink:0';
-    }
-    if (el.className) span.className = (span.className ? span.className + ' ' : '') + el.className;
-    el.parentNode.replaceChild(span, el);
+    if (el) el.style.display = 'none';
   }
 
   function img(teamName, opts) {
