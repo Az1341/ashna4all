@@ -675,46 +675,6 @@ html, body {
   font-size: 0.72rem;
 }
 
-/* ─── COOKIE BANNER ─── */
-#gc-cookie-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #0f172a;
-  color: rgba(255,255,255,0.85);
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  z-index: 1100;
-  font-size: 0.8rem;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-}
-#gc-cookie-banner.show { transform: translateY(0); }
-#gc-cookie-banner p { flex: 1; min-width: 220px; line-height: 1.5; }
-#gc-cookie-banner a { color: var(--gold); }
-.gc-cookie-btn {
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-family: var(--font-main);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-.gc-cookie-btn:hover { background: #1d4ed8; }
-.gc-cookie-btn.secondary {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-}
-.gc-cookie-btn.secondary:hover { background: rgba(255,255,255,0.18); }
-
 /* ─── SUBSCRIPTION POPUP ─── */
 #gc-sub-overlay {
   display: none;
@@ -1035,7 +995,7 @@ html, body {
   <!-- ── NORDVPN AFFILIATE BAR (ONE, above footer) ── -->
   <div class="gc-vpn-bar">
     🔒 <strong>Watching the World Cup abroad?</strong>
-    Use <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347" target="_blank" rel="noopener sponsored">NordVPN</a>
+    Use <span style="font-size:10px;color:rgba(255,255,255,0.5);margin-right:6px;">AD</span><a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=148347" target="_blank" rel="noopener sponsored">NordVPN</a>
     to access your favourite streams from anywhere. <em>Affiliate link — we may earn a commission.</em>
   </div>
 
@@ -1058,32 +1018,18 @@ html, body {
 
 </div><!-- /#gc-page -->
 
-<!-- ═══ COOKIE BANNER (ONE, session-persistent) ═══ -->
-<div id="gc-cookie-banner" role="alert">
-  <p>
-    We use cookies to improve your experience and show personalised content.
-    See our <a href="/cookies.html">Cookie Policy</a> for details.
-  </p>
-  <button class="gc-cookie-btn secondary" onclick="gcCookieDecline()">Decline</button>
-  <button class="gc-cookie-btn" onclick="gcCookieAccept()">Accept All</button>
-</div>
-
 <!-- ═══ SUBSCRIPTION POPUP (ONE, session-once) ═══ -->
 <div id="gc-sub-overlay" role="dialog" aria-modal="true" aria-label="Newsletter signup">
   <div class="gc-sub-box">
     <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close">✕</button>
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
-    <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ=="
-          method="POST"
-          data-type="subscription"
-          target="_blank"
-          onsubmit="setTimeout(function(){document.getElementById('gc-sub-thanks').style.display='block';},500);gcSubClose();">
+    <form onsubmit="event.preventDefault();gcSubSubmit();return false;">
       <div class="gc-sub-form">
         <input type="email" name="EMAIL" id="gc-sub-email" placeholder="Your email address" autocomplete="email" required>
         <input type="hidden" name="locale" value="en">
         <input type="text" name="email_address_check" value="" style="display:none">
-        <button type="submit" class="gc-sub-submit">Subscribe Free ✉️</button>
+        <button type="button" class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free ✉️</button>
       </div>
     </form>
     <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
@@ -1104,14 +1050,12 @@ hamburger.addEventListener('click',function(){sidebar.classList.contains('open')
 document.getElementById('gc-sidebar-close').addEventListener('click',gcCloseSidebar);
 document.getElementById('gc-sidebar-overlay').addEventListener('click',gcCloseSidebar);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')gcCloseSidebar();});
-(function(){if(localStorage.getItem('gc_cookie_choice'))return;setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.classList.add('show');},1200);})();
-function gcCookieAccept(){localStorage.setItem('gc_cookie_choice','accepted');document.getElementById('gc-cookie-banner').classList.remove('show');}
-function gcCookieDecline(){localStorage.setItem('gc_cookie_choice','declined');document.getElementById('gc-cookie-banner').classList.remove('show');}
 (function(){if(sessionStorage.getItem('gc_sub_shown'))return;var shown=false;function show(){if(shown)return;shown=true;sessionStorage.setItem('gc_sub_shown','1');var el=document.getElementById('gc-sub-overlay');if(el)el.classList.add('show');}setTimeout(show,10000);window.addEventListener('scroll',function(){if(window.scrollY/(document.body.scrollHeight-window.innerHeight)>=0.5)show();},{passive:true});})();
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');}
-function gcSubSubmit(){var e=document.getElementById('gc-sub-email').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}document.querySelector('.gc-sub-box').innerHTML='<div style="padding:20px"><h3 style="color:var(--blue)">✅ Subscribed!</h3></div>';setTimeout(gcSubClose,2500);}
+function gcSubSubmit(){var input=document.getElementById('gc-sub-email');var email=input?input.value.trim():'';if(!email||!email.includes('@')){alert('Please enter a valid email.');return;}var box=document.querySelector('.gc-sub-box');fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d};});}).then(function(res){if(res.ok&&res.data.success){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:#7B0D1E">You\'re in! 🎉</h3></div>';setTimeout(gcSubClose,2500);}else if(box){box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';}}).catch(function(){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';});}
 </script>
 
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

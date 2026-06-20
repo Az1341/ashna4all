@@ -5,7 +5,8 @@
   <url><loc>https://www.goalcurrent.live/</loc><lastmod>2026-06-15</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
 
   <!-- LIVE SCORES -->
-  <url><loc>https://www.goalcurrent.live/live/</loc><lastmod>2026-06-15</lastmod><changefreq>always</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.goalcurrent.live/live/</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.goalcurrent.live/match/</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- WORLD CUP 2026 — MAIN PAGES -->
   <url><loc>https://www.goalcurrent.live/worldcup2026/</loc><lastmod>2026-06-15</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
@@ -48,6 +49,10 @@
   <url><loc>https://www.goalcurrent.live/ucl/news/</loc><lastmod>2026-06-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- STATIC PAGES -->
+  <url><loc>https://www.goalcurrent.live/blog-england-croatia.html</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.goalcurrent.live/blog-ucl-final.html</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.goalcurrent.live/blog-pl-final-day.html</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.goalcurrent.live/worldcup2026/news/wc2026-squads-confirmed.html</loc><lastmod>2026-06-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.goalcurrent.live/news/football-inspiring-canadas-next-generation/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.goalcurrent.live/about.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.goalcurrent.live/contact.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>

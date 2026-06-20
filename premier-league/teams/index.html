@@ -510,20 +510,6 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
 
-<!-- COOKIE BANNER -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
-  <div style="font-size:11px;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb;text-decoration:none">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
-  </div>
-</div>
-<script>
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-</script>
-
   <footer style="background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.9);color:#64748b;padding:18px;font-size:.78rem;line-height:1.7">
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
       <a href="/about.html" style="color:#2563eb">About</a>
@@ -570,5 +556,6 @@ if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.get
   });
 })();
 </script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

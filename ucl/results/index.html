@@ -667,33 +667,21 @@ body{font-family:var(--font);background:linear-gradient(135deg,var(--bg1) 0%,var
   </footer>
 </div>
 
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border-top:2px solid #f59e0b;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-  <div style="font-size:11px;color:#94a3b8;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#f59e0b;text-decoration:none">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#f59e0b;color:#0f172a;border:none;padding:7px 18px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #2d3f5e;padding:7px 18px;border-radius:8px;font-size:11px;cursor:pointer">Decline</button>
-  </div>
-</div>
-
 <script>
 function sbToggle(id,btn){document.getElementById(id).classList.toggle('open');btn.classList.toggle('open');}
-function gcAcceptCookies(){localStorage.setItem('gc_ck','yes');document.getElementById('gc-cookie-banner').style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_ck','no');document.getElementById('gc-cookie-banner').style.display='none';}
 function gcSubscribe(){
   var input=document.getElementById('gc-email-input');var msg=document.getElementById('gc-sub-msg');
   if(!input||!input.value||input.value.indexOf('@')<0){if(input)input.style.outline='2px solid #dc2626';return;}
-  input.style.outline='2px solid #16a34a';
-  var form=document.createElement('form');form.method='POST';
-  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-  form.target='_blank';form.style.display='none';
-  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
-  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
-  var f3=document.createElement('input');f3.name='locale';f3.value='en';
-  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  if(msg)msg.style.display='block';input.value='';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:input.value.trim()})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d};});})
+  .then(function(res){
+    if(res.ok&&res.data.success){
+      if(msg){msg.textContent='You\'re in! 🎉';msg.style.color='#7B0D1E';msg.style.display='block';}
+      input.value='';
+    }else if(msg){msg.textContent='Something went wrong. Try again.';msg.style.color='red';msg.style.display='block';}
+  })
+  .catch(function(){if(msg){msg.textContent='Something went wrong. Try again.';msg.style.color='red';msg.style.display='block';}});
 }
-if(!localStorage.getItem('gc_ck')){setTimeout(function(){document.getElementById('gc-cookie-banner').style.display='flex';},1500);}
 document.addEventListener('click',function(e){
   var sb=document.getElementById('gc-sidebar');
   var hb=document.querySelector('.sb-hamburger');
@@ -733,19 +721,6 @@ document.addEventListener('click',function(e){
   });
 })();
 </script>
-
-<!-- Cookie Banner -->
-<div id="gc-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid #2563eb;padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:inherit">
-  <div style="font-size:.78rem;color:#334155;line-height:1.6;max-width:600px">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html" style="color:#2563eb">Cookie Policy</a></div>
-  <div style="display:flex;gap:8px">
-    <button onclick="gcAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">Accept ✓</button>
-    <button onclick="gcDeclineCookies()" style="background:transparent;color:#64748b;border:1px solid #cbd5e1;padding:8px 18px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:inherit">Decline</button>
-  </div>
-</div>
-<script>
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='none';}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){var b=document.getElementById('gc-cookie-banner');if(b)b.style.display='flex';},1500);}
-</script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

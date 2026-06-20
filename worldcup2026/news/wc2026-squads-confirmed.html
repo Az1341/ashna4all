@@ -646,17 +646,18 @@ function doSubscribe(){
   var input=document.getElementById('subEmail');
   var msg=document.getElementById('subMsg');
   if(!input.value||input.value.indexOf('@')<0){input.style.borderColor='#dc2626';return;}
-  input.style.borderColor='#16a34a';
-  var form=document.createElement('form');form.method='POST';form.target='_blank';form.style.display='none';
-  form.action='https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==';
-  var f1=document.createElement('input');f1.name='EMAIL';f1.value=input.value;
-  var f2=document.createElement('input');f2.name='email_address_check';f2.value='';
-  var f3=document.createElement('input');f3.name='locale';f3.value='en';
-  form.appendChild(f1);form.appendChild(f2);form.appendChild(f3);
-  document.body.appendChild(form);form.submit();document.body.removeChild(form);
-  msg.style.display='block';input.value='';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:input.value.trim()})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d};});})
+  .then(function(res){
+    if(res.ok&&res.data.success){
+      if(msg){msg.textContent='You\'re in! 🎉';msg.style.color='#7B0D1E';msg.style.display='block';}
+      input.value='';
+    }else if(msg){msg.textContent='Something went wrong. Try again.';msg.style.color='red';msg.style.display='block';}
+  })
+  .catch(function(){if(msg){msg.textContent='Something went wrong. Try again.';msg.style.color='red';msg.style.display='block';}});
 }
 </script>
 <script src="/js/gc-final-safe.js?v=20260608-final-safe" defer></script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

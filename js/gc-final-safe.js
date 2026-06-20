@@ -138,8 +138,9 @@
   /* Only added if no master template banner exists and user
      has not already made a choice */
   function addCookie() {
-    if (document.querySelector('#gc-cookie-banner, .cookie-banner, .gc-safe-cookie')) return;
-    if (localStorage.getItem('gc_cookies') || localStorage.getItem('gc_cookie_choice')) return;
+    if (document.querySelector('#gc-cookie-banner, .cookie-banner, .gc-safe-cookie, #gc-consent-banner')) return;
+    if (document.querySelector('script[src="/js/gc-consent.js"]')) return;
+    if (localStorage.getItem('gc_consent') || localStorage.getItem('gc_cookies') || localStorage.getItem('gc_cookie_choice')) return;
     var b = document.createElement('div');
     b.className = 'gc-safe-cookie';
     b.innerHTML = '<p>We use cookies to personalise content and analyse traffic. ' +

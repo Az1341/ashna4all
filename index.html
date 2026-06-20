@@ -157,14 +157,6 @@ a{text-decoration:none;color:inherit}
 .gc-footer-social{display:flex;gap:8px;margin-bottom:10px}
 .gc-footer-social a{width:30px;height:30px;background:rgba(37,99,235,.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--blue)}
 .gc-footer-copy{color:#94a3b8;font-size:.72rem;line-height:1.8}
-#gc-cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid var(--blue);padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-#gc-cookie-banner.show{display:flex}
-.gc-cookie-text{font-size:.78rem;color:var(--text-mid);line-height:1.6;max-width:600px}
-.gc-cookie-text a{color:var(--blue)}
-.gc-cookie-btns{display:flex;gap:8px}
-.gc-cookie-btns button{padding:8px 18px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:var(--font-main);border:none}
-.gc-cookie-accept{background:var(--blue);color:#fff}
-.gc-cookie-decline{background:transparent;color:var(--text-light);border:1px solid #cbd5e1!important}
 #gc-sub-overlay{position:fixed;inset:0;background:rgba(2,12,32,.55);z-index:9998;display:none;align-items:center;justify-content:center;padding:16px}
 #gc-sub-overlay.show{display:flex}
 .gc-sub-box{max-width:560px;width:100%;background:#fff;border-radius:20px;padding:24px 20px 16px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.3)}
@@ -607,17 +599,6 @@ html[dir='rtl'] #gc-ad-rail{order:-1;border-left:none;border-right:1px solid rgb
 
 </div><!-- end #gc-page-wrap -->
 
-<div id="gc-cookie-banner" role="dialog" aria-label="Cookie consent">
-  <div class="gc-cookie-text">
-    🍪 <span data-gc-i18n="cookie.message">We use cookies to personalise content and analyse traffic.</span>
-    <a href="/cookies.html" data-gc-i18n="cookie.learnMore">Cookie Policy</a>
-  </div>
-  <div class="gc-cookie-btns">
-    <button class="gc-cookie-accept" onclick="gcAcceptCookies()" data-gc-i18n="cookie.accept">Accept ✓</button>
-    <button class="gc-cookie-decline" onclick="gcDeclineCookies()" data-gc-i18n="cookie.reject">Decline</button>
-  </div>
-</div>
-
 <div id="gc-sub-overlay">
   <div class="gc-sub-box">
     <button class="gc-sub-close" onclick="gcSubClose()" aria-label="Close" data-gc-i18n="buttons.close">✕</button>
@@ -675,10 +656,7 @@ function gcOpenSidebar(){document.getElementById('gc-sidebar').classList.add('op
 function gcCloseSidebar(){document.getElementById('gc-sidebar').classList.remove('open');document.getElementById('gc-sidebar-overlay').classList.remove('open');document.body.style.overflow='';var hb=document.getElementById('gc-hamburger');if(hb)hb.style.display='';}
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#gc-hamburger')){gcOpenSidebar();return;}if(e.target.closest&&e.target.closest('#gc-sidebar-close')){gcCloseSidebar();return;}if(e.target.id==='gc-sidebar-overlay'){gcCloseSidebar();return;}});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){gcCloseSidebar();}});
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').classList.remove('show');}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').classList.add('show');},1500);}
-function gcSubSubmit(){var email=document.getElementById('gc-sub-email-input');if(!email||!email.value||!email.value.includes('@')){email.style.borderColor='#ef4444';email.focus();return;}window.open('https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==','_blank','noopener');var box=document.querySelector('.gc-sub-box');if(box){box.innerHTML='<div style="text-align:center;padding:20px"><div style="font-size:2.5rem;margin-bottom:10px">✉️</div><h3 style="font-family:inherit;margin-bottom:8px">Almost there!</h3><p style="color:#64748b;font-size:.85rem">Complete your sign-up in the tab that just opened.</p><button onclick="gcSubClose()" style="margin-top:16px;padding:10px 24px;background:#2563eb;color:#fff;border:none;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer">Close</button></div>';}sessionStorage.setItem('gc_sub_closed','1');}
+function gcSubSubmit(){var input=document.getElementById('gc-sub-email-input');var email=input?input.value.trim():'';if(!email||!email.includes('@')){if(input){input.style.borderColor='#ef4444';input.focus();}return;}var box=document.querySelector('.gc-sub-box');fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d};});}).then(function(res){if(res.ok&&res.data.success){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:#7B0D1E">You\'re in! 🎉</h3></div>';setTimeout(gcSubClose,2500);sessionStorage.setItem('gc_sub_closed','1');}else if(box){box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';}}).catch(function(){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';});}
 function gcSubClose(){document.getElementById('gc-sub-overlay').classList.remove('show');sessionStorage.setItem('gc_sub_closed','1');}
 if(!sessionStorage.getItem('gc_sub_closed')){setTimeout(function(){document.getElementById('gc-sub-overlay').classList.add('show');},8000);}
 renderMatches();updateClock();setInterval(function(){renderMatches();updateClock();},5000);
@@ -718,5 +696,6 @@ function loadVideos(){fetch('/api/videos',{cache:'no-store'}).then(function(r){r
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',loadVideos);}else{loadVideos();}
 })();
 </script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

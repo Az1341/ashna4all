@@ -116,14 +116,6 @@ a{text-decoration:none;color:inherit}
 .gc-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
 .gc-footer-links a{color:var(--blue);font-weight:600}
 .gc-footer-copy{color:#94a3b8;font-size:.7rem}
-#gc-cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid var(--blue);padding:14px 20px;z-index:9999;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-#gc-cookie-banner.show{display:flex}
-.gc-cookie-text{font-size:.78rem;color:var(--mid);line-height:1.6;max-width:600px}
-.gc-cookie-text a{color:var(--blue)}
-.gc-cookie-btns{display:flex;gap:8px}
-.gc-cookie-btns button{padding:8px 18px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:var(--font);border:none}
-.gc-cookie-accept{background:var(--blue);color:#fff}
-.gc-cookie-decline{background:transparent;color:var(--light);border:1px solid #cbd5e1!important}
 @media(min-width:769px){#gc-hamburger{display:none!important}#gc-sidebar{transform:translateX(0)!important}#gc-main{margin-left:var(--sb-w)!important}}
 @media(max-width:768px){
   #gc-hamburger{display:flex!important}
@@ -379,14 +371,6 @@ a{text-decoration:none;color:inherit}
   </footer>
 </div>
 
-<div id="gc-cookie-banner">
-  <div class="gc-cookie-text">🍪 We use cookies to personalise content and analyse traffic. <a href="/cookies.html">Cookie Policy</a></div>
-  <div class="gc-cookie-btns">
-    <button class="gc-cookie-accept" onclick="gcAcceptCookies()">Accept ✓</button>
-    <button class="gc-cookie-decline" onclick="gcDeclineCookies()">Decline</button>
-  </div>
-</div>
-
 <script>
 /* ═══════════════════════════════════════
    WC NEWS PAGE — GoalCurrent.live
@@ -476,12 +460,10 @@ document.getElementById('gc-sidebar-overlay').addEventListener('click',closeSB);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSB();});
 
 /* Cookie */
-function gcAcceptCookies(){localStorage.setItem('gc_cookies','yes');document.getElementById('gc-cookie-banner').classList.remove('show');}
-function gcDeclineCookies(){localStorage.setItem('gc_cookies','no');document.getElementById('gc-cookie-banner').classList.remove('show');}
-if(!localStorage.getItem('gc_cookies')){setTimeout(function(){document.getElementById('gc-cookie-banner').classList.add('show');},1500);}
 
 loadNews();
 setInterval(loadNews,3600000); /* Refresh every hour */
 </script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

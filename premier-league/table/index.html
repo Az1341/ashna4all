@@ -579,32 +579,6 @@
     #footer .footer-links a:hover { color: #fff; }
     #footer .footer-copy { color: rgba(255,255,255,0.35); }
 
-    /* ======================== COOKIE BANNER ======================== */
-    #cookie-banner {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: #0f172a;
-      color: rgba(255,255,255,0.85);
-      padding: 14px 20px;
-      display: none;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.82rem;
-      z-index: 9999;
-      flex-wrap: wrap;
-    }
-    #cookie-banner a { color: #93c5fd; text-decoration: none; }
-    #cookie-banner button {
-      padding: 6px 14px;
-      border: none;
-      border-radius: 5px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-accept { background: #3b82f6; color: #fff; }
-    .btn-decline { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
-
     /* ======================== OVERLAY (mobile) ======================== */
     #overlay {
       display: none;
@@ -898,14 +872,6 @@
   </footer>
 
 </div><!-- /#main -->
-
-<!-- Cookie banner -->
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
-  <span>🍪 We use cookies to personalise content and analyse traffic.
-    <a href="https://www.goalcurrent.live/cookies.html">Cookie Policy</a></span>
-  <button class="btn-accept" onclick="acceptCookies()">Accept ✓</button>
-  <button class="btn-decline" onclick="declineCookies()">Decline</button>
-</div>
 
 <!-- =============== JAVASCRIPT =============== -->
 <!-- 
@@ -1408,21 +1374,6 @@ overlay.addEventListener('click', closeSidebar);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
 /* ============================================================
-   COOKIE BANNER
-============================================================ */
-function acceptCookies() {
-  localStorage.setItem('gc_cookies_pl', 'accepted');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-function declineCookies() {
-  localStorage.setItem('gc_cookies_pl', 'declined');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-if (!localStorage.getItem('gc_cookies_pl')) {
-  document.getElementById('cookie-banner').style.display = 'flex';
-}
-
-/* ============================================================
    BOOT — PL Table only. No WC26. No UCL.
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1430,5 +1381,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>

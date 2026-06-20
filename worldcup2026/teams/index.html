@@ -675,46 +675,6 @@ html, body {
   font-size: 0.72rem;
 }
 
-/* ─── COOKIE BANNER ─── */
-#gc-cookie-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #0f172a;
-  color: rgba(255,255,255,0.85);
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  z-index: 1100;
-  font-size: 0.8rem;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-}
-#gc-cookie-banner.show { transform: translateY(0); }
-#gc-cookie-banner p { flex: 1; min-width: 220px; line-height: 1.5; }
-#gc-cookie-banner a { color: var(--gold); }
-.gc-cookie-btn {
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-family: var(--font-main);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-.gc-cookie-btn:hover { background: #1d4ed8; }
-.gc-cookie-btn.secondary {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-}
-.gc-cookie-btn.secondary:hover { background: rgba(255,255,255,0.18); }
-
 /* ─── SUBSCRIPTION POPUP ─── */
 #gc-sub-overlay {
   display: none;
@@ -923,16 +883,6 @@ html, body {
 
 </div><!-- /#gc-page-content -->
 
-<!-- ═══ COOKIE BANNER (ONE, session-persistent) ═══ -->
-<div id="gc-cookie-banner" role="alert">
-  <p>
-    We use cookies to improve your experience and show personalised content.
-    See our <a href="/cookies.html">Cookie Policy</a> for details.
-  </p>
-  <button class="gc-cookie-btn secondary" onclick="gcCookieDecline()">Decline</button>
-  <button class="gc-cookie-btn" onclick="gcCookieAccept()">Accept All</button>
-</div>
-
 <!-- ═══ SUBSCRIPTION POPUP (ONE, session-once) ═══ -->
 <div id="gc-sub-overlay" role="dialog" aria-modal="true" aria-label="Newsletter signup">
   <div class="gc-sub-box">
@@ -940,11 +890,11 @@ html, body {
     <h3>⚽ Stay Ahead of the Game</h3>
     <p>Get World Cup 2026 goals, results &amp; news straight to your inbox. No spam, ever.</p>
     <div class="gc-sub-form">
-      <form action="https://6f3982fe.sibforms.com/serve/MUIFAAeE0hUslfMPz6bu9jEdklCxC0j3MKRhPltWSCDC_tVUwEcn-BPO3nLjIw2aSho06qiaVbJQeSm82mDriQMJMGfLswlCCKPLLfx0zUzMswOSlJdOlApYAZWAC_afmaPFWT15_roCfNbtYVtGFlMgKM1HGk_pVspxm85Bu_diOgScU9dhJ5759I1ylWVpHoPZGfmBCXXou9sSrQ==" method="POST" data-type="subscription" target="_blank" onsubmit="setTimeout(gcSubClose,800)" style="display:contents">
+      <form onsubmit="event.preventDefault();gcSubSubmit();return false;" style="display:contents">
       <input type="hidden" name="locale" value="en">
       <input type="text" name="email_address_check" value="" style="display:none" tabindex="-1">
       <input type="email" name="EMAIL" id="gc-sub-email" placeholder="Your email address" autocomplete="email" required>
-      <button type="submit" class="gc-sub-submit">Subscribe Free ✉️</button>
+      <button type="button" class="gc-sub-submit" onclick="gcSubSubmit()">Subscribe Free ✉️</button>
       </form>
     </div>
     <p class="gc-sub-note">Unsubscribe any time · Powered by Brevo</p>
@@ -1250,23 +1200,6 @@ function gcRenderTeams(){
   document.getElementById('gc-team-count').textContent = GC_TEAMS.length+' Teams';
 }
 
-/* ── COOKIE BANNER (localStorage-persistent, not session) ── */
-(function(){
-  if(localStorage.getItem('gc_cookies')) return;
-  setTimeout(function(){
-    var banner = document.getElementById('gc-cookie-banner');
-    if(banner) banner.classList.add('show');
-  }, 1200);
-})();
-function gcCookieAccept(){
-  localStorage.setItem('gc_cookies','accepted');
-  document.getElementById('gc-cookie-banner').classList.remove('show');
-}
-function gcCookieDecline(){
-  localStorage.setItem('gc_cookies','declined');
-  document.getElementById('gc-cookie-banner').classList.remove('show');
-}
-
 /* ── SUBSCRIPTION POPUP (sessionStorage-once) ── */
 (function(){
   if(sessionStorage.getItem('gc_sub_shown')) return;
@@ -1305,14 +1238,7 @@ function gcSubClose(){
   else initWcPopup();
 })();
 function gcWcPopupClose(){document.getElementById('gc-wc-popup').classList.remove('show');}
-function gcSubSubmit(){
-  var email = document.getElementById('gc-sub-email').value.trim();
-  if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
-  // TODO: wire to Brevo API
-  document.querySelector('.gc-sub-box').innerHTML =
-    '<div style="padding:20px"><h3 style="font-family:var(--font-heading);font-size:1.4rem;color:var(--blue)">✅ You\'re in!</h3><p style="color:var(--text-mid);margin-top:8px">Thanks for subscribing. World Cup updates coming your way.</p></div>';
-  setTimeout(gcSubClose, 3000);
-}
+function gcSubSubmit(){var input=document.getElementById('gc-sub-email');var email=input?input.value.trim():'';if(!email||!email.includes('@')){alert('Please enter a valid email.');return;}var box=document.querySelector('.gc-sub-box');fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d};});}).then(function(res){if(res.ok&&res.data.success){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:#7B0D1E">You\'re in! 🎉</h3></div>';setTimeout(gcSubClose,2500);}else if(box){box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';}}).catch(function(){if(box)box.innerHTML='<div style="padding:20px"><h3 style="color:red">Something went wrong. Try again.</h3></div>';});}
 
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', gcRenderTeams);
@@ -1332,5 +1258,6 @@ document.addEventListener('DOMContentLoaded', gcRenderTeams);
     GCShell.init({ contentSelector:'#gc-page-content', section:'worldcup2026', showSubnav:true, headerTitle:'World Cup 2026', headerSubtitle:'Teams' });
   }
 </script>
+<script src="/js/gc-consent.js"></script>
 </body>
 </html>
