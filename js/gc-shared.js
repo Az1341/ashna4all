@@ -411,7 +411,7 @@ function gcInit(opts){
   document.body.appendChild(cookieDiv.firstChild);
 
   /* Show cookie banner if not yet decided */
-  if(!localStorage.getItem('gc_cookies')){
+  if(!localStorage.getItem('gc_consent')){
     setTimeout(function(){
       var b = document.getElementById('gcCookieBanner');
       if(b) b.style.display = 'flex';
@@ -440,12 +440,12 @@ window.gcToggleSub = function(id){
   if(el) el.classList.toggle('open');
 };
 window.gcAcceptCookies = function(){
-  localStorage.setItem('gc_cookies','yes');
+  localStorage.setItem('gc_consent','accepted');
   var b = document.getElementById('gcCookieBanner');
   if(b) b.style.display = 'none';
 };
 window.gcDeclineCookies = function(){
-  localStorage.setItem('gc_cookies','no');
+  localStorage.setItem('gc_consent','declined');
   var b = document.getElementById('gcCookieBanner');
   if(b) b.style.display = 'none';
 };

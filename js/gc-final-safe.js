@@ -140,7 +140,7 @@
   function addCookie() {
     if (document.querySelector('#gc-cookie-banner, .cookie-banner, .gc-safe-cookie, #gc-consent-banner')) return;
     if (document.querySelector('script[src="/js/gc-consent.js"]')) return;
-    if (localStorage.getItem('gc_consent') || localStorage.getItem('gc_cookies') || localStorage.getItem('gc_cookie_choice')) return;
+    if (localStorage.getItem('gc_consent')) return;
     var b = document.createElement('div');
     b.className = 'gc-safe-cookie';
     b.innerHTML = '<p>We use cookies to personalise content and analyse traffic. ' +
@@ -149,7 +149,7 @@
       '<button class="accept" type="button">Accept ✓</button>';
     document.body.appendChild(b);
     function hide(v) {
-      localStorage.setItem('gc_cookies', v);
+      localStorage.setItem('gc_consent', v === 'yes' ? 'accepted' : 'declined');
       b.classList.remove('show');
     }
     b.querySelector('.accept').onclick = function () { hide('yes'); };
