@@ -1,19 +1,18 @@
-# data.md — ashna4all
+# data.md — Public legacy repository
 
-**Review draft:** 12 October 2026. Do not create a new database, migration or retention policy from this document alone.
+**Purpose:** Existing data-boundary review guide, not a new data policy or schema. **Status:** DRAFT / NOT CERTIFIED, 12 October 2026 (Europe/London).
 
-## Data inventory
-In scope for verification: unknown legacy project data; classify before any use. Inspect the existing schema, source-of-truth documents, storage and data processing code; these are the technical authority.
+## Authority
+Public `README.md` contains only a GoalCurrent URL; its true product/data authority is unresolved.
 
-## Data contract
-1. Classify public, internal, confidential and sensitive data. Identify owners, purpose, lawful basis where required, tenancy and approved processors.
-2. Restrict reads and writes using existing server-side permissions, row policies where applicable, and auditable service privileges.
-3. Minimise collection and avoid sensitive data in prompts, logs, analytics, fixtures and public Git history.
-4. Document retention, secure deletion, export, restoration and backups from actual implementation. Treat unverified capabilities as UNVERIFIED.
-5. Test access denial across accounts/brands/families/projects using synthetic records. Document data lineage and migration reversibility.
-6. No production data migration, write, import or export is authorised by these documentation additions.
+## Data separation and handling
+- Assume there is no approved private-data processing purpose until owner and deployment are verified.
+- Only public non-sensitive project documentation may be committed; do not copy private Founder OS registries, logs, credentials or personal records.
+- Review any hosting or analytics linkage before claiming a retention or deletion mechanism.
 
-## Evidence needed
-Schema and migration references; retention register; boundary checks; backup/restore test; privacy and incident contacts; exact-SHA automated test results.
+## Evidence and approval
+Required verification: Repository history and commit exposure review; canonical owner/deployment confirmation. Use real code/schema paths and synthetic records for testing. Unexecuted checks are **NOT RUN**, not PASS. No database migration, retention change, live export, production write or credentials are authorised by this document.
 
-See [security.md](security.md), [auth.md](auth.md), [checklist.md](checklist.md).
+**Current gate:** HOLD — public/legacy identity not verified.
+
+Related: [security.md](security.md), [auth.md](auth.md), [hack.md](hack.md), [checklist.md](checklist.md).
