@@ -1,23 +1,24 @@
-# security.md — Ashna4all legacy repository
+# security.md — Legacy public Ashna4all repository
 
-**Status:** Documentation draft for review, 12 October 2026 (Europe/London). **Not** a security certificate, release approval or replacement for existing policy.
+**Classification:** Non-authoritative control-review guide. **Status:** DRAFT / NOT CERTIFIED, 12 October 2026 (Europe/London). This document neither certifies existing controls nor authorises new security tests or production changes.
 
-## Authority and trust boundary
-- Consult `README.md` and repository history; identity and deployment ownership require verification before modifying security behaviour. Where this summary differs, existing approved documents and implemented controls win.
-- This is a public repository with a minimal README pointing to GoalCurrent. Do not infer that it is the private Founder OS or an active production service.
+## Source of authority
+Public README only; repository function, deploy mapping and source-of-truth status unverified. If there is a conflict, reconcile the authoritative implementation and approved decisions; do not elevate this summary to a second Source of Truth.
 
-## Minimum safeguards
-- Authenticate and authorise on the server; use least privilege and deny by default. Document any surface to which this does not apply.
-- Keep tokens, API keys, credentials, private personal data and secrets out of code, client bundles, logs, pull requests and test fixtures. Rotate a credential if exposure is suspected.
-- Validate inputs, limit rates and resource consumption, and enforce origin, tenancy, action and environment boundaries where relevant.
-- Ensure private information is excluded from publicly accessible previews, generated artefacts and telemetry.
-- Make any externally consequential action subject to the project's existing approval controls; never infer approval from a successful test.
-- Before changes: confirm current purpose, owners, deployment mapping and whether the repository is retired. Never place private project records or secrets here.
+## Priority threats to review
+- Public accidental publication of private founder data, token leakage, and incorrect assumption this is the Founder OS source.
+- Unreviewed direct changes to public branch or unclear release ownership.
 
-## Security evidence / incident handling
-1. Record affected revision, scope, impact and reproduction using synthetic data only.
-2. Contain any exposure without deleting evidence; revoke compromised credentials through authorised channels.
-3. Repair on a separate branch; review dependency, authorisation, data-leak and regression risks.
-4. Record failed and passed tests; require applicable release gates and explicit founder approval before merge/deployment.
+## Security boundaries to preserve
+- Hold any product-specific policy adoption until owner and canonical source are identified.
+- Only public repository hygiene and least-privilege GitHub reviews are in scope. No private credentials or data.
 
-**Related:** [auth.md](auth.md) · [data.md](data.md) · [hack.md](hack.md) · [checklist.md](checklist.md)
+## Evidence and incident treatment
+- Collect reproducible scoped findings and exact commit SHA using synthetic or redacted evidence. No live penetration test authorised by this file.
+- Never include API keys, tokens, personal records or exploit artefacts with real data in repository documentation.
+- For exposure or a serious finding, preserve evidence, restrict access and use established incident/credential-response procedures with the appropriate owner.
+- Verify a fix in isolation; an unrun check is **NOT RUN**, never PASS.
+
+**Release decision:** HOLD. Resolve identity and confirm whether repository should stay active before any merge.
+
+Related: [auth.md](auth.md), [data.md](data.md), [hack.md](hack.md), [checklist.md](checklist.md).
